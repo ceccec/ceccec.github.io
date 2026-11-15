@@ -311,6 +311,82 @@ export function srcAllRegistry(root = srcScanRoot()) {
   return srcRegistryFromEntries(entries, 'all-level')
 }
 
+// ── FEELING · THOUGHT · EMOTION — the trinity, and valence as the flip across it ──────────────────────────────────
+// feeling (the body's signal) → thought (the reading) → emotion (the episode) → feeling again: a rotation of three
+// corners. Valence (pleasant ↔ unpleasant) is a flip that acts on every corner at once. Everything below is computed
+// from those two maps; src/pair/lean/proofs/feeling.lean proves the same facts by `decide`, and verify:feeling holds
+// the two against each other. A first description said "three turns and three flips" — the dihedral group, where a
+// flip reverses the turn. Here the flip commutes with the turn, so the six symmetries are ONE cyclic group.
+export const FEELING_CORNERS = ['feeling', 'thought', 'emotion'] as const
+export const FEELING_VALENCES = ['pleasant', 'unpleasant'] as const
+export const FEELING_CORNER_ROLES: Readonly<Record<(typeof FEELING_CORNERS)[number], string>> = {
+  feeling: 'the body’s signal — raw affect, before any story',
+  thought: 'the reading — appraisal: what is this, can I handle it',
+  emotion: 'the episode — signal and reading fused, with a name and a push',
+}
+export type FeelingState = { readonly corner: number; readonly valence: number }
+export type FeelingSymmetry = { readonly turns: number; readonly flips: number; readonly order: number; readonly name: string }
+
+/** The forward turn on a corner index, the turn back, and the valence flip. */
+export const feelingTurn = (corner: number) => (corner + 1) % FEELING_CORNERS.length
+export const feelingTurnBack = (corner: number) => (corner + FEELING_CORNERS.length - 1) % FEELING_CORNERS.length
+export const feelingFlip = (valence: number) => (valence + 1) % FEELING_VALENCES.length
+/** The symmetry (turns, flips) applied to a state: flip `flips` times, then turn `turns` times. */
+export function feelingAct(turns: number, flips: number, state: FeelingState): FeelingState {
+  let { corner, valence } = state
+  for (let j = 0; j < flips; j += 1) valence = feelingFlip(valence)
+  for (let i = 0; i < turns; i += 1) corner = feelingTurn(corner)
+  return { corner, valence }
+}
+
+export function feelingThoughtEmotionTrinity(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('feelingThoughtEmotionTrinity', matrix, () => {
+    const c = FEELING_CORNERS.length, v = FEELING_VALENCES.length
+    const corners = Array.from({ length: c }, (_, i) => i)
+    const states: FeelingState[] = corners.flatMap((corner) => Array.from({ length: v }, (_, valence) => ({ corner, valence })))
+    const same = (a: FeelingState, b: FeelingState) => a.corner === b.corner && a.valence === b.valence
+    const map = (turns: number, flips: number) => (s: FeelingState) => feelingAct(turns, flips, s)
+    const power = <T,>(f: (s: T) => T, k: number, s: T): T => { let t = s; for (let i = 0; i < k; i += 1) t = f(t); return t }
+    const isIdentity = (f: (s: FeelingState) => FeelingState) => states.every((s) => same(f(s), s))
+    const orderOf = (f: (s: FeelingState) => FeelingState) => Array.from({ length: states.length }, (_, k) => k + 1).find((k) => isIdentity((s) => power(f, k, s))) ?? 0
+    const nameOf = (turns: number, flips: number) => [turns ? `${turns === 1 ? 'turn' : `${turns} turns`}` : '', flips ? 'flip' : ''].filter(Boolean).join(' + ') || 'rest'
+    const symmetries: FeelingSymmetry[] = Array.from({ length: v }, (_, flips) => corners.map((turns) => ({ turns, flips, order: orderOf(map(turns, flips)), name: nameOf(turns, flips) }))).flat()
+    const distinct = symmetries.every((a, i) => symmetries.every((b, j) => i === j || !states.every((s) => same(map(a.turns, a.flips)(s), map(b.turns, b.flips)(s)))))
+    const threeTurnsReturn = corners.every((x) => power(feelingTurn, c, x) === x)
+    const noCornerFixed = corners.every((x) => feelingTurn(x) !== x)
+    const backIsTwoTurns = corners.every((x) => feelingTurnBack(x) === power(feelingTurn, c - 1, x) && feelingTurnBack(feelingTurn(x)) === x)
+    const flipReturns = Array.from({ length: v }, (_, x) => x).every((x) => feelingFlip(feelingFlip(x)) === x && feelingFlip(x) !== x)
+    const commutes = states.every((s) => same(feelingAct(1, 1, s), map(0, 1)(map(1, 0)(s))) && same(map(1, 0)(map(0, 1)(s)), map(0, 1)(map(1, 0)(s))))
+    const pureFlips = symmetries.filter((s) => s.order === 2)
+    const generator = symmetries.find((s) => s.order === states.length)
+    const generates = !!generator && symmetries.every((target) => Array.from({ length: states.length }, (_, k) => k).some((k) => states.every((s) => same(power(map(generator.turns, generator.flips), k, s), map(target.turns, target.flips)(s)))))
+    const turnIsNotItsReverse = !states.every((s) => same(map(1, 0)(s), { corner: feelingTurnBack(s.corner), valence: s.valence }))
+    const notDihedral = symmetries.every((t) => states.every((s) => same(map(t.turns, t.flips)(map(1, 0)(s)), map(1, 0)(map(t.turns, t.flips)(s))))) && turnIsNotItsReverse
+    const orders = symmetries.map((s) => s.order)
+    const facets = [
+      { facet: `three turns return and no corner stays put: feeling → thought → emotion → feeling, ${c} turns to come home, every corner moved by one`, on: threeTurnsReturn && noCornerFixed },
+      { facet: 'turning back is two turns forward: a thought can start a feeling, an emotion can revise a thought — the loop runs both ways', on: backIsTwoTurns },
+      { facet: 'the valence flip returns in two and fixes no valence: pleasant ↔ unpleasant, on every corner at once', on: flipReturns },
+      { facet: `the flip commutes with the turn on all ${states.length} states, so the ${symmetries.length} symmetries are distinct maps forming one group`, on: commutes && distinct },
+      { facet: `the orders are ${orders.join(', ')}: exactly ${pureFlips.length} pure flip (${pureFlips.map((s) => s.name).join(', ')}), and ${generator ? `“${generator.name}”` : 'no symmetry'} of order ${states.length} generates all ${symmetries.length} — the group is cyclic, ℤ₃ × ℤ₂ ≅ ℤ₆`, on: pureFlips.map((s) => `${s.turns}:${s.flips}`).join() === '0:1' && generates },
+      { facet: 'it is not the dihedral group of the triangle: every symmetry commutes with the turn, and the turn is not its own reverse', on: notDihedral },
+    ]
+    return {
+      computes: facets.every((f) => f.on),
+      corners: FEELING_CORNERS.map((name) => ({ name, role: FEELING_CORNER_ROLES[name] })),
+      valences: [...FEELING_VALENCES],
+      symmetries,
+      orders,
+      facets,
+      root: merkleFold(facets.map((f) => toUuid(`feeling-trinity:${f.facet}:${f.on}`))),
+      statement: `Feeling, thought and emotion turn as a trinity and valence flips across it: ${symmetries.length} symmetries, one cyclic group of order ${states.length}, with exactly ${pureFlips.length} pure flip — ${facets.filter((f) => f.on).length}/${facets.length} facets hold.`,
+      boundary: earned('COMPUTED — the trinity is decided from its two maps:', facets, [
+        { facet: `the model's own size bounds what it decides: ${c} corners × ${v} valences = ${states.length} states, every one enumerated — a mind with mixed feelings or a fourth corner lies outside it, and that is empirical, not decided here`, on: c * v === states.length },
+      ]),
+    }
+  })
+}
+
 /** One gate — sense/mind/body one-word pairs registered and mounted at call time. */
 export function senseMindBodyPairsComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('senseMindBodyPairsComputes', matrix, () => {

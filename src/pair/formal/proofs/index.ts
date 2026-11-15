@@ -1412,8 +1412,61 @@ function leanAxiomsRecorded(root: string): LeanAxiomsRecord {
 /** One sentence per theorem, in the three states the record has. Plain text; the LaTeX and the page wrap the names. */
 export function leanAxiomSentence(axioms: readonly string[] | null, code: (name: string) => string = (name) => name): string {
   if (axioms === null) return `what it rests on is not recorded here — ${code('npm run verify:lean')} reports it`
-  if (axioms.length === 0) return 'it depends on no axiom'
-  return `it rests on ${axioms.map(code).join(' and ')} and on no other axiom`
+  const entry = leanLedgerEntry(axioms)
+  return `debit: this theorem; credit: ${entry.credit.map((a) => `${code(a.name)} (${a.meaning})`).join(' and ')}`
+}
+
+/**
+ * THE AXIOM LEDGER — DEBIT THE THEOREM, CREDIT WHAT IT RESTS ON. Every kernel-checked theorem posts two entries: a
+ * debit to the theorem, and a credit to the account of what the kernel says it rests on. There is no theorem without
+ * a credit: one that names no axiom is credited to the KERNEL account — the type theory's own rules, witnessed by
+ * of_decide_eq_true, which itself rests on nothing. One that names axioms is credited to each of them, by name, with
+ * Lean's own statement of the axiom and what it means. The ledger balances when every debit has its credit and every
+ * credited account is defined and admitted; verify:axiom-ledger states that as a decided proposition, and checks each
+ * statement below against Lean's `#check` wherever Lean is installed, so none of them is typed from memory.
+ */
+export type LeanAccount = { readonly name: string; readonly statement: string; readonly meaning: string; readonly admitted: boolean }
+export const LEAN_KERNEL_ACCOUNT: LeanAccount = {
+  name: 'of_decide_eq_true',
+  statement: '∀ {p : Prop} [inst : Decidable p], decide p = true → p',
+  meaning: 'the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom',
+  admitted: true,
+}
+export const LEAN_AXIOM_ACCOUNTS: Readonly<Record<string, LeanAccount>> = {
+  propext: { name: 'propext', statement: '∀ {a b : Prop}, (a ↔ b) → a = b', meaning: 'two propositions that imply each other are the same proposition', admitted: true },
+  'Quot.sound': { name: 'Quot.sound', statement: '∀ {α : Sort u_1} {r : α → α → Prop} {a b : α}, r a b → Quot.mk r a = Quot.mk r b', meaning: 'a quotient makes equal what its relation relates — the axiom behind function extensionality', admitted: true },
+  'Classical.choice': { name: 'Classical.choice', statement: '{α : Sort u_1} → Nonempty α → α', meaning: 'an element can be taken from any non-empty type without constructing it — refused in this corpus', admitted: false },
+  sorryAx: { name: 'sorryAx', statement: '(α : Sort u_1) → Bool → α', meaning: 'any statement is accepted unproved — refused in this corpus', admitted: false },
+}
+
+/** One theorem's two entries: the debit, and the accounts credited. An axiom no account defines is credited to an
+ *  UNDEFINED account, named as such, so an unbalanced ledger says where it is unbalanced. */
+export function leanLedgerEntry(axioms: readonly string[]): { readonly credit: readonly LeanAccount[]; readonly account: string; readonly undefinedAxioms: readonly string[] } {
+  if (axioms.length === 0) return { credit: [LEAN_KERNEL_ACCOUNT], account: 'kernel', undefinedAxioms: [] }
+  const credit = axioms.map((name) => LEAN_AXIOM_ACCOUNTS[name] ?? { name, statement: '', meaning: 'UNDEFINED — no account defines this axiom', admitted: false })
+  return { credit, account: [...axioms].sort().join(' + '), undefinedAxioms: axioms.filter((name) => !LEAN_AXIOM_ACCOUNTS[name]) }
+}
+
+/** The whole ledger over a set of theorems: debits, the credit accounts with their theorems, and whether it balances. */
+export function leanLedger(rows: readonly { readonly name: string; readonly file: string; readonly axioms: readonly string[] | null }[]) {
+  const recorded = rows.filter((row) => row.axioms !== null)
+  const entries = recorded.map((row) => ({ debit: `${row.file}:${row.name}`, ...leanLedgerEntry(row.axioms!) }))
+  const accounts = new Map<string, { readonly account: string; readonly credit: readonly LeanAccount[]; theorems: number }>()
+  for (const e of entries) {
+    const known = accounts.get(e.account)
+    if (known) known.theorems += 1
+    else accounts.set(e.account, { account: e.account, credit: e.credit, theorems: 1 })
+  }
+  const credits = [...accounts.values()].reduce((sum, a) => sum + a.theorems, 0)
+  return {
+    debits: entries.length,
+    credits,
+    unrecorded: rows.filter((row) => row.axioms === null).map((row) => `${row.file}:${row.name}`),
+    undefinedAxioms: [...new Set(entries.flatMap((e) => e.undefinedAxioms))],
+    refused: entries.filter((e) => e.credit.some((a) => !a.admitted)).map((e) => `${e.debit} → ${e.account}`),
+    accounts: [...accounts.values()].sort((a, b) => b.theorems - a.theorems || (a.account < b.account ? -1 : 1)),
+    entries,
+  }
 }
 
 function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLatex[] {

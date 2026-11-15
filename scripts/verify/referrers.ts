@@ -34,7 +34,9 @@ export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; fol
   // (runThinMount), package.json run-scripts name an entry and its export, and scripts/ imports folds directly: each is a
   // referrer, read here, so 'unreferred' means reachable by nothing — not unseen by one regex.
   const scriptFiles: string[] = []
-  const walkScripts = (d: string) => { for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) walkScripts(p); else if (e.endsWith('.ts')) scriptFiles.push(p) } }
+  // scripts/verify/receipts holds the logs gates write while the stream runs in parallel: a file listed here can be gone
+  // before it is statted (ENOENT, 2026-11-15, a lean-latex log). They are never .ts referrers, so the walk does not enter.
+  const walkScripts = (d: string) => { for (const e of readdirSync(d)) { if (e === 'receipts') continue; const p = join(d, e); if (statSync(p).isDirectory()) walkScripts(p); else if (e.endsWith('.ts')) scriptFiles.push(p) } }
   if (existsSync(join(root, 'scripts'))) walkScripts(join(root, 'scripts'))
   // A .vue dual is a referrer in its own right, named by its file: giving it its fold's name merged its imports with the
   // index.ts beside it, and `portalChat` taken by quantum/apps/index.ts from heaven/compute and by quantum/apps/index.vue

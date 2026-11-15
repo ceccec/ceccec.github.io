@@ -30,12 +30,15 @@
   "title": "Root number squares to one",
   "name": "root_number_squares_to_one",
   "file": "bsd.lean",
-  "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
-  "tactic": "decide",
-  "doc": "The root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.",
+  "proposition": "∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1",
+  "tactic": "intro w Λ h s hs",
+  "doc": "WHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1. (This was `1·1 = 1 ∧ (−1)·(−1) = 1`.)",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [],
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "bsd--root_number_squares_to_one"
  },
  {
@@ -662,12 +665,15 @@
   "title": "The fixed line is one half",
   "name": "the_fixed_line_is_one_half",
   "file": "riemann.lean",
-  "proposition": "(2 : Int) * 1 = 2 ∧ σ 1 = 1",
-  "tactic": "decide",
-  "doc": "Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.",
+  "proposition": "∀ n : Int, σ n = n ↔ n = 1",
+  "tactic": "intro n; unfold σ",
+  "doc": "The fixed set over EVERY numerator, not a sample: σ n = n exactly when n = 1, i.e. s = 1/2. (This was `(2 : Int) * 1 = 2 ∧ σ 1 = 1`.)",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [],
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "riemann--the_fixed_line_is_one_half"
  },
  {
@@ -675,12 +681,15 @@
   "title": "Involution fixes the critical line",
   "name": "involution_fixes_the_critical_line",
   "file": "riemann.lean",
-  "proposition": "(σ (σ 3) = 3) ∧ (σ 1 = 1)",
-  "tactic": "decide",
-  "doc": "The involution and its fixed point, together.",
+  "proposition": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1",
+  "tactic": "refine ⟨fun n => ?_, rfl⟩",
+  "doc": "σ is an involution on EVERY numerator, and fixes the critical line. (This was `σ (σ 3) = 3 ∧ σ 1 = 1`, two cases already inside the sample theorems above.)",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [],
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "riemann--involution_fixes_the_critical_line"
  },
  {
@@ -1231,12 +1240,14 @@
   "title": "Star squares to the identity",
   "name": "star_squares_to_the_identity",
   "file": "yang-mills.lean",
-  "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
-  "tactic": "decide",
-  "doc": "",
+  "proposition": "∀ v : Form2, star (star v) = v",
+  "tactic": "intro v; cases v; simp [star, Int.neg_neg]",
+  "doc": "★★ = id on EVERY 2-form, not on a list of them.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [],
+  "axioms": [
+   "propext"
+  ],
   "depositId": "yang-mills--star_squares_to_the_identity"
  },
  {
@@ -1244,9 +1255,9 @@
   "title": "Selfdual and antiselfdual split the six",
   "name": "selfdual_and_antiselfdual_split_the_six",
   "file": "yang-mills.lean",
-  "proposition": "3 + 3 = choose 4 2",
+  "proposition": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧ star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧ star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧ star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧ 3 + 3 = choose 4 2",
   "tactic": "decide",
-  "doc": "The split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.",
+  "doc": "The split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴).",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
@@ -1270,13 +1281,139 @@
   "title": "Involution splits the middle forms",
   "name": "involution_splits_the_middle_forms",
   "file": "yang-mills.lean",
-  "proposition": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6",
-  "tactic": "decide",
-  "doc": "The involution and the split it produces, together.",
+  "proposition": "∀ v : Form2, star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧ add (add v (star v)) (sub v (star v)) = add v v",
+  "tactic": "intro v; cases v",
+  "doc": "The involution and the split it produces, for every 2-form v: v + ★v is self-dual, v − ★v is anti-self-dual, and the two halves add back to 2v. This is the F = F⁺ + F⁻ instantons are built on.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [],
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "yang-mills--involution_splits_the_middle_forms"
+ },
+ {
+  "slug": "consciousness-the-turn-returns-in-three",
+  "title": "The turn returns in three",
+  "name": "the_turn_returns_in_three",
+  "file": "consciousness.lean",
+  "proposition": "∀ p ∈ points, turn (turn (turn p)) = p",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-the-observer-is-the-only-fixed-point",
+  "title": "The observer is the only fixed point",
+  "name": "the_observer_is_the_only_fixed_point",
+  "file": "consciousness.lean",
+  "proposition": "points.filter (fun p => turn p == p) = [centre]",
+  "tactic": "decide",
+  "doc": "Exactly one point stays still under the turn, and it is the centre.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-every-state-has-its-own-description",
+  "title": "Every state has its own description",
+  "name": "every_state_has_its_own_description",
+  "file": "consciousness.lean",
+  "proposition": "{α : Type} [DecidableEq α] (a b : α) : describe a = describe b → a = b",
+  "tactic": "intro h",
+  "doc": "Different states have different descriptions: the self-description map is one-to-one.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-lawvere",
+  "title": "Lawvere",
+  "name": "lawvere",
+  "file": "consciousness.lean",
+  "proposition": "{A B : Type} (f : A → A → B) (complete : ∀ h : A → B, ∃ a, f a = h) (g : B → B) : ∃ b, g b = b",
+  "tactic": "obtain ⟨a, ha⟩ := complete (fun x => g (f x x))",
+  "doc": "LAWVERE'S FIXED-POINT THEOREM. If every map A → B is described by some state, every g : B → B has a fixed point: diagonalise, find the state that describes the diagonal, and evaluate it on itself.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-no-self-model-is-complete",
+  "title": "No self model is complete",
+  "name": "no_self_model_is_complete",
+  "file": "consciousness.lean",
+  "proposition": "{A : Type} (f : A → A → Bool) : ¬ ∀ h : A → Bool, ∃ a, f a = h",
+  "tactic": "intro complete",
+  "doc": "CANTOR, AS THE COROLLARY. Negation on truth values has no fixed point, so no system's states can describe every predicate on its states: every self-model leaves something out.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-the-diagonal-is-what-escapes",
+  "title": "The diagonal is what escapes",
+  "name": "the_diagonal_is_what_escapes",
+  "file": "consciousness.lean",
+  "proposition": "{A : Type} (f : A → A → Bool) : ∀ a, f a ≠ (fun x => !f x x)",
+  "tactic": "intro a h",
+  "doc": "The predicate a self-model misses, named: \"a state its own description does not accept\".",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-after-broadcast-every-module-holds-the-winner",
+  "title": "After broadcast every module holds the winner",
+  "name": "after_broadcast_every_module_holds_the_winner",
+  "file": "consciousness.lean",
+  "proposition": "∀ w ∈ [0, 1, 2], ∀ ms ∈ [[0, 1, 2], [2, 2, 0], [1, 0, 1, 2]], (broadcast w ms).all (· == w) = true",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-every-cut-of-a-loop-crosses-both-ways",
+  "title": "Every cut of a loop crosses both ways",
+  "name": "every_cut_of_a_loop_crosses_both_ways",
+  "file": "consciousness.lean",
+  "proposition": "cuts.all (fun p => forth loop p && back loop p) = true",
+  "tactic": "decide",
+  "doc": "Every cut of the loop has influence crossing both ways: no part is cut off from informing the other.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "consciousness-a-chain-has-a-one-way-cut",
+  "title": "A chain has a one way cut",
+  "name": "a_chain_has_a_one_way_cut",
+  "file": "consciousness.lean",
+  "proposition": "cuts.any (fun p => forth chain p && !back chain p) = true",
+  "tactic": "decide",
+  "doc": "The feed-forward chain has a cut crossing only one way: it splits into parts that do not inform each other.",
+  "sourcePath": "src/pair/lean/proofs/consciousness.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
  },
  {
   "slug": "corpus-euler-characteristic-and-genus-are-inverse",
@@ -1550,6 +1687,456 @@
   "tactic": "decide",
   "doc": "Visiting only the non-zero amplitudes divides the inner-loop count by the work-register size W exactly, because the oracle writes one entry per x: dense W·T², sparse T². An exact factor, so the speedup claim is arithmetic and not a benchmark.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-odd-cancels",
+  "title": "Odd cancels",
+  "name": "odd_cancels",
+  "file": "cross.lean",
+  "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0",
+  "tactic": "unfold odd",
+  "doc": "For any involution and any f, the odd part cancels over the orbit {x, σ x}.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-odd-vanishes-where-fixed",
+  "title": "Odd vanishes where fixed",
+  "name": "odd_vanishes_where_fixed",
+  "file": "cross.lean",
+  "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0",
+  "tactic": "unfold odd",
+  "doc": "Wherever σ fixes x, the odd part is zero there.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-riemann-is-an-involution",
+  "title": "Riemann is an involution",
+  "name": "riemann_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution riemann",
+  "tactic": "fun n => by unfold riemann; omega",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-bsd-is-an-involution",
+  "title": "Bsd is an involution",
+  "name": "bsd_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution bsd",
+  "tactic": "fun s => by unfold bsd; omega",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-hodge-is-an-involution",
+  "title": "Hodge is an involution",
+  "name": "hodge_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution hodge",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-viscous-is-an-involution",
+  "title": "Viscous is an involution",
+  "name": "viscous_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution viscous",
+  "tactic": "fun v => Int.neg_neg v",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-star-is-an-involution",
+  "title": "Star is an involution",
+  "name": "star_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution star",
+  "tactic": "fun v => by",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-complement-is-an-involution",
+  "title": "Complement is an involution",
+  "name": "complement_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution complement",
+  "tactic": "fun c => by cases c <;> rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-the-odd-part-cancels-in-every-clay-involution",
+  "title": "The odd part cancels in every clay involution",
+  "name": "the_odd_part_cancels_in_every_clay_involution",
+  "file": "cross.lean",
+  "proposition": "(∀ (f : Int → Int) n, odd f riemann n + odd f riemann (riemann n) = 0) ∧ (∀ (f : Int → Int) s, odd f bsd s + odd f bsd (bsd s) = 0) ∧ (∀ (f : Nat × Nat → Int) t, odd f hodge t + odd f hodge (hodge t) = 0) ∧ (∀ (f : Int → Int) v, odd f viscous v + odd f viscous (viscous v) = 0) ∧ (∀ (f : Form2 → Int) v, odd f star v + odd f star (star v) = 0) ∧ (∀ (f : Class → Int) c, odd f complement c + odd f complement (complement c) = 0)",
+  "tactic": "⟨fun f => odd_cancels f riemann riemann_is_an_involution,",
+  "doc": "The cross formula at all six: the odd part of ANY integer-valued f cancels over every orbit.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-riemann-fixes-exactly-the-critical-line",
+  "title": "Riemann fixes exactly the critical line",
+  "name": "riemann_fixes_exactly_the_critical_line",
+  "file": "cross.lean",
+  "proposition": "∀ n : Int, riemann n = n ↔ n = 1",
+  "tactic": "intro n; unfold riemann",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-bsd-fixes-exactly-the-central-point",
+  "title": "Bsd fixes exactly the central point",
+  "name": "bsd_fixes_exactly_the_central_point",
+  "file": "cross.lean",
+  "proposition": "∀ s : Int, bsd s = s ↔ s = 1",
+  "tactic": "intro s; unfold bsd",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-hodge-fixes-exactly-the-diagonal",
+  "title": "Hodge fixes exactly the diagonal",
+  "name": "hodge_fixes_exactly_the_diagonal",
+  "file": "cross.lean",
+  "proposition": "∀ p q : Nat, hodge (p, q) = (p, q) ↔ p = q",
+  "tactic": "intro p q; unfold hodge",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-viscous-fixes-exactly-the-inviscid",
+  "title": "Viscous fixes exactly the inviscid",
+  "name": "viscous_fixes_exactly_the_inviscid",
+  "file": "cross.lean",
+  "proposition": "∀ v : Int, viscous v = v ↔ v = 0",
+  "tactic": "intro v; unfold viscous",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-complement-fixes-exactly-p-and-pspace",
+  "title": "Complement fixes exactly p and pspace",
+  "name": "complement_fixes_exactly_p_and_pspace",
+  "file": "cross.lean",
+  "proposition": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE]",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-the-reflection-cluster",
+  "title": "The reflection cluster",
+  "name": "the_reflection_cluster",
+  "file": "cross.lean",
+  "proposition": "(∀ n, riemann n + n = 2) ∧ (∀ s, bsd s + s = 2) ∧ (∀ p q : Nat, (hodge (p, q)).1 + p = p + q)",
+  "tactic": "refine ⟨fun n => ?_, fun s => ?_, fun p q => ?_⟩",
+  "doc": "REFLECTION: σ x + x is constant — 2 for Riemann (numerators) and BSD, the degree for Hodge.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-riemann-and-bsd-are-one-reflection",
+  "title": "Riemann and bsd are one reflection",
+  "name": "riemann_and_bsd_are_one_reflection",
+  "file": "cross.lean",
+  "proposition": "riemann = bsd",
+  "tactic": "rfl",
+  "doc": "In doubled coordinates the Riemann reflection IS the weight-two reflection: one map, not two.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-the-negation-cluster",
+  "title": "The negation cluster",
+  "name": "the_negation_cluster",
+  "file": "cross.lean",
+  "proposition": "(∀ v, viscous v = -v) ∧ (∀ v : Form2, star (asd v) = neg (asd v))",
+  "tactic": "refine ⟨fun v => rfl, fun v => ?_⟩",
+  "doc": "NEGATION: Navier–Stokes' time reversal on the viscous term, and the star on every anti-self-dual form, are both v ↦ −v.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-complement-is-its-own-class",
+  "title": "Complement is its own class",
+  "name": "complement_is_its_own_class",
+  "file": "cross.lean",
+  "proposition": "complement .NP = .coNP ∧ complement .coNP = .NP ∧ complement .P = .P ∧ complement .PSPACE = .PSPACE",
+  "tactic": "decide",
+  "doc": "P vs NP is its own class: a swap whose σ c + c is not a constant — it has two fixed points and one exchanged pair, which no reflection or negation on a four-point model has.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-poincare-is-an-inverse-pair-not-an-involution",
+  "title": "Poincare is an inverse pair not an involution",
+  "name": "poincare_is_an_inverse_pair_not_an_involution",
+  "file": "cross.lean",
+  "proposition": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0",
+  "tactic": "decide",
+  "doc": "POINCARÉ IS NOT AN INVOLUTION: genus inverts chi, but chi applied twice moves the sphere's genus 0 to −2. The pair is a bijection, and it is listed here so its absence from the law above is proved, not omitted.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-state-space-has-six-states",
+  "title": "The state space has six states",
+  "name": "the_state_space_has_six_states",
+  "file": "feeling.lean",
+  "proposition": "states.length = 6 ∧ states.Nodup",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-three-turns-return",
+  "title": "Three turns return",
+  "name": "three_turns_return",
+  "file": "feeling.lean",
+  "proposition": "∀ c ∈ corners, turn (turn (turn c)) = c",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-no-corner-is-fixed",
+  "title": "No corner is fixed",
+  "name": "no_corner_is_fixed",
+  "file": "feeling.lean",
+  "proposition": "∀ c ∈ corners, turn c ≠ c",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-turning-back-undoes-the-turn",
+  "title": "Turning back undoes the turn",
+  "name": "turning_back_undoes_the_turn",
+  "file": "feeling.lean",
+  "proposition": "∀ c ∈ corners, back (turn c) = c ∧ turn (back c) = c",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-turning-back-is-two-turns-forward",
+  "title": "Turning back is two turns forward",
+  "name": "turning_back_is_two_turns_forward",
+  "file": "feeling.lean",
+  "proposition": "∀ c ∈ corners, back c = turn (turn c)",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-flip-returns-in-two",
+  "title": "The flip returns in two",
+  "name": "the_flip_returns_in_two",
+  "file": "feeling.lean",
+  "proposition": "∀ v ∈ [pleasant, unpleasant], flip (flip v) = v",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-flip-fixes-no-valence",
+  "title": "The flip fixes no valence",
+  "name": "the_flip_fixes_no_valence",
+  "file": "feeling.lean",
+  "proposition": "∀ v ∈ [pleasant, unpleasant], flip v ≠ v",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-flip-commutes-with-the-turn",
+  "title": "The flip commutes with the turn",
+  "name": "the_flip_commutes_with_the_turn",
+  "file": "feeling.lean",
+  "proposition": "∀ s ∈ states, ρ (σ s) = σ (ρ s)",
+  "tactic": "decide",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-six-symmetries-are-distinct",
+  "title": "The six symmetries are distinct",
+  "name": "the_six_symmetries_are_distinct",
+  "file": "feeling.lean",
+  "proposition": "∀ a ∈ symmetries, ∀ b ∈ symmetries, a ≠ b → same (act a.1 a.2) (act b.1 b.2) = false",
+  "tactic": "decide",
+  "doc": "The six symmetries are six different maps.",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-orders-are-one-three-three-two-six-six",
+  "title": "The orders are one three three two six six",
+  "name": "the_orders_are_one_three_three_two_six_six",
+  "file": "feeling.lean",
+  "proposition": "symmetries.map (fun a => order (act a.1 a.2)) = [1, 3, 3, 2, 6, 6]",
+  "tactic": "decide",
+  "doc": "Their orders, in the order (0,0), (1,0), (2,0), (0,1), (1,1), (2,1).",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-exactly-one-pure-flip",
+  "title": "Exactly one pure flip",
+  "name": "exactly_one_pure_flip",
+  "file": "feeling.lean",
+  "proposition": "symmetries.filter (fun a => order (act a.1 a.2) == 2) = [(0, 1)]",
+  "tactic": "decide",
+  "doc": "Exactly one symmetry other than the identity undoes itself: the pure flip.",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-the-group-is-cyclic-generated-by-flip-and-turn",
+  "title": "The group is cyclic generated by flip and turn",
+  "name": "the_group_is_cyclic_generated_by_flip_and_turn",
+  "file": "feeling.lean",
+  "proposition": "order (act 1 1) = 6 ∧ ∀ a ∈ symmetries, [0, 1, 2, 3, 4, 5].any (fun k => same (pow (act 1 1) k) (act a.1 a.2))",
+  "tactic": "decide",
+  "doc": "One flip-and-turn reaches every symmetry: the group is cyclic, generated by ρσ.",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "feeling-not-the-dihedral-group",
+  "title": "Not the dihedral group",
+  "name": "not_the_dihedral_group",
+  "file": "feeling.lean",
+  "proposition": "(∀ a ∈ symmetries, same (fun s => act a.1 a.2 (ρ s)) (fun s => ρ (act a.1 a.2 s)) = true) ∧ same ρ ρback = false",
+  "tactic": "decide",
+  "doc": "Every symmetry τ commutes with the turn, so τ ρ τ⁻¹ = ρ — and ρ is not its own reverse. In the triangle's dihedral group a reflection τ gives τ ρ τ⁻¹ = ρ⁻¹; here no symmetry does, so this is not that group.",
+  "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
   "depositId": ""

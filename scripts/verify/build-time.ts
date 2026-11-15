@@ -154,6 +154,18 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
     // visitor fetches. But it holds to a few kilobytes, not to one, and this session read three refusals as
     // regressions caused by the change in hand before measuring HEAD itself and finding the same 8980.
     // A floor recorded at KiB resolution against a chunker that moves KiB will keep doing that.
+    // THE CORPUS CHUNK IS THE ONE THAT HOLDS THE FOLD GRAPH, NOT THE ONE THAT HAPPENS TO BE CALLED "diamonds"
+    // (2026-11-15). Rollup names a shared chunk after a module in it, and which module wins moved when a page
+    // imported the render barrel directly: the same 116-module chunk came out as render.<hash>.js, the name test
+    // matched nothing, and separation reported NOT MEASURED over an unchanged corpus. The build's own witness
+    // lists each chunk's modules, so the corpus is the chunk that contains src/fire/diamonds; the file name is
+    // read only when no witness was written.
+    const witnessPath = join(dist, 'chunk-witness.json')
+    const witness = existsSync(witnessPath) ? JSON.parse(readFileSync(witnessPath, 'utf8')) as Record<string, { modules?: readonly string[] }> : null
+    const holdsTheFoldGraph = (file: string): boolean => {
+      const record = witness?.[file.slice(dist.length + 1)]
+      return record?.modules ? record.modules.some((m) => /^src\/fire\/diamonds\//.test(m)) : /diamonds/.test(file)
+    }
     if (entry) {
       const seen = new Set<string>()
       const queue = [entry]
@@ -167,7 +179,7 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
         // corpus grows every time a theorem, an identity or a formula is added — which is the work — so a
         // floor on the TOTAL refuses novelty and calls it a regression. It did exactly that three times in
         // one day: two curated identities, a computed site formula, and a witness quantity.
-        if (/diamonds/.test(file)) { corpusKb += statSync(file).size; corpusFiles.push(file) }
+        if (holdsTheFoldGraph(file)) { corpusKb += statSync(file).size; corpusFiles.push(file) }
         else { machineryKb += statSync(file).size; shellFiles.push(file) }
         const text = readFileSync(file, 'utf8')
         const specs = new Set<string>()
@@ -404,6 +416,17 @@ export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly 
   //        for that — built bytes ≤ source bytes holds with a factor of two to spare and would notice nothing.
   const isFold = (id: string) => /^src\/.+\/index\.ts$/.test(id)
   const isVirtual = (id: string) => id.charCodeAt(0) === 0
+  // A RE-EXPORT CARRIES NO CODE (2026-11-15). When a page imported the render barrel directly, Rollup placed the barrel
+  // in the corpus chunk and V reported it foreign. The barrel's every statement is `export … from` — it adds no code,
+  // vendor or theme, which is what V exists to keep out. So a module counts as a re-export only when its source, read
+  // here, holds nothing but comments and `export … from` statements; one line of anything else and it is foreign.
+  const isReexportOnly = (id: string): boolean => {
+    if (!/^\.vitepress\/render\/index\.ts$|^src\//.test(id)) return false
+    const path = join(root, id)
+    if (!existsSync(path)) return false
+    const code = readFileSync(path, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').split('\n').map((line) => line.replace(/\/\/.*$/, '').trim()).filter(Boolean)
+    return code.length > 0 && code.every((line) => /^export (?:type )?(?:\{[^}]*\} |\* (?:as [A-Za-z_$][\w$]* )?)from '[^']+'$/.test(line))
+  }
   const entry = read.find((r) => /^assets\/app\.[A-Za-z0-9_-]+\.js$/.test(rel(r.file)))
   if (!entry || entry.entry.modules.length === 0) throw new Error('IV is NOT MEASURED: the app entry chunk is not among the shell files, or the witness names no module for it')
   const foldsInEntry = entry.entry.modules.filter(isFold)
@@ -411,7 +434,9 @@ export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly 
   if (foldsInEntry.length > 0) throw new Error(`IV is FALSE: the app entry chunk carries ${foldsInEntry.length} fold(s) — ${foldsInEntry.slice(0, 4).join(', ')}`)
   const corpusModules = corpusFiles.flatMap((file) => witness[rel(file)]?.modules ?? [])
   const foldsInCorpus = corpusModules.filter(isFold)
-  const foreign = corpusModules.filter((id) => !isFold(id) && !isVirtual(id))
+  const reexports = corpusModules.filter((id) => !isFold(id) && !isVirtual(id) && isReexportOnly(id))
+  if (reexports.length) console.log(`  V   re-export-only module(s) in the corpus chunk, read and found to carry no code: ${reexports.join(', ')}`)
+  const foreign = corpusModules.filter((id) => !isFold(id) && !isVirtual(id) && !reexports.includes(id))
   console.log(`  V   the corpus chunk is made of folds: ${corpusModules.length} module(s) — ${foldsInCorpus.length} fold(s), ${corpusModules.length - foldsInCorpus.length - foreign.length} virtual, ${foreign.length} other; ${homes.filter((home) => corpusModules.includes(homeModule(home))).length} of ${homes.length} theorem homes are in it`)
   if (corpusFiles.length === 0 || foldsInCorpus.length === 0) throw new Error(`V is NOT MEASURED: ${corpusFiles.length} corpus chunk(s) carrying ${foldsInCorpus.length} fold(s) in the witness`)
   if (foreign.length > 0) throw new Error(`V is FALSE: the corpus chunk carries ${foreign.length} module(s) that are neither folds nor build substitutes — ${foreign.slice(0, 4).join(', ')}`)

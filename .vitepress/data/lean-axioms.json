@@ -23,7 +23,10 @@
   "central_point_is_the_fixed_point": [],
   "parity_is_an_involution": [],
   "root_number_one_iff_rank_even": [],
-  "root_number_squares_to_one": [],
+  "root_number_squares_to_one": [
+   "Quot.sound",
+   "propext"
+  ],
   "sigma_is_an_involution": []
  },
  "src/pair/formal/proofs/coin.lean": {
@@ -92,10 +95,16 @@
  },
  "src/pair/formal/proofs/riemann.lean": {
   "critical_line_is_the_fixed_point": [],
-  "involution_fixes_the_critical_line": [],
+  "involution_fixes_the_critical_line": [
+   "Quot.sound",
+   "propext"
+  ],
   "sigma_is_an_involution": [],
   "sigma_pairs_the_plane": [],
-  "the_fixed_line_is_one_half": []
+  "the_fixed_line_is_one_half": [
+   "Quot.sound",
+   "propext"
+  ]
  },
  "src/pair/formal/proofs/spacetime.lean": {
   "below_c_composes_to_below_c": [],
@@ -176,11 +185,16 @@
   "the_involution_laws_are_general": []
  },
  "src/pair/formal/proofs/yang-mills.lean": {
-  "involution_splits_the_middle_forms": [],
+  "involution_splits_the_middle_forms": [
+   "Quot.sound",
+   "propext"
+  ],
   "middle_forms_have_dimension_six": [],
   "selfdual_and_antiselfdual_split_the_six": [],
   "star_is_an_endomorphism_only_in_the_middle": [],
-  "star_squares_to_the_identity": []
+  "star_squares_to_the_identity": [
+   "propext"
+  ]
  },
  "src/pair/intelligence/harmonisation/lean-proofs.lean": {
   "confidence_is_one_minus_loss_by_definition": [],
@@ -193,6 +207,23 @@
    "propext"
   ],
   "three_pairs_and_a_fixed_point": []
+ },
+ "src/pair/lean/proofs/consciousness.lean": {
+  "a_chain_has_a_one_way_cut": [],
+  "after_broadcast_every_module_holds_the_winner": [],
+  "every_cut_of_a_loop_crosses_both_ways": [],
+  "every_state_has_its_own_description": [
+   "propext"
+  ],
+  "lawvere": [],
+  "no_self_model_is_complete": [
+   "propext"
+  ],
+  "the_diagonal_is_what_escapes": [
+   "propext"
+  ],
+  "the_observer_is_the_only_fixed_point": [],
+  "the_turn_returns_in_three": []
  },
  "src/pair/lean/proofs/corpus.lean": {
   "census_bands_are_gapless_and_descending": [],
@@ -219,6 +250,76 @@
    "propext"
   ],
   "verify_beats_recompute_by_magnitudes": []
+ },
+ "src/pair/lean/proofs/cross.lean": {
+  "bsd_fixes_exactly_the_central_point": [
+   "Quot.sound",
+   "propext"
+  ],
+  "bsd_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_fixes_exactly_p_and_pspace": [],
+  "complement_is_an_involution": [],
+  "complement_is_its_own_class": [],
+  "hodge_fixes_exactly_the_diagonal": [
+   "propext"
+  ],
+  "hodge_is_an_involution": [],
+  "odd_cancels": [
+   "Quot.sound",
+   "propext"
+  ],
+  "odd_vanishes_where_fixed": [
+   "Quot.sound",
+   "propext"
+  ],
+  "poincare_is_an_inverse_pair_not_an_involution": [],
+  "riemann_and_bsd_are_one_reflection": [],
+  "riemann_fixes_exactly_the_critical_line": [
+   "Quot.sound",
+   "propext"
+  ],
+  "riemann_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "star_is_an_involution": [
+   "propext"
+  ],
+  "the_negation_cluster": [
+   "Quot.sound",
+   "propext"
+  ],
+  "the_odd_part_cancels_in_every_clay_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "the_reflection_cluster": [
+   "Quot.sound",
+   "propext"
+  ],
+  "viscous_fixes_exactly_the_inviscid": [
+   "Quot.sound",
+   "propext"
+  ],
+  "viscous_is_an_involution": []
+ },
+ "src/pair/lean/proofs/feeling.lean": {
+  "exactly_one_pure_flip": [],
+  "no_corner_is_fixed": [],
+  "not_the_dihedral_group": [],
+  "the_flip_commutes_with_the_turn": [],
+  "the_flip_fixes_no_valence": [],
+  "the_flip_returns_in_two": [],
+  "the_group_is_cyclic_generated_by_flip_and_turn": [],
+  "the_orders_are_one_three_three_two_six_six": [],
+  "the_six_symmetries_are_distinct": [],
+  "the_state_space_has_six_states": [],
+  "three_turns_return": [],
+  "turning_back_is_two_turns_forward": [],
+  "turning_back_undoes_the_turn": []
  },
  "src/pair/lean/proofs/movie.lean": {
   "every_alpha_is_a_visible_fraction": [],

@@ -2,19 +2,19 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 94,
+  "count": 95,
   "records": [
     {
       "id": "bsd--sigma_is_an_involution",
       "title": "Sigma is an involution",
       "file": "bsd.lean",
       "proposition": "∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -97,12 +97,12 @@
       "title": "Central point is the fixed point",
       "file": "bsd.lean",
       "proposition": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe central point s = 1 is the unique fixed point — the point BSD is about.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe central point s = 1 is the unique fixed point — the point BSD is about.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -184,13 +184,13 @@
       "id": "bsd--root_number_squares_to_one",
       "title": "Root number squares to one",
       "file": "bsd.lean",
-      "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.\n\nTHE SAME FORMAL STATEMENT APPEARS 2 TIMES in this corpus under different readings: Root number squares to one (bsd.lean); Star squares to the identity (yang-mills.lean). They are one publication, not several, because a deposit is its content: minting a DOI for each would place two permanent records on one computation. The content address is 8251fd183d1f9ab056c6805af0e4acd2.",
+      "proposition": "∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1. (This was `1·1 = 1 ∧ (−1)·(−1) = 1`.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -221,16 +221,6 @@
           "identifier": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one",
           "relation": "isDocumentedBy",
           "scheme": "url"
-        },
-        {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
-          "relation": "isDerivedFrom",
-          "scheme": "url"
-        },
-        {
-          "identifier": "https://github.com/ceccec/ceccec.github.io#star_squares_to_the_identity",
-          "relation": "isIdenticalTo",
-          "scheme": "url"
         }
       ],
       "references": [
@@ -247,7 +237,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "bsd"
@@ -268,19 +258,13 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one",
       "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-squares-to-one.html",
-      "contentAddress": "8251fd183d1f9ab056c6805af0e4acd2",
+      "contentAddress": "ce42a9cba02e60836a8df9526b679509",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "bsd.lean",
           "theorem": "root_number_squares_to_one",
           "title": "Root number squares to one"
-        },
-        {
-          "repo": "https://github.com/ceccec/ceccec.github.io",
-          "file": "yang-mills.lean",
-          "theorem": "star_squares_to_the_identity",
-          "title": "Star squares to the identity"
         }
       ]
     },
@@ -289,12 +273,12 @@
       "title": "Root number one iff rank even",
       "file": "bsd.lean",
       "proposition": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE PARITY EQUIVALENCE. w = (−1)^rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE PARITY EQUIVALENCE. w = (−1)^rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -377,12 +361,12 @@
       "title": "Parity is an involution",
       "file": "bsd.lean",
       "proposition": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -465,12 +449,12 @@
       "title": "The coin is an involution",
       "file": "coin.lean",
       "proposition": "∀ d ∈ digits, σ (σ d) = d",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nPULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nPULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -553,12 +537,12 @@
       "title": "The harmonic is the only fixed point",
       "file": "coin.lean",
       "proposition": "digits.filter (fun d => σ d == d) = [5]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nHARMONIC IS WHAT THE MAP LEAVES IN PLACE, and there is exactly one such digit. The fixed point is not chosen; it is computed by filtering the surface.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nHARMONIC IS WHAT THE MAP LEAVES IN PLACE, and there is exactly one such digit. The fixed point is not chosen; it is computed by filtering the surface.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -641,12 +625,12 @@
       "title": "All that is not harmonic is moved",
       "file": "coin.lean",
       "proposition": "(digits.filter (fun d => !(σ d == d))).length = 8",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERYTHING NOT HARMONIC IS MOVED. Eight of the nine digits are carried to the other side.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERYTHING NOT HARMONIC IS MOVED. Eight of the nine digits are carried to the other side.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -729,12 +713,12 @@
       "title": "The sides are equal and exchanged",
       "file": "coin.lean",
       "proposition": "below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe first form of this said `∀ d ∈ below, σ d ∈ above` — membership as the PREDICATE — and the kernel reported it dependent on propext and Quot.sound. The axiom-freedom gate refused it, and the restatement is stronger for it: naming the image list says WHICH element goes where, not merely that each lands somewhere on the other side.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe first form of this said `∀ d ∈ below, σ d ∈ above` — membership as the PREDICATE — and the kernel reported it dependent on propext and Quot.sound. The axiom-freedom gate refused it, and the restatement is stronger for it: naming the image list says WHICH element goes where, not merely that each lands somewhere on the other side.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -817,12 +801,12 @@
       "title": "The coin is two sides and one edge",
       "file": "coin.lean",
       "proposition": "digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -905,12 +889,12 @@
       "title": "Every bit of resistance drains",
       "file": "coin.lean",
       "proposition": "∀ d ∈ digits, resistance d + resistance (σ d) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERY BIT OF RESISTANCE DRAINS. Resistance is ODD under the involution — r(σd) = −r(d) — so each orbit sums to exactly zero. Nothing is left over anywhere on the surface.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERY BIT OF RESISTANCE DRAINS. Resistance is ODD under the involution — r(σd) = −r(d) — so each orbit sums to exactly zero. Nothing is left over anywhere on the surface.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -993,12 +977,12 @@
       "title": "The harmonic carries no resistance",
       "file": "coin.lean",
       "proposition": "resistance 5 = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe harmonic point is the one that never had any: at the fixed point the resistance is zero before any folding, which is what makes it the edge rather than a side.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe harmonic point is the one that never had any: at the fixed point the resistance is zero before any folding, which is what makes it the edge rather than a side.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1081,12 +1065,12 @@
       "title": "The whole surface sums to zero",
       "file": "coin.lean",
       "proposition": "(digits.map resistance).sum = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE WHOLE SURFACE DRAINS AT ONCE. Summed over every digit, resistance is zero — the two sides cancel exactly, which is the sentence's \"measured to drain\" as an arithmetic identity.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE WHOLE SURFACE DRAINS AT ONCE. Summed over every digit, resistance is zero — the two sides cancel exactly, which is the sentence's \"measured to drain\" as an arithmetic identity.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1169,12 +1153,12 @@
       "title": "The drain is exact at every scale",
       "file": "coin.lean",
       "proposition": "∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe drain is not an approximation that improves with scale: it is exact at every multiple, because oddness is preserved by scaling. Checked at four magnitudes.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe drain is not an approximation that improves with scale: it is exact at every multiple, because oddness is preserved by scaling. Checked at four magnitudes.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1257,12 +1241,12 @@
       "title": "Verified at every point below the bound",
       "file": "decidability.lean",
       "proposition": "(List.range 1000).all holdsBelowAThousand = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nVERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nVERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1345,12 +1329,12 @@
       "title": "And false at the bound",
       "file": "decidability.lean",
       "proposition": "holdsBelowAThousand 1000 = false",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND FALSE. The very next case refutes it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND FALSE. The very next case refutes it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1433,12 +1417,12 @@
       "title": "Finite verification does not entail the universal",
       "file": "decidability.lean",
       "proposition": "((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSo a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSo a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1521,12 +1505,12 @@
       "title": "A bigger bound proves no more",
       "file": "decidability.lean",
       "proposition": "((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA bigger bound proves no more",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA bigger bound proves no more",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1609,12 +1593,12 @@
       "title": "What a finite check does establish",
       "file": "decidability.lean",
       "proposition": "∀ n ∈ List.range 1000, holdsBelowAThousand n = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWhat a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWhat a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1697,12 +1681,12 @@
       "title": "The clay files quantify over finite lists",
       "file": "decidability.lean",
       "proposition": "[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1785,12 +1769,12 @@
       "title": "Sigma is an involution",
       "file": "hodge.lean",
       "proposition": "∀ t ∈ middleTypes, σ (σ t) = t",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1873,12 +1857,12 @@
       "title": "Sigma preserves degree",
       "file": "hodge.lean",
       "proposition": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ preserves total degree — it acts WITHIN H^n, which is why it decomposes it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ preserves total degree — it acts WITHIN H^n, which is why it decomposes it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -1961,12 +1945,12 @@
       "title": "Fixed type is p equals q",
       "file": "hodge.lean",
       "proposition": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe unique fixed type in degree 2k is (k,k). Here k = 2.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe unique fixed type in degree 2k is (k,k). Here k = 2.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2049,12 +2033,12 @@
       "title": "Diagonal is fixed at every k",
       "file": "hodge.lean",
       "proposition": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2137,12 +2121,12 @@
       "title": "Involution fixes the diagonal",
       "file": "hodge.lean",
       "proposition": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed diagonal, together.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed diagonal, together.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2225,12 +2209,12 @@
       "title": "Orbit sums to zero",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair {x, σx} sums to exactly zero. This is the general form of \"every bit of resistance drains\", and the coin's version of it is this theorem at σ d = 10 − d.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair {x, σx} sums to exactly zero. This is the general form of \"every bit of resistance drains\", and the coin's version of it is this theorem at σ d = 10 − d.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2313,12 +2297,12 @@
       "title": "Odd vanishes at a fixed point",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2401,12 +2385,12 @@
       "title": "EvenPart is symmetric",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2489,12 +2473,12 @@
       "title": "The split loses nothing",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2577,12 +2561,12 @@
       "title": "The instance is an involution",
       "file": "involution.lean",
       "proposition": "∀ d ∈ carrier, σ (σ d) = d",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance is an involution",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance is an involution",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2665,12 +2649,12 @@
       "title": "The instance cancels over every orbit",
       "file": "involution.lean",
       "proposition": "∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance cancels over every orbit",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance cancels over every orbit",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2753,12 +2737,12 @@
       "title": "The instance has one harmonic point",
       "file": "involution.lean",
       "proposition": "carrier.filter (fun d => σ d == d) = [5]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance has one harmonic point",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance has one harmonic point",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2841,12 +2825,12 @@
       "title": "The instance splits without loss",
       "file": "involution.lean",
       "proposition": "∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance splits without loss",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe instance splits without loss",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2929,12 +2913,12 @@
       "title": "Reversal is an involution",
       "file": "navier-stokes.lean",
       "proposition": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT² = id. Reversing time twice returns the equation, whatever the viscosity.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT² = id. Reversing time twice returns the equation, whatever the viscosity.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3017,12 +3001,12 @@
       "title": "Euler is time reversible",
       "file": "navier-stokes.lean",
       "proposition": "T euler = euler",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEuler is invariant: every term transforms alike, so T fixes it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEuler is invariant: every term transforms alike, so T fixes it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3105,12 +3089,12 @@
       "title": "Viscosity breaks time reversal",
       "file": "navier-stokes.lean",
       "proposition": "T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNavier-Stokes is NOT invariant, and the viscous term is the only one that differs.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNavier-Stokes is NOT invariant, and the viscous term is the only one that differs.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3193,12 +3177,12 @@
       "title": "Fixed points are exactly the inviscid",
       "file": "navier-stokes.lean",
       "proposition": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nInvariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nInvariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3281,12 +3265,12 @@
       "title": "Sigma is an involution",
       "file": "p-vs-np.lean",
       "proposition": "∀ c : Class, σ (σ c) = c",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3369,12 +3353,12 @@
       "title": "Fixed points are p and pspace",
       "file": "p-vs-np.lean",
       "proposition": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3457,12 +3441,12 @@
       "title": "Np and conp are swapped",
       "file": "p-vs-np.lean",
       "proposition": "σ NP = coNP ∧ σ coNP = NP",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ swaps NP and coNP — they are complements by definition, not by theorem.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ swaps NP and coNP — they are complements by definition, not by theorem.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3545,12 +3529,12 @@
       "title": "If np is fixed then np equals conp",
       "file": "p-vs-np.lean",
       "proposition": "σ NP = NP → NP = coNP",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 \"theorems\" worthless. Removed.)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 \"theorems\" worthless. Removed.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3633,12 +3617,12 @@
       "title": "P is closed under complement",
       "file": "p-vs-np.lean",
       "proposition": "σ P = P",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nP is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nP is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3721,12 +3705,12 @@
       "title": "Chi and genus are inverse",
       "file": "poincare.lean",
       "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe round trip is the identity: χ and g carry the same information.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe round trip is the identity: χ and g carry the same information.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3809,12 +3793,12 @@
       "title": "Sphere has euler characteristic two",
       "file": "poincare.lean",
       "proposition": "chi 0 = 2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3897,12 +3881,12 @@
       "title": "Torus has euler characteristic zero",
       "file": "poincare.lean",
       "proposition": "chi 1 = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -3985,12 +3969,12 @@
       "title": "Double torus has chi minus two and rank four",
       "file": "poincare.lean",
       "proposition": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4073,12 +4057,12 @@
       "title": "Homology rank is twice the genus",
       "file": "poincare.lean",
       "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nrank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nrank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4161,12 +4145,12 @@
       "title": "Sigma is an involution",
       "file": "riemann.lean",
       "proposition": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4249,12 +4233,12 @@
       "title": "Critical line is the fixed point",
       "file": "riemann.lean",
       "proposition": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed point is n = 1, i.e. s = 1/2 — the critical line.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed point is n = 1, i.e. s = 1/2 — the critical line.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4337,12 +4321,12 @@
       "title": "Sigma pairs the plane",
       "file": "riemann.lean",
       "proposition": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4424,13 +4408,13 @@
       "id": "riemann--the_fixed_line_is_one_half",
       "title": "The fixed line is one half",
       "file": "riemann.lean",
-      "proposition": "(2 : Int) * 1 = 2 ∧ σ 1 = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nRe(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.",
+      "proposition": "∀ n : Int, σ n = n ↔ n = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed set over EVERY numerator, not a sample: σ n = n exactly when n = 1, i.e. s = 1/2. (This was `(2 : Int) * 1 = 2 ∧ σ 1 = 1`.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4477,7 +4461,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "riemann"
@@ -4498,7 +4482,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-the-fixed-line-is-one-half.html",
-      "contentAddress": "ee663e2872a8a3843e23bd692d221f12",
+      "contentAddress": "f8973d0274b46d3c42188f56dcd5bf70",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -4512,13 +4496,13 @@
       "id": "riemann--involution_fixes_the_critical_line",
       "title": "Involution fixes the critical line",
       "file": "riemann.lean",
-      "proposition": "(σ (σ 3) = 3) ∧ (σ 1 = 1)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed point, together.",
+      "proposition": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ is an involution on EVERY numerator, and fixes the critical line. (This was `σ (σ 3) = 3 ∧ σ 1 = 1`, two cases already inside the sample theorems above.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4565,7 +4549,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "riemann"
@@ -4586,7 +4570,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-involution-fixes-the-critical-line.html",
-      "contentAddress": "f24770e5fdda3704e0e0bd4ca81df5c6",
+      "contentAddress": "dc29cbf0ce649d44a4f5e1c78675988d",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -4601,12 +4585,12 @@
       "title": "Light is the fixed point",
       "file": "spacetime.lean",
       "proposition": "∀ v ∈ sample, same (add light v) light = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nLIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nLIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4689,12 +4673,12 @@
       "title": "Light is fixed from either side",
       "file": "spacetime.lean",
       "proposition": "∀ v ∈ sample, same (add v light) light = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd from the other side, because composition is not assumed commutative until it is checked.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd from the other side, because composition is not assumed commutative until it is checked.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4777,12 +4761,12 @@
       "title": "Rest is the identity",
       "file": "spacetime.lean",
       "proposition": "∀ v ∈ sample, same (add rest v) v = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nREST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nREST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4865,12 +4849,12 @@
       "title": "Composition is symmetric",
       "file": "spacetime.lean",
       "proposition": "∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nCOMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nCOMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4953,12 +4937,12 @@
       "title": "Below c composes to below c",
       "file": "spacetime.lean",
       "proposition": "∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c composes to below c",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c composes to below c",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5041,12 +5025,12 @@
       "title": "The boost preserves the interval",
       "file": "spacetime.lean",
       "proposition": "∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what \"the boost preserves the interval\" means once denominators are cleared.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what \"the boost preserves the interval\" means once denominators are cleared.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5129,12 +5113,12 @@
       "title": "The light cone is carried to itself",
       "file": "spacetime.lean",
       "proposition": "∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is carried to itself",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is carried to itself",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5217,12 +5201,12 @@
       "title": "The reverse boost undoes the boost",
       "file": "spacetime.lean",
       "proposition": "∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event, scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14).",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event, scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5305,12 +5289,12 @@
       "title": "The reverse boost undoes every boost",
       "file": "spacetime.lean",
       "proposition": "∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5393,12 +5377,12 @@
       "title": "Sq lt",
       "file": "spacetime.lean",
       "proposition": "(a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStrictly inside the band (−b, b) means a strictly smaller square.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStrictly inside the band (−b, b) means a strictly smaller square.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5481,12 +5465,12 @@
       "title": "Lt of sq",
       "file": "spacetime.lean",
       "proposition": "(a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA smaller square (with b positive) means inside the band.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA smaller square (with b positive) means inside the band.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5569,12 +5553,12 @@
       "title": "Interval scales",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFor every event and every boost the interval is multiplied by q² − p², and by nothing else.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFor every event and every boost the interval is multiplied by q² − p², and by nothing else.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5657,12 +5641,12 @@
       "title": "Scale positive",
       "file": "spacetime.lean",
       "proposition": "(p q : Int) (h : belowC p q) : 0 < q*q - p*p",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c that factor is positive.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c that factor is positive.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5745,12 +5729,12 @@
       "title": "Timelike invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTIMELIKE STAYS TIMELIKE in every frame below c.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTIMELIKE STAYS TIMELIKE in every frame below c.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5833,12 +5817,12 @@
       "title": "Spacelike invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5921,12 +5905,12 @@
       "title": "Null invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is frame-independent: null in one frame is null in all.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is frame-independent: null in one frame is null in all.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6009,12 +5993,12 @@
       "title": "Timelike order absolute",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6097,12 +6081,12 @@
       "title": "Spacelike order reverses",
       "file": "spacetime.lean",
       "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6185,12 +6169,12 @@
       "title": "Spacelike simultaneous",
       "file": "spacetime.lean",
       "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6273,12 +6257,12 @@
       "title": "Velocity addition below c",
       "file": "spacetime.lean",
       "proposition": "(p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6448,12 +6432,12 @@
       "title": "Closure is the product",
       "file": "three.lean",
       "proposition": "(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧ (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧ (cells 18 10).length = 180",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary. ADDRESSED 2026-09-28: the work’s own page is https://cs.stanford.edu/~knuth/taocp.html and this volume and edition is ISBN 0-201-89683-4 (Addison-Wesley, 1997); the exact edition has a citable entry at https://proofwiki.org/wiki/Book:Donald_E._Knuth/The_Art_of_Computer_Programming:_Volume_1:_Fundamental_Algorithms/Third_Edition . HONEST about what those addresses are: they identify the BOOK, not §2.2.6 itself — a printed section has no separate address, and this is the nearest resolvable one rather than a link to the passage."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6536,12 +6520,12 @@
       "title": "Closure has no duplicate",
       "file": "three.lean",
       "proposition": "(cells 18 9).Nodup",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary. ADDRESSED 2026-09-28: the work’s own page is https://cs.stanford.edu/~knuth/taocp.html and this volume and edition is ISBN 0-201-89683-4 (Addison-Wesley, 1997); the exact edition has a citable entry at https://proofwiki.org/wiki/Book:Donald_E._Knuth/The_Art_of_Computer_Programming:_Volume_1:_Fundamental_Algorithms/Third_Edition . HONEST about what those addresses are: they identify the BOOK, not §2.2.6 itself — a printed section has no separate address, and this is the nearest resolvable one rather than a link to the passage."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6624,12 +6608,12 @@
       "title": "Closure is complete",
       "file": "three.lean",
       "proposition": "coversEveryPair 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nClosure is complete",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nClosure is complete",
       "priorArt": {
         "kind": "attributed",
         "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary. ADDRESSED 2026-09-28: the work’s own page is https://cs.stanford.edu/~knuth/taocp.html and this volume and edition is ISBN 0-201-89683-4 (Addison-Wesley, 1997); the exact edition has a citable entry at https://proofwiki.org/wiki/Book:Donald_E._Knuth/The_Art_of_Computer_Programming:_Volume_1:_Fundamental_Algorithms/Third_Edition . HONEST about what those addresses are: they identify the BOOK, not §2.2.6 itself — a printed section has no separate address, and this is the nearest resolvable one rather than a link to the passage."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6712,12 +6696,12 @@
       "title": "Address inverts",
       "file": "three.lean",
       "proposition": "∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary. ADDRESSED 2026-09-28: the work’s own page is https://cs.stanford.edu/~knuth/taocp.html and this volume and edition is ISBN 0-201-89683-4 (Addison-Wesley, 1997); the exact edition has a citable entry at https://proofwiki.org/wiki/Book:Donald_E._Knuth/The_Art_of_Computer_Programming:_Volume_1:_Fundamental_Algorithms/Third_Edition . HONEST about what those addresses are: they identify the BOOK, not §2.2.6 itself — a printed section has no separate address, and this is the nearest resolvable one rather than a link to the passage."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6800,12 +6784,12 @@
       "title": "Addresses are the interval",
       "file": "three.lean",
       "proposition": "(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary. ADDRESSED 2026-09-28: the work’s own page is https://cs.stanford.edu/~knuth/taocp.html and this volume and edition is ISBN 0-201-89683-4 (Addison-Wesley, 1997); the exact edition has a citable entry at https://proofwiki.org/wiki/Book:Donald_E._Knuth/The_Art_of_Computer_Programming:_Volume_1:_Fundamental_Algorithms/Third_Edition . HONEST about what those addresses are: they identify the BOOK, not §2.2.6 itself — a printed section has no separate address, and this is the nearest resolvable one rather than a link to the passage."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6888,12 +6872,12 @@
       "title": "The compound fraction clears",
       "file": "three.lean",
       "proposition": "(12 : Int) * 10 = 5 * 24",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, doi:10.1017/CBO9780511811685, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6976,12 +6960,12 @@
       "title": "Focal plane is unit scale",
       "file": "three.lean",
       "proposition": "den 0 = 24",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, doi:10.1017/CBO9780511811685, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7064,12 +7048,12 @@
       "title": "Depth is strictly monotone",
       "file": "three.lean",
       "proposition": "∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], k1 < k2 → 24 * den k2 < 24 * den k1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, doi:10.1017/CBO9780511811685, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7152,12 +7136,12 @@
       "title": "Frustum brackets the focal plane",
       "file": "three.lean",
       "proposition": "(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, doi:10.1017/CBO9780511811685, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7240,12 +7224,12 @@
       "title": "Denominator is positive on the frustum",
       "file": "three.lean",
       "proposition": "∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, doi:10.1017/CBO9780511811685, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7328,12 +7312,12 @@
       "title": "Reflection is an involution",
       "file": "three.lean",
       "proposition": "reflIsInvolutive 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id on every cell of the closure.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id on every cell of the closure.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical. (https://en.wikipedia.org/wiki/Point_reflection)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7416,12 +7400,12 @@
       "title": "Reflection closes on the closure",
       "file": "three.lean",
       "proposition": "reflStaysInside 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ maps the closure onto itself — the symmetry does not leave the space.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ maps the closure onto itself — the symmetry does not leave the space.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical. (https://en.wikipedia.org/wiki/Point_reflection)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7504,12 +7488,12 @@
       "title": "Reflection has no fixed point",
       "file": "three.lean",
       "proposition": "reflHasNoFixedPoint 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Standard reversal map J(i) = n+1-i on [n] (e.g. Adenbaum & Elizalde, Rowmotion on 321-avoiding permutations, Electron. J. Combin. 30(3) #P3.5, doi:10.37236/11792) — an involution whose fixed points require odd n, which is the parity criterion applied here per axis."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7679,12 +7663,12 @@
       "title": "Orbit positions cancel",
       "file": "three.lean",
       "proposition": "orbitPositionsCancel 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical. (https://en.wikipedia.org/wiki/Point_reflection)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7854,12 +7838,12 @@
       "title": "The involution laws are general",
       "file": "three.lean",
       "proposition": "(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧ (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧ (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧ (orbitPositionsCancel 3 3 = true) ∧ -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does. (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧ (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical. (https://en.wikipedia.org/wiki/Point_reflection)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7942,12 +7926,12 @@
       "title": "Middle forms have dimension six",
       "file": "yang-mills.lean",
       "proposition": "choose 4 2 = 6",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ndim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ndim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -8026,16 +8010,104 @@
       ]
     },
     {
-      "id": "yang-mills--selfdual_and_antiselfdual_split_the_six",
-      "title": "Selfdual and antiselfdual split the six",
+      "id": "yang-mills--star_squares_to_the_identity",
+      "title": "Star squares to the identity",
       "file": "yang-mills.lean",
-      "proposition": "3 + 3 = choose 4 2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.",
+      "proposition": "∀ v : Form2, star (star v) = v",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★★ = id on EVERY 2-form, not on a list of them.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity",
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-star-squares-to-the-identity.html",
+      "contentAddress": "016fbc6c09d17fd503ef9596c3f0b6f6",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "star_squares_to_the_identity",
+          "title": "Star squares to the identity"
+        }
+      ]
+    },
+    {
+      "id": "yang-mills--selfdual_and_antiselfdual_split_the_six",
+      "title": "Selfdual and antiselfdual split the six",
+      "file": "yang-mills.lean",
+      "proposition": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧ star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧ star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧ star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧ 3 + 3 = choose 4 2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴).",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -8103,7 +8175,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-split-the-six",
       "landingPageBuilt": ".vitepress/dist/lean/yang-mills-selfdual-and-antiselfdual-split-the-six.html",
-      "contentAddress": "40219276c8e6981e1ef3f9f29ddc1059",
+      "contentAddress": "353ca248608a9377c8b88f81e6fa2e08",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -8118,12 +8190,12 @@
       "title": "Star is an endomorphism only in the middle",
       "file": "yang-mills.lean",
       "proposition": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -8205,13 +8277,13 @@
       "id": "yang-mills--involution_splits_the_middle_forms",
       "title": "Involution splits the middle forms",
       "file": "yang-mills.lean",
-      "proposition": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and the split it produces, together.",
+      "proposition": "∀ v : Form2, star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧ add (add v (star v)) (sub v (star v)) = add v v",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and the split it produces, for every 2-form v: v + ★v is self-dual, v − ★v is anti-self-dual, and the two halves add back to 2v. This is the F = F⁺ + F⁻ instantons are built on.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -8258,7 +8330,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "yang-mills"
@@ -8279,7 +8351,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-involution-splits-the-middle-forms",
       "landingPageBuilt": ".vitepress/dist/lean/yang-mills-involution-splits-the-middle-forms.html",
-      "contentAddress": "864f2bc960946c9cc00650d347db08c3",
+      "contentAddress": "b796a4b249f23793bd6d80aa174a08ae",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",

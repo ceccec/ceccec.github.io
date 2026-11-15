@@ -27,7 +27,7 @@
 import { createHash } from 'node:crypto'
 import { writeFileSync, existsSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { leanPagePaths, leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+import { LEAN_KERNEL_ACCOUNT, leanLedgerEntry, leanPagePaths, leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
 import { priorArtLedger, PRIOR_ART_SEARCHED } from './prior-art.ts'
 
 /** The repository deposit every per-theorem record is part of. */
@@ -102,8 +102,10 @@ function statusFor(title: string, file: string, ledger: ReturnType<typeof priorA
  *  verify:lean already ran. Three states: [] is axiom-free, a list is named, and NOT RECORDED claims neither. */
 const axiomWord = (axioms: readonly string[] | null): string =>
   axioms === null ? 'kernel-checked' : axioms.length === 0 ? 'axiom-free' : 'standard axioms only'
+// THE LEDGER'S TWO ENTRIES, NOT ONE OF TWO WORDS (2026-11-15): every theorem is debited and credited to what it rests
+// on — the kernel alone (axiom-free) or the named axioms (src/pair/formal/proofs leanLedgerEntry).
 const axiomClause = (axioms: readonly string[] | null): string =>
-  axioms === null ? 'checked by the kernel' : axioms.length === 0 ? 'axiom-free' : `resting on ${axioms.join(' and ')} and on no other axiom`
+  axioms === null ? 'checked by the kernel' : `debit: this theorem; credit: ${leanLedgerEntry(axioms).credit.map((a) => (a === LEAN_KERNEL_ACCOUNT ? 'the kernel alone (no axiom)' : a.name)).join(' and ')}`
 
 const ASSERTS = {
   'attributed': 'NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.',
@@ -213,7 +215,7 @@ export function assertDepositsAreHonest(): void {
   if (overclaiming.length) throw new Error(`${overclaiming.length} deposit(s) describe themselves as original with no search on record`)
   // The one clause that now varies per theorem — what the kernel reported it rests on — is compared as a slot; every
   // other word of the claim must still be the status's own, exactly.
-  const slot = (text: string) => text.replace(/axiom-free|resting on [^,]*? and on no other axiom|checked by the kernel/, '‹axioms›')
+  const slot = (text: string) => text.replace(/axiom-free|debit: this theorem; credit: [^,]*|resting on [^,]*? and on no other axiom|checked by the kernel/, '‹axioms›')
   const misdescribed = records.filter((r) => slot(r.asserts) !== slot(ASSERTS[r.priorArt.kind]))
   if (misdescribed.length) throw new Error(`${misdescribed.length} deposit(s) carry a description that does not match their prior-art status`)
   console.log(`  every record's description matches its ledger status`)

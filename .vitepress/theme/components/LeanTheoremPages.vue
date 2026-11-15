@@ -5,7 +5,7 @@
 // the proposition, what proves it, what it does NOT claim, and where the source is — in that order.
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import { type LeanPageRow } from '../../render'
+import { leanLedgerEntry, type LeanPageRow } from '../../render'
 // The rows are derived from the .lean sources at build (scripts/verify/lean-corpus.ts): leanPageRows reads them through
 // node:fs, which a browser does not have, so calling it here left every /lean page blank on client-side navigation.
 import leanCorpus from '../../data/lean-corpus.json'
@@ -45,11 +45,18 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
     <p>
       By <code>{{ row.tactic }}</code> in
       <a :href="`${REPO}/${row.sourcePath}`" rel="noopener">{{ row.file }}</a>.
-      Checked by the Lean kernel:
-      <template v-if="row.axioms && row.axioms.length === 0">it depends on <strong>no axiom</strong>.</template>
-      <template v-else-if="row.axioms">it rests on <span v-for="(a, i) in row.axioms" :key="a"><code>{{ a }}</code>{{ i < row.axioms.length - 1 ? ' and ' : '' }}</span> and on no other axiom.</template>
-      <template v-else>what it rests on is not recorded here — <code>npm run verify:lean</code> reports it.</template>
+      Checked by the Lean kernel<template v-if="!row.axioms">; what it rests on is not recorded here — <code>npm run verify:lean</code> reports it</template>.
     </p>
+    <!-- THE LEDGER: debit the theorem, credit what it rests on. Every theorem has both entries; one that names no axiom
+         is credited to the kernel. Each credit carries Lean's own statement of it and what it means. -->
+    <dl v-if="row.axioms" class="ledger">
+      <dt>Debit</dt>
+      <dd><code>{{ row.name }}</code> — this theorem</dd>
+      <dt>Credit</dt>
+      <dd v-for="a in leanLedgerEntry(row.axioms).credit" :key="a.name">
+        <code>{{ a.name }}</code> : <code class="ledger__statement">{{ a.statement }}</code> — {{ a.meaning }}
+      </dd>
+    </dl>
 
     <h2>Sources and identifiers</h2>
     <ul class="ids">
@@ -73,6 +80,10 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
 
 <style scoped>
 .lean-paper { max-width: calc(1rem * (54 - 8)); }
+.ledger { display: grid; grid-template-columns: max-content 1fr; gap: var(--ich-sp2) var(--ich-sp4); margin: var(--ich-sp4) 0; padding: var(--ich-sp4); border: 1px solid var(--vp-c-divider); border-radius: var(--ich-radius); }
+.ledger dt { font-weight: var(--ich-weight-semibold); }
+.ledger dd { grid-column: 2; margin: 0; }
+.ledger__statement { white-space: normal; }
 .claim { border-left: var(--ich-border-3) solid var(--vp-c-brand-1); padding: var(--ich-sp6) var(--ich-sp8); background: var(--vp-c-bg-soft); }
 /* line-height inherits from the theme: a typed 1.9 here is a literal the crack ledger counts, and
    the site already has one reading rhythm — a component should not invent a second. */

@@ -28,11 +28,18 @@ theorem critical_line_is_the_fixed_point :
 theorem sigma_pairs_the_plane :
     σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2 := by decide
 
-/-- Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator. -/
-theorem the_fixed_line_is_one_half : (2 : Int) * 1 = 2 ∧ σ 1 = 1 := by decide
+/-- The fixed set over EVERY numerator, not a sample: σ n = n exactly when n = 1, i.e. s = 1/2.
+    (This was `(2 : Int) * 1 = 2 ∧ σ 1 = 1`.) -/
+theorem the_fixed_line_is_one_half : ∀ n : Int, σ n = n ↔ n = 1 := by
+  intro n; unfold σ
+  constructor
+  · intro h; omega
+  · intro h; subst h; rfl
 
-/-- The involution and its fixed point, together. -/
-theorem involution_fixes_the_critical_line :
-    (σ (σ 3) = 3) ∧ (σ 1 = 1) := by decide
+/-- σ is an involution on EVERY numerator, and fixes the critical line. (This was `σ (σ 3) = 3 ∧ σ 1 = 1`,
+    two cases already inside the sample theorems above.) -/
+theorem involution_fixes_the_critical_line : (∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1 := by
+  refine ⟨fun n => ?_, rfl⟩
+  unfold σ; omega
 
 end Formal.Riemann

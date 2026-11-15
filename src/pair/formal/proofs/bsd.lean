@@ -21,9 +21,20 @@ theorem sigma_is_an_involution : ∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (
 theorem central_point_is_the_fixed_point :
     σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s) := by decide
 
-/-- The root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1. -/
-theorem root_number_squares_to_one :
-    (1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1 := by decide
+/-- WHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so
+    Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1. (This was `1·1 = 1 ∧ (−1)·(−1) = 1`.) -/
+theorem root_number_squares_to_one : ∀ (w : Int) (Λ : Int → Int),
+    (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1 := by
+  intro w Λ h s hs
+  have twice : Λ s = w * (w * Λ s) := by
+    have h1 := h (σ s)
+    rw [show σ (σ s) = s by unfold σ; omega, h s] at h1
+    exact h1
+  have zero : (w * w - 1) * Λ s = 0 := by
+    rw [Int.sub_mul, Int.one_mul, Int.mul_assoc, ← twice, Int.sub_self]
+  rcases Int.mul_eq_zero.mp zero with h0 | h0
+  · omega
+  · exact absurd h0 hs
 
 /-- (−1)^r for a rank r. -/
 def sign (r : Nat) : Int := if r % 2 == 0 then 1 else -1

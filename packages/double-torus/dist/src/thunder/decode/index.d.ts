@@ -1310,6 +1310,17 @@ export declare function theLightningTheoremHandlesOneThirdInvertedLightningTheRe
     statement: string;
     boundary: string;
 };
+/**
+ * PageRank by power iteration — the thunder's arithmetic. `links[i]` lists the nodes i imports; a node's rating is the
+ * teleport share plus `damping` times the ratings of its importers, each divided by how many nodes that importer imports.
+ * A node that imports nothing hands its rating back through the teleport, so the total stays 1. With `seeds` the teleport
+ * returns only to them (personalised PageRank — how far a strike at the seeds is heard); without, to every node.
+ */
+export declare function pageRank(n: number, links: readonly (readonly number[])[], damping?: number, seeds?: readonly number[], tolerance?: number): {
+    rating: number[];
+    iterations: number;
+    converged: boolean;
+};
 export declare function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph(matrix?: MindMatrix): {
     computes: boolean;
     ratingA: number;

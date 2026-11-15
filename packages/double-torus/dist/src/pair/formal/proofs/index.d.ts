@@ -592,6 +592,53 @@ export declare const LEAN_AXIOMS_RECORD = ".vitepress/data/lean-axioms.json";
 /** One sentence per theorem, in the three states the record has. Plain text; the LaTeX and the page wrap the names. */
 export declare function leanAxiomSentence(axioms: readonly string[] | null, code?: (name: string) => string): string;
 /**
+ * THE AXIOM LEDGER — DEBIT THE THEOREM, CREDIT WHAT IT RESTS ON. Every kernel-checked theorem posts two entries: a
+ * debit to the theorem, and a credit to the account of what the kernel says it rests on. There is no theorem without
+ * a credit: one that names no axiom is credited to the KERNEL account — the type theory's own rules, witnessed by
+ * of_decide_eq_true, which itself rests on nothing. One that names axioms is credited to each of them, by name, with
+ * Lean's own statement of the axiom and what it means. The ledger balances when every debit has its credit and every
+ * credited account is defined and admitted; verify:axiom-ledger states that as a decided proposition, and checks each
+ * statement below against Lean's `#check` wherever Lean is installed, so none of them is typed from memory.
+ */
+export type LeanAccount = {
+    readonly name: string;
+    readonly statement: string;
+    readonly meaning: string;
+    readonly admitted: boolean;
+};
+export declare const LEAN_KERNEL_ACCOUNT: LeanAccount;
+export declare const LEAN_AXIOM_ACCOUNTS: Readonly<Record<string, LeanAccount>>;
+/** One theorem's two entries: the debit, and the accounts credited. An axiom no account defines is credited to an
+ *  UNDEFINED account, named as such, so an unbalanced ledger says where it is unbalanced. */
+export declare function leanLedgerEntry(axioms: readonly string[]): {
+    readonly credit: readonly LeanAccount[];
+    readonly account: string;
+    readonly undefinedAxioms: readonly string[];
+};
+/** The whole ledger over a set of theorems: debits, the credit accounts with their theorems, and whether it balances. */
+export declare function leanLedger(rows: readonly {
+    readonly name: string;
+    readonly file: string;
+    readonly axioms: readonly string[] | null;
+}[]): {
+    debits: number;
+    credits: number;
+    unrecorded: string[];
+    undefinedAxioms: string[];
+    refused: string[];
+    accounts: {
+        readonly account: string;
+        readonly credit: readonly LeanAccount[];
+        theorems: number;
+    }[];
+    entries: {
+        credit: readonly LeanAccount[];
+        account: string;
+        undefinedAxioms: readonly string[];
+        debit: string;
+    }[];
+};
+/**
  * LEAN AND LATEX, MERGED INTO ONE DOCUMENT THAT COMPILES (owner, 2026-11-13: "merge lean latex tex in iso quality proof").
  *
  * This emitted a FRAGMENT: a \section with no document around it, each proposition in \[ \texttt{…} \] — display math,

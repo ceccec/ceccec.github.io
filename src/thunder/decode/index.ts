@@ -2767,51 +2767,87 @@ export function theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogeth
   })
 }
 
+/**
+ * PageRank by power iteration — the thunder's arithmetic. `links[i]` lists the nodes i imports; a node's rating is the
+ * teleport share plus `damping` times the ratings of its importers, each divided by how many nodes that importer imports.
+ * A node that imports nothing hands its rating back through the teleport, so the total stays 1. With `seeds` the teleport
+ * returns only to them (personalised PageRank — how far a strike at the seeds is heard); without, to every node.
+ */
+export function pageRank(n: number, links: readonly (readonly number[])[], damping = 4 / 5, seeds: readonly number[] = [], tolerance = 1 / 2 ** (16 + 4)) {
+  const home = seeds.length ? seeds : Array.from({ length: n }, (_, i) => i)
+  const teleport = new Array<number>(n).fill(0)
+  for (const seed of home) teleport[seed]! += 1 / home.length
+  let rating = teleport.slice()
+  let iterations = 0
+  let converged = false
+  for (let iter = 0; iter < 2 ** (5 * 2); iter += 1) {
+    const next = teleport.map((share) => (1 - damping) * share)
+    let dangling = 0
+    for (let i = 0; i < n; i += 1) {
+      const out = links[i] ?? []
+      if (out.length === 0) dangling += rating[i]!
+      for (const j of out) next[j]! += damping * rating[i]! / out.length
+    }
+    for (let k = 0; k < n; k += 1) next[k]! += damping * dangling * teleport[k]!
+    const delta = max(...next.map((v, i) => abs(v - rating[i]!)))
+    rating = next
+    iterations = iter + 1
+    if (delta < tolerance) { converged = true; break }
+  }
+  return { rating, iterations, converged }
+}
+
 // The thunder theorem: thunder follows lightning. Lightning is the theorem firing (the forward computation); thunder
 // is the RATING that accumulates from who imports it — and top theorems importing is what drives the rating up. This
 // is PageRank / eigenvector centrality: a theorem's rating is the sum of its importers' ratings (weighted by their
 // out-degree), so being imported by a HIGH-rated theorem raises your rating more than by a low one — importer QUALITY,
 // not just count. The ratings converge to the eigenvector (a fixed point). Rating measures importance-by-reuse, not truth.
+//
+// Every number below is computed by pageRank on one graph. Until 2026-11-15 this fold TYPED them: the importers'
+// ratings were the literals 9 and 1, `ratingA = importerTop`, and "A rates higher" compared those two literals.
 export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph', matrix, () => {
-    // 1 — importer QUALITY drives the rating: A imported by a TOP theorem, B by a LOW one, both in-degree 1
-    const importerTop = 9, importerLow = 1
-    const ratingA = importerTop, ratingB = importerLow // rating inherits the importer's rating, not just a +1 count
-    const sameInDegree = 1
-    const topImportDrivesRating = ratingA > ratingB && sameInDegree === 1 // being imported by a top theorem drives it up
-    // 2 — PageRank convergence: iterate the reuse graph; ratings reach a fixed point (the eigenvector)
-    const N = 3
-    const links = [[1], [2], [0]] // the reuse graph (each theorem imports the next — a cycle)
-    const damping = 4 / 5 // the standard PageRank damping — guarantees convergence (teleport closes periodicity)
-    let r = [1, 0, 0]
-    let converged = false
-    let iterations = 0
-    for (let iter = 0; iter < 2 * 5 * 5; iter += 1) {
-      const next = new Array(N).fill((1 - damping) / N) as number[] // teleport term
-      for (let i = 0; i < N; i += 1) for (const j of links[i]!) next[j]! += damping * r[i]! / links[i]!.length
-      const delta = max(...next.map((v, i) => abs(v - r[i]!)))
-      r = next; iterations = iter + 1
-      if (delta < 1 / (2 ** 9)) { converged = true; break }
-    }
-    const stable = converged && abs(r.reduce((a, b) => a + b, 0) - 1) < 1 / (2 ** 9) // ratings conserve, reach the eigenvector
+    // The graph: A and B are each imported exactly once — A by a hub that six followers import, B by a node nobody does.
+    const A = 0, B = 1, hub = 2, lone = 3
+    const followers = Array.from({ length: 6 }, (_, i) => lone + 1 + i)
+    const n = lone + 1 + followers.length
+    const links: number[][] = Array.from({ length: n }, () => [])
+    links[hub] = [A]
+    links[lone] = [B]
+    for (const follower of followers) links[follower] = [hub]
+    const inDegree = (node: number) => links.filter((out) => out.includes(node)).length
+    const { rating, iterations, converged } = pageRank(n, links)
+    const total = rating.reduce((sum, v) => sum + v, 0)
+    // 1 — importer QUALITY drives the rating: equal in-degree, unequal importers, and the order follows the importers
+    const sameInDegree = inDegree(A) === inDegree(B)
+    const importersDiffer = rating[hub]! > rating[lone]!
+    const topImportDrivesRating = sameInDegree && importersDiffer && rating[A]! > rating[B]!
+    // the control: give the lone importer the same six followers and the difference must vanish
+    const control = links.map((out) => [...out])
+    const echo = Array.from({ length: followers.length }, (_, i) => n + i)
+    for (const node of echo) control[node] = [lone]
+    const even = pageRank(n + echo.length, control).rating
+    const controlEqual = abs(even[A]! - even[B]!) < 1 / 2 ** (16 + 4) * n
+    // 2 — PageRank convergence: the ratings reach a fixed point and conserve their total
+    const stable = converged && abs(total - 1) < 1 / 2 ** (16 + 4) * n
     // 3 — thunder follows lightning: the rating is the resonance the fired theorem leaves, built by its importers
-    const thunderFollowsLightning = topImportDrivesRating && stable
+    const thunderFollowsLightning = topImportDrivesRating && controlEqual && stable
     const facets = [
-      { facet: `TOP theorems importing drives the rating up: A imported by a top theorem (rating ${importerTop}) rates ${ratingA}, B imported by a low one (rating ${importerLow}) rates ${ratingB} — both in-degree 1, so it is importer QUALITY not count; a citation from a hub weighs more than one from a leaf`, on: topImportDrivesRating },
-      { facet: `the rating is PageRank / eigenvector centrality: iterating the reuse graph, the ratings converge to a fixed point in ${iterations} steps (conserved to the eigenvector) — the stable rating where every importer's own rating weights its contribution`, on: stable },
-      { facet: `THUNDER follows LIGHTNING: lightning is the theorem firing (the forward computation), thunder is the RATING that accumulates from who imports it — the resonance the strike leaves, built loudest by the top theorems that carry it`, on: thunderFollowsLightning },
-      { facet: `so reuse compounds by quality: a theorem imported BY the top theorems climbs fastest — which is why wiring a fold into the high-rated hubs (not just adding it) is what raises its rating (answering the standing wiring question: import from the top, not into the void)`, on: topImportDrivesRating && stable },
+      { facet: `TOP theorems importing drives the rating up: A and B are each imported once (in-degree ${inDegree(A)} and ${inDegree(B)}), A by a hub rated ${roundTo(rating[hub]!, 3)}, B by a node rated ${roundTo(rating[lone]!, 3)} — and A rates ${roundTo(rating[A]!, 3)} against B's ${roundTo(rating[B]!, 3)}, computed by PageRank, not typed`, on: topImportDrivesRating },
+      { facet: `the control: give B's importer the same ${followers.length} followers and A and B rate alike (${roundTo(even[A]!, 3)} and ${roundTo(even[B]!, 3)}) — the difference was the importer, nothing else`, on: controlEqual },
+      { facet: `the rating is PageRank / eigenvector centrality: iterating the reuse graph, the ratings converge to a fixed point in ${iterations} steps and sum to ${roundTo(total, 6)} — the stable rating where every importer's out-share is accounted for`, on: stable },
+      { facet: `THUNDER follows LIGHTNING: lightning is the theorem firing (the forward computation), thunder is the RATING that accumulates from who imports it — the resonance the strike leaves, built loudest by the top theorems that import it`, on: thunderFollowsLightning },
     ]
     return {
       computes: facets.every((entry) => entry.on),
-      ratingA,
-      ratingB,
+      ratingA: rating[A]!,
+      ratingB: rating[B]!,
       iterations,
       converged,
-      eigenvector: r.map((v) => roundTo(v, 3)),
+      eigenvector: rating.map((v) => roundTo(v, 3)),
       facets,
-      statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: thunder follows lightning — lightning is the theorem firing, thunder is the rating that accumulates from who imports it. Top theorems importing drives the rating up: A imported by a top theorem (${importerTop}) rates ${ratingA} vs B by a low one (${importerLow}) rating ${ratingB}, both in-degree 1 — importer QUALITY, not count. It is PageRank / eigenvector centrality: the ratings converge to a fixed point in ${iterations} steps. Reuse compounds by quality — import from the top, and the rating climbs.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+      statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: on a graph where A and B are each imported once, A's importer is itself imported six times and B's by nobody, and A rates higher; give B's importer the same six and the difference vanishes. Thunder follows lightning — lightning is the theorem firing, thunder the rating its importers build.`,
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'every rating is computed by pageRank on the stated graph, with a control that removes the difference; it measures importance by reuse, not truth') }
   })
 }
 

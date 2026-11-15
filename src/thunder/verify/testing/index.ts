@@ -5,10 +5,12 @@
 import { ICHING_NUMBERS, VORTEX_SEQUENCE, abs, digitalRoot, exp, floor, isUuid, log, max, memoByRoot, sqrt, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { LIVE_CONNECTORS } from '../../../stats/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
+import { leanBlockCommentLines } from '../../../pair/formal/proofs/index.ts'
+import { pageRank } from '../../decode/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import { DOUBLE_TORUS_PERSPECTIVES } from '../../../water/double/index.ts'
 import { CLAY_ORDER, CLAY_PROBLEMS } from '../../../research/index.ts'
-import { EARTH_RADIUS_KM, TAU, claySolvedByFormulas, physicalFtlByFormulas } from '../../../3/7/index.ts'
+import { EARTH_RADIUS_KM, TAU, claySolvedByFormulas, earned, physicalFtlByFormulas } from '../../../3/7/index.ts'
 import { greatCircleKm } from '../../../5/5/index.ts'
 import { HERO_CYCLE_MS } from '../../../fire/plasma/ball/index.ts'
 import { MEEUS_J2000_JD } from '../../../heaven/sky/astronomy/index.ts'
@@ -843,6 +845,7 @@ export interface Involution {
   model: string // what the finite model stands for
   perspective?: string // the DOUBLE_TORUS_PERSPECTIVES id this row is computed in
   through?: string // the row whose dataset tests this one, when the statement says the σ is the same
+  lean?: string // the definition in src/pair/lean/proofs/cross.lean that carries this row's map
 }
 
 const DYADIC: readonly number[] = Array.from({ length: 5 }, (_, i) => i / 4) // 0, ¼, ½, ¾, 1 — exact in binary
@@ -861,7 +864,7 @@ const LATITUDES = [-(360 / 6), -(360 / 6 / 2), 0, 360 / 6 / 2, 360 / 6] as const
 const complementHue = (h: number) => (h + 360 / 2) % 360
 
 export const INVOLUTION_PATTERNS: readonly Involution[] = [
-  { id: 'riemann-s-involution', domain: 'functional', pattern: 'σ: s ↔ (1−s)', fixedPoint: 'Re s = 1/2 (critical line)', verificationMethod: 'computation', status: 'open', statement: 'σ(s) = 1−s, σ² = id, unique fixed line Re s = ½ from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
+  { id: 'riemann-s-involution', lean: 'riemann', domain: 'functional', pattern: 'σ: s ↔ (1−s)', fixedPoint: 'Re s = 1/2 (critical line)', verificationMethod: 'computation', status: 'open', statement: 'σ(s) = 1−s, σ² = id, unique fixed line Re s = ½ from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
   { id: 'l-function-universal', domain: 'functional', pattern: 'σ: s ↔ (1−s) on every completed L(s,χ)', fixedPoint: 'Re s = 1/2', verificationMethod: 'lean-proof', status: 'open', through: 'riemann-s-involution', statement: 'the same σ acts on every completed Dirichlet L-function; the Generalized Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
   { id: 'goldbach-parity', domain: 'arithmetic', pattern: 'σ(p) = n − p', fixedPoint: 'p = n/2', verificationMethod: 'live-api', status: 'open', statement: 'σ(p) = n−p on [0, n], σ² = id, fixed point n/2; whether every even n > 2 has a prime pair under σ is Goldbach — OPEN', sigma: (p) => EVEN - p, samples: [0, 1, EVEN / 2, EVEN - 1, EVEN], model: `p on [0, ${EVEN}]` },
   { id: 'polynomial-prime-symmetry', domain: 'arithmetic', pattern: 'σ(P(n)) = P(−n)', fixedPoint: 'n = 0', verificationMethod: 'live-api', status: 'open', statement: 'σ: n ↦ −n on a polynomial family; infinitely many simultaneous prime values is Schinzel’s hypothesis H — OPEN (the linear case is Dirichlet, proved)', sigma: (n) => -n, samples: [-2, -1, 0, 1, 2], model: 'n on a symmetric integer window' },
@@ -872,15 +875,15 @@ export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'four-color-planar', domain: 'graph', pattern: 'σ: G ↔ G* (planar dual)', fixedPoint: 'χ = 4', verificationMethod: 'code', status: 'proved', statement: 'σ: G ↦ G* on planar graphs, σ² = id; χ(G) ≤ 4 is PROVED (Appel–Haken 1976; Gonthier 2005 in Coq)', sigma: reflect(PAIR.length), samples: PAIR, model: 'primal ↔ dual' },
   { id: 'knot-cobordism', domain: 'topological', pattern: 'σ: M ↔ M_exotic (cobordism)', fixedPoint: 'standard smooth structure', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs a manifold with an exotic smooth structure through cobordism; exotic 7-spheres are PROVED (Milnor 1956), the smooth 4-dimensional Poincaré question — OPEN', sigma: reflect(PAIR.length), samples: PAIR, model: 'standard ↔ exotic' },
   { id: 'pauli-matrices', domain: 'algebraic', pattern: 'σ_i† = σ_i, [σ_i, σ_j] = 2iε_ijk σ_k', fixedPoint: 'real spectrum ±1', verificationMethod: 'computation', status: 'proved', statement: 'σ_i² = I and σ_i† = σ_i in M₂(ℂ) — identities the kernel decides; they generate su(2)', sigma: (x) => -x, samples: [-1, 1], model: 'σ_z on its eigenvalues ±1' },
-  { id: 'birch-swinnerton-dyer', domain: 'algebraic', pattern: 'σ: rank E ↔ ord_{s=1} L(E, s)', fixedPoint: 'rank = analytic rank', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs the algebraic rank with the analytic order at s = 1; their equality is BSD — OPEN (rank ≤ 1 cases proved: Gross–Zagier, Kolyvagin)', sigma: reflect(PAIR.length), samples: PAIR, model: 'algebraic ↔ analytic' },
+  { id: 'birch-swinnerton-dyer', lean: 'bsd', domain: 'algebraic', pattern: 'σ: s ↦ 2 − s, with Λ(E, s) = w·Λ(E, 2 − s)', fixedPoint: 's = 1, the central point', verificationMethod: 'lean-proof', status: 'open', statement: 'the completed L-function of an elliptic curve satisfies Λ(E, s) = w·Λ(E, 2 − s): σ(s) = 2 − s is an involution fixing only s = 1, and w² = 1 wherever Λ does not vanish (bsd.lean, cross.lean); that ord_{s=1} L(E, s) equals the rank is BSD — OPEN (rank ≤ 1 cases proved: Gross–Zagier, Kolyvagin)', sigma: (s) => 2 - s, samples: [-2, -1, 0, 1, 2, 3, 4], model: 's on the integers, as bsd.lean' },
   { id: 'langlands-dual-group', domain: 'functional', pattern: 'σ: G ↔ ᴸG (roots ↔ coroots)', fixedPoint: 'self-dual groups (GL_n)', verificationMethod: 'lean-proof', status: 'open', statement: 'σ exchanges roots and coroots of the root datum, σ² = id, fixed points are the self-dual groups; functoriality in general — OPEN (cyclic base change for GL_n is proved)', sigma: reflect(PAIR.length), samples: PAIR, model: 'roots ↔ coroots' },
   { id: 'homological-mirror-symmetry', domain: 'topological', pattern: 'σ: H^{p,q} ↔ H^{q,p}', fixedPoint: 'Hodge diamond symmetry', verificationMethod: 'lean-proof', status: 'open', statement: 'σ reflects the Hodge diamond between mirror pairs; homological mirror symmetry in general — OPEN (proved for specific families)', sigma: reflect(PAIR.length), samples: PAIR, model: 'p ↔ q in H^{p,q}' },
-  { id: 'p-vs-np', domain: 'computational', pattern: 'σ: find ↔ verify', fixedPoint: 'P = NP would be the fixed point', verificationMethod: 'hardness-solver', status: 'open', statement: 'σ pairs finding a certificate with verifying it; whether σ has a fixed point is P vs NP — OPEN; this row records the involution, not a resolution', sigma: reflect(PAIR.length), samples: PAIR, model: 'find ↔ verify' },
+  { id: 'p-vs-np', lean: 'complement', domain: 'computational', pattern: 'σ: C ↦ co-C (complement)', fixedPoint: 'P and PSPACE are fixed (proved); whether NP is fixed is NP =? coNP', verificationMethod: 'hardness-solver', status: 'open', statement: 'complementation is an involution on {P, NP, coNP, PSPACE} with P and PSPACE fixed and NP ↔ coNP exchanged (p-vs-np.lean, cross.lean); whether NP is a fixed class is NP =? coNP — OPEN, and since P is fixed, NP ≠ coNP would give P ≠ NP; this row records the involution, not a resolution', sigma: (c) => [0, 2, 1, 3][c]!, samples: [0, 1, 2, 3], model: 'P, NP, coNP, PSPACE as 0, 1, 2, 3, as p-vs-np.lean' },
   { id: 'graph-isomorphism-quasi-poly', domain: 'computational', pattern: 'σ: T(n) ↔ 2^{poly(log n)}', fixedPoint: 'quasi-polynomial time', verificationMethod: 'computation', status: 'proved', statement: 'T ↦ 2^T is a scale map, not an involution; graph isomorphism in quasi-polynomial time is PROVED (Babai 2015/2017); membership in P — OPEN', sigma: (t) => 2 ** t, samples: [1, 2, 3], model: 't ↦ 2^t on small t' },
-  { id: 'hodge', domain: 'topological', pattern: 'σ: H^{k,k} ↔ algebraic cycles (Poincaré duality)', fixedPoint: 'a class that is its own dual', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs a Hodge class with the cycle class Poincaré duality assigns it, σ² = id; that every rational (k,k)-class is algebraic is the Hodge conjecture — OPEN (the corpus seals the involution, not the conjecture)', sigma: reflect(PAIR.length), samples: PAIR, model: 'class ↔ cycle' },
-  { id: 'navier-stokes', domain: 'functional', pattern: 'σ: ω₊ ↔ −ω₋ (the seam involution on the genus-2 carrier)', fixedPoint: 'ω = 0, the irrotational flow', verificationMethod: 'computation', status: 'open', statement: 'σ reflects vorticity across the two seams, σ² = id, fixed point the irrotational flow; that smooth 3D solutions exist for all time is Navier–Stokes — OPEN (the corpus seals a seam model, not regularity)', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'ω across the seams' },
-  { id: 'yang-mills', domain: 'algebraic', pattern: 'σ† = σ on su(2) ⊕ M₂(ℂ)', fixedPoint: 'the real spectrum {0} ∪ [Δ, ∞)', verificationMethod: 'computation', status: 'open', statement: 'σ is self-adjoint, so its spectrum is real and σ² = I splits it into {0} ∪ [Δ, ∞); that a 4D Yang–Mills theory exists with a mass gap Δ > 0 is OPEN (the corpus seals the su(2) involution, not the quantum field theory)', sigma: (x) => -x, samples: [-1, 1], model: 'σ_z on its eigenvalues ±1' },
-  { id: 'poincare', domain: 'topological', pattern: 'σ: M³ ↔ S³ (simply connected ↔ the sphere)', fixedPoint: 'S³ itself', verificationMethod: 'lean-proof', status: 'proved', statement: 'every simply connected closed 3-manifold is S³ — PROVED (Perelman 2002–03, Ricci flow); the corpus imports the tool, it does not re-prove it', sigma: reflect(PAIR.length), samples: PAIR, model: 'M ↔ S³' },
+  { id: 'hodge', lean: 'hodge', domain: 'topological', pattern: 'σ: H^{p,q} ↦ H^{q,p} (complex conjugation)', fixedPoint: 'the (k, k) types — where Hodge classes live', verificationMethod: 'lean-proof', status: 'open', statement: 'conjugation exchanges H^{p,q} and H^{q,p}, σ² = id, and on degree 2k fixes exactly the type (k, k) (hodge.lean, cross.lean); that every rational (k,k)-class is algebraic is the Hodge conjecture — OPEN (the corpus seals the involution, not the conjecture)', sigma: (p) => 4 - p, samples: [0, 1, 2, 3, 4], model: 'p of the type (p, 4 − p) in degree 4, as hodge.lean' },
+  { id: 'navier-stokes', lean: 'viscous', domain: 'functional', pattern: 'σ: ω₊ ↔ −ω₋ (the seam involution on the genus-2 carrier)', fixedPoint: 'ω = 0, the irrotational flow', verificationMethod: 'computation', status: 'open', statement: 'σ reflects vorticity across the two seams, σ² = id, fixed point the irrotational flow; that smooth 3D solutions exist for all time is Navier–Stokes — OPEN (the corpus seals a seam model, not regularity)', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'ω across the seams' },
+  { id: 'yang-mills', lean: 'star', domain: 'algebraic', pattern: 'σ = ★ on Λ²(ℝ⁴): ★² = id, F = F⁺ + F⁻', fixedPoint: 'the self-dual forms; on the anti-self-dual part only 0', verificationMethod: 'computation', status: 'open', statement: '★² = id on every 2-form on ℝ⁴ and splits Λ² into self-dual ⊕ anti-self-dual, 3 + 3 = 6 (yang-mills.lean); on each anti-self-dual coefficient ★ is c ↦ −c (cross.lean); that a quantum Yang–Mills theory exists on ℝ⁴ with mass gap Δ > 0 is OPEN (the corpus seals the star, not the quantum field theory). (This row said σ² = I splits a spectrum into {0} ∪ [Δ, ∞); an involution\'s spectrum lies in {−1, 1}.)', sigma: (c) => -c, samples: [-2, -1, 0, 1, 2], model: 'an anti-self-dual coefficient under ★, as cross.lean' },
+  { id: 'poincare', lean: 'chi', domain: 'topological', pattern: 'χ = 2 − 2g, inverted by g = (2 − χ)/2', fixedPoint: 'none — the pair is a bijection, not an involution', verificationMethod: 'lean-proof', status: 'proved', statement: 'every simply connected closed 3-manifold is S³ — PROVED (Perelman 2002–03, Ricci flow); the corpus imports the tool, it does not re-prove it. Its Lean file proves χ = 2 − 2g with genus as its inverse: a scale map, not an involution — χ ∘ χ moves genus 0 to −2 (poincare.lean, cross.lean). (This row used to carry a two-point swap labelled M ↔ S³.)', sigma: (g) => 2 - 2 * g, samples: [0, 1, 2, 3, 4], model: 'genus g ↦ Euler characteristic χ, as poincare.lean' },
   { id: 'vortex-orbit-reflection', perspective: 'vortex', domain: 'arithmetic', pattern: 'σ(d) = 9 − d on ℤ/9ℤ', fixedPoint: '9 ≡ 0', verificationMethod: 'computation', status: 'proved', statement: 'the digit-inverse on ℤ/9ℤ maps the doubling orbit ⟨2⟩ = {1, 2, 4, 8, 7, 5} onto itself and swaps 3 ↔ 6 — decided on the vortex sequence', sigma: digitInverse, samples: VORTEX_SEQUENCE, model: 'the vortex sequence on ℤ/9ℤ' },
   { id: 'poles-v4-hemisphere', perspective: 'poles-v4', domain: 'algebraic', pattern: 'σ_h: (hemisphere, flow) ↦ (¬hemisphere, flow)', fixedPoint: 'none — V₄ acts freely', verificationMethod: 'computation', status: 'proved', statement: 'the hemisphere flip on (hemisphere, flow) ∈ {0,1}² commutes with the flow flip; with their product they are the Klein four-group V₄ — decided on the four poles', sigma: (x) => x ^ 1, samples: [0, 1, 2, 3], model: '(hemisphere, flow) as two bits' },
   { id: 'sixty-ninety-inversion', perspective: 'sixty-ninety', domain: 'topological', pattern: 'σ(θ) = 180° − θ', fixedPoint: '90°', verificationMethod: 'computation', status: 'proved', statement: 'the inversion θ ↦ 180° − θ maps the sixty-degree lattice C₆ onto itself and fixes 90°, which C₆ does not contain — ninety is reached only through inversion, decided on the six angles', sigma: invertAngle, samples: [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6)), model: 'C₆ in degrees' },
@@ -1661,6 +1664,94 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
     rows,
     perspectives: perspectives.map((p) => p.id),
     statement: `Every formula from the Clay solutions (${clayRows.length} Clay rows, ${rows.length - clayRows.length} direct extensions) crossed with the ${perspectives.length} double-torus perspectives and with the public dataset that can refute it — ${CLAY_DATASETS.length} datasets named by connector key in the keyless catalogue (Odlyzko zeros, LMFDB curves, OEIS b-files), each a three-state verdict: held, refuted, or unchecked with its reason. Zero-network by default; the gate fetches by byte range and ratchets the two coverages that only fall.`,
+  }
+}
+
+// ---- the Clay cases in Lean: one cross law, clustered as the thunder spreads over cross.lean's reuse graph ----
+export const LEAN_CROSS_FILE = 'src/pair/lean/proofs/cross.lean'
+
+/** The declarations of a Lean file and its reuse graph: declaration i links to every other declaration its text names. */
+export function leanReuseGraph(text: string) {
+  const lines = text.split('\n')
+  const inComment = leanBlockCommentLines(lines)
+  const code = lines.map((line, i) => (inComment[i] ? '' : line.replace(/--.*$/, ''))).join('\n')
+  const heads = [...code.matchAll(/^(theorem|def|structure|inductive)\s+([A-Za-z_][\w']*)/gm)]
+  const names = heads.map((m) => m[2]!)
+  const bodies = heads.map((m, i) => code.slice(m.index!, i + 1 < heads.length ? heads[i + 1]!.index! : code.length))
+  const kinds = heads.map((m) => m[1]!)
+  const names_ = names.map((name) => new RegExp(`(?<![\\w'.])${name.replace(/'/g, "\\'")}(?![\\w'])`))
+  const links = bodies.map((body, i) => names.flatMap((_, j) => (j !== i && names_[j]!.test(body.slice(names[i]!.length + kinds[i]!.length + 1)) ? [j] : [])))
+  return { names, kinds, bodies, links }
+}
+
+/**
+ * THE SEVEN CLAY CASES, CROSSED WITH THEIR LEAN. Every Clay row of the catalogue names the definition in cross.lean that carries
+ * its map, and this fold reads that file and decides, row by row, what the kernel was asked to prove against what this module
+ * computes from the row: an involution row has `<map>_is_an_involution`, the scale-map row (Poincaré) has a theorem that it is
+ * not one, and the row's σ-class — computed here by sigmaClass — is the cluster theorem that names its map.
+ *
+ * The clusters are where the thunder of a strike at a row's map carries: to every theorem that uses the map, and from each of
+ * them to what it rests on — exact, read off the reuse graph. Inside a cluster the members are ranked by the thunder itself,
+ * PageRank over the reuse graph, where a declaration is rated by who imports it. The one law, odd_cancels, must be in the
+ * cluster of exactly the rows whose map is an involution. (A first version took the cluster as everything a personalised
+ * spread rated above its global rating; that cut-off never reached the law, two hops behind a hub, and was replaced.)
+ * It proves the symmetries and their fixed sets, never a conjecture: an open row stays open.
+ */
+export function clayCasesCrossInLean(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', matrix: MindMatrix = buildMatrix()) {
+  const fs = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+    : undefined
+  const file = `${root.replace(/\/$/, '')}/${LEAN_CROSS_FILE}`
+  if (!fs || !fs.existsSync(file)) {
+    return { computes: false, source: 'absent' as const, facets: [{ facet: `${LEAN_CROSS_FILE} could not be read here — nothing is decided without it`, on: false }], clusters: [], statement: `The Clay cross in Lean is absent: ${LEAN_CROSS_FILE} is not readable from this runtime.` }
+  }
+  const graph = leanReuseGraph(fs.readFileSync(file, 'utf8'))
+  const n = graph.names.length
+  const at = (name: string) => graph.names.indexOf(name)
+  const thunder = pageRank(n, graph.links).rating
+  const all = allInvolutions(matrix)
+  const clay = all.involutions.filter((r) => CLAY_OF[r.id])
+  const law = at('odd_cancels')
+  const rows = clay.map((r) => {
+    const map = r.lean ?? ''
+    const seed = at(map)
+    const cls = sigmaClass(r)
+    const users = seed >= 0 ? graph.links.flatMap((out, i) => (out.includes(seed) ? [i] : [])) : []
+    const reach = seed >= 0 ? [...new Set([seed, ...users, ...users.flatMap((i) => graph.links[i]!)])] : []
+    const cluster = reach.sort((a, b) => thunder[b]! - thunder[a]! || a - b).map((i) => graph.names[i]!)
+    const named = (theorem: string) => at(theorem) >= 0 && graph.kinds[at(theorem)] === 'theorem' && new RegExp(`(?<![\\w'.])${map}(?![\\w'])`).test(graph.bodies[at(theorem)]!)
+    const kindTheorem = r.kind === 'involution' ? `${map}_is_an_involution` : graph.names.find((name) => /not_an_involution$/.test(name) && named(name)) ?? ''
+    const classTheorem = cls.startsWith('own') ? `${map}_is_its_own_class` : `the_${cls}_cluster`
+    return {
+      id: r.id, clay: CLAY_OF[r.id]!, map, status: r.status, kind: r.kind, sigmaClass: cls,
+      defined: seed >= 0 && graph.kinds[seed] === 'def',
+      kindProved: kindTheorem !== '' && at(kindTheorem) >= 0 && (r.kind !== 'involution' || graph.kinds[at(kindTheorem)] === 'theorem'),
+      kindTheorem,
+      classProved: r.kind !== 'involution' || named(classTheorem),
+      classTheorem: r.kind === 'involution' ? classTheorem : null,
+      // heard only where one theorem applies the law to THIS map's own involution proof — another map's instance does not count
+      lawHeard: law >= 0 && at(`${map}_is_an_involution`) >= 0 && graph.links.some((out) => out.includes(law) && out.includes(at(`${map}_is_an_involution`))),
+      cluster,
+    }
+  })
+  const byClass = new Map<string, typeof rows>()
+  for (const row of rows) if (row.kind === 'involution' && !row.sigmaClass.startsWith('own')) byClass.set(row.sigmaClass, [...(byClass.get(row.sigmaClass) ?? []), row])
+  const facets = [
+    { facet: `every Clay problem has its map defined in ${LEAN_CROSS_FILE}: ${rows.filter((row) => row.defined).length} of ${CLAY_ORDER.length} (${rows.map((row) => `${row.clay} → ${row.map}`).join(', ')})`, on: CLAY_ORDER.every((k) => rows.some((row) => row.clay === k && row.defined)) },
+    { facet: `the kernel was asked what this module computes: each involution row has its <map>_is_an_involution, and each row that is not an involution has a theorem saying so (${rows.map((row) => row.kindTheorem || `${row.map}: none`).join(', ')})`, on: rows.every((row) => row.kindProved) },
+    { facet: `each involution row's σ-class, computed from its samples, is the cluster theorem that names its map (${rows.filter((row) => row.classTheorem).map((row) => `${row.map} ∈ ${row.classTheorem}`).join(', ')})`, on: rows.every((row) => row.classProved) },
+    { facet: `the one law, odd_cancels, is applied to the involution proof of exactly the rows whose map is an involution: ${rows.filter((row) => row.lawHeard).map((row) => row.map).join(', ')} hear it, ${rows.filter((row) => !row.lawHeard).map((row) => row.map).join(', ') || 'none'} do not`, on: rows.every((row) => row.lawHeard === (row.kind === 'involution')) },
+    { facet: `rows of one σ-class share their cluster theorem in their spreads: ${[...byClass].map(([cls, members]) => `${cls} {${members.map((m) => m.map).join(', ')}}`).join(' · ')}`, on: [...byClass].every(([cls, members]) => members.every((m) => m.cluster.includes(`the_${cls}_cluster`))) },
+    { facet: `open stays open: the rows the catalogue calls open are ${rows.filter((row) => row.status === 'open').map((row) => row.clay).join(', ')} — the Lean proves their symmetries and fixed sets, and no theorem in it states a conjecture`, on: rows.every((row) => row.status === 'proved' ? CLAY_PROBLEMS[row.clay].rigor === 'proven-and-used' : CLAY_PROBLEMS[row.clay].rigor !== 'proven-and-used') },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    source: 'read' as const,
+    facets,
+    clusters: rows,
+    declarations: n,
+    statement: `The seven Clay cases crossed with their Lean: ${rows.filter((row) => row.kind === 'involution').length} maps are involutions and share one law, ${rows.filter((row) => row.kind !== 'involution').length} is a bijection proved not to be one; clustered by the thunder spread over ${n} declarations of ${LEAN_CROSS_FILE} — ${facets.filter((f) => f.on).length}/${facets.length} facets hold.`,
+    boundary: earned('COMPUTED — the Clay cross reads cross.lean and decides each row:', facets.slice(0, -1), facets.slice(-1)),
   }
 }
 

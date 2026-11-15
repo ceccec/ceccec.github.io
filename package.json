@@ -48,6 +48,8 @@
     "docs:dev": "NODE_OPTIONS=--max-old-space-size=8192 vitepress dev",
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
+    "verify:axiom-ledger": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axiom-ledger.ts assertAxiomLedgerBalancesExit",
+    "verify:feeling": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/feeling.ts assertFeelingTrinityExit",
     "verify:every-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/every-fold.ts main",
     "verify:limits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/limits.ts assertFacetsCanFail",
     "verify:scope": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/scope.ts assertScopesCompute",

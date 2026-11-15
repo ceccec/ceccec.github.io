@@ -428,6 +428,42 @@ export declare function srcAllRegistry(root?: string): {
     statement: string;
     boundary: string;
 };
+export declare const FEELING_CORNERS: readonly ["feeling", "thought", "emotion"];
+export declare const FEELING_VALENCES: readonly ["pleasant", "unpleasant"];
+export declare const FEELING_CORNER_ROLES: Readonly<Record<(typeof FEELING_CORNERS)[number], string>>;
+export type FeelingState = {
+    readonly corner: number;
+    readonly valence: number;
+};
+export type FeelingSymmetry = {
+    readonly turns: number;
+    readonly flips: number;
+    readonly order: number;
+    readonly name: string;
+};
+/** The forward turn on a corner index, the turn back, and the valence flip. */
+export declare const feelingTurn: (corner: number) => number;
+export declare const feelingTurnBack: (corner: number) => number;
+export declare const feelingFlip: (valence: number) => number;
+/** The symmetry (turns, flips) applied to a state: flip `flips` times, then turn `turns` times. */
+export declare function feelingAct(turns: number, flips: number, state: FeelingState): FeelingState;
+export declare function feelingThoughtEmotionTrinity(matrix?: MindMatrix): {
+    computes: boolean;
+    corners: {
+        name: "thought" | "feeling" | "emotion";
+        role: string;
+    }[];
+    valences: ("pleasant" | "unpleasant")[];
+    symmetries: FeelingSymmetry[];
+    orders: number[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** One gate — sense/mind/body one-word pairs registered and mounted at call time. */
 export declare function senseMindBodyPairsComputes(matrix?: MindMatrix): {
     computes: boolean;

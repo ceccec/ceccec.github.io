@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 234,
+  "count": 268,
   "statements": [
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
@@ -58,10 +58,10 @@
       "statement": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)"
     },
     {
-      "statementUuid": "a3095844-8420-8142-832f-9d1fde2f578b",
+      "statementUuid": "6b014baa-9965-8b9c-9717-cf3a6d16195d",
       "file": "src/pair/formal/proofs/bsd.lean",
       "name": "root_number_squares_to_one",
-      "statement": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1"
+      "statement": "∀ (w : Int) (Λ : Int → Int),\n    (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1"
     },
     {
       "statementUuid": "799e7a3e-e9a3-8e41-ae23-58f022c73050",
@@ -304,16 +304,16 @@
       "statement": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2"
     },
     {
-      "statementUuid": "9ba2cd62-fd53-87e1-8740-e92ca9993bed",
+      "statementUuid": "292823aa-9648-8a74-a6e2-ce8afaf66e25",
       "file": "src/pair/formal/proofs/riemann.lean",
       "name": "the_fixed_line_is_one_half",
-      "statement": "(2 : Int) * 1 = 2 ∧ σ 1 = 1"
+      "statement": "∀ n : Int, σ n = n ↔ n = 1"
     },
     {
-      "statementUuid": "12827b86-08c1-81a6-bdf2-5a9e63ca9b64",
+      "statementUuid": "1c0537f0-a564-8ab6-ba81-aba3e6608b9e",
       "file": "src/pair/formal/proofs/riemann.lean",
       "name": "involution_fixes_the_critical_line",
-      "statement": "(σ (σ 3) = 3) ∧ (σ 1 = 1)"
+      "statement": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1"
     },
     {
       "statementUuid": "7d925937-5680-8f50-a460-1d8fd3cc2c29",
@@ -466,10 +466,16 @@
       "statement": "choose 4 2 = 6"
     },
     {
-      "statementUuid": "0bc4d9fe-12c7-83ea-99fe-ff240b075560",
+      "statementUuid": "005db163-da11-84a1-a1db-a96b6b6bbc82",
+      "file": "src/pair/formal/proofs/yang-mills.lean",
+      "name": "star_squares_to_the_identity",
+      "statement": "∀ v : Form2, star (star v) = v"
+    },
+    {
+      "statementUuid": "dea0c3a2-ab97-8074-9ea2-2e9bef05aa4d",
       "file": "src/pair/formal/proofs/yang-mills.lean",
       "name": "selfdual_and_antiselfdual_split_the_six",
-      "statement": "3 + 3 = choose 4 2"
+      "statement": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧\n    star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧\n    star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧\n    star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧\n    3 + 3 = choose 4 2"
     },
     {
       "statementUuid": "e7c9a664-4ed2-8617-aebd-36d2a910de03",
@@ -478,10 +484,10 @@
       "statement": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)"
     },
     {
-      "statementUuid": "118650d5-84bc-8653-8566-804b43bf35d6",
+      "statementUuid": "e1865376-113f-84ad-9c34-9773f1dacd79",
       "file": "src/pair/formal/proofs/yang-mills.lean",
       "name": "involution_splits_the_middle_forms",
-      "statement": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6"
+      "statement": "∀ v : Form2,\n    star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧\n    add (add v (star v)) (sub v (star v)) = add v v"
     },
     {
       "statementUuid": "2acd5388-fa31-8b88-ade3-02706b285b8e",
@@ -530,6 +536,24 @@
       "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
       "name": "golden_ratio_bounds",
       "statement": "1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21"
+    },
+    {
+      "statementUuid": "b8d870c5-7994-877b-a5f0-ab8dee658ae0",
+      "file": "src/pair/lean/proofs/consciousness.lean",
+      "name": "the_observer_is_the_only_fixed_point",
+      "statement": "points.filter (fun p => turn p == p) = [centre]"
+    },
+    {
+      "statementUuid": "d58ebbf4-6f04-8104-8091-e8213a8628b0",
+      "file": "src/pair/lean/proofs/consciousness.lean",
+      "name": "every_cut_of_a_loop_crosses_both_ways",
+      "statement": "cuts.all (fun p => forth loop p && back loop p) = true"
+    },
+    {
+      "statementUuid": "66040dbb-c9e5-83ce-ba48-47106704b941",
+      "file": "src/pair/lean/proofs/consciousness.lean",
+      "name": "a_chain_has_a_one_way_cut",
+      "statement": "cuts.any (fun p => forth chain p && !back chain p) = true"
     },
     {
       "statementUuid": "cbc5b51b-36e3-840e-9644-c59531ea8515",
@@ -656,6 +680,186 @@
       "file": "src/pair/lean/proofs/corpus.lean",
       "name": "shor_zero_skipping_divides_by_the_work_register",
       "statement": "64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧\n    1073741824 / 16777216 = 64"
+    },
+    {
+      "statementUuid": "908772d2-8e79-807e-ae1f-4f0e72928e1f",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "riemann_is_an_involution",
+      "statement": "IsInvolution riemann"
+    },
+    {
+      "statementUuid": "cac2c756-f2a7-8a33-97f5-feff844bc744",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "bsd_is_an_involution",
+      "statement": "IsInvolution bsd"
+    },
+    {
+      "statementUuid": "8969335a-23f1-8978-839b-8ece2b20ad4a",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "hodge_is_an_involution",
+      "statement": "IsInvolution hodge"
+    },
+    {
+      "statementUuid": "6f660e85-60e2-87a4-adfb-7119fb43ca1a",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "viscous_is_an_involution",
+      "statement": "IsInvolution viscous"
+    },
+    {
+      "statementUuid": "abd55628-e01a-8159-bc0c-4fe920693e75",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "star_is_an_involution",
+      "statement": "IsInvolution star"
+    },
+    {
+      "statementUuid": "476c83b6-5202-8c27-ad0e-8f4592c67e47",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "complement_is_an_involution",
+      "statement": "IsInvolution complement"
+    },
+    {
+      "statementUuid": "b407c9d1-be9b-8f9d-9c4a-ef4ab3f1e00e",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "the_odd_part_cancels_in_every_clay_involution",
+      "statement": "(∀ (f : Int → Int) n, odd f riemann n + odd f riemann (riemann n) = 0) ∧\n    (∀ (f : Int → Int) s, odd f bsd s + odd f bsd (bsd s) = 0) ∧\n    (∀ (f : Nat × Nat → Int) t, odd f hodge t + odd f hodge (hodge t) = 0) ∧\n    (∀ (f : Int → Int) v, odd f viscous v + odd f viscous (viscous v) = 0) ∧\n    (∀ (f : Form2 → Int) v, odd f star v + odd f star (star v) = 0) ∧\n    (∀ (f : Class → Int) c, odd f complement c + odd f complement (complement c) = 0)"
+    },
+    {
+      "statementUuid": "bddd021c-bd16-889e-9549-c35266a3b816",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "riemann_fixes_exactly_the_critical_line",
+      "statement": "∀ n : Int, riemann n = n ↔ n = 1"
+    },
+    {
+      "statementUuid": "1fe80bef-50a5-864a-9305-f1237c806bf8",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "bsd_fixes_exactly_the_central_point",
+      "statement": "∀ s : Int, bsd s = s ↔ s = 1"
+    },
+    {
+      "statementUuid": "3eff0b4a-6510-8410-add1-658c61d108fb",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "hodge_fixes_exactly_the_diagonal",
+      "statement": "∀ p q : Nat, hodge (p, q) = (p, q) ↔ p = q"
+    },
+    {
+      "statementUuid": "e6471359-b636-8df7-9374-6165c700e22d",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "viscous_fixes_exactly_the_inviscid",
+      "statement": "∀ v : Int, viscous v = v ↔ v = 0"
+    },
+    {
+      "statementUuid": "60945828-4646-8438-88fb-2b01e16f8ffb",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "complement_fixes_exactly_p_and_pspace",
+      "statement": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE]"
+    },
+    {
+      "statementUuid": "b3cf1853-a00c-8773-bd29-f0eb839f85cc",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "the_reflection_cluster",
+      "statement": "(∀ n, riemann n + n = 2) ∧ (∀ s, bsd s + s = 2) ∧ (∀ p q : Nat, (hodge (p, q)).1 + p = p + q)"
+    },
+    {
+      "statementUuid": "43de306b-78fe-8858-a770-35f6c0059f06",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "riemann_and_bsd_are_one_reflection",
+      "statement": "riemann = bsd"
+    },
+    {
+      "statementUuid": "b08958db-c795-8eeb-9acc-293b9be64bc6",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "the_negation_cluster",
+      "statement": "(∀ v, viscous v = -v) ∧ (∀ v : Form2, star (asd v) = neg (asd v))"
+    },
+    {
+      "statementUuid": "efded020-061c-8c52-bfb9-c01ec86b7f42",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "complement_is_its_own_class",
+      "statement": "complement .NP = .coNP ∧ complement .coNP = .NP ∧ complement .P = .P ∧ complement .PSPACE = .PSPACE"
+    },
+    {
+      "statementUuid": "1170b06b-d9a8-8227-b653-9923add801d5",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "poincare_is_an_inverse_pair_not_an_involution",
+      "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0"
+    },
+    {
+      "statementUuid": "efa10b4e-c93f-8fe6-9246-ea7bb31c611f",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_state_space_has_six_states",
+      "statement": "states.length = 6 ∧ states.Nodup"
+    },
+    {
+      "statementUuid": "efa09fdd-b776-8075-819f-2373b580aeb5",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "three_turns_return",
+      "statement": "∀ c ∈ corners, turn (turn (turn c)) = c"
+    },
+    {
+      "statementUuid": "d44a05a7-9a0b-827c-8a8d-c2e5bf14eaa7",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "no_corner_is_fixed",
+      "statement": "∀ c ∈ corners, turn c ≠ c"
+    },
+    {
+      "statementUuid": "ecd32e83-a127-83af-bb03-6f8b9fe16382",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "turning_back_undoes_the_turn",
+      "statement": "∀ c ∈ corners, back (turn c) = c ∧ turn (back c) = c"
+    },
+    {
+      "statementUuid": "85d9b7d4-973f-82de-a027-fabfee2ae77d",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "turning_back_is_two_turns_forward",
+      "statement": "∀ c ∈ corners, back c = turn (turn c)"
+    },
+    {
+      "statementUuid": "cd261eb1-dea4-8413-92fe-bb9f63cd4805",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_flip_returns_in_two",
+      "statement": "∀ v ∈ [pleasant, unpleasant], flip (flip v) = v"
+    },
+    {
+      "statementUuid": "9bb6878c-2b8f-8cc1-b097-95ff24dcd94d",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_flip_fixes_no_valence",
+      "statement": "∀ v ∈ [pleasant, unpleasant], flip v ≠ v"
+    },
+    {
+      "statementUuid": "127cc3eb-40d8-8d8f-94c6-fcc9d7234461",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_flip_commutes_with_the_turn",
+      "statement": "∀ s ∈ states, ρ (σ s) = σ (ρ s)"
+    },
+    {
+      "statementUuid": "97044f2e-f01c-881a-94d3-2ab9107a10b4",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_six_symmetries_are_distinct",
+      "statement": "∀ a ∈ symmetries, ∀ b ∈ symmetries, a ≠ b → same (act a.1 a.2) (act b.1 b.2) = false"
+    },
+    {
+      "statementUuid": "eb975576-ac31-8e24-82bc-fb238584617e",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_orders_are_one_three_three_two_six_six",
+      "statement": "symmetries.map (fun a => order (act a.1 a.2)) = [1, 3, 3, 2, 6, 6]"
+    },
+    {
+      "statementUuid": "f63fa163-3147-8461-bb72-0ad07e6c4515",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "exactly_one_pure_flip",
+      "statement": "symmetries.filter (fun a => order (act a.1 a.2) == 2) = [(0, 1)]"
+    },
+    {
+      "statementUuid": "c16e6174-fb79-88b4-a22f-aff4cf56ad53",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "the_group_is_cyclic_generated_by_flip_and_turn",
+      "statement": "order (act 1 1) = 6 ∧\n    ∀ a ∈ symmetries, [0, 1, 2, 3, 4, 5].any (fun k => same (pow (act 1 1) k) (act a.1 a.2))"
+    },
+    {
+      "statementUuid": "0a4c6f2c-0fb1-8053-9a37-0b7272d8e980",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "not_the_dihedral_group",
+      "statement": "(∀ a ∈ symmetries, same (fun s => act a.1 a.2 (ρ s)) (fun s => ρ (act a.1 a.2 s)) = true) ∧\n    same ρ ρback = false"
     },
     {
       "statementUuid": "161f3be2-28aa-8549-9537-10417608dcab",
