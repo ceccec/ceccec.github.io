@@ -1,46 +1,37 @@
 /**
- * THE CITATION FILE MUST NOT TELL PEOPLE A NUMBER THAT HAS MOVED.
+ * CITATION.cff IS GENERATED — verify:citation compares the committed file with what the sources write now, byte for byte.
  *
- * CITATION.cff is the file other people cite this work by, and it was hand-maintained: "a sealed
- * ledger of 1,329 entries includes 36 machine-checked involution theorems". There are 51. The count
- * was true when it was typed and the typing is what kept adding theorems — erpax-94's defect exactly,
- * a number written about a corpus its own writing changes, and it sat in the one file whose whole job
- * is to be quoted accurately.
- *
- * So the count is READ from the sealed .lean sources and compared, on every run. Nothing regenerates
- * the prose — the abstract is written by a person and should stay that way — but a figure inside it
- * that has a live source is checked against that source.
- *
- * DIRECTION OF FAILURE: loud, and specific. It names the number it found, the number that is true, and
- * the file, because a drift gate that only says "drifted" makes the reader do the work twice.
+ * It replaced a figure check that looked for one phrase ("N machine-checked involution theorems"); the abstract stopped
+ * using that phrase, the check found nothing, and reported NOT MEASURED on every run — a gap read as a pass. Now there is
+ * nothing to find: the file is citationCff() of the sources (src/quantum/dist/readme), or the gate refuses and says which
+ * line differs. npm run citation writes it; land runs it with the other generated artefacts.
  */
-
-import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { leanInvolutionCorpus } from '../../src/pair/formal/proofs/index.ts'
+import { citationCff } from '../../src/quantum/dist/readme/index.ts'
 
-export type CitationFigure = { readonly label: string; readonly stated: number; readonly live: number }
-
-/** Every figure in CITATION.cff that has a computable source, paired with that source. */
-export function citationFigures(root: string = process.cwd()): CitationFigure[] {
-  const text = readFileSync(join(root, 'CITATION.cff'), 'utf8')
-  const lean = leanInvolutionCorpus(root)
-  const out: CitationFigure[] = []
-  const theorems = text.match(/(\d[\d,]*)\s+machine-checked involution theorems/)
-  if (theorems) out.push({ label: 'machine-checked involution theorems', stated: Number(theorems[1]!.replace(/,/g, '')), live: lean.involutionTheorems })
-  return out
+/** The tree facts: package.json's version, the last commit's date (the pair .zenodo.json uses), and that version's tag. */
+function treeFacts(root: string): { version: string; date: string; tag: string | null } {
+  const version = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }).version
+  const date = execFileSync('git', ['-C', root, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).trim()
+  const tags = execFileSync('git', ['-C', root, 'tag', '--list', `v${version}`], { encoding: 'utf8' }).trim()
+  return { version, date, tag: tags ? `v${version}` : null }
 }
 
-export function assertCitationIsCurrent(): void {
-  const figures = citationFigures()
-  if (!figures.length) {
-    console.log('CITATION.cff — no computable figure found to check; NOT MEASURED rather than passed')
-    return
-  }
-  for (const f of figures) console.log(`  CITATION.cff says ${f.stated} ${f.label} · the sources hold ${f.live}`)
-  const drifted = figures.filter((f) => f.stated !== f.live)
-  if (drifted.length) {
-    throw new Error(drifted.map((f) => `CITATION.cff states ${f.stated} ${f.label} and the sealed sources hold ${f.live} — the file people cite this work by must not quote a number that has moved`).join(' · '))
-  }
-  console.log(`  every computable figure in CITATION.cff matches its source`)
+/** npm run citation — write CITATION.cff from the sources. */
+export function writeCitation(root: string = process.cwd()): void {
+  writeFileSync(join(root, 'CITATION.cff'), citationCff(treeFacts(root)))
+  console.log('citation: CITATION.cff written from its sources')
+}
+
+/** verify:citation — the committed CITATION.cff is exactly what the sources write now. */
+export function assertCitationIsCurrent(root: string = process.cwd()): void {
+  const generated = citationCff(treeFacts(root))
+  const file = join(root, 'CITATION.cff')
+  const committed = existsSync(file) ? readFileSync(file, 'utf8') : ''
+  if (generated === committed) { console.log(`citation: CITATION.cff is exactly what its sources write (${generated.split('\n').length} lines)`); return }
+  const a = committed.split('\n'), b = generated.split('\n')
+  const at = b.findIndex((line, i) => line !== a[i])
+  throw new Error(`CITATION.cff has drifted from its sources at line ${at + 1}: committed "${(a[at] ?? '(end of file)').slice(0, 90)}" · sources "${(b[at] ?? '(end of file)').slice(0, 90)}" — run \`npm run citation\``)
 }

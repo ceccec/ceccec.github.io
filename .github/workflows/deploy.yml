@@ -78,6 +78,13 @@ jobs:
       # (packages/quantum-dev-sdk/bin/mcp.ts) and calls run_gate through bin/client.ts — the same door every agent uses,
       # so a gate is run here exactly as it is run there, and the step prints the lines that decided each verdict. The
       # Clay cross, the feeling trinity and the axiom ledger are monitored on every deploy alongside the movie and power.
+      # LEAN IN CI, SO EVERY LEAN GATE MEASURES HERE AS IT DOES LOCALLY (owner, 2026-11-15: "gaps in measuring are not
+      # accepted"). Without it ledger.statement-drift and the other Lean statements read NOT MEASURED on every run.
+      # The official installer, pinned to the toolchain the local gates use.
+      - name: Install Lean (pinned toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.33.1
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Gates through the MCP door (movie · power · Clay cross · feeling · axiom ledger)
         run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_gate verify:movie verify:power verify:clay-cross verify:feeling verify:axiom-ledger
       - name: Build with VitePress, through the MCP door

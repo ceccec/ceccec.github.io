@@ -3929,17 +3929,19 @@ export function runPushResendWavesExit(_root = '', _argv: readonly string[] = []
   process.stdout.write(`  ${report.honestyLine}\n`)
   const exec = _argv.includes('--exec')
   if (exec) {
+    // EVERY STEP RUNS AND EVERY REFUSAL COUNTS (owner, 2026-11-15: "gaps in measuring are not accepted!"). Three steps were
+    // excused — waves-feed, chat-challenge, mcp-fill — so their ✗ printed in CI while the job went green: a measurement
+    // nobody read. The chain still runs to the end (each step is independent evidence), and the job fails if any refused.
+    const refused: string[] = []
     for (const step of report.resendSteps) {
       const cmd = step.replace(/^npm run /, '')
       process.stdout.write(`→ exec ${step}\n`)
       const r = spawnSync('npm', ['run', '-s', cmd], { stdio: 'inherit', shell: false })
-      if (r.status !== 0 && cmd === 'quantum:mcp-fill') {
-        process.stdout.write('  · mcp-fill honesty-stop — continue chain\n')
-        continue
-      }
-      if (r.status !== 0 && cmd !== 'quantum:waves-feed' && cmd !== 'quantum:chat-challenge') {
-        return r.status ?? 1
-      }
+      if (r.status !== 0) refused.push(`${cmd} (exit ${r.status ?? 'none'})`)
+    }
+    if (refused.length) {
+      process.stdout.write(`✗ ${refused.length} step(s) refused: ${refused.join(' · ')}\n`)
+      return 1
     }
   }
   return report.computes && report.afterPushResendWaves ? 0 : 1

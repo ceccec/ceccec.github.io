@@ -16,6 +16,7 @@ import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
 import { earned } from '../../../3/7/index.ts'
+import { PUBLICATION_CREDIT } from '../../../research/index.ts'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../1/9/index.ts'
 import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../heaven/laws/index.ts'
 import { readmeSvgGapsFilledByTrinityMind } from '../../../heaven/site/index.ts'
@@ -990,6 +991,120 @@ function paperTopNav(sections: readonly string[], mode: 'github' | 'vitepress' =
  *  the npm package README carry this paragraph, written by the readme sync on every commit — no publication authors its
  *  own. CITATION.cff had drifted to "11 files" and a 1,329-row ledger while the README said 20 and 731; now every count
  *  is read at write time, and the scope line the 2026-08-20 audit fixed is part of the same sentence everywhere. */
+/**
+ * CITATION.cff IS GENERATED, NEVER EDITED (owner, 2026-11-15: "generate so there is no drift"). Every field comes from a
+ * source: the abstract from publicationAbstract(), the author, ORCID, record DOI and licence from PUBLICATION_CREDIT, the
+ * version and release date from the tree (package.json and the last commit — the same pair .zenodo.json is written from),
+ * the release artifact from the tag of that version where one exists. What only the author can decide — title, keywords,
+ * the software concept DOI, the references, the rights note, how each DOI is to be cited — is this one record, data in src.
+ * A dated claim about a remote record ("currently vX, record N") is not written: no source in the tree can recompute it, and
+ * verify:deposit-metadata checks the live records themselves.
+ */
+export const CITATION_RECORD = {
+  title: 'Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification',
+  affiliation: 'Independent Research',
+  softwareConceptDoi: '10.5281/zenodo.22352566',
+  softwareDoiNote: 'CITE THIS FOR THE SOFTWARE. The concept DOI of the release archive: it resolves to the newest archived release and follows every future one. A citation of this DOI reaches the software as released, which the priority record below does not.',
+  priorityDoiNote: 'THE FIRST DEPOSIT — 2026-08-04, Tsvetan Rouschev — and the priority record kept as such: the earliest dated, authored statement of the ℤ/9 involution approach to the Clay Millennium problems, published before any later work on the same ground. It is retained precisely so the date and the authorship stand on the public record, independently recomputable from the deposit. Its title, "Quantum Proofs of the Clay Millennium Problems v1.0", carries claims the author\'s own 2026-08-20 audit withdrew — this repository asserts no Clay problem is solved by it; see the abstract above and HONESTY.md. Cited for PRIORITY and attribution, not as proof, and not for its title. NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated works and now resolves to the uuidna record, so cite this VERSION DOI and never that concept.',
+  repository: 'https://github.com/ceccec/ceccec.github.io',
+  url: 'https://ceccec.psg.bg',
+  contactEmail: 'ceci@psg.bg',
+  rightsNote: [
+    'Asserted rights beyond the licence — copyright, the moral rights of attribution',
+    'and integrity (Berne Art. 6bis; CDPA 1988 ss.77-78 where written assertion is',
+    'required), and the sui generis database right in the compiled registries',
+    '(Directive 96/9/EC Art. 7). Stated in full in NOTICE, including what is NOT',
+    'claimed: no patent, no registered trade mark, no rights over cited third-party',
+    'work, and no claim to the mathematical facts themselves.',
+  ],
+  keywords: ['quantum simulation', "Grover's algorithm", "Shor's algorithm", 'quantum circuit simulator', 'content addressing', 'Merkle tree', 'deterministic computation', 'reproducible research', 'involution', 'double-torus geometry', 'zero-dependency'],
+  references: `  - type: conference-paper
+    authors:
+      - family-names: Grover
+        given-names: "Lov K."
+    title: "A fast quantum mechanical algorithm for database search"
+    collection-title: "Proceedings of the 28th Annual ACM Symposium on Theory of Computing"
+    pages: "212-219"
+    year: 1996
+    doi: "10.1145/237814.237866"
+
+  - type: article
+    authors:
+      - family-names: Shor
+        given-names: "Peter W."
+    title: "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer"
+    journal: "SIAM Journal on Computing"
+    volume: 26
+    issue: 5
+    pages: "1484-1509"
+    year: 1997
+    doi: "10.1137/S0097539795293172"
+
+  - type: book
+    authors:
+      - family-names: Nielsen
+        given-names: "Michael A."
+      - family-names: Chuang
+        given-names: "Isaac L."
+    title: "Quantum Computation and Quantum Information"
+    publisher:
+      name: "Cambridge University Press"
+    year: 2010
+    isbn: "9781107002173"`,
+} as const
+
+/** CITATION.cff, whole — from the sources above and the tree facts the caller reads (version, date, the version's tag). */
+export function citationCff(tree: { readonly version: string; readonly date: string; readonly tag: string | null }, matrix: MindMatrix = buildMatrix()): string {
+  if (!/^\d+\.\d+\.\d+/.test(tree.version) || !/^\d{4}-\d{2}-\d{2}$/.test(tree.date)) throw new Error(`citationCff: the tree facts are absent or malformed (version "${tree.version}", date "${tree.date}") — nothing is written from a guess`)
+  // a line of CITATION.cff folds two columns short of the 80-column page the README uses (64 + 16)
+  const width = 64 + 16 - 2
+  const fold = (text: string, indent: string) => { const words = text.replace(/\s+/g, ' ').trim().split(' '); const lines: string[] = []; let line = ''; for (const w of words) { if (line && (line + ' ' + w).length > width - indent.length) { lines.push(line); line = w } else line = line ? `${line} ${w}` : w } if (line) lines.push(line); return lines.map((l) => indent + l).join('\n') }
+  const [given, family] = [PUBLICATION_CREDIT.author.split(' ').slice(0, -1).join(' '), PUBLICATION_CREDIT.author.split(' ').slice(-1)[0]!]
+  const r = CITATION_RECORD
+  const person = (extra: string) => `  - family-names: ${family}\n    given-names: ${given}\n    orcid: "${PUBLICATION_CREDIT.orcidUrl}"\n${extra}`
+  return [
+    'cff-version: 1.2.0',
+    `title: "${r.title}"`,
+    'abstract: >-',
+    fold(publicationAbstract(matrix).text, '  '),
+    '',
+    'authors:',
+    person(`    affiliation: ${r.affiliation}`),
+    '',
+    'type: software',
+    `date-released: "${tree.date}"`,
+    '',
+    'identifiers:',
+    '  - type: doi',
+    `    value: "${r.softwareConceptDoi}"`,
+    '    description: >-',
+    fold(r.softwareDoiNote, '      '),
+    '  - type: doi',
+    `    value: "${PUBLICATION_CREDIT.repositoryDoi}"`,
+    '    description: >-',
+    fold(r.priorityDoiNote, '      '),
+    `version: ${tree.version}`,
+    `repository-code: "${r.repository}"`,
+    `url: "${r.url}"`,
+    ...(tree.tag ? [`repository-artifact: "${r.repository}/releases/tag/${tree.tag}"`] : []),
+    '',
+    `license: "${PUBLICATION_CREDIT.licence}"`,
+    `license-url: "${PUBLICATION_CREDIT.licenceUrl}"`,
+    '',
+    ...r.rightsNote.map((line) => `# ${line}`),
+    '',
+    'keywords:',
+    ...r.keywords.map((k) => `  - ${k}`),
+    '',
+    'contact:',
+    person(`    email: "${r.contactEmail}"`),
+    '',
+    'references:',
+    r.references,
+    '',
+  ].join('\n')
+}
+
 export function publicationAbstract(matrix: MindMatrix = buildMatrix()) {
   const { description } = siteConfig(matrix)
   const theorems = THEOREM_ATOM_SEED.length
@@ -1012,7 +1127,8 @@ export function publicationAbstract(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Every file that publishes the abstract besides README.md. The readme sync splices publicationAbstract() into each. */
-export const PUBLICATION_ABSTRACT_SURFACES = ['CITATION.cff', 'packages/double-torus/README.md'] as const
+// CITATION.cff is not spliced: it is generated whole by citationCff() (one writer, so nothing to drift from).
+export const PUBLICATION_ABSTRACT_SURFACES = ['packages/double-torus/README.md'] as const
 const ABSTRACT_OPEN = '<!-- publication-abstract: written by the readme sync from publicationAbstract() in src/quantum/dist/readme — do not edit -->'
 const ABSTRACT_CLOSE = '<!-- /publication-abstract -->'
 

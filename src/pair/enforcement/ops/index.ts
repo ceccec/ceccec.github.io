@@ -540,6 +540,7 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
     publicationAbstract: () => { text: string }
     withPublicationAbstract: (path: string, text: string, abstract: string) => string
     PUBLICATION_ABSTRACT_SURFACES: readonly string[]
+    citationCff: (tree: { version: string; date: string; tag: string | null }) => string
   }
   const md = dist.readmeMarkdown()
   writeFileSync(join(root, 'README.md'), md)
@@ -558,6 +559,17 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
     if (after !== before) writeFileSync(join(root, rel), after)
     return { rel, placed: flat(after).includes(flat(abstract)), changed: after !== before }
   })
+  // CITATION.cff, WHOLE, FROM ITS GENERATOR — the tree facts are package.json's version, the last commit's date, and that
+  // version's tag; the same reader verify:citation and `npm run citation` use, so all three write the same bytes.
+  {
+    const version = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }).version
+    const date = spawnSync('git', ['-C', root, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).stdout.trim()
+    const tag = spawnSync('git', ['-C', root, 'tag', '--list', `v${version}`], { encoding: 'utf8' }).stdout.trim() ? `v${version}` : null
+    const cff = dist.citationCff({ version, date, tag })
+    const before = readFileSync(join(root, 'CITATION.cff'), 'utf8')
+    if (cff !== before) writeFileSync(join(root, 'CITATION.cff'), cff)
+    surfaces.push({ rel: 'CITATION.cff (generated whole)', placed: true, changed: cff !== before })
+  }
   const unplaced = surfaces.filter((s) => !s.placed).map((s) => s.rel)
   const rewritten = surfaces.filter((s) => s.changed).map((s) => s.rel)
   process.stdout.write(

@@ -91,12 +91,40 @@ export declare function clayMillenniumLecturesMarkdownSection(matrix?: MindMatri
  *  the npm package README carry this paragraph, written by the readme sync on every commit — no publication authors its
  *  own. CITATION.cff had drifted to "11 files" and a 1,329-row ledger while the README said 20 and 731; now every count
  *  is read at write time, and the scope line the 2026-08-20 audit fixed is part of the same sentence everywhere. */
+/**
+ * CITATION.cff IS GENERATED, NEVER EDITED (owner, 2026-11-15: "generate so there is no drift"). Every field comes from a
+ * source: the abstract from publicationAbstract(), the author, ORCID, record DOI and licence from PUBLICATION_CREDIT, the
+ * version and release date from the tree (package.json and the last commit — the same pair .zenodo.json is written from),
+ * the release artifact from the tag of that version where one exists. What only the author can decide — title, keywords,
+ * the software concept DOI, the references, the rights note, how each DOI is to be cited — is this one record, data in src.
+ * A dated claim about a remote record ("currently vX, record N") is not written: no source in the tree can recompute it, and
+ * verify:deposit-metadata checks the live records themselves.
+ */
+export declare const CITATION_RECORD: {
+    readonly title: "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification";
+    readonly affiliation: "Independent Research";
+    readonly softwareConceptDoi: "10.5281/zenodo.22352566";
+    readonly softwareDoiNote: "CITE THIS FOR THE SOFTWARE. The concept DOI of the release archive: it resolves to the newest archived release and follows every future one. A citation of this DOI reaches the software as released, which the priority record below does not.";
+    readonly priorityDoiNote: "THE FIRST DEPOSIT — 2026-08-04, Tsvetan Rouschev — and the priority record kept as such: the earliest dated, authored statement of the ℤ/9 involution approach to the Clay Millennium problems, published before any later work on the same ground. It is retained precisely so the date and the authorship stand on the public record, independently recomputable from the deposit. Its title, \"Quantum Proofs of the Clay Millennium Problems v1.0\", carries claims the author's own 2026-08-20 audit withdrew — this repository asserts no Clay problem is solved by it; see the abstract above and HONESTY.md. Cited for PRIORITY and attribution, not as proof, and not for its title. NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated works and now resolves to the uuidna record, so cite this VERSION DOI and never that concept.";
+    readonly repository: "https://github.com/ceccec/ceccec.github.io";
+    readonly url: "https://ceccec.psg.bg";
+    readonly contactEmail: "ceci@psg.bg";
+    readonly rightsNote: readonly ["Asserted rights beyond the licence — copyright, the moral rights of attribution", "and integrity (Berne Art. 6bis; CDPA 1988 ss.77-78 where written assertion is", "required), and the sui generis database right in the compiled registries", "(Directive 96/9/EC Art. 7). Stated in full in NOTICE, including what is NOT", "claimed: no patent, no registered trade mark, no rights over cited third-party", "work, and no claim to the mathematical facts themselves."];
+    readonly keywords: readonly ["quantum simulation", "Grover's algorithm", "Shor's algorithm", "quantum circuit simulator", "content addressing", "Merkle tree", "deterministic computation", "reproducible research", "involution", "double-torus geometry", "zero-dependency"];
+    readonly references: "  - type: conference-paper\n    authors:\n      - family-names: Grover\n        given-names: \"Lov K.\"\n    title: \"A fast quantum mechanical algorithm for database search\"\n    collection-title: \"Proceedings of the 28th Annual ACM Symposium on Theory of Computing\"\n    pages: \"212-219\"\n    year: 1996\n    doi: \"10.1145/237814.237866\"\n\n  - type: article\n    authors:\n      - family-names: Shor\n        given-names: \"Peter W.\"\n    title: \"Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer\"\n    journal: \"SIAM Journal on Computing\"\n    volume: 26\n    issue: 5\n    pages: \"1484-1509\"\n    year: 1997\n    doi: \"10.1137/S0097539795293172\"\n\n  - type: book\n    authors:\n      - family-names: Nielsen\n        given-names: \"Michael A.\"\n      - family-names: Chuang\n        given-names: \"Isaac L.\"\n    title: \"Quantum Computation and Quantum Information\"\n    publisher:\n      name: \"Cambridge University Press\"\n    year: 2010\n    isbn: \"9781107002173\"";
+};
+/** CITATION.cff, whole — from the sources above and the tree facts the caller reads (version, date, the version's tag). */
+export declare function citationCff(tree: {
+    readonly version: string;
+    readonly date: string;
+    readonly tag: string | null;
+}, matrix?: MindMatrix): string;
 export declare function publicationAbstract(matrix?: MindMatrix): {
     text: string;
     root: string;
 };
 /** Every file that publishes the abstract besides README.md. The readme sync splices publicationAbstract() into each. */
-export declare const PUBLICATION_ABSTRACT_SURFACES: readonly ["CITATION.cff", "packages/double-torus/README.md"];
+export declare const PUBLICATION_ABSTRACT_SURFACES: readonly ["packages/double-torus/README.md"];
 /** The file with its abstract replaced: the folded `abstract: >-` block of a .cff, or the marked block under a markdown
  *  title (inserted after the first paragraph break the first time). Anything the splice cannot place is returned as is. */
 export declare function withPublicationAbstract(path: string, text: string, abstract: string): string;

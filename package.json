@@ -975,7 +975,8 @@
     "ci:explain": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/ci-explain.ts runCiExplainExit",
     "verify:deploy-live": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deploy-live.ts assertDeployServes",
     "verify:referrers": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/referrers.ts assertReferrerSuperpositions",
-    "verify:clay-datasets": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/clay-datasets.ts assertClayDatasets"
+    "verify:clay-datasets": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/clay-datasets.ts assertClayDatasets",
+    "citation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/citation.ts writeCitation"
   },
   "config": {
     "gatePattern": "^(verify(:|$)|enforcement:|manifest:check$)",

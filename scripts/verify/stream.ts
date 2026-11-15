@@ -84,7 +84,12 @@ export function crashed(out: string): boolean {
 
 function classify(gate: string, status: number | null, ms: number, out: string, err?: string): Result {
   if (status === null) return { gate, verdict: 'NOT RUN', code: null, ms, detail: err ?? 'killed or timed out — no verdict' }
-  if (status === 0) return { gate, verdict: 'clean', code: 0, ms, detail: '' }
+  // A MEASUREMENT GAP IS NOT A PASS (owner, 2026-11-15: "gaps in measuring are not accepted!"). A gate that exits 0 having
+  // printed NOT MEASURED decided nothing about the statement it named; it is refused, with the line that says so.
+  if (status === 0) {
+    const gap = out.split('\n').map((line) => line.trim()).find((line) => /\bNOT MEASURED\b/.test(line))
+    return gap ? { gate, verdict: 'violated', code: 0, ms, detail: `a measurement gap — ${gap.slice(0, 120)}` } : { gate, verdict: 'clean', code: 0, ms, detail: '' }
+  }
   if (crashed(out)) return { gate, verdict: 'NOT RUN', code: status, ms, detail: `the loader failed, so nothing was measured — ${message(out).slice(0, 100)}` }
   return { gate, verdict: 'violated', code: status, ms, detail: message(out).slice(0, 140) }
 }
