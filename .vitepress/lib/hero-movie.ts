@@ -50,4 +50,4 @@ export {
 } from '../render'
 export { speechIntonation } from '../render'
 export { livingTorus } from '../render'
-export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../render'
+export { heroMovieChrome, type HeroMovieChrome } from '../render'

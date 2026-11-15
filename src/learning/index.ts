@@ -480,38 +480,6 @@ export function logicAtoms(matrix: MindMatrix = buildMatrix()) {
       'A catalogue of the core\'s shared, deduplicated logic primitives, each a content-addressed atom. Reuse and tamper-cost, recomputable; the logic is the same everywhere because it is defined once.' }
 }
 
-// Related standards on every single page. The portal builds on real, public web
-// standards; this names the core set so every page can cite what it is built on. Each
-// is a standard the portal genuinely uses, content-addressed so the set is
-// recomputable, injected into every page's head as citations.
-export function relatedStandards(matrix: MindMatrix = buildMatrix()) {
-  void matrix
-  const standards = [
-    { standard: 'schema.org', url: 'https://schema.org', use: 'structured data on every page' },
-    { standard: 'Open Graph protocol', url: 'https://ogp.me/', use: 'social cards' },
-    { standard: 'JSON-LD', url: 'https://www.w3.org/TR/json-ld11/', use: 'linked data' },
-    { standard: 'Sitemaps', url: 'https://www.sitemaps.org/protocol.html', use: 'the computed sitemap' },
-    { standard: 'Web Crypto API', url: 'https://www.w3.org/TR/WebCryptoAPI/', use: 'AES-256-GCM, SHA-256' },
-    { standard: 'Merkle trees (RFC 6962 family)', url: 'https://www.rfc-editor.org/rfc/rfc6962', use: 'the 1024-leaf diamond tree' },
-    { standard: 'Model Context Protocol', url: 'https://modelcontextprotocol.io/', use: 'the tool surface' },
-    { standard: 'GTFS', url: 'https://gtfs.org/', use: 'transit and transport fusion' },
-    { standard: 'ActivityPub', url: 'https://www.w3.org/TR/activitypub/', use: 'social fusion (federation)' },
-    { standard: 'AT Protocol', url: 'https://atproto.com/', use: 'social fusion (Bluesky)' },
-    { standard: 'RSS / Atom', url: 'https://www.rfc-editor.org/rfc/rfc4287', use: 'feeds' },
-    { standard: 'WCAG', url: 'https://www.w3.org/WAI/standards-guidelines/wcag/', use: 'accessibility' },
-    { standard: 'Service Worker / PWA', url: 'https://www.w3.org/TR/service-workers/', use: 'offline' },
-  ].map((entry, index) => ({ ...entry, receipt: toUuid(`standard:${index}:${entry.standard}`) }))
-  return {
-    onEveryPage: standards.length > 0,
-    count: standards.length,
-    standards,
-    root: merkleFold(standards.map((entry) => entry.receipt)),
-    statement:
-      'Related standards on every single page: the portal builds on real, public web standards — schema.org, Open Graph, JSON-LD, Sitemaps, the Web Crypto API, Merkle trees, the Model Context Protocol, GTFS, ActivityPub, the AT Protocol, RSS/Atom, WCAG, and Service Workers/PWA — and every page cites the set it is built on, content-addressed.',
-    boundary:
-      'A named set of public standards the portal genuinely uses, cited on every page (as schema.org citations in the head). Links to the standards’ own specifications; it is a statement of what the portal builds on, not a claim of formal compliance certification with each one.' }
-}
-
 // Send three-word exploring waves in meaningful sequence. Each wave is three words —
 // a triad that explores one turn of the whole — and the waves are ordered as a
 // meaningful sequence: imagination becomes matter, matter becomes life, life becomes

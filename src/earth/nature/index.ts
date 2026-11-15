@@ -88,34 +88,6 @@ export function waterStates(matrix: MindMatrix = buildMatrix()) {
       'A content-addressed analogy mapping the phases of water (now including humidity, vapour suspended in air) to compression states, with a "trinity" of water/vapour/humidity folded into one. A structural metaphor over the model’s fold/unfold, not thermodynamics, a phase diagram, or a claim about real water.' }
 }
 
-// Water is life to the forest; the forest is life for all. The life chain flows by
-// folding: water gives life to the forest, the forest gives life to all — soil, air,
-// rain, and every creature — so the whole chain folds from water through forest to
-// all. Break any link and the chain changes; keep it and life flows from the source.
-export function waterForestLife(matrix: MindMatrix = buildMatrix()) {
-  const water = waterStates(matrix).root
-  const forest = merge(water, toUuid('forest:from-water')) // water → forest
-  const all = merge(forest, toUuid('all:from-forest')) // forest → all
-  const chain = [
-    { from: 'water', to: 'forest', gives: 'life', root: forest },
-    { from: 'forest', to: 'all', gives: 'life', root: all },
-  ]
-  const beneficiaries = ['soil', 'air', 'rain', 'rivers', 'animals', 'people', 'climate']
-  const flows = forest !== water && all !== forest && chain.length === 2
-  return {
-    flows,
-    water,
-    forest,
-    all,
-    chain,
-    beneficiaries,
-    root: merkleFold([water, forest, all, ...beneficiaries.map((name) => toUuid(`life:${name}`))]),
-    statement:
-      'Water is life to the forest; the forest is life for all. The life chain flows by folding: water gives life to the forest, and the forest gives life to all — soil, air, rain, rivers, animals, people, climate. The whole chain folds from water through forest to all; break any link and the chain changes, keep it and life flows from the source.',
-    boundary:
-      'A content-addressed model of an ecological dependency chain (water → forest → all life), folded link by link. A structural metaphor grounded in a real ecological truth (water sustains forests, forests sustain ecosystems), stated qualitatively — not a hydrological or ecological measurement.' }
-}
-
 // What are the sun and the moon? In the double torus they are its two lobes: the sun
 // is the source — it generates, it emits, it is the seed (imagination) on the inner
 // torus; the moon is the reflector — it emits no light of its own, it reflects the
@@ -383,30 +355,6 @@ export function lifeDefinesItself(matrix: MindMatrix = buildMatrix()) {
       'Let life define itself in waves: each living form — every crop of the garden, the bees, the forest, the water, the soil, the people, the birds, the rivers — emits its own content-addressed self-definition, folded into the one root of life. Life is not defined from outside; each form defines itself, and the waves fold the definitions into the whole.',
     boundary:
       'A content-addressed self-definition of a set of life forms, each folded with the root of life. A structural, recomputable framing — the model letting its own "life" abstraction define itself — not biology or a definition of real life.' }
-}
-
-// Perma solutions with geodesic domes for gardening and accommodation; detailed
-// builders print the plans. A frequency-3 dome is the greenhouse (gardening), a
-// frequency-4 dome the dwelling (accommodation), and each plan is a buildable bill of
-// materials — struts (the edges), hubs (the vertices), panels (the faces) — content-
-// addressed so a builder can print the exact plan and reproduce the dome.
-export function permaDomes(matrix: MindMatrix = buildMatrix()) {
-  const gardenDome = geodesicDome(3, matrix)
-  const homeDome = geodesicDome(4, matrix)
-  const plans = [
-    { use: 'gardening (greenhouse)', frequency: 3, struts: gardenDome.edges, hubs: gardenDome.vertices, panels: gardenDome.faces },
-    { use: 'accommodation (dwelling)', frequency: 4, struts: homeDome.edges, hubs: homeDome.vertices, panels: homeDome.faces },
-  ].map((entry) => ({ ...entry, printable: true, plan: toUuid(`dome-plan:${entry.use}:${entry.struts}:${entry.hubs}:${entry.panels}`) }))
-  return {
-    perma: plans.length === 2 && plans.every((entry) => entry.printable && entry.struts > 0),
-    plans,
-    count: plans.length,
-    printable: true,
-    root: merkleFold(plans.map((entry) => entry.plan)),
-    statement:
-      'Perma solutions with geodesic domes for gardening and accommodation, detailed so builders print the plans: a frequency-3 dome is the greenhouse (gardening), a frequency-4 dome the dwelling (accommodation), and each plan is a buildable bill of materials — struts (edges), hubs (vertices), panels (faces) — content-addressed so a builder can print the exact plan and reproduce the dome.',
-    boundary:
-      'A content-addressed bill of materials (struts, hubs, panels) for two geodesic-dome frequencies, framed as printable build plans. The counts are the exact geodesic combinatorics; it is an illustrative permaculture schema, not engineered construction drawings, a structural/load certification, or a building code.' }
 }
 
 // Complete chess in 3-5-8. The Fibonacci tiers sit on the board: 3 is the value

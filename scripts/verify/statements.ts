@@ -43,6 +43,8 @@ import { Buffer } from 'node:buffer'
 import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { join, relative } from 'node:path'
+import { detectRedundantTheorems } from '../../src/pair/enforcement/gates/consolidated/index.ts'
+import { decided } from './status.ts'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
 
@@ -104,6 +106,14 @@ export function assertStatementsAreUnique(root: string = process.cwd()): void {
   for (const s of all) byAddress.set(s.address, [...(byAddress.get(s.address) ?? []), s])
   const repeats = [...byAddress.values()].filter((g) => g.length > 1)
 
+  // THE REGISTRY IS HELD TO THE SAME LAW AS THE LEAN: one statement, one row. detectRedundantTheorems groups the rows of
+  // THEOREM_ATOM_SEED by the content address of their algebraic statement (or title, where none is written); two rows
+  // at one address are one result counted twice.
+  const registry = detectRedundantTheorems()
+  console.log(decided('registry.duplicate-statements', registry.groups.length, {
+    law: 'two registry rows at one statement address are one result counted twice — the count of theorems overstates what was proved',
+    evidence: () => registry.groups.map((g) => g.theorems.join(' | ')),
+  }))
   console.log(`lean statements: ${all.length} across ${new Set(all.map((s) => s.file)).size} files, ${byAddress.size} distinct by content address`)
   const undeclared: LeanStatement[][] = []
   for (const group of repeats) {

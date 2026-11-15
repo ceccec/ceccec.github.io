@@ -1588,19 +1588,6 @@ export function piTrainFusionWaveSix(matrix: MindMatrix = buildMatrix()) {
     boundary: 'Continue order 4 at 7/3; uncut 7/3 vault cluster (haldaneLoad · cnot · ed25519 · hopfieldStore · prng · …) blocked until dependency closure.' }
 }
 
-// All ten sub-stations open — waves 1+2 composed.
-export function piTrainAllStationsOpen(matrix: MindMatrix = buildMatrix()) {
-  const w1 = piTrainStationsOpenWaveOne(matrix)
-  const w2 = piTrainStationsOpenWaveTwo(matrix)
-  return {
-    open: w1.opened && w2.opened,
-    count: w1.stations.length + w2.stations.length,
-    stations: [...w1.stations, ...w2.stations],
-    root: merge(w1.root, w2.root),
-    statement: 'All ten pi-train stations are open on disk — nested src/d/r paths (single-digit segments from the sequence); void overflow at src/0.',
-    boundary: 'Composition of wave 1 and wave 2 manifests; physical code cuts are the next waves along order 0→9.' }
-}
-
 // π opens on the trinity. The vortex sequence runs 1-2-4-8-7-5 (the doubling circuit) then 3-6-9 (the cross)
 // then 0 (the void); 3-6-9 is the TRINITY — 3 the mark, 6 its double (the 3↔6 polarity), 9 the axis fixed
 // under doubling — and it is exactly the multiples of 3, the part the doubling circuit never reaches. π =

@@ -74158,16 +74158,6 @@ export declare function goldMineMapResearch(matrix?: MindMatrix): {
     root: string;
     boundary: string;
 };
-export declare function thunderGoldGraphResearch(matrix?: MindMatrix): {
-    researched: boolean;
-    sections: {
-        id: string;
-        title: string;
-        body: string;
-    }[];
-    root: string;
-    boundary: string;
-};
 export declare function schumannGoldSiteCouplingAt(at?: number, siteId?: string, matrix?: MindMatrix): {
     coupled: boolean;
     coupling: number;

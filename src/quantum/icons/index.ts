@@ -182,7 +182,7 @@ import { tiers358 } from '../spirit/index.ts'
 export { tiers358 } from '../spirit/index.ts'
 export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature/index.ts'
 export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../science/index.ts'
-export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice/index.ts'
+export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, humanize, multidimensional } from '../voice/index.ts'
 
 /** The vocabulary cross — six domain barrels fused to one content-address (a real crossing, not noise). */
 export function vocabCross() {

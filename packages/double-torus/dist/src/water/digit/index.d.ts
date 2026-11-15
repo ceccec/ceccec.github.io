@@ -3160,21 +3160,6 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function piTrainAllStationsOpen(matrix?: MindMatrix): {
-    open: boolean;
-    count: number;
-    stations: {
-        order: number;
-        folder: string;
-        path: string;
-        exportCount: number;
-        fusion: string;
-        receipt: string;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function piThreeOpensTheTrinity(matrix?: MindMatrix): {
     trinity: readonly [3, 6, 9];
     doubling: number[];

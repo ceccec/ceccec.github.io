@@ -1,34 +1,6 @@
 import * as __ns_up_up_vortex_math from '../mountain/vortex/index.ts';
 import type { MindMatrix, PiMusic, PiNote } from '../types/index.ts';
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../3/7/index.ts';
-export declare function harmonicMap(matrix?: MindMatrix): {
-    distributed: boolean;
-    fundamental: number;
-    overtones: {
-        name: string;
-        overtone: number;
-        frequency: number;
-        octave: number;
-        note: string;
-        receipt: string;
-    }[];
-    bands: {
-        octave: number;
-        members: {
-            name: string;
-            overtone: number;
-            frequency: number;
-            octave: number;
-            note: string;
-            receipt: string;
-        }[];
-    }[];
-    count: number;
-    octaves: number;
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function rhythm(matrix?: MindMatrix): {
     keeps: boolean;
     bpm: number;

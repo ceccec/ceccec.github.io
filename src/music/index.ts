@@ -38,46 +38,6 @@ import { TAU } from '../3/7/index.ts'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
-// The harmonic map: the portal's structure heard as a harmonic series. Every
-// component is an overtone of one fundamental f0 — its frequency is f0 times its
-// overtone number — so the components fall into octave bands (doublings of the
-// fundamental). This is the visible, playable companion to the file-level
-// harmonic gap audit: that script guards the files; this maps the model's own
-// parts onto the overtone series for a visitor to see and hear.
-export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
-  void matrix
-  const components = componentGraph().components
-  const f0 = a432NoteHz(-(8 * 3)) // A2 from the A432 source = 432/4 = 108, the fundamental
-  const NOTE = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-  const overtones = components.map((name, index) => {
-    const overtone = index + 1
-    const frequency = f0 * overtone
-    const semitones = round((6 * 2) * log2(overtone)) // semitones above the fundamental
-    return {
-      name,
-      overtone,
-      frequency,
-      octave: floor(log2(overtone)),
-      note: NOTE[((semitones % (6 * 2)) + (6 * 2)) % (6 * 2)],
-      receipt: toUuid(`harmonic-map:${name}:${overtone}`) }
-  })
-  const bands = [...new Set(overtones.map((entry) => entry.octave))]
-    .sort((a, b) => a - b)
-    .map((octave) => ({ octave, members: overtones.filter((entry) => entry.octave === octave) }))
-  return {
-    distributed: overtones.length === components.length && bands.length > 0,
-    fundamental: f0,
-    overtones,
-    bands,
-    count: overtones.length,
-    octaves: bands.length,
-    root: merkleFold(overtones.map((entry) => entry.receipt)),
-    statement:
-      'The harmonic map: every component an overtone of one fundamental, distributed across octave bands — the structure of the portal seen and heard as a harmonic series.',
-    boundary:
-      'A harmonic placement of the components onto overtones of a fundamental, for visualization and sonification. Structural bookkeeping, not an acoustic or musical claim.' }
-}
-
 // Keep the rhythm: counter-rotation at all scales has a temporal face — a self-
 // similar polyrhythm. The merkaba's four scales become four voices at 1, 2, 3 and
 // 5 onsets per beat; a steady downbeat (the ratio-1 voice) keeps the rhythm while

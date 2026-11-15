@@ -52,6 +52,7 @@
  *    a computed count. The declaration alone is fine; reading it as a quantity is not.
  */
 import { dryDupe } from '../../src/pair/enforcement/gates/strict/scan/index.ts'
+import { everyMathErrorFallsBackToTheInvolutionThatOwnsIt } from '../../src/quantum/index.ts'
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
@@ -172,9 +173,10 @@ export function findCanonBreaks(root: string = process.cwd()): {
   decorativeConjunct: Site[]
   facetSealsAMeasurement: Site[]
   filterThenEvery: Site[]
+  silentMathFallback: Site[]
 } {
   const ts = require('typescript') as typeof import('typescript')
-  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = [], facetSealsAMeasurement: Site[] = [], filterThenEvery: Site[] = []
+  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = [], facetSealsAMeasurement: Site[] = [], filterThenEvery: Site[] = [], silentMathFallback: Site[] = []
   for (const file of corpusFiles(root)) {
     const sf = file.ast()
     const src = file.text
@@ -233,6 +235,40 @@ export function findCanonBreaks(root: string = process.cwd()): {
       const param = fn.parameters[0]!.name.getText(sf)
       return fn.body.getText(sf).replace(new RegExp(`\\b${param.replace(/[^\w$]/g, '\\$&')}\\b`, 'g'), '§').replace(/\s+/g, '')
     }
+    // A MATH ERROR OVERRIDDEN BY A CONSTANT (owner, 2026-11-15: "fix by error handling fallbacks"). `d === 0 ? 0 : n / d` and
+    // `n / (d || 1)` answer a division by zero with a number the arithmetic never produced: 1 / 0 becomes 0, and 0 / 0 —
+    // the indeterminate point — becomes a measurement. The fallback is the involution that owns the error (quotient,
+    // rootOf, logOf in src/quantum; src/pair/lean/proofs/fallback.lean), which names its route instead.
+    const bare = (x: import('typescript').Expression): import('typescript').Expression => (ts.isParenthesizedExpression(x) ? bare(x.expression) : x)
+    const dividesBy = (node: import('typescript').Node, denominator: string): boolean => {
+      if (ts.isBinaryExpression(node) && (node.operatorToken.kind === ts.SyntaxKind.SlashToken || node.operatorToken.kind === ts.SyntaxKind.PercentToken)
+        && bare(node.right).getText(sf).replace(/\s+/g, '') === denominator) return true
+      return node.getChildren(sf).some((child) => dividesBy(child, denominator))
+    }
+    const comparesWithZero = (cond: import('typescript').Expression): string | null => {
+      const c = bare(cond)
+      if (!ts.isBinaryExpression(c)) return null
+      const k = c.operatorToken.kind
+      const cmp = [ts.SyntaxKind.EqualsEqualsEqualsToken, ts.SyntaxKind.EqualsEqualsToken, ts.SyntaxKind.ExclamationEqualsEqualsToken, ts.SyntaxKind.ExclamationEqualsToken, ts.SyntaxKind.GreaterThanToken, ts.SyntaxKind.LessThanEqualsToken].includes(k)
+      if (!cmp) return null
+      const isZero = (x: import('typescript').Expression) => ts.isNumericLiteral(bare(x)) && (bare(x) as import('typescript').NumericLiteral).text === '0'
+      if (isZero(c.right)) return bare(c.left).getText(sf).replace(/\s+/g, '')
+      if (isZero(c.left)) return bare(c.right).getText(sf).replace(/\s+/g, '')
+      return null
+    }
+    const isConstant = (x: import('typescript').Expression) => { const b = bare(x); return ts.isNumericLiteral(b) || (ts.isPrefixUnaryExpression(b) && ts.isNumericLiteral(b.operand)) }
+    const silent = (n: import('typescript').Node): void => {
+      if (ts.isConditionalExpression(n)) {
+        const denominator = comparesWithZero(n.condition)
+        if (denominator && ((isConstant(n.whenTrue) && dividesBy(n.whenFalse, denominator)) || (isConstant(n.whenFalse) && dividesBy(n.whenTrue, denominator)))) silentMathFallback.push({ file: file.rel, line: at(n), text: cut(n) })
+      }
+      if (ts.isBinaryExpression(n) && n.operatorToken.kind === ts.SyntaxKind.SlashToken) {
+        const r = bare(n.right)
+        if (ts.isBinaryExpression(r) && (r.operatorToken.kind === ts.SyntaxKind.BarBarToken || r.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken) && isConstant(r.right)) silentMathFallback.push({ file: file.rel, line: at(n), text: cut(n) })
+      }
+      ts.forEachChild(n, silent)
+    }
+    silent(sf)
     const visit = (n: import('typescript').Node): void => {
       if (ts.isCallExpression(n) && ts.isPropertyAccessExpression(n.expression) && n.expression.name.text === 'every'
         && ts.isIdentifier(n.expression.expression) && !reassigned.has(n.expression.expression.text)) {
@@ -367,7 +403,7 @@ export function findCanonBreaks(root: string = process.cwd()): {
     }
     visit(sf)
   }
-  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct, facetSealsAMeasurement, filterThenEvery }
+  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct, facetSealsAMeasurement, filterThenEvery, silentMathFallback }
 }
 
 /**
@@ -661,6 +697,20 @@ export function assertCanonicalForms(): void {
     console.log(ratchet('canon.filter-then-every', found.filterThenEvery.length, {
       law: 'a step justified by itself proves nothing: re-testing a filtered list by the predicate that built it holds for every input, so the facet resting on it cannot fail',
       evidence: () => found.filterThenEvery.map(show),
+    }))
+    console.log(`  ${found.silentMathFallback.length}  a math error overridden by a constant — \`d === 0 ? 0 : n / d\`, \`n / (d || 1)\`: 1 / 0 answered 0, 0 / 0 answered as a measurement`)
+    for (const s of found.silentMathFallback.slice(0, 4)) console.log(`      ${show(s)}`)
+    console.log(ratchet('canon.silent-math-fallback', found.silentMathFallback.length, {
+      law: 'a division by zero answered with a constant the arithmetic never produced turns an error or an absence into a measurement; the fallback is the involution that owns the error, and it names its route',
+      evidence: () => found.silentMathFallback.map(show),
+    }))
+    // THE REMEDY THIS FLOOR PRESCRIBES MUST ITSELF HOLD: every guard counted above is to be replaced by the involution
+    // fallback, so the gate that counts them reads that fold and refuses if any of its routes stops holding.
+    const fallback = everyMathErrorFallsBackToTheInvolutionThatOwnsIt()
+    const fallbackFails = [...fallback.facets, ...fallback.limits].filter((entry) => !entry.on).map((entry) => entry.facet.slice(0, 120))
+    console.log(decided('canon.math-fallback-holds', fallbackFails.length, {
+      law: 'a floor that sends every silent guard to one remedy is only as sound as that remedy; if a fallback route stops holding, replacing a guard with it would replace one wrong answer with another',
+      evidence: () => fallbackFails,
     }))
     console.log(`  ${found.elementBlindPredicate.length}  a predicate over a collection that never sees an element — holds for an empty list and a wrong one alike`)
     for (const s of found.elementBlindPredicate.slice(0, 4)) console.log(`      ${show(s)}`)

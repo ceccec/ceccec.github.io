@@ -40,22 +40,6 @@ export declare function waterStates(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function waterForestLife(matrix?: MindMatrix): {
-    flows: boolean;
-    water: string;
-    forest: string;
-    all: string;
-    chain: {
-        from: string;
-        to: string;
-        gives: string;
-        root: string;
-    }[];
-    beneficiaries: string[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function sunAndMoon(matrix?: MindMatrix): {
     paired: boolean;
     sun: {
@@ -476,23 +460,6 @@ export declare function lifeDefinesItself(matrix?: MindMatrix): {
         form: string;
         definesItself: string;
     }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
-export declare function permaDomes(matrix?: MindMatrix): {
-    perma: boolean;
-    plans: {
-        printable: boolean;
-        plan: string;
-        use: string;
-        frequency: number;
-        struts: number;
-        hubs: number;
-        panels: number;
-    }[];
-    count: number;
-    printable: boolean;
     root: string;
     statement: string;
     boundary: string;

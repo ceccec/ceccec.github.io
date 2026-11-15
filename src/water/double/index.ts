@@ -67,16 +67,7 @@ import {
   computeUniversalPage,
   paperRoutes,
   paperReferenceRoutes } from '../../wind/routes/corpus/index.ts'
-import {
-  analogSpeech,
-  charUuids,
-  humanize,
-  multidimensional,
-  openGraph,
-  plainLanguage,
-  playLearn,
-  typographySeo,
-  wordUuids } from '../../quantum/voice/index.ts'
+import { analogSpeech, humanize, multidimensional, openGraph, plainLanguage, playLearn, typographySeo } from '../../quantum/voice/index.ts'
 
 export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex/index.ts'
 export {

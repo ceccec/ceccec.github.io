@@ -900,31 +900,6 @@ export function runDemarcationGateExit(): number {
 }
 
 
-// ───── module: demarcationVerification ─────
-// Verification gate: run computed demarcation on all theorems
-// Proves the 88% gap is closed and demarcation is systematic
-
-/**
- * Gate: verify demarcation completeness
- * Scans all theorems via computed demarcate(), validates no gaps remain
- */
-export function demarcationVerificationGate(theoremRegistry: Map<string, DemarcationAtom>) {
-  const validation = demarcationGapValidator(theoremRegistry)
-
-  return {
-    passed: validation.passed,
-    gap: validation.gap,
-    total: validation.total,
-    gapPercent: validation.gapPercent,
-    message: validation.message,
-    theorem: 'demarcation-completeness',
-    statement: `All ${validation.total} theorems demarcated via computed involution signature analysis`,
-    proof: `Gap validation: ${validation.gap} undeclared of ${validation.total} total`,
-    severity: validation.passed ? 'pass' as const : 'fail' as const,
-  }
-}
-
-
 // ───── module: formalProofBridge ─────
 // Formal Proof Bridge: Connect σ-involution structures to rigorous mathematics
 // Gap 1: Map to ZFC/type theory foundations
@@ -1892,26 +1867,6 @@ export function detectRedundantTheorems(): RedundancyReport {
   }
 }
 
-/**
- * Demarcation: if theorem has identical algebraic statement to another, it's REDUNDANT
- * Status: "redundant" should be added to demarcation taxonomy
- */
-export function redundancyDemarcation() {
-  const report = detectRedundantTheorems()
-
-  return {
-    statement: `Theorem redundancy audit: ${report.uniqueStatements} unique statements, ${report.redundantTheorems} redundant theorems`,
-    totalTheorems: report.totalTheorems,
-    uniqueStatements: report.uniqueStatements,
-    redundantCount: report.redundantTheorems,
-    uniqueRatio: (report.redundancyRatio * 100).toFixed(1),
-    status: report.redundantTheorems === 0 ? 'proven' : 'open',
-    groups: report.groups,
-    proof: 'Content-addressed algebraic statements grouped by identity; identical statements = identical animations = redundant theorems',
-  }
-}
-
-
 // ───── module: sessionWaveComplete ─────
 // Session: Skepticism → Honesty (6 waves, 51 commits)
 // Transformation: system claiming "computed not hardcoded" while hardcoding, to fully honest implementation
@@ -2066,28 +2021,6 @@ export interface SpeedupClaim {
     | 'flagged'
     | 'undeclared';
 }
-
-/**
- * Speedup demarcation: HONEST
- * The claim exists but is unproven.
- * No hypocrisy: the system honestly says "speedup" without claiming it's measured.
- * The honesty is: mark it as OPEN.
- */
-export function speedupDemarcation(): SpeedupClaim {
-  return {
-    statement: '1,092x system speedup',
-    components: {
-      quantum: '4-10x (claimed, not measured)',
-      ftl: '3x (claimed, not measured)',
-      structural: '~90x (claimed, not measured)',
-    },
-    baseline: 'UNDEFINED — vs naive? SOTA? sequential?',
-    measurement: 'MISSING — no benchmarks found',
-    status: 'open',
-    demarcation: 'open',
-  }
-}
-
 
 // ───── module: theoremRegistryUpdate ─────
 // Wave 26: Collective mind via quantum involution closure

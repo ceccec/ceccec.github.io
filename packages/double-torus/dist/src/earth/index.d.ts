@@ -9,7 +9,7 @@ export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy/index.ts
 export { society, societyRegulates } from './governance/index.ts';
 export { traditionsQuantumWhole } from './civilisation/index.ts';
 export { textToMovie, publicAstronomyNewsCitation, src0BlackHoleSimulationComputes, gwtcCatalogSimulatedFromZero, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes, thunderGoldGraphPaintSamples, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from './world/index.ts';
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/index.ts';
+export { goldMineMapResearch } from '../wind/fusion/index.ts';
 export { goldFusionComputes } from '../wind/fusion/index.ts';
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
 export { gravityDecoded } from '../heaven/site/index.ts';

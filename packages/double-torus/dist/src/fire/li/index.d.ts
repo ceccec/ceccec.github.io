@@ -173,30 +173,6 @@ export declare function enforcementTrinity(): {
     boundary: string;
 };
 /** @rosetta ✦₁ · Fire · clarity */
-export declare function commitsAuthoredByUserOnly(): {
-    author: string;
-    layers: readonly [{
-        readonly layer: "attribution";
-        readonly where: "~/.claude/settings.json";
-        readonly does: "includeCoAuthoredBy:false + attribution.commit/pr:\"\" — Claude Code writes no trailer";
-        readonly reach: "every Claude Code project on this machine";
-    }, {
-        readonly layer: "backstop";
-        readonly where: "~/.claude/hooks/enforce-commit-author.sh";
-        readonly does: "a PreToolUse hook denies any git commit embedding Co-Authored-By / \"Generated with Claude Code\" / --author";
-        readonly reach: "every Claude Code commit command";
-    }, {
-        readonly layer: "git";
-        readonly where: "core.hooksPath → ~/.config/git/hooks/commit-msg";
-        readonly does: "strips the trailers from every commit message, chaining to each repo's own hooks";
-        readonly reach: "every app, every repo on this machine";
-    }];
-    enforced: boolean;
-    root: string;
-    statement: string;
-    boundary: string;
-};
-/** @rosetta ✦₁ · Fire · clarity */
 export declare function glagoliticGlyph(seed: string): string;
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function measureProse(text: string): {
@@ -463,18 +439,6 @@ export declare function trinityPyramidFusesDimensions(matrix?: MindMatrix): {
     };
     dimensions: number;
     perFace: number;
-    root: string;
-    statement: string;
-    boundary: string;
-};
-/** @rosetta ✦₁ · Fire · clarity */
-export declare function fold358853(): {
-    folded: boolean;
-    bidirectional: boolean;
-    ascending: number[];
-    descending: number[];
-    forward: string;
-    reverse: string;
     root: string;
     statement: string;
     boundary: string;

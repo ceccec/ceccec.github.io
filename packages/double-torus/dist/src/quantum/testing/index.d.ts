@@ -126,10 +126,6 @@ export declare function testResultValidationEndToEnd(): IntegrationTestCase;
  * Algorithm → Compilation → Submission → Polling → Validation
  */
 export declare function testFullPipelineEndToEnd(): IntegrationTestCase;
-/**
- * Run full integration test suite
- */
-export declare function quantumIntegrationTestSuite(matrix?: MindMatrix): TestSuite;
 export type UnitTest = {
     readonly module: string;
     readonly test: string;
@@ -161,7 +157,3 @@ export declare function testDevicesModule(): UnitTest[];
  * Unit tests for quantum/validation
  */
 export declare function testValidationModule(): UnitTest[];
-/**
- * Run all unit tests
- */
-export declare function quantumUnitTestSuite(matrix?: MindMatrix): UnitTestReport;

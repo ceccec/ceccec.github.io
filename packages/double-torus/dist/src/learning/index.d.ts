@@ -94,19 +94,6 @@ export declare function logicAtoms(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function relatedStandards(matrix?: MindMatrix): {
-    onEveryPage: boolean;
-    count: number;
-    standards: {
-        receipt: string;
-        standard: string;
-        url: string;
-        use: string;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function threeWordWaves(matrix?: MindMatrix): {
     sent: boolean;
     meaningfulSequence: boolean;

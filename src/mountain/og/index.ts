@@ -17,7 +17,7 @@ import { harmonicBands, openGraph, typographySeo } from '../../quantum/icons/ind
 import { heroTapMusic } from '../../music/index.ts'
 import { conceptCommands } from '../../heaven/atoms/index.ts'
 import { endlessFusion } from '../../wind/fusion/index.ts'
-import { learningPortal, quantumAcademy, relatedStandards } from '../../learning/index.ts'
+import { learningPortal, quantumAcademy } from '../../learning/index.ts'
 import { schemaOrgDiamonds } from '../../fire/diamonds/index.ts'
 import { jsonLdPathRules } from '../../fire/li/index.ts'
 import { vortexThePatentsRevealPattern } from '../../fire/physics/index.ts'

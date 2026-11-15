@@ -178,22 +178,6 @@ export declare function quantumWidgetsComputes(matrix?: MindMatrix, at?: number)
     statement: string;
     boundary: string;
 };
-export declare function quantumWidgetsResearch(matrix?: MindMatrix): {
-    researched: boolean;
-    rows: {
-        id: string;
-        title: string;
-        barrel: string;
-        gate: string;
-        tier: QuantumWidgetTier;
-        limit: string;
-        receipt: string;
-    }[];
-    shadcn: 18;
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function quantumWidgetsPanelComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     capstone: {

@@ -123,49 +123,6 @@ export function live(matrix: MindMatrix = buildMatrix()) {
       'A live readout of the model\'s own computed measures, recomputed client-side. The heartbeat is a real recomputation of a time-seeded fold; the vitals are the gated invariants. A living status of the portal, honestly bounded — not a medical or biological claim.' }
 }
 
-// A catch-all route at the end: parse any request and hook it into an intuitive
-// search. Type anything — a path, a word — and it ranks the closest pages, model
-// subsystems, skills and commands by token overlap. Each result carries a hook: the
-// terminal command (a callback) that acts on it (cd, run), suitable for quantum
-// hooks and callbacks. An unknown path becomes a useful, actionable result.
-export function intuitiveSearch(query = '', matrix: MindMatrix = buildMatrix()) {
-  const normalised = query.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').trim()
-  const terms = normalised.split(/\s+/).filter(Boolean)
-  const candidates = [
-    ...path(matrix).stations.map((station) => ({ kind: 'page', label: station.station, route: station.route, text: `${station.station} ${station.why}`, hook: `cd ${station.route}` })),
-    ...mcpCodebase(matrix).subsystems.map((entry) => ({ kind: 'model', label: entry.name, route: '/quantum-mind', text: `${entry.name} ${entry.purpose}`, hook: `cat ${entry.name}` })),
-    ...skillAtoms(matrix).skills.map((entry) => ({ kind: 'skill', label: entry.skill, route: '/mcp.json', text: `${entry.skill} ${entry.fn} ${entry.does}`, hook: `cat ${entry.fn}` })),
-    ...conceptCommands.map((command) => ({ kind: 'command', label: command.name, route: '/commands', text: `${command.name} ${command.description}`, hook: `run ${command.name}` })),
-  ]
-  const results = candidates
-    .map((candidate) => {
-      const hay = candidate.text.toLowerCase()
-      const label = candidate.label.toLowerCase()
-      let score = 0
-      for (const term of terms) {
-        if (label.includes(term)) score += term.length * 3
-        else if (hay.includes(term)) score += term.length
-      }
-      return { ...candidate, score }
-    })
-    .filter((candidate) => terms.length === 0 || candidate.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 8)
-  return {
-    works: candidates.length > 0,
-    query,
-    terms,
-    results,
-    count: results.length,
-    total: candidates.length,
-    best: results[0] ?? null,
-    root: merkleFold([toUuid(`search:${normalised}`), ...results.map((result) => toUuid(`hit:${result.route}:${result.label}`))]),
-    statement:
-      'A catch-all route at the end parses any request and hooks it into an intuitive search: it ranks the closest pages, model subsystems, skills and commands by token overlap, and each result carries a hook (the callback that acts on it) — suitable for quantum hooks and callbacks.',
-    boundary:
-      'A deterministic, client-side fuzzy search over the portal\'s own pages, subsystems, skills and commands by token overlap, with a hook (a terminal callback) per result. A catch-all parser for intuitive navigation, not a semantic or external search engine.' }
-}
-
 // Display all features and fold them with cross links. Navigation is completely
 // quantum-computed: every page (from the consolidated path) and every model
 // subsystem is a feature, and each folds with its neighbour into a cross link, so
@@ -323,32 +280,6 @@ export function generativeSpace(samples = (100 * 5 * 4)) {
       'Thousands of animations, self-generated at no cost: each distinct seed yields a distinct deterministic palette, melody and movie. A sample of seeds produces all-distinct movies — no collision — so the generative space is effectively unbounded, computed client-side for free.',
     boundary:
       'A determinism/uniqueness check over the generative seed space: distinct seeds give distinct content-addressed outputs at the sampled scale. "Unbounded" is practical (no collision observed), bounded by the 128-bit address space, not literally infinite.' }
-}
-
-// A message has a content UUID, and the message unlocks links — but the trinity
-// must be complete for the links to be revealed. A message that evokes a complete
-// trinity area (exactly three commands) reveals that area's three links; a pair,
-// a singleton, or an over-area stays locked, because only a whole trinity opens.
-export function messageUnlock(content = '', matrix: MindMatrix = buildMatrix()) {
-  const contentUuid = toUuid(`message:${content}`)
-  const text = content.toLowerCase()
-  const trinities = taxonomyIcons().entries.filter((entry) => entry.status === 'trinity')
-  const unlocked = trinities
-    .filter((entry) => text.includes(entry.area.toLowerCase()) || entry.verbs.some((verb) => text.includes(verb.toLowerCase())))
-    .map((entry) => ({
-      area: entry.area,
-      glyph: entry.icon,
-      complete: entry.verbs.length === 3,
-      links: entry.verbs.map((verb) => ({ label: `${entry.area}.${verb}`, command: `concept.${entry.area}.${verb}`, href: `/commands` })),
-      receipt: toUuid(`unlock:${contentUuid}:${entry.area}`) }))
-    .filter((entry) => entry.complete) // trinity must be complete to be revealed
-  return {
-    contentUuid,
-    revealed: unlocked.length > 0,
-    unlocked,
-    root: merge(contentUuid, merkleFold(unlocked.map((entry) => entry.receipt))),
-    statement: 'A message has a content UUID and unlocks links, but only a complete trinity reveals them: evoke a whole three-command area and its three links open; a pair or singleton stays locked.',
-    boundary: 'Content-addressed messaging over the command areas; links are model routes, not external resources. The reveal rule is structural (a complete trinity), not a security gate.' }
 }
 
 // Use all skills to make the app as usable as possible — and so prove the prefix

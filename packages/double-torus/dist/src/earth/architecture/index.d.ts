@@ -400,20 +400,6 @@ export declare function eightSciencesQuantumComplete(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-/**
- * Self-audit — src/ top level must be exactly the D1 canonical ROOT set (user-sealed taxonomy, decision EXTEND):
- * the 8 bāguà trigrams + the full digit lattice 0-9 + pair (enforcement) + quantum (layer) + render (build mount).
- * Computed from CANONICAL_ROOT_FOLDERS (no frozen hand list); the gate the weave enforces shares this source.
- */
-export declare function srcSciencesSelfAudit(topLevel: readonly string[]): {
-    clean: boolean;
-    allowed: string[];
-    violations: string[];
-    missing: string[];
-    schema: "src/[science]/[action]";
-    statement: string;
-    boundary: string;
-};
 export declare function scienceModelActionMask(matrix?: MindMatrix): {
     sealed: boolean;
     schema: "src/[science]/[action]";

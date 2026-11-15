@@ -40,32 +40,6 @@ export declare function live(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function intuitiveSearch(query?: string, matrix?: MindMatrix): {
-    works: boolean;
-    query: string;
-    terms: string[];
-    results: {
-        score: number;
-        kind: string;
-        label: string;
-        route: string;
-        text: string;
-        hook: string;
-    }[];
-    count: number;
-    total: number;
-    best: {
-        score: number;
-        kind: string;
-        label: string;
-        route: string;
-        text: string;
-        hook: string;
-    };
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function features(matrix?: MindMatrix): {
     displayed: boolean;
     folded: boolean;
@@ -142,24 +116,6 @@ export declare function generativeSpace(samples?: number): {
     sampled: number;
     distinct: number;
     cost: number;
-    root: string;
-    statement: string;
-    boundary: string;
-};
-export declare function messageUnlock(content?: string, matrix?: MindMatrix): {
-    contentUuid: string;
-    revealed: boolean;
-    unlocked: {
-        area: string;
-        glyph: string;
-        complete: boolean;
-        links: {
-            label: string;
-            command: string;
-            href: string;
-        }[];
-        receipt: string;
-    }[];
     root: string;
     statement: string;
     boundary: string;

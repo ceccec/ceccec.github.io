@@ -867,27 +867,6 @@ export function eightSciencesQuantumComplete(matrix: MindMatrix = buildMatrix())
       'Pure architecture from src/0 math (foldPair, merkleFold, harmonicBands, cellHomology). The 64-cell grid is the cross-science coupling; module placement under src/<science>/<model>/<action>/ is the physical dissolve wave.' }
 }
 
-/**
- * Self-audit — src/ top level must be exactly the D1 canonical ROOT set (user-sealed taxonomy, decision EXTEND):
- * the 8 bāguà trigrams + the full digit lattice 0-9 + pair (enforcement) + quantum (layer) + render (build mount).
- * Computed from CANONICAL_ROOT_FOLDERS (no frozen hand list); the gate the weave enforces shares this source.
- */
-export function srcSciencesSelfAudit(topLevel: readonly string[]) {
-  const allowed = new Set<string>(CANONICAL_ROOT_FOLDERS)
-  const violations = topLevel.filter((name) => !allowed.has(name)).sort()
-  const missing = [...allowed].filter((name) => !topLevel.includes(name)).sort()
-  return {
-    clean: violations.length === 0,
-    allowed: [...allowed].sort(),
-    violations,
-    missing,
-    schema: SRC_SCIENCE_MODEL_ACTION_SCHEMA,
-    statement:
-      'src/ admits exactly the canonical roots: eight bāguà trigrams (earth, fire, water, wind, mountain, lake, thunder, heaven), the digit lattice 0-9, plus pair (enforcement), quantum (layer) and render (build mount). Every other top-level folder violates the I Ching distribution and must dissolve under its computed trigram home.',
-    boundary:
-      'Structural audit only — pass readdir names of src/ at call time; no frozen offender list. The weave (scanRootDistributionViolations) recomputes the same set and fails the build on any non-canonical root. Dissolve hubs into the trigram that owns their logic.' }
-}
-
 // SCIENCE / MODEL / ACTION — path math (dry rename; no invented segments).
 // SCIENCE = one of EIGHT_FOLD_SCIENCES — which global plane owns the module.
 // MODEL = structural plane — `fold` for two-word tails, or the middle word for three-level tails.

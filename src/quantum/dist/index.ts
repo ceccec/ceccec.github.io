@@ -454,6 +454,26 @@ export function agentComplianceJson(matrix: MindMatrix = buildMatrix()) {
   )}\n`
 }
 
+export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
+  const quantum = quantumSitemap(matrix)
+  // Same served surface as sitemap.xml and README/home §4 (from servedRouteFamilies): the JSON mirror carries
+  // the family summary + total distinct pages, the rich per-locale monograph entries, and the theorem/proof
+  // page URLs — so the machine JSON, the crawler XML, and the human §4 can never disagree.
+  const families = servedRouteFamilies(matrix)
+  const theorems = theoremPagePaths(matrix).map((p) => absCross(siteUrl, `/theorems/${p.params.slug}`))
+  const proofs = domainProofPagePaths(matrix).map((p) => absCross(siteUrl, `/proofs/${p.params.slug}`))
+  return {
+    generatedAt: now,
+    root: quantum.root,
+    total: families.total, // distinct served pages — matches §4 and the sitemap.xml urlset
+    families: families.families,
+    statement: 'One served surface — the same complete route families sitemap.xml enumerates and README §4 summarises.',
+    boundary: quantum.boundary,
+    monographs: quantum.urls.map((url) => ({ gla: absCross(siteUrl, url.gla), en: absCross(siteUrl, url.en), bg: absCross(siteUrl, url.bg), theta: url.theta, phi: url.phi, priority: url.priority, changefreq: url.changefreq, alternates: url.alternates.map((alt) => ({ hreflang: alt.hreflang, href: absCross(siteUrl, alt.href) })), receipt: url.receipt })),
+    theorems,
+    proofs }
+}
+
 /** Every dist artifact — computed in one pass from the model. */
 export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()): readonly DistFile[] {
   const site = siteUrl.replace(/\/$/, '')
@@ -652,26 +672,6 @@ function sitemapAllBlocks(siteUrl: string, matrix: MindMatrix, now: string): { b
 export function sitemapXml(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
   const { blocks, root } = sitemapAllBlocks(siteUrl, matrix, now)
   return sitemapUrlset(blocks, root)
-}
-
-export function sitemapJson(siteUrl: string, matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
-  const quantum = quantumSitemap(matrix)
-  // Same served surface as sitemap.xml and README/home §4 (from servedRouteFamilies): the JSON mirror carries
-  // the family summary + total distinct pages, the rich per-locale monograph entries, and the theorem/proof
-  // page URLs — so the machine JSON, the crawler XML, and the human §4 can never disagree.
-  const families = servedRouteFamilies(matrix)
-  const theorems = theoremPagePaths(matrix).map((p) => absCross(siteUrl, `/theorems/${p.params.slug}`))
-  const proofs = domainProofPagePaths(matrix).map((p) => absCross(siteUrl, `/proofs/${p.params.slug}`))
-  return {
-    generatedAt: now,
-    root: quantum.root,
-    total: families.total, // distinct served pages — matches §4 and the sitemap.xml urlset
-    families: families.families,
-    statement: 'One served surface — the same complete route families sitemap.xml enumerates and README §4 summarises.',
-    boundary: quantum.boundary,
-    monographs: quantum.urls.map((url) => ({ gla: absCross(siteUrl, url.gla), en: absCross(siteUrl, url.en), bg: absCross(siteUrl, url.bg), theta: url.theta, phi: url.phi, priority: url.priority, changefreq: url.changefreq, alternates: url.alternates.map((alt) => ({ hreflang: alt.hreflang, href: absCross(siteUrl, alt.href) })), receipt: url.receipt })),
-    theorems,
-    proofs }
 }
 
 // ── GOOGLE SEARCH ESSENTIALS COMPLIANCE (user directive: align all with google webmaster) — the

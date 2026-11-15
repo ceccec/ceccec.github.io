@@ -4,8 +4,4 @@ export {
   doubleTorusEarthExchangeComputes,
   fiatAndGoldFlowExplainedByDoubleEarthExchange,
 } from '../render'
-export {
-  thunderGoldGraphFromPreciseGpsCoordinates,
-  thunderGoldGraphResearch,
-  thunderGoldGraphComputes,
-} from '../render'
+export { thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes } from '../render'

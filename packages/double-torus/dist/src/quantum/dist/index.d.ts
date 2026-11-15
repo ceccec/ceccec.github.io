@@ -26,6 +26,48 @@ export declare function agentsJson(matrix?: MindMatrix): string;
  * broadcasts agentSubmissionProtocol facets that recompute without fs.
  */
 export declare function agentComplianceJson(matrix?: MindMatrix): string;
+export declare function sitemapJson(siteUrl: string, matrix?: MindMatrix, now?: string): {
+    generatedAt: string;
+    root: string;
+    total: number;
+    families: readonly [{
+        readonly family: "monographs";
+        readonly label: "monograph landing + index pages";
+        readonly index: "/";
+        readonly count: number;
+        readonly enumerated: true;
+    }, {
+        readonly family: "theorems";
+        readonly label: "theorem papers — the registered theorems plus the card papers outside the registry";
+        readonly index: "/theorems";
+        readonly count: number;
+        readonly enumerated: false;
+    }, {
+        readonly family: "proofs";
+        readonly label: "domain proofs (Millennium + science)";
+        readonly index: "/proofs";
+        readonly count: number;
+        readonly enumerated: false;
+    }];
+    statement: string;
+    boundary: string;
+    monographs: {
+        gla: string;
+        en: string;
+        bg: string;
+        theta: number;
+        phi: number;
+        priority: number;
+        changefreq: string;
+        alternates: {
+            hreflang: string;
+            href: string;
+        }[];
+        receipt: string;
+    }[];
+    theorems: string[];
+    proofs: string[];
+};
 /** Every dist artifact — computed in one pass from the model. */
 export declare function computedDistFiles(siteUrl: string, matrix?: MindMatrix, now?: string): readonly DistFile[];
 /** Every folder is its own API: <path>.json serves that path's computed JSON-LD — COMPUTED, not built (no
@@ -76,48 +118,6 @@ export declare function digitIndexJson(matrix?: MindMatrix, now?: string): {
 export declare function theoremSitemapPriorities(matrix?: MindMatrix): Map<string, number>;
 /** sitemap.xml — ONE urlset listing every served page (Google reads it directly). One sitemap, one source. */
 export declare function sitemapXml(siteUrl: string, matrix?: MindMatrix, now?: string): string;
-export declare function sitemapJson(siteUrl: string, matrix?: MindMatrix, now?: string): {
-    generatedAt: string;
-    root: string;
-    total: number;
-    families: readonly [{
-        readonly family: "monographs";
-        readonly label: "monograph landing + index pages";
-        readonly index: "/";
-        readonly count: number;
-        readonly enumerated: true;
-    }, {
-        readonly family: "theorems";
-        readonly label: "theorem papers — the registered theorems plus the card papers outside the registry";
-        readonly index: "/theorems";
-        readonly count: number;
-        readonly enumerated: false;
-    }, {
-        readonly family: "proofs";
-        readonly label: "domain proofs (Millennium + science)";
-        readonly index: "/proofs";
-        readonly count: number;
-        readonly enumerated: false;
-    }];
-    statement: string;
-    boundary: string;
-    monographs: {
-        gla: string;
-        en: string;
-        bg: string;
-        theta: number;
-        phi: number;
-        priority: number;
-        changefreq: string;
-        alternates: {
-            hreflang: string;
-            href: string;
-        }[];
-        receipt: string;
-    }[];
-    theorems: string[];
-    proofs: string[];
-};
 export declare function googleSearchEssentials(matrix?: MindMatrix, siteUrl?: string): {
     compliant: boolean;
     urls: number;

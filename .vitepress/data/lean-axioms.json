@@ -627,6 +627,30 @@
   ],
   "viscous_is_an_involution": []
  },
+ "src/pair/lean/proofs/fallback.lean": {
+  "a_digit_over_zero_falls_back_to_its_mirror": [],
+  "a_negative_reflects_to_a_positive": [
+   "Quot.sound",
+   "propext"
+  ],
+  "dividing_by_zero_is_infinity": [
+   "propext"
+  ],
+  "inversion_fixes_exactly_plus_and_minus_one": [],
+  "inversion_swaps_zero_and_infinity": [],
+  "invert_is_an_involution": [],
+  "negation_fixes_exactly_zero": [
+   "Quot.sound",
+   "propext"
+  ],
+  "negation_is_an_involution": [],
+  "the_reflected_root_squares_back": [
+   "propext"
+  ],
+  "zero_over_zero_is_the_fixed_point_that_names_nothing": [
+   "propext"
+  ]
+ },
  "src/pair/lean/proofs/feeling.lean": {
   "all_holding_is_pleasant_and_calm": [],
   "arousal_counts_the_signals_off": [],

@@ -553,38 +553,6 @@ export function testFullPipelineEndToEnd(): IntegrationTestCase {
   }
 }
 
-/**
- * Run full integration test suite
- */
-export function quantumIntegrationTestSuite(matrix: MindMatrix = buildMatrix()): TestSuite {
-  return memoByRoot('quantum-integration-suite', matrix, () => {
-    const tests = [
-      testSimonsAlgorithmE2E(),
-      testVQEEndToEnd(),
-      testQAOAEndToEnd(),
-      testCredentialManagement(),
-      testJobQueueEndToEnd(),
-      testDeviceDiscoveryEndToEnd(),
-      testResultValidationEndToEnd(),
-      testFullPipelineEndToEnd(),
-    ]
-
-    const passed = tests.filter((t) => t.passed).length
-    const failed = tests.length - passed
-    const coverage = passed / tests.length
-
-    return {
-      name: 'Quantum Integration Test Suite',
-      tests,
-      passed,
-      failed,
-      coverage,
-      statement: `Integration tests: ${passed}/${tests.length} passed (${(coverage * 100).toFixed(0)}% success rate). Full pipeline verified end-to-end.`,
-      receipt: toUuid(`integration-suite:${passed}/${tests.length}`)
-    }
-  })
-}
-
 // ── merged from quantum/testing/units (census: one index per fold) ──
 
 export type UnitTest = {
@@ -790,28 +758,3 @@ export function testValidationModule(): UnitTest[] {
   ]
 }
 
-/**
- * Run all unit tests
- */
-export function quantumUnitTestSuite(matrix: MindMatrix = buildMatrix()): UnitTestReport {
-  return memoByRoot('quantum-unit-tests', matrix, () => {
-    const credTests = testCredentialsModule()
-    const jobTests = testJobqueueModule()
-    const devTests = testDevicesModule()
-    const valTests = testValidationModule()
-
-    const allTests = [...credTests, ...jobTests, ...devTests, ...valTests]
-    const passed = allTests.filter((t) => t.passed).length
-    const failed = allTests.length - passed
-    const coverage = passed / allTests.length
-
-    return {
-      total: allTests.length,
-      passed,
-      failed,
-      coverage,
-      statement: `Unit tests: ${passed}/${allTests.length} passed (${(coverage * 100).toFixed(0)}% coverage). All Wave 60 modules tested.`,
-      receipt: toUuid(`unit-tests:${passed}/${allTests.length}`)
-    }
-  })
-}

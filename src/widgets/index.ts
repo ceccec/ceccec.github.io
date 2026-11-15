@@ -433,14 +433,6 @@ export function quantumWidgetsComputes(matrix: MindMatrix = buildMatrix(), at = 
   })
 }
 
-export function quantumWidgetsResearch(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantumWidgetsResearch', matrix, () => {
-    const registry = quantumWidgetsRegistry()
-    const rows = registry.map((entry) => ({ id: entry.id, title: entry.title, barrel: entry.barrel, gate: entry.computesGate, tier: entry.tier, limit: 'Sealed mount + lazy paint — NOT plugin SDK', receipt: entry.receipt }))
-    return { researched: rows.length === (5 * 2), rows, shadcn: __ns_up_mountain_shadcn.SHADCN_PRIMITIVE_NAMES.length, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Quantum widgets research: honest registry of dashboard tiles — Vue gallery + compute receipts, composable with quantum/os launcher when landed.', boundary: 'HONEST — widgets are content-addressed sealed folds surfaced through shadcn Card/Badge/Progress — NOT an app marketplace.' }
-  })
-}
-
 export function quantumWidgetsPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const cap = quantumWidgetsComputes(matrix, at)
   return { computes: cap.computes, capstone: cap, registry: cap.registry, paints: cap.paints, rows: cap.registry.map((entry) => ({ id: entry.id, title: entry.title, barrel: entry.barrel, gate: entry.computesGate, tier: entry.tier, paint: cap.paints.find((p) => p.widgetId === entry.id) })), root: cap.root, statement: cap.statement, boundary: cap.boundary }

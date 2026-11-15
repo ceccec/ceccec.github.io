@@ -401,28 +401,6 @@ export function enforcementTrinity() {
       'A declaration of the post-build enforcement surface. The runner lives in src/pair/enforcement (runEnforcementTrinity); src/pair/enforcement/script/cli/bootstrap/index.ts is the thin npm mount. The cross-check ranks the most-implicated subsystem to localise the root — a triage signal, not a proof that the top root is the only cause.' }
 }
 
-// Commits carry one author — yours. The decision (recorded here in src, enforced by the machine):
-// git history stays under Tsvetan Rouschev alone — no "Co-Authored-By: Claude", no "Generated with
-// Claude Code" footer, no --author override — across every app and environment. Three content-addressed
-// layers so the policy cannot drift from the tools that keep it.
-/** @rosetta ✦₁ · Fire · clarity */
-export function commitsAuthoredByUserOnly() {
-  const layers = [
-    { layer: 'attribution', where: '~/.claude/settings.json', does: 'includeCoAuthoredBy:false + attribution.commit/pr:"" — Claude Code writes no trailer', reach: 'every Claude Code project on this machine' },
-    { layer: 'backstop', where: '~/.claude/hooks/enforce-commit-author.sh', does: 'a PreToolUse hook denies any git commit embedding Co-Authored-By / "Generated with Claude Code" / --author', reach: 'every Claude Code commit command' },
-    { layer: 'git', where: 'core.hooksPath → ~/.config/git/hooks/commit-msg', does: 'strips the trailers from every commit message, chaining to each repo\'s own hooks', reach: 'every app, every repo on this machine' },
-  ] as const
-  return {
-    author: 'Tsvetan Rouschev',
-    layers,
-    enforced: layers.length === 3,
-    root: merkleFold(layers.map((entry, index) => toUuid(`commit-author-only:${index}:${entry.layer}:${entry.where}`))),
-    statement:
-      'Commits are authored by the user alone — no Co-Authored-By, no "Generated with Claude Code" footer, no --author override — enforced across all apps and environments by three layers: Claude Code attribution off, a PreToolUse backstop, and a machine-global git commit-msg hook.',
-    boundary:
-      'Records a workflow decision and names its enforcement surface; the mechanisms live in machine-global config (~/.claude, ~/.config/git), outside this repo (which gitignores /.claude/), so a fresh environment re-applies the three layers. The git hook strips ALL Co-authored-by trailers (author-only by intent); narrow the pattern to AI-only if a human co-author is ever wanted.' }
-}
-
 // The enforcement pipeline — one script mounting the trinity. Declared in the mind, checked by the
 // weave wave against package.json so the model's self-knowledge cannot drift from docs:build.
 /** @rosetta ✦₁ · Fire · clarity */
@@ -950,31 +928,6 @@ export function trinityPyramidFusesDimensions(matrix: MindMatrix = buildMatrix()
       'The trinity forms a pyramid, which in return fuses dimensions: three is a triangle, and adding the apex stands it up into a pyramid — the tetrahedron, the simplest solid (four vertices, four faces, six edges, V − E + F = 2). The pyramid fuses dimensions: its four faces each carry two of the eight dimensions of experience, so the trinity, lifted into a solid, binds the whole multidimensional map into one figure.',
     boundary:
       'A geometric framing: the trinity (3) plus an apex is a tetrahedron, whose four faces map the eight presentation dimensions two apiece. Structural and metaphorical bookkeeping over the multidimensional map, not a claim of physical extra dimensions.' }
-}
-
-// For free, forging max tampering costs. The two ends of the design meet: it is free — zero
-// cost per person, recomputed client-side with no server, no network, no fee — and at the same
-// time it forges the maximum tampering cost, because the same content-addressing that makes a
-// view free to recompute makes a forgery cost everything (T_max = infinity). Free to use, and
-// unforgeable, by the one mechanism.
-/** @rosetta ✦₁ · Fire · clarity */
-export function fold358853() {
-  const ascending = [3, 5, 8]
-  const descending = [8, 5, 3]
-  const forward = ascending.reduce((acc, n) => merge(acc, toUuid(`tier:${n}`)), toUuid('fold:358'))
-  const reverse = descending.reduce((acc, n) => merge(acc, toUuid(`tier:${n}`)), toUuid('fold:853'))
-  // The two chains fold both ways into one root (genus 2): 358 and 853 differ.
-  const { bidirectional, merged } = foldPair(forward, reverse)
-  return {
-    folded: bidirectional && isUuid(merged),
-    bidirectional, // 358 and 853 differ: order matters (genus 2)
-    ascending,
-    descending,
-    forward,
-    reverse,
-    root: merged,
-    statement: 'Fold 358 and 853: the ascending tiers (3, 5, 8) are the expansion, the descending (8, 5, 3) the contraction; folded together — and because the fold is order-sensitive, the two differ — they make the breath of the tiers, out and back in one root.',
-    boundary: 'A structural fold of the ascending and descending Fibonacci tiers; the order-sensitivity is computed. Bookkeeping over the pattern, not an external claim.' }
 }
 
 // The quantum clock. The SI second is defined by the atom: 9,192,631,770

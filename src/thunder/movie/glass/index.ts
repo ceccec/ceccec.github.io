@@ -125,44 +125,6 @@ export function heroMovieChrome(
       'A deterministic projection of CSS custom properties and canvas palette from the model root, route, coverage and viewport. The theme reads these vars; it does not pin colours in static CSS.' }
 }
 
-/** All site colours resolve from the background movie — canvas, glass, and VitePress theme share one palette per route. */
-export function backgroundMovieColors(
-  matrix: MindMatrix = buildMatrix(),
-  path = '/en/',
-  cssWidth = 4 * 4 * 64, // 1024 — the diamond count
-): {
-  fromMovie: boolean
-  path: string
-  palette: PlasmaMoviePalette
-  cssVars: Record<string, string>
-  root: string
-  statement: string
-  boundary: string
-} {
-  const endless = true
-  const palette = plasmaMoviePalette(matrix, path, endless)
-  const cssVars = backgroundMovieColorVars(matrix, cssWidth, path, endless)
-  const keys = [
-    '--vp-hero-bg-fallback',
-    '--vp-hero-bg-card',
-    '--vp-hero-border',
-    '--vp-movie-hue',
-    '--vp-movie-gradient-angle',
-    '--vp-movie-palette-root',
-  ]
-  const fromMovie = keys.every((key) => Boolean(cssVars[key]))
-  return {
-    fromMovie,
-    path,
-    palette,
-    cssVars,
-    root: merkleFold([palette.root, toUuid(`background-movie-colors:${path}:${cssVars['--vp-movie-hue']}`)]),
-    statement:
-      'Hero glass colours and route angles are computed from the background movie: one plasmaMoviePalette per route seeds the page canvas (drawHeroMovieFrame); each card seeds its own plasma movie via cardMoviePath(route, cardMovieSeed([title, statement, …])) and drawBackgroundMovie in CardBackgroundMovie — frequencyToLight octave bridge, lobeHues partners, scaleColor OKLCH, and seal coverage. VitePress brand/text tokens stay on the default theme.',
-    boundary:
-      'A deterministic projection of hero and per-card glass vars from the same movie palette law the canvas paints. Each card background is its own movie — unique path, palette, and wired streams — with translucent glass content on top. Semantic warning/danger and nav chrome stay VitePress defaults.' }
-}
-
 export type DecodedFacetView = { facet: string; on?: boolean; receipt?: string; link?: string }
 export type DecodedStationView = { step?: number; station: string; route: string; why?: string }
 export type DecodedComponentView = {

@@ -132552,7 +132552,7 @@ export declare function npmPublishCi(matrix?: MindMatrix, at?: number, root?: st
         patent: {
             computes: boolean;
             patentCanon: boolean;
-            sections: ("title" | "summary" | "abstract" | "background" | "claims" | "technical field" | "detailed description" | "drawings")[];
+            sections: ("title" | "abstract" | "background" | "claims" | "summary" | "technical field" | "detailed description" | "drawings")[];
             machinery: {
                 receipt: string;
                 section: string;

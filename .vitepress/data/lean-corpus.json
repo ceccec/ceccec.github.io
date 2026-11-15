@@ -2156,6 +2156,148 @@
   "depositId": ""
  },
  {
+  "slug": "fallback-invert-is-an-involution",
+  "title": "Invert is an involution",
+  "name": "invert_is_an_involution",
+  "file": "fallback.lean",
+  "proposition": "∀ r : Ratio, invert (invert r) = r",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-inversion-swaps-zero-and-infinity",
+  "title": "Inversion swaps zero and infinity",
+  "name": "inversion_swaps_zero_and_infinity",
+  "file": "fallback.lean",
+  "proposition": "invert zero = infinity ∧ invert infinity = zero",
+  "tactic": "⟨rfl, rfl⟩",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-dividing-by-zero-is-infinity",
+  "title": "Dividing by zero is infinity",
+  "name": "dividing_by_zero_is_infinity",
+  "file": "fallback.lean",
+  "proposition": "∀ a : Int, a ≠ 0 → same ⟨a, 0⟩ infinity ∧ invert ⟨a, 0⟩ = ⟨0, a⟩",
+  "tactic": "intro a _",
+  "doc": "a / 0 is ∞ for every a ≠ 0: the pair (a, 0) is the same point as (1, 0) — the inversion of 0 / a.",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-zero-over-zero-is-the-fixed-point-that-names-nothing",
+  "title": "Zero over zero is the fixed point that names nothing",
+  "name": "zero_over_zero_is_the_fixed_point_that_names_nothing",
+  "file": "fallback.lean",
+  "proposition": "invert indeterminate = indeterminate ∧ ∀ r : Ratio, same indeterminate r",
+  "tactic": "refine ⟨rfl, fun r => ?_⟩",
+  "doc": "0 / 0 is the fixed point of inversion that is not a point of the line: it is the same as EVERY ratio, so it names none of them — reported as indeterminate, never as 0.",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-inversion-fixes-exactly-plus-and-minus-one",
+  "title": "Inversion fixes exactly plus and minus one",
+  "name": "inversion_fixes_exactly_plus_and_minus_one",
+  "file": "fallback.lean",
+  "proposition": "∀ a b : Int, (a ≠ 0 ∨ b ≠ 0) → (same (invert ⟨a, b⟩) ⟨a, b⟩ ↔ a * a = b * b)",
+  "tactic": "intro a b _",
+  "doc": "Away from the indeterminate pair, inversion fixes exactly the two units ±1 — the unit circle's real points.",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-negation-is-an-involution",
+  "title": "Negation is an involution",
+  "name": "negation_is_an_involution",
+  "file": "fallback.lean",
+  "proposition": "∀ x : Int, neg (neg x) = x",
+  "tactic": "fun x => Int.neg_neg x",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-negation-fixes-exactly-zero",
+  "title": "Negation fixes exactly zero",
+  "name": "negation_fixes_exactly_zero",
+  "file": "fallback.lean",
+  "proposition": "∀ x : Int, neg x = x ↔ x = 0",
+  "tactic": "intro x; unfold neg",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-a-negative-reflects-to-a-positive",
+  "title": "A negative reflects to a positive",
+  "name": "a_negative_reflects_to_a_positive",
+  "file": "fallback.lean",
+  "proposition": "∀ x : Int, x < 0 → 0 < neg x",
+  "tactic": "intro x h; unfold neg; omega",
+  "doc": "A negative falls across to a positive under negation, which is where the real root exists.",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-the-reflected-root-squares-back",
+  "title": "The reflected root squares back",
+  "name": "the_reflected_root_squares_back",
+  "file": "fallback.lean",
+  "proposition": "∀ s : Int, mul ⟨0, s⟩ ⟨0, s⟩ = ⟨-(s * s), 0⟩",
+  "tactic": "intro s",
+  "doc": "The fallback root i·s squares back to −s²: the negative the square root was asked for.",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "fallback-a-digit-over-zero-falls-back-to-its-mirror",
+  "title": "A digit over zero falls back to its mirror",
+  "name": "a_digit_over_zero_falls_back_to_its_mirror",
+  "file": "fallback.lean",
+  "proposition": "∀ d : Fin 10, reflect (reflect d.val) = d.val ∧ (reflect d.val = d.val ↔ (d.val = 0 ∨ d.val = 5))",
+  "tactic": "decide",
+  "doc": "A digit over zero falls back to its mirror, and falling back twice returns the digit; the digit is its own fallback exactly at 0 and 5. (The same σ as src/5/five.lean, stated here as the fallback it serves.)",
+  "sourcePath": "src/pair/lean/proofs/fallback.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
   "slug": "feeling-the-state-space-has-six-states",
   "title": "The state space has six states",
   "name": "the_state_space_has_six_states",

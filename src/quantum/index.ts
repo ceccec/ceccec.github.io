@@ -25,7 +25,7 @@ import { buildMatrix } from '../heaven/compute/index.ts'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball/index.ts'
 import { livingTorus } from '../fire/diamonds/index.ts'
 import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid, abs as oneAbs, log2, min as oneMin, pow } from '../0/index.ts'
-import { earned } from '../3/7/index.ts'
+import { computedLimits, earned } from '../3/7/index.ts'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../8/2/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth/index.ts'
@@ -2965,26 +2965,6 @@ export function qaoapproximateOptimization(nQubits: number = 8): AlgorithmSpeedu
   })
 }
 
-/** Summary of quantum algorithm speedups */
-export function quantumAlgorithmComparison(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantum-algorithm-comparison', matrix, () => {
-    const algorithms = [
-      simonsAlgorithmPeriodFinding(4),
-      deutschJozsaConstantVsBalanced(4),
-      quantumPhaseEstimation(4),
-      vqeFramework(4),
-      qaoapproximateOptimization(8),
-    ]
-
-    return {
-      algorithms,
-      count: floor(algorithms.length),
-      statement: `5 quantum algorithms: Simon's (exponential), Deutsch-Jozsa (exponential separation), Phase Estimation (exponential precision), VQE (hybrid advantage), QAOA (NP-hard heuristic).`,
-      receipt: toUuid('quantum-algos-summary')
-    }
-  })
-}
-
 // ── merged from build/ (census: one index per fold; nothing imported it) ──
 export interface BuildLockState {
   /** the runtime lock directory .vitepress/.build-lock exists */
@@ -3580,32 +3560,6 @@ export function validateCredential(cred: QuantumCredential): {
     valid: true,
     receipt: toUuid(`validate:${cred.provider}:pass`)
   }
-}
-
-/**
- * Get all available credentials (scan environment)
- */
-export function credentialStatus(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('credential-status', matrix, () => {
-    const ibm = ibmQuantumCredential()
-    const ionq = ionqCredential()
-
-    const ibmValid = typeof ibm === 'object' && 'apiKey' in ibm && ibm.validated
-    const ionqValid = typeof ionq === 'object' && 'apiKey' in ionq && ionq.validated
-
-    return {
-      ibm: {
-        available: ibmValid,
-        error: !ibmValid ? (ibm as AuthError).message : undefined
-      },
-      ionq: {
-        available: ionqValid,
-        error: !ionqValid ? (ionq as AuthError).message : undefined
-      },
-      statement: `Credentials: IBM ${ibmValid ? '✓' : '✗'}, IonQ ${ionqValid ? '✓' : '✗'}. Set IBM_QUANTUM_TOKEN and IONQ_API_KEY environment variables.`,
-      receipt: toUuid('credential-status-summary')
-    }
-  })
 }
 
 /**
@@ -4359,24 +4313,6 @@ export type CoordinatedSearch = {
   readonly receipt: string
 }
 
-/** Search-space description across several targets. Still no factorisation, still no timing. */
-export function coordinatedSearchPlans(targets: readonly bigint[]): CoordinatedSearch {
-  const plans = targets.map((t) => piBoundedSearchPlan(t))
-  const totalPrimeCandidates = plans.reduce((acc, p) => acc + p.bound.primeCandidates, 0n)
-  const meanReduction =
-    plans.length === 0 ? 0 : plans.reduce((acc, p) => acc + p.bound.reductionFactor, 0) / plans.length
-  return {
-    plans,
-    totalPrimeCandidates,
-    meanReduction,
-    statement:
-      `${plans.length} targets described. Combined prime-candidate count ${totalPrimeCandidates.toString()}, ` +
-      `mean reduction ${meanReduction.toFixed(2)}×. Descriptions only — nothing was factored, nothing was timed, ` +
-      `and no superluminal claim is made or implied.`,
-    receipt: toUuid(`coordinated-search:${plans.length}:${totalPrimeCandidates.toString()}`),
-  }
-}
-
 // ── merged from integration/ (census: one index per fold; nothing imported it) ──
 export type QuantumHardwareProvider = 'ibm' | 'ionq' | 'simulator' | 'azure' | 'google'
 
@@ -4956,63 +4892,6 @@ export function stabilizerCodeQEC(physicalQubits: number = 49, logicalQubits: nu
     thresholdError,
     overhead: `${physicalQubits}:${logicalQubits}`,
     receipt: toUuid(`ecc:stabilizer:n=${physicalQubits}:k=${logicalQubits}:d=${distance}`)
-  }
-}
-
-/**
- * Involution-Paired Error Correction Framework
- *
- * Use σ-involution structure for self-correcting codes
- * Level k pairs with Level 8-k for dual error detection
- * Forward path computes logical operation, backward path (†) verifies
- */
-export function involutionErrorCorrectionFramework(): {
-  readonly levels: number
-  readonly pairedLevels: Array<[number, number]>
-  readonly statement: string
-  readonly receipt: string
-} {
-  const levels = 7 // Seven-level hierarchy
-  const pairedLevels: Array<[number, number]> = [
-    [1, 7],
-    [2, 6],
-    [3, 5],
-    [4, 4], // Fixed point
-  ]
-
-  return {
-    levels,
-    pairedLevels,
-    statement: 'Error correction via involution pairing: forward pass (1→7) applies computation; backward pass (7→1) checks result. Level k ↔ 8-k cancels errors automatically. The fixed point at Level 4 anchors the correction.',
-    receipt: toUuid(`ecc:involution-paired:levels=${levels}`)
-  }
-}
-
-/** Quantum noise profile summary. */
-export function quantumNoiseProfileSummary(): {
-  readonly noiseModels: QuantumNoiseModel[]
-  readonly errorCodes: ErrorCorrectionCode[]
-  readonly statement: string
-  readonly receipt: string
-} {
-  const noiseModels = [
-    depolarizingNoiseModel(),
-    amplitudeDampingNoiseModel(),
-    phaseDampingNoiseModel(),
-    thermalNoiseModel(),
-    readoutErrorModel(),
-  ]
-
-  const errorCodes = [
-    surfaceCodeQEC(),
-    stabilizerCodeQEC(),
-  ]
-
-  return {
-    noiseModels,
-    errorCodes,
-    statement: `Quantum computing in realistic noise: ${noiseModels.length} noise channels (depolarization, amplitude damping, dephasing, thermal, readout error); ${errorCodes.length} error correction codes; threshold-based fault tolerance via involution pairing.`,
-    receipt: toUuid(`quantum-noise-profile:${noiseModels.length}:${errorCodes.length}`)
   }
 }
 
@@ -6621,27 +6500,6 @@ export function quantumSelfImprove(matrix: MindMatrix = buildMatrix()): SelfImpr
   })
 }
 
-/** Continuous self-improvement loop description. */
-export function quantumSelfImprovementLoop(): {
-  readonly phases: string[]
-  readonly schedule: string
-  readonly statement: string
-} {
-  return {
-    phases: [
-      'Audit capabilities across 6 areas',
-      'Identify remaining gaps',
-      'Prioritize by impact',
-      'Implement improvements',
-      'Verify quality gates',
-      'Document changes',
-      'Repeat',
-    ],
-    schedule: 'Per wave (continuous in development mode)',
-    statement: 'Autonomous quantum system self-improvement: detect gaps, apply fixes, verify quality, iterate toward production grade.'
-  }
-}
-
 // ── merged from quantum/self/improvements (census: one index per fold) ──
 
 export type ImprovementRecommendation = {
@@ -6791,68 +6649,6 @@ export function errorCorrectionImprovements(): ImprovementRecommendation[] {
       receipt: toUuid('improve:error-mitigation')
     },
   ]
-}
-
-/**
- * Comprehensive improvement roadmap
- */
-export function improvementRoadmap(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('improvement-roadmap', matrix, () => {
-    const allImprovements = [
-      ...algorithmImprovements(),
-      ...simulationImprovements(),
-      ...hardwareImprovements(),
-      ...testingImprovements(),
-      ...documentationImprovements(),
-      ...errorCorrectionImprovements(),
-    ]
-
-    const highImpact = allImprovements.filter((i) => i.impact === 'high').length
-    const mediumImpact = allImprovements.filter((i) => i.impact === 'medium').length
-    const lowImpact = allImprovements.filter((i) => i.impact === 'low').length
-
-    // Prioritize by impact/effort ratio
-    const prioritized = allImprovements.sort((a, b) => {
-      const scoreA = (a.impact === 'high' ? 3 : a.impact === 'medium' ? 2 : 1) /
-                     (a.effort === 'low' ? 1 : a.effort === 'medium' ? 2 : 3)
-      const scoreB = (b.impact === 'high' ? 3 : b.impact === 'medium' ? 2 : 1) /
-                     (b.effort === 'low' ? 1 : b.effort === 'medium' ? 2 : 3)
-      return scoreB - scoreA
-    })
-
-    return {
-      total: allImprovements.length,
-      highImpact,
-      mediumImpact,
-      lowImpact,
-      prioritized,
-      statement: `${allImprovements.length} improvements identified. Priority: ${highImpact} high-impact, ${mediumImpact} medium, ${lowImpact} low. Focus on live hardware + testing + algorithms first.`,
-      roadmap: {
-        'Wave 62 (Now)': [
-          'Wire live IBM Quantum API',
-          'Wire live IonQ API',
-          'Add property-based testing',
-          'Real device test execution',
-          'Add 4 more algorithms'
-        ],
-        'Wave 63': [
-          'GPU-accelerated simulation',
-          'Circuit optimization (SABRE)',
-          'Complete documentation (tutorials + whitepaper)',
-          'Error mitigation (ZNE + PEC)',
-          '100% test coverage'
-        ],
-        'Wave 64': [
-          'Distributed simulation',
-          'Production deployment automation',
-          'Real-time performance monitoring',
-          'Hardware-specific gate optimization',
-          'Commercial deployment readiness'
-        ]
-      },
-      receipt: toUuid('improvement-roadmap-complete')
-    }
-  })
 }
 
 /**
@@ -7020,113 +6816,6 @@ export function patternFidelityWithCI(): LearningPattern {
     applicability: 'Result quality assessment, error budgeting, device benchmarking, SLA validation',
     receipt: toUuid('pattern:fidelity-ci')
   }
-}
-
-/**
- * Quantum Standards: Principles Encoded as Codified Rules
- */
-export function quantumStandards(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('quantum-standards', matrix, () => {
-    const standards: QuantumStandard[] = [
-      {
-        standard: 'QS-001: Credential Security',
-        principle: 'Never hardcode API keys; load from environment only',
-        implementation: 'ibmQuantumCredential(), ionqCredential() from quantum/credentials',
-        validated: true,
-        receipt: toUuid('standard:qs-001')
-      },
-      {
-        standard: 'QS-002: Async Job Handling',
-        principle: 'All device submissions are async; implement polling with exponential backoff',
-        implementation: 'submitQuantumJob(), pollJobStatus(), waitForJob() from quantum/jobqueue',
-        validated: true,
-        receipt: toUuid('standard:qs-002')
-      },
-      {
-        standard: 'QS-003: Device Validation',
-        principle: 'Always validate circuit compatibility before submission',
-        implementation: 'canExecuteCircuit(), optimizeQubitMapping() from quantum/devices',
-        validated: true,
-        receipt: toUuid('standard:qs-003')
-      },
-      {
-        standard: 'QS-004: Result Validation',
-        principle: 'All quantum results undergo statistical validation (chi-squared)',
-        implementation: 'validateMeasurements(), analyzeErrors() from quantum/validation',
-        validated: true,
-        receipt: toUuid('standard:qs-004')
-      },
-      {
-        standard: 'QS-005: Verifiable Execution',
-        principle: 'Every operation produces a UUID receipt for full auditability',
-        implementation: 'toUuid() receipt at every step, enables computation graph traversal',
-        validated: true,
-        receipt: toUuid('standard:qs-005')
-      },
-      {
-        standard: 'QS-006: Algorithm Unification',
-        principle: 'All quantum algorithms return unified result type (name, problem, complexities, speedup)',
-        implementation: 'AlgorithmSpeedup type in quantum/algorithms',
-        validated: true,
-        receipt: toUuid('standard:qs-006')
-      },
-      {
-        standard: 'QS-007: Mock-First Testing',
-        principle: 'Develop and test against mocks before live hardware; 92% coverage target',
-        implementation: 'integration.ts, units.ts, coverage.ts in quantum/testing',
-        validated: true,
-        receipt: toUuid('standard:qs-007')
-      },
-      {
-        standard: 'QS-008: Quality Metrics',
-        principle: 'Assess result quality via fidelity, error rate, coherence score, and composite quality assessment',
-        implementation: 'assessQuality(), estimateFidelity(), checkCoherence() from quantum/validation',
-        validated: true,
-        receipt: toUuid('standard:qs-008')
-      },
-    ]
-
-    return {
-      standards,
-      count: standards.length,
-      allValidated: standards.every((s) => s.validated),
-      statement: `${standards.length} quantum standards codified from Waves 57-61 experience. All validated. Reusable across projects.`,
-      receipt: toUuid('quantum-standards-complete')
-    }
-  })
-}
-
-/**
- * Lessons Learned Summary
- */
-export function lessonsLearnedSummary(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('lessons-learned', matrix, () => {
-    const patterns = [
-      patternExponentialBackoff(),
-      patternEnvironmentCredentials(),
-      patternStatisticalValidation(),
-      patternUnifiedReceipts(),
-      patternMockFirstTesting(),
-      patternUnifiedAlgorithmType(),
-      patternDeviceTopologyFirst(),
-      patternFidelityWithCI(),
-    ]
-
-    return {
-      patterns,
-      count: patterns.length,
-      statement: `${patterns.length} learning patterns extracted from Waves 57-61. Each pattern is source-traced, principle-based, and reusable. Can be applied to new quantum projects immediately.`,
-      summary: {
-        'Security': 'Environment-based credentials only',
-        'Reliability': 'Exponential backoff + statistical validation',
-        'Verifiability': 'UUID receipt ledger for every operation',
-        'Quality': 'Fidelity + error rate + coherence + composite quality',
-        'Testing': 'Mock-first, 92% coverage target, E2E + unit tests',
-        'Compatibility': 'Device topology discovery before submission',
-      },
-      receipt: toUuid('lessons-learned-synthesis')
-    }
-  })
 }
 
 // ── merged from quantum/self/reflection (census: one index per fold) ──
@@ -10281,73 +9970,6 @@ export function measureSpeedup(algorithm: string): SpeedupMeasurement {
 }
 
 /**
- * Self-assessment over the algorithms that actually execute. Not a certification:
- * nothing external audited this, and the previous grade said otherwise.
- */
-export function generateProductionCertification(matrix: MindMatrix = buildMatrix()): ProductionCertification {
-  return memoByRoot('production-certification', matrix, () => {
-    const benchmarks = quantumAlgorithmBenchmarks()
-    const names = [...new Set(benchmarks.map((b) => b.algorithmName))]
-    const entries = names.map((name) => {
-      const m = measureSpeedup(name)
-      return { name, speedup: m.speedup, measured: m.measured }
-    })
-    const executed = entries.filter((e) => e.measured)
-    const unimplemented = entries.filter((e) => !e.measured)
-    return {
-      selfAssessed: true as const,
-      algorithmsExecuted: executed.length,
-      algorithmsUnimplemented: unimplemented.length,
-      entries,
-      statement:
-        `${executed.length} algorithms executed and were measured; ` +
-        `${unimplemented.length} have no runnable implementation here (${unimplemented.map((e) => e.name).join(', ') || 'none'}) ` +
-        `and carry no figures. Speedups are query-count ratios from real runs, not timings. ` +
-        `Self-assessed; no external certification is claimed.`,
-      receipt: toUuid(`certification:${executed.length}:${unimplemented.length}`),
-    }
-  })
-}
-
-/**
- * Validation report over executed algorithms ONLY. Averaging a real speedup
- * together with zeros for algorithms that never ran would understate nothing and
- * overstate everything — so unmeasured algorithms are excluded and counted separately.
- */
-export function empiricalValidationReport(matrix: MindMatrix = buildMatrix()): {
-  readonly algorithmsMeasured: number
-  readonly algorithmsUnmeasured: number
-  readonly averageSpeedup: number
-  readonly highestSpeedup: number
-  readonly lowestSpeedup: number
-  readonly statement: string
-  readonly receipt: string
-} {
-  return memoByRoot('empirical-validation-report', matrix, () => {
-    const names = [...new Set(quantumAlgorithmBenchmarks().map((b) => b.algorithmName))]
-    const measured = names.map((n) => measureSpeedup(n)).filter((m) => m.measured)
-    const unmeasured = names.length - measured.length
-    const speedups = measured.map((m) => m.speedup)
-    const average = speedups.length === 0 ? 0 : speedups.reduce((a, b) => a + b, 0) / speedups.length
-    const highest = speedups.length === 0 ? 0 : speedups.reduce((a, b) => (b > a ? b : a), speedups[0]!)
-    const lowest = speedups.length === 0 ? 0 : speedups.reduce((a, b) => (b < a ? b : a), speedups[0]!)
-    return {
-      algorithmsMeasured: measured.length,
-      algorithmsUnmeasured: unmeasured,
-      averageSpeedup: average,
-      highestSpeedup: highest,
-      lowestSpeedup: lowest,
-      statement:
-        `${measured.length} algorithms measured by execution (${measured.map((m) => `${m.algorithm} ${m.speedup.toFixed(2)}x`).join(', ')}). ` +
-        `${unmeasured} unmeasured and excluded from the average rather than counted as zero or as one. ` +
-        `Speedups are query-count ratios on a local state-vector simulator — they are NOT evidence of ` +
-        `advantage on hardware, and no hardware was contacted.`,
-      receipt: toUuid(`empirical-report:${measured.length}:${average.toFixed(3)}`),
-    }
-  })
-}
-
-/**
  * Readiness checklist where every item is a predicate that can fail.
  */
 export function productionReadinessChecklist(matrix: MindMatrix = buildMatrix()): {
@@ -10558,56 +10180,6 @@ export function productionDeploymentAssessment(matrix: MindMatrix = buildMatrix(
 }
 
 /**
- * Self-assessment from measured inputs. This is NOT a certification: nothing external
- * audited it, so the previous 'GOLD/SILVER/BRONZE' grade and its self-issued 90-day
- * validity have been removed rather than recomputed. A grade a system awards itself
- * carries no information.
- */
-export function finalProductionCertification(matrix: MindMatrix = buildMatrix()): {
-  readonly selfAssessed: true
-  readonly externallyCertified: false
-  readonly inputs: Record<string, number>
-  readonly score: number
-  readonly statement: string
-  readonly receipt: string
-} {
-  return memoByRoot('final-certification', matrix, () => {
-    const coverage = quantumTestCoverageReport(matrix)
-    const framework = quantumTestFramework(matrix)
-    const deployment = productionDeploymentAssessment(matrix)
-    const benchmarks = quantumAlgorithmBenchmarks()
-    const executed = benchmarks.filter((b) => b.executed)
-
-    const inputs = {
-      algorithmsExecuted: executed.length,
-      algorithmsSkipped: benchmarks.length - executed.length,
-      exportReferenceCoverage: coverage.averageCoverage,
-      testPassRate: framework.passRate,
-      checkableReadiness: deployment.readiness,
-    }
-
-    // Equal weighting over the three measured ratios. Stated so the arithmetic is auditable.
-    const ratios = [inputs.exportReferenceCoverage, inputs.testPassRate, inputs.checkableReadiness]
-    const score = (ratios.reduce((a, b) => a + b, 0) / ratios.length) * 100
-
-    return {
-      selfAssessed: true as const,
-      externallyCertified: false as const,
-      inputs,
-      score,
-      statement:
-        `Self-assessed score ${score.toFixed(1)}/100 — the mean of three MEASURED ratios: ` +
-        `export-reference coverage ${(inputs.exportReferenceCoverage * 100).toFixed(1)}%, ` +
-        `test pass rate ${(inputs.testPassRate * 100).toFixed(1)}%, ` +
-        `checkable readiness ${(inputs.checkableReadiness * 100).toFixed(1)}%. ` +
-        `${inputs.algorithmsExecuted} algorithms execute here; ${inputs.algorithmsSkipped} have no implementation at this layer. ` +
-        `No external body has audited this system, so no certification grade is issued.`,
-      receipt: toUuid(`self-assessment:${score.toFixed(2)}:${inputs.algorithmsExecuted}`),
-    }
-  })
-}
-
-/**
  * System report, every figure measured at call time.
  */
 export function quantumSystemFinalReport(matrix: MindMatrix = buildMatrix()): {
@@ -10677,6 +10249,101 @@ const { groups: UUID_GROUPS, hexDigits: UUID_HEX_DIGITS, radix: HEX_RADIX, digit
 // The functions themselves live in the kernel (src/0), so @ceccec/double-torus/kernel carries them; this fold holds them to their theorems.
 export { addressSearchCostsLog2, minimalRegisterWidth, readUuid, sealUuid, uuidOfBytes, uuidRegister, uuidStamp, verifyUuid } from '../0/index.ts'
 export type { UuidReading, UuidVariant } from '../0/index.ts'
+
+/**
+ * A MATH ERROR FALLS BACK TO THE INVOLUTION THAT OWNS IT (owner, 2026-11-15: "instead of banning math, fall back on
+ * math errors to involutions"; then "fix by error handling fallbacks").
+ *
+ * An operation that cannot answer in its own domain is answered through the involution whose fixed set marks the
+ * failure, and the answer carries the name of the route it took — so a fallback is never mistaken for an ordinary
+ * value, and an absent input is never mistaken for either:
+ *   - DIVISION on the projective line: inversion r ↦ 1/r swaps 0 and ∞, so n / 0 is ±∞ — the inversion of 0 / n. ECMAScript
+ *     division already IS this fallback (IEEE 754: 1/0 = ∞, 0/0 = NaN); what breaks it is a guard that overrides it with
+ *     0. 0 / 0 is the fixed point that names no point of the line — 'indeterminate', NaN, never 0.
+ *   - SQUARE ROOT of a negative through negation x ↦ −x (fixing only 0): √x = i·√(−x), which squares back to x.
+ *   - LOGARITHM of a negative through negation and the half-turn: log x = log(−x) + iπ; log 0 = −∞ through inversion.
+ *   - A DIGIT divided by 0 in the ring through σ(d) = 10 − d (fixing exactly 0 and 5): the mirror station.
+ * Each route is a theorem in src/pair/lean/proofs/fallback.lean; canon.silent-math-fallback counts the guards that still
+ * override a fallback with a constant.
+ */
+export const FALLBACK_THEOREM_FILE = 'src/pair/lean/proofs/fallback.lean'
+export type FallbackRoute = 'arithmetic' | 'inversion' | 'reflection' | 'indeterminate' | 'absent'
+export type Fallback<T> = { readonly value: T; readonly via: FallbackRoute }
+export type ComplexFallback = { readonly re: number; readonly im: number; readonly via: FallbackRoute }
+
+/** n / d, answered through inversion when d = 0: ±∞ for n ≠ 0, the indeterminate fixed point (NaN) for 0 / 0. */
+export function quotient(n: number, d: number): Fallback<number> {
+  if (Number.isNaN(n) || Number.isNaN(d)) return { value: Number.NaN, via: 'absent' }
+  if (d !== 0) return { value: n / d, via: 'arithmetic' }
+  if (n === 0) return { value: Number.NaN, via: 'indeterminate' }
+  return { value: n / d, via: 'inversion' } // IEEE 754 keeps the sign of the zero: the side of ∞ the line is left from
+}
+
+/** √x, answered through negation when x < 0: i·√(−x). */
+export function rootOf(x: number): ComplexFallback {
+  if (Number.isNaN(x)) return { re: Number.NaN, im: Number.NaN, via: 'absent' }
+  return x >= 0 ? { re: sqrt(x), im: 0, via: 'arithmetic' } : { re: 0, im: sqrt(-x), via: 'reflection' }
+}
+
+/** log x, answered through negation and the half-turn when x < 0, and through inversion at 0 (−∞). */
+export function logOf(x: number): ComplexFallback {
+  if (Number.isNaN(x)) return { re: Number.NaN, im: Number.NaN, via: 'absent' }
+  if (x > 0) return { re: log(x), im: 0, via: 'arithmetic' }
+  if (x === 0) return { re: -Infinity, im: 0, via: 'inversion' }
+  return { re: log(-x), im: TAU / 2, via: 'reflection' }
+}
+
+/** A digit of the ring divided by 0: the mirror station σ(d) = 10 − d, the reflection through 0. */
+export function ringQuotientByZero(d: number): Fallback<number> {
+  if (!Number.isInteger(d) || d < 0 || d > 9) return { value: Number.NaN, via: 'absent' }
+  const ten = 5 * 2
+  return { value: (ten - d) % ten, via: 'reflection' }
+}
+
+export function everyMathErrorFallsBackToTheInvolutionThatOwnsIt(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const samples = [-8, -2, -1, -1 / 2, 0, 1 / 2, 1, 2, 8, Infinity, -Infinity]
+  // 1 — DIVISION: the fallback is the arithmetic's own IEEE answer, named; inversion applied twice returns the input
+  //     (1 / (1 / x) = x on every sample, 0 and ±∞ included), and the route is 'inversion' exactly when d = 0, n ≠ 0
+  const sameAsIeee = samples.every((n) => samples.every((d) => { const q = quotient(n, d).value; return Number.isNaN(q) ? Number.isNaN(n / d) : Object.is(q, n / d) }))
+  const inversionIsAnInvolution = samples.every((x) => Object.is(quotient(1, quotient(1, x).value).value, x))
+  const routedByZero = samples.every((n) => samples.every((d) => (quotient(n, d).via === 'inversion') === (d === 0 && n !== 0)))
+  // 2 — 0 / 0 IS THE FIXED POINT THAT NAMES NOTHING: indeterminate, NaN — never the 0 a silent guard would hand back
+  const indeterminate = quotient(0, 0)
+  const silentGuard = (n: number, d: number) => (d === 0 ? 0 : n / d) // the shape canon.silent-math-fallback counts
+  const zeroOverZeroIsNotZero = indeterminate.via === 'indeterminate' && Number.isNaN(indeterminate.value) && silentGuard(0, 0) === 0 && silentGuard(1, 0) !== quotient(1, 0).value
+  // 3 — √ OF A NEGATIVE: the reflected root squares back — (i·s)² = −s² = x
+  const negatives = samples.filter((x) => x < 0 && Number.isFinite(x))
+  const rootSquaresBack = negatives.every((x) => { const r = rootOf(x); return r.via === 'reflection' && r.re === 0 && abs(-(r.im * r.im) - x) < 1e-12 })
+  const rootRoutedByNegation = samples.every((x) => (rootOf(x).via === 'reflection') === (x < 0))
+  // 4 — LOG OF A NEGATIVE: e^re = −x and the half-turn is the imaginary part; log 0 = −∞ through inversion
+  const logReflects = negatives.every((x) => { const l = logOf(x); return l.via === 'reflection' && abs(exp(l.re) + x) < 1e-12 && l.im === TAU / 2 }) && logOf(0).via === 'inversion' && logOf(0).re === -Infinity
+  // 5 — THE RING: σ applied twice is the identity and fixes exactly 0 and 5
+  const digits = Array.from({ length: 5 * 2 }, (_, d) => d)
+  const ringIsAnInvolution = digits.every((d) => ringQuotientByZero(ringQuotientByZero(d).value).value === d)
+  const ringFixedPoints = digits.filter((d) => ringQuotientByZero(d).value === d)
+  // 6 — ABSENCE IS ITS OWN STATE: NaN in is 'absent' out, for every route
+  const absentIsAbsent = quotient(Number.NaN, 1).via === 'absent' && rootOf(Number.NaN).via === 'absent' && logOf(Number.NaN).via === 'absent' && ringQuotientByZero(Number.NaN).via === 'absent'
+  const limits = computedLimits([
+    { facet: `FOUR OPERATIONS — division, square root, logarithm and division in the ring have a fallback route here; a trigonometric domain error (asin, acos outside [−1, 1]) has none yet and still returns NaN as the host does`, on: Number.isNaN(Math.asin(2)) },
+    { facet: `NAMED, NOT HIDDEN — a fallback changes no IEEE value; what it adds is the route, so a caller that reads only .value gets exactly what the arithmetic gave, and only a caller that reads .via can tell ∞ from a measurement`, on: sameAsIeee },
+  ])
+  const facets = [
+    { facet: `DIVISION FALLS BACK THROUGH INVERSION — on all ${samples.length}² sample pairs the answer is the IEEE quotient (${sameAsIeee}), inversion applied twice returns every sample, 0 and ±∞ included (${inversionIsAnInvolution}), and the route is 'inversion' exactly when the divisor is 0 and the dividend is not (${routedByZero}) — Fallback.invert_is_an_involution, dividing_by_zero_is_infinity`, on: sameAsIeee && inversionIsAnInvolution && routedByZero },
+    { facet: `0 / 0 IS INDETERMINATE, NEVER 0 — the fixed point of inversion that names no point of the line comes back as NaN with route 'indeterminate' (${zeroOverZeroIsNotZero}); the silent guard d === 0 ? 0 : n / d answers 0 there and 0 for 1 / 0 as well, which is the defect, measured — Fallback.zero_over_zero_is_the_fixed_point_that_names_nothing`, on: zeroOverZeroIsNotZero },
+    { facet: `√ OF A NEGATIVE FALLS BACK THROUGH NEGATION — for ${negatives.length} negatives the root is i·√(−x) and squares back to x (${rootSquaresBack}), routed by negation exactly when x < 0 (${rootRoutedByNegation}) — Fallback.the_reflected_root_squares_back, negation_fixes_exactly_zero`, on: rootSquaresBack && rootRoutedByNegation },
+    { facet: `LOG OF A NEGATIVE FALLS BACK THROUGH NEGATION AND THE HALF-TURN — e^re = −x with imaginary part π, and log 0 = −∞ through inversion (${logReflects})`, on: logReflects },
+    { facet: `A DIGIT OVER 0 FALLS BACK THROUGH σ — the mirror station, an involution on all ten digits (${ringIsAnInvolution}) fixing exactly ${ringFixedPoints.join(' and ')} — Fallback.a_digit_over_zero_falls_back_to_its_mirror`, on: ringIsAnInvolution && ringFixedPoints.join(',') === '0,5' },
+    { facet: `ABSENCE IS ITS OWN STATE — a NaN input comes back 'absent' on every route (${absentIsAbsent}), never as a fallback and never as a value`, on: absentIsAbsent },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    theoremFile: FALLBACK_THEOREM_FILE,
+    facets, limits,
+    root: merkleFold(facets.map((entry) => toUuid(`math-fallback:${entry.facet}:${entry.on}`))),
+    statement: `Every math error falls back to the involution that owns it — ${facets.filter((entry) => entry.on).length}/${facets.length}: division through inversion (n / 0 = ±∞, 0 / 0 indeterminate, never 0), the square root and the logarithm of a negative through negation, a digit over 0 through σ — each route named, each proved in ${FALLBACK_THEOREM_FILE}.`,
+    boundary: earned(`COMPUTED on ${samples.length} samples including 0 and ±∞, against the IEEE arithmetic and the Lean theorems named in each facet:`, facets, limits) }
+}
 
 /** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
 export const QUANTUM_UUID_THEOREM_FILE = 'src/pair/lean/proofs/thousand.lean'

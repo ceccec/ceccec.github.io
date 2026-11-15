@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 331 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 341 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -503,7 +503,7 @@ The involution and the split it produces, for every 2-form v: v + ★v is self-d
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro v; cases v} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 236 theorems in 10 files of \texttt{src/pair/lean/proofs}.
+\noindent 246 theorems in 11 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{consciousness.lean}}
 \begin{theorem}[The turn returns in three]
 \begin{lean}∀ p ∈ points, turn (turn (turn p)) = p\end{lean}
@@ -798,6 +798,53 @@ A scale map, not an involution: applying it twice to 1 gives 4.
 \begin{lean}scale (scale 1) ≠ 1 ∧ scale (scale 1) = 4\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{fallback.lean}}
+\begin{theorem}[Invert is an involution]
+\begin{lean}∀ r : Ratio, invert (invert r) = r\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Inversion swaps zero and infinity]
+\begin{lean}invert zero = infinity ∧ invert infinity = zero\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{⟨rfl, rfl⟩} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Dividing by zero is infinity]
+a / 0 is ∞ for every a ≠ 0: the pair (a, 0) is the same point as (1, 0) — the inversion of 0 / a.
+\begin{lean}∀ a : Int, a ≠ 0 → same ⟨a, 0⟩ infinity ∧ invert ⟨a, 0⟩ = ⟨0, a⟩\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro a \_} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Zero over zero is the fixed point that names nothing]
+0 / 0 is the fixed point of inversion that is not a point of the line: it is the same as EVERY ratio, so it names none of them — reported as indeterminate, never as 0.
+\begin{lean}invert indeterminate = indeterminate ∧ ∀ r : Ratio, same indeterminate r\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{refine ⟨rfl, fun r => ?\_⟩} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Inversion fixes exactly plus and minus one]
+Away from the indeterminate pair, inversion fixes exactly the two units ±1 — the unit circle's real points.
+\begin{lean}∀ a b : Int, (a ≠ 0 ∨ b ≠ 0) → (same (invert ⟨a, b⟩) ⟨a, b⟩ ↔ a * a = b * b)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro a b \_} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Negation is an involution]
+\begin{lean}∀ x : Int, neg (neg x) = x\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun x => Int.neg\_neg x} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Negation fixes exactly zero]
+\begin{lean}∀ x : Int, neg x = x ↔ x = 0\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro x; unfold neg} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[A negative reflects to a positive]
+A negative falls across to a positive under negation, which is where the real root exists.
+\begin{lean}∀ x : Int, x < 0 → 0 < neg x\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro x h; unfold neg; omega} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[The reflected root squares back]
+The fallback root i·s squares back to −s²: the negative the square root was asked for.
+\begin{lean}∀ s : Int, mul ⟨0, s⟩ ⟨0, s⟩ = ⟨-(s * s), 0⟩\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro s} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[A digit over zero falls back to its mirror]
+A digit over zero falls back to its mirror, and falling back twice returns the digit; the digit is its own fallback exactly at 0 and 5. (The same σ as src/5/five.lean, stated here as the fallback it serves.)
+\begin{lean}∀ d : Fin 10, reflect (reflect d.val) = d.val ∧ (reflect d.val = d.val ↔ (d.val = 0 ∨ d.val = 5))\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{fallback.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \subsection{\texttt{feeling.lean}}
 \begin{theorem}[The state space has six states]
 \begin{lean}states.length = 6 ∧ states.Nodup\end{lean}

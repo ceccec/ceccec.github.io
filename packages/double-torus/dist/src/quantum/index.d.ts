@@ -1437,13 +1437,6 @@ export declare function quantumPhaseEstimation(precisionQubits?: number): Algori
 export declare function vqeFramework(nQubits?: number): AlgorithmSpeedup;
 /** QAOA — Solve NP-hard combinatorial optimization */
 export declare function qaoapproximateOptimization(nQubits?: number): AlgorithmSpeedup;
-/** Summary of quantum algorithm speedups */
-export declare function quantumAlgorithmComparison(matrix?: MindMatrix): {
-    algorithms: AlgorithmSpeedup[];
-    count: number;
-    statement: string;
-    receipt: string;
-};
 export interface BuildLockState {
     /** the runtime lock directory .vitepress/.build-lock exists */
     lockPresent: boolean;
@@ -1607,21 +1600,6 @@ export declare function validateCredential(cred: QuantumCredential): {
     readonly receipt: string;
 };
 /**
- * Get all available credentials (scan environment)
- */
-export declare function credentialStatus(matrix?: MindMatrix): {
-    ibm: {
-        available: boolean;
-        error: string;
-    };
-    ionq: {
-        available: boolean;
-        error: string;
-    };
-    statement: string;
-    receipt: string;
-};
-/**
  * Safely mask credential for logging
  */
 export declare function maskCredential(cred: QuantumCredential): string;
@@ -1774,8 +1752,6 @@ export type CoordinatedSearch = {
     readonly statement: string;
     readonly receipt: string;
 };
-/** Search-space description across several targets. Still no factorisation, still no timing. */
-export declare function coordinatedSearchPlans(targets: readonly bigint[]): CoordinatedSearch;
 export type QuantumHardwareProvider = 'ibm' | 'ionq' | 'simulator' | 'azure' | 'google';
 export type HardwareCapabilities = {
     readonly provider: QuantumHardwareProvider;
@@ -1980,26 +1956,6 @@ export declare function surfaceCodeQEC(gridSize?: number): ErrorCorrectionCode;
  * Logical error rate ≈ (p / p_th)^(d+1) / (d+1)!
  */
 export declare function stabilizerCodeQEC(physicalQubits?: number, logicalQubits?: number, distance?: number): ErrorCorrectionCode;
-/**
- * Involution-Paired Error Correction Framework
- *
- * Use σ-involution structure for self-correcting codes
- * Level k pairs with Level 8-k for dual error detection
- * Forward path computes logical operation, backward path (†) verifies
- */
-export declare function involutionErrorCorrectionFramework(): {
-    readonly levels: number;
-    readonly pairedLevels: Array<[number, number]>;
-    readonly statement: string;
-    readonly receipt: string;
-};
-/** Quantum noise profile summary. */
-export declare function quantumNoiseProfileSummary(): {
-    readonly noiseModels: QuantumNoiseModel[];
-    readonly errorCodes: ErrorCorrectionCode[];
-    readonly statement: string;
-    readonly receipt: string;
-};
 export interface DataSource {
     name: string;
     url: string;
@@ -2398,12 +2354,6 @@ export declare function quantumCapabilityAudit(matrix?: MindMatrix): {
 export declare function quantumQualityGate(matrix?: MindMatrix): QualityMetrics;
 /** Generate quantum self-improvement report. */
 export declare function quantumSelfImprove(matrix?: MindMatrix): SelfImprovementReport;
-/** Continuous self-improvement loop description. */
-export declare function quantumSelfImprovementLoop(): {
-    readonly phases: string[];
-    readonly schedule: string;
-    readonly statement: string;
-};
 export type ImprovementRecommendation = {
     readonly area: string;
     readonly current: string;
@@ -2438,23 +2388,6 @@ export declare function documentationImprovements(): ImprovementRecommendation[]
  * Analyze error correction and recommend improvements
  */
 export declare function errorCorrectionImprovements(): ImprovementRecommendation[];
-/**
- * Comprehensive improvement roadmap
- */
-export declare function improvementRoadmap(matrix?: MindMatrix): {
-    total: number;
-    highImpact: number;
-    mediumImpact: number;
-    lowImpact: number;
-    prioritized: ImprovementRecommendation[];
-    statement: string;
-    roadmap: {
-        'Wave 62 (Now)': string[];
-        'Wave 63': string[];
-        'Wave 64': string[];
-    };
-    receipt: string;
-};
 /**
  * Autonomous capability assessment
  */
@@ -2527,33 +2460,6 @@ export declare function patternDeviceTopologyFirst(): LearningPattern;
  * Learned during Wave 61 (validation implementation)
  */
 export declare function patternFidelityWithCI(): LearningPattern;
-/**
- * Quantum Standards: Principles Encoded as Codified Rules
- */
-export declare function quantumStandards(matrix?: MindMatrix): {
-    standards: QuantumStandard[];
-    count: number;
-    allValidated: boolean;
-    statement: string;
-    receipt: string;
-};
-/**
- * Lessons Learned Summary
- */
-export declare function lessonsLearnedSummary(matrix?: MindMatrix): {
-    patterns: LearningPattern[];
-    count: number;
-    statement: string;
-    summary: {
-        Security: string;
-        Reliability: string;
-        Verifiability: string;
-        Quality: string;
-        Testing: string;
-        Compatibility: string;
-    };
-    receipt: string;
-};
 export type SystemReflection = {
     readonly timestamp: number;
     readonly waveNumber: number;
@@ -3361,25 +3267,6 @@ export type ProductionCertification = {
  */
 export declare function measureSpeedup(algorithm: string): SpeedupMeasurement;
 /**
- * Self-assessment over the algorithms that actually execute. Not a certification:
- * nothing external audited this, and the previous grade said otherwise.
- */
-export declare function generateProductionCertification(matrix?: MindMatrix): ProductionCertification;
-/**
- * Validation report over executed algorithms ONLY. Averaging a real speedup
- * together with zeros for algorithms that never ran would understate nothing and
- * overstate everything — so unmeasured algorithms are excluded and counted separately.
- */
-export declare function empiricalValidationReport(matrix?: MindMatrix): {
-    readonly algorithmsMeasured: number;
-    readonly algorithmsUnmeasured: number;
-    readonly averageSpeedup: number;
-    readonly highestSpeedup: number;
-    readonly lowestSpeedup: number;
-    readonly statement: string;
-    readonly receipt: string;
-};
-/**
  * Readiness checklist where every item is a predicate that can fail.
  */
 export declare function productionReadinessChecklist(matrix?: MindMatrix): {
@@ -3419,20 +3306,6 @@ export type ProductionDeployment = {
  */
 export declare function productionDeploymentAssessment(matrix?: MindMatrix): ProductionDeployment;
 /**
- * Self-assessment from measured inputs. This is NOT a certification: nothing external
- * audited it, so the previous 'GOLD/SILVER/BRONZE' grade and its self-issued 90-day
- * validity have been removed rather than recomputed. A grade a system awards itself
- * carries no information.
- */
-export declare function finalProductionCertification(matrix?: MindMatrix): {
-    readonly selfAssessed: true;
-    readonly externallyCertified: false;
-    readonly inputs: Record<string, number>;
-    readonly score: number;
-    readonly statement: string;
-    readonly receipt: string;
-};
-/**
  * System report, every figure measured at call time.
  */
 export declare function quantumSystemFinalReport(matrix?: MindMatrix): {
@@ -3445,6 +3318,56 @@ export declare function quantumSystemFinalReport(matrix?: MindMatrix): {
 };
 export { addressSearchCostsLog2, minimalRegisterWidth, readUuid, sealUuid, uuidOfBytes, uuidRegister, uuidStamp, verifyUuid } from '../0/index.ts';
 export type { UuidReading, UuidVariant } from '../0/index.ts';
+/**
+ * A MATH ERROR FALLS BACK TO THE INVOLUTION THAT OWNS IT (owner, 2026-11-15: "instead of banning math, fall back on
+ * math errors to involutions"; then "fix by error handling fallbacks").
+ *
+ * An operation that cannot answer in its own domain is answered through the involution whose fixed set marks the
+ * failure, and the answer carries the name of the route it took — so a fallback is never mistaken for an ordinary
+ * value, and an absent input is never mistaken for either:
+ *   - DIVISION on the projective line: inversion r ↦ 1/r swaps 0 and ∞, so n / 0 is ±∞ — the inversion of 0 / n. ECMAScript
+ *     division already IS this fallback (IEEE 754: 1/0 = ∞, 0/0 = NaN); what breaks it is a guard that overrides it with
+ *     0. 0 / 0 is the fixed point that names no point of the line — 'indeterminate', NaN, never 0.
+ *   - SQUARE ROOT of a negative through negation x ↦ −x (fixing only 0): √x = i·√(−x), which squares back to x.
+ *   - LOGARITHM of a negative through negation and the half-turn: log x = log(−x) + iπ; log 0 = −∞ through inversion.
+ *   - A DIGIT divided by 0 in the ring through σ(d) = 10 − d (fixing exactly 0 and 5): the mirror station.
+ * Each route is a theorem in src/pair/lean/proofs/fallback.lean; canon.silent-math-fallback counts the guards that still
+ * override a fallback with a constant.
+ */
+export declare const FALLBACK_THEOREM_FILE = "src/pair/lean/proofs/fallback.lean";
+export type FallbackRoute = 'arithmetic' | 'inversion' | 'reflection' | 'indeterminate' | 'absent';
+export type Fallback<T> = {
+    readonly value: T;
+    readonly via: FallbackRoute;
+};
+export type ComplexFallback = {
+    readonly re: number;
+    readonly im: number;
+    readonly via: FallbackRoute;
+};
+/** n / d, answered through inversion when d = 0: ±∞ for n ≠ 0, the indeterminate fixed point (NaN) for 0 / 0. */
+export declare function quotient(n: number, d: number): Fallback<number>;
+/** √x, answered through negation when x < 0: i·√(−x). */
+export declare function rootOf(x: number): ComplexFallback;
+/** log x, answered through negation and the half-turn when x < 0, and through inversion at 0 (−∞). */
+export declare function logOf(x: number): ComplexFallback;
+/** A digit of the ring divided by 0: the mirror station σ(d) = 10 − d, the reflection through 0. */
+export declare function ringQuotientByZero(d: number): Fallback<number>;
+export declare function everyMathErrorFallsBackToTheInvolutionThatOwnsIt(matrix?: MindMatrix): {
+    computes: boolean;
+    theoremFile: string;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
 export declare const QUANTUM_UUID_THEOREM_FILE = "src/pair/lean/proofs/thousand.lean";
 export declare function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix?: MindMatrix): {
