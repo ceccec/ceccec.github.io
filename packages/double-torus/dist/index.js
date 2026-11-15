@@ -67110,6 +67110,7 @@ function walkSrcTree(root, out) {
   if (!existsSync(srcRoot)) return;
   const walk = (dir, relParts) => {
     for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+      out.listing?.push(join(...relParts, entry2.name) + (entry2.isDirectory() ? "/" : ""));
       if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
       const full = join(dir, entry2.name);
       if (entry2.isDirectory()) {
@@ -67146,8 +67147,9 @@ function walkSrcTree(root, out) {
   };
   walk(srcRoot, []);
 }
+var lastFacts;
 function collectEnforcementFacts(root) {
-  const out = { merkleFiles: [], codeFiles: [], indexTs: [], bodies: /* @__PURE__ */ new Map(), hyphenFolders: [], nonTs: [] };
+  const out = { listing: [], merkleFiles: [], codeFiles: [], indexTs: [], bodies: /* @__PURE__ */ new Map(), hyphenFolders: [], nonTs: [] };
   walkSrcTree(root, out);
   const hash = createHash("sha256");
   for (const file of out.merkleFiles.sort()) {
@@ -67161,6 +67163,9 @@ function collectEnforcementFacts(root) {
   hash.update(readFileSync(join(root, "package.json")));
   const merkle = hash.digest("hex");
   seedMerkleCache(root, merkle);
+  const vitepressFiles = vitepressSourceFiles(root).map((file) => relative(root, file));
+  const key = createHash("sha256").update([root, merkle, ...out.listing, "", ...vitepressFiles].join("\n")).digest("hex");
+  if (lastFacts?.key === key) return lastFacts.facts;
   const scriptShells = scanScriptShells(root, { wiredOnly: true });
   const pairs = gatesSavedInQuantumPairs();
   const strict = computeStrictGateSnapshot2(
@@ -67197,7 +67202,7 @@ function collectEnforcementFacts(root) {
     pairs.paired
   );
   const computational = computeComputationalLimitSnapshot(root, out.indexTs, out.bodies, out.codeFiles);
-  return {
+  const facts = {
     root,
     merkle,
     scriptShells,
@@ -67207,6 +67212,8 @@ function collectEnforcementFacts(root) {
     strict,
     computational
   };
+  lastFacts = { key, facts };
+  return facts;
 }
 function collectImportOffenders(facts) {
   return [...facts.strict.imports];
@@ -67223,7 +67230,17 @@ function importPathTreeHopDistance(importerDirRel, importeeDirRel) {
   return from.length - common + (to.length - common);
 }
 var relativeImportSpecsFromBody = relativeImportSpecs;
+var IMPORT_PATH_DISTANCE_EDGES = /* @__PURE__ */ new WeakMap();
+var FOLDER_GRAVITY = /* @__PURE__ */ new WeakMap();
 function collectImportPathDistanceEdges(facts) {
+  let known = IMPORT_PATH_DISTANCE_EDGES.get(facts);
+  if (!known) {
+    known = importPathDistanceEdgesOf(facts);
+    IMPORT_PATH_DISTANCE_EDGES.set(facts, known);
+  }
+  return known;
+}
+function importPathDistanceEdgesOf(facts) {
   const edges = [];
   for (const file of facts.srcCodeFiles) {
     const importer = relative(facts.root, file).replace(/\\/g, "/");
@@ -67359,6 +67376,15 @@ function srcTopFolderKey(relPath) {
 }
 function folderGravityMeasuredByTheCode(root = enforcementScanRoot(), facts) {
   const united = facts ?? collectEnforcementFacts(root);
+  if (united.root !== root) return folderGravityFromFacts(root, united);
+  let known = FOLDER_GRAVITY.get(united);
+  if (!known) {
+    known = folderGravityFromFacts(root, united);
+    FOLDER_GRAVITY.set(united, known);
+  }
+  return known;
+}
+function folderGravityFromFacts(root, united) {
   const edges = collectImportPathDistanceEdges(united);
   const byFolder = /* @__PURE__ */ new Map();
   const ensure = (folder) => {

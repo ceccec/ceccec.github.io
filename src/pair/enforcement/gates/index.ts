@@ -206,6 +206,8 @@ export type EnforcementFacts = {
 const INDEX_TS = 'index.ts'
 
 type WalkOut = {
+  /** Every entry of every directory the walk lists — skipped ones included, directories marked with a trailing slash. */
+  listing?: string[]
   merkleFiles: string[]
   codeFiles: string[]
   indexTs: string[]
@@ -219,6 +221,7 @@ function walkSrcTree(root: string, out: WalkOut): void {
   if (!existsSync(srcRoot)) return
   const walk = (dir: string, relParts: string[]) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      out.listing?.push(join(...relParts, entry.name) + (entry.isDirectory() ? '/' : ''))
       if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
       const full = join(dir, entry.name)
       if (entry.isDirectory()) {
@@ -254,8 +257,14 @@ function walkSrcTree(root: string, out: WalkOut): void {
 }
 
 /** One content-addressed merkle pass + one src walk + one strict snapshot — shared by trinity, weave, precommit. */
+// The facts of the last collection, and what they were collected from. One site build collected them eleven times
+// over an unchanged tree (4.4 s). Every file the collection reads is in the merkle digest (measured: no read outside
+// src/*.ts|json|vue, the .vitepress source files and package.json), and every directory entry under src is in the
+// listing — so the same digest and listing mean the same tree, and the walk and digest are still taken every call.
+let lastFacts: { key: string; facts: EnforcementFacts } | undefined
+
 export function collectEnforcementFacts(root: string): EnforcementFacts {
-  const out: WalkOut = { merkleFiles: [], codeFiles: [], indexTs: [], bodies: new Map(), hyphenFolders: [], nonTs: [] }
+  const out: WalkOut = { listing: [], merkleFiles: [], codeFiles: [], indexTs: [], bodies: new Map(), hyphenFolders: [], nonTs: [] }
   walkSrcTree(root, out)
   const hash = createHash('sha256')
   for (const file of out.merkleFiles.sort()) {
@@ -270,6 +279,9 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
   hash.update(readFileSync(join(root, 'package.json')))
   const merkle = hash.digest('hex')
   seedMerkleCache(root, merkle)
+  const vitepressFiles = vitepressSourceFiles(root).map((file) => relative(root, file))
+  const key = createHash('sha256').update([root, merkle, ...out.listing!, '', ...vitepressFiles].join('\n')).digest('hex')
+  if (lastFacts?.key === key) return lastFacts.facts
   const scriptShells = scanScriptShells(root, { wiredOnly: true })
   const pairs = gatesSavedInQuantumPairs()
   const strict = computeStrictGateSnapshot(
@@ -306,7 +318,7 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
     pairs.paired,
   )
   const computational = computeComputationalLimitSnapshot(root, out.indexTs, out.bodies, out.codeFiles)
-  return {
+  const facts: EnforcementFacts = {
     root,
     merkle,
     scriptShells,
@@ -315,6 +327,8 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
     bodies: out.bodies,
     strict,
     computational }
+  lastFacts = { key, facts }
+  return facts
 }
 
 export function readFact(facts: EnforcementFacts, path: string): string {
@@ -379,7 +393,18 @@ const relativeImportSpecsFromBody = relativeImportSpecs
  * Collect every relative import edge under src/ with segment + tree-hop distances shown.
  * Reuses collectEnforcementFacts bodies — no wet re-walk when facts are passed in.
  */
+// Both are pure functions of one facts object (folder gravity also lists src/ directories, which the facts' key
+// covers), and collectEnforcementFacts hands back the same object for the same tree — so each is computed once per
+// facts object instead of once per caller (four callers of folder gravity in one site build).
+const IMPORT_PATH_DISTANCE_EDGES = new WeakMap<EnforcementFacts, readonly ImportPathDistanceEdge[]>()
+const FOLDER_GRAVITY = new WeakMap<EnforcementFacts, ReturnType<typeof folderGravityFromFacts>>()
+
 export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonly ImportPathDistanceEdge[] {
+  let known = IMPORT_PATH_DISTANCE_EDGES.get(facts)
+  if (!known) { known = importPathDistanceEdgesOf(facts); IMPORT_PATH_DISTANCE_EDGES.set(facts, known) }
+  return known
+}
+function importPathDistanceEdgesOf(facts: EnforcementFacts): readonly ImportPathDistanceEdge[] {
   const edges: ImportPathDistanceEdge[] = []
   for (const file of facts.srcCodeFiles) {
     const importer = relative(facts.root, file).replace(/\\/g, '/')
@@ -596,6 +621,12 @@ export type FolderMigrationDirection = {
  */
 export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
+  if (united.root !== root) return folderGravityFromFacts(root, united)
+  let known = FOLDER_GRAVITY.get(united)
+  if (!known) { known = folderGravityFromFacts(root, united); FOLDER_GRAVITY.set(united, known) }
+  return known
+}
+function folderGravityFromFacts(root: string, united: EnforcementFacts) {
   const edges = collectImportPathDistanceEdges(united)
   type MutableFolderMass = {
     folder: string

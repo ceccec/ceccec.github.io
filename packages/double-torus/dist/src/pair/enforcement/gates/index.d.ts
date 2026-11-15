@@ -287,7 +287,6 @@ export type EnforcementFacts = {
     readonly strict: StrictGateSnapshot;
     readonly computational: ComputationalLimitSnapshot;
 };
-/** One content-addressed merkle pass + one src walk + one strict snapshot — shared by trinity, weave, precommit. */
 export declare function collectEnforcementFacts(root: string): EnforcementFacts;
 export declare function readFact(facts: EnforcementFacts, path: string): string;
 /** Read-only views of facts.strict — no re-scans. */
@@ -310,10 +309,6 @@ export declare function importPathSegmentDistance(spec: string): number;
 export declare const importPathGapHops: typeof importGapCount;
 /** Folder-tree hop distance via longest common prefix (LCA) under posix-rel paths. */
 export declare function importPathTreeHopDistance(importerDirRel: string, importeeDirRel: string): number;
-/**
- * Collect every relative import edge under src/ with segment + tree-hop distances shown.
- * Reuses collectEnforcementFacts bodies — no wet re-walk when facts are passed in.
- */
 export declare function collectImportPathDistanceEdges(facts: EnforcementFacts): readonly ImportPathDistanceEdge[];
 /**
  * Import path shows distance to other files — measurable on every edge — and folds into
