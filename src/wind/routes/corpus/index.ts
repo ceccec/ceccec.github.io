@@ -1778,25 +1778,41 @@ const bm25Tokenize = (text: string): string[] => (text.toLowerCase().match(/[a-z
  * query ranks them by BM25 (k1 = 1.2, b = 0.75 — the Lucene/Elasticsearch/Solr defaults) with IDF weighting, term-
  * frequency saturation and document-length normalization. Fully client-side over the sealed corpus: deterministic,
  * zero-token, no egress — a private BM25 index. Lexical relevance, not neural/semantic ranking. [[portal-is-the-ai-model]] */
-export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryption post quantum cryptography') {
+// The BM25 index over the sealed corpus — documents, their term counts, document frequencies and mean length. It
+// depends on THEOREM_ATOM_SEED alone, so it is built once per process; every query (about 280 in one site build)
+// used to rebuild it, and to recount each document's terms for every query.
+let bm25CorpusIndex: {
+  readonly docs: readonly { slug: string; title: string; provedBy: string; identity: ReturnType<typeof algebraicStatementOf>; tokens: string[]; tf: ReadonlyMap<string, number> }[]
+  readonly df: ReadonlyMap<string, number>
+  readonly avgdl: number
+} | undefined
+function bm25Corpus() {
+  if (bm25CorpusIndex) return bm25CorpusIndex
   // Every hit carries its identity through the ONE accessor (user: "free for all") — curated or verbatim-extracted.
   // Algebraic-QC top priority (user 2026-07-28): identity tokens join the BM25 doc so algebraic queries retrieve the right fold.
   const docs = THEOREM_ATOM_SEED.map((atom) => {
     const identity = algebraicStatementOf(atom)
-    return { slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, identity, tokens: bm25Tokenize(`${atom.theorem} ${atom.states}${identity ? ` ${identity}` : ''}`) }
+    const tokens = bm25Tokenize(`${atom.theorem} ${atom.states}${identity ? ` ${identity}` : ''}`)
+    const tf = new Map<string, number>()
+    for (const word of tokens) tf.set(word, (tf.get(word) ?? 0) + 1)
+    return { slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, identity, tokens, tf }
   })
-  const N = docs.length
-  const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / N
+  const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / docs.length
   const df = new Map<string, number>()
   for (const doc of docs) for (const word of new Set(doc.tokens)) df.set(word, (df.get(word) ?? 0) + 1)
+  bm25CorpusIndex = { docs, df, avgdl }
+  return bm25CorpusIndex
+}
+
+export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryption post quantum cryptography') {
+  const { docs, df, avgdl } = bm25Corpus()
+  const N = docs.length
   const idf = (word: string) => log(1 + (N - (df.get(word) ?? 0) + 1 / 2) / ((df.get(word) ?? 0) + 1 / 2)) // Okapi BM25 IDF
   const k1 = 6 / 5, b = 3 / 4 // Lucene/Elasticsearch defaults (k1 = 1.2, b = 0.75)
   const bm25Tf = (freq: number, docLen: number) => (freq * (k1 + 1)) / (freq + k1 * (1 - b + (b * docLen) / avgdl)) // saturation + length norm
   const scoreOf = (doc: typeof docs[number], qTokens: readonly string[]) => {
-    const tf = new Map<string, number>()
-    for (const word of doc.tokens) tf.set(word, (tf.get(word) ?? 0) + 1)
     let s = 0
-    for (const q of qTokens) { const f = tf.get(q) ?? 0; if (f > 0) s += idf(q) * bm25Tf(f, doc.tokens.length) }
+    for (const q of qTokens) { const f = doc.tf.get(q) ?? 0; if (f > 0) s += idf(q) * bm25Tf(f, doc.tokens.length) }
     return s
   }
   const rank = (q: string) => { const qTokens = bm25Tokenize(q); return docs.map((doc) => ({ slug: doc.slug, title: doc.title, provedBy: doc.provedBy, identity: doc.identity, score: scoreOf(doc, qTokens) })).filter((row) => row.score > 0).sort((a, b) => b.score - a.score) }

@@ -8600,9 +8600,6 @@ function indexRegistryFromLogicRel(logicRel, mindMount = "src/quantum/heaven/min
     action: sma2.action
   };
 }
-function stripComments(text) {
-  return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
-}
 var LOGIC_DISPLAY_MOUNT = "src/quantum/heaven/mind/";
 var DISPLAY_DUAL_LAW = `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index (index.ts + index.vue co-located)`;
 function mindLogicTailsFromIndexFiles(indexTsFiles, root) {
@@ -36865,24 +36862,32 @@ function hasTheoremFigure(slug) {
 }
 var BM25_STOPWORDS = new Set("the a an of and or to in is it that for on as by with be are this from at not no its into each all one two are was were has have had will can could would should".split(" "));
 var bm25Tokenize = (text) => (text.toLowerCase().match(/[a-z0-9]+/g) ?? []).filter((word) => word.length > 2 && !BM25_STOPWORDS.has(word));
-function privateSearchRanksByBM25IndustryStandard(query = "quantum encryption post quantum cryptography") {
+var bm25CorpusIndex;
+function bm25Corpus() {
+  if (bm25CorpusIndex) return bm25CorpusIndex;
   const docs = THEOREM_ATOM_SEED.map((atom) => {
     const identity = algebraicStatementOf(atom);
-    return { slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, identity, tokens: bm25Tokenize(`${atom.theorem} ${atom.states}${identity ? ` ${identity}` : ""}`) };
+    const tokens = bm25Tokenize(`${atom.theorem} ${atom.states}${identity ? ` ${identity}` : ""}`);
+    const tf = /* @__PURE__ */ new Map();
+    for (const word of tokens) tf.set(word, (tf.get(word) ?? 0) + 1);
+    return { slug: theoremSlug(atom.theorem), title: atom.theorem, provedBy: atom.provedBy, identity, tokens, tf };
   });
-  const N = docs.length;
-  const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / N;
+  const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / docs.length;
   const df = /* @__PURE__ */ new Map();
   for (const doc of docs) for (const word of new Set(doc.tokens)) df.set(word, (df.get(word) ?? 0) + 1);
+  bm25CorpusIndex = { docs, df, avgdl };
+  return bm25CorpusIndex;
+}
+function privateSearchRanksByBM25IndustryStandard(query = "quantum encryption post quantum cryptography") {
+  const { docs, df, avgdl } = bm25Corpus();
+  const N = docs.length;
   const idf = (word) => log(1 + (N - (df.get(word) ?? 0) + 1 / 2) / ((df.get(word) ?? 0) + 1 / 2));
   const k1 = 6 / 5, b = 3 / 4;
   const bm25Tf = (freq, docLen) => freq * (k1 + 1) / (freq + k1 * (1 - b + b * docLen / avgdl));
   const scoreOf = (doc, qTokens2) => {
-    const tf = /* @__PURE__ */ new Map();
-    for (const word of doc.tokens) tf.set(word, (tf.get(word) ?? 0) + 1);
     let s = 0;
     for (const q of qTokens2) {
-      const f2 = tf.get(q) ?? 0;
+      const f2 = doc.tf.get(q) ?? 0;
       if (f2 > 0) s += idf(q) * bm25Tf(f2, doc.tokens.length);
     }
     return s;
@@ -67224,7 +67229,7 @@ function collectImportPathDistanceEdges(facts) {
     const importer = relative(facts.root, file).replace(/\\/g, "/");
     const importerDir = dirname(importer).replace(/\\/g, "/");
     const body = facts.bodies.get(relative(facts.root, file)) ?? "";
-    for (const spec of relativeImportSpecsFromBody(stripComments3(body))) {
+    for (const spec of relativeImportSpecsFromBody(stripComments(body))) {
       const resolved = resolve(dirname(file), spec);
       const resolvedRel = relative(facts.root, resolved).replace(/\\/g, "/");
       let importeeDir = resolvedRel;
@@ -67891,7 +67896,7 @@ var CORPUS_SIZE_BUDGET_BYTES = 432 * BYTES_PER_MEGABYTE;
 var SEED_FLOOR_BYTES = 2 ** (2 * 5);
 var BYTE_EXTENT_FACTOR = 2 ** (6 * 5);
 var STRIPPED_COMMENTS = /* @__PURE__ */ new Map();
-function stripComments3(text) {
+function stripComments(text) {
   let stripped = STRIPPED_COMMENTS.get(text);
   if (stripped === void 0) {
     stripped = text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
@@ -67931,7 +67936,7 @@ function scanOneMathOffenders(root, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative(root, file).replace(/\\/g, "/");
-    const body = stripComments3(bodies.get(rel) ?? "");
+    const body = stripComments(bodies.get(rel) ?? "");
     if (!body) continue;
     for (const f2 of formulas) {
       if (f2.homes.includes(rel)) continue;
@@ -67993,7 +67998,7 @@ function scanImportGaps(root, codeFiles, bodies) {
     const maxMindGaps = depth;
     const maxSrcGaps = depth + 3;
     const rel = relative(root, file);
-    for (const spec of relativeImportSpecs(stripComments3(bodies.get(rel) ?? ""))) {
+    for (const spec of relativeImportSpecs(stripComments(bodies.get(rel) ?? ""))) {
       const gaps = importGapCount(spec);
       if (gaps === 0) continue;
       const resolved = resolve(dirname(file), spec);
@@ -68017,7 +68022,7 @@ function scanImports(root, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative(root, file);
-    const specs = relativeImportSpecs(stripComments3(bodies.get(rel) ?? ""));
+    const specs = relativeImportSpecs(stripComments(bodies.get(rel) ?? ""));
     for (const spec of specs) {
       if (!spec.startsWith(".")) continue;
       const last = spec.split("/").pop() ?? "";
@@ -68145,7 +68150,10 @@ function computeStrictGateSnapshot2(root, merkle, codeFiles, bodies, hyphenFolde
   };
 }
 var REGEX_PRECEDER = /[=([{ ;:!&|?+\-*%<>~^]$|\b(?:return|typeof|case|in|of|delete|void|new|do|else|yield|await)$/;
+var STRIPPED_STRINGS_AND_COMMENTS = /* @__PURE__ */ new Map();
 function stripStringsAndComments(text) {
+  const known = STRIPPED_STRINGS_AND_COMMENTS.get(text);
+  if (known !== void 0) return known;
   let out = "";
   let i = 0;
   let state = "code";
@@ -68275,6 +68283,7 @@ function stripStringsAndComments(text) {
     }
     i += 1;
   }
+  STRIPPED_STRINGS_AND_COMMENTS.set(text, out);
   return out;
 }
 function scanHardcodedCrackOffenders(root, codeFiles, bodies) {

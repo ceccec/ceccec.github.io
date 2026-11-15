@@ -4,7 +4,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
 import { GATES, abs, antichainLevels, applyGate, ceil, cnot, floor, foldPair, isUuid, log, log2, max, merkleFold, min, probabilities, qubits, round, roundTo, sqrt, toUuid, type QuantumState } from '../../../../0/index.ts'
 import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan/index.ts'
-import { stringMass, enforcementScanRoot, importSpecs } from '../strict/scan/index.ts'
+import { stringMass, enforcementScanRoot, importSpecs, stripComments } from '../strict/scan/index.ts'
 export { enforcementScanRoot } from '../strict/scan/index.ts'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1/index.ts'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2/index.ts'
@@ -179,10 +179,6 @@ export function indexRegistryFromLogicRel(logicRel: string, mindMount = 'src/qua
     science: sma.science,
     model: sma.model,
     action: sma.action }
-}
-
-function stripComments(text: string): string {
-  return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
 }
 
 /** Physical logic mount — transitional mind barrel until full dissolve. */

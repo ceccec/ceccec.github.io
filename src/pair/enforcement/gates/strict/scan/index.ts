@@ -2945,7 +2945,12 @@ export type CrackOffender = { file: string; literal: string; count: number }
 // digits inside /\d{2,4}/ are pattern syntax, not magnitudes. Template `${…}` interpolations are
 // CODE and are kept. A `/` opens a regex literal only after a token that cannot end an expression.
 const REGEX_PRECEDER = /[=([{ ;:!&|?+\-*%<>~^]$|\b(?:return|typeof|case|in|of|delete|void|new|do|else|yield|await)$/
+// One answer per text: the gates strip the same file bodies several times in one process (about six passes over
+// the corpus in a site build, 2.9 s). The key is the text itself, so a changed file is a different key.
+const STRIPPED_STRINGS_AND_COMMENTS = new Map<string, string>()
 export function stripStringsAndComments(text: string): string {
+  const known = STRIPPED_STRINGS_AND_COMMENTS.get(text)
+  if (known !== undefined) return known
   let out = ''
   let i = 0
   type S = 'code' | 'line' | 'block' | 'single' | 'double' | 'template' | 'regex' | 'regexClass'
@@ -2990,6 +2995,7 @@ export function stripStringsAndComments(text: string): string {
     if (ch === '`') { templateDepth.pop(); state = 'code'; i += 1; continue }
     i += 1
   }
+  STRIPPED_STRINGS_AND_COMMENTS.set(text, out)
   return out
 }
 

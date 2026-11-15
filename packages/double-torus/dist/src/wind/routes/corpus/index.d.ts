@@ -837,11 +837,6 @@ export declare function quantumiseAnchorsContentAddressed(): {
     statement: string;
     boundary: string;
 };
-/** privateSearchRanksByBM25IndustryStandard — the private search engine ranked by Okapi BM25, the industry-standard
- * lexical ranking (user, 2026-07-25: "further improve to industry standard"). Every registry page is a document; the
- * query ranks them by BM25 (k1 = 1.2, b = 0.75 — the Lucene/Elasticsearch/Solr defaults) with IDF weighting, term-
- * frequency saturation and document-length normalization. Fully client-side over the sealed corpus: deterministic,
- * zero-token, no egress — a private BM25 index. Lexical relevance, not neural/semantic ranking. [[portal-is-the-ai-model]] */
 export declare function privateSearchRanksByBM25IndustryStandard(query?: string): {
     computes: boolean;
     query: string;
