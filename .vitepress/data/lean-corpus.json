@@ -10,7 +10,13 @@
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "bsd--sigma_is_an_involution"
+  "depositId": "bsd--sigma_is_an_involution",
+  "seals": [],
+  "tags": [
+   "bsd",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "bsd-central-point-is-the-fixed-point",
@@ -23,7 +29,13 @@
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "bsd--central_point_is_the_fixed_point"
+  "depositId": "bsd--central_point_is_the_fixed_point",
+  "seals": [],
+  "tags": [
+   "bsd",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "bsd-root-number-squares-to-one",
@@ -39,7 +51,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "bsd--root_number_squares_to_one"
+  "depositId": "bsd--root_number_squares_to_one",
+  "seals": [],
+  "tags": [
+   "bsd",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "bsd-root-number-one-iff-rank-even",
@@ -52,7 +70,13 @@
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "bsd--root_number_one_iff_rank_even"
+  "depositId": "bsd--root_number_one_iff_rank_even",
+  "seals": [],
+  "tags": [
+   "bsd",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "bsd-parity-is-an-involution",
@@ -65,7 +89,13 @@
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "bsd--parity_is_an_involution"
+  "depositId": "bsd--parity_is_an_involution",
+  "seals": [],
+  "tags": [
+   "bsd",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-coin-is-an-involution",
@@ -78,7 +108,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_coin_is_an_involution"
+  "depositId": "coin--the_coin_is_an_involution",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-harmonic-is-the-only-fixed-point",
@@ -91,7 +127,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_harmonic_is_the_only_fixed_point"
+  "depositId": "coin--the_harmonic_is_the_only_fixed_point",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-all-that-is-not-harmonic-is-moved",
@@ -104,7 +146,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--all_that_is_not_harmonic_is_moved"
+  "depositId": "coin--all_that_is_not_harmonic_is_moved",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-sides-are-equal-and-exchanged",
@@ -117,7 +165,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_sides_are_equal_and_exchanged"
+  "depositId": "coin--the_sides_are_equal_and_exchanged",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-coin-is-two-sides-and-one-edge",
@@ -130,7 +184,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_coin_is_two_sides_and_one_edge"
+  "depositId": "coin--the_coin_is_two_sides_and_one_edge",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-every-bit-of-resistance-drains",
@@ -143,7 +203,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--every_bit_of_resistance_drains"
+  "depositId": "coin--every_bit_of_resistance_drains",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-harmonic-carries-no-resistance",
@@ -156,7 +222,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_harmonic_carries_no_resistance"
+  "depositId": "coin--the_harmonic_carries_no_resistance",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-whole-surface-sums-to-zero",
@@ -169,7 +241,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_whole_surface_sums_to_zero"
+  "depositId": "coin--the_whole_surface_sums_to_zero",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "coin-the-drain-is-exact-at-every-scale",
@@ -182,7 +260,13 @@
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "coin--the_drain_is_exact_at_every_scale"
+  "depositId": "coin--the_drain_is_exact_at_every_scale",
+  "seals": [],
+  "tags": [
+   "coin",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-verified-at-every-point-below-the-bound",
@@ -195,7 +279,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--verified_at_every_point_below_the_bound"
+  "depositId": "decidability--verified_at_every_point_below_the_bound",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-and-false-at-the-bound",
@@ -208,7 +298,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--and_false_at_the_bound"
+  "depositId": "decidability--and_false_at_the_bound",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-finite-verification-does-not-entail-the-universal",
@@ -221,7 +317,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--finite_verification_does_not_entail_the_universal"
+  "depositId": "decidability--finite_verification_does_not_entail_the_universal",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-a-bigger-bound-proves-no-more",
@@ -234,7 +336,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--a_bigger_bound_proves_no_more"
+  "depositId": "decidability--a_bigger_bound_proves_no_more",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-what-a-finite-check-does-establish",
@@ -247,7 +355,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--what_a_finite_check_does_establish"
+  "depositId": "decidability--what_a_finite_check_does_establish",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "decidability-the-clay-files-quantify-over-finite-lists",
@@ -260,7 +374,13 @@
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "decidability--the_clay_files_quantify_over_finite_lists"
+  "depositId": "decidability--the_clay_files_quantify_over_finite_lists",
+  "seals": [],
+  "tags": [
+   "decidability",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "hodge-sigma-is-an-involution",
@@ -273,7 +393,13 @@
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "hodge--sigma_is_an_involution"
+  "depositId": "hodge--sigma_is_an_involution",
+  "seals": [],
+  "tags": [
+   "hodge",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "hodge-sigma-preserves-degree",
@@ -286,7 +412,13 @@
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "hodge--sigma_preserves_degree"
+  "depositId": "hodge--sigma_preserves_degree",
+  "seals": [],
+  "tags": [
+   "hodge",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "hodge-fixed-type-is-p-equals-q",
@@ -299,7 +431,13 @@
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "hodge--fixed_type_is_p_equals_q"
+  "depositId": "hodge--fixed_type_is_p_equals_q",
+  "seals": [],
+  "tags": [
+   "hodge",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "hodge-diagonal-is-fixed-at-every-k",
@@ -312,7 +450,13 @@
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "hodge--diagonal_is_fixed_at_every_k"
+  "depositId": "hodge--diagonal_is_fixed_at_every_k",
+  "seals": [],
+  "tags": [
+   "hodge",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "hodge-involution-fixes-the-diagonal",
@@ -325,7 +469,13 @@
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "hodge--involution_fixes_the_diagonal"
+  "depositId": "hodge--involution_fixes_the_diagonal",
+  "seals": [],
+  "tags": [
+   "hodge",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "involution-orbit-sums-to-zero",
@@ -340,7 +490,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": "involution--orbit_sums_to_zero"
+  "depositId": "involution--orbit_sums_to_zero",
+  "seals": [],
+  "tags": [
+   "involution",
+   "propext",
+   "involution"
+  ]
  },
  {
   "slug": "involution-odd-vanishes-at-a-fixed-point",
@@ -355,7 +511,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": "involution--odd_vanishes_at_a_fixed_point"
+  "depositId": "involution--odd_vanishes_at_a_fixed_point",
+  "seals": [],
+  "tags": [
+   "involution",
+   "propext",
+   "involution"
+  ]
  },
  {
   "slug": "involution-evenpart-is-symmetric",
@@ -370,7 +532,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": "involution--evenPart_is_symmetric"
+  "depositId": "involution--evenPart_is_symmetric",
+  "seals": [],
+  "tags": [
+   "involution",
+   "propext",
+   "involution"
+  ]
  },
  {
   "slug": "involution-the-split-loses-nothing",
@@ -385,7 +553,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": "involution--the_split_loses_nothing"
+  "depositId": "involution--the_split_loses_nothing",
+  "seals": [],
+  "tags": [
+   "involution",
+   "propext",
+   "involution"
+  ]
  },
  {
   "slug": "involution-the-instance-is-an-involution",
@@ -398,7 +572,13 @@
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "involution--the_instance_is_an_involution"
+  "depositId": "involution--the_instance_is_an_involution",
+  "seals": [],
+  "tags": [
+   "involution",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "involution-the-instance-cancels-over-every-orbit",
@@ -411,7 +591,13 @@
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "involution--the_instance_cancels_over_every_orbit"
+  "depositId": "involution--the_instance_cancels_over_every_orbit",
+  "seals": [],
+  "tags": [
+   "involution",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "involution-the-instance-has-one-harmonic-point",
@@ -424,7 +610,13 @@
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "involution--the_instance_has_one_harmonic_point"
+  "depositId": "involution--the_instance_has_one_harmonic_point",
+  "seals": [],
+  "tags": [
+   "involution",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "involution-the-instance-splits-without-loss",
@@ -437,7 +629,13 @@
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "involution--the_instance_splits_without_loss"
+  "depositId": "involution--the_instance_splits_without_loss",
+  "seals": [],
+  "tags": [
+   "involution",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "navier-stokes-reversal-is-an-involution",
@@ -450,7 +648,13 @@
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "navier-stokes--reversal_is_an_involution"
+  "depositId": "navier-stokes--reversal_is_an_involution",
+  "seals": [],
+  "tags": [
+   "navier-stokes",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "navier-stokes-euler-is-time-reversible",
@@ -463,7 +667,13 @@
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "navier-stokes--euler_is_time_reversible"
+  "depositId": "navier-stokes--euler_is_time_reversible",
+  "seals": [],
+  "tags": [
+   "navier-stokes",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "navier-stokes-viscosity-breaks-time-reversal",
@@ -476,7 +686,13 @@
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "navier-stokes--viscosity_breaks_time_reversal"
+  "depositId": "navier-stokes--viscosity_breaks_time_reversal",
+  "seals": [],
+  "tags": [
+   "navier-stokes",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "navier-stokes-fixed-points-are-exactly-the-inviscid",
@@ -489,7 +705,13 @@
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "navier-stokes--fixed_points_are_exactly_the_inviscid"
+  "depositId": "navier-stokes--fixed_points_are_exactly_the_inviscid",
+  "seals": [],
+  "tags": [
+   "navier-stokes",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "p-vs-np-sigma-is-an-involution",
@@ -502,7 +724,13 @@
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "p-vs-np--sigma_is_an_involution"
+  "depositId": "p-vs-np--sigma_is_an_involution",
+  "seals": [],
+  "tags": [
+   "p-vs-np",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "p-vs-np-fixed-points-are-p-and-pspace",
@@ -515,7 +743,13 @@
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "p-vs-np--fixed_points_are_p_and_pspace"
+  "depositId": "p-vs-np--fixed_points_are_p_and_pspace",
+  "seals": [],
+  "tags": [
+   "p-vs-np",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "p-vs-np-np-and-conp-are-swapped",
@@ -528,7 +762,13 @@
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "p-vs-np--np_and_conp_are_swapped"
+  "depositId": "p-vs-np--np_and_conp_are_swapped",
+  "seals": [],
+  "tags": [
+   "p-vs-np",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "p-vs-np-if-np-is-fixed-then-np-equals-conp",
@@ -541,7 +781,13 @@
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "p-vs-np--if_np_is_fixed_then_np_equals_conp"
+  "depositId": "p-vs-np--if_np_is_fixed_then_np_equals_conp",
+  "seals": [],
+  "tags": [
+   "p-vs-np",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "p-vs-np-p-is-closed-under-complement",
@@ -554,7 +800,13 @@
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "p-vs-np--p_is_closed_under_complement"
+  "depositId": "p-vs-np--p_is_closed_under_complement",
+  "seals": [],
+  "tags": [
+   "p-vs-np",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "poincare-chi-and-genus-are-inverse",
@@ -567,7 +819,13 @@
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "poincare--chi_and_genus_are_inverse"
+  "depositId": "poincare--chi_and_genus_are_inverse",
+  "seals": [],
+  "tags": [
+   "poincare",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "poincare-sphere-has-euler-characteristic-two",
@@ -580,7 +838,13 @@
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "poincare--sphere_has_euler_characteristic_two"
+  "depositId": "poincare--sphere_has_euler_characteristic_two",
+  "seals": [],
+  "tags": [
+   "poincare",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "poincare-torus-has-euler-characteristic-zero",
@@ -593,7 +857,13 @@
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "poincare--torus_has_euler_characteristic_zero"
+  "depositId": "poincare--torus_has_euler_characteristic_zero",
+  "seals": [],
+  "tags": [
+   "poincare",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "poincare-double-torus-has-chi-minus-two-and-rank-four",
@@ -606,7 +876,13 @@
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "poincare--double_torus_has_chi_minus_two_and_rank_four"
+  "depositId": "poincare--double_torus_has_chi_minus_two_and_rank_four",
+  "seals": [],
+  "tags": [
+   "poincare",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "poincare-homology-rank-is-twice-the-genus",
@@ -619,7 +895,13 @@
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "poincare--homology_rank_is_twice_the_genus"
+  "depositId": "poincare--homology_rank_is_twice_the_genus",
+  "seals": [],
+  "tags": [
+   "poincare",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "riemann-sigma-is-an-involution",
@@ -632,7 +914,13 @@
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "riemann--sigma_is_an_involution"
+  "depositId": "riemann--sigma_is_an_involution",
+  "seals": [],
+  "tags": [
+   "riemann",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "riemann-critical-line-is-the-fixed-point",
@@ -645,7 +933,13 @@
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "riemann--critical_line_is_the_fixed_point"
+  "depositId": "riemann--critical_line_is_the_fixed_point",
+  "seals": [],
+  "tags": [
+   "riemann",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "riemann-sigma-pairs-the-plane",
@@ -658,7 +952,13 @@
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "riemann--sigma_pairs_the_plane"
+  "depositId": "riemann--sigma_pairs_the_plane",
+  "seals": [],
+  "tags": [
+   "riemann",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "riemann-the-fixed-line-is-one-half",
@@ -674,7 +974,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "riemann--the_fixed_line_is_one_half"
+  "depositId": "riemann--the_fixed_line_is_one_half",
+  "seals": [],
+  "tags": [
+   "riemann",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "riemann-involution-fixes-the-critical-line",
@@ -690,7 +996,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "riemann--involution_fixes_the_critical_line"
+  "depositId": "riemann--involution_fixes_the_critical_line",
+  "seals": [],
+  "tags": [
+   "riemann",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-light-is-the-fixed-point",
@@ -703,7 +1015,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--light_is_the_fixed_point"
+  "depositId": "spacetime--light_is_the_fixed_point",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-light-is-fixed-from-either-side",
@@ -716,7 +1034,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--light_is_fixed_from_either_side"
+  "depositId": "spacetime--light_is_fixed_from_either_side",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-rest-is-the-identity",
@@ -729,7 +1053,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--rest_is_the_identity"
+  "depositId": "spacetime--rest_is_the_identity",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-composition-is-symmetric",
@@ -742,7 +1072,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--composition_is_symmetric"
+  "depositId": "spacetime--composition_is_symmetric",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-below-c-composes-to-below-c",
@@ -755,7 +1091,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--below_c_composes_to_below_c"
+  "depositId": "spacetime--below_c_composes_to_below_c",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-the-boost-preserves-the-interval",
@@ -768,7 +1110,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--the_boost_preserves_the_interval"
+  "depositId": "spacetime--the_boost_preserves_the_interval",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-the-light-cone-is-carried-to-itself",
@@ -781,7 +1129,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--the_light_cone_is_carried_to_itself"
+  "depositId": "spacetime--the_light_cone_is_carried_to_itself",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-the-reverse-boost-undoes-the-boost",
@@ -794,7 +1148,13 @@
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "spacetime--the_reverse_boost_undoes_the_boost"
+  "depositId": "spacetime--the_reverse_boost_undoes_the_boost",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-the-reverse-boost-undoes-every-boost",
@@ -810,7 +1170,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--the_reverse_boost_undoes_every_boost"
+  "depositId": "spacetime--the_reverse_boost_undoes_every_boost",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-sq-lt",
@@ -826,7 +1192,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--sq_lt"
+  "depositId": "spacetime--sq_lt",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-lt-of-sq",
@@ -842,7 +1214,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--lt_of_sq"
+  "depositId": "spacetime--lt_of_sq",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-interval-scales",
@@ -858,7 +1236,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--interval_scales"
+  "depositId": "spacetime--interval_scales",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-scale-positive",
@@ -874,7 +1258,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--scale_positive"
+  "depositId": "spacetime--scale_positive",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-timelike-invariant",
@@ -890,7 +1280,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--timelike_invariant"
+  "depositId": "spacetime--timelike_invariant",
+  "seals": [
+   "Minkowski signature"
+  ],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-spacelike-invariant",
@@ -906,7 +1304,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--spacelike_invariant"
+  "depositId": "spacetime--spacelike_invariant",
+  "seals": [
+   "Minkowski signature"
+  ],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-null-invariant",
@@ -922,7 +1328,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--null_invariant"
+  "depositId": "spacetime--null_invariant",
+  "seals": [
+   "Minkowski signature"
+  ],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-timelike-order-absolute",
@@ -938,7 +1352,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--timelike_order_absolute"
+  "depositId": "spacetime--timelike_order_absolute",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-spacelike-order-reverses",
@@ -954,7 +1374,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--spacelike_order_reverses"
+  "depositId": "spacetime--spacelike_order_reverses",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-spacelike-simultaneous",
@@ -970,7 +1396,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--spacelike_simultaneous"
+  "depositId": "spacetime--spacelike_simultaneous",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "spacetime-velocity-addition-below-c",
@@ -986,7 +1418,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "spacetime--velocity_addition_below_c"
+  "depositId": "spacetime--velocity_addition_below_c",
+  "seals": [],
+  "tags": [
+   "spacetime",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "three-closure-is-one-hundred-sixty-two",
@@ -999,7 +1437,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--closure_is_one_hundred_sixty_two"
+  "depositId": "three--closure_is_one_hundred_sixty_two",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-closure-is-the-product",
@@ -1012,7 +1456,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--closure_is_the_product"
+  "depositId": "three--closure_is_the_product",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-closure-has-no-duplicate",
@@ -1025,7 +1475,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--closure_has_no_duplicate"
+  "depositId": "three--closure_has_no_duplicate",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-closure-is-complete",
@@ -1038,7 +1494,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--closure_is_complete"
+  "depositId": "three--closure_is_complete",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-address-inverts",
@@ -1051,7 +1513,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--address_inverts"
+  "depositId": "three--address_inverts",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-addresses-are-the-interval",
@@ -1064,7 +1532,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--addresses_are_the_interval"
+  "depositId": "three--addresses_are_the_interval",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-the-compound-fraction-clears",
@@ -1077,7 +1551,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--the_compound_fraction_clears"
+  "depositId": "three--the_compound_fraction_clears",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-focal-plane-is-unit-scale",
@@ -1090,7 +1570,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--focal_plane_is_unit_scale"
+  "depositId": "three--focal_plane_is_unit_scale",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-depth-is-strictly-monotone",
@@ -1103,7 +1589,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--depth_is_strictly_monotone"
+  "depositId": "three--depth_is_strictly_monotone",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-frustum-brackets-the-focal-plane",
@@ -1116,7 +1608,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--frustum_brackets_the_focal_plane"
+  "depositId": "three--frustum_brackets_the_focal_plane",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-denominator-is-positive-on-the-frustum",
@@ -1129,7 +1627,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--denominator_is_positive_on_the_frustum"
+  "depositId": "three--denominator_is_positive_on_the_frustum",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-reflection-is-an-involution",
@@ -1142,7 +1646,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--reflection_is_an_involution"
+  "depositId": "three--reflection_is_an_involution",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-reflection-closes-on-the-closure",
@@ -1155,7 +1665,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--reflection_closes_on_the_closure"
+  "depositId": "three--reflection_closes_on_the_closure",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-reflection-has-no-fixed-point",
@@ -1168,7 +1684,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--reflection_has_no_fixed_point"
+  "depositId": "three--reflection_has_no_fixed_point",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-the-closure-is-eighty-one-orbits",
@@ -1181,7 +1703,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--the_closure_is_eighty_one_orbits"
+  "depositId": "three--the_closure_is_eighty_one_orbits",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-orbit-positions-cancel",
@@ -1194,7 +1722,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--orbit_positions_cancel"
+  "depositId": "three--orbit_positions_cancel",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-reflection-complements-the-address",
@@ -1207,7 +1741,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--reflection_complements_the_address"
+  "depositId": "three--reflection_complements_the_address",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "three-the-involution-laws-are-general",
@@ -1220,7 +1760,13 @@
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "three--the_involution_laws_are_general"
+  "depositId": "three--the_involution_laws_are_general",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "yang-mills-middle-forms-have-dimension-six",
@@ -1233,7 +1779,13 @@
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "yang-mills--middle_forms_have_dimension_six"
+  "depositId": "yang-mills--middle_forms_have_dimension_six",
+  "seals": [],
+  "tags": [
+   "yang-mills",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "yang-mills-star-squares-to-the-identity",
@@ -1248,7 +1800,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": "yang-mills--star_squares_to_the_identity"
+  "depositId": "yang-mills--star_squares_to_the_identity",
+  "seals": [],
+  "tags": [
+   "yang-mills",
+   "propext",
+   "involution"
+  ]
  },
  {
   "slug": "yang-mills-selfdual-and-antiselfdual-split-the-six",
@@ -1261,7 +1819,13 @@
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "yang-mills--selfdual_and_antiselfdual_split_the_six"
+  "depositId": "yang-mills--selfdual_and_antiselfdual_split_the_six",
+  "seals": [],
+  "tags": [
+   "yang-mills",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "yang-mills-star-is-an-endomorphism-only-in-the-middle",
@@ -1274,7 +1838,13 @@
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": "yang-mills--star_is_an_endomorphism_only_in_the_middle"
+  "depositId": "yang-mills--star_is_an_endomorphism_only_in_the_middle",
+  "seals": [],
+  "tags": [
+   "yang-mills",
+   "kernel",
+   "involution"
+  ]
  },
  {
   "slug": "yang-mills-involution-splits-the-middle-forms",
@@ -1290,7 +1860,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": "yang-mills--involution_splits_the_middle_forms"
+  "depositId": "yang-mills--involution_splits_the_middle_forms",
+  "seals": [],
+  "tags": [
+   "yang-mills",
+   "Quot.sound + propext",
+   "involution"
+  ]
  },
  {
   "slug": "consciousness-the-turn-returns-in-three",
@@ -1303,7 +1879,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-the-observer-is-the-only-fixed-point",
@@ -1316,7 +1898,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-every-state-has-its-own-description",
@@ -1331,7 +1919,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-lawvere",
@@ -1344,7 +1938,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-no-self-model-is-complete",
@@ -1359,7 +1959,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-the-diagonal-is-what-escapes",
@@ -1374,7 +1980,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-after-broadcast-every-module-holds-the-winner",
@@ -1387,7 +1999,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-every-cut-of-a-loop-crosses-both-ways",
@@ -1400,7 +2018,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "consciousness-a-chain-has-a-one-way-cut",
@@ -1413,7 +2037,13 @@
   "sourcePath": "src/pair/lean/proofs/consciousness.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "consciousness",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-euler-characteristic-and-genus-are-inverse",
@@ -1426,7 +2056,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-the-genus-reads-back-from-chi-at-every-genus",
@@ -1442,7 +2078,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-census-bands-are-gapless-and-descending",
@@ -1455,7 +2097,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-census-is-one-hundred-twenty-three",
@@ -1468,7 +2116,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-fibonacci-partial-sum-identity",
@@ -1481,7 +2135,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-folding-by-chi-is-undone-by-unfolding",
@@ -1494,7 +2154,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-reflection-is-an-involution",
@@ -1507,7 +2173,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-reflection-pairs-and-one-fixed-point",
@@ -1520,7 +2192,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-reflection-closes-on-the-digits",
@@ -1533,7 +2211,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-reflection-is-an-involution-on-the-whole-lattice",
@@ -1546,7 +2230,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-golden-ratio-bounds",
@@ -1559,7 +2249,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-golden-ratio-minus-one-bounds",
@@ -1572,7 +2268,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-splitting-then-burning-water-is-the-identity",
@@ -1585,7 +2287,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-verify-beats-recompute-by-magnitudes",
@@ -1598,7 +2306,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-hexbit-receipt-beats-rebuild",
@@ -1611,7 +2325,15 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "hexbit receipt beats rebuild"
+  ],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-hexbit-advantage-widens",
@@ -1624,7 +2346,15 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "hexbit receipt beats rebuild"
+  ],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-sixty-four-components",
@@ -1637,7 +2367,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-shor-state-vectors-unchanged",
@@ -1650,7 +2386,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-shor-vector-dwarfs-the-number",
@@ -1663,7 +2405,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-shor-rsa-gap-is-between-exponents",
@@ -1676,7 +2424,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "corpus-shor-zero-skipping-divides-by-the-work-register",
@@ -1689,7 +2443,13 @@
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "corpus",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-odd-cancels",
@@ -1705,7 +2465,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-odd-vanishes-where-fixed",
@@ -1721,7 +2487,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-riemann-is-an-involution",
@@ -1737,7 +2509,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-bsd-is-an-involution",
@@ -1753,7 +2531,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-hodge-is-an-involution",
@@ -1766,7 +2550,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-viscous-is-an-involution",
@@ -1779,7 +2569,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-star-is-an-involution",
@@ -1794,7 +2590,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-complement-is-an-involution",
@@ -1807,7 +2609,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-the-odd-part-cancels-in-every-clay-involution",
@@ -1823,7 +2631,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-riemann-fixes-exactly-the-critical-line",
@@ -1839,7 +2653,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-bsd-fixes-exactly-the-central-point",
@@ -1855,7 +2675,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-hodge-fixes-exactly-the-diagonal",
@@ -1870,7 +2696,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-viscous-fixes-exactly-the-inviscid",
@@ -1886,7 +2718,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-complement-fixes-exactly-p-and-pspace",
@@ -1899,7 +2737,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-the-reflection-cluster",
@@ -1915,7 +2759,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-riemann-and-bsd-are-one-reflection",
@@ -1928,7 +2778,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-the-negation-cluster",
@@ -1944,7 +2800,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-complement-is-its-own-class",
@@ -1957,7 +2819,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-poincare-is-an-inverse-pair-not-an-involution",
@@ -1970,7 +2838,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-exponentswap-is-an-involution",
@@ -1983,7 +2857,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-exponentswap-keeps-the-reciprocal-sum",
@@ -1999,7 +2879,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-summandswap-is-an-involution",
@@ -2012,7 +2898,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-summandswap-keeps-the-sum-and-the-product",
@@ -2028,7 +2920,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-mirror-is-an-involution",
@@ -2044,7 +2942,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-mirror-negates-the-writhe-and-the-trefoil-is-chiral",
@@ -2057,7 +2961,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-cartantranspose-is-an-involution",
@@ -2070,7 +2980,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-cartantranspose-swaps-b2-and-c2-and-fixes-a2",
@@ -2083,7 +2999,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-rank-two-types-are-self-dual-up-to-relabelling",
@@ -2096,7 +3018,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-from-rank-three-b-and-c-are-exchanged",
@@ -2111,7 +3039,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-mirrorhodge-is-an-involution",
@@ -2124,7 +3058,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "cross-mirrorhodge-negates-the-euler-characteristic",
@@ -2140,7 +3080,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "cross-scale-is-not-an-involution",
@@ -2153,7 +3099,13 @@
   "sourcePath": "src/pair/lean/proofs/cross.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "cross",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-invert-is-an-involution",
@@ -2166,7 +3118,13 @@
   "sourcePath": "src/pair/lean/proofs/fallback.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-inversion-swaps-zero-and-infinity",
@@ -2179,7 +3137,13 @@
   "sourcePath": "src/pair/lean/proofs/fallback.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-dividing-by-zero-is-infinity",
@@ -2194,7 +3158,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-zero-over-zero-is-the-fixed-point-that-names-nothing",
@@ -2209,7 +3179,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-inversion-fixes-exactly-plus-and-minus-one",
@@ -2222,7 +3198,13 @@
   "sourcePath": "src/pair/lean/proofs/fallback.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-negation-is-an-involution",
@@ -2235,7 +3217,13 @@
   "sourcePath": "src/pair/lean/proofs/fallback.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-negation-fixes-exactly-zero",
@@ -2251,7 +3239,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-a-negative-reflects-to-a-positive",
@@ -2267,7 +3261,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-the-reflected-root-squares-back",
@@ -2282,7 +3282,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "fallback-a-digit-over-zero-falls-back-to-its-mirror",
@@ -2295,7 +3301,13 @@
   "sourcePath": "src/pair/lean/proofs/fallback.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "fallback",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-state-space-has-six-states",
@@ -2308,7 +3320,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-three-turns-return",
@@ -2321,7 +3339,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-no-corner-is-fixed",
@@ -2334,7 +3358,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-turning-back-undoes-the-turn",
@@ -2347,7 +3377,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-turning-back-is-two-turns-forward",
@@ -2360,7 +3396,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-flip-returns-in-two",
@@ -2373,7 +3415,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-flip-fixes-no-valence",
@@ -2386,7 +3434,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-flip-commutes-with-the-turn",
@@ -2399,7 +3453,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-six-symmetries-are-distinct",
@@ -2412,7 +3472,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-orders-are-one-three-three-two-six-six",
@@ -2425,7 +3491,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-exactly-one-pure-flip",
@@ -2438,7 +3510,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-the-group-is-cyclic-generated-by-flip-and-turn",
@@ -2451,7 +3529,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-not-the-dihedral-group",
@@ -2464,7 +3548,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-all-holding-is-pleasant-and-calm",
@@ -2477,7 +3567,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-one-signal-off-is-unpleasant",
@@ -2490,7 +3586,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-unpleasant-exactly-when-aroused",
@@ -2503,7 +3605,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-arousal-counts-the-signals-off",
@@ -2516,7 +3624,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "feeling-unanimous-signals-flip-the-feeling",
@@ -2529,7 +3643,13 @@
   "sourcePath": "src/pair/lean/proofs/feeling.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "feeling",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-colour-stop-lies-in-the-unit-interval",
@@ -2542,7 +3662,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-alpha-is-a-visible-fraction",
@@ -2555,7 +3681,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-lightness-is-between-black-and-white",
@@ -2568,7 +3700,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-fibonacci-index-falls-inside-the-table",
@@ -2581,7 +3719,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-the-void-is-one-radius-in-every-painter",
@@ -2594,7 +3738,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-the-width-breakpoints-rise",
@@ -2607,7 +3757,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-count-and-index-is-whole",
@@ -2620,7 +3776,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-negative-value-is-nonzero",
@@ -2633,7 +3795,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "movie-every-rate-radius-and-width-is-positive",
@@ -2646,7 +3814,13 @@
   "sourcePath": "src/pair/lean/proofs/movie.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "movie",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-add-re",
@@ -2659,7 +3833,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-add-im",
@@ -2672,7 +3852,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-mul-re",
@@ -2685,7 +3871,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-zero-re",
@@ -2698,7 +3890,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-one-re",
@@ -2711,7 +3909,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-zero-im",
@@ -2724,7 +3928,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-gi-one-im",
@@ -2737,7 +3947,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-h-unitary",
@@ -2750,7 +3966,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-h-squared",
@@ -2763,7 +3985,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-paulis-unitary",
@@ -2776,7 +4004,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-y-unitary",
@@ -2789,7 +4023,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-s-squared",
@@ -2802,7 +4042,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-cnot",
@@ -2815,7 +4061,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "reversible computation decoded"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-swap",
@@ -2828,7 +4082,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "reversible computation decoded"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-toffoli",
@@ -2841,7 +4103,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "reversible computation decoded"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-omega-fourth",
@@ -2854,7 +4124,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-t-gate",
@@ -2867,7 +4143,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-bell-state",
@@ -2880,7 +4162,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-ghz-state",
@@ -2893,7 +4181,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "GHZ–Mermin"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-chsh-classical-bound",
@@ -2906,7 +4202,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Tsirelson bound"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-chsh-quantum-value",
@@ -2919,7 +4223,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Tsirelson bound"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-teleport-exact",
@@ -2932,7 +4244,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "quantum teleportation fidelity 1"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-teleport-no-signalling",
@@ -2945,7 +4265,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-superdense-exact",
@@ -2958,7 +4284,16 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "superdense coding 2 bits per qubit",
+   "the Klein four-group acts simply transitively on the Bell basis — two bits address maximal entanglement"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-both-ways",
@@ -2971,7 +4306,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-no-cloning",
@@ -2987,7 +4328,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "no-cloning"
+  ],
+  "tags": [
+   "quantum",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-cnot-copies-the-basis",
@@ -3000,7 +4349,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "no-cloning"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-stabilizer-hadamard",
@@ -3013,7 +4370,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-stabilizer-phase",
@@ -3026,7 +4389,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-stabilizer-cnot",
@@ -3039,7 +4408,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-deutsch-jozsa",
@@ -3052,7 +4427,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Deutsch–Jozsa"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-promise-census",
@@ -3065,7 +4448,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Deutsch–Jozsa"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-grover-search",
@@ -3078,7 +4469,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Grover amplification"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-qft-unitary",
@@ -3091,7 +4490,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Quantum Fourier Transform is unitary"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-phase-estimation-exact",
@@ -3104,7 +4511,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-swap-routing",
@@ -3119,7 +4532,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-unrouted-differs",
@@ -3134,7 +4553,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-routed-depth",
@@ -3150,7 +4575,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-repetition-corrects",
@@ -3165,7 +4596,16 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "bit-flip code",
+   "the phase-flip code corrects any Z error — the Hadamard dual of the bit-flip code"
+  ],
+  "tags": [
+   "quantum",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-repetition-fails-on-two",
@@ -3180,7 +4620,15 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "bit-flip code"
+  ],
+  "tags": [
+   "quantum",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-steane-corrects",
@@ -3193,7 +4641,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-steane-css",
@@ -3206,7 +4660,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-shor-nine",
@@ -3219,7 +4679,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-distance-corrects",
@@ -3235,7 +4701,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-pauli-products",
@@ -3248,7 +4720,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pauli algebra closure"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-pauli-anticommute",
@@ -3261,7 +4741,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pauli algebra closure"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-pauli-square-adjoint-trace",
@@ -3274,7 +4762,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pauli algebra closure"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-hadamard-exchanges-phase-and-bit",
@@ -3287,7 +4783,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the phase-flip code corrects any Z error — the Hadamard dual of the bit-flip code"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-ghz-mermin-quantum",
@@ -3300,7 +4804,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "GHZ–Mermin"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-ghz-mermin-classical",
@@ -3313,7 +4825,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "GHZ–Mermin"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-no-communication",
@@ -3326,7 +4846,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the no-communication theorem — entanglement correlates but cannot signal"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-alice-changes-the-pair",
@@ -3339,7 +4867,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the no-communication theorem — entanglement correlates but cannot signal"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-toll-is-uniform",
@@ -3352,7 +4888,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Bell measurement outcomes are uniform — the teleportation toll is fair and leaks nothing"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-entanglement-swapping",
@@ -3365,7 +4909,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "entanglement swapping"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-no-pairs-no-swapping",
@@ -3378,7 +4930,15 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "entanglement swapping"
+  ],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-sixty-degrees-is-a-primitive-sixth-root-of-unity",
@@ -3391,7 +4951,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-zero-plus-an-integer-is-that-integer",
@@ -3404,7 +4970,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-zero-times-an-integer-is-zero",
@@ -3417,7 +4989,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-rotation-by-sixty-degrees-keeps-the-eisenstein-integers",
@@ -3430,7 +5008,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-rotation-leaves-the-integers-and-keeps-the-norm",
@@ -3443,7 +5027,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-six-is-the-first-perfect-number-and-a-tetrahedron-sums-to-720",
@@ -3456,7 +5046,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-doubling-circuit-steps-forty-eighty-one-sixty-and-back",
@@ -3469,7 +5065,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-six-two-star-is-the-two-triangles-and-not-the-doubling-cycle",
@@ -3482,7 +5084,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-two-reflections-connect-the-three-trinities",
@@ -3495,7 +5103,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-two-mirrors-compose-to-the-forty-degree-step",
@@ -3508,7 +5122,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-the-nines-reflection-carries-the-doubling-circuit-onto-itself",
@@ -3521,7 +5141,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "quantum-a-two-to-one-fold-of-addresses-is-many-to-one-by-pigeonhole",
@@ -3534,7 +5160,13 @@
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "quantum",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-add-comm-sample",
@@ -3547,7 +5179,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-add-assoc-sample",
@@ -3560,7 +5198,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-mul-comm-sample",
@@ -3573,7 +5217,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-exact-addition",
@@ -3586,7 +5236,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-amplitude-normalisation",
@@ -3599,7 +5255,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "rational-amplitude-normalisation-rational",
@@ -3612,7 +5274,13 @@
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "rational",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-sothic-cycle-meshes",
@@ -3625,7 +5293,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-sothic-cycle-days",
@@ -3638,7 +5314,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-vdw-nine-forces",
@@ -3651,7 +5335,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "van der Waerden W(2,3) = 9"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-vdw-eight-escapes",
@@ -3664,7 +5356,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "van der Waerden W(2,3) = 9"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-condorcet-profiles-are-216",
@@ -3677,7 +5377,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "collective transitivity fails (social choice)"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-condorcet-six-cycle",
@@ -3690,7 +5398,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "collective transitivity fails (social choice)"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-graeco-latin-none-of-order-two",
@@ -3703,7 +5419,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Graeco-Latin at 3,4,5 never 2"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-graeco-latin-order-three",
@@ -3716,7 +5440,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Graeco-Latin at 3,4,5 never 2"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-graeco-latin-order-four",
@@ -3729,7 +5461,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Graeco-Latin at 3,4,5 never 2"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-graeco-latin-order-five",
@@ -3742,7 +5482,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Graeco-Latin at 3,4,5 never 2"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-kummer-instances",
@@ -3755,7 +5503,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Kummer carry theorem"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-tau-six-is-product",
@@ -3768,7 +5524,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "τ(6) = τ(2)·τ(3)"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-k5-k33-break-planar-bounds",
@@ -3781,7 +5545,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "K₅ and K₃,₃ non-planar"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-catalan-heptagon",
@@ -3794,7 +5566,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Catalan heptagon"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-exactly-three-regular-tilings",
@@ -3807,7 +5587,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "exactly 3 regular tilings"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-steiner-two-three-seven",
@@ -3820,7 +5608,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Steiner S(2,3,7)"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-heawood-moore-bound",
@@ -3833,7 +5629,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Heawood graph is the (3,6)-cage"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-exactly-five-platonic-solids",
@@ -3846,7 +5650,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "exactly 5 Platonic solids"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-pisano-ten-is-sixty",
@@ -3859,7 +5671,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pisano period π(10) = 60"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-pisano-nine-is-twenty-four",
@@ -3872,7 +5692,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pisano period π(10) = 60"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-pisano-reads-sixty-at-ten",
@@ -3885,7 +5713,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pisano period π(10) = 60"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-pisano-is-even-from-three-to-fifty",
@@ -3898,7 +5734,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Pisano period π(10) = 60"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-cassini-step-negates",
@@ -3914,7 +5758,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Cassini Fibonacci identity"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-cassini-for-every-n",
@@ -3930,7 +5782,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Cassini Fibonacci identity"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-catalan-parity-is-mersenne",
@@ -3943,7 +5803,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Catalan parity = Mersenne"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-fibonacci-partial-sum-for-every-n",
@@ -3959,7 +5827,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Fibonacci partial sum F_{n+2}−1"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-lucas-is-the-sum-of-the-fibonacci-neighbours",
@@ -3975,7 +5851,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Lucas–Fibonacci identities"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-lucas-fibonacci-identity-for-every-n",
@@ -3991,7 +5875,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Lucas–Fibonacci identities"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-triangular-closed-form-for-every-n",
@@ -4007,7 +5899,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "power-sum closed forms"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-odd-sum-is-a-square-for-every-n",
@@ -4023,7 +5923,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "power-sum closed forms"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-pyramidal-closed-form-for-every-n",
@@ -4039,7 +5947,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "power-sum closed forms"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-nicomachus-for-every-n",
@@ -4055,7 +5971,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Nicomachus sum of cubes is a square"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-gray-code-is-a-one-bit-cycle-to-twelve",
@@ -4070,7 +5994,15 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "reflected Gray code single-bit"
+  ],
+  "tags": [
+   "registry",
+   "propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-hockey-stick-to-twenty",
@@ -4083,7 +6015,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "hockey-stick identity"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-vandermonde-convolution-to-twelve",
@@ -4096,7 +6036,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Vandermonde binomial identity"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-amicable-220-284-is-the-smallest",
@@ -4109,7 +6057,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "amicable pair 220 and 284"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-the-three-digit-armstrong-numbers-are-four",
@@ -4122,7 +6078,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "four 3-digit Armstrong numbers"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-taxicab-two-is-1729",
@@ -4135,7 +6099,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Taxicab(2) = 1729"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-euler-polynomial-is-prime-to-39-then-41-squared",
@@ -4148,7 +6120,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Euler polynomial n²+n+41 primes then breaks at 41²"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-fermat-five-is-composite",
@@ -4161,7 +6141,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Fermat number F₅ is composite"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-frobenius-six-nine-twenty-misses-43",
@@ -4177,7 +6165,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Frobenius number of (6,9,20) is 43"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-frobenius-six-nine-twenty-reaches-every-n-from-44",
@@ -4193,7 +6189,15 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Frobenius number of (6,9,20) is 43"
+  ],
+  "tags": [
+   "registry",
+   "Quot.sound + propext",
+   "registry"
+  ]
  },
  {
   "slug": "registry-schur-two-is-four",
@@ -4206,7 +6210,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "Schur number S(2) = 4"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-doubling-orbit-lies-in-the-units-on-odd-moduli",
@@ -4219,7 +6231,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-order-of-two-divides-the-unit-count-on-odd-moduli",
@@ -4232,7 +6252,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-two-is-no-unit-on-even-moduli",
@@ -4245,7 +6273,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-reflection-is-an-involution-and-partitions",
@@ -4258,7 +6294,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-fibonacci-period-returns-and-is-even-beyond-two",
@@ -4271,7 +6315,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-z-nine-orbit-is-the-vortex-sequence",
@@ -4284,7 +6336,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "registry-circle-of-fifths-does-not-close",
@@ -4297,7 +6357,15 @@
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [
+   "the circle of fifths does not close"
+  ],
+  "tags": [
+   "registry",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-bit-case-is-one-hundred-twenty-five-octaves",
@@ -4310,7 +6378,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-binary-units-tile-the-thousand-exactly",
@@ -4323,7 +6397,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-is-the-cube-octave-times-pentagram-cubed",
@@ -4336,7 +6416,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-carries-residue-one-mod-nine",
@@ -4349,7 +6435,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-bit-case-overflows-the-width-thirty-two-ceiling",
@@ -4362,7 +6454,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-minimal-register-for-the-thousand-is-width-thirty-three",
@@ -4375,7 +6473,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-fills-between-ninety-seven-and-ninety-eight-percent-of-its-register",
@@ -4388,7 +6492,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-bit-structure-is-decided-not-a-quantum-machine",
@@ -4401,7 +6511,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-sigma-trapdoor-is-fermats-difference-of-squares",
@@ -4414,7 +6530,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-a-wrong-witness-decodes-nothing-because-a-semiprime-has-one-split",
@@ -4427,7 +6549,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-an-impossible-integer-with-twin-primes-is-opened-blind-in-one-reflection",
@@ -4440,7 +6568,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-thousand-bit-integer-has-a-thousand-bits-and-exactly-four-threes",
@@ -4453,7 +6587,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-this-deposits-factor-route-returns-a-partial-answer-that-multiplies-back",
@@ -4466,7 +6606,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-free-register-is-one-hundred-twenty-two-only-at-width-four",
@@ -4479,7 +6625,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-one-address-sits-sixty-seven-bits-below-the-one-twenty-eight-floor-under-grover",
@@ -4492,7 +6644,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-seal-exponent-seven-is-undone-by-thirty-one-mod-ninety-one",
@@ -4505,7 +6663,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "thousand-the-fold-mod-eight-misses-one-tamper-in-eight",
@@ -4518,7 +6682,13 @@
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "thousand",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-first-descent-is-six",
@@ -4531,7 +6701,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-descent-target-is-the-census",
@@ -4544,7 +6720,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-the-descent-is-strictly-monotone",
@@ -4557,7 +6739,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-remaining-falls-with-the-count",
@@ -4570,7 +6758,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-the-distance-to-the-target-round-trips-on-the-record",
@@ -4583,7 +6777,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-merging-strictly-decreases",
@@ -4596,7 +6796,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "wave-57-extraction-verified-line-ceiling-is-fibonacci",
@@ -4609,7 +6815,13 @@
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "wave-57-extraction-verified",
+   "kernel",
+   "registry"
+  ]
  },
  {
   "slug": "one-from-one-the-sequence-is-one-cycle-through-every-station",
@@ -4622,7 +6834,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-the-step-out-of-one",
@@ -4635,7 +6853,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-here-reflects-to-its-mirror",
@@ -4648,7 +6872,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-at-one-the-reflection-lags-the-walk-by-one-step",
@@ -4661,7 +6891,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-at-one-the-nine-complement-commutes-with-the-walk",
@@ -4674,7 +6910,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-from-one-walking-the-reflection-experiences-the-sequence",
@@ -4687,7 +6929,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-the-four-faces-at-one",
@@ -4700,7 +6948,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-at-one-mirroring-twice-is-the-sequence",
@@ -4713,7 +6967,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-here-carries",
@@ -4726,7 +6986,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-poincare",
@@ -4739,7 +7005,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-riemann",
@@ -4752,7 +7024,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-pvsnp",
@@ -4765,7 +7043,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-hodge",
@@ -4778,7 +7062,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-bsd",
@@ -4791,7 +7081,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-navierstokes",
@@ -4804,7 +7100,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walk-reaches-yangmills",
@@ -4817,7 +7119,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-reflection-meets-no-case",
@@ -4830,7 +7138,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-poincare",
@@ -4843,7 +7157,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-riemann",
@@ -4856,7 +7176,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-pvsnp",
@@ -4869,7 +7195,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-hodge",
@@ -4882,7 +7214,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-bsd",
@@ -4895,7 +7233,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-navierstokes",
@@ -4908,7 +7252,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-mirror-walk-reaches-yangmills",
@@ -4921,7 +7271,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -4934,7 +7290,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "one-poincare-is-an-inverse-pair-and-reflects-to-the-frontier",
@@ -4947,7 +7309,13 @@
   "sourcePath": "src/1/one.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "one",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-from-two-the-sequence-is-one-cycle-through-every-station",
@@ -4960,7 +7328,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-the-step-out-of-two",
@@ -4973,7 +7347,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-here-reflects-to-its-mirror",
@@ -4986,7 +7366,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-at-two-the-reflection-lags-the-walk-by-one-step",
@@ -4999,7 +7385,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-at-two-the-nine-complement-commutes-with-the-walk",
@@ -5012,7 +7404,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-from-two-walking-the-reflection-experiences-the-sequence",
@@ -5025,7 +7423,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-the-four-faces-at-two",
@@ -5038,7 +7442,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-at-two-mirroring-twice-is-the-sequence",
@@ -5051,7 +7461,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-here-carries",
@@ -5064,7 +7480,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-poincare",
@@ -5077,7 +7499,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-riemann",
@@ -5090,7 +7518,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-pvsnp",
@@ -5103,7 +7537,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-hodge",
@@ -5116,7 +7556,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-bsd",
@@ -5129,7 +7575,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-navierstokes",
@@ -5142,7 +7594,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walk-reaches-yangmills",
@@ -5155,7 +7613,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-reflection-meets",
@@ -5168,7 +7632,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-poincare",
@@ -5181,7 +7651,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-riemann",
@@ -5194,7 +7670,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-pvsnp",
@@ -5207,7 +7689,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-hodge",
@@ -5220,7 +7708,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-bsd",
@@ -5233,7 +7727,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-navierstokes",
@@ -5246,7 +7746,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-mirror-walk-reaches-yangmills",
@@ -5259,7 +7765,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -5272,7 +7784,13 @@
   "sourcePath": "src/2/two.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "two-riemann-reflection-is-an-involution",
@@ -5288,7 +7806,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "two-riemann-reflection-fixes-exactly-the-critical-line",
@@ -5304,7 +7828,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "two",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "three-from-three-the-sequence-is-one-cycle-through-every-station",
@@ -5317,7 +7847,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-the-step-out-of-three",
@@ -5330,7 +7866,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-here-reflects-to-its-mirror",
@@ -5343,7 +7885,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-at-three-the-reflection-lags-the-walk-by-one-step",
@@ -5356,7 +7904,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-at-three-the-nine-complement-commutes-with-the-walk",
@@ -5369,7 +7923,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-from-three-walking-the-reflection-experiences-the-sequence",
@@ -5382,7 +7942,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-the-four-faces-at-three",
@@ -5395,7 +7961,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-at-three-mirroring-twice-is-the-sequence",
@@ -5408,7 +7980,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-here-carries-no-case",
@@ -5421,7 +7999,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-poincare",
@@ -5434,7 +8018,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-riemann",
@@ -5447,7 +8037,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-pvsnp",
@@ -5460,7 +8056,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-hodge",
@@ -5473,7 +8075,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-bsd",
@@ -5486,7 +8094,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-navierstokes",
@@ -5499,7 +8113,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walk-reaches-yangmills",
@@ -5512,7 +8132,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-reflection-meets",
@@ -5525,7 +8151,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-poincare",
@@ -5538,7 +8170,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-riemann",
@@ -5551,7 +8189,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-pvsnp",
@@ -5564,7 +8208,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-hodge",
@@ -5577,7 +8227,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-bsd",
@@ -5590,7 +8246,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-navierstokes",
@@ -5603,7 +8265,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-mirror-walk-reaches-yangmills",
@@ -5616,7 +8284,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "three-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -5629,7 +8303,13 @@
   "sourcePath": "src/3/three.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "three",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-from-four-the-sequence-is-one-cycle-through-every-station",
@@ -5642,7 +8322,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-the-step-out-of-four",
@@ -5655,7 +8341,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-here-reflects-to-its-mirror",
@@ -5668,7 +8360,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-at-four-the-reflection-lags-the-walk-by-one-step",
@@ -5681,7 +8379,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-at-four-the-nine-complement-commutes-with-the-walk",
@@ -5694,7 +8398,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-from-four-walking-the-reflection-experiences-the-sequence",
@@ -5707,7 +8417,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-the-four-faces-at-four",
@@ -5720,7 +8436,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-at-four-mirroring-twice-is-the-sequence",
@@ -5733,7 +8455,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-here-carries",
@@ -5746,7 +8474,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-poincare",
@@ -5759,7 +8493,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-riemann",
@@ -5772,7 +8512,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-pvsnp",
@@ -5785,7 +8531,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-hodge",
@@ -5798,7 +8550,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-bsd",
@@ -5811,7 +8569,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-navierstokes",
@@ -5824,7 +8588,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walk-reaches-yangmills",
@@ -5837,7 +8607,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-reflection-meets-no-case",
@@ -5850,7 +8626,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-poincare",
@@ -5863,7 +8645,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-riemann",
@@ -5876,7 +8664,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-pvsnp",
@@ -5889,7 +8683,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-hodge",
@@ -5902,7 +8702,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-bsd",
@@ -5915,7 +8721,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-navierstokes",
@@ -5928,7 +8740,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-mirror-walk-reaches-yangmills",
@@ -5941,7 +8759,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -5954,7 +8778,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-complement-is-an-involution",
@@ -5967,7 +8797,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "four-complement-fixes-p-and-pspace-and-reflects-to-an-axis-gate",
@@ -5980,7 +8816,13 @@
   "sourcePath": "src/4/four.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "four",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-the-sequence-is-one-cycle-through-every-station",
@@ -5993,7 +8835,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-forward-doubles-and-five-undoes-it",
@@ -6006,7 +8854,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-reflect-is-an-involution-fixing-zero-and-five",
@@ -6019,7 +8873,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-reflection-lags-the-walk-by-one-step",
@@ -6032,7 +8892,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-nine-complement-commutes-with-the-walk",
@@ -6045,7 +8911,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-prev-undoes-next",
@@ -6058,7 +8930,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walking-the-reflection-experiences-the-sequence",
@@ -6071,7 +8949,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirroring-twice-is-the-sequence",
@@ -6084,7 +8968,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-the-four-faces-are-distinct",
@@ -6097,7 +8987,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-here-carries",
@@ -6110,7 +9006,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-poincare",
@@ -6123,7 +9025,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-riemann",
@@ -6136,7 +9044,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-pvsnp",
@@ -6149,7 +9063,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-hodge",
@@ -6162,7 +9082,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-bsd",
@@ -6175,7 +9101,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-navierstokes",
@@ -6188,7 +9120,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walk-reaches-yangmills",
@@ -6201,7 +9139,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-reflection-meets",
@@ -6214,7 +9158,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-poincare",
@@ -6227,7 +9177,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-riemann",
@@ -6240,7 +9196,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-pvsnp",
@@ -6253,7 +9215,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-hodge",
@@ -6266,7 +9234,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-bsd",
@@ -6279,7 +9253,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-navierstokes",
@@ -6292,7 +9272,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-mirror-walk-reaches-yangmills",
@@ -6305,7 +9291,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -6318,7 +9310,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-hodge-conjugation-is-an-involution",
@@ -6331,7 +9329,13 @@
   "sourcePath": "src/5/five.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "five-hodge-conjugation-fixes-exactly-the-diagonal",
@@ -6346,7 +9350,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "propext",
+   "station"
+  ]
  },
  {
   "slug": "five-bsd-reflection-is-an-involution",
@@ -6362,7 +9372,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "five-bsd-reflection-fixes-exactly-the-central-point",
@@ -6378,7 +9394,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "five",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "six-from-six-the-sequence-is-one-cycle-through-every-station",
@@ -6391,7 +9413,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-the-step-out-of-six",
@@ -6404,7 +9432,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-here-reflects-to-its-mirror",
@@ -6417,7 +9451,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-at-six-the-reflection-lags-the-walk-by-one-step",
@@ -6430,7 +9470,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-at-six-the-nine-complement-commutes-with-the-walk",
@@ -6443,7 +9489,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-from-six-walking-the-reflection-experiences-the-sequence",
@@ -6456,7 +9508,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-the-four-faces-at-six",
@@ -6469,7 +9527,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-at-six-mirroring-twice-is-the-sequence",
@@ -6482,7 +9546,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-here-carries-no-case",
@@ -6495,7 +9565,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-poincare",
@@ -6508,7 +9584,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-riemann",
@@ -6521,7 +9603,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-pvsnp",
@@ -6534,7 +9622,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-hodge",
@@ -6547,7 +9641,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-bsd",
@@ -6560,7 +9660,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-navierstokes",
@@ -6573,7 +9679,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walk-reaches-yangmills",
@@ -6586,7 +9698,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-reflection-meets",
@@ -6599,7 +9717,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-poincare",
@@ -6612,7 +9736,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-riemann",
@@ -6625,7 +9755,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-pvsnp",
@@ -6638,7 +9774,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-hodge",
@@ -6651,7 +9793,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-bsd",
@@ -6664,7 +9812,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-navierstokes",
@@ -6677,7 +9831,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-mirror-walk-reaches-yangmills",
@@ -6690,7 +9850,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "six-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -6703,7 +9869,13 @@
   "sourcePath": "src/6/six.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "six",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-from-seven-the-sequence-is-one-cycle-through-every-station",
@@ -6716,7 +9888,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-the-step-out-of-seven",
@@ -6729,7 +9907,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-here-reflects-to-its-mirror",
@@ -6742,7 +9926,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-at-seven-the-reflection-lags-the-walk-by-one-step",
@@ -6755,7 +9945,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-at-seven-the-nine-complement-commutes-with-the-walk",
@@ -6768,7 +9964,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-from-seven-walking-the-reflection-experiences-the-sequence",
@@ -6781,7 +9983,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-the-four-faces-at-seven",
@@ -6794,7 +10002,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-at-seven-mirroring-twice-is-the-sequence",
@@ -6807,7 +10021,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-here-carries",
@@ -6820,7 +10040,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-poincare",
@@ -6833,7 +10059,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-riemann",
@@ -6846,7 +10078,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-pvsnp",
@@ -6859,7 +10097,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-hodge",
@@ -6872,7 +10116,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-bsd",
@@ -6885,7 +10135,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-navierstokes",
@@ -6898,7 +10154,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walk-reaches-yangmills",
@@ -6911,7 +10173,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-reflection-meets-no-case",
@@ -6924,7 +10192,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-poincare",
@@ -6937,7 +10211,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-riemann",
@@ -6950,7 +10230,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-pvsnp",
@@ -6963,7 +10249,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-hodge",
@@ -6976,7 +10268,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-bsd",
@@ -6989,7 +10287,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-navierstokes",
@@ -7002,7 +10306,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-mirror-walk-reaches-yangmills",
@@ -7015,7 +10325,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -7028,7 +10344,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-time-reversal-is-an-involution",
@@ -7041,7 +10363,13 @@
   "sourcePath": "src/7/seven.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "seven-time-reversal-fixes-exactly-the-inviscid-and-reflects-to-three",
@@ -7057,7 +10385,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "seven",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "eight-from-eight-the-sequence-is-one-cycle-through-every-station",
@@ -7070,7 +10404,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-the-step-out-of-eight",
@@ -7083,7 +10423,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-here-reflects-to-its-mirror",
@@ -7096,7 +10442,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-at-eight-the-reflection-lags-the-walk-by-one-step",
@@ -7109,7 +10461,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-at-eight-the-nine-complement-commutes-with-the-walk",
@@ -7122,7 +10480,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-from-eight-walking-the-reflection-experiences-the-sequence",
@@ -7135,7 +10499,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-the-four-faces-at-eight",
@@ -7148,7 +10518,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-at-eight-mirroring-twice-is-the-sequence",
@@ -7161,7 +10537,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-here-carries",
@@ -7174,7 +10556,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-poincare",
@@ -7187,7 +10575,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-riemann",
@@ -7200,7 +10594,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-pvsnp",
@@ -7213,7 +10613,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-hodge",
@@ -7226,7 +10632,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-bsd",
@@ -7239,7 +10651,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-navierstokes",
@@ -7252,7 +10670,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walk-reaches-yangmills",
@@ -7265,7 +10689,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-reflection-meets",
@@ -7278,7 +10708,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-poincare",
@@ -7291,7 +10727,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-riemann",
@@ -7304,7 +10746,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-pvsnp",
@@ -7317,7 +10765,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-hodge",
@@ -7330,7 +10784,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-bsd",
@@ -7343,7 +10803,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-navierstokes",
@@ -7356,7 +10822,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-mirror-walk-reaches-yangmills",
@@ -7369,7 +10841,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -7382,7 +10860,13 @@
   "sourcePath": "src/8/eight.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "eight-star-is-an-involution-and-reflects-to-riemann",
@@ -7397,7 +10881,13 @@
   "axioms": [
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "propext",
+   "station"
+  ]
  },
  {
   "slug": "eight-star-negates-every-anti-self-dual-form",
@@ -7413,7 +10903,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "eight",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "nine-from-nine-the-sequence-is-one-cycle-through-every-station",
@@ -7426,7 +10922,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-the-step-out-of-nine",
@@ -7439,7 +10941,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-here-reflects-to-its-mirror",
@@ -7452,7 +10960,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-at-nine-the-reflection-lags-the-walk-by-one-step",
@@ -7465,7 +10979,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-at-nine-the-nine-complement-commutes-with-the-walk",
@@ -7478,7 +10998,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-from-nine-walking-the-reflection-experiences-the-sequence",
@@ -7491,7 +11017,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-the-four-faces-at-nine",
@@ -7504,7 +11036,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-at-nine-mirroring-twice-is-the-sequence",
@@ -7517,7 +11055,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-here-carries-no-case",
@@ -7530,7 +11074,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-poincare",
@@ -7543,7 +11093,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-riemann",
@@ -7556,7 +11112,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-pvsnp",
@@ -7569,7 +11131,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-hodge",
@@ -7582,7 +11150,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-bsd",
@@ -7595,7 +11169,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-navierstokes",
@@ -7608,7 +11188,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walk-reaches-yangmills",
@@ -7621,7 +11207,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-reflection-meets",
@@ -7634,7 +11226,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-poincare",
@@ -7647,7 +11245,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-riemann",
@@ -7660,7 +11264,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-pvsnp",
@@ -7673,7 +11283,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-hodge",
@@ -7686,7 +11302,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-bsd",
@@ -7699,7 +11321,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-navierstokes",
@@ -7712,7 +11340,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-mirror-walk-reaches-yangmills",
@@ -7725,7 +11359,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-walking-from-the-mirror-is-walking-from-here-shifted",
@@ -7738,7 +11378,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-collatz-has-the-trivial-loop",
@@ -7751,7 +11397,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-the-loop-is-the-opening-walked-back-and-closed-ahead",
@@ -7764,7 +11416,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-the-mirror-walk-from-nine-walks-the-loop-reflected",
@@ -7777,7 +11435,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-every-n-below-sixty-four-reaches-one",
@@ -7790,7 +11454,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-twenty-seven-needs-more-than-one-hundred-ten-steps",
@@ -7803,7 +11473,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-nine-nine-nine-n-plus-one-is-station-one-in-the-ring",
@@ -7819,7 +11495,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "nine-three-n-plus-one-lands-on-one-four-or-seven",
@@ -7835,7 +11517,13 @@
    "Quot.sound",
    "propext"
   ],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "Quot.sound + propext",
+   "station"
+  ]
  },
  {
   "slug": "nine-five-x-plus-one-has-a-cycle-that-never-meets-one",
@@ -7848,7 +11536,13 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  },
  {
   "slug": "nine-nine-nine-nine-x-plus-one-from-one-thousand-has-not-met-one-in-sixty-steps",
@@ -7861,6 +11555,12 @@
   "sourcePath": "src/9/nine.lean",
   "texPath": "src/research/lean-theorems.tex",
   "axioms": [],
-  "depositId": ""
+  "depositId": "",
+  "seals": [],
+  "tags": [
+   "nine",
+   "kernel",
+   "station"
+  ]
  }
 ]

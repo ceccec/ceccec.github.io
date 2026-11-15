@@ -724,10 +724,12 @@ export declare function openFrontierCardLinks(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** Each theorem page describes itself by what it states — never the site abstract. */
 export declare function theoremPagePaths(matrix?: MindMatrix): {
     params: {
         slug: string;
         title: string;
+        description: string;
     };
 }[];
 export declare function theoremPageBySlug(slug: string, matrix?: MindMatrix): TheoremPageRow | null;

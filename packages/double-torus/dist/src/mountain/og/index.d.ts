@@ -362,6 +362,22 @@ export declare function pageHreflangAlternates(path: string): {
  * digits as 8·4·5); longer computed descriptions cut at a word boundary with an ellipsis. Page bodies
  * keep the full text — the clamp governs the meta/OG/JSON-LD projection only. */
 export declare function seoMetaDescription(text: string): string;
+/** The document <title> within the search-display budget (~60 characters = 4·3·5): "name | site" when it fits; else
+ * the name alone, which drops the suffix and keeps the name whole when the name fits by itself; else the name cut at a
+ * word boundary with an ellipsis. Only the <title> is budgeted — the page's own heading keeps its full name. */
+export declare function seoDocumentTitle(name: string, site: string): {
+    readonly title: string;
+    readonly withSite: boolean;
+};
+/** A PAGE DESCRIBES ITSELF, never with the site abstract (owner, 2026-11-15: "no manual vitepress configs. all computed
+ * via tag clouds"). In order: the page's own first paragraph of prose, read from its Markdown (frontmatter, scripts,
+ * styles, components, HTML and headings stripped — the first block holding a finished sentence); else a sentence computed from its title and tag cloud. Nothing is
+ * hand-written per page. Where the filesystem is absent (a browser), the prose step is skipped and the tag cloud answers. */
+export declare function computedPageDescription(relativePath: string, title: string, tags: readonly string[], root?: string): string;
+/** ONE PAGE, ONE CANONICAL: an alias declares its target's URL as canonical, in its own locale edition — ROUTE_ALIASES
+ * (src/wind/site) is the one alias table, the same one the router mounts aliases from. Every other route is its own
+ * canonical. Before this, /academy, /school and /learn-developer each claimed to be canonical while serving /learn. */
+export declare function canonicalRouteOf(route: string): string;
 export declare function jsonLdTemplate(page: JsonLdPageIdentity, matrix?: MindMatrix): Record<string, unknown>[];
 export type { JsonLdPageIdentity };
 export declare function seoOptimised(matrix?: MindMatrix): {

@@ -1497,8 +1497,9 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
   return [...registry, ...cardPapers]
 }
 
-export function theoremPagePaths(matrix: MindMatrix = buildMatrix()): { params: { slug: string; title: string } }[] {
-  return theoremPageRows(matrix).map((row) => ({ params: { slug: row.slug, title: row.theorem } }))
+/** Each theorem page describes itself by what it states — never the site abstract. */
+export function theoremPagePaths(matrix: MindMatrix = buildMatrix()): { params: { slug: string; title: string; description: string } }[] {
+  return theoremPageRows(matrix).map((row) => ({ params: { slug: row.slug, title: row.theorem, description: row.proof.trim() || row.theorem } }))
 }
 
 export function theoremPageBySlug(slug: string, matrix: MindMatrix = buildMatrix()): TheoremPageRow | null {

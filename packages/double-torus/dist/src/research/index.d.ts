@@ -2961,10 +2961,12 @@ export declare function domainProofCatalog(matrix?: MindMatrix, at?: number): {
     boundary: string;
 };
 export declare function domainProofPageRows(matrix?: MindMatrix, at?: number): DomainProofCatalogRow[];
+/** Each domain-proof page describes itself by its official statement — never the site abstract. */
 export declare function domainProofPagePaths(matrix?: MindMatrix, at?: number): {
     params: {
         slug: string;
         title: string;
+        description: string;
     };
 }[];
 export declare function domainProofPageBySlug(slug: string, matrix?: MindMatrix, at?: number): DomainProofCatalogRow | null;

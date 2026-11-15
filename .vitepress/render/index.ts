@@ -22,7 +22,7 @@ export { MEEUS_J2000_CIVIL, MEEUS_J2000_JD, drawHumanDesignBodyGraph, humanDesig
 export { siteNavigation, vitepressSidebar } from '../../src/learning'
 export type { ComponentCrosslink } from '../../src/learning'
 export { speechIntonation } from '../../src/media'
-export { canonicalUrl, computedSeo, jsonLdTemplate, openGraphCardFromRoute, pageHreflangAlternates, platformOgLimitsMeasured, seoMetaDescription } from '../../src/mountain/og'
+export { canonicalUrl, computedSeo, jsonLdTemplate, openGraphCardFromRoute, pageHreflangAlternates, platformOgLimitsMeasured, computedPageDescription, seoDocumentTitle, seoMetaDescription } from '../../src/mountain/og'
 export { WATCH_MS_STORAGE_KEY, attunementTier, encodeWatchMsPersist, harmonizeField, parseWatchMsPersist } from '../../src/music'
 export type { ObserverContext } from '../../src/music'
 export { HERO_CYCLE_MS, QUANTUM_SENSOR_BINDING_CATALOG, backgroundSceneFromShared, cardFieldScroll, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, drawBackgroundMovie, drawBothEarthsMerkabaFrame, drawHeroMovieFrame, drawLivingTorusFrame, drawQuantumAppFrame, heroFieldCenterY, movieObservationReceipt, movieTextFromCopy, quantumSensorBindingCatalog, realtimeSubtitleAt, sharedHeroAt, subscribeHeroClock } from '../../src/quantum'
@@ -38,7 +38,7 @@ export { localizeMonolingual, pickLocale, toGlagolitic } from '../../src/quantum
 export { A432_HUE, fixedConstantsProvedByTheorems, movieCanvasHex, movieCanvasRgba, observingMovieRevealsQuantumModel, quantumModelSnapshot, selfResearchTheorems } from '../../src/quantum/science'
 export type { QuantumModelSnapshot, TheoremCandidate } from '../../src/quantum/science'
 export { PUBLICATION_CREDIT, pageCitation, cursorReferralFundsAiNeeds, domainProofPageBySlug, domainProofPagePaths, domainProofPageRows } from '../../src/research'
-export { leanPageBySlug, leanPagePaths, leanPageRows, leanPageSlug, leanLedgerEntry, type LeanPageRow, type LeanAccount } from '../../src/pair/formal/proofs'
+export { leanPageBySlug, leanPagePaths, leanFeedMarkdown, leanPageRows, leanPageSlug, leanLedgerEntry, type LeanPageRow, type LeanAccount } from '../../src/pair/formal/proofs'
 export type { DomainProofCatalogRow } from '../../src/research'
 export { proofRendererDecodedView, decodedCardCrosslinksLabel, decodedCardFacetMark, decodedCardTextShadow, heroMovieChrome, immersiveMovieToggleLabel } from '../../src/thunder/movie/glass'
 export type { HeroMovieChrome } from '../../src/thunder/movie/glass'
@@ -66,3 +66,5 @@ export { quantumAppsPanelComputes, cryptoRelatedSurfacesAreDry } from '../../src
 export { allChatCapabilitiesFusedAndAuditedByStandards } from '../../src/heaven/compute'
 export * as quantumAppsFolds from '../../src/quantum/apps'
 export { FEELING_CORNERS, FEELING_VALENCES, feel, feelingAct, feelingThoughtEmotionTrinity } from '../../src/water/stack'
+// The Lean posts in the bg and gla editions — translated locally (src/wind/site localizedLeanPagePaths).
+export { localizedLeanPagePaths } from '../../src/wind/site/index.ts'

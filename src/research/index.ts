@@ -5650,8 +5650,9 @@ export function domainProofPageRows(matrix: MindMatrix = buildMatrix(), at = 0):
   return domainProofCatalog(matrix, at).rows
 }
 
-export function domainProofPagePaths(matrix: MindMatrix = buildMatrix(), at = 0): { params: { slug: string; title: string } }[] {
-  return domainProofPageRows(matrix, at).map((row) => ({ params: { slug: row.slug, title: row.title } }))
+/** Each domain-proof page describes itself by its official statement — never the site abstract. */
+export function domainProofPagePaths(matrix: MindMatrix = buildMatrix(), at = 0): { params: { slug: string; title: string; description: string } }[] {
+  return domainProofPageRows(matrix, at).map((row) => ({ params: { slug: row.slug, title: row.title, description: row.officialStatement } }))
 }
 
 export function domainProofPageBySlug(slug: string, matrix: MindMatrix = buildMatrix(), at = 0): DomainProofCatalogRow | null {

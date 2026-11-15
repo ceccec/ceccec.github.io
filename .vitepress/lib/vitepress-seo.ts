@@ -5,6 +5,8 @@ export {
   jsonLdTemplate,
   pageHreflangAlternates,
   seoMetaDescription,
+  seoDocumentTitle,
+  computedPageDescription,
   openGraphCardFromRoute,
   platformOgLimitsMeasured,
   canonicalUrl,

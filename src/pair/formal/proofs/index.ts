@@ -1659,11 +1659,23 @@ export type LeanPageRow = {
   readonly depositId: string
   /** What the kernel reported this theorem rests on; null when it is not recorded. */
   readonly axioms: readonly string[] | null
+  /** The registry rows this theorem decides (LEAN_SEALED_REGISTRY) — the registry folded into its Lean post. */
+  readonly seals: readonly string[]
+  /** The post's tag cloud, every tag read from the theorem itself: its source file, the account it is credited to
+   *  (the kernel alone, or the axioms the kernel reports), and the corpus it belongs to. Nav, feed and sitemap group by these. */
+  readonly tags: readonly string[]
 }
 
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
 export function leanPageSlug(file: string, name: string): string {
   return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
+}
+
+/** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every
+ *  locale home loads this body: a heading and the feed component, which reads the posts' own rows and tags. The heading is
+ *  passed in already translated by the caller's locale transform, so this stays one generator for all three homes. */
+export function leanFeedMarkdown(heading: string = 'Machine-checked theorems'): string {
+  return `# ${heading}\n\n<LeanTheoremIndex />\n`
 }
 
 export function leanPageRows(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanPageRow[] {
@@ -1682,11 +1694,29 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
     texPath: 'src/research/lean-theorems.tex',
     axioms: t.axioms,
     depositId: t.dir === LEAN_INVOLUTION_DIR ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
+    seals: LEAN_SEALED_REGISTRY.filter((row) => row.leanFile === `${t.dir}/${t.file}` && row.theorems.includes(t.name)).map((row) => row.theorem),
+    tags: [
+      t.file.replace(/\.lean$/, ''),
+      t.axioms === null ? 'unrecorded' : t.axioms.length === 0 ? 'kernel' : t.axioms.join(' + '),
+      t.dir === LEAN_INVOLUTION_DIR ? 'involution' : t.dir === LEAN_REGISTRY_DIR ? 'registry' : 'station',
+    ],
   }))
 }
 
-export function leanPagePaths(root?: string): { params: { slug: string; title: string } }[] {
-  return leanPageRows(root).map((row) => ({ params: { slug: row.slug, title: row.title } }))
+/** Each Lean page describes itself: its own doc comment, or its name and proposition where it has none — never the
+ *  site abstract, which the head fell back to on every one of these pages until the loader passed a description. */
+export function leanPagePaths(root?: string): { params: { slug: string; title: string; description: string } }[] {
+  const rows = leanPageRows(root)
+  const describe = (row: (typeof rows)[number]) => row.doc?.trim() || `${row.name}: ${row.proposition}`
+  // A name or a doc that more than one file carries (the station files state each law AT their own digit, under one
+  // name) is told apart by its file — otherwise two pages would share one title and one description.
+  const repeated = (key: (row: (typeof rows)[number]) => string) => { const n = new Map<string, number>(); for (const r of rows) n.set(key(r), (n.get(key(r)) ?? 0) + 1); return (r: (typeof rows)[number]) => (n.get(key(r)) ?? 0) > 1 }
+  const titleRepeats = repeated((r) => r.title), descriptionRepeats = repeated(describe)
+  return rows.map((row) => ({ params: {
+    slug: row.slug,
+    title: titleRepeats(row) ? `${row.title} — ${row.file}` : row.title,
+    description: descriptionRepeats(row) ? `${row.file}: ${describe(row)}` : describe(row),
+  } }))
 }
 
 export function leanPageBySlug(slug: string, root?: string): LeanPageRow | null {

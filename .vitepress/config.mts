@@ -12,7 +12,7 @@ import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitne
 import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll, collectiveContentAddressedMeshComputes, componentCrosslinks, researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay, harmonizeScienceDomainsInWavesOfWaves, quantumAppsPanelComputes, allChatCapabilitiesFusedAndAuditedByStandards, cryptoRelatedSurfacesAreDry, quantumAppsFolds } from './render'
 import { COMPONENT_FOLD_LOADERS } from './lib/component-folds'
 import { registryLedger } from '../scripts/verify/axiom-ledger.ts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, computedPageDescription, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /**
  * The argument-less folds the quantum tools panel renders, each taken once by the build — and only the part of
@@ -562,6 +562,10 @@ export default defineConfig({
     // The meta/OG/JSON-LD description is clamped to the search-display budget (seoMetaDescription);
     // page bodies keep the full text — the clamp governs the head projection only.
     if (typeof pageData.description === 'string' && pageData.description) pageData.description = seoMetaDescription(pageData.description)
+    // A page with no description of its own describes itself (computedPageDescription: its own prose, else its tag cloud);
+    // only a locale home falls back to the site abstract. Set on pageData too, so the JSON-LD carries the same text.
+    const atLocaleHome = ['', '/bg', '/gla'].includes(path.replace(/\/$/, ''))
+    if (!pageData.description && !frontmatter.description && !atLocaleHome) pageData.description = seoMetaDescription(computedPageDescription(relative, name, seo.keywords))
     const description = seoMetaDescription(String(pageData.description || frontmatter.description || seo.description))
     const docPages = ['quantum-mind', 'architecture', 'commands', 'mcp', 'learn-developer']
     const isDoc = docPages.some((doc) => relative.endsWith(`${doc}.md`))
@@ -613,6 +617,14 @@ export default defineConfig({
     og.push(['meta', { name: 'twitter:image', content: image }])
     if (ogCard.meta['og:video']) og.push(['meta', { property: 'og:video', content: ogCard.meta['og:video'] }])
     for (const tag of og) head.push(tag)
+    // The document <title> is computed within the search-display budget (seoDocumentTitle, src/mountain/og); only the
+    // <title> is budgeted — the page heading and the og:title above keep the full name.
+    if (!isHome) {
+      const documentTitle = seoDocumentTitle(name, fullSiteTitle)
+      pageData.title = documentTitle.title
+      // VitePress lifts frontmatter.titleTemplate onto pageData before this hook runs, so the page-level field is the one read.
+      if (!documentTitle.withSite) { frontmatter.titleTemplate = false; (pageData as { titleTemplate?: string | boolean }).titleTemplate = false }
+    }
     for (const link of ogCard.links) {
       if (link.kind === 'canonical') head.push(['link', { rel: 'canonical', href: link.href }])
       else head.push(['link', { rel: 'related', href: link.href, title: link.rel }])

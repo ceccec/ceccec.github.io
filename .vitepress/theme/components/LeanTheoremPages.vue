@@ -5,7 +5,7 @@
 // the proposition, what proves it, what it does NOT claim, and where the source is — in that order.
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import { leanLedgerEntry, type LeanPageRow } from '../../render'
+import { leanLedgerEntry, toGlagolitic, type LeanPageRow } from '../../render'
 // The rows are derived from the .lean sources at build (scripts/verify/lean-corpus.ts): leanPageRows reads them through
 // node:fs, which a browser does not have, so calling it here left every /lean page blank on client-side navigation.
 import leanCorpus from '../../data/lean-corpus.json'
@@ -16,7 +16,12 @@ const DOI = '10.5281/zenodo.21787144'
 const ORCID = '0009-0000-7312-9778'
 
 const route = useRoute()
-const slug = computed(() => route.path.replace(/\/(en|bg)\//, '/').match(/\/lean\/([a-z0-9-]+)/)?.[1] ?? null)
+// THE LOCALE IS READ FROM THE URL: /gla/lean/<slug> is the same post in Glagolitic script (toGlagolitic); there are no
+// Bulgarian posts. The proposition and the tactic stay exactly as the kernel checked them.
+const locale = computed<'en' | 'bg' | 'gla'>(() => (/^\/bg\//.test(route.path) ? 'bg' : /^\/gla\//.test(route.path) ? 'gla' : 'en'))
+const prefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
+const tr = (text: string) => (locale.value === 'gla' ? toGlagolitic(text) : text)
+const slug = computed(() => route.path.replace(/\/(en|bg|gla)\//, '/').match(/\/lean\/([a-z0-9-]+)/)?.[1] ?? null)
 const rows = computed<LeanPageRow[]>(() => {
   const one = slug.value ? ALL.find((row) => row.slug === slug.value) ?? null : null
   return one ? [one] : [...ALL]
@@ -26,7 +31,8 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
 
 <template>
   <article v-for="row in rows" :key="row.slug" class="lean-paper">
-    <h1>{{ row.title }}</h1>
+    <h1>{{ tr(row.title) }}</h1>
+    <p class="tags"><a v-for="tag in row.tags" :key="tag" class="tag" :href="withBase(`${prefix}/?tag=${encodeURIComponent(tag)}`)">{{ tag }}</a></p>
 
     <!-- THE CLAIM FIRST. A reader must know what this does and does not assert before the mathematics,
          not after it — the same order the Zenodo abstract uses. -->
@@ -36,7 +42,14 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
       citable. Prior art, where it exists, is cited below. No discovery is claimed.
     </p>
 
-    <p v-if="row.doc" class="doc">{{ row.doc }}</p>
+    <p v-if="row.doc" class="doc">{{ tr(row.doc) }}</p>
+
+    <!-- THE REGISTRY, FOLDED IN: the registry rows this theorem decides (LEAN_SEALED_REGISTRY). The registry has no pages
+         of its own; a row the kernel decides lives here, on the theorem that decides it. -->
+    <template v-if="row.seals.length">
+      <h2>{{ tr('Registry rows this theorem decides') }}</h2>
+      <ul class="seals"><li v-for="s in row.seals" :key="s">{{ tr(s) }}</li></ul>
+    </template>
 
     <h2>Proposition</h2>
     <pre class="proposition ich-scroll-x"><code>{{ row.proposition }}</code></pre>
@@ -70,11 +83,11 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
     <h2 v-if="siblings(row).length">Proved in the same file</h2>
     <ul v-if="siblings(row).length" class="siblings">
       <li v-for="s in siblings(row)" :key="s.slug">
-        <a :href="withBase(`/lean/${s.slug}`)">{{ s.title }}</a>
+        <a :href="withBase(`${prefix}/lean/${s.slug}`)">{{ tr(s.title) }}</a>
       </li>
     </ul>
 
-    <p class="all"><a :href="withBase('/lean/')">All machine-checked theorems</a></p>
+    <p class="all"><a :href="withBase(`${prefix}/`)">{{ tr('All machine-checked theorems') }}</a></p>
   </article>
 </template>
 
@@ -89,4 +102,6 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
    the site already has one reading rhythm — a component should not invent a second. */
 .ids, .siblings { line-height: inherit; }
 .all { margin-top: var(--ich-sp16); }
+.tags { display: flex; flex-wrap: wrap; gap: var(--ich-sp2); }
+.tag { padding: 0 var(--ich-sp2); border: 1px solid var(--vp-c-divider); border-radius: var(--ich-radius); text-decoration: none; }
 </style>

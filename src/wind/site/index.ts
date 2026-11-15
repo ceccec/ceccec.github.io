@@ -32,6 +32,8 @@ import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto/index.
 import { TAU } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
+import { toGlagolitic } from '../../quantum/heaven/library/index.ts'
+import { leanPagePaths } from '../../pair/formal/proofs/index.ts'
 
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export const SITE_DOMAIN_SEED = [
@@ -57,6 +59,22 @@ export const ROUTE_ALIASES: Record<string, string> = {
   'fusion-verify': 'quantum-tools',
   'ssl-test': 'ssltest',
   'tls-test': 'ssltest' }
+
+/** THE LEAN POSTS IN A LOCALE: the same posts as /lean/<slug>, their title and description translated locally — bg by
+ *  bulgarianFromEnglish, gla by toGlagolitic — for the /bg/lean and /gla/lean path loaders. One function, three editions. */
+export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: string; title: string; description: string } }[] {
+  const tr = (text: string) => (locale === 'bg' ? bulgarianFromEnglish(text) : locale === 'gla' ? toGlagolitic(text) : text)
+  return leanPagePaths().map(({ params }) => ({ params: { slug: params.slug, title: tr(params.title), description: tr(params.description) } }))
+}
+
+/** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own
+ * aliases in SITE_DOMAIN_SEED — or null when the slug is no alias. The router mounts aliases from these same two tables;
+ * the canonical link (src/mountain/og canonicalRouteOf) and the sitemap ask here, so none of the three can disagree. */
+export function routeAliasTarget(slug: string): string | null {
+  if (ROUTE_ALIASES[slug]) return ROUTE_ALIASES[slug]!
+  for (const domain of SITE_DOMAIN_SEED) if ((domain.aliases as readonly string[]).includes(slug)) return domain.canonical
+  return null
+}
 
 // ── SEO: rename to match the most-searched term per covered area, wired to PUBLIC search APIs ─────────────────
 // The most-searched phrasing per area. This is the DETERMINISTIC FALLBACK / named lexicon (a snapshot of common search

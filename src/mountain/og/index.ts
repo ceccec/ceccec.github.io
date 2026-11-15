@@ -1,5 +1,6 @@
 // ☶ Gèn · Mountain — Open Graph & structured data: every card/badge/link is an OG object, the JSON-LD template, microdata, frontmatter graph, typography, crawler feed. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc controller — computedSeo, jsonLdTemplate: path → structured data props for the view.
+import type { LocaleName } from '../../1/9/index.ts'
 import { THEOREM_ATOM_SEED } from '../../4/6/index.ts'
 import type { ConceptCommandName, MindMatrix } from '../../types/index.ts'
 import type { JsonLdPageIdentity } from '../../heaven/balance/index.ts'
@@ -26,7 +27,7 @@ import { everythingFoldsMerkabaInfiniteStreams, knowledgeRevealedByMerkabaFold }
 import { GLAGOLITIC_MAP, toGlagolitic } from '../../quantum/heaven/library/index.ts'
 import { babelFold } from '../../earth/world/index.ts'
 import { useGlagolitsaForIcons } from '../../wind/language/index.ts'
-import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge, localePath, quantumSitemap, ROUTE_ALIASES, siteConfig, staticPages, staticPagesAll, theoremScienceLens, theoremScienceVisible } from '../../wind/site/index.ts'
+import { bulgarianFromEnglish, bulgarianHomeFromEnglish, crawlerKnowledge, localePath, quantumSitemap, ROUTE_ALIASES, routeAliasTarget, siteConfig, staticPages, staticPagesAll, theoremScienceLens, theoremScienceVisible } from '../../wind/site/index.ts'
 import { quantumConfigurableFoldersDisappear } from '../../earth/architecture/index.ts'
 import { autotranslations, computedSlugsFoldTheGraph, configsUseMatrixComputationally, crossLinksEverywhere, gatesHealSpottedCompromise, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, papers, path, resonanceCatchGapsViolations, result, speechIntonation, theWhole, vitepressConfigComputesAll } from '../../quantum/heaven/mind/index.ts'
 
@@ -790,6 +791,50 @@ export function seoMetaDescription(text: string): string {
   return `${cut.slice(0, boundary > 0 ? boundary : budget).replace(/[\s,;:·—-]+$/, '')}…`
 }
 
+/** The document <title> within the search-display budget (~60 characters = 4·3·5): "name | site" when it fits; else
+ * the name alone, which drops the suffix and keeps the name whole when the name fits by itself; else the name cut at a
+ * word boundary with an ellipsis. Only the <title> is budgeted — the page's own heading keeps its full name. */
+export function seoDocumentTitle(name: string, site: string): { readonly title: string; readonly withSite: boolean } {
+  const budget = 4 * 3 * 5
+  if (`${name} | ${site}`.length <= budget) return { title: name, withSite: true }
+  if (name.length <= budget) return { title: name, withSite: false }
+  const cut = name.slice(0, budget - 1)
+  const boundary = cut.lastIndexOf(' ')
+  return { title: `${cut.slice(0, boundary > 0 ? boundary : budget - 1).replace(/[\s,;:·—|-]+$/, '')}…`, withSite: false }
+}
+
+/** A PAGE DESCRIBES ITSELF, never with the site abstract (owner, 2026-11-15: "no manual vitepress configs. all computed
+ * via tag clouds"). In order: the page's own first paragraph of prose, read from its Markdown (frontmatter, scripts,
+ * styles, components, HTML and headings stripped — the first block holding a finished sentence); else a sentence computed from its title and tag cloud. Nothing is
+ * hand-written per page. Where the filesystem is absent (a browser), the prose step is skipped and the tag cloud answers. */
+export function computedPageDescription(relativePath: string, title: string, tags: readonly string[], root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): string {
+  const fs = typeof process !== 'undefined' ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs') : undefined
+  const file = `${root}/.vitepress/pages/${relativePath}`
+  if (fs && fs.existsSync(file)) {
+    const prose = fs.readFileSync(file, 'utf8')
+      .replace(/^---[\s\S]*?\n---\n/, '')
+      .replace(/<(script|style)[\s\S]*?<\/\1>/g, '')
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .split(/\n\s*\n/)
+      .map((block) => block.replace(/<[^>]+>/g, ' ').replace(/^#+\s.*$/gm, '').replace(/[*_`]/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\s+/g, ' ').trim())
+      .find((block) => /[.!?](\s|$)/.test(block) && !/[{}]/.test(block)) // prose: a finished sentence, not a lone component or label
+    if (prose) return prose
+  }
+  const cloud = [...new Set(tags.map((tag) => tag.trim()).filter(Boolean))].slice(0, 6)
+  return cloud.length ? `${title} — ${cloud.join(', ')}.` : title
+}
+
+/** ONE PAGE, ONE CANONICAL: an alias declares its target's URL as canonical, in its own locale edition — ROUTE_ALIASES
+ * (src/wind/site) is the one alias table, the same one the router mounts aliases from. Every other route is its own
+ * canonical. Before this, /academy, /school and /learn-developer each claimed to be canonical while serving /learn. */
+export function canonicalRouteOf(route: string): string {
+  const path = route.startsWith('/') ? route : `/${route}`
+  const locale: LocaleName = /^\/bg(\/|$)/.test(path) ? 'bg' : /^\/gla(\/|$)/.test(path) ? 'gla' : 'en'
+  const bare = path.replace(/^\/(bg|gla)(?=\/|$)/, '').replace(/^\/+|\/+$/g, '')
+  const target = routeAliasTarget(bare)
+  return target ? localePath(`/${target}`, locale) : path
+}
+
 const RELATED_STANDARDS = [
   { standard: 'schema.org', url: 'https://schema.org' },
   { standard: 'Open Graph protocol', url: 'https://ogp.me/' },
@@ -1370,7 +1415,7 @@ export function openGraphCardFromRoute(
     const smilCount = (svg.match(/<animate/g) ?? []).length
 
     const links: OpenGraphCardLink[] = [
-      { rel: 'canonical', href: canonicalUrl(route.startsWith('/') ? route : `/${route}`), kind: 'canonical' },
+      { rel: 'canonical', href: canonicalUrl(canonicalRouteOf(route)), kind: 'canonical' },
       { rel: 'ray-hub', href: canonicalUrl(hub.route), kind: 'ray-hub' },
       { rel: 'tools', href: canonicalUrl('/quantum-tools'), kind: 'tool' },
       { rel: 'registry', href: canonicalUrl('/frontiers'), kind: 'theorem' },

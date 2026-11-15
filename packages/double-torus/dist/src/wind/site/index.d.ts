@@ -62,6 +62,19 @@ export declare const SITE_DOMAIN_SEED: readonly [{
 export type SiteDomainId = (typeof SITE_DOMAIN_SEED)[number]['id'];
 /** Catch-all thin mounts only — nav-hidden tool leaves stay as seed pages (genus-2 fold ∈ DOCUMENTED_HARMONICS) but omit from dropdowns. */
 export declare const ROUTE_ALIASES: Record<string, string>;
+/** THE LEAN POSTS IN A LOCALE: the same posts as /lean/<slug>, their title and description translated locally — bg by
+ *  bulgarianFromEnglish, gla by toGlagolitic — for the /bg/lean and /gla/lean path loaders. One function, three editions. */
+export declare function localizedLeanPagePaths(locale: LocaleName): {
+    params: {
+        slug: string;
+        title: string;
+        description: string;
+    };
+}[];
+/** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own
+ * aliases in SITE_DOMAIN_SEED — or null when the slug is no alias. The router mounts aliases from these same two tables;
+ * the canonical link (src/mountain/og canonicalRouteOf) and the sitemap ask here, so none of the three can disagree. */
+export declare function routeAliasTarget(slug: string): string | null;
 export declare function googleSuggestUrl(q: string): string;
 export declare function wikipediaOpenSearchUrl(q: string): string;
 export declare function wikimediaPageviewsUrl(article: string): string;

@@ -698,14 +698,26 @@ export type LeanPageRow = {
     readonly depositId: string;
     /** What the kernel reported this theorem rests on; null when it is not recorded. */
     readonly axioms: readonly string[] | null;
+    /** The registry rows this theorem decides (LEAN_SEALED_REGISTRY) — the registry folded into its Lean post. */
+    readonly seals: readonly string[];
+    /** The post's tag cloud, every tag read from the theorem itself: its source file, the account it is credited to
+     *  (the kernel alone, or the axioms the kernel reports), and the corpus it belongs to. Nav, feed and sitemap group by these. */
+    readonly tags: readonly string[];
 };
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
 export declare function leanPageSlug(file: string, name: string): string;
+/** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every
+ *  locale home loads this body: a heading and the feed component, which reads the posts' own rows and tags. The heading is
+ *  passed in already translated by the caller's locale transform, so this stays one generator for all three homes. */
+export declare function leanFeedMarkdown(heading?: string): string;
 export declare function leanPageRows(root?: string): readonly LeanPageRow[];
+/** Each Lean page describes itself: its own doc comment, or its name and proposition where it has none — never the
+ *  site abstract, which the head fell back to on every one of these pages until the loader passed a description. */
 export declare function leanPagePaths(root?: string): {
     params: {
         slug: string;
         title: string;
+        description: string;
     };
 }[];
 export declare function leanPageBySlug(slug: string, root?: string): LeanPageRow | null;

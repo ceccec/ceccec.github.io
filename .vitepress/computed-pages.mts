@@ -3,7 +3,7 @@ import { join, normalize } from 'node:path'
 import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from './render'
 import { bulgarianHomeFromEnglish } from './render'
-import { homeMarkdown } from './render'
+import { leanFeedMarkdown } from './render'
 import { doubleTorusCorpusRouting } from './render'
 
 /** The corpus indexes carry their fold's COMPUTED statement as minimal static prose (the empty-page
@@ -25,8 +25,8 @@ function corpusIndexMarkdown(kind: 'papers' | 'references' | 'diamonds'): string
   return ['---', 'layout: doc', `title: ${heading}`, '---', '', `# ${heading}`, '', line, '', `${routing.statement}`, '', '<UniversalPageTemplate />', ...(kind === 'references' ? ['', '<SourceAtlas />'] : []), ''].join('\n')
 }
 
-// NO home has an authoritative body on disk. The English home is homeMarkdown() — the ONE theorem
-// generator shared with README.md (src/quantum/dist/readme) — and the Glagolitic (/gla/) +
+// NO home has an authoritative body on disk. Every home is the Lean feed — leanFeedMarkdown() (src/pair/formal/proofs),
+// the site being a blog of kernel-checked theorems — and the Glagolitic (/gla/) +
 // Bulgarian (/bg/) homes are its transforms, all computed at build/dev time; the on-disk index.md
 // files are discovery stubs only.
 export function computedPagesPlugin(projectRoot: string) {
@@ -64,13 +64,13 @@ export function computedPagesPlugin(projectRoot: string) {
     load(id: string) {
       const clean = normalize(id.replace(/\?.*$/, ''))
       if (clean === enHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'index.md')}`)) {
-        return homeMarkdown()
+        return leanFeedMarkdown()
       }
       if (clean === glaHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'gla', 'index.md')}`)) {
-        return glagoliticHomeFromEnglish(homeMarkdown())
+        return glagoliticHomeFromEnglish(leanFeedMarkdown())
       }
       if (clean === bgHomePath || clean.endsWith(`${join('.vitepress', 'pages', 'bg', 'index.md')}`)) {
-        return bulgarianHomeFromEnglish(homeMarkdown())
+        return bulgarianHomeFromEnglish(leanFeedMarkdown())
       }
       for (const kind of ['papers', 'references', 'diamonds'] as const) {
         if (clean.endsWith(join('.vitepress', 'pages', kind, 'index.md'))) return corpusIndexMarkdown(kind)
