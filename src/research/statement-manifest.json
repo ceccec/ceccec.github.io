@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 273,
+  "count": 281,
   "statements": [
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
@@ -782,6 +782,54 @@
       "file": "src/pair/lean/proofs/cross.lean",
       "name": "poincare_is_an_inverse_pair_not_an_involution",
       "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0"
+    },
+    {
+      "statementUuid": "c926baa2-9936-8467-a369-bf9905c359ba",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "exponentSwap_keeps_the_reciprocal_sum",
+      "statement": "∀ p q r : Nat,\n    q * r + p * r + p * q = p * r + q * r + q * p"
+    },
+    {
+      "statementUuid": "1b8546ec-e027-8f09-9613-f805ab5e7c6c",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "summandSwap_keeps_the_sum_and_the_product",
+      "statement": "∀ a b c : Nat,\n    (a + b = c ↔ b + a = c) ∧ b * a * c = a * b * c"
+    },
+    {
+      "statementUuid": "0c12c02b-50db-8992-b1c9-3527917200c0",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "mirror_negates_the_writhe_and_the_trefoil_is_chiral",
+      "statement": "(∀ cs ∈ [[1, 1, 1], [1, -1, 1, -1], [-1, -1, -1, -1], [1, 1, -1]], writhe (mirror cs) = -writhe cs) ∧\n    mirror [1, 1, 1] ≠ [1, 1, 1]"
+    },
+    {
+      "statementUuid": "7ff51463-2f31-8047-9c03-571b8345c1f1",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "cartanTranspose_swaps_B2_and_C2_and_fixes_A2",
+      "statement": "cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ cartanTranspose (2, -1, -2, 2) = (2, -2, -1, 2) ∧\n    cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2)"
+    },
+    {
+      "statementUuid": "38289ae5-281d-86ad-bfe0-fa5842b39958",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "rank_two_types_are_self_dual_up_to_relabelling",
+      "statement": "cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2) ∧\n    cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ relabel (cartanTranspose (2, -2, -1, 2)) = (2, -2, -1, 2) ∧\n    cartanTranspose (2, -1, -3, 2) = (2, -3, -1, 2) ∧ relabel (cartanTranspose (2, -1, -3, 2)) = (2, -1, -3, 2)"
+    },
+    {
+      "statementUuid": "bf37c96c-6fa4-8493-9c19-c1e924192795",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "from_rank_three_B_and_C_are_exchanged",
+      "statement": "transpose3 cartanB3 = cartanC3 ∧ renamings3.all (fun p => permute3 p cartanB3 != cartanC3) = true"
+    },
+    {
+      "statementUuid": "f3386d25-979f-89b4-83c0-636b033d473c",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "mirrorHodge_negates_the_euler_characteristic",
+      "statement": "(∀ h : Int × Int, eulerOf (mirrorHodge h) = -eulerOf h) ∧ eulerOf (1, 101) = -200 ∧ eulerOf (mirrorHodge (1, 101)) = 200"
+    },
+    {
+      "statementUuid": "938c0b7e-ac28-8128-bb4a-b86c3d42e7c8",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "scale_is_not_an_involution",
+      "statement": "scale (scale 1) ≠ 1 ∧ scale (scale 1) = 4"
     },
     {
       "statementUuid": "efa10b4e-c93f-8fe6-9246-ea7bb31c611f",

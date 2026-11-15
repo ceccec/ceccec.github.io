@@ -762,6 +762,12 @@ export declare function clayCrossDiscovery(fetched: Readonly<Record<string, stri
     statement: string;
 };
 export declare const LEAN_CROSS_FILE = "src/pair/lean/proofs/cross.lean";
+/** For any catalogue row that names its map in cross.lean: the theorem there that decides the row's own formula — `<map>_is_an_involution`
+ *  for an involution row, a `…not_an_involution` theorem naming the map for a scale-map row — or undefined. Absent where the file
+ *  cannot be read, so a browser holds no row by it. */
+export declare function leanDecidesRow(root?: string, matrix?: MindMatrix): (id: string) => {
+    readonly kindTheorem: string;
+} | undefined;
 /** The declarations of a Lean file and its reuse graph: declaration i links to every other declaration its text names. */
 export declare function leanReuseGraph(text: string): {
     names: string[];

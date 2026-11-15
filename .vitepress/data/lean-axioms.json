@@ -260,13 +260,33 @@
    "Quot.sound",
    "propext"
   ],
+  "cartanTranspose_is_an_involution": [],
+  "cartanTranspose_swaps_B2_and_C2_and_fixes_A2": [],
   "complement_fixes_exactly_p_and_pspace": [],
   "complement_is_an_involution": [],
   "complement_is_its_own_class": [],
+  "exponentSwap_is_an_involution": [],
+  "exponentSwap_keeps_the_reciprocal_sum": [
+   "Quot.sound",
+   "propext"
+  ],
+  "from_rank_three_B_and_C_are_exchanged": [
+   "propext"
+  ],
   "hodge_fixes_exactly_the_diagonal": [
    "propext"
   ],
   "hodge_is_an_involution": [],
+  "mirrorHodge_is_an_involution": [],
+  "mirrorHodge_negates_the_euler_characteristic": [
+   "Quot.sound",
+   "propext"
+  ],
+  "mirror_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "mirror_negates_the_writhe_and_the_trefoil_is_chiral": [],
   "odd_cancels": [
    "Quot.sound",
    "propext"
@@ -276,6 +296,7 @@
    "propext"
   ],
   "poincare_is_an_inverse_pair_not_an_involution": [],
+  "rank_two_types_are_self_dual_up_to_relabelling": [],
   "riemann_and_bsd_are_one_reflection": [],
   "riemann_fixes_exactly_the_critical_line": [
    "Quot.sound",
@@ -285,7 +306,13 @@
    "Quot.sound",
    "propext"
   ],
+  "scale_is_not_an_involution": [],
   "star_is_an_involution": [
+   "propext"
+  ],
+  "summandSwap_is_an_involution": [],
+  "summandSwap_keeps_the_sum_and_the_product": [
+   "Quot.sound",
    "propext"
   ],
   "the_negation_cluster": [

@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 318 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 331 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -503,7 +503,7 @@ The involution and the split it produces, for every 2-form v: v + ★v is self-d
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro v; cases v} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 223 theorems in 10 files of \texttt{src/pair/lean/proofs}.
+\noindent 236 theorems in 10 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{consciousness.lean}}
 \begin{theorem}[The turn returns in three]
 \begin{lean}∀ p ∈ points, turn (turn (turn p)) = p\end{lean}
@@ -736,6 +736,66 @@ P vs NP is its own class: a swap whose σ c + c is not a constant — it has two
 \begin{theorem}[Poincare is an inverse pair not an involution]
 POINCARÉ IS NOT AN INVOLUTION: genus inverts chi, but chi applied twice moves the sphere's genus 0 to −2. The pair is a bijection, and it is listed here so its absence from the law above is proved, not omitted.
 \begin{lean}(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[ExponentSwap is an involution]
+\begin{lean}IsInvolution exponentSwap\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[ExponentSwap keeps the reciprocal sum]
+The swap keeps 1/p + 1/q + 1/r: over the common denominator pqr its numerator is qr + pr + pq, symmetric in p, q.
+\begin{lean}∀ p q r : Nat, q * r + p * r + p * q = p * r + q * r + q * p\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro p q r; rw [Nat.mul\_comm q p]; omega} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[SummandSwap is an involution]
+\begin{lean}IsInvolution summandSwap\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[SummandSwap keeps the sum and the product]
+The swap keeps a + b = c and the product abc whose radical the conjecture bounds.
+\begin{lean}∀ a b c : Nat, (a + b = c ↔ b + a = c) ∧ b * a * c = a * b * c\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro a b c; refine ⟨⟨fun h => by omega, fun h => by omega⟩, by rw [Nat.mul\_comm b a]⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Mirror is an involution]
+\begin{lean}IsInvolution mirror\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun cs => by} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Mirror negates the writhe and the trefoil is chiral]
+The mirror negates the writhe, and the trefoil (three positive crossings) is not its own mirror: it is chiral.
+\begin{lean}(∀ cs ∈ [[1, 1, 1], [1, -1, 1, -1], [-1, -1, -1, -1], [1, 1, -1]], writhe (mirror cs) = -writhe cs) ∧ mirror [1, 1, 1] ≠ [1, 1, 1]\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[CartanTranspose is an involution]
+\begin{lean}IsInvolution cartanTranspose\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[CartanTranspose swaps B2 and C2 and fixes A2]
+Roots and coroots exchange: as matrices B₂ and C₂ swap, and A₂ is its own dual.
+\begin{lean}cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ cartanTranspose (2, -1, -2, 2) = (2, -2, -1, 2) ∧ cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Rank two types are self dual up to relabelling]
+EVERY RANK-TWO TYPE IS ITS OWN DUAL, up to renaming the roots. A₂ is fixed by the transpose itself; B₂'s transpose is C₂, and C₂ is B₂ renamed — so(5) ≅ sp(4), one type, so the swap above is a swap of matrices, not of types; and G₂'s transpose is G₂ renamed: G₂ is self-dual. (Of the Dynkin type only: the dual group also exchanges the centre and the fundamental group, which a Cartan matrix does not see.)
+\begin{lean}cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2) ∧ cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ relabel (cartanTranspose (2, -2, -1, 2)) = (2, -2, -1, 2) ∧ cartanTranspose (2, -1, -3, 2) = (2, -3, -1, 2) ∧ relabel (cartanTranspose (2, -1, -3, 2)) = (2, -1, -3, 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From rank three B and C are exchanged]
+FROM RANK THREE THE DUAL EXCHANGES B AND C: B₃'s transpose is C₃, and none of the six renamings of B₃ is C₃ — so the rank-two coincidence above does not continue.
+\begin{lean}transpose3 cartanB3 = cartanC3 ∧ renamings3.all (fun p => permute3 p cartanB3 != cartanC3) = true\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[MirrorHodge is an involution]
+\begin{lean}IsInvolution mirrorHodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[MirrorHodge negates the euler characteristic]
+The mirror negates the Euler characteristic at every pair, and the quintic's (1, 101) with χ = −200 goes to 200.
+\begin{lean}(∀ h : Int × Int, eulerOf (mirrorHodge h) = -eulerOf h) ∧ eulerOf (1, 101) = -200 ∧ eulerOf (mirrorHodge (1, 101)) = 200\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{refine ⟨fun h => ?\_, by decide, by decide⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Scale is not an involution]
+A scale map, not an involution: applying it twice to 1 gives 4.
+\begin{lean}scale (scale 1) ≠ 1 ∧ scale (scale 1) = 4\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \subsection{\texttt{feeling.lean}}

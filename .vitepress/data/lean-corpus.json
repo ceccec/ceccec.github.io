@@ -1973,6 +1973,189 @@
   "depositId": ""
  },
  {
+  "slug": "cross-exponentswap-is-an-involution",
+  "title": "ExponentSwap is an involution",
+  "name": "exponentSwap_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution exponentSwap",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-exponentswap-keeps-the-reciprocal-sum",
+  "title": "ExponentSwap keeps the reciprocal sum",
+  "name": "exponentSwap_keeps_the_reciprocal_sum",
+  "file": "cross.lean",
+  "proposition": "∀ p q r : Nat, q * r + p * r + p * q = p * r + q * r + q * p",
+  "tactic": "intro p q r; rw [Nat.mul_comm q p]; omega",
+  "doc": "The swap keeps 1/p + 1/q + 1/r: over the common denominator pqr its numerator is qr + pr + pq, symmetric in p, q.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-summandswap-is-an-involution",
+  "title": "SummandSwap is an involution",
+  "name": "summandSwap_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution summandSwap",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-summandswap-keeps-the-sum-and-the-product",
+  "title": "SummandSwap keeps the sum and the product",
+  "name": "summandSwap_keeps_the_sum_and_the_product",
+  "file": "cross.lean",
+  "proposition": "∀ a b c : Nat, (a + b = c ↔ b + a = c) ∧ b * a * c = a * b * c",
+  "tactic": "intro a b c; refine ⟨⟨fun h => by omega, fun h => by omega⟩, by rw [Nat.mul_comm b a]⟩",
+  "doc": "The swap keeps a + b = c and the product abc whose radical the conjecture bounds.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-mirror-is-an-involution",
+  "title": "Mirror is an involution",
+  "name": "mirror_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution mirror",
+  "tactic": "fun cs => by",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-mirror-negates-the-writhe-and-the-trefoil-is-chiral",
+  "title": "Mirror negates the writhe and the trefoil is chiral",
+  "name": "mirror_negates_the_writhe_and_the_trefoil_is_chiral",
+  "file": "cross.lean",
+  "proposition": "(∀ cs ∈ [[1, 1, 1], [1, -1, 1, -1], [-1, -1, -1, -1], [1, 1, -1]], writhe (mirror cs) = -writhe cs) ∧ mirror [1, 1, 1] ≠ [1, 1, 1]",
+  "tactic": "decide",
+  "doc": "The mirror negates the writhe, and the trefoil (three positive crossings) is not its own mirror: it is chiral.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-cartantranspose-is-an-involution",
+  "title": "CartanTranspose is an involution",
+  "name": "cartanTranspose_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution cartanTranspose",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-cartantranspose-swaps-b2-and-c2-and-fixes-a2",
+  "title": "CartanTranspose swaps B2 and C2 and fixes A2",
+  "name": "cartanTranspose_swaps_B2_and_C2_and_fixes_A2",
+  "file": "cross.lean",
+  "proposition": "cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ cartanTranspose (2, -1, -2, 2) = (2, -2, -1, 2) ∧ cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2)",
+  "tactic": "decide",
+  "doc": "Roots and coroots exchange: as matrices B₂ and C₂ swap, and A₂ is its own dual.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-rank-two-types-are-self-dual-up-to-relabelling",
+  "title": "Rank two types are self dual up to relabelling",
+  "name": "rank_two_types_are_self_dual_up_to_relabelling",
+  "file": "cross.lean",
+  "proposition": "cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2) ∧ cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ relabel (cartanTranspose (2, -2, -1, 2)) = (2, -2, -1, 2) ∧ cartanTranspose (2, -1, -3, 2) = (2, -3, -1, 2) ∧ relabel (cartanTranspose (2, -1, -3, 2)) = (2, -1, -3, 2)",
+  "tactic": "decide",
+  "doc": "EVERY RANK-TWO TYPE IS ITS OWN DUAL, up to renaming the roots. A₂ is fixed by the transpose itself; B₂'s transpose is C₂, and C₂ is B₂ renamed — so(5) ≅ sp(4), one type, so the swap above is a swap of matrices, not of types; and G₂'s transpose is G₂ renamed: G₂ is self-dual. (Of the Dynkin type only: the dual group also exchanges the centre and the fundamental group, which a Cartan matrix does not see.)",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-from-rank-three-b-and-c-are-exchanged",
+  "title": "From rank three B and C are exchanged",
+  "name": "from_rank_three_B_and_C_are_exchanged",
+  "file": "cross.lean",
+  "proposition": "transpose3 cartanB3 = cartanC3 ∧ renamings3.all (fun p => permute3 p cartanB3 != cartanC3) = true",
+  "tactic": "decide",
+  "doc": "FROM RANK THREE THE DUAL EXCHANGES B AND C: B₃'s transpose is C₃, and none of the six renamings of B₃ is C₃ — so the rank-two coincidence above does not continue.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-mirrorhodge-is-an-involution",
+  "title": "MirrorHodge is an involution",
+  "name": "mirrorHodge_is_an_involution",
+  "file": "cross.lean",
+  "proposition": "IsInvolution mirrorHodge",
+  "tactic": "fun _ => rfl",
+  "doc": "",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-mirrorhodge-negates-the-euler-characteristic",
+  "title": "MirrorHodge negates the euler characteristic",
+  "name": "mirrorHodge_negates_the_euler_characteristic",
+  "file": "cross.lean",
+  "proposition": "(∀ h : Int × Int, eulerOf (mirrorHodge h) = -eulerOf h) ∧ eulerOf (1, 101) = -200 ∧ eulerOf (mirrorHodge (1, 101)) = 200",
+  "tactic": "refine ⟨fun h => ?_, by decide, by decide⟩",
+  "doc": "The mirror negates the Euler characteristic at every pair, and the quintic's (1, 101) with χ = −200 goes to 200.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "depositId": ""
+ },
+ {
+  "slug": "cross-scale-is-not-an-involution",
+  "title": "Scale is not an involution",
+  "name": "scale_is_not_an_involution",
+  "file": "cross.lean",
+  "proposition": "scale (scale 1) ≠ 1 ∧ scale (scale 1) = 4",
+  "tactic": "decide",
+  "doc": "A scale map, not an involution: applying it twice to 1 gives 4.",
+  "sourcePath": "src/pair/lean/proofs/cross.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
   "slug": "feeling-the-state-space-has-six-states",
   "title": "The state space has six states",
   "name": "the_state_space_has_six_states",

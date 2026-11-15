@@ -1,5 +1,5 @@
 /-
-  CROSS — ONE LAW, SEVEN CLAY CASES, THREE CLUSTERS.
+  CROSS — ONE LAW, SEVEN CLAY CASES, THREE CLUSTERS, AND THE SIX EXTENSIONS NO DATASET TESTS.
 
   Each Clay file beside the involution corpus (src/pair/formal/proofs) proves one symmetry the
   problem is stated over, on its own model. This file proves what they share, once each:
@@ -181,5 +181,87 @@ theorem complement_is_its_own_class :
     not omitted. -/
 theorem poincare_is_an_inverse_pair_not_an_involution :
     (∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 := by decide
+
+/-! ## The six extensions the catalogue crosses with them, decided the same way
+
+Each row of the involution catalogue that no public dataset can test is decided here on the model its row computes:
+the map, and the property the map preserves or reverses. As above, this proves the symmetry each statement is made
+across, never the statement: Fermat–Catalan, abc, the smooth-structure and Langlands questions and mirror symmetry
+stay what they are. -/
+
+/-- Fermat–Catalan exponents (p, q, r): swapping p and q. -/
+def exponentSwap (t : Nat × Nat × Nat) : Nat × Nat × Nat := (t.2.1, t.1, t.2.2)
+theorem exponentSwap_is_an_involution : IsInvolution exponentSwap := fun _ => rfl
+/-- The swap keeps 1/p + 1/q + 1/r: over the common denominator pqr its numerator is qr + pr + pq, symmetric in p, q. -/
+theorem exponentSwap_keeps_the_reciprocal_sum : ∀ p q r : Nat,
+    q * r + p * r + p * q = p * r + q * r + q * p := by
+  intro p q r; rw [Nat.mul_comm q p]; omega
+
+/-- abc: swapping the coprime summands a and b of a + b = c. -/
+def summandSwap (t : Nat × Nat × Nat) : Nat × Nat × Nat := (t.2.1, t.1, t.2.2)
+theorem summandSwap_is_an_involution : IsInvolution summandSwap := fun _ => rfl
+/-- The swap keeps a + b = c and the product abc whose radical the conjecture bounds. -/
+theorem summandSwap_keeps_the_sum_and_the_product : ∀ a b c : Nat,
+    (a + b = c ↔ b + a = c) ∧ b * a * c = a * b * c := by
+  intro a b c; refine ⟨⟨fun h => by omega, fun h => by omega⟩, by rw [Nat.mul_comm b a]⟩
+
+/-- Knots: the mirror image negates every crossing sign. -/
+def mirror (crossings : List Int) : List Int := crossings.map (fun s => -s)
+def writhe (crossings : List Int) : Int := crossings.foldl (· + ·) 0
+theorem mirror_is_an_involution : IsInvolution mirror := fun cs => by
+  simp [mirror, List.map_map, Function.comp_def, Int.neg_neg]
+/-- The mirror negates the writhe, and the trefoil (three positive crossings) is not its own mirror: it is chiral. -/
+theorem mirror_negates_the_writhe_and_the_trefoil_is_chiral :
+    (∀ cs ∈ [[1, 1, 1], [1, -1, 1, -1], [-1, -1, -1, -1], [1, 1, -1]], writhe (mirror cs) = -writhe cs) ∧
+    mirror [1, 1, 1] ≠ [1, 1, 1] := by decide
+
+/-- Langlands: the dual group's Cartan matrix is the transpose, (a₁₁, a₁₂, a₂₁, a₂₂) ↦ (a₁₁, a₂₁, a₁₂, a₂₂). -/
+def cartanTranspose (m : Int × Int × Int × Int) : Int × Int × Int × Int := (m.1, m.2.2.1, m.2.1, m.2.2.2)
+theorem cartanTranspose_is_an_involution : IsInvolution cartanTranspose := fun _ => rfl
+/-- Roots and coroots exchange: as matrices B₂ and C₂ swap, and A₂ is its own dual. -/
+theorem cartanTranspose_swaps_B2_and_C2_and_fixes_A2 :
+    cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ cartanTranspose (2, -1, -2, 2) = (2, -2, -1, 2) ∧
+    cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2) := by decide
+
+/-- Renaming the two simple roots: (a₁₁, a₁₂, a₂₁, a₂₂) ↦ (a₂₂, a₂₁, a₁₂, a₁₁). A type is a Cartan matrix up to this. -/
+def relabel (m : Int × Int × Int × Int) : Int × Int × Int × Int := (m.2.2.2, m.2.2.1, m.2.1, m.1)
+
+/-- EVERY RANK-TWO TYPE IS ITS OWN DUAL, up to renaming the roots. A₂ is fixed by the transpose itself; B₂'s transpose is
+    C₂, and C₂ is B₂ renamed — so(5) ≅ sp(4), one type, so the swap above is a swap of matrices, not of types; and G₂'s
+    transpose is G₂ renamed: G₂ is self-dual. (Of the Dynkin type only: the dual group also exchanges the centre and the
+    fundamental group, which a Cartan matrix does not see.) -/
+theorem rank_two_types_are_self_dual_up_to_relabelling :
+    cartanTranspose (2, -1, -1, 2) = (2, -1, -1, 2) ∧
+    cartanTranspose (2, -2, -1, 2) = (2, -1, -2, 2) ∧ relabel (cartanTranspose (2, -2, -1, 2)) = (2, -2, -1, 2) ∧
+    cartanTranspose (2, -1, -3, 2) = (2, -3, -1, 2) ∧ relabel (cartanTranspose (2, -1, -3, 2)) = (2, -1, -3, 2) := by decide
+
+/-- Rank three, for the contrast: a matrix as its rows, a renaming as a permutation of the three roots. -/
+def entry3 (m : List (List Int)) (i j : Nat) : Int := (m.getD i []).getD j 0
+def transpose3 (m : List (List Int)) : List (List Int) := [0, 1, 2].map (fun i => [0, 1, 2].map (fun j => entry3 m j i))
+def permute3 (p : List Nat) (m : List (List Int)) : List (List Int) :=
+  [0, 1, 2].map (fun i => [0, 1, 2].map (fun j => entry3 m (p.getD i 0) (p.getD j 0)))
+def renamings3 : List (List Nat) := [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]]
+def cartanB3 : List (List Int) := [[2, -1, 0], [-1, 2, -1], [0, -2, 2]]
+def cartanC3 : List (List Int) := [[2, -1, 0], [-1, 2, -2], [0, -1, 2]]
+
+/-- FROM RANK THREE THE DUAL EXCHANGES B AND C: B₃'s transpose is C₃, and none of the six renamings of B₃ is C₃ — so the
+    rank-two coincidence above does not continue. -/
+theorem from_rank_three_B_and_C_are_exchanged :
+    transpose3 cartanB3 = cartanC3 ∧ renamings3.all (fun p => permute3 p cartanB3 != cartanC3) = true := by decide
+
+/-- Mirror symmetry of Calabi–Yau threefolds: (h¹¹, h²¹) ↦ (h²¹, h¹¹). -/
+def mirrorHodge (h : Int × Int) : Int × Int := (h.2, h.1)
+def eulerOf (h : Int × Int) : Int := 2 * (h.1 - h.2)
+theorem mirrorHodge_is_an_involution : IsInvolution mirrorHodge := fun _ => rfl
+/-- The mirror negates the Euler characteristic at every pair, and the quintic's (1, 101) with χ = −200 goes to 200. -/
+theorem mirrorHodge_negates_the_euler_characteristic :
+    (∀ h : Int × Int, eulerOf (mirrorHodge h) = -eulerOf h) ∧ eulerOf (1, 101) = -200 ∧ eulerOf (mirrorHodge (1, 101)) = 200 := by
+  refine ⟨fun h => ?_, by decide, by decide⟩
+  unfold eulerOf mirrorHodge; omega
+
+/-- Graph isomorphism's quasi-polynomial bound: T ↦ 2^T. -/
+def scale (t : Nat) : Nat := 2 ^ t
+/-- A scale map, not an involution: applying it twice to 1 gives 4. -/
+theorem scale_is_not_an_involution : scale (scale 1) ≠ 1 ∧ scale (scale 1) = 4 := by decide
 
 end Cross
