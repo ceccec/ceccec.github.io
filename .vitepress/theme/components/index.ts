@@ -9,7 +9,6 @@ export { default as LinkedHeroCard } from './LinkedHeroCard.vue'
 export { default as UiCardShell } from './UiCardShell.vue'
 export { default as UiAsideShell } from './UiAsideShell.vue'
 export { default as PaperFrame } from './PaperFrame.vue'
-export { default as ModelCardPages } from './ModelCardPages.vue'
 export { default as LeanTheoremPages } from './LeanTheoremPages.vue'
 export { default as LeanTheoremIndex } from './LeanTheoremIndex.vue'
 export { default as TrinityGateways } from './TrinityGateways.vue'
@@ -30,7 +29,6 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   { id: 'UiCardShell', path: 'UiCardShell.vue', kind: 'eager' as const, role: 'shell' },
   { id: 'UiAsideShell', path: 'UiAsideShell.vue', kind: 'eager' as const, role: 'shell' },
   { id: 'PaperFrame', path: 'PaperFrame.vue', kind: 'eager' as const, role: 'paper' },
-  { id: 'ModelCardPages', path: 'ModelCardPages.vue', kind: 'eager' as const, role: 'page' },
   { id: 'LeanTheoremPages', path: 'LeanTheoremPages.vue', kind: 'eager' as const, role: 'page-shell' },
   { id: 'LeanTheoremIndex', path: 'LeanTheoremIndex.vue', kind: 'eager' as const, role: 'index' },
   { id: 'TrinityGateways', path: 'TrinityGateways.vue', kind: 'eager' as const, role: 'chrome' },
@@ -41,8 +39,6 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   { id: 'HeroBackgroundLayer', path: 'HeroBackgroundLayer.vue', kind: 'eager' as const, role: 'movie' },
   // Canon page / paper / gaps (compose format/canon · page/trinity)
   // Async OVERRIDES / experience
-  { id: 'RayHub', path: 'RayHub.vue', kind: 'override' as const, role: 'hub' },
-  { id: 'DoubleTorusExperience', path: 'DoubleTorusExperience.vue', kind: 'override' as const, role: 'experience' },
   // One movie family (layers, not parallel stacks)
   { id: 'BackgroundMovie', path: 'BackgroundMovie.vue', kind: 'movie' as const, role: 'movie' },
   { id: 'CardBackgroundMovie', path: 'CardBackgroundMovie.vue', kind: 'movie' as const, role: 'movie' },
@@ -79,7 +75,6 @@ export const VITEPRESS_COMPONENT_SET = [
   'UiCardShell',
   'UiAsideShell',
   'PaperFrame',
-  'ModelCardPages',
   'TrinityGateways',
   'GlobalHelp',
   'CollectiveMind',

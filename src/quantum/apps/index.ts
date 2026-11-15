@@ -29667,16 +29667,15 @@ export function runQuantumSelfHealExit(_root = '', _argv: readonly string[] = []
  */
 export const VITEPRESS_ONE_COMPONENT_PATHS = [
   'BackgroundMovie.vue', 'CardBackgroundMovie.vue', 'ClientOnly.vue', 'CollectiveMind.vue',
-  'DoubleTorusExperience.vue', 'GlobalHelp.vue', 'HeroBackgroundLayer.vue', 'LeanTheoremIndex.vue',
-  'LeanTheoremPages.vue', 'LinkedHeroCard.vue', 'ModelCardPages.vue', 'PaperFrame.vue',
-  'RayHub.vue', 'RevolutAside.vue', 'SpeechReader.vue', 'TrinityGateways.vue',
-  'UiAsideShell.vue', 'UiCardShell.vue', 'VitePressPossibilities.vue', 'ui/Accordion.vue',
-  'ui/AccordionItem.vue', 'ui/Alert.vue', 'ui/AspectRatio.vue', 'ui/Avatar.vue',
-  'ui/Badge.vue', 'ui/Button.vue', 'ui/Card.vue', 'ui/CardContent.vue',
-  'ui/Checkbox.vue', 'ui/Collapsible.vue', 'ui/Input.vue', 'ui/Label.vue',
-  'ui/Progress.vue', 'ui/Separator.vue', 'ui/Skeleton.vue', 'ui/Switch.vue',
-  'ui/Tabs.vue', 'ui/TabsContent.vue', 'ui/TabsList.vue', 'ui/TabsTrigger.vue',
-  'ui/Textarea.vue', 'ui/Tooltip.vue',
+  'GlobalHelp.vue', 'HeroBackgroundLayer.vue', 'LeanTheoremIndex.vue', 'LeanTheoremPages.vue',
+  'LinkedHeroCard.vue', 'PaperFrame.vue', 'RevolutAside.vue', 'SpeechReader.vue',
+  'TrinityGateways.vue', 'UiAsideShell.vue', 'UiCardShell.vue', 'VitePressPossibilities.vue',
+  'ui/Accordion.vue', 'ui/AccordionItem.vue', 'ui/Alert.vue', 'ui/AspectRatio.vue',
+  'ui/Avatar.vue', 'ui/Badge.vue', 'ui/Button.vue', 'ui/Card.vue',
+  'ui/CardContent.vue', 'ui/Checkbox.vue', 'ui/Collapsible.vue', 'ui/Input.vue',
+  'ui/Label.vue', 'ui/Progress.vue', 'ui/Separator.vue', 'ui/Skeleton.vue',
+  'ui/Switch.vue', 'ui/Tabs.vue', 'ui/TabsContent.vue', 'ui/TabsList.vue',
+  'ui/TabsTrigger.vue', 'ui/Textarea.vue', 'ui/Tooltip.vue',
 ] as const
 
 export const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED = [
