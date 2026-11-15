@@ -71,16 +71,19 @@ jobs:
       # but nothing ran verify:all on a push, so a scene could gain a flag that cannot fail — or draw the doubling
       # orbit into the 3-6-9 axis again — and ship. Here it runs before the build: a regression stops the deploy and
       # the live site keeps its last honest version. It reads the committed floors, so it can only hold or tighten.
-      - name: The movie proves only what could fail (verify:movie)
-        run: npm run -s verify:movie
       # ALL ANIMATED, NO EXTRA POWER: one animation clock, and a hero frame may not grow its draw calls — a new scene
       # pays for its strokes by saving them elsewhere. Counted in node against a recording context, so no runner's
       # speed can move the floor.
-      - name: All animated, no extra power (verify:power)
-        run: npm run -s verify:power
-      - name: Build with VitePress
-        run: pnpm run docs:build
+      # CI IS A THIN MCP CLIENT (2026-11-15). It does not keep its own list of commands: it starts the repo's MCP server
+      # (packages/quantum-dev-sdk/bin/mcp.ts) and calls run_gate through bin/client.ts — the same door every agent uses,
+      # so a gate is run here exactly as it is run there, and the step prints the lines that decided each verdict. The
+      # Clay cross, the feeling trinity and the axiom ledger are monitored on every deploy alongside the movie and power.
+      - name: Gates through the MCP door (movie · power · Clay cross · feeling · axiom ledger)
+        run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_gate verify:movie verify:power verify:clay-cross verify:feeling verify:axiom-ledger
+      - name: Build with VitePress, through the MCP door
+        run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_gate docs-build
         env:
+          QUANTUM_DEV_ALLOW_DOCS_BUILD: '1'
           GOOGLE_SITE_VERIFICATION: ${{ secrets.GOOGLE_SITE_VERIFICATION }}
           QUANTUM_TIMEOUT_MS: '880000' # headroom only — the 3-minute law is enforced by optimization, measured per run
           # absolute path — env values do NOT shell-expand '~' (a literal ~/ dir in the workspace tripped the folder law)

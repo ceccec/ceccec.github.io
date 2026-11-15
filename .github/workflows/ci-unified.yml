@@ -37,16 +37,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Core verifications
-        run: |
-          npm run verify:structure
-          npm run verify:imports
-          npm run verify:barrel
-          npm run verify:paths
-          npm run verify:theorems
-      - name: Full verification suite (production only)
+      # A THIN MCP CLIENT: every gate goes through the repo's MCP server (bin/client.ts → bin/mcp.ts → run_gate/run_wave),
+      # the door agents use, so CI keeps no second list of how a gate is run.
+      - name: Core verifications, through the MCP door
+        run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_gate verify:structure verify:imports verify:barrel verify:paths verify:theorems verify:clay-cross verify:feeling verify:axiom-ledger
+      - name: Full verification stream (production only), through the MCP door
         if: inputs.environment == 'production'
-        run: npm run verify:all
+        run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_wave verify
 
   build:
     runs-on: ubuntu-latest
@@ -61,7 +58,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: npm run docs:build
+      - name: Build with VitePress, through the MCP door
+        run: node --experimental-strip-types packages/quantum-dev-sdk/bin/client.ts run_gate docs-build
+        env:
+          QUANTUM_DEV_ALLOW_DOCS_BUILD: '1'
       - run: npm run build:package
       - uses: actions/upload-artifact@v4
         with:

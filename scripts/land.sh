@@ -279,7 +279,8 @@ fi
 # writes a declaration for every module the package reaches; `git add -u` carries the ones already tracked, so a module
 # reached for the first time left its new declaration behind (2026-11-15: ten under packages/double-torus/dist after
 # e0c88501, named by the committed ones through relative imports). Taken here, after the gates that wrote them.
-for g in $(git ls-files --others --exclude-standard -- 'packages/*/dist'); do
+# (A wildcard pathspec is not a directory prefix: 'packages/*/dist' matched nothing and a2598027 landed without them.)
+for g in $(git ls-files --others --exclude-standard -- ':(glob)packages/*/dist/**'); do
   ADD+=("$g"); echo "land: taking $g — written by the package build"
 done
 git add -u || { echo "✗ land: git add -u failed — nothing committed (another git process may hold .git/index.lock)"; exit 1; }
