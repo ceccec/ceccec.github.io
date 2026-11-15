@@ -92,14 +92,14 @@ export const CORPUS_AXIOMS: readonly AxiomEntry[] = [
     kind: 'convention',
     statement: 'The allowed literal set and the harmonic ladder the page census folds to.',
     explainedBy: 'CHOSEN, and enumerated so the choice is visible. They are the exemption list the literal ledger checks against, which is the honest form: an allowance nobody can widen quietly.',
-    research: null,
+    research: 'Part of the set has a documented origin and part does not, and each is said as what it is. 64: Leibniz, G. W. (1703), "Explication de l\'Arithmétique Binaire", Mémoires de l\'Académie Royale des Sciences, reads the 64 I Ching hexagrams as the binary numbers 0–63. 360: the degree circle descends from Babylonian sexagesimal astronomy (Neugebauer, O. (1957), The Exact Sciences in Antiquity). 108, 432 and 864 have no measured basis — they are cultural and calendrical numbers the corpus adopts by choice, 432 through the A432 tuning convention indexed above; the small digits and their powers (16, 27, 54, 100, 216) are arithmetic of the base and of 2 and 3.',
   },
   {
     name: 'CRACK_LEDGER rows of kind "data" and "tuned"',
     kind: 'measured-data',
     statement: 'Literals that are external measurements (CODATA, FIPS, ISO) or hand-fixed values whose derivation is not yet known.',
     explainedBy: 'Each row names its source and its count, and the count is reconciled to a live scan on every run — the ledger is an account, not an excuse list. A "tuned" row is an open research target, stated as one.',
-    research: null,
+    research: 'The "data" rows rest on the published standards they name: physical constants on CODATA (Tiesinga, E. et al. (2021), "CODATA Recommended Values of the Fundamental Physical Constants: 2018", Rev. Mod. Phys. 93, 025010), hash constants on NIST FIPS 180-4 (2015, the Secure Hash Standard), and the reading of a measured value with its uncertainty on JCGM 100:2008 (the GUM). The "tuned" rows have no source yet, by definition: each is an open derivation, and the ledger counts them so the count can fall.',
   },
 ]
 

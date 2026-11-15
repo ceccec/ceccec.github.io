@@ -1,20 +1,10 @@
 <script setup lang="ts">
-// Shadcn-space shell — co-located src/routes/index.ts; topic views in subfolder barrels
-import HomepageView from './homepage/index.vue'
-import NavigationView from './navigation/index.vue'
+// Shadcn-space shell — co-located src/wind/routes/index.ts; the topic view of each subfolder that has one (corpus)
 import CorpusView from './corpus/index.vue'
-import MonographView from './monograph/index.vue'
-import HeroView from './hero/index.vue'
-import RosettaView from './rosetta/index.vue'
 </script>
 
 <template>
-  <section class="ui-card ui-card--stack routes-display-dual" data-shadcn="card" data-logic="src/routes/index.ts">
-    <HomepageView />
-    <NavigationView />
+  <section class="ui-card ui-card--stack routes-display-dual" data-shadcn="card" data-logic="src/wind/routes/index.ts">
     <CorpusView />
-    <MonographView />
-    <HeroView />
-    <RosettaView />
   </section>
 </template>

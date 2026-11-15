@@ -3001,7 +3001,7 @@
   "form": "bars",
   "values": [
    0,
-   48,
+   47,
    54,
    2
   ],
@@ -3013,7 +3013,7 @@
   "values": [
    0,
    0,
-   48
+   47
   ],
   "holds": true,
   "caption": "numbers theGatesAreRefutableTheoremsThatFailClosedWithAWitness computes for this theorem (witnessed[].witnesses), drawn from its own run — no other proof returns them"

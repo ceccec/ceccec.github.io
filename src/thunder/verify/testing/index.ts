@@ -1600,6 +1600,12 @@ const wordsOf = (s: string) => new Set(s.toLowerCase().split(/[^a-zà-ÿ0-9]+/).
  *  verdict. The facets state what data or the single rigor map can refute; coverage is RATCHETED by verify:clay-datasets. */
 export function clayCrossDiscovery(fetched: Readonly<Record<string, string | null>>, matrix: MindMatrix = buildMatrix()) {
   const all = allInvolutions(matrix)
+  // THE KERNEL IS A VERDICT TOO. A row whose formula cross.lean decides — that its map is an involution on the whole model,
+  // or that it is not one — is held by that kernel proof of its own formula (over the whole model for an involution, over
+  // the stated sample for Poincaré's inverse pair; each detail names the theorem). Read only where the
+  // file can be read; in a browser the cross is absent and no row is held by it.
+  const kernel = clayCasesCrossInLean()
+  const kernelRow = (id: string) => (kernel.source === 'read' ? kernel.clusters.find((row) => row.id === id && row.kindProved) : undefined)
   const bag = DOUBLE_TORUS_PERSPECTIVES.map((p) => ({ id: p.id, words: wordsOf(`${p.id} ${p.query}`) }))
   const frequency = new Map<string, number>()
   for (const p of bag) for (const w of p.words) frequency.set(w, (frequency.get(w) ?? 0) + 1)
@@ -1630,7 +1636,9 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
         ? (throughVerdict.state === 'held' ? { state: 'held', detail: `through ${through.id} — the same σ on the same fixed line, held on ${CLAY_DATASETS.find((d) => d.involution === through.id)?.connector}` } : throughVerdict)
         : r.kind === 'involution' && r.verificationMethod === 'computation'
           ? { state: 'held', detail: `by computation — σ² = id decided on ${r.samples.length} samples of ${r.model}` }
-          : { state: 'unchecked', detail: NO_DATASET[r.id] ?? 'no keyless public dataset can refute this formula' }
+          : kernelRow(r.id)
+            ? { state: 'held', detail: `by the kernel — cross.lean proves ${kernelRow(r.id)!.kindTheorem}, the row's own formula` }
+            : { state: 'unchecked', detail: NO_DATASET[r.id] ?? 'no keyless public dataset can refute this formula' }
     // NO LEAD REMAINS UNTAGGED. After every effort to involute it — by word, by σ-class, through its named row, by computation — a
     // row either crosses, or the corpus's honesty formulas read its statement: a solution claim or a physical-FTL claim is an
     // OVERCLAIM (a lie or a manipulation, tagged as such); otherwise it is an honest OPEN conjecture, tagged with the effort made.

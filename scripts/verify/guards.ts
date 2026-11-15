@@ -43,9 +43,21 @@ export type Guard = { file: string; line: number; kind: 'browser-degrades' | 'no
  */
 function declaresNotMeasured(returned: string, text: string): boolean {
   const id = returned.match(/^[A-Za-z_$][\w$]*/)?.[0]
-  const initialiser = id
-    ? new RegExp(`const ${id}\\s*=\\s*(\\{[\\s\\S]*?\\n\\s*\\}|[^\\n]*)`).exec(text)?.[1] ?? ''
-    : ''
+  // THE INITIALISER IS READ BY ITS BRACES, NOT BY A LAZY MATCH TO THE NEXT `\n }` (2026-11-15). For a one-line object
+  // that match ran past the line to the next indented brace in the FILE — into the function's success return, whose
+  // `measured: true` then marked an honest `{ measured: false, …, source: 'absent' }` fallback dishonest.
+  const initialiser = id ? (() => {
+    const at = new RegExp(`const ${id}\\s*(?::[^=]+)?=\\s*`).exec(text)
+    if (!at) return ''
+    const start = at.index + at[0].length
+    if (text[start] !== '{') return text.slice(start, text.indexOf('\n', start) < 0 ? text.length : text.indexOf('\n', start))
+    let depth = 0
+    for (let i = start; i < text.length; i += 1) {
+      if (text[i] === '{') depth += 1
+      else if (text[i] === '}' && (depth -= 1) === 0) return text.slice(start, i + 1)
+    }
+    return text.slice(start)
+  })() : ''
   const body = `${returned}\n${initialiser}`
   if (/["']?measured["']?\s*:\s*true\b/.test(body)) return false
   return /["']?measured["']?\s*:\s*false\b/.test(body) || /["']?source["']?\s*:\s*'absent'/.test(body)

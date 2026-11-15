@@ -12142,6 +12142,7 @@ function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process
     return empty;
   }
 }
+var LEAN_THEOREMS_ABSENT = Object.freeze(Object.assign([], { source: "absent" }));
 
 // ../../src/quantum/computer/index.ts
 var SUBSTRATE_RUNTIME_TIERS = ["BROWSER", "NODE", "METAPHOR", "UNAVAILABLE"];

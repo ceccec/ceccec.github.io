@@ -1469,6 +1469,10 @@ export function leanLedger(rows: readonly { readonly name: string; readonly file
   }
 }
 
+/** NO THEOREMS READ IS NOT NO THEOREMS. With no filesystem, or no such folder, the list is empty AND says why, so a caller
+ *  can tell a corpus it could not read from a corpus with nothing in it (verify:guards, guards.no-filesystem-empty). */
+const LEAN_THEOREMS_ABSENT: readonly LeanTheoremLatex[] & { readonly source: 'absent' } = Object.freeze(Object.assign([] as LeanTheoremLatex[], { source: 'absent' as const }))
+
 function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLatex[] {
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
@@ -1476,9 +1480,9 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
   const path = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
     : undefined
-  if (!fs || !path) return []
+  if (!fs || !path) return LEAN_THEOREMS_ABSENT
   const dir = path.join(root, ...relDir.split('/'))
-  if (!fs.existsSync(dir)) return []
+  if (!fs.existsSync(dir)) return LEAN_THEOREMS_ABSENT
   const out: LeanTheoremLatex[] = []
   const recorded = leanAxiomsRecorded(root)
   for (const file of fs.readdirSync(dir).filter((f: string) => f.endsWith('.lean')).sort()) {
