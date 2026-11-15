@@ -7,7 +7,7 @@
   "canon.self-comparison": 1,
   "canon.silent-math-fallback": 149,
   "caps.in-facet-folds": 1108,
-  "claims.untried-published": 339,
+  "claims.untried-published": 334,
   "clay.formulas-without-dataset": 0,
   "cross.parked-theorems": 5,
   "decisions.unsealed": 8,
@@ -31,7 +31,7 @@
   "referrers.unreferred-logic": 3,
   "release.incomplete-live": 1,
   "release.open-leads": 2,
-  "scope.boundaries": 2582,
+  "scope.boundaries": 2579,
   "scope.narrated": 509,
   "theorems.without-algebraic-statement": 532
 }
