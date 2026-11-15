@@ -7,6 +7,7 @@ export {
   seoMetaDescription,
   seoDocumentTitle,
   computedPageDescription,
+  pageCitation,
   openGraphCardFromRoute,
   platformOgLimitsMeasured,
   canonicalUrl,

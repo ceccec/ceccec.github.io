@@ -1,11 +1,12 @@
-// Thin theme mount — status badge kinds from src/0 (cycle-free leaf).
+// Thin theme mount — status badge kinds from src/0 (cycle-free leaf), imported from src/0 itself: through the render barrel
+// this one constant put the whole corpus in the static closure of every page (Badge.vue is in the theme shell).
 // Prefer this over deep earth/architecture imports from .vue panels.
 export {
   STATUS_BADGE_KINDS,
   type StatusBadgeKind,
-} from '../render'
+} from '../../src/0/index.ts'
 
-import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../render'
+import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../src/0/index.ts'
 
 /** Map coverage / boolean / keyword → status kind for UiBadge. */
 export function statusBadgeKind(

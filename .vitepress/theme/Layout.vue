@@ -4,10 +4,13 @@ import { useRoute, useData } from 'vitepress'
 import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 const BackgroundMovie = defineAsyncComponent(() => import('./components/BackgroundMovie.vue'))
-import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
+// ASYNC, LIKE THE MOVIE: it renders inside <ClientOnly>, so nothing of it is in the server HTML or the first paint — and its
+// static imports (hero-movie, hero-movie-paint, mounts) reach the render barrel, which put the 7.8 MB corpus chunk in
+// front of every page. Loaded after hydration it costs the reader nothing they could see.
+const HeroBackgroundLayer = defineAsyncComponent(() => import('./components/HeroBackgroundLayer.vue'))
 // ASIDES AND PANELS ARE NOT FIRST-PAINT CHROME. Each of these was imported eagerly, and each reaches the
 // render barrel, so Layout — which renders EVERY page — carried their source graph into the chunk a visitor
-// must fetch before anything evaluates. HeroBackgroundLayer above stays eager because it paints immediately.
+// must fetch before anything evaluates.
 // SSR is unaffected: Vue awaits an async component while rendering, which is why /formulas already shipped
 // its 845 KiB of rows with FormulaIndex registered exactly this way.
 //
@@ -24,7 +27,9 @@ const SpeechReader = defineAsyncComponent(() => import('./components/SpeechReade
 const RevolutAside = defineAsyncComponent(() => import('./components/RevolutAside.vue'))
 const VitePressPossibilities = defineAsyncComponent(() => import('./components/VitePressPossibilities.vue'))
 const PaperFrame = defineAsyncComponent(() => import('./components/PaperFrame.vue'))
-import { applyHeroChromeVars } from '../lib/hero-chrome'
+// The hero colour variables are inlined into every page at build (transformHtml → heroChromeStyleBlocks); re-applying them on
+// client navigation needs the matrix, so that module loads on demand instead of in front of the first paint.
+const applyHeroChromeVars = (path: string, width: number) => { void import('../lib/hero-chrome').then((m) => m.applyHeroChromeVars(path, width)) }
 
 const { Layout: VPLayout } = DefaultTheme
 const route = useRoute()
@@ -82,11 +87,10 @@ onUnmounted(() => {
 // EVERY PAGE IS A PAPER, SO EVERY PAGE CARRIES ITS CREDIT. A measurement over the built site found
 // 1039 pages with no author, no licence and no DOI outside the Lean theorem pages. The citation is
 // computed from the ONE sealed credit fold, never typed here.
-import { pageCitation, CANONICAL_HOST, seedFromText } from '../render'
-const credit = computed(() => pageCitation(
-  (pageData.value.title || frontmatter.value.title || 'Double Torus') as string,
-  `${CANONICAL_HOST}/${pageData.value.relativePath.replace(/(index)?\.md$/, '')}`
-))
+// The citation is computed at BUILD (transformPageData → frontmatter.citation, from the one sealed credit fold): reading it
+// here costs the browser nothing, where importing pageCitation pulled the whole render barrel (8.3 MB) onto every page.
+import { seedFromText } from '../../src/0/index.ts'
+const credit = computed(() => frontmatter.value.citation as { text: string; author: string; orcidUrl: string; doiUrl: string; licence: string; licenceUrl: string } | undefined)
 
 </script>
 
@@ -117,7 +121,7 @@ const credit = computed(() => pageCitation(
           <slot name="aside-bottom" />
         </template>
         <template #doc-footer-before>
-          <section class="page-credit">
+          <section v-if="credit" class="page-credit">
             <p class="page-credit__cite"><strong>Cite this page.</strong> {{ credit.text }}</p>
             <p class="page-credit__meta">
               <a :href="credit.orcidUrl" rel="author noopener">{{ credit.author }} · ORCID</a>

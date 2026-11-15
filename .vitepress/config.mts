@@ -12,7 +12,7 @@ import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitne
 import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll, collectiveContentAddressedMeshComputes, componentCrosslinks, researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay, harmonizeScienceDomainsInWavesOfWaves, quantumAppsPanelComputes, allChatCapabilitiesFusedAndAuditedByStandards, cryptoRelatedSurfacesAreDry, quantumAppsFolds } from './render'
 import { COMPONENT_FOLD_LOADERS } from './lib/component-folds'
 import { registryLedger } from '../scripts/verify/axiom-ledger.ts'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, computedPageDescription, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, computedPageDescription, pageCitation, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /**
  * The argument-less folds the quantum tools panel renders, each taken once by the build — and only the part of
@@ -447,6 +447,10 @@ export default defineConfig({
             // deep-imports src — so assigning the component here dragged the whole corpus graph with it.
             // The split exists to move the radix/floating-ui/internationalized vendor stack out of the
             // entry chunk; the components themselves already chunk correctly on their own.
+            // src/0 IS THE ONLY src MODULE THE SHELL READS (Layout's seedFromText, status-badge's kinds): it imports nothing and
+            // names no registry theorem, so it gets a chunk of its own. Everything else in src — station 1/9 and its closure, the
+            // Glagolitic library, the corpus — is reached only on demand (verify:build-time decides the separation on each build).
+            if (/\/src\/0\/index\.ts$/.test(id)) return 'zero'
             if (id.includes('node_modules/radix-vue') || id.includes('node_modules/@floating-ui') || id.includes('node_modules/@internationalized')) {
               return 'shadcn-ui'
             }
@@ -617,6 +621,8 @@ export default defineConfig({
     og.push(['meta', { name: 'twitter:image', content: image }])
     if (ogCard.meta['og:video']) og.push(['meta', { property: 'og:video', content: ogCard.meta['og:video'] }])
     for (const tag of og) head.push(tag)
+    // Every page carries its credit, computed here at build so the browser never loads the credit fold (Layout reads it).
+    frontmatter.citation = pageCitation(name, `${CANONICAL_HOST}${path}`)
     // The document <title> is computed within the search-display budget (seoDocumentTitle, src/mountain/og); only the
     // <title> is budgeted — the page heading and the og:title above keep the full name.
     if (!isHome) {

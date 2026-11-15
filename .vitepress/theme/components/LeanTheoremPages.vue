@@ -4,12 +4,11 @@
 // Zenodo deposit has a landing page that resolves, and so a reader arriving from a search engine meets
 // the proposition, what proves it, what it does NOT claim, and where the source is — in that order.
 import { computed } from 'vue'
-import { useRoute, withBase } from 'vitepress'
-import { leanLedgerEntry, toGlagolitic, type LeanPageRow } from '../../render'
-// The rows are derived from the .lean sources at build (scripts/verify/lean-corpus.ts): leanPageRows reads them through
-// node:fs, which a browser does not have, so calling it here left every /lean page blank on client-side navigation.
-import leanCorpus from '../../data/lean-corpus.json'
-const ALL = leanCorpus as LeanPageRow[]
+import { useData, useRoute, withBase } from 'vitepress'
+import { leanLedgerEntry, type LeanPageRow } from '../../../src/pair/formal/proofs/index.ts'
+import { toGlagolitic } from '../../../src/quantum/heaven/library/index.ts'
+// THE POST'S OWN ROW ARRIVES IN ITS ROUTE PARAMS (leanPagePaths), with its siblings' titles — computed at build from the
+// .lean sources. Importing lean-corpus.json here shipped all 589 rows to every post (311 KB); a post needs one.
 
 const REPO = 'https://github.com/ceccec/ceccec.github.io/blob/main'
 const DOI = '10.5281/zenodo.21787144'
@@ -21,12 +20,9 @@ const route = useRoute()
 const locale = computed<'en' | 'bg' | 'gla'>(() => (/^\/bg\//.test(route.path) ? 'bg' : /^\/gla\//.test(route.path) ? 'gla' : 'en'))
 const prefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
 const tr = (text: string) => (locale.value === 'gla' ? toGlagolitic(text) : text)
-const slug = computed(() => route.path.replace(/\/(en|bg|gla)\//, '/').match(/\/lean\/([a-z0-9-]+)/)?.[1] ?? null)
-const rows = computed<LeanPageRow[]>(() => {
-  const one = slug.value ? ALL.find((row) => row.slug === slug.value) ?? null : null
-  return one ? [one] : [...ALL]
-})
-const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && r.slug !== row.slug)
+const { params } = useData()
+const rows = computed<LeanPageRow[]>(() => (params.value?.row ? [params.value.row as LeanPageRow] : []))
+const siblings = (_row: LeanPageRow) => (params.value?.siblings ?? []) as { slug: string; title: string }[]
 </script>
 
 <template>

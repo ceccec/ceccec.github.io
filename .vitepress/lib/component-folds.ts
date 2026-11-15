@@ -2,7 +2,12 @@
 import type { ComponentCrosslink } from '../render'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
 import type { QuantumProjection } from './hero-movie'
-import { displayText, localePath, pickLocale, type LocaleName } from './site-locale'
+import type { LocaleName } from './site-locale'
+// THE LOCALE HELPERS ARRIVE WITH THE FIRST FOLD CARD, never in the shell: ./site-locale reaches station 1/9 and, through it,
+// fold statements carrying registry theorem names (verify:build-time's separation). Memoised; every caller is async already.
+type SiteLocale = typeof import('./site-locale')
+let siteLocaleModule: SiteLocale | null = null
+const siteLocale = async (): Promise<SiteLocale> => (siteLocaleModule ??= await import('./site-locale'))
 
 export type DecodedFoldView = {
   title?: string
@@ -18,7 +23,7 @@ export type DecodedFoldView = {
 
 export type FoldLoader = (locale: LocaleName) => Promise<DecodedFoldView>
 
-function localizeDecodedView(view: DecodedFoldView, locale: LocaleName): DecodedFoldView {
+function localizeDecodedView(view: DecodedFoldView, locale: LocaleName, { displayText }: SiteLocale): DecodedFoldView {
   return {
     ...view,
     title: view.title ? displayText(locale, view.title) : view.title,
@@ -36,7 +41,7 @@ function localizeDecodedView(view: DecodedFoldView, locale: LocaleName): Decoded
 }
 
 function wrapFold(fn: () => Promise<DecodedFoldView>): FoldLoader {
-  return async (locale) => localizeDecodedView(await fn(), locale)
+  return async (locale) => localizeDecodedView(await fn(), locale, await siteLocale())
 }
 
 export async function withCrosslinks(
@@ -47,13 +52,14 @@ export async function withCrosslinks(
   // Measured once by the build for every card and locale: computing them here rebuilt the site navigation
   // in the reader's browser (0.4–9.5 s on a card page). A name the build did not measure still computes.
   const { data: measured } = await import('virtual:component-crosslinks')
-  const localized = localizeDecodedView(view, locale)
+  const sl = await siteLocale()
+  const localized = localizeDecodedView(view, locale, sl)
   const computed: ComponentCrosslink[] = measured[locale]?.[name] ?? (await import('../../src/learning/index')).componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))
   const normalizeLink = (link: string) => (
     /^(https?:|mailto:|#)/.test(link) || /\.(json|txt|webmanifest)$/.test(link)
       ? link
-      : localePath(link, locale)
+      : sl.localePath(link, locale)
   )
   const merged = [
     ...computed,
@@ -83,6 +89,7 @@ type FoldLike = {
 async function fromStaticPage(slug: string, locale: LocaleName): Promise<DecodedFoldView> {
   const { staticPages } = await import('../../src/wind/site/index')
   const page = staticPages().find((entry) => entry.slug === slug)
+  const { pickLocale } = await siteLocale()
   return {
     title: page ? pickLocale(locale, page.title.en, page.title.bg) : slug,
     statement: page ? pickLocale(locale, page.description.en, page.description.bg) : undefined,
@@ -170,7 +177,7 @@ export type AnyFoldLoader = FoldLoader | LegacyFoldLoader
 
 export async function invokeFoldLoader(loader: AnyFoldLoader, locale: LocaleName): Promise<DecodedFoldView> {
   if (loader.length >= 1) return (loader as FoldLoader)(locale)
-  return localizeDecodedView(await (loader as LegacyFoldLoader)(), locale)
+  return localizeDecodedView(await (loader as LegacyFoldLoader)(), locale, await siteLocale())
 }
 
 export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {

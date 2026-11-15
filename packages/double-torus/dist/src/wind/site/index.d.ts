@@ -1,6 +1,7 @@
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts';
 import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types/index.ts';
 import { type LocaleName } from '../../1/9/index.ts';
+import { leanPagePaths } from '../../pair/formal/proofs/index.ts';
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export declare const SITE_DOMAIN_SEED: readonly [{
     readonly id: "tools";
@@ -69,6 +70,11 @@ export declare function localizedLeanPagePaths(locale: LocaleName): {
         slug: string;
         title: string;
         description: string;
+        row: ReturnType<typeof leanPagePaths>[number]['params']['row'];
+        siblings: {
+            slug: string;
+            title: string;
+        }[];
     };
 }[];
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own

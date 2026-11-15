@@ -713,11 +713,18 @@ export declare function leanFeedMarkdown(heading?: string): string;
 export declare function leanPageRows(root?: string): readonly LeanPageRow[];
 /** Each Lean page describes itself: its own doc comment, or its name and proposition where it has none — never the
  *  site abstract, which the head fell back to on every one of these pages until the loader passed a description. */
+/** Each post receives ITS OWN row and its siblings' titles through the route params — the one VitePress channel built for
+ *  per-page data — so a post page never ships the other 588 rows (it shipped all of them: 311 KB per post). */
 export declare function leanPagePaths(root?: string): {
     params: {
         slug: string;
         title: string;
         description: string;
+        row: LeanPageRow;
+        siblings: {
+            slug: string;
+            title: string;
+        }[];
     };
 }[];
 export declare function leanPageBySlug(slug: string, root?: string): LeanPageRow | null;

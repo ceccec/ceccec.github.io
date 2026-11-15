@@ -11,7 +11,10 @@ import { leanPageRows } from '../../src/pair/formal/proofs/index.ts'
 
 export const LEAN_CORPUS_FILE = '.vitepress/data/lean-corpus.json'
 
-const derive = (root: string) => JSON.stringify([...leanPageRows(root)], null, 1) + '\n'
+// THE FEED'S ROWS ONLY: the home feed is this file's one reader, and it shows a title, a file, the tags and the seals. Each
+// post receives its full row through its own route params (leanPagePaths), so propositions, docs and tactics are not
+// shipped to the feed — the file was every row in full, indented, and every post page loaded it.
+const derive = (root: string) => JSON.stringify([...leanPageRows(root)].map((r) => ({ slug: r.slug, title: r.title, file: r.file, tags: r.tags, seals: r.seals, axioms: r.axioms }))) + '\n'
 
 /** npm run lean-corpus — derive the rows and write them. */
 export function writeLeanCorpus(): void {

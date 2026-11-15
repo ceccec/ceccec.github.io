@@ -1705,7 +1705,9 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
 
 /** Each Lean page describes itself: its own doc comment, or its name and proposition where it has none — never the
  *  site abstract, which the head fell back to on every one of these pages until the loader passed a description. */
-export function leanPagePaths(root?: string): { params: { slug: string; title: string; description: string } }[] {
+/** Each post receives ITS OWN row and its siblings' titles through the route params — the one VitePress channel built for
+ *  per-page data — so a post page never ships the other 588 rows (it shipped all of them: 311 KB per post). */
+export function leanPagePaths(root?: string): { params: { slug: string; title: string; description: string; row: LeanPageRow; siblings: { slug: string; title: string }[] } }[] {
   const rows = leanPageRows(root)
   const describe = (row: (typeof rows)[number]) => row.doc?.trim() || `${row.name}: ${row.proposition}`
   // A name or a doc that more than one file carries (the station files state each law AT their own digit, under one
@@ -1716,6 +1718,8 @@ export function leanPagePaths(root?: string): { params: { slug: string; title: s
     slug: row.slug,
     title: titleRepeats(row) ? `${row.title} — ${row.file}` : row.title,
     description: descriptionRepeats(row) ? `${row.file}: ${describe(row)}` : describe(row),
+    row,
+    siblings: rows.filter((r) => r.file === row.file && r.slug !== row.slug).map((r) => ({ slug: r.slug, title: r.title })),
   } }))
 }
 

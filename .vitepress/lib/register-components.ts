@@ -1,6 +1,6 @@
 // Register componentGraph names globally — DecodedCard folds, LivingTorus canvas, or thin gate fallback.
 // Shared mounts come from the one VitePress component set (.vitepress/theme/components).
-import { defineAsyncComponent, defineComponent, h, ref, watch, type App, type Component } from 'vue'
+import { defineAsyncComponent, defineComponent, h, onMounted, ref, watch, type App, type Component } from 'vue'
 import { useRoute } from 'vitepress'
 // NOT FROM THE BARREL. components/index.ts re-exports 33 components, so importing ONE name from it
 // statically pulls all 33 into whatever graph does the importing — and nine of them import the render
@@ -20,10 +20,12 @@ const CollectiveMind = defineAsyncComponent(() => import('../theme/components/Co
 const RevolutAside = defineAsyncComponent(() => import('../theme/components/RevolutAside.vue'))
 const TheoremSupport = defineAsyncComponent(() => import('../theme/components/TheoremSupport.vue'))
 const VitePressPossibilities = defineAsyncComponent(() => import('../theme/components/VitePressPossibilities.vue'))
-import { componentDisplayName, useSiteLocale } from './mounts'
-import { componentProjectionFor } from './hero-movie-paint'
+// The locale composables (./mounts, client-only) and helpers (./site-locale) reach station 1/9 and, through it, fold statements in 3/7 and 6/4 that carry registry
+// theorem names — so they load with the components that use them, never in the shell (verify:build-time's separation).
+// componentProjectionFor reaches the corpus (hero-movie-paint → render). Imported here statically, it put the 7.2 MB corpus
+// chunk in front of EVERY page; it is fetched only when a component that animates actually mounts.
+const projectionOf = async (name: string) => (await import('./hero-movie-paint')).componentProjectionFor(name)
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'
-import { localeFromRoute } from './site-locale'
 
 /** VitePress default theme + explicit theme mounts — never re-register from componentGraph. */
 const THEME_RESERVED = new Set([
@@ -142,6 +144,8 @@ async function componentNamesForRegistration(): Promise<readonly string[]> {
 }
 
 function gateComponent(name: string): Component {
+  return defineAsyncComponent(async () => {
+  const { componentDisplayName, useSiteLocale } = await import('./mounts')
   return defineComponent({
     name,
     inheritAttrs: true,
@@ -153,6 +157,8 @@ function gateComponent(name: string): Component {
       const { locale } = useSiteLocale()
       const movieParts = () => [name, props.slug, props.variant] as const
       const cardTitle = () => componentDisplayName(locale.value, name)
+      const movieApp = ref<unknown>(undefined)
+      onMounted(() => { void projectionOf(name).then((projection) => { movieApp.value = projection }) })
       return () =>
         h(
           UiCardShell,
@@ -164,7 +170,7 @@ function gateComponent(name: string): Component {
             seedParts: movieParts(),
             title: cardTitle(),
             // Every component animates: its content-addressed projection of the one field.
-            movieApp: componentProjectionFor(name),
+            movieApp: movieApp.value,
             'data-slug': props.slug,
             'data-variant': props.variant,
           },
@@ -180,17 +186,21 @@ function gateComponent(name: string): Component {
         )
     },
   })
+  })
 }
 
 function decodedComponent(name: string, loader: import('./component-folds').AnyFoldLoader): Component {
   return defineAsyncComponent({
-    loader: async () =>
-      defineComponent({
+    loader: async () => {
+      const { localeFromRoute } = await import('./site-locale')
+      return defineComponent({
         name,
         inheritAttrs: true,
         setup(_, { attrs }) {
           const route = useRoute()
           const view = ref<DecodedFoldView | null>(null)
+          const projection = ref<unknown>(undefined)
+          onMounted(() => { void projectionOf(name).then((p) => { projection.value = p }) })
           const load = async () => {
             const locale = localeFromRoute(route.path)
             const raw = await invokeFoldLoader(loader, locale)
@@ -198,9 +208,10 @@ function decodedComponent(name: string, loader: import('./component-folds').AnyF
           }
           watch(() => route.path, () => void load(), { immediate: true })
           // A fold that names its projection keeps it; every other decoded card animates its content-addressed one.
-          return () => (view.value ? h(DecodedCard, { ...view.value, ...attrs, movieApp: view.value.movieApp ?? componentProjectionFor(name) }) : null)
+          return () => (view.value ? h(DecodedCard, { ...view.value, ...attrs, movieApp: view.value.movieApp ?? projection.value }) : null)
         },
-      }),
+      })
+    },
   })
 }
 

@@ -303,7 +303,8 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
  *   shell — "mathematics changes the corpus, never the shell", stated so that it can be false.
  *
  *   PROOF. By exhaustion: |S| × |N| substring decisions over the build on disk, each of which could fail. The lemma
- *   that keeps it from being vacuous is decided beside it: K contains members of N. A build whose corpus chunk
+ *   that keeps it from being vacuous is decided beside it: K contains members of N — K in C, or, once the corpus loads
+ *   only on demand, the built chunks outside C (2026-11-15: the corpus left the entry closure entirely). A build whose corpus chunk
  *   carries none has not been read correctly, and that is NOT MEASURED — a throw — never a pass.
  *
  * WHAT THIS DOES NOT GUARD, said once: the SIZE of the shell. A heavier dependency, or fold code that carries no
@@ -316,11 +317,18 @@ export function assertTheShellCarriesNoTheorem(shellFiles: readonly string[], co
   // JSON-escaped (quotes, backslashes and non-ASCII as \u escapes).
   const spellings = (name: string) => [...new Set([name, JSON.stringify(name).slice(1, -1), JSON.stringify(name).slice(1, -1).replace(/[\u0080-\uffff]/g, (c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))])]
   const carriedBy = (file: string) => { const text = readFileSync(file, 'utf8'); return names.filter((name) => spellings(name).some((sp) => text.includes(sp))) }
-  const inCorpus = new Set(corpusFiles.flatMap(carriedBy))
+  // THE LEMMA, WHERE THE CORPUS IS. K was found inside the entry closure; once the corpus is loaded only on demand it is no
+  // longer there at all — the better build. Non-vacuity then reads every built chunk outside S: some chunk must still carry
+  // members of N (the test can detect a name), and none of them is in C. Only a build in which no chunk carries a name
+  // anywhere is NOT MEASURED.
+  const outsideClosure = corpusFiles.length > 0 ? [] : (() => { const dir = join(dirname(shellFiles[0] ?? '.'), 'chunks'); return existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.js')).map((f) => join(dir, f)).filter((f) => !shellFiles.includes(f)) : [] })()
+  const witnesses = corpusFiles.length > 0 ? corpusFiles : outsideClosure.filter((file) => carriedBy(file).length > 0)
+  const inCorpus = new Set(witnesses.flatMap(carriedBy))
   const inShell = shellFiles.map((file) => ({ file, names: carriedBy(file) })).filter((hit) => hit.names.length > 0)
   console.log(`  shell ${machineryKb} KiB across ${shellFiles.length} file(s) — MEASURED and printed; no number is remembered and none refuses`)
   console.log(`  theorem (separation): no shell file contains a registry theorem name — ${shellFiles.length} file(s) × ${names.length} name(s) decided; the corpus chunk carries ${inCorpus.size} of them`)
-  if (corpusFiles.length === 0 || inCorpus.size === 0) {
+  if (corpusFiles.length === 0 && inCorpus.size > 0) console.log(`  ✓ the corpus is outside the entry closure: ${witnesses.length} on-demand chunk(s) carry ${inCorpus.size} registry name(s), none statically imported by the app`)
+  if (witnesses.length === 0 || inCorpus.size === 0) {
     throw new Error(`separation NOT MEASURED: ${corpusFiles.length} corpus chunk(s) in the entry closure carrying ${inCorpus.size} registry name(s) — the build was not read as shell and corpus, so nothing was decided`)
   }
   if (inShell.length > 0) {
@@ -432,13 +440,18 @@ export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly 
   const foldsInEntry = entry.entry.modules.filter(isFold)
   console.log(`  IV  the app entry carries no fold: ${entry.entry.modules.length} module(s) in ${rel(entry.file)}, ${foldsInEntry.length} of them folds`)
   if (foldsInEntry.length > 0) throw new Error(`IV is FALSE: the app entry chunk carries ${foldsInEntry.length} fold(s) — ${foldsInEntry.slice(0, 4).join(', ')}`)
-  const corpusModules = corpusFiles.flatMap((file) => witness[rel(file)]?.modules ?? [])
+  // THE CORPUS ON DEMAND (2026-11-15): once no corpus chunk is in the entry closure, the fold graph is still built — in the
+  // chunk the witness shows holding src/fire/diamonds, loaded only when a page needs it. V reads THAT chunk; the statement
+  // (the corpus chunk is made of folds) does not depend on whether the shell imports it.
+  const vCorpus = corpusFiles.length > 0 ? corpusFiles : Object.keys(witness).filter((key) => witness[key]!.modules.some((m) => /^src\/fire\/diamonds\//.test(m))).map((key) => join(dist, key))
+  if (corpusFiles.length === 0 && vCorpus.length > 0) console.log(`  V   the corpus is on demand: ${vCorpus.map(rel).join(', ')} — outside the entry closure, read from the witness`)
+  const corpusModules = vCorpus.flatMap((file) => witness[rel(file)]?.modules ?? [])
   const foldsInCorpus = corpusModules.filter(isFold)
   const reexports = corpusModules.filter((id) => !isFold(id) && !isVirtual(id) && isReexportOnly(id))
   if (reexports.length) console.log(`  V   re-export-only module(s) in the corpus chunk, read and found to carry no code: ${reexports.join(', ')}`)
   const foreign = corpusModules.filter((id) => !isFold(id) && !isVirtual(id) && !reexports.includes(id))
   console.log(`  V   the corpus chunk is made of folds: ${corpusModules.length} module(s) — ${foldsInCorpus.length} fold(s), ${corpusModules.length - foldsInCorpus.length - foreign.length} virtual, ${foreign.length} other; ${homes.filter((home) => corpusModules.includes(homeModule(home))).length} of ${homes.length} theorem homes are in it`)
-  if (corpusFiles.length === 0 || foldsInCorpus.length === 0) throw new Error(`V is NOT MEASURED: ${corpusFiles.length} corpus chunk(s) carrying ${foldsInCorpus.length} fold(s) in the witness`)
+  if (vCorpus.length === 0 || foldsInCorpus.length === 0) throw new Error(`V is NOT MEASURED: ${vCorpus.length} corpus chunk(s) carrying ${foldsInCorpus.length} fold(s) in the witness`)
   if (foreign.length > 0) throw new Error(`V is FALSE: the corpus chunk carries ${foreign.length} module(s) that are neither folds nor build substitutes — ${foreign.slice(0, 4).join(', ')}`)
   const outside = homes.filter((home) => !corpusModules.includes(homeModule(home)) && !shellModules.has(homeModule(home)))
   // WHERE IT IS, NOT ONLY WHERE IT IS NOT. "In neither chunk" read as a hole; measured, src/pair/enforcement/ops is in

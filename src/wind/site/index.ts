@@ -62,9 +62,9 @@ export const ROUTE_ALIASES: Record<string, string> = {
 
 /** THE LEAN POSTS IN A LOCALE: the same posts as /lean/<slug>, their title and description translated locally — bg by
  *  bulgarianFromEnglish, gla by toGlagolitic — for the /bg/lean and /gla/lean path loaders. One function, three editions. */
-export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: string; title: string; description: string } }[] {
+export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: string; title: string; description: string; row: ReturnType<typeof leanPagePaths>[number]['params']['row']; siblings: { slug: string; title: string }[] } }[] {
   const tr = (text: string) => (locale === 'bg' ? bulgarianFromEnglish(text) : locale === 'gla' ? toGlagolitic(text) : text)
-  return leanPagePaths().map(({ params }) => ({ params: { slug: params.slug, title: tr(params.title), description: tr(params.description) } }))
+  return leanPagePaths().map(({ params }) => ({ params: { ...params, title: tr(params.title), description: tr(params.description) } }))
 }
 
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own

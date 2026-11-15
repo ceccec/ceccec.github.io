@@ -5,10 +5,12 @@
 // ?tag= filters by it — nothing in the feed is authored. The locale is read from the URL and translated locally.
 import { computed, ref, onMounted } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import { toGlagolitic, type LeanPageRow } from '../../render'
+import type { LeanPageRow } from '../../../src/pair/formal/proofs/index.ts'
+import { toGlagolitic } from '../../../src/quantum/heaven/library/index.ts'
 import leanCorpus from '../../data/lean-corpus.json'
 
-const ALL = leanCorpus as LeanPageRow[]
+type FeedRow = Pick<LeanPageRow, 'slug' | 'title' | 'file' | 'tags' | 'seals' | 'axioms'>
+const ALL = leanCorpus as FeedRow[]
 const route = useRoute()
 const locale = computed<'en' | 'bg' | 'gla'>(() => (/^\/bg(\/|$)/.test(route.path) ? 'bg' : /^\/gla(\/|$)/.test(route.path) ? 'gla' : 'en'))
 // Posts exist in English and in Glagolitic script; there are no Bulgarian posts (owner: the offline translator transliterates,
@@ -27,7 +29,7 @@ const cloud = computed(() => {
 })
 const shown = computed(() => (tag.value ? ALL.filter((row) => row.tags.includes(tag.value!)) : ALL))
 const groups = computed(() => {
-  const byFile = new Map<string, LeanPageRow[]>()
+  const byFile = new Map<string, FeedRow[]>()
   for (const row of shown.value) byFile.set(row.file, [...(byFile.get(row.file) ?? []), row])
   return [...byFile.entries()].sort((a, b) => a[0].localeCompare(b[0]))
 })
