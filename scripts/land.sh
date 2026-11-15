@@ -275,6 +275,13 @@ fi
 # only the two files that happened to be staged already — a regenerated README.md claiming 71 ratchets
 # while the code defining 71 stayed uncommitted, so a fresh clone would have failed manifest:check on main.
 # Every other git call in this script is guarded; this one was the exception, and it is the one that stages.
+# GAP 1b — GENERATED OUTPUT TRAVELS WITH THE CHANGE THAT GENERATED IT. verify:release runs the package build, which
+# writes a declaration for every module the package reaches; `git add -u` carries the ones already tracked, so a module
+# reached for the first time left its new declaration behind (2026-11-15: ten under packages/double-torus/dist after
+# e0c88501, named by the committed ones through relative imports). Taken here, after the gates that wrote them.
+for g in $(git ls-files --others --exclude-standard -- 'packages/*/dist'); do
+  ADD+=("$g"); echo "land: taking $g — written by the package build"
+done
 git add -u || { echo "✗ land: git add -u failed — nothing committed (another git process may hold .git/index.lock)"; exit 1; }
 for p in ${ADD[@]+"${ADD[@]}"}; do git add -- "$p" || exit 1; done
 # THE INVARIANT IS THAT NOTHING TRACKED IS LEFT BEHIND, not that git add returned 0. A partial stage commits
