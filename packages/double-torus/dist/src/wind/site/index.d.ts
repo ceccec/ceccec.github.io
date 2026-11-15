@@ -77,6 +77,51 @@ export declare function localizedLeanPagePaths(locale: LocaleName): {
         }[];
     };
 }[];
+/** Each monograph's page params: its title, its posts, and — for a Clay case — the problem as officially stated (the
+ *  domain-proof catalogue's officialStatement, matched by the case's own name). The page says the problem is open. */
+export declare function leanMonographPaths(): {
+    params: {
+        monograph: string;
+        title: string;
+        description: string;
+        kind: 'clay' | 'subject';
+        posts: readonly string[];
+        statement: string;
+    };
+}[];
+/** THE BLOG'S NAVIGATION, COMPUTED FROM THE MONOGRAPHS: the feed, the Clay cases, the subjects — the same three groups in nav,
+ *  sidebar and footer, every link a page that exists (a monograph, or the feed). Nothing is listed by hand. The Glagolitic
+ *  edition's links lead to its own feed and to the shared monographs. */
+export declare function leanBlogNavigation(locale?: LocaleName): {
+    nav: ({
+        text: string;
+        items: {
+            text: string;
+            link: string;
+        }[];
+    } | {
+        text: string;
+        link: string;
+    })[];
+    sidebar: ({
+        collapsed: boolean;
+        text: string;
+        items: {
+            text: string;
+            link: string;
+        }[];
+    } | {
+        text: string;
+        items: {
+            text: string;
+            link: string;
+        }[];
+    })[];
+    footer: {
+        message: string;
+        copyright: string;
+    };
+};
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own
  * aliases in SITE_DOMAIN_SEED — or null when the slug is no alias. The router mounts aliases from these same two tables;
  * the canonical link (src/mountain/og canonicalRouteOf) and the sitemap ask here, so none of the three can disagree. */

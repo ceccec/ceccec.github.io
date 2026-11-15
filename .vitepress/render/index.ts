@@ -68,3 +68,7 @@ export * as quantumAppsFolds from '../../src/quantum/apps'
 export { FEELING_CORNERS, FEELING_VALENCES, feel, feelingAct, feelingThoughtEmotionTrinity } from '../../src/water/stack'
 // The Lean posts in the bg and gla editions — translated locally (src/wind/site localizedLeanPagePaths).
 export { localizedLeanPagePaths } from '../../src/wind/site/index.ts'
+// The monographs — one page per subject, computed from the bonded Lean rows (src/wind/site leanMonographPaths).
+export { leanMonographPaths } from '../../src/wind/site/index.ts'
+// The blog's navigation — nav, sidebar and footer computed from the monographs (src/wind/site leanBlogNavigation).
+export { leanBlogNavigation } from '../../src/wind/site/index.ts'

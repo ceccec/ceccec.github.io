@@ -191,7 +191,11 @@ function runVitepressBuild(root: string, timeoutMs: number, harmonicMs: number, 
           VITEPRESS_BUILD_LOCK_HELD: '1',
           DOCS_BUILD_VERBOSE: verbose ? '1' : process.env.DOCS_BUILD_VERBOSE,
           NODE_COMPILE_CACHE: 'node_modules/.cache/ts',
-          NODE_OPTIONS: process.env.NODE_OPTIONS ?? '--max-old-space-size=2048',
+          // THE HEAP THE BUILD NEEDS, MEASURED (2026-11-15): two build workers sat at 2040 MB under a 2048 MB ceiling and died
+          // (ineffective mark-compacts near the limit) once the Lean blog added its monograph and locale routes — the build had
+          // been running at the edge. A resource limit, not a measurement: 4096 is half of what docs:dev and docs:preview use,
+          // and well inside a CI runner's memory. An explicit NODE_OPTIONS still wins.
+          NODE_OPTIONS: process.env.NODE_OPTIONS ?? '--max-old-space-size=4096',
           ...(verbose && !process.env.DEBUG ? { DEBUG: 'vite:*' } : {}) } },
     )
     const heartbeat = setInterval(() => {

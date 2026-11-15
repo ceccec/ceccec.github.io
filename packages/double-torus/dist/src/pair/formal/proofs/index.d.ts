@@ -730,6 +730,20 @@ export declare const CLAY_CASE_MAPS: Readonly<Record<string, Partial<Record<Clay
 export declare function clayCasesOf(sourcePath: string, proposition: string): ClayCase[];
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
 export declare function leanPageSlug(file: string, name: string): string;
+/**
+ * THE MONOGRAPHS — one study per subject, its sections the Lean posts bonded to it (owner, 2026-11-15: "everything may be
+ * collided to monographs related with each other via same feed"). A Clay case's monograph holds every theorem bonded to
+ * that case (clayCasesOf) from every file; a theorem bonded to two cases sits in both, which is how monographs relate.
+ * Every other theorem belongs to the subject of its own file — the station files' sequence and reflection laws to one
+ * subject, "sequence". Computed from the rows at every build; nothing is listed by hand.
+ */
+export type LeanMonograph = {
+    readonly slug: string;
+    readonly title: string;
+    readonly kind: 'clay' | 'subject';
+    readonly posts: readonly string[];
+};
+export declare function leanMonographs(root?: string): readonly LeanMonograph[];
 /** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every
  *  locale home loads this body: a heading and the feed component, which reads the posts' own rows and tags. The heading is
  *  passed in already translated by the caller's locale transform, so this stays one generator for all three homes. */

@@ -33,7 +33,8 @@ import { TAU } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
 import { toGlagolitic } from '../../quantum/heaven/library/index.ts'
-import { leanPagePaths } from '../../pair/formal/proofs/index.ts'
+import { leanMonographs, leanPagePaths } from '../../pair/formal/proofs/index.ts'
+import { domainProofPageRows } from '../../research/index.ts'
 
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export const SITE_DOMAIN_SEED = [
@@ -65,6 +66,42 @@ export const ROUTE_ALIASES: Record<string, string> = {
 export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: string; title: string; description: string; row: ReturnType<typeof leanPagePaths>[number]['params']['row']; siblings: { slug: string; title: string }[] } }[] {
   const tr = (text: string) => (locale === 'bg' ? bulgarianFromEnglish(text) : locale === 'gla' ? toGlagolitic(text) : text)
   return leanPagePaths().map(({ params }) => ({ params: { ...params, title: tr(params.title), description: tr(params.description) } }))
+}
+
+/** Each monograph's page params: its title, its posts, and — for a Clay case — the problem as officially stated (the
+ *  domain-proof catalogue's officialStatement, matched by the case's own name). The page says the problem is open. */
+export function leanMonographPaths(): { params: { monograph: string; title: string; description: string; kind: 'clay' | 'subject'; posts: readonly string[]; statement: string } }[] {
+  const statements = new Map(domainProofPageRows().map((row) => [row.slug, row.officialStatement]))
+  return leanMonographs().map((m) => {
+    const statement = m.kind === 'clay' ? ([...statements.entries()].find(([slug]) => slug.includes(m.slug))?.[1] ?? '') : ''
+    const description = m.kind === 'clay'
+      ? `${m.title} — open. ${m.posts.length} kernel-checked theorems bear on it, from every file that formalises one of its symmetries.`
+      : `${m.title} — ${m.posts.length} kernel-checked theorems.`
+    return { params: { monograph: m.slug, title: m.title, description, kind: m.kind, posts: m.posts, statement } }
+  })
+}
+
+/** THE BLOG'S NAVIGATION, COMPUTED FROM THE MONOGRAPHS: the feed, the Clay cases, the subjects — the same three groups in nav,
+ *  sidebar and footer, every link a page that exists (a monograph, or the feed). Nothing is listed by hand. The Glagolitic
+ *  edition's links lead to its own feed and to the shared monographs. */
+export function leanBlogNavigation(locale: LocaleName = 'en') {
+  // the Glagolitic edition has no monograph pages of its own: its links stay on the shared pages, only the labels are in its script
+  const label = (text: string) => (locale === 'gla' ? toGlagolitic(text) : text)
+  const home = locale === 'en' ? '/' : `/${locale}/`
+  const monographs = leanMonographs()
+  const item = (m: (typeof monographs)[number]) => ({ text: label(m.title), link: `/${m.slug}` })
+  const clay = monographs.filter((m) => m.kind === 'clay').map(item)
+  const subjects = monographs.filter((m) => m.kind === 'subject').map(item)
+  const groups = [{ text: label('Clay cases'), items: clay }, { text: label('Subjects'), items: subjects }]
+  return {
+    nav: [{ text: label('Feed'), link: home }, ...groups],
+    sidebar: [{ text: label('Feed'), items: [{ text: label('All theorems'), link: home }] }, ...groups.map((g) => ({ ...g, collapsed: false }))],
+    // the theme's footer is a line of links and a copyright line
+    footer: {
+      message: [{ text: label('Feed'), link: home }, ...clay].map((l) => `<a href="${l.link}">${l.text}</a>`).join(' · '),
+      copyright: label('Open, recomputable, content-addressed — the Double Torus.'),
+    },
+  }
 }
 
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own

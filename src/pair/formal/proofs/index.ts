@@ -1714,6 +1714,29 @@ export function leanPageSlug(file: string, name: string): string {
   return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
 }
 
+/**
+ * THE MONOGRAPHS — one study per subject, its sections the Lean posts bonded to it (owner, 2026-11-15: "everything may be
+ * collided to monographs related with each other via same feed"). A Clay case's monograph holds every theorem bonded to
+ * that case (clayCasesOf) from every file; a theorem bonded to two cases sits in both, which is how monographs relate.
+ * Every other theorem belongs to the subject of its own file — the station files' sequence and reflection laws to one
+ * subject, "sequence". Computed from the rows at every build; nothing is listed by hand.
+ */
+export type LeanMonograph = { readonly slug: string; readonly title: string; readonly kind: 'clay' | 'subject'; readonly posts: readonly string[] }
+const CLAY_TITLES: Readonly<Record<ClayCase, string>> = { poincare: 'The Poincaré conjecture', riemann: 'The Riemann hypothesis', 'p-vs-np': 'P versus NP', hodge: 'The Hodge conjecture', bsd: 'The Birch and Swinnerton-Dyer conjecture', 'navier-stokes': 'Navier–Stokes existence and smoothness', 'yang-mills': 'Yang–Mills existence and the mass gap' }
+export function leanMonographs(root?: string): readonly LeanMonograph[] {
+  const rows = leanPageRows(root)
+  const clay = CLAY_CASES.map((c): LeanMonograph => ({ slug: c, title: CLAY_TITLES[c], kind: 'clay', posts: rows.filter((r) => r.cases.includes(c)).map((r) => r.slug) }))
+  const subjectOf = (r: LeanPageRow) => (r.tags.includes('station') ? 'sequence' : r.file.replace(/\.lean$/, ''))
+  const subjects = new Map<string, string[]>()
+  for (const r of rows) {
+    if (r.cases.length) continue
+    if ((CLAY_CASES as readonly string[]).includes(r.file.replace(/\.lean$/, ''))) continue
+    subjects.set(subjectOf(r), [...(subjects.get(subjectOf(r)) ?? []), r.slug])
+  }
+  const titled = (slug: string) => (slug === 'sequence' ? 'The sequence and its reflection' : slug.replace(/[-_]/g, ' ').replace(/^./, (c) => c.toUpperCase()))
+  return [...clay, ...[...subjects.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([slug, posts]): LeanMonograph => ({ slug, title: titled(slug), kind: 'subject', posts }))]
+}
+
 /** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every
  *  locale home loads this body: a heading and the feed component, which reads the posts' own rows and tags. The heading is
  *  passed in already translated by the caller's locale transform, so this stays one generator for all three homes. */
