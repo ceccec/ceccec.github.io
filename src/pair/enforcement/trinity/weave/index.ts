@@ -1128,14 +1128,14 @@ if (existsSync(dist)) {
 }
 
 // --- the one-source monograph gates, tightened: enforce all so entropy does not pass ---
-// No mirroring: each [page].paths.ts (root = en, bg, gla) is a thin mount over the one source
-// (monographPaths). A reintroduced staticPages().map mirror is entropy — and fails here.
-for (const [file, locale] of [['[page].paths.ts', 'en'], ['bg/[page].paths.ts', 'bg'], ['gla/[page].paths.ts', 'gla']]) {
+// No mirroring: each [monograph].paths.ts (root = en, bg, gla) is a thin mount over the one source
+// (leanMonographPaths — the feed filtered to each monograph's posts). A reintroduced mirror is entropy — and fails here.
+for (const file of ['[monograph].paths.ts', 'bg/[monograph].paths.ts', 'gla/[monograph].paths.ts']) {
   const text = read(join(contentRoot, file))
   if (!text) {
-    gaps.push({ harmonic: 'monograph', kind: 'mount-missing', detail: `${file} does not exist — why this fails: the [monograph] route mounts the one source (monographPaths) in each locale; without it the locale has no pages` })
-  } else if (!text.includes(`monographPaths('${locale}')`) && !text.includes(`monographCatchAllPaths('${locale}')`) && !text.includes(`vitepressAutomountPaths('${locale}')`)) {
-    gaps.push({ harmonic: 'monograph', kind: 'mirrored-logic', detail: `${file} does not mount monographPaths('${locale}') — why this fails: no mirroring; the route logic lives once in monographPaths and each locale mount is thin (computed by math), not a copy` })
+    gaps.push({ harmonic: 'monograph', kind: 'mount-missing', detail: `${file} does not exist — why this fails: the [monograph] route mounts the one source (leanMonographPaths) in each locale; without it the locale has no monographs` })
+  } else if (!/leanMonographPaths\s*\(/.test(text)) {
+    gaps.push({ harmonic: 'monograph', kind: 'mirrored-logic', detail: `${file} does not mount leanMonographPaths() — why this fails: no mirroring; the monograph logic lives once in leanMonographPaths and each locale mount is thin, not a copy` })
   } else if (/staticPages\s*\(\s*\)\s*\.map/.test(text)) {
     gaps.push({ harmonic: 'monograph', kind: 'mirrored-logic', detail: `${file} inlines staticPages().map — why this fails: that mirrored logic is entropy the one source (monographPaths) replaces; mount it, do not mirror it` })
   }

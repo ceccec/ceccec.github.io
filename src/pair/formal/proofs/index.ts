@@ -1724,6 +1724,14 @@ export function leanPageSlug(file: string, name: string): string {
  */
 export type LeanMonograph = { readonly slug: string; readonly title: string; readonly kind: 'clay' | 'subject'; readonly posts: readonly string[] }
 const CLAY_TITLES: Readonly<Record<ClayCase, string>> = { poincare: 'The Poincaré conjecture', riemann: 'The Riemann hypothesis', 'p-vs-np': 'P versus NP', hodge: 'The Hodge conjecture', bsd: 'The Birch and Swinnerton-Dyer conjecture', 'navier-stokes': 'Navier–Stokes existence and smoothness', 'yang-mills': 'Yang–Mills existence and the mass gap' }
+/** THE CLAY CASE A SLUG NAMES, read from the case itself: the slug carries the case id, or every distinctive word of the
+ *  case's official title (words of four letters or more, the closing kind — conjecture, hypothesis — left out). A title
+ *  with fewer than two such words never matches by words alone, so an empty word set cannot match every slug. */
+export function clayCaseOfSlug(slug: string): ClayCase | null {
+  const tokens = new Set(slug.toLowerCase().split(/[^a-z0-9]+/))
+  const words = (c: ClayCase) => CLAY_TITLES[c].toLowerCase().split(/[^a-z0-9]+/).slice(0, -1).filter((w) => w.length >= 4)
+  return CLAY_CASES.find((c) => slug.includes(c) || (words(c).length >= 2 && words(c).every((w) => tokens.has(w)))) ?? null
+}
 export function leanMonographs(root?: string): readonly LeanMonograph[] {
   const rows = leanPageRows(root)
   const clay = CLAY_CASES.map((c): LeanMonograph => ({ slug: c, title: CLAY_TITLES[c], kind: 'clay', posts: rows.filter((r) => r.cases.includes(c)).map((r) => r.slug) }))

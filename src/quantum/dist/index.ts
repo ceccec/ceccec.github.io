@@ -68,7 +68,7 @@ import { domainProofPagePaths } from '../../research/index.ts'
 import { catchAllRoutePaths } from '../../wind/routes/automount/index.ts'
 import { vitepressAutomountPaths } from '../../pair/enforcement/gates/computational/index.ts'
 import { routeAliasTarget } from '../../wind/site/index.ts'
-import { leanPagePaths, leanVerificationIndex } from '../../pair/formal/proofs/index.ts'
+import { LEAN_SEALED_REGISTRY, clayCaseOfSlug, leanMonographs, leanPagePaths, leanPageSlug, leanVerificationIndex } from '../../pair/formal/proofs/index.ts'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion/index.ts'
 import { honestRevolutionFpgaHonesty } from '../computer/index.ts'
 import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify/index.ts'
@@ -624,6 +624,43 @@ function sitemapUrlset(blocks: readonly string[], root = ''): string {
   const comment = root ? `<!-- quantum sitemap root: ${root} — one urlset, every served page -->\n` : ''
   return `<?xml version="1.0" encoding="UTF-8"?>\n${comment}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${blocks.join("\n")}\n</urlset>\n`
 }
+/**
+ * WHERE EVERY RETIRED URL LIVES NOW (owner, 2026-11-15: "redirect to nearest Lean post"). The site became a Lean blog; the
+ * old route families still exist as computations, and each old URL is mapped to the nearest page that remains, computed:
+ *   /theorems/<slug>  → the Lean post that seals that registry row (LEAN_SEALED_REGISTRY), else the feed;
+ *   /proofs/<slug>    → the monograph of the Clay case the proof is about, else the feed;
+ *   /<page>           → the monograph of the same name, else the feed — every old root page, hub, alias and folder page;
+ *   /bg/… and /gla/…  → the same rule in that edition, where it has one, else that edition's feed.
+ * GitHub Pages cannot redirect on the server, so buildEnd writes each as a static stub — noindex, canonical to the target,
+ * an instant refresh, a plain link — and never over a page that exists.
+ */
+export function legacyRedirects(matrix: MindMatrix = buildMatrix()): readonly { readonly from: string; readonly to: string }[] {
+  const posts = new Map(leanPagePaths().map((p) => [p.params.slug, p.params.row]))
+  const monographs = new Set(leanMonographs().map((m) => m.slug))
+  const sealing = new Map(LEAN_SEALED_REGISTRY.map((row) => [row.theorem, leanPageSlug(row.leanFile.split('/').pop()!, row.theorems[0]!)]))
+  const theoremTo = (title: string) => { const slug = sealing.get(title); return slug && posts.has(slug) ? `/lean/${slug}` : '/' }
+  const out = new Map<string, string>()
+  const add = (from: string, to: string) => { if (!out.has(from)) out.set(from, to) }
+  for (const row of theoremPageRows(matrix)) add(`/theorems/${row.slug}`, theoremTo(row.theorem))
+  for (const p of domainProofPagePaths(matrix)) { const c = clayCaseOfSlug(p.params.slug); add(`/proofs/${p.params.slug}`, c && monographs.has(c) ? `/${c}` : '/') }
+  // THE FOLDER PAGES THE BLOG RETIRED — history, so their URLs still land: once a folder is gone the tree cannot name it.
+  const RETIRED_FOLDER_PAGES = ['theorems', 'proofs', 'papers', 'model', 'diamonds', 'feeling', 'formulas', 'hands', 'references', 'three', 'lean'] as const
+  const roots = new Set([...catchAllRoutePaths('en').map((p) => p.params.path), ...vitepressAutomountPaths('en').map((p) => p.params.page), ...servedFolderPages().pages.map((p) => p.slug), ...RETIRED_FOLDER_PAGES])
+  for (const slug of roots) {
+    if (!slug || monographs.has(slug)) continue
+    add(`/${slug}`, monographs.has(routeAliasTarget(slug) ?? '') ? `/${routeAliasTarget(slug)}` : '/')
+    add(`/bg/${slug}`, '/bg/')
+    add(`/gla/${slug}`, '/gla/')
+  }
+  return [...out.entries()].map(([from, to]) => ({ from, to }))
+}
+
+/** One redirect stub: noindex, canonical to the target, an instant refresh, and a plain link for anything that ignores both. */
+export function legacyRedirectStub(to: string, siteUrl: string = CANONICAL_HOST): string {
+  const href = to.startsWith('/') ? to : `/${to}`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${siteUrl}${href}"><meta http-equiv="refresh" content="0; url=${href}"></head><body><p>This page moved to <a href="${href}">${href}</a>.</p></body></html>\n`
+}
+
 /** The folder tree as a router: every folder of .vitepress/pages holding an index.md is a served page, in each locale
  *  edition the tree holds (the bare folder is English; bg/<slug> and gla/<slug> are its other editions). Read from the
  *  filesystem at build; where there is none (a browser), the answer is absent — an empty list, said, not a guess. */
@@ -642,35 +679,19 @@ function servedFolderPages(root: string = typeof process !== 'undefined' && proc
       editions: [{ hreflang: 'en', href: `/${entry.name}/` }, ...locales.filter((locale) => hasIndex(`${pages}/${locale.dir}/${entry.name}`)).map((locale) => ({ hreflang: locale.hreflang, href: `/${locale.dir}/${entry.name}/` }))],
     })) }
 }
+/** THE SITEMAP IS THE LEAN BLOG (owner, 2026-11-15: "vitepress becomes lean blog"): the feed in each edition, the monographs
+ *  in each edition, and the Lean posts in English and in Glagolitic — every URL a page that exists, each with its editions as
+ *  alternates. Retired URLs are redirect stubs (noindex, canonical to their target) and are never listed. Computed from the
+ *  same rows the routes are; nothing is listed by hand. */
 function sitemapUrlBlocks(siteUrl: string, matrix: MindMatrix, now: string) {
-  const quantum = quantumSitemap(matrix)
+  void matrix
   const alt = (a: readonly { hreflang: string; href: string }[]) => a.map((x) => `    <xhtml:link rel="alternate" hreflang="${x.hreflang}" href="${absCross(siteUrl, x.href)}" />`).join("\n")
   const block = (loc: string, priority: number, alternates: readonly { hreflang: string; href: string }[]) => ["  <url>", `    <loc>${absCross(siteUrl, loc)}</loc>`, `    <lastmod>${now}</lastmod>`, "    <changefreq>weekly</changefreq>", `    <priority>${Number(priority.toFixed(4))}</priority>`, alt(alternates), "  </url>"].join("\n")
-  const monographBlocks = quantum.urls.flatMap((url) => [block(url.gla, url.priority, url.alternates), block(url.en, url.priority, url.alternates), block(url.bg, url.priority * (4 / 5), url.alternates)])
-  // The domain proofs (30 complete Millennium/science monographs, distinct slugs — no theorem-slug overlap)
-  // are served by /proofs/[slug] yet were absent from the crawl surface; they belong in the pages child, one
-  // canonical en URL each (like the theorem papers). Empty families (model = 0) and compute-only catch-alls
-  // (papers/[id] resolve on demand and duplicate the theorem papers) are correctly NOT enumerated here.
-  const proofs = domainProofPagePaths(matrix).map((p) => block(`/proofs/${p.params.slug}`, 3 / 5, [{ hreflang: "en", href: absCross(siteUrl, `/proofs/${p.params.slug}`) }]))
-  // THE SERVED SET, READ FROM THE ROUTER, NOT RE-DERIVED (owner, 2026-11-15: 'no manual vitepress configs'). The roster
-  // above covers the lens pages; the router also mounts the populated ray hubs and the machine index (catchAllRoutePaths,
-  // vitepressAutomountPaths), and the folder tree is a router of its own — every folder of .vitepress/pages with an
-  // index.md is a served page. An alias is never listed: its canonical is its target (routeAliasTarget, the reader the
-  // canonical link uses too). Measured before: 647 served, self-canonical pages were in no sitemap.
-  const listed = new Set(quantum.urls.map((url) => url.route.replace(/^\/+|\/+$/g, '')))
-  const unlisted = (slug: string) => !!slug && !listed.has(slug) && routeAliasTarget(slug) === null
-  const routed = [...new Set([...catchAllRoutePaths('en').map((p) => p.params.path), ...vitepressAutomountPaths('en').map((p) => p.params.page)])].filter(unlisted)
-  const routedBlocks = routed.flatMap((slug) => { listed.add(slug); const { gla, en, bg } = localePaths(`/${slug}`); const alternates = [{ hreflang: 'cu', href: gla }, { hreflang: 'en', href: en }, { hreflang: 'bg', href: bg }, { hreflang: 'x-default', href: en }]; return [block(en, 3 / 5, alternates), block(bg, (3 / 5) * (4 / 5), alternates), block(gla, (3 / 5) * (4 / 5), alternates)] })
-  // where the tree cannot be read (absent), no folder page is listed — said by the source field, never mistaken for none
-  const folderBlocks = servedFolderPages().pages.filter((page) => unlisted(page.slug)).map((page) => {
-    const alternates = page.editions.map((edition) => ({ hreflang: edition.hreflang, href: edition.href }))
-    return page.editions.map((edition) => block(edition.href, 3 / 5, [...alternates, { hreflang: 'x-default', href: `/${page.slug}/` }]))
-  }).flat()
-  const lean = leanPagePaths().map((p) => block(`/lean/${p.params.slug}`, 2 / 5, [{ hreflang: 'en', href: absCross(siteUrl, `/lean/${p.params.slug}`) }]))
-  const pages = [...monographBlocks, ...proofs, ...routedBlocks, ...folderBlocks, ...lean]
-  const priorities = theoremSitemapPriorities(matrix)
-  const theorems = theoremPagePaths(matrix).map((p) => block(`/theorems/${p.params.slug}`, priorities.get(p.params.slug) ?? (3 / 5), [{ hreflang: "en", href: absCross(siteUrl, `/theorems/${p.params.slug}`) }]))
-  return { pages, theorems, root: quantum.root }
+  const editions = (path: string, withBg: boolean) => [{ hreflang: 'en', href: path }, ...(withBg ? [{ hreflang: 'bg', href: `/bg${path}` }] : []), { hreflang: 'cu', href: `/gla${path}` }, { hreflang: 'x-default', href: path }]
+  const homes = [block('/', 1, editions('/', true)), block('/bg/', 4 / 5, editions('/', true)), block('/gla/', 4 / 5, editions('/', true))]
+  const monographs = leanMonographs().flatMap((m) => { const p = `/${m.slug}`; const alts = editions(p, true); const weight = m.kind === 'clay' ? 9 / 10 : 7 / 10; return [block(p, weight, alts), block(`/bg${p}`, weight * (4 / 5), alts), block(`/gla${p}`, weight * (4 / 5), alts)] })
+  const posts = leanPagePaths().flatMap((p) => { const path = `/lean/${p.params.slug}`; const alts = editions(path, false); return [block(path, 3 / 5, alts), block(`/gla${path}`, (3 / 5) * (4 / 5), alts)] })
+  return { pages: [...homes, ...monographs], theorems: posts, root: merkleFold([...homes, ...monographs, ...posts].map((b) => toUuid(b))) }
 }
 /** Sitemap <priority> COMPUTED from the internal citation graph (user law: priority computable from
  *  analytics with exact precision accepted by Google). The site collects NO user analytics (sealed

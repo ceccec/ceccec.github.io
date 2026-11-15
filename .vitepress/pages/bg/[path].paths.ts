@@ -1,9 +1,0 @@
-// Bulgarian catch-all [path] route — rosetta decodes the URL path, no static pages needed.
-import { catchAllRoutePaths, monographSliceFromRoute } from '../../render'
-
-export default {
-  paths: () => catchAllRoutePaths('bg').map(({ params }) => {
-    const slice = monographSliceFromRoute(`/${params.path}`, 'bg')
-    return { params: slice ? { ...params, ...slice } : params }
-  }),
-}

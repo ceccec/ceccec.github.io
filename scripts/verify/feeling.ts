@@ -19,9 +19,9 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { feelLaws, feelingThoughtEmotionTrinity } from '../../src/water/stack/index.ts'
 import { decided } from './status.ts'
+import { leanMonographs, leanPageRows, leanPageSlug } from '../../src/pair/formal/proofs/index.ts'
 
 export const FEELING_LEAN = 'src/pair/lean/proofs/feeling.lean'
-export const FEELING_PAGE = '.vitepress/pages/feeling/index.md'
 export const CONSCIOUSNESS_LEAN = 'src/pair/lean/proofs/consciousness.lean'
 
 /** Each statement the page makes about the observer, by the theorem in consciousness.lean that carries it. */
@@ -91,12 +91,14 @@ export function assertFeelingTrinityExit(root: string = process.cwd()): number {
   const countMismatch = Array.from({ length: Math.max(leanCounts.length, foldCounts.length) }, (_, i) => i).filter((i) => leanCounts[i] !== foldCounts[i]).map((i) => `arousal sample ${i}: Lean states ${leanCounts[i] ?? 'nothing'}, feel computes ${foldCounts[i] ?? 'nothing'}`)
   console.log(decided('feeling.arousal-disagrees', countMismatch.length, { evidence: () => countMismatch }))
 
-  const page = join(root, FEELING_PAGE)
-  const pageText = existsSync(page) ? readFileSync(page, 'utf8') : ''
+  // THE SITE SERVES FEELING'S PROOFS (2026-11-15: the site became a Lean blog, and only what Lean proves survives — owner's
+  // choice). The custom /feeling page and its live trinity are retired; what the site must still do is serve every theorem of
+  // feeling.lean as a post, gathered in the /feeling monograph. The fold (feelingThoughtEmotionTrinity, feel) stays in src.
+  const feelingPosts = leanPageRows(root).filter((r) => r.file === 'feeling.lean').map((r) => r.slug)
+  const monograph = leanMonographs(root).find((m) => m.slug === 'feeling')
   const unwired = [
-    ...(pageText ? [] : [`${FEELING_PAGE} does not exist`]),
-    ...(pageText && !/feelingThoughtEmotionTrinity\(\)/.test(pageText) ? [`${FEELING_PAGE} does not call feelingThoughtEmotionTrinity()`] : []),
-    ...(pageText && !/\bfeel\(siteSignals\)/.test(pageText) ? [`${FEELING_PAGE} does not use feel on the site's own receipt`] : []),
+    ...(feelingPosts.length ? [] : ['no theorem of feeling.lean is served as a Lean post']),
+    ...(monograph ? feelingPosts.filter((slug) => !monograph.posts.includes(slug)).map((slug) => `/feeling monograph does not hold ${slug}`) : ['no /feeling monograph is computed']),
   ]
   console.log(decided('feeling.page-unwired', unwired.length, { evidence: () => unwired }))
 
@@ -106,7 +108,8 @@ export function assertFeelingTrinityExit(root: string = process.cwd()): number {
   const observer = [
     ...(mindText ? [] : [`${CONSCIOUSNESS_LEAN} does not exist`]),
     ...OBSERVER_THEOREMS.filter((t) => mindText && !mindTheorems.has(t)).map((t) => `${t} is missing from ${CONSCIOUSNESS_LEAN}`),
-    ...OBSERVER_THEOREMS.filter((t) => pageText && !pageText.includes(`\`${t}\``)).map((t) => `${FEELING_PAGE} does not cite ${t}`),
+    // served, not cited: each observer theorem is a post of the /consciousness monograph (the custom page that cited them is retired)
+    ...OBSERVER_THEOREMS.filter((t) => !(leanMonographs(root).find((m) => m.slug === 'consciousness')?.posts ?? []).includes(leanPageSlug('consciousness.lean', t))).map((t) => `${t} is not served in the /consciousness monograph`),
   ]
   console.log(decided('consciousness.unproved', observer.length, { evidence: () => observer }))
 

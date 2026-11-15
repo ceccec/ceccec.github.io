@@ -12,7 +12,9 @@
  * checks the BUILT OUTPUT rather than the source, because what ships is what gets cited.
  *
  * 404.html is the single exemption and it is named, not pattern-matched: an error page is not a
- * publication. Every other page must carry all five marks.
+ * publication. Every other page must carry all five marks — except a REDIRECT STUB, decided from the page itself
+ * (noindex + an instant refresh), and only when its target is a real, non-stub page of the same build: the stub carries
+ * no content, its target is checked here like every page, and a stub whose target is missing or another stub refuses.
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
@@ -32,6 +34,19 @@ export function creditMarks(): readonly { readonly name: string; readonly needle
     { name: 'licence', needle: PUBLICATION_CREDIT.licenceUrl },
     { name: 'citation', needle: 'Cite this page' },
   ]
+}
+
+/** The page a redirect stub sends to, or null when the file is not a stub (no noindex, or no instant refresh). */
+export function redirectTargetOf(html: string): string | null {
+  if (!html.includes('content="noindex"')) return null
+  return /<meta http-equiv="refresh" content="0; url=([^"]+)">/.exec(html)?.[1] ?? null
+}
+
+/** The built file a site path is served from: /x → x.html or x/index.html, / → index.html. */
+function servedFile(dist: string, path: string): string | null {
+  const bare = path.replace(/^\//, '').replace(/\/$/, '')
+  const candidates = bare ? [join(dist, `${bare}.html`), join(dist, bare, 'index.html')] : [join(dist, 'index.html')]
+  return candidates.find((c) => existsSync(c)) ?? null
 }
 
 function htmlFiles(dir: string, out: string[] = []): string[] {
@@ -58,12 +73,21 @@ export function assertEveryPageIsCredited(root: string = process.cwd()): void {
   const pages = htmlFiles(dist).filter((p) => !NOT_A_PUBLICATION.has(p.slice(p.lastIndexOf('/') + 1)))
   const marks = creditMarks()
   const missing = new Map<string, string[]>()
+  let redirects = 0
   for (const p of pages) {
     const html = readFileSync(p, 'utf8')
+    const to = redirectTargetOf(html)
+    if (to !== null) {
+      const target = servedFile(dist, to)
+      if (target && redirectTargetOf(readFileSync(target, 'utf8')) === null) { redirects += 1; continue }
+      missing.set(p.replace(`${root}/`, ''), [`a redirect to ${to}, which is ${target ? 'another redirect' : 'no page in this build'}`])
+      continue
+    }
     const absent = marks.filter((m) => !html.includes(m.needle)).map((m) => m.name)
     if (absent.length) missing.set(p.replace(`${root}/`, ''), absent)
   }
-  console.log(`credits: ${pages.length - missing.size}/${pages.length} published pages carry author, ORCID, DOI, licence and a citation`)
+  console.log(`  redirect stubs: ${redirects}, each to a real page of this build that is checked here itself`)
+  console.log(`credits: ${pages.length - redirects - missing.size}/${pages.length - redirects} published pages carry author, ORCID, DOI, licence and a citation`)
   console.log(`  exempt, named not guessed: ${[...NOT_A_PUBLICATION].join(', ')} — an error page is not a publication`)
   if (missing.size) {
     const shown = [...missing.entries()].slice(0, 8).map(([f, a]) => `${f} (missing ${a.join(', ')})`)

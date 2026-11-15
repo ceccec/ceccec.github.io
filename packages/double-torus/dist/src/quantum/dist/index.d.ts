@@ -110,6 +110,22 @@ export declare function digitIndexJson(matrix?: MindMatrix, now?: string): {
         receipt: string;
     }[];
 };
+/**
+ * WHERE EVERY RETIRED URL LIVES NOW (owner, 2026-11-15: "redirect to nearest Lean post"). The site became a Lean blog; the
+ * old route families still exist as computations, and each old URL is mapped to the nearest page that remains, computed:
+ *   /theorems/<slug>  → the Lean post that seals that registry row (LEAN_SEALED_REGISTRY), else the feed;
+ *   /proofs/<slug>    → the monograph of the Clay case the proof is about, else the feed;
+ *   /<page>           → the monograph of the same name, else the feed — every old root page, hub, alias and folder page;
+ *   /bg/… and /gla/…  → the same rule in that edition, where it has one, else that edition's feed.
+ * GitHub Pages cannot redirect on the server, so buildEnd writes each as a static stub — noindex, canonical to the target,
+ * an instant refresh, a plain link — and never over a page that exists.
+ */
+export declare function legacyRedirects(matrix?: MindMatrix): readonly {
+    readonly from: string;
+    readonly to: string;
+}[];
+/** One redirect stub: noindex, canonical to the target, an instant refresh, and a plain link for anything that ignores both. */
+export declare function legacyRedirectStub(to: string, siteUrl?: string): string;
 /** Sitemap <priority> COMPUTED from the internal citation graph (user law: priority computable from
  *  analytics with exact precision accepted by Google). The site collects NO user analytics (sealed
  *  no-tracking), so the honest signal is structural: each theorem's in-degree — how many OTHER

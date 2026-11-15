@@ -743,6 +743,10 @@ export type LeanMonograph = {
     readonly kind: 'clay' | 'subject';
     readonly posts: readonly string[];
 };
+/** THE CLAY CASE A SLUG NAMES, read from the case itself: the slug carries the case id, or every distinctive word of the
+ *  case's official title (words of four letters or more, the closing kind — conjecture, hypothesis — left out). A title
+ *  with fewer than two such words never matches by words alone, so an empty word set cannot match every slug. */
+export declare function clayCaseOfSlug(slug: string): ClayCase | null;
 export declare function leanMonographs(root?: string): readonly LeanMonograph[];
 /**
  * THE VERIFICATION INDEX — what a client needs to check every theorem WITHOUT TRUSTING THIS SITE (owner, 2026-11-15:

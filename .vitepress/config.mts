@@ -668,7 +668,23 @@ export default defineConfig({
   // render, exactly once per page — head entries pushed via frontmatter can be
   // applied twice for static pages (metas are deduped by key downstream; script
   // tags are not), so the post-render hook is the one place a script tag lands once.
-  buildEnd() {
+  async buildEnd(siteConfig) {
+    // Retired URLs → static redirect stubs (legacyRedirects, src/quantum/dist). Written after render, never over a real page.
+    const { existsSync, mkdirSync, writeFileSync } = await import('node:fs')
+    const { dirname, join } = await import('node:path')
+    const { legacyRedirects, legacyRedirectStub } = await import('../src/quantum/dist/index.ts')
+    let written = 0
+    // both forms a retired URL was served in: /x (x.html) and /x/ (x/index.html) — a folder page answered at the second
+    for (const { from, to } of legacyRedirects()) {
+      const bare = from.replace(/\/$/, '')
+      if (existsSync(join(siteConfig.outDir, `${bare}.html`)) || existsSync(join(siteConfig.outDir, bare, 'index.html'))) continue
+      for (const file of [join(siteConfig.outDir, `${bare}.html`), join(siteConfig.outDir, bare, 'index.html')]) {
+        mkdirSync(dirname(file), { recursive: true })
+        writeFileSync(file, legacyRedirectStub(to))
+      }
+      written += 1
+    }
+    console.log(`redirects: ${written} retired URLs point to their nearest Lean page`)
     releaseDirectBuildLock()
   },
   transformHtml(html, _id, { pageData }) {

@@ -33,7 +33,7 @@ import { TAU } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
 import { toGlagolitic } from '../../quantum/heaven/library/index.ts'
-import { leanMonographs, leanPagePaths } from '../../pair/formal/proofs/index.ts'
+import { clayCaseOfSlug, leanMonographs, leanPagePaths } from '../../pair/formal/proofs/index.ts'
 import { domainProofPageRows } from '../../research/index.ts'
 
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
@@ -73,7 +73,7 @@ export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: st
 export function leanMonographPaths(): { params: { monograph: string; title: string; description: string; kind: 'clay' | 'subject'; posts: readonly string[]; statement: string } }[] {
   const statements = new Map(domainProofPageRows().map((row) => [row.slug, row.officialStatement]))
   return leanMonographs().map((m) => {
-    const statement = m.kind === 'clay' ? ([...statements.entries()].find(([slug]) => slug.includes(m.slug))?.[1] ?? '') : ''
+    const statement = m.kind === 'clay' ? ([...statements.entries()].find(([slug]) => clayCaseOfSlug(slug) === m.slug)?.[1] ?? '') : ''
     const description = m.kind === 'clay'
       ? `${m.title} — open. ${m.posts.length} kernel-checked theorems bear on it, from every file that formalises one of its symmetries.`
       : `${m.title} — ${m.posts.length} kernel-checked theorems.`

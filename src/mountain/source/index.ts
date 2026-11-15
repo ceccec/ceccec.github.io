@@ -2457,8 +2457,8 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: '.vitepress/config.mts', role: 'transformPageData — glue: route → model → view head/meta' },
     { module: '.vitepress/computed-pages.mts', role: 'computed pages plugin — Glagolitic home from English' },
     { module: '.vitepress/lib/vitepress-seo.ts', role: 'thin mount re-exporting controller fns to config' },
-    { module: '.vitepress/pages/[page].paths.ts', role: 'VitePress [page] route path builder' },
-    { module: '.vitepress/pages/[path].paths.ts', role: 'VitePress catch-all route path builder' },
+    { module: '.vitepress/pages/lean/[slug].paths.ts', role: 'VitePress Lean post route — one post per kernel-checked theorem' },
+    { module: '.vitepress/pages/[monograph].paths.ts', role: 'VitePress monograph route — the feed filtered to each monograph' },
     { module: '.vitepress/src-plugins.mts', role: 'plugin composition — srcFolderPlugins' },
   ].map((entry) => ({ ...entry, mvc: 'controller' as const, receipt: toUuid(`mvc:controller:${entry.module}`) }))
 
