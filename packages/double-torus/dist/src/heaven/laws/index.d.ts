@@ -692,6 +692,11 @@ export declare function reviewEuPatents(epNumbers: readonly string[], fetchImpl?
 export declare function theAutomaticNamingServiceDescribesTheoremsFromComputationNotPredefinedProse(matrix?: MindMatrix): {
     computes: boolean;
     formats: string[];
+    /** The service itself, for any fold that names things from their identifier (the rotating lens reads it). */
+    describe: (name: string, result: {
+        computes: boolean;
+        facets: readonly unknown[];
+    }, format: string) => string;
     exampleTitle: string;
     exampleSummary: string;
     facets: {
@@ -818,19 +823,6 @@ export declare function theGateAutoTightensInRealtimeTheThresholdRatchetsTowardB
     runs: number[];
     thresholds: number[];
     finalThreshold: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
-export declare function theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptimisesAtOnce(matrix?: MindMatrix): {
-    computes: boolean;
-    theorems: number;
-    root: string;
-    anyWaveSameRoot: boolean;
-    hexagramCube: number;
     facets: {
         facet: string;
         on: boolean;
@@ -1060,17 +1052,6 @@ export declare function theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMulti
     statement: string;
     boundary: string;
 };
-export declare function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix?: MindMatrix): {
-    computes: boolean;
-    perspectivesPerTheorem: number;
-    dimensions: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversionThePathlessTurn(matrix?: MindMatrix): {
     computes: boolean;
     c6: number[];
@@ -1087,17 +1068,6 @@ export declare function invertedThirtyIsOneEightyTheAngleInversionIsTheProductNi
     invertedThirty: number;
     invariant: number;
     selfInverse: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
-export declare function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight(matrix?: MindMatrix): {
-    computes: boolean;
-    roots: number[];
-    covered: boolean;
     facets: {
         facet: string;
         on: boolean;

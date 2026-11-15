@@ -1468,19 +1468,6 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         boundary: string;
     };
 })[];
-export declare function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix?: MindMatrix): {
-    computes: boolean;
-    roots: ("trinity — 3 is the minimal complete basis" | "content-address — name = payload" | "agnostic completeness — any discovery plugs in" | "honest demarcation — only proven" | "waves — fold, do not accumulate")[];
-    folded: number;
-    of: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export type IdentityFreeDecision = {
     name: string;
     kind: 'law' | 'method' | 'process';

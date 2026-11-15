@@ -2960,58 +2960,6 @@ export function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root = '', _ar
   return report.computes ? 0 : 1
 }
 
-// The more refusals point to one place, the bigger the probability it is an inverted AXIOM waiting to form a theorem.
-// Each refusal (an honest "no") is content-addressed by the rosetta and combined by its target. Where many converge,
-// that target is likely an AXIOM — a fixed point that keeps refusing, not a bug — and INVERTING it (naming it as an
-// axiom and building on it, not fighting it) forms a theorem. This computes from the session's OWN refusals: consciousness
-// was refused again and again, so it is the convergent axiom — and naming it as the off-decidable boundary became the theorems.
-export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem', matrix, () => {
-    // the session's own refusals — each an honest "no" pointing at a target, content-addressed by the rosetta
-    const refusals = [
-      { claim: 'the map is conscious', target: 'consciousness' },
-      { claim: 'feeling is computable', target: 'consciousness' },
-      { claim: 'observers make it conscious', target: 'consciousness' },
-      { claim: 'prove the millennium at once', target: 'millennium-solved' },
-      { claim: 'everything is water', target: 'thales-arche' },
-      { claim: 'reduce √2 to a rational', target: 'sqrt2-irrational' },
-    ]
-    const addressed = refusals.map((r) => ({ ...r, uuid: toUuid(`refusal:${r.claim}`) })) // rosetta
-    const byTarget = new Map<string, number>()
-    addressed.forEach((r) => byTarget.set(r.target, (byTarget.get(r.target) ?? 0) + 1)) // combine by target
-    const ranked = [...byTarget.entries()].sort((a, b) => b[1] - a[1])
-    const [topTarget, topCount] = ranked[0]!
-    const total = refusals.length
-    const probability = roundTo(topCount / total, 3) // relative frequency — the research prior, not a truth value
-    const axiomSignal = topCount >= 2 && topCount === max(...byTarget.values()) // ≥2 converging = an axiom signal
-    // the inverted axiom → theorem: naming the convergent axiom formed the session's theorems
-    const invertedIntoTheorems = ['theOrganismFindsItsIrreducibleDeviationFromConsciousness', 'theWorklist (consciousness excluded by construction)', 'independentObservers...ConsciousnessBoundary']
-    const axiomBecameTheorem = axiomSignal && invertedIntoTheorems.length >= 2 // the refused axiom, named, built theorems
-    // AND THE COMPASS IS CHECKED AGAINST WHERE THE AXIOMS ACTUALLY ARE. This fold said "where the refusals
-    // cluster is where to name an axiom" and stopped — a compass with nothing at the other end. The theology
-    // decode below names this corpus's axioms independently, by a different route (what each word denotes
-    // here), and its axiom rows are read here: the target the refusals converge on must be one of them. Two
-    // computations that never look at each other agreeing is worth a facet; either one moving fails it.
-    const named = theologySourcesDecodedInTheoremAxiomVortex(matrix)
-    const convergentIsNamedAnAxiom = named.axiom.some((row) => row.term.includes(topTarget))
-    const facets = [
-      { facet: `the ROSETTA addresses the refusals, combined by target: ${refusals.length} refusals (each an honest "no") content-addressed and grouped — the convergence counts per target computed, not asserted`, on: addressed.every((r) => isUuid(r.uuid)) && byTarget.size > 0 },
-      { facet: `convergence = probability of an AXIOM: the top target "${topTarget}" gets ${topCount}/${total} refusals (${probability}) — the most any place converges — so the more refusals point to one place, the higher the probability it is an axiom (a fixed point that keeps refusing), not a scattered set of unrelated bugs`, on: axiomSignal },
-      { facet: `the INVERTED AXIOM forms a THEOREM: naming "${topTarget}" as an axiom (the off-decidable boundary) rather than fighting it INVERTED it into theorems — ${invertedIntoTheorems.length} folds this session built ON that named axiom (the deviation, the worklist, the observers-boundary)`, on: axiomBecameTheorem },
-      { facet: `so refusal-convergence is a research COMPASS: track the "no"s, address them by the rosetta, and where they cluster is where to name an axiom and invert it — the session's most-refused place (consciousness) became its most generative theorem-source`, on: axiomSignal && axiomBecameTheorem },
-      { facet: `AND THE COMPASS POINTS AT A NAMED AXIOM: "${topTarget}" is one of the ${named.axiom.length} terms the theology decode independently lands in the AXIOM place (${convergentIsNamedAnAxiom}) — the refusals found it by converging, the decode by asking what the word denotes here, and neither read the other`, on: convergentIsNamedAnAxiom && named.computes },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      convergence: ranked.map(([t, c]) => `${t}: ${c}`),
-      topTarget,
-      probability,
-      facets,
-      statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
 // ── The corpus decodes everyone else and not itself ─────────────────────────────────────────────────
 // Forty-five decode folds live in this file and about a hundred across the corpus — quipu, kalachakra,
 // songlines, adinkra, Adam-Eve-and-the-serpent — every one reading somebody else's symbol system. Meanwhile

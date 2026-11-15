@@ -4,7 +4,7 @@
 
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, circulateDoubleTorus, doubleTorusWire, deepResearchChatTurn, wavesOfLocalResearchersChatAboutAlgebra, portalChat, portalChatRanked, freeChatUpgradesAll, countlessFreeChatWaves, continueAtNoAiCost, theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress, dryCleanChatDryCleansAll, improveTokenSpendingFeedingTheTaskToTheChat } from '../../heaven/compute/index.ts'
-import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded } from '../../heaven/laws/index.ts'
+import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded, theAutomaticNamingServiceDescribesTheoremsFromComputationNotPredefinedProse } from '../../heaven/laws/index.ts'
 import { GATES, abs, applyGate, asTorus, computesGate, cos, digitalRoot, doubleTorusSurface, floor, fold, foldPair, hypot, isUuid, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, sin, toUuid } from '../../0/index.ts'
 import {
   completeDoubleTorus,
@@ -2890,7 +2890,9 @@ export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSigne
       return typeof o.computes === 'boolean' && vortex && typeof o.statement === 'string' && !!o.statement && typeof o.boundary === 'string' && !!o.boundary && o.computes === (o.facets as { on: boolean }[]).every((e) => e.on)
     }
     const invert = (x: number | boolean | string): number | boolean | string => typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
-    const words = (id: string) => id.replace(/([A-Z])/g, ' $1').trim().split(/\s+/).filter(Boolean)
+    // Titles and slugs come from the naming service, not a second copy of its camelCase split (cross: it was parked here).
+    const { describe } = theAutomaticNamingServiceDescribesTheoremsFromComputationNotPredefinedProse(matrix)
+    const named = { computes: true, facets: [] as const }
     // the ROTATION — sweep positions along the vortex sequence; each carries an item the lens classifies
     const rotation = [1, 2, 4, 8, 7, 5] // the vortex turn — the lens rotates through it
     const items: { name: string; fold?: unknown; value?: number | boolean | string }[] = [
@@ -2908,12 +2910,12 @@ export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSigne
       const inverted = item.value !== undefined ? invert(val) : val
       const opportunity = !sealed && item.value !== undefined && inverted !== val
       const kind = sealed ? 'sealed' : opportunity ? 'opportunity' : 'gap'
-      const title = words(item.name).map((w) => w[0]!.toUpperCase() + w.slice(1)).join(' ')
+      const title = describe(item.name, named, 'title')
       const dims = [
         kind,                                              // 0 what
         `phase:${rotation[i % rotation.length]}`,          // 1 rotation phase
         title,                                             // 2 title
-        words(item.name).join('-').toLowerCase(),          // 3 slug
+        describe(item.name, named, 'slug'),                // 3 slug
         `invertible:${opportunity}`,                       // 4 invertible
         opportunity ? `gateway:${String(inverted)}` : 'gateway:none', // 5 the inverse (gateway)
         `torus:${sealed}`,                                 // 6 double-torus present

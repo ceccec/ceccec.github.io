@@ -1593,16 +1593,3 @@ export declare function quantumDissolveProseToCodeTheSolutionIsAContentAddressed
     statement: string;
     boundary: string;
 };
-export declare function improveLocalByTrainingOnPublicQuantumComputeAllHarmonicPossibilitiesOfASentenceIntoTrinityTheorems(): {
-    researches: boolean;
-    trinity: string[];
-    possibilities: number;
-    facets: {
-        receipt: string;
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};

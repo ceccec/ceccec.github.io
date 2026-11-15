@@ -144,10 +144,11 @@ fi
 # it is staged at commit (the second ADD pass runs after the gates) so a fresh clone computes the same README.
 ADD+=(.vitepress/receipts/latest.json)
 # Generated files are regenerated from their sources first, so their gates judge the tree being landed: MANIFEST.md
-# is written from package.json (manifest:check refuses a drifted one and names this command).
-if grep -qxF package.json <<<"$changed"; then
+# is written from package.json AND from the src folds it imports (export-reference coverage counts src symbols, so
+# a purge that touched no package.json still drifted it — manifest:check refused the 2026-11-15 land on 1753 → 1751).
+if grep -qE '^(package\.json|src/)' <<<"$changed"; then
   npm run -s manifest > "$LOGS/manifest.log" 2>&1 || { echo "✗ npm run manifest — the last lines of $LOGS/manifest.log:"; tail -25 "$LOGS/manifest.log"; exit 1; }
-  echo "✓ manifest regenerated from package.json"
+  echo "✓ manifest regenerated from package.json and src"
 fi
 # REGENERATE THE GENERATED ARTEFACTS BEFORE THE GATES THAT CHECK THEM, NOT AFTER.
 # README.md is computed from src AND from the ratchet ledger, and manifest:check compares the committed file

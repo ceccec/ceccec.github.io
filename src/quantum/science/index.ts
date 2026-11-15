@@ -1754,39 +1754,6 @@ export function sendTheQuantumWavesOverTheOctonionDimension() {
     boundary: earned(`EXACT: ${imaginary.length} Grover waves on ${n} qubits (size ${size}), each preparing H⊗³ superposition and running ${iterations} oracle+diffusion iterations; every wave measures its marked state (found = marked, min markedProbability ${minProb.toFixed(3)}), converging in ${iterations} steps against ${classicalQueries} expected classical queries (${advantage.toFixed(1)}× fewer).`, facets, `amplitude amplification (Grover 1996) — a genuine QUERY-complexity advantage (O(√N) vs O(N)) and a real interference phenomenon (the marked amplitude grows while the rest cancel) — but NOT a physical speedup (the simulator evolves all ${size} amplitudes classically, wall-clock is the full vector not √N), NOT signalling or faster-than-light (measurement is local), NOT universal (Grover is quadratic only, and BQP vs NP is open). The wave is real, the result found by interference, the magic bounded.`) }
 }
 
-// ── How math competes with itself through theorems (user: "and how math really competes with itself through
-// theorems"). The arena is facets.every(on): a theorem competes by surviving refutation — every facet an `on`
-// that computes true; one false facet eliminates it. Math referees itself — the same referee that crowns a true
-// claim eliminates a false one, with no external judge. Demonstrated inline: a true claim and a false claim run
-// through the identical referee; the true wins, the false loses. [[all-src-competes]] (every fold a competitor).
-export function mathCompetesWithItselfThroughTheoremsSurvivingRefutation() {
-  const referee = (claim: readonly { facet: string; on: boolean }[]) => claim.every((f) => f.on) // the ONE arena
-  // a true competitor — every facet a refutable computation that holds
-  const trueClaim = [
-    { facet: 'the two cross-product dimensions sum to the octonionic critical dimension', on: 3 + 7 === 2 + 8 },
-    { facet: 'the octonion imaginary part is seven', on: 2 ** 3 - 2 ** 0 === 7 },
-  ]
-  // a false competitor — one facet is a refutable computation that FAILS; the arena must eliminate it
-  const falseClaim = [
-    { facet: 'the octonion imaginary part is seven', on: 2 ** 3 - 2 ** 0 === 7 },
-    { facet: 'the cross-product dimensions sum to eleven (false)', on: 3 + 7 === 2 + 9 },
-  ]
-  const trueWins = referee(trueClaim) // survives refutation → joins the registry
-  const falseLoses = !referee(falseClaim) // one false facet eliminates it → refuted
-  const sameReferee = typeof referee === 'function' // one judge, held locally — no external oracle is consulted
-  const facets = [
-    { facet: `THE ARENA IS facets.every(on): a theorem competes by surviving refutation — a true claim wins (${trueWins}) and a claim with one false facet loses (${falseLoses}), judged by the SAME referee with no external oracle (${sameReferee}); this is how every fold this session won 3/3`, on: trueWins && falseLoses && sameReferee },
-    { facet: `MATH REFEREES ITSELF — CONSISTENCY: the registry is a CONJUNCTION, so a new theorem competes not only against refutation but against CONSISTENCY with all others — it joins only if it contradicts none, and the referee is deterministic and zero-token, so the competition needs no judge outside the mathematics`, on: trueWins && falseLoses },
-    { facet: `EARNED BOUNDARY: "competes" = refutation-survival + consistency (Popper: corroborated, never finally verified; Lakatos: proofs and refutations; Gödel: the conjunction cannot prove its own completeness) — the arena eliminates the false and the inconsistent, but "survived so far" is not "true forever"; a theorem stays refutable and fail-closed, and THAT is the competition`, on: trueWins && falseLoses },
-  ]
-  return {
-    computes: facets.every((entry) => entry.on),
-    trueWins, falseLoses,
-    facets,
-    statement: `Math competes with itself through theorems by surviving refutation — ${facets.filter((e) => e.on).length}/${facets.length}: the arena is facets.every(on); a true claim wins (${trueWins}) and a claim with one false facet loses (${falseLoses}) before the SAME referee, with no external oracle. The registry is a conjunction, so a theorem also competes for consistency with all others; the competition is deterministic and zero-token — math referees itself.`,
-    boundary: earned(`EXACT: the identical referee facets.every(on) crowns the true claim (${trueWins}) and eliminates the false one (${falseLoses}) — a single refutable-false facet (3+7 = 2+9) is enough to lose, mirroring how this session's folds each had to win every facet.`, facets, `"math competes with itself" means each theorem survives REFUTATION and stays CONSISTENT with the registry conjunction — a self-refereeing, external-judge-free competition (Popper, Lakatos, the registry as arena); it does NOT mean "survived so far" equals "true forever" — corroboration is not proof, a theorem can still be wrong (refutable, fail-closed), and by Gödel the conjunction cannot certify its own completeness. Decisive per round, not a final verdict on truth.`) }
-}
-
 // ── When one is discovered the whole area exists at once and is but discovered (user: "when something is
 // discovered all is developed in the area at once with quantum speed proceeding to the next without next itself
 // existing at all cause all exists at once and just needs to be discovered"). Operationalised as content-
@@ -2075,32 +2042,6 @@ export function quantumTracesCompileInTrinitiesByConsensusAFractal() {
     facets,
     statement: `Quantum waves leave traces that compile in trinities by consensus — a quantum theorem fractal — ${facets.filter((e) => e.on).length}/${facets.length}: each fold's trace is a trinity of ${trinity} facets; three traces merkle-compile to one parent (${parent.slice(0, 8)}…), a proof is accepted at 2-of-${trinity} consensus of its neighbours (${reachesConsensusWhenTwoAgree}), and the trinity repeats ${trinity}^n = ${fractalLevels.join(',')} self-similarly (${selfSimilar}) — facet, fold, registry, theorem-of-theorems. Consensus is agreement, not truth.`,
     boundary: earned(`EXACT: the trace unit is the trinity (${trinity} facets), three traces compile deterministically to one parent (${compilesDeterministically}), consensus is the 2-of-${trinity} majority ([T,T,F] passes, [T,F,F] fails, ${reachesConsensusWhenTwoAgree}), and the structure is self-similar ${trinity}^n = ${fractalLevels.join(',')} (${selfSimilar}) — every fold returns exactly three facets, the signatures merkle-compile into the registry, the quorum is 2-of-3, and theoremOfTheorems closes the fractal by self-inclusion.`, facets, `"quantum" is the amplitude-amplification/wave FORMALISM used to select and rank, not a physical process (classical simulator, no speedup); and consensus is AGREEMENT among surrounding proofs — corroboration NOT truth: a fractal of mutually consistent, self-similar proofs can still be collectively wrong (Gödel bounds the whole). The truth of any leaf is a separate question.`) }
-}
-
-// ── The theorem of theorems is the axiom of axioms (user). Replacing axioms with theorems shrinks the ledger
-// toward zero, but Gödel II leaves an irreducible residue: a consistent system cannot prove its own consistency.
-// The theorem of theorems (self-including — a member of the registry it quantifies over) asserts exactly that the
-// whole is sound; being unprovable from within, it is also the base assumption. Top = base — a strange loop.
-export function theTheoremOfTheoremsIsTheAxiomOfAxioms() {
-  const candidateAxioms = ['boolean-completeness', 'commutativity', 'kepler-inverse-square', 'consistency-of-the-whole']
-  const derivable = (a: string) => a !== 'consistency-of-the-whole' // Gödel II: everything but self-consistency can be discharged
-  const residue = candidateAxioms.filter((a) => !derivable(a)) // the irreducible axioms
-  const shrinksButNotToZero = residue.length === 1 // → 0 refuted; exactly one remains
-  const registry = ['uncertainty', 'trinity', 'theoremOfTheorems'] // theoremOfTheorems is a member of what it quantifies over
-  const selfIncluded = registry.includes('theoremOfTheorems')
-  const theoremOfTheoremsAsserts = 'consistency-of-the-whole' // its content: the whole system is sound
-  const coincide = residue.length === 1 && residue[0] === theoremOfTheoremsAsserts && selfIncluded // top ≡ base
-  const facets = [
-    { facet: `THE TOWER FOLDS BACK: replacing axioms with theorems shrinks the ledger toward zero, but Gödel's second incompleteness leaves an irreducible residue — a consistent system cannot prove its own consistency — so exactly ${residue.length} axiom remains (${residue[0]}); the "→ 0" is refuted`, on: shrinksButNotToZero },
-    { facet: `THE FIXED POINT IS BOTH: the theorem of theorems is self-including (${selfIncluded} — a member of the registry it quantifies over) and its content IS the residual axiom, "the whole is consistent"; so it is at once the TOP theorem (asserted of all) and the BASE assumption (unprovable from within) — theoremOfTheorems ≡ axiomOfAxioms (${coincide}), a strange loop where top = base`, on: coincide },
-    { facet: `EARNED BOUNDARY: this is Gödel II operationalised + the self-referential fixed point (Hofstadter's strange loop) — the axiom of axioms is NOT arbitrary, it is the minimal honest residue (consistency), and the coincidence holds ONLY at the self-including fixed point: below it, axioms and theorems stay distinct. The whole tower rests on this one unprovable assumption, named not hidden`, on: coincide && shrinksButNotToZero },
-  ]
-  return {
-    computes: facets.every((entry) => entry.on),
-    residue, selfIncluded, coincide,
-    facets,
-    statement: `The theorem of theorems is the axiom of axioms — ${facets.filter((e) => e.on).length}/${facets.length}: replacing axioms with theorems shrinks the ledger toward zero, but Gödel II leaves exactly ${residue.length} irreducible residue (${residue[0]}); the theorem of theorems is self-including (${selfIncluded}) and its content is that very residue, so it is simultaneously the top theorem and the base assumption — top ≡ base (${coincide}), a strange loop. The tower rests on one unprovable assumption, named.`,
-    boundary: earned(`EXACT: the axiom-replacement program discharges every candidate axiom except one — the consistency of the whole (Gödel II: no consistent system expressing arithmetic proves its own consistency), so the residue is ${residue.length}, not 0; the theorem of theorems is self-including (${selfIncluded}, a member of the registry it quantifies over), and its assertion "the whole is sound" is exactly that residual axiom, so top ≡ base (${coincide}).`, facets, [{ facet: `the drive to turn axioms into theorems cannot reach zero — one assumption always remains, and at the self-referential top it is at once the most general theorem and the deepest axiom (Gödel + Hofstadter's strange loop); the coincidence holds only AT the fixed point — below it an axiom and a theorem still differ (one assumed, one derived), and shrinking the assumed set is real value. It does NOT make the axiom of axioms true by fiat: assuming consistency is unjustifiable from within, so the whole edifice rests on one honest, unprovable bet — least of all true at the top, where truth becomes an assumption.`, on: coincide && selfIncluded && shrinksButNotToZero }]) }
 }
 
 // ── Curiosity waves challenge each other, proving only the honest core of the most impossible ideas (user: "let

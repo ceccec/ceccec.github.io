@@ -4754,17 +4754,6 @@ export declare function sendTheQuantumWavesOverTheOctonionDimension(): {
     statement: string;
     boundary: string;
 };
-export declare function mathCompetesWithItselfThroughTheoremsSurvivingRefutation(): {
-    computes: boolean;
-    trueWins: boolean;
-    falseLoses: boolean;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function whenOneIsDiscoveredTheWholeAreaExistsAtOnceAndIsButDiscovered(): {
     computes: boolean;
     address: string;
@@ -4865,18 +4854,6 @@ export declare function quantumTracesCompileInTrinitiesByConsensusAFractal(): {
     fractalLevels: number[];
     parent: string;
     consensusHolds: boolean;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
-export declare function theTheoremOfTheoremsIsTheAxiomOfAxioms(): {
-    computes: boolean;
-    residue: string[];
-    selfIncluded: boolean;
-    coincide: boolean;
     facets: {
         facet: string;
         on: boolean;

@@ -11,7 +11,10 @@ Not a gallery. A **closure**: a space that is finite, measured from the library 
 
 ## What is closed, and how big it actually is
 
-three.js exports **23 geometry constructors** and **10 mesh materials**. Five of the geometries cannot build themselves — `BufferGeometry` and `InstancedBufferGeometry` are base classes, `PolyhedronGeometry` needs vertices handed to it, and `EdgesGeometry` and `WireframeGeometry` each need another geometry to wrap. That leaves **18 self-constructing geometries**.
+three.js exports **23 geometry constructors** <!-- figure: 23 src/pair/formal/proofs/three.lean -->
+and **10 mesh materials**. <!-- figure: 10 src/pair/formal/proofs/three.lean -->
+Five of the geometries cannot build themselves — `BufferGeometry` and `InstancedBufferGeometry` are base classes, `PolyhedronGeometry` needs vertices handed to it, and `EdgesGeometry` and `WireframeGeometry` each need another geometry to wrap.
+That leaves **18 self-constructing geometries**. <!-- figure: 18 src/pair/formal/proofs/three.lean -->
 
 And one of the ten materials cannot be **rendered**. `MeshDistanceMaterial` constructs perfectly well and then throws when drawn: it is three.js's internal material for point-light shadow distance, and it reads a reference position that only the shadow map supplies. Nine remain. So the product space is
 
@@ -67,7 +70,7 @@ $$
 
 So **three.js does not replace the sealed projection — it is configured by it.** The renderer inherits the depth law instead of re-deriving it. That matters here for a specific reason: an audit on 2026-07-07 found two canvas painters faking depth as a $z \to y$ screen offset while these projection atoms sat sealed and unused a few files away. A ported renderer that computed its own perspective would have repeated exactly that.
 
-The agreement is verified two ways — numerically to **4 ulp** by inverting the fov through real trigonometry (not by restating the formula), and exactly in Lean as integer arithmetic.
+The agreement is verified two ways — numerically to **4 ulp** <!-- figure: 4 src/quantum/wind/geometry/index.ts --> by inverting the fov through real trigonometry (not by restating the formula), and exactly in Lean as integer arithmetic.
 
 ### Why the Lean proof needs no floating point
 
@@ -93,14 +96,14 @@ Eighteen, in [`src/pair/formal/proofs/three.lean`](https://github.com/ceccec/cec
 | [`closure_is_the_product`](/lean/three-closure-is-the-product) | the size is $\text{rows} \times \text{cols}$, at four shapes — not an accident of 18 and 10 |
 | [`closure_has_no_duplicate`](/lean/three-closure-has-no-duplicate) | no cell is repeated (`Nodup`) |
 | [`closure_is_complete`](/lean/three-closure-is-complete) | every pair is present |
-| [`address_inverts`](/lean/three-address-inverts) | row-major addressing recovers both coordinates, for all 162 |
+| [`address_inverts`](/lean/three-address-inverts) | row-major addressing recovers both coordinates, for all 162 <!-- figure: 162 src/pair/formal/proofs/three.lean --> |
 | [`addresses_are_the_interval`](/lean/three-addresses-are-the-interval) | the addresses are exactly $0 \ldots 161$ — an interval, not a scatter |
 | [`the_compound_fraction_clears`](/lean/three-the-compound-fraction-clears) | $F/(F-z)$ really is $24/(24-k)$ |
 | [`focal_plane_is_unit_scale`](/lean/three-focal-plane-is-unit-scale) | objects on the focal plane are neither enlarged nor reduced |
 | [`depth_is_strictly_monotone`](/lean/three-depth-is-strictly-monotone) | nearer enlarges, further recedes, strictly |
 | [`frustum_brackets_the_focal_plane`](/lean/three-frustum-brackets-the-focal-plane) | near $<F<$ far, non-degenerate |
 | [`denominator_is_positive_on_the_frustum`](/lean/three-denominator-is-positive-on-the-frustum) | the projection never divides by zero |
-| [`reflection_is_an_involution`](/lean/three-reflection-is-an-involution) | $\sigma^2 = \mathrm{id}$ on all 162 cells |
+| [`reflection_is_an_involution`](/lean/three-reflection-is-an-involution) | $\sigma^2 = \mathrm{id}$ on all 162 cells <!-- figure: 162 src/pair/formal/proofs/three.lean --> |
 | [`reflection_closes_on_the_closure`](/lean/three-reflection-closes-on-the-closure) | $\sigma$ maps the closure onto itself |
 | [`reflection_has_no_fixed_point`](/lean/three-reflection-has-no-fixed-point) | no cell is its own reflection — one even side suffices |
 | [`the_closure_is_eighty_one_orbits`](/lean/three-the-closure-is-eighty-one-orbits) | 162 = 2 × 81, nothing left over |
@@ -136,7 +139,7 @@ The gate measures the installed library, builds the closure, checks all six cove
 npm run verify:lean
 ```
 
-Compiles all 16 Lean files and reports, per file, how many theorems depend on no axiom.
+Compiles every Lean file in the corpus and reports, per file, how many theorems depend on no axiom.
 
 ---
 
@@ -150,7 +153,7 @@ $$
 
 Nothing was designed to make this true. It follows from the centring, which was chosen only to avoid writing a layout table. Seven consequences, all proved:
 
-- $\sigma$ is an **involution**: $\sigma^2 = \mathrm{id}$ on all 162 cells.
+- $\sigma$ is an **involution**: $\sigma^2 = \mathrm{id}$ on all 162 cells. <!-- figure: 162 src/pair/formal/proofs/three.lean -->
 - $\sigma$ maps the closure **onto itself** — the symmetry never leaves the space.
 - $\sigma$ has **no fixed point** — and **one even side is enough**. A fixed cell would need $g = |\mathcal{G}|-1-g$ *and* $m = |\mathcal{M}|-1-m$, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is $18 \times 9$: the columns *are* odd and $m = 4$ is a fixed column, yet no **cell** is fixed, because 18 is even.
 <!-- figure: 81 src/pair/formal/proofs/three.lean -->
@@ -177,7 +180,7 @@ All eighteen theorems were searched against prior art on 2026-09-04, and the led
 | Claimed | What it says |
 |---|---|
 | **[Closure is one hundred sixty two](/lean/three-closure-is-one-hundred-sixty-two)** | the *renderable* geometry × mesh-material product space of three.js is 162 |
-| **[The closure is eighty one orbits](/lean/three-the-closure-is-eighty-one-orbits)** | its central-symmetry involution partitions that space into 81 orbits of two |
+| **[The closure is eighty one orbits](/lean/three-the-closure-is-eighty-one-orbits)** | its central-symmetry involution partitions that space into 81 orbits of two <!-- figure: 81 src/pair/formal/proofs/three.lean --> |
 | **[Reflection complements the address](/lean/three-reflection-complements-the-address)** | $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = N-1$ on this lattice |
 
 Published sources enumerate three.js geometries and materials **separately**. None enumerates the renderable product, and none applies a renderability criterion at all — the only product figure found anywhere is a naive $21 \times 18 = 378$ that counts base classes and a material which throws when drawn.

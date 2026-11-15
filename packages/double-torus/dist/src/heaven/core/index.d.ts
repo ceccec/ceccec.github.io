@@ -1219,19 +1219,6 @@ export declare function allLanguagesSpeakThroughTheVersePivot(matrix?: MindMatri
     statement: string;
     boundary: string;
 };
-export declare function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersComposedInWavesEachTheoremInvertsToItsDual(): {
-    stack: boolean;
-    layers: number;
-    theorems: number;
-    systemRoot: string;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMindBoundedMindsShareOneContentAddress(): {
     solves: boolean;
     problem: number;
@@ -1247,17 +1234,6 @@ export declare function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMind
 export declare function theMindUsesOnlinePossibilitiesToInvertTheOfflineLimitsJudgmentAndLiveDataFillTheOffDecidableGap(): {
     inverts: boolean;
     limits: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
-export declare function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTheoremsAndTenDAnimations(): {
-    invests: boolean;
-    offlineCapabilities: number;
     facets: {
         facet: string;
         on: boolean;

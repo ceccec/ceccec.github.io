@@ -47,6 +47,8 @@ const SELF_CONTAINED: readonly { readonly fold: string; readonly why: string }[]
     why: 'defines its own H(X) = −Σ p log₂ p, Kraft budget and ℓᵢ = ⌈−log₂ pᵢ⌉; no fold in the corpus computes an entropy bound nearby' },
   { fold: 'keplersLawsAreExactTheHarmonicLawTSquaredIsAcubedAndEqualAreasConserveAngularMomentum',
     why: 'reads the sealed planet table and computes T²/a³ directly; nothing else derives an orbital period' },
+  { fold: 'blacksMedianVoterTheoremSinglePeakedPreferencesGiveACondorcetWinnerTheMedianAndKillTheCycles',
+    why: 'defines its own single-peaked preferences and pairwise majority, builds 54 odd electorates and checks that the median peak beats every rival and that no 3-cycle forms — both fail if the theorem or the code is wrong; nothing else in src computes a median voter (the Condorcet-paradox fold beside it is its complement, not a copy)' },
 ]
 
 const CLAIMS_A_LAW = /^[a-zA-Z0-9_]*(?:Law|Laws|Theorem|Theorems|Axiom|Axioms)[a-zA-Z0-9_]*$/

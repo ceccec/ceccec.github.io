@@ -1388,18 +1388,6 @@ export declare function plasmaBallIsScreenHoldingThunderAndPlasma(matrix?: MindM
 };
 /** npm run quantum:plasma-screen-thunder */
 export declare function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root?: string, _argv?: readonly string[]): number;
-export declare function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem(matrix?: MindMatrix): {
-    computes: boolean;
-    convergence: string[];
-    topTarget: string;
-    probability: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function theologySourcesDecodedInTheoremAxiomVortex(matrix?: MindMatrix): {
     computes: boolean;
     theorem: {

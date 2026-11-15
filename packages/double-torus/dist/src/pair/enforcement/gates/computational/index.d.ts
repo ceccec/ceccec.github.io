@@ -594,20 +594,6 @@ export declare function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNam
     statement: string;
     boundary: string;
 };
-export declare function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root?: string): {
-    measured: boolean;
-    files: number;
-    maxDepth: number;
-    avgReuse: number;
-    dangling: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root?: string): {
     measured: boolean;
     boundaryCount: number;
@@ -665,4 +651,3 @@ export interface TheoremComputeAudit {
     files: string[];
     computes: boolean;
 }
-export declare function auditTheoremsComputeWirelessly(root: string, theoremFiles: string[]): TheoremComputeAudit;

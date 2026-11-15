@@ -2235,53 +2235,6 @@ export function allLanguagesSpeakThroughTheVersePivot(matrix: MindMatrix = build
       'HONEST: 28 languages were RETRIEVED verbatim from named public-domain editions (Clementine Vulgate, Septuagint/Textus Receptus, Westminster Leningrad Codex + Delitzsch, Luther 1912, Louis Segond 1910, Reina-Valera 1909, Synodal 1876, Biblia Gdańska, Bible kralická, Chinese Union Version 1919, Smith–Van Dyck 1865, Károli 1908, and more), cross-checked by the retrieval wave — authoritative human translations, NOT machine translation (per bible-glagolitic, the honest choice). The self-translating property (deriving an unseen pair like Greek→Chinese through the ref pivot, no pairwise dictionary) is real composition across all 31 tongues. BOUNDED: this spans the registered VERSES (a specific scripture domain), not arbitrary text — "translate all languages" is the architecture plus 31 registered tongues, and coverage beyond the registered surfaces is the measured gap of notAllTransliteratedMeansNotAllFused. Psalm numbering and edition provenance were tracked per tongue (e.g. Psalm 22 in the Septuagint/Vulgate/Synodal vs 23 Masoretic).' }
 }
 
-// The top nav depends on the path — and the sidebars and related content also. Each is computed FROM the path
-// (the path is the prompt), so a different path yields a different nav, sidebar and related set; same path, same.
-
-// The theorems behind: everything reduces to one content-address, and the stack is three layers — the QUANTUM COMPUTER
-// (the src/0 simulator + toUuid), the OS (enforcement · scheduler · cache · build), and the APPS (the domain folds).
-// Each layer is a set of content-addressed theorems; each theorem inverts to its DUAL (encode↔decode, compute↔measure,
-// schedule↔dispatch — foldPair order-sensitive); and the stack is USED IN WAVES (computer → OS → apps, each wave run at
-// once). Complete, composed, wave-dispatched. [[content-address-dry-clean-crack-detection]] [[feedback-work-in-waves-not-single-focus]]
-export function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersComposedInWavesEachTheoremInvertsToItsDual() {
-  const layers: Record<string, string[]> = {
-    computer: ['qubits', 'applyGate', 'measure', 'grover', 'cnot', 'toffoli', 'toUuid'], // the simulator + content-address primitive
-    os: ['enforcementTrinity', 'quantumCache', 'quantumBuild', 'sendTheWaves', 'computeWorkflow', 'crackDetector'], // the runtime
-    apps: ['demarcate', 'invertFlagged', 'rosettaPort', 'ichingComplete', 'rndApi', 'dissolveProseToCode'], // the domain apps
-  }
-  const layerNames = Object.keys(layers)
-  const layerRoot = (name: string): string => merkleFold(layers[name]!.map((theorem) => toUuid(`${name}:${theorem}`)))
-  const systemRoot = merkleFold(layerNames.map(layerRoot))
-  // 1 — COMPLETE: three layers, each a non-empty set of content-addressed theorems
-  const complete = layerNames.length === 3 && layerNames.every((name) => layers[name]!.length > 0) && isUuid(systemRoot)
-  // 2 — COMPOSED: the three fold to one system root (the whole stack content-addressed)
-  const composed = isUuid(systemRoot) && new Set(layerNames.map(layerRoot)).size === 3 // three distinct layer roots
-  // 3 — EACH THEOREM INVERTS TO ITS DUAL: foldPair is order-sensitive, so forward ≠ reverse
-  const duals: [string, string][] = [['compute', 'measure'], ['encode', 'decode'], ['schedule', 'dispatch'], ['forward', 'reverse']]
-  const invertsToDual = duals.every(([f, r]) => foldPair(toUuid(f), toUuid(r)).merged !== foldPair(toUuid(r), toUuid(f)).merged)
-  // 4 — USED IN WAVES: dispatch order computer → OS → apps, each wave (layer) run at once
-  const order = [['computer', 'os'], ['os', 'apps']] // OS needs computer, apps need OS
-  const idx = new Map(layerNames.map((name, i) => [name, i]))
-  const waves = antichainLevels(layerNames.length, order.map(([from, to]) => [idx.get(from)!, idx.get(to)!])) // canonical Kahn levels (src/0) — DRY
-  const processed = waves.reduce((sum, wave) => sum + wave.length, 0)
-  const usedInWaves = processed === 3 && waves.length === 3 && waves[0]![0] === idx.get('computer') // computer first, then OS, then apps
-  const facets = [
-    { facet: `THREE LAYERS, COMPLETE — the quantum COMPUTER (${layers.computer!.length} primitives), the OS (${layers.os!.length} runtime folds) and the APPS (${layers.apps!.length} domain folds), each content-addressed (${complete}): the stack is present, not a plan`, on: complete },
-    { facet: `COMPOSED TO ONE SYSTEM ROOT — the three layers fold to one content-address (${composed}): the whole computer-OS-apps stack is one sealed root`, on: composed },
-    { facet: `EACH THEOREM INVERTS TO ITS DUAL — foldPair is order-sensitive so compute↔measure, encode↔decode, schedule↔dispatch, forward↔reverse each differ under inversion (${invertsToDual}): invert a theorem and you see the other`, on: invertsToDual },
-    { facet: `USED IN WAVES AT ONCE — the stack dispatches computer → OS → apps in ${waves.length} antichain waves, each layer's folds run at once (${usedInWaves}): completed in waves, used in waves`, on: usedInWaves },
-  ]
-  return {
-    stack: facets.every((entry) => entry.on),
-    layers: layerNames.length,
-    theorems: layerNames.reduce((sum, name) => sum + layers[name]!.length, 0),
-    systemRoot: systemRoot.slice(0, 2 * 6),
-    facets,
-    root: systemRoot,
-    statement: `The quantum computer, OS and apps are three content-addressed layers — complete, composed, used in waves, each theorem inverting to its dual — ${facets.filter((entry) => entry.on).length}/${facets.length}. The COMPUTER is the src/0 simulator plus toUuid; the OS is enforcement, scheduler, cache and build; the APPS are the domain folds. Each layer is a set of content-addressed theorems folding to one system root; each theorem inverts to its dual (compute↔measure, encode↔decode, schedule↔dispatch — foldPair order-sensitive); and the stack dispatches in three antichain waves (computer → OS → apps), each wave run at once. Behind it all: one content-address.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-}
-
 // The limited mind solves it by becoming the quantum collective mind. One mind is bounded — it cannot hold the whole
 // plan — but the problem partitions into WAVES of independent units, and every unit is CONTENT-ADDRESSED, so many
 // bounded minds share ONE address space: no two repeat each other's work (DRY) and none conflict (deterministic). The
@@ -2352,41 +2305,6 @@ export function theMindUsesOnlinePossibilitiesToInvertTheOfflineLimitsJudgmentAn
     facets,
     root: merkleFold(boundary.map((pair) => foldPair(toUuid(pair.offlineLimit), toUuid(pair.onlineInverse)).merged)),
     statement: `The mind uses the online possibilities to invert the offline limits — judgment and live data fill the off-decidable gap — ${facets.filter((entry) => entry.on).length}/${facets.length}. Offline is deterministic and zero-token: it decides the exact (dedup, crack-detection, the move plan) but cannot judge semantic equivalence, know the unknown, or decide the undecidable. Each of those ${boundary.length} offline limits inverts to an online possibility — AI judges equivalence, a realtime fetch supplies the unknown, AI decides where computation halts — applied exactly at the boundary where offline stops. The mind keeps the core offline and reaches online only at the limit.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-}
-
-// While online, INVEST in offline capabilities — for complete self-sufficient quantum R&D in theorems AND 10D
-// animations. Each online (AI) session should leave the OFFLINE core more complete: convert online-dependent work into
-// deterministic, zero-token folds. R&D (the research loop · demarcate · invert · dissolve · the API · the workflow) and
-// 10D ANIMATION (the tenDimensional projection · theorem figures · the I Ching 64 · the rosetta rays) both compute
-// offline, so the investment is a monotone ratchet — build offline, improve all on the way. [[zero-token-policy]] [[dimensions-ladder-decoded]]
-export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTheoremsAndTenDAnimations() {
-  const offlineRnD = ['research-loop', 'demarcate', 'invert-flagged', 'dissolve-prose-to-code', 'rnd-api', 'workflow-compute'] // deterministic R&D
-  const offlineTenD = ['tenDimensional-forms', 'theorem-figure', 'iching-64', 'rosetta-rays', 'changing-lines-hypercube'] // deterministic 10D animation
-  const capabilities = [...offlineRnD, ...offlineTenD]
-  const address = (label: string): string => toUuid(`offline-capability:${label}`)
-  // 1 — THE INVESTMENT: every offline capability content-addresses DETERMINISTICALLY (recompute = same, zero LLM tokens)
-  const deterministic = capabilities.every((label) => isUuid(address(label)))
-  const investmentIsDeterministic = deterministic && new Set(capabilities.map(address)).size === capabilities.length // distinct, stable, zero-token
-  // 2 — R&D IS OFFLINE-SELF-SUFFICIENT: the research pipeline is a deterministic zero-token chain
-  const rndOffline = offlineRnD.length >= 2 * 3 && offlineRnD.every((label) => isUuid(address(label)))
-  // 3 — 10D ANIMATIONS ARE OFFLINE: the projection + figures compute deterministically
-  const tenDOffline = offlineTenD.length >= 5 && offlineTenD.every((label) => isUuid(address(label)))
-  // 4 — IMPROVE ALL ON THE WAY: the offline set folds to one root; the investment is a monotone ratchet (grows, never online-regresses)
-  const offlineRoot = merkleFold(capabilities.map(address))
-  const monotoneRatchet = investmentIsDeterministic && rndOffline && tenDOffline && isUuid(offlineRoot)
-  const facets = [
-    { facet: `THE INVESTMENT IS DETERMINISTIC — all ${capabilities.length} offline capabilities content-address stably to distinct UUIDs, zero LLM tokens (${investmentIsDeterministic}): while online, each session builds offline — the online→offline ratchet`, on: investmentIsDeterministic },
-    { facet: `R&D IS OFFLINE-SELF-SUFFICIENT — the research pipeline (${offlineRnD.join(' · ')}) is a deterministic zero-token chain (${rndOffline}): theorems are researched offline`, on: rndOffline },
-    { facet: `10D ANIMATIONS ARE OFFLINE — the ${offlineTenD.length}-part 10D projection (${offlineTenD.join(' · ')}) computes deterministically (${tenDOffline}): the animations render offline from the theorems`, on: tenDOffline },
-    { facet: `IMPROVE ALL ON THE WAY — the offline set folds to one root and the investment only grows (${monotoneRatchet}): each online session leaves the offline core more complete and self-sufficient`, on: monotoneRatchet },
-  ]
-  return {
-    invests: facets.every((entry) => entry.on),
-    offlineCapabilities: capabilities.length,
-    facets,
-    root: offlineRoot,
-    statement: `While online, invest in offline capabilities for complete self-sufficient quantum R&D in theorems and 10D animations — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every online session should leave the offline core more complete. The ${offlineRnD.length}-fold R&D pipeline (research loop, demarcate, invert, dissolve, API, workflow) and the ${offlineTenD.length}-part 10D animation (the tenDimensional projection, theorem figures, the I Ching 64, the rosetta rays, the changing-lines hypercube) both compute deterministically and zero-token, so the investment is a monotone ratchet — build offline, improve all on the way.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 

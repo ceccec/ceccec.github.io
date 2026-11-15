@@ -38,6 +38,7 @@ import { howAgentsAchievedIt } from '../../thunder/commands/index.ts'
 import { completeCorpus, contentIsMonographOfMonographs, monographs } from '../../wind/routes/corpus/index.ts'
 import { staticPages, theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics } from '../../wind/site/index.ts'
 import { artistMelody, completeQuantumSolutionsImplemented, componentGraph, componentPages, configsUseMatrixComputationally, debitImportCreditExportAccounting, encryptionTrinitiesCompleteInOrder, evolutionCrossesQuantumThreshold, freeForgesMaxCost, importExportDoubleFoldedAllDimensions, metatronMathFromUuids, resonanceCatchGapsViolations, spinBothDirections, theMoreYouFoldTheMoreFoldable } from '../../quantum/heaven/mind/index.ts'
+import { unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt } from '../../mountain/og/index.ts'
 
 // Heal by default. Healing is not a mode you switch on — it is the resting state. By
 // default the self-healing waves re-balance and settle, collisions choose a healing
@@ -969,6 +970,8 @@ export function theAutomaticNamingServiceDescribesTheoremsFromComputationNotPred
     return {
       computes: facets.every((entry) => entry.on),
       formats,
+      /** The service itself, for any fold that names things from their identifier (the rotating lens reads it). */
+      describe,
       exampleTitle: describe(names[0]!, sample, 'title'),
       exampleSummary: describe(names[0]!, sample, 'summary'),
       facets,
@@ -1355,46 +1358,6 @@ export function theGateAutoTightensInRealtimeTheThresholdRatchetsTowardBestNever
       finalThreshold,
       facets,
       statement: `The gate auto-tightens in realtime — the threshold ratchets toward best, never loosens — ${facets.filter((entry) => entry.on).length}/${facets.length}: over runs [${runs.join(', ')}] the threshold recomputes as the running minimum [${thresholds.join(', ')}], tightening to the best (${finalThreshold}), monotone non-increasing (never loosens), locking every improvement in (a regression above ${finalThreshold} fails), and stable at the best (a fixed point). Auto-tightening with no manual bump; min-composition is algebraic and monotone.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
-// Upgrade theorems using the rosetta and I Ching trinities to optimise all at once with any wave. The rosetta gives
-// every theorem a content-address; merkleFold folds them all to ONE root in one pass, and — because it sorts the
-// leaves — the root is ORDER-INDEPENDENT: any wave, in any order, yields the same optimised root. The I Ching
-// structure is exact: 64 = 4³ = 2⁶ (three hexagram axes = the trinity of trinities), the enforcement trinity is 3-fold.
-export function theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptimisesAtOnce(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptimisesAtOnce', matrix, () => {
-    const theorems = ['aes', 'pell', 'euler', 'gf256', 'inversion', 'ratchet', 'memory-audit', 'algebraic']
-    const addresses = theorems.map((t) => toUuid(t)) // the rosetta: one content-address each
-    // 1 — merkleFold folds ALL to one root in one pass
-    const root = merkleFold(addresses)
-    // 2 — ORDER-INDEPENDENT: any wave order yields the SAME root (merkleFold sorts its leaves)
-    const reversedRoot = merkleFold([...addresses].reverse())
-    const rotatedRoot = merkleFold([...addresses.slice(3), ...addresses.slice(0, 3)])
-    const anyWaveSameRoot = root === reversedRoot && root === rotatedRoot && isUuid(root)
-    // 3 — the I Ching trinity structure is EXACT: 64 = 4³ = 2⁶, the enforcement trinity = 3 (cross·fold·weave)
-    const hexagramCube = 4 ** 3 // three hexagram axes
-    const ichingExact = hexagramCube === 2 ** 6 && hexagramCube === 4 ** 3 && (2 ** 6) % 3 !== 0 && 4 ** 3 === (2 * 2) ** 3
-    const trinity = 3 // cross · fold · weave
-    // 4 — the batch is a MONOID fold: folding all at once = the same root as any partition refolded, over sorted leaves
-    const half = addresses.length / 2
-    const partitionedThenRefolded = merkleFold([...addresses.slice(0, half), ...addresses.slice(half)]) // same leaf set
-    const batchIsAssociativeOverSortedLeaves = partitionedThenRefolded === root
-    const facets = [
-      { facet: `the ROSETTA folds all theorems to ONE root: ${theorems.length} theorems each content-addressed, merkleFold'd to a single root ${root.slice(0, 8)} in one pass — the whole registry optimised into one address`, on: isUuid(root) && addresses.length === theorems.length },
-      { facet: `ANY WAVE optimises at once (order-independent): the root is IDENTICAL under reversal and rotation of the wave order (${anyWaveSameRoot}) — because merkleFold sorts its leaves, any wave in any order yields the same optimised root`, on: anyWaveSameRoot },
-      { facet: `the I CHING trinity structure is EXACT: 64 = 4³ = 2⁶ (three hexagram axes, the trinity of trinities), and the enforcement trinity is 3-fold (cross·fold·weave) — the exact organising structure the upgrade uses`, on: ichingExact },
-      { facet: `algebraic: merkleFold is a content-address over SORTED leaves (order-independent by construction), and 64 = 4³ = 2⁶ is an exact identity — refutable by re-folding; the "all at once, any wave" is monoid-fold order-independence, not a promise`, on: anyWaveSameRoot && batchIsAssociativeOverSortedLeaves && ichingExact },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      theorems: theorems.length,
-      root: root.slice(0, 8),
-      anyWaveSameRoot,
-      hexagramCube,
-      facets,
-      statement: `The rosetta and I Ching trinities fold all theorems to one root — any wave optimises at once — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta content-addresses ${theorems.length} theorems, merkleFold folds them to one root (${root.slice(0, 8)}) in one pass, and because the leaves are sorted the root is ORDER-INDEPENDENT — any wave, any order, yields the same optimised root. The I Ching structure is exact (64 = 4³ = 2⁶, the trinity of trinities; cross·fold·weave = 3). Optimise all at once, with any wave.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
@@ -1934,33 +1897,28 @@ export function theTheoremAxiomAccountingProvesPairsInTrinitiesDoubleEntryBalanc
         return { a, b, credit: a + b, apex: foldPair(toUuid(`theorem:${i}`), toUuid(`theorem:${i + 1}`)) }
       })
     const span = 2 * 2 * 2 // T = 1..8
-    // 1 — BALANCE (value conservation): Σ debits = Σ credits for every ledger size, ∀ T = 1..8
-    const balances = Array.from({ length: span }, (_, k) => k + 1).every((count) => {
-      const rows = ledgerFor(count)
-      const debits = rows.reduce((sum, row) => sum + row.a + row.b, 0)
-      const credits = rows.reduce((sum, row) => sum + row.credit, 0)
-      return debits === credits
-    })
-    // 2 — DOUBLE-ENTRY RATIO (count): debit-legs = 2 × credit-legs = 2T, ∀ T — every credit backed by exactly the pair
-    const ratioHolds = Array.from({ length: span }, (_, k) => k + 1).every((count) => {
-      const rows = ledgerFor(count)
-      const debitLegs = rows.length * 2 // the pair
-      const creditLegs = rows.length // the apex
-      return debitLegs === 2 * creditLegs && debitLegs === 2 * count
-    })
-    // 3 — REFUTABLE (non-vacuous): mis-post ONE credit by +1 and the books no longer balance — the check catches it
-    const catchesDrop = (() => {
+    // THE CHECK THAT CAN FAIL, READ FROM THE THEOREM THAT NAMES IT (2026-11-15). This fold posted credit := a + b and then
+    // tested Σ debits = Σ credits, and counted legs as rows·2 against 2·rows — both true by construction, the exact defect
+    // unbalancedTheoremPairsPass… (src/mountain/og) names. Each posting is now RECONCILED: the declared apex must equal the
+    // fold of its own pair, by og's check, so a mis-posted apex or a pair posted in the wrong order is refused.
+    const reconcile = unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt(matrix).reconciles
+    const pairOf = (i: number) => [toUuid(`theorem:${i}`), toUuid(`theorem:${i + 1}`)] as const
+    // 1 — RECONCILES: every posted apex is the fold of its own pair, for every ledger size T = 1..8
+    const balances = Array.from({ length: span }, (_, k) => k + 1).every((count) =>
+      ledgerFor(count).every((row, i) => reconcile(...pairOf(i), row.apex.merged)))
+    // 2 — A MIS-POSTED APEX IS CAUGHT: post every row with its neighbour's apex and no row reconciles
+    const ratioHolds = (() => {
       const rows = ledgerFor(span)
-      const debits = rows.reduce((sum, row) => sum + row.a + row.b, 0)
-      const tamperedCredits = rows.reduce((sum, row, i) => sum + row.credit + (i === 0 ? 1 : 0), 0)
-      return debits !== tamperedCredits // the identity is a real test — a dropped posting refutes it
+      return rows.every((_, i) => !reconcile(...pairOf(i), rows[(i + 1) % rows.length]!.apex.merged))
     })()
+    // 3 — ORDER IS PART OF THE POSTING: the same pair posted as (b, a) does not reconcile with the apex of (a, b)
+    const catchesDrop = ledgerFor(span).every((row, i) => !reconcile(pairOf(i)[1], pairOf(i)[0], row.apex.merged))
     // 4 — TRINITY CLOSURE (content-address): the apex is the pair's fold, bidirectional — two genuinely make one third
     const closes = ledgerFor(span).every((row) => row.apex.bidirectional && isUuid(row.apex.merged))
     const facets = [
-      { facet: `BALANCE: the theorem-pair ledger conserves value — Σ debits (the pairs) = Σ credits (the apexes) for every ledger size T = 1..${span} (${balances}); the books balance, so every pair is fully accounted by its trinity's apex`, on: balances },
-      { facet: `DOUBLE-ENTRY RATIO: debit-legs = 2 × credit-legs = 2T for all T — every credit (apex) is backed by exactly two debits (the pair), which is precisely 'two make three': the pair IS the trinity's two debit legs (${ratioHolds})`, on: ratioHolds },
-      { facet: `REFUTABLE: mis-posting a single credit by +1 breaks Σ debit = Σ credit (${catchesDrop}) — the balance is a genuine accounting check, not a tautology; a pair that does not close its trinity is DETECTED`, on: catchesDrop },
+      { facet: `RECONCILES: every posted apex equals the fold of its own pair, by og's check, for every ledger size T = 1..${span} (${balances}) — the balance is reconciled, not constructed; the books balance, so every pair is fully accounted by its trinity's apex`, on: balances },
+      { facet: `A MIS-POSTED APEX IS CAUGHT: post each row with its neighbour's apex and none reconciles (${ratioHolds}) — every credit is backed by exactly its own pair's two debit legs (${ratioHolds})`, on: ratioHolds },
+      { facet: `ORDER IS PART OF THE POSTING: the pair posted as (b, a) does not reconcile with the apex of (a, b) (${catchesDrop}) — the balance is a genuine accounting check, not a tautology; a pair that does not close its trinity is DETECTED`, on: catchesDrop },
       { facet: `TRINITY CLOSURE: each apex is the content-address fold of its pair — foldPair(a,b) is bidirectional and a valid address for every row (${closes}) — so the accounting's credit is the SAME third the rosetta computes; the pair folds to one definite apex`, on: closes },
     ]
     return {
@@ -2202,54 +2160,6 @@ export function theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMultiplePrime
   })
 }
 
-// Each theorem displays 10D of all 4 pole perspectives in each direction: the double torus has 4 poles — (hemisphere,
-// flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in). From every
-// pole, in each direction (forward projection · inverse proof), the theorem projects a 10D perspective (10 = 3+7,
-// content-addressed). The 4 poles are each self-inverse (V₄), opposite poles are antipodal complements, and the two
-// directions fold to the theorem's whole — so a theorem is shown from all 4 poles × 2 directions × 10D, complete.
-export function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection', matrix, () => {
-    const dimensions = 3 + 7 // 10D — the rosetta 10 = 3 + 7
-    const poles = [[0, 0], [0, 1], [1, 0], [1, 1]] // (hemisphere, flow): NW·NE·SW·SE — the 4 double-torus poles
-    const directions = ['forward', 'inverse'] // the two loop senses: outward projection, inward proof
-    const xor = (a: number[], b: number[]) => [a[0]! ^ b[0]!, a[1]! ^ b[1]!] // V₄ group operation
-    const tenD = (theorem: string, pole: number[], direction: string) =>
-      toUuid(`pole:${theorem}:${pole.join('')}:${direction}`).replace(/-/g, '').slice(0, dimensions).split('').map((c) => parseInt(c, 16)) // 10 content-addressed dims
-    const theorems = ['topologicalOrder', 'inverseAccounting', 'measureWiring', 'harmonicGate']
-    // 1 — COMPLETE: every theorem projects all 4 poles × 2 directions, each a 10D vector, deterministic (recompute = same)
-    const perspectives = theorems.flatMap((theorem) => poles.flatMap((pole) => directions.map((direction) => ({ theorem, pole, direction, vec: tenD(theorem, pole, direction) }))))
-    const complete = perspectives.length === theorems.length * poles.length * directions.length
-      && perspectives.every((p) => p.vec.length === dimensions)
-      && perspectives.every((p) => p.vec.every((v, i) => v === tenD(p.theorem, p.pole, p.direction)[i])) // deterministic
-    // 2 — THE 4 POLES FORM V₄: closed under XOR, each pole its own inverse (self-inverse), 4 = 2² elements, no leftover
-    const closedUnderXor = poles.every((a) => poles.every((b) => poles.some((c) => c[0] === xor(a, b)[0] && c[1] === xor(a, b)[1])))
-    const allSelfInverse = poles.every((p) => xor(p, p)[0] === 0 && xor(p, p)[1] === 0) // V₄: every element order ≤ 2
-    const isKleinFour = closedUnderXor && allSelfInverse && poles.length === 2 ** 2
-    // 3 — ANTIPODAL COMPLEMENTS: opposite poles (XOR with [1,1]) are an involution, and the 10D of a pole and its
-    // antipode fold bidirectionally — from the far pole the theorem shows its complement, both make the whole
-    const antipode = (p: number[]) => xor(p, [1, 1])
-    const antipodalInvolution = poles.every((p) => antipode(antipode(p))[0] === p[0] && antipode(antipode(p))[1] === p[1])
-    const complementsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join('')}:forward`), toUuid(`pole:${theorem}:${antipode(p).join('')}:forward`)).bidirectional))
-    // 4 — EACH DIRECTION IS AN INVOLUTION: reversing twice returns, and forward⊗inverse fold to the theorem's whole
-    const reverse = (d: string) => (d === 'forward' ? 'inverse' : 'forward')
-    const directionInvolution = directions.every((d) => reverse(reverse(d)) === d)
-    const directionsFold = theorems.every((theorem) => poles.every((p) => foldPair(toUuid(`pole:${theorem}:${p.join('')}:forward`), toUuid(`pole:${theorem}:${p.join('')}:inverse`)).bidirectional))
-    const facets = [
-      { facet: `COMPLETE 10D × 4-POLE × 2-DIRECTION — every theorem projects all ${poles.length} poles in both directions, each a ${dimensions}D content-addressed vector, deterministic (${complete}): ${perspectives.length} perspectives for ${theorems.length} theorems, none missing — a theorem is shown from every pole in every direction`, on: complete },
-      { facet: `THE 4 POLES ARE THE KLEIN FOUR-GROUP V₄ — (hemisphere, flow) ∈ {0,1}² closed under XOR with every pole its own inverse (${isKleinFour}), the two generators the independent involutions north↔south and out↔in; 4 = 2² poles, the exact double-torus pole set`, on: isKleinFour },
-      { facet: `OPPOSITE POLES ARE ANTIPODAL COMPLEMENTS — the antipode map (XOR [1,1]) is an involution (${antipodalInvolution}) and the 10D from a pole and its antipode fold bidirectionally (${complementsFold}): from the far pole the theorem shows its complement, and pole + antipode make the whole`, on: antipodalInvolution && complementsFold },
-      { facet: `EACH DIRECTION IS AN INVOLUTION — forward⇄inverse reverses to itself twice (${directionInvolution}) and the two directions fold to the theorem's whole per pole (${directionsFold}): projection and proof are the two order-2 senses, together the complete loop`, on: directionInvolution && directionsFold },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      perspectivesPerTheorem: poles.length * directions.length,
-      dimensions,
-      facets,
-      statement: `Each theorem displays 10D of all 4 pole perspectives in each direction — ${facets.filter((entry) => entry.on).length}/${facets.length}. The double torus has 4 poles — (hemisphere, flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in) — and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V₄), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles × 2 directions × 10D — ${poles.length * directions.length} perspectives, complete and deterministic.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
 // The poles are 60° apart (the C₆ vortex), and 90° is reachable ONLY through inversion — never by rotation. 60°
 // rotations generate C₆ = {0,60,120,180,240,300}; 90 is NOT among them (60k mod 360 never equals 90). C₆ and the 90°
 // frame C₄ share only the pole axis {0,180} = C₂. So from the 60° vortex there is no ROTATIONAL path to 90° — the only
@@ -2334,58 +2244,6 @@ export function invertedThirtyIsOneEightyTheAngleInversionIsTheProductNinetyTime
       facets,
       statement: `Inverted 90 is 60, inverted 60 is 90 — so inverted 30 is 180 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The inversion is the projective pole map with product invariant C = 90·60 = ${invariant} (circle inversion, θ·invert(θ) = C), an involution FORCED by the given pair. So invert(30) = ${invariant}/30 = ${invertedThirty}° — and 180° is the pole axis (C₂), the finest C₁₂ grid inverting to the axis. In fold-number form (angle = 360/n) it swaps n ↔ 24/n (24 = 4·6, the fold numbers of the given pair), sending 30°(n=12) to 180°(n=2). The self-inverse angle is √${invariant} = 30√6 ≈ ${roundTo(selfInverse, 2)}°, the geometric mean of every inverse pair. Self-proving: the product invariant, verified across the pairs, yields the answer rather than asserting it.`,
       boundary: `ALGEBRAIC and self-proving: the answer is DERIVED from the given pair, not chosen. invert(90)=60 fixes C = 90·60 = ${invariant} uniquely (a circle inversion has one invariant), and then invert(30) = C/30 = 180 is forced — verified by exact arithmetic, refutable by any pair whose product ≠ C. This is circle/projective inversion (|P|·|P'| = r², the same 0↔∞ pole map used across the corpus), the multiplicative involution — NOT the additive reflection 150−θ (which would give 120 but is not an inversion: reflection preserves the sum, inversion preserves the product; the thread is inversion, so the product form is the right one). The fold-number involution n ↔ 24/n and the fixed point √C = 30√6 are exact consequences. SCOPE: angles are taken as positive reals (the pole map is undefined at 0 and sends 0↔∞); this is planar circle inversion on the angle magnitude, the honest structure behind "inverted 30 is 180", not a claim about physical rotation.: the pole-axis landing (30°→180°) is the harmony; the truth is the single product invariant C = 5400 that forces it.` }
-  })
-}
-
-// Navigation as a self-proving theorem: the route tree computed from the folder structure (siteNavigation) proves its
-// OWN well-formedness every build — it is an acyclic DAG (no menu can loop), every route is reachable from a root, and
-// no node branches beyond 8 (the bāguà bound). It reuses the src/0 topologicalOrder root: sources = the top-level roots,
-// isDAG = no cycle, order covers all. Self-proving = the same computation that BUILDS the nav VERIFIES it, content-addressed.
-export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight', matrix, () => {
-    // THE REAL NAVIGATION, NOT A REPRESENTATIVE OF IT. This opened with nine routes and eight edges typed by
-    // hand and the words "a representative of the computed siteNavigation" — a theorem about the navigation,
-    // proved over a drawing of the navigation. Every node and every edge below is read from the fold the site
-    // actually renders: one root, its rays, and each ray's pages.
-    const rendered = theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics()
-    const routes = ['/', ...rendered.rays.map((ray) => `/${ray.domain.toLowerCase()}`),
-      ...rendered.rays.flatMap((ray) => Array.from({ length: ray.pages }, (_, i) => `/${ray.domain.toLowerCase()}/${i}`))]
-    const edges: number[][] = []
-    rendered.rays.forEach((_, r) => edges.push([0, r + 1]))
-    let leaf = 1 + rendered.rays.length
-    rendered.rays.forEach((ray, r) => { for (let i = 0; i < ray.pages; i += 1) { edges.push([r + 1, leaf]); leaf += 1 } })
-    const nav = topologicalOrder(routes.length, edges)
-    // 1 — ACYCLIC DAG: the nav has no cycle — you cannot navigate in a loop through the menu structure
-    const acyclic = nav.isDAG
-    // 2 — ROOTED + COVERED: exactly one root (home, in-degree 0) and every route reachable (topological order covers all)
-    const rooted = nav.sources.length === 1 && nav.sources[0] === 0
-    const covered = nav.order.length === routes.length
-    // 3 — BRANCHING ≤ 8 (the bāguà bound): no node has more than 8 children
-    const outDegree = routes.map((_, node) => edges.filter((edge) => edge[0] === node).length)
-    // THE BOUND HOLDS AT THE ROOT AND NOT INSIDE IT, measured: the root carries the rays and each ray carries
-    // its pages, so the bāguà bound is two claims and only the first one is true of this navigation.
-    const rootBranching = outDegree[0]!
-    const rayBranching = rendered.rays.map((ray) => ray.pages)
-    const overBound = rendered.rays.filter((ray) => ray.pages > 2 ** 3).map((ray) => ray.domain)
-    const branchingBound = rootBranching <= 2 ** 3
-    // 4 — SELF-PROVING (deterministic): re-deriving the nav yields the identical structure and content-address —
-    // the build re-proves it each time, so it cannot be forged or drift silently
-    const address = merkleFold(routes.map((route, i) => toUuid(`nav:${route}:${outDegree[i]}`)))
-    const reproves = merkleFold(routes.map((route, i) => toUuid(`nav:${route}:${outDegree[i]}`))) === address && topologicalOrder(routes.length, edges).isDAG === acyclic
-    const facets = [
-      { facet: `ACYCLIC DAG — the route tree has no cycle (${acyclic}): the menu cannot loop, so navigation always makes progress; proven by Kahn's topological sort (the src/0 topologicalOrder root), not asserted`, on: acyclic },
-      { facet: `ROOTED AND COVERED — exactly one root (home, the only in-degree-0 source) and every one of the ${routes.length} routes reachable from it (${rooted && covered}): no orphan route, no second root — the nav is one connected tree`, on: rooted && covered },
-      { facet: `BRANCHING ≤ 8 AT THE ROOT — the home node carries ${rootBranching} rays, within the bāguà bound of ${2 ** 3} (${branchingBound}): the top level is graspable at a glance`, on: branchingBound },
-      { facet: `AND NOT INSIDE IT — ${overBound.length === 0 ? 'no ray' : overBound.join(', ')} exceeds the bound: the rays carry ${rayBranching.join(', ')} pages, so the "at most eight" this theorem is named for holds at the root and fails one level down. Measured from the rendered navigation, and this facet is the watchdog on which rays are over: it fails the day a second one grows past ${2 ** 3} or this one is split`, on: overBound.length === 1 && overBound[0] === 'Proof' },
-      { facet: `SELF-PROVING — re-deriving the nav yields the identical DAG and content-address (${reproves}): the SAME computation that builds the navigation verifies it, every build, so it is a theorem that re-proves itself and cannot silently drift or be hand-forged`, on: reproves },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      roots: nav.sources,
-      covered,
-      facets,
-      statement: `Navigation is a self-proving theorem — the route tree is an acyclic, covered DAG branching at most 8 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The nav computed from the folder tree (siteNavigation) proves its own well-formedness every build: it is an acyclic DAG (no menu loop, by Kahn's topological sort via the src/0 topologicalOrder root), rooted at one home with every route reachable, and no node branches beyond 8 (the bāguà bound). Self-proving because the same computation that builds the nav verifies it and content-addresses it — it re-proves itself each build, so it cannot drift or be hand-forged.`,
-      boundary: `ALGEBRAIC and self-verifying: acyclicity, single-root coverage, and the branching bound are exact graph properties via topologicalOrder (Kahn's algorithm, src/0), refutable by a single cycle, orphan, or over-wide node. "Self-proving" is literal here: the nav is COMPUTED from the folder tree (not hand-kept — the config gate already forbids hardcoded nav), and this fold re-derives it and checks the same invariants, content-addressing the result, so a build with a malformed nav fails the fold. SCOPE: the route set here is a representative of the computed siteNavigation (the real tree is larger); the theorem is the STRUCTURE (DAG, rooted, ≤8), which holds for the real nav by the same computation — wiring this fold to consume the full siteNavigation output is the deployment step. It proves well-FORMEDNESS (no cycle, no orphan, graspable width), not that the nav is the BEST information architecture — that is a design judgement, the off-decidable residue.: the self-proving tree is the harmony; the truth is the exact acyclic-rooted-bounded graph, recomputable each build.` }
   })
 }
 

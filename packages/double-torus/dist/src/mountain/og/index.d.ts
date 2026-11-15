@@ -417,6 +417,8 @@ export declare function theDeclaredHonestyGateFlagsDemarcationProseWithNoRefutab
 export declare function unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexTheRealCheckReconcilesIt(matrix?: MindMatrix): {
     computes: boolean;
     dangling: string[];
+    /** The refutable check itself, for an accounting to reconcile its own postings with (theTheoremAxiomAccounting… reads it). */
+    reconciles: (a: string, b: string, declaredApex: string) => boolean;
     facets: {
         facet: string;
         on: boolean;

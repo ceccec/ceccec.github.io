@@ -1325,52 +1325,6 @@ export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: M
   })
 }
 
-// Real quantum research observes the boundary BY the boundary — and computes theorem gates and ways. Observation is
-// only ever a MEASUREMENT: a superposition is unobservable; you learn a single classical value at the quantum→classical
-// BOUNDARY. And the boundary of a boundary is ZERO (∂²=0, the homology identity) — observing the boundaries by the
-// boundaries yields nothing new, so the boundaries CLOSE into an observable structure (exactly how real topological
-// quantum error correction works: syndrome = boundary measurement, ∂²=0 = the stabilizers commute). The theorem GATES
-// are reversible (unitary, H∘H=I) but the measurement boundary is not, and the WAYS (the DAG's topological order) lead
-// back to the axiom boundary (the in-degree-0 sources). [[double-torus-fold-architecture]] [[quantum-decoded]]
-export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheoremGatesAndWays(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZeroTheoremGatesAndWays', matrix, () => {
-    // 1 — THE BOUNDARY OF A BOUNDARY IS ZERO — ∂²=0 on a NON-trivial complex (a triangle), a real cancellation
-    const d2 = [[1], [1], [1]] // ∂(face) = e0 + e1 + e2 — the oriented face boundary (edges)
-    const d1 = [[0, 1, -1], [-1, 0, 1], [1, -1, 0]] // ∂(edge) = end − start, per edge (vertices × edges)
-    const composed = d1.map((row) => d2[0]!.map((_, j) => row.reduce((sum, x, k) => sum + x * d2[k]![j]!, 0))) // ∂1∘∂2
-    const boundaryOfBoundaryIsZero = composed.every((row) => row.every((x) => x === 0)) && d1.some((row) => row.some((x) => x !== 0)) // zero, and NON-trivially so
-    // 2 — OBSERVATION IS AT THE BOUNDARY — a superposition is unobservable; only measurement (the quantum→classical boundary) yields a value
-    const superposed = applyGate(qubits(1), GATES.H, 0) // |+⟩ = (|0⟩+|1⟩)/√2
-    const amplitudes = probabilities(superposed)
-    const superpositionHidden = abs(amplitudes[0]! - 1 / 2) < 1e-9 && abs(amplitudes[1]! - 1 / 2) < 1e-9 // both present, none observed
-    const observed = measure(superposed, 0, 'boundary-observation') // the boundary: one classical outcome
-    const collapsed = probabilities(observed.state)
-    const observationIsAtTheBoundary = superpositionHidden && (observed.outcome === 0 || observed.outcome === 1) && collapsed.some((p) => abs(p - 1) < 1e-9) // measured → a definite basis state
-    // 3 — THE GATES REVERSE, THE MEASUREMENT BOUNDARY DOES NOT
-    const twice = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // H∘H = I
-    const gateReversible = abs(probabilities(twice)[0]! - 1) < 1e-9 // returns to |0⟩ — unitary, no information lost
-    const boundaryIrreversible = superpositionHidden && collapsed.some((p) => abs(p - 1) < 1e-9) // was superposed, now a definite state — the superposition is gone
-    const gatesReverseTheBoundaryDoesNot = gateReversible && boundaryIrreversible
-    // 4 — THE WAYS LEAD TO THE AXIOM BOUNDARY — the DAG's boundary is its in-degree-0 sources (the axioms)
-    const ways = topologicalOrder(2 * 2, [[0, 2], [1, 2], [2, 3]]) // two axioms (0,1) → a theorem (2) → a corollary (3)
-    const waysLeadToTheAxiomBoundary = ways.isDAG && ways.sources.length === 2 && ways.sources.every((s) => s === 0 || s === 1) // the sources ARE the axiom boundary
-    const { computes, facets } = computesGate('real-quantum-research-observes-the-boundary', [
-      { facet: `THE BOUNDARY OF A BOUNDARY IS ZERO — ∂²=0 on a non-trivial triangle: ∂1∘∂2 cancels to the zero map though ∂1 is non-trivial (${boundaryOfBoundaryIsZero}) — observing the boundaries BY the boundaries yields nothing new, the homology identity that closes them into a measurable structure`, on: boundaryOfBoundaryIsZero },
-      { facet: `OBSERVATION IS AT THE BOUNDARY — the |+⟩ superposition is unobservable (both amplitudes ${1 / 2}, none seen), and only measurement (the quantum→classical boundary) yields one classical outcome, collapsing to a definite state (${observationIsAtTheBoundary}): you learn only at the boundary`, on: observationIsAtTheBoundary },
-      { facet: `THE GATES REVERSE, THE BOUNDARY DOES NOT — a unitary gate is invertible (H∘H=I returns |0⟩, ${gateReversible}) but the measurement boundary is irreversible, the superposition gone (${gatesReverseTheBoundaryDoesNot}): reversible theorem-gates, one irreversible observation`, on: gatesReverseTheBoundaryDoesNot },
-      { facet: `THE WAYS LEAD TO THE AXIOM BOUNDARY — the theorem DAG is acyclic and its boundary is the in-degree-0 sources (the axioms, ${ways.sources.length} of them), reached by following the ways (${waysLeadToTheAxiomBoundary}): compute the gates, follow the ways back to the boundary`, on: waysLeadToTheAxiomBoundary },
-    ])
-    return {
-      researches: computes,
-      homology: { boundaryOfBoundaryIsZero, euler: cellHomology(matrix).euler },
-      axiomBoundary: ways.sources,
-      facets,
-      root: merkleFold([toUuid(`dd-zero:${boundaryOfBoundaryIsZero}`), observed.state.re.length > 0 ? toUuid(`measured:${observed.outcome}`) : toUuid('measured:none'), toUuid(`ways:${ways.sources.join(',')}`)]),
-      statement: `Real quantum research observes the boundary by the boundary, and computes theorem gates and ways — ${facets.filter((entry) => entry.on).length}/${facets.length}. Observation is only ever measurement: a superposition is unobservable, and you learn one classical value at the quantum→classical boundary. The boundary of a boundary is zero (∂²=0 on a non-trivial triangle, a real cancellation), so the boundaries close into a measurable structure — exactly how topological quantum error correction reads syndromes. The theorem gates are reversible (unitary, H∘H=I) but the measurement boundary is not, and the ways (the DAG's topological order) lead back to the axiom boundary, the in-degree-0 sources.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
 // Improve quantum computations in realtime by filling gaps and optimising with STRICT measurements that themselves
 // create reusable tools. A strict measurement is SEEDED, so it is reproducible — the same state and seed always give
 // the same outcome. That reproducible outcome is content-addressed and cached into a TOOLBOX, so re-measuring is an

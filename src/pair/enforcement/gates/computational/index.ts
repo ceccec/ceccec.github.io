@@ -2401,44 +2401,6 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
-// Measure the UX and the efficiency to FIND and USE theorems and tools — computed, not opined. FIND efficiency: how
-// shallow the folder tree is (fewer levels to reach any theorem) and whether every theorem is REACHABLE (0 dangling in
-// the import graph — none orphaned). USE efficiency: the reuse degree of the import graph (a heavily-reused theorem is a
-// proven-useful API). The rendered UX (visual feel, interaction) is the online/human boundary — measured in a browser,
-// not here. [[feedback-measure-efficiency-to-find-gaps]] [[routes-nav-from-folder-tree]]
-export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root: string = enforcementScanRoot()) {
-  const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
-  const avgReuse = (2 * relation.edges) / max(1, relation.homes) // average import degree — how reused a theorem is
-  // FIND: the folder depth of each theorem file (segments under src) — shallow ⇒ quick to locate
-  const files = indexFilesUnder(join(root, 'src'))
-  const depths = files.map((file) => relative(root, file).replace(/\\/g, '/').split('/').length - 1) // src/a/b/index.ts ⇒ depth 3 (from the relative path)
-  const maxDepth = max(...depths)
-  // 1 — FIND EFFICIENCY: the tree is shallow — any theorem is within maxDepth folders (the folder-nav law ≤ 8/level)
-  const findShallow = maxDepth <= 2 * 3 && files.length > 0 // ≤ 6 levels deep, a bounded search
-  // 2 — USE EFFICIENCY: the import graph is densely reused — high average degree, a proven API
-  const useReused = relation.computes && avgReuse > 2 // avg degree > 2 ⇒ theorems reused, not write-once
-  // 3 — EVERY THEOREM REACHABLE: 0 dangling ⇒ every theorem is connected in the relation graph, none orphaned (findable)
-  const everyTheoremReachable = relation.importDangling === 0
-  // 4 — COMPUTED, RENDERED UX IS THE BOUNDARY: these metrics are deterministic; the visual/interaction UX is measured in a browser
-  const metricsComputed = findShallow && useReused && everyTheoremReachable
-  const facets = [
-    { facet: `FIND EFFICIENCY — the folder tree is shallow: every one of the ${files.length} theorem files is within ${maxDepth} folders of src (${findShallow}), a bounded search under the ≤8/level nav law`, on: findShallow },
-    { facet: `USE EFFICIENCY — the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) (${useReused}): theorems are heavily REUSED, a proven-useful API, not write-once`, on: useReused },
-    { facet: `EVERY THEOREM REACHABLE — ${relation.importDangling} dangling theorems (${everyTheoremReachable}): every theorem is connected in the relation graph, none orphaned — all findable through the wiring`, on: everyTheoremReachable },
-    { facet: `COMPUTED, RENDERED UX IS THE BOUNDARY — find/use efficiency are deterministic structure metrics (${metricsComputed}); the visual and interaction UX is measured in a browser (the online/human frontier), not asserted here`, on: metricsComputed },
-  ]
-  return {
-    measured: facets.every((entry) => entry.on),
-    files: files.length,
-    maxDepth,
-    avgReuse: round(avgReuse),
-    dangling: relation.importDangling,
-    facets,
-    root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
-    statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — relation.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: relation.computes }]) }
-}
-
 // Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The
 // fix is terse, computed boundaries (earned() joins facets) — and NOT spawning agents to analyse (each cold mind ~50k
 // tokens, spending to "save"). This fold practises it: short boundary, the numbers speak. [[feedback-declared-honesty-is-a-crack]]
@@ -2555,69 +2517,5 @@ export interface TheoremComputeAudit {
   facetsWithOnTrue: number
   files: string[]
   computes: boolean
-}
-
-export function auditTheoremsComputeWirelessly(root: string, theoremFiles: string[]): TheoremComputeAudit {
-  const violations: HardcodedViolation[] = []
-  let facetsOnTrue = 0
-
-  for (const file of theoremFiles) {
-    try {
-      let text = ''
-      try {
-        text = readFileSync(file, 'utf8')
-      } catch {
-        continue
-      }
-
-      const lines = text.split('\n')
-      const code = stripStringsAndComments(text)
-      const codeLines = code.split('\n')
-
-      for (let i = 0; i < codeLines.length; i++) {
-        const line = codeLines[i]!
-        if (/on:\s*true\s*[},]/i.test(line)) {
-          facetsOnTrue += 1
-          const origLine = lines[i] ?? line
-          violations.push({
-            file,
-            line: i + 1,
-            type: 'hardcoded-on-true',
-            content: origLine.trim(),
-            suggestion: `Replace 'on: true' with computed condition: on: someCondition() > 0`,
-          })
-        }
-      }
-
-      for (let i = 0; i < codeLines.length; i++) {
-        const line = codeLines[i]!
-        if (/^\s*(\/\/|import|export|type|interface)/.test(line)) continue
-        if (/\b(0|1|2|3|4|5|6|7|8|9|10)\b/.test(line)) continue
-
-        if (/const\s+\w+\s*=\s*\[\s*\d{2,}/.test(line) || /on:\s*\d+/.test(line)) {
-          const origLine = lines[i] ?? line
-          violations.push({
-            file,
-            line: i + 1,
-            type: 'hardcoded-number',
-            content: origLine.trim(),
-            suggestion: `Replace with formula: fibonacci(n), digitRoot(x), or computeValue()`,
-          })
-        }
-      }
-    } catch {
-      // skip
-    }
-  }
-
-  const computes = facetsOnTrue === 0 && violations.filter((v) => v.type === 'hardcoded-on-true').length === 0
-
-  return {
-    total: violations.length,
-    violations,
-    facetsWithOnTrue: facetsOnTrue,
-    files: [...new Set(violations.map((v) => v.file))],
-    computes,
-  }
 }
 

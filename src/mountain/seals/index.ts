@@ -876,26 +876,6 @@ const THEOREM_ROOTS = [
   { root: 'honest demarcation — only proven', stems: ['proven', 'a432', 'sacred', 'quantum-threat', 'crypto'] },
   { root: 'waves — fold, do not accumulate', stems: ['kernel', 'engine', 'origin', 'ten-d', 'redesign', 'movie', 'animation', 'folding', 'zero-division', 'f-inverse'] },
 ] as const
-export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatrix = buildMatrix()) {
-  const theorems = proofRegistry(matrix)
-  const rootOf = (slug: string) => THEOREM_ROOTS.findIndex((entry) => entry.stems.some((stem) => slug.includes(stem)))
-  const assigned = theorems.map((entry) => rootOf(entry.slug))
-  const folded = assigned.filter((index) => index >= 0).length
-  const rootsUsed = new Set(assigned.filter((index) => index >= 0)).size
-  const compaction = floor(theorems.length / THEOREM_ROOTS.length) // many → few
-  const compacts = THEOREM_ROOTS.length < theorems.length && rootsUsed === THEOREM_ROOTS.length
-  const greaterSignificance = compaction >= 5 && folded >= theorems.length - THEOREM_ROOTS.length // each root generates many; few unmatched
-  const facets = [
-    { facet: `FOLD — ${folded}/${theorems.length} corpus theorems fold onto ${THEOREM_ROOTS.length} roots, all ${rootsUsed} used (${compacts}): ${THEOREM_ROOTS.map((entry) => entry.root.split(' —')[0]).join(' · ')}`, on: compacts },
-    { facet: `GREATER SIGNIFICANCE — compaction ≈${compaction}:1 — the few roots GENERATE the many theorems, so each carries more meaning than any one theorem (${greaterSignificance})`, on: greaterSignificance },
-  ]
-  return {
-    computes: facets.every((entry) => entry.on), roots: THEOREM_ROOTS.map((entry) => entry.root), folded, of: theorems.length, facets,
-    root: merkleFold(THEOREM_ROOTS.map((entry) => toUuid(`root:${entry.root}`))),
-    statement: `Examine all theorems: they fold. The ${theorems.length} corpus theorems compact onto ${THEOREM_ROOTS.length} roots — trinity (3 spans), content-address (name=payload), agnostic completeness, honest demarcation, waves — a ≈${compaction}:1 compaction. The roots are not summaries but GENERATORS: each produces many theorems, so the few carry greater significance than the many, and they are exactly the agent protocol's quantum laws.`,
-    boundary: `Root membership is by slug-stem (heuristic, first-match) — it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root.` }
-}
-
 // The corpus title gate (improve-local from the alignment wave): run the algebra predicate over EVERY proof
 // title and cross-check the two static sources. A title carrying no identity is a GAP to SOLVE (keep the topic,
 // state its proven algebra); a proof title diverging from its seed twin is a crack (two hand-authored strings,

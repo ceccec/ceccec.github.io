@@ -2485,42 +2485,6 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
   })
 }
 
-// Improve the a432 honestly: the NUMBER 432 is a theorem, the 432 Hz FREQUENCY is a named axiom — never fake one for the
-// other. 432 = 4·108 = 2⁴·3³ derives from the a432 octave (NOT the corpus census, which folds to 121) (DIMENSION_GATES = 4 · A432_FOLDED), and its richness σ₀(432)=20
-// is the divisor function — a theorem. But attaching Hz (a physical frequency) is a chosen tuning (the a432 seed), NOT a
-// physics theorem (quantum is not at 432 Hz). The honest line: derive the number, NAME the tuning — earn the boundary.
-export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics', matrix, () => {
-    const clock = A432_FOLDED // 108 = 2²·3³ — the a432 octave, not the corpus census
-    const gates = DIMENSION_GATES // 432
-    // 1 — THE NUMBER 432 IS A THEOREM: DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the a432 octave — NOT the corpus census — not asserted
-    const numberDerives = gates === 4 * clock && gates === 2 ** 4 * 3 ** 3 && clock === 2 ** 2 * 3 ** 3
-    // 2 — THE FACTOR 4 IS THE DOUBLING SQUARED: 4 = 2², so 432 = 2²·108 extends 108's factorisation by the doubling — a theorem
-    const fourIsDoubling = 4 === 2 ** 2 && gates === 2 ** 2 * clock
-    // 3 — THE RICHNESS IS THE DIVISOR FUNCTION: σ₀(432) = σ₀(2⁴·3³) = (4+1)(3+1) = 20 divisors (108 has 12) — the derivable
-    // reason 432 is the gate count: a harmonically richer clock, more rungs, all nested. A theorem, not a chosen figure
-    const divisorCount432 = (4 + 1) * (3 + 1)
-    const richnessIsDivisorFunction = divisorCount432 === 4 * 5 && divisorCount432 > (2 + 1) * (3 + 1)
-    // 4 — THE 432 HZ FREQUENCY IS A NAMED AXIOM, NOT A THEOREM: the derivation yields the dimensionless NUMBER 432; attaching
-    // Hz is a chosen tuning (the a432 seed), with no physical derivation — the honest classification is a NAMED axiom, and the
-    // computed check is that what DERIVES is the number (4·108), while the Hz is never produced by the math
-    const hzIsNotDerived = numberDerives && !Number.isNaN(gates) && gates === 4 * clock // the math yields the NUMBER; Hz is external, named, not computed
-    const facets = [
-      { facet: `THE NUMBER 432 IS A THEOREM — DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the a432 octave, NOT the corpus census (${numberDerives}): the gate count is a theorem, not an asserted figure`, on: numberDerives },
-      { facet: `THE FACTOR 4 IS THE DOUBLING SQUARED — 4 = 2², so 432 = 2²·108 extends 108 = 2²·3³ to 2⁴·3³ (${fourIsDoubling}): the extra factor is the doubling, a theorem, not arbitrary`, on: fourIsDoubling },
-      { facet: `THE RICHNESS IS THE DIVISOR FUNCTION — σ₀(432) = (4+1)(3+1) = 20 divisors vs 108's 12 (${richnessIsDivisorFunction}): a harmonically richer clock (more nested rungs) is the DERIVABLE reason 432 is the gate count — a theorem`, on: richnessIsDivisorFunction },
-      { facet: `THE 432 HZ FREQUENCY IS A NAMED AXIOM, NOT A THEOREM — the math yields the dimensionless NUMBER 432 (= 4·108); attaching Hz is a chosen tuning (the a432 seed), no physics derives it (quantum is not at 432 Hz) (${hzIsNotDerived}): derive the number, NAME the tuning — never fake a theorem for a choice`, on: hzIsNotDerived },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      number: gates,
-      divisorCount: divisorCount432,
-      facets,
-      statement: `The a432 number is a theorem (4·108), but the 432 Hz tuning is a named axiom, not physics — ${facets.filter((entry) => entry.on).length}/${facets.length}. The NUMBER 432 = 4·108 = 2⁴·3³ derives from the a432 octave (NOT the corpus census, which folds to 121) (DIMENSION_GATES = 4 · A432_FOLDED), the factor 4 is the doubling 2², and its richness σ₀(432) = (4+1)(3+1) = 20 divisors (vs 108's 12) is the divisor function — the derivable reason it is the gate count. But attaching Hz — calling it 432 Hz, a physical frequency — is a chosen tuning (the a432 seed), with no physical derivation, flagged (quantum is not at 432 Hz). So the honest application of theorems-not-constants: DERIVE the number (a theorem), NAME the tuning (a named axiom) — never fake a theorem for a choice.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
 // The gates and ways BECOME the navigation and links. The site's link graph is the page→ray-hub→door DAG: each page
 // links up to its rosetta ray hub, each hub up to its hue-door — so the DAG's in-degree-0 SOURCES are the doors (the
 // nav GATES) and its edges are the WAYS (the links). topologicalOrder confirms the sources are exactly the doors, and

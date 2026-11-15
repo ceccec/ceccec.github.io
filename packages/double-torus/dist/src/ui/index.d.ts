@@ -951,17 +951,6 @@ export declare function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotAr
     statement: string;
     boundary: string;
 };
-export declare function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics(matrix?: MindMatrix): {
-    computes: boolean;
-    number: number;
-    divisorCount: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function theGatesAndWaysBecomeTheNavigationAndLinks(): {
     navigates: boolean;
     gates: number;
