@@ -28,6 +28,8 @@ import { createHash } from 'node:crypto'
 import { writeFileSync, existsSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { LEAN_KERNEL_ACCOUNT, leanLedgerEntry, leanPagePaths, leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+/** Where an involution file lives, read from the theorems themselves — never assembled from a folder assumed for it. */
+const leanSourceOf = (file: string): string => { const t = leanTheoremsForLatex().find((row) => row.file === file); if (!t) throw new Error(`discoveries: no involution theorem is read from ${file}, so its path is unknown`); return `${t.dir}/${t.file}` }
 import { priorArtLedger, PRIOR_ART_SEARCHED } from './prior-art.ts'
 
 /** The repository deposit every per-theorem record is part of. */
@@ -117,7 +119,7 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
   const ledger = priorArtLedger()
   return leanTheoremsForLatex(root).map((t) => {
     const status = statusFor(t.title, t.file, ledger)
-    const leanPath = `src/pair/formal/proofs/${t.file}`
+    const leanPath = `${t.dir}/${t.file}` // the theorem's own source — a Clay case's file lives in its station folder
     const texPath = 'src/research/lean-theorems.tex'
     const cited = status.kind === 'attributed' ? [status.citation] : []
     const slug = leanPageSlug(t.file, t.name)
@@ -344,14 +346,14 @@ export function fileDeposits(root: string = process.cwd()): FileDeposit[] {
       relatedIdentifiers: [
         { identifier: REPOSITORY_DOI, relation: 'isPartOf', scheme: 'doi' },
         { identifier: REPO, relation: 'isSupplementTo', scheme: 'url' },
-        { identifier: `${BLOB}/src/pair/formal/proofs/${file}`, relation: 'isDerivedFrom', scheme: 'url' },
+        { identifier: `${BLOB}/${leanSourceOf(file)}`, relation: 'isDerivedFrom', scheme: 'url' },
         { identifier: `${BLOB}/src/research/lean-theorems.tex`, relation: 'isDocumentedBy', scheme: 'url' },
         ...rows.map((r) => ({ identifier: r.landingPage, relation: 'isDocumentedBy', scheme: 'url' })),
       ],
       license: LICENSE,
       language: 'eng',
       keywords: ['machine-checked proof', 'Lean 4', fileWord, 'formalisation', 'involution', file.replace(/\.lean$/, '')],
-      repoPaths: [`src/pair/formal/proofs/${file}`, 'src/research/lean-theorems.tex'],
+      repoPaths: [leanSourceOf(file), 'src/research/lean-theorems.tex'],
     }
   })
 }
@@ -504,7 +506,7 @@ export function publications(root: string = process.cwd()): Publication[] {
     relatedIdentifiers: [
       ...record.relatedIdentifiers,
       ...occurrences.slice(1).flatMap((o) => [
-        { identifier: `${BLOB}/src/pair/formal/proofs/${o.file}`, relation: 'isDerivedFrom', scheme: 'url' },
+        { identifier: `${BLOB}/${leanSourceOf(o.file)}`, relation: 'isDerivedFrom', scheme: 'url' },
         { identifier: `${o.repo}#${o.theorem}`, relation: 'isIdenticalTo', scheme: 'url' },
       ]),
     ],

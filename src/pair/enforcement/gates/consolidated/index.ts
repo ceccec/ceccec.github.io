@@ -965,7 +965,7 @@ export const HONEST_REASSESSMENT: readonly HonestDemarcation[] = [
       'Missing: rigorous covering of all analytic continuations of ζ(s)',
     ],
     '1. Formalize σ-involution in Lean type theory\n2. Prove closure rigorously (not just structurally)\n3. Show: ∀ z(ζ(z)=0) → (z on critical line)\n4. Publish in formal mathematics venue',
-    'src/pair/formal/proofs/riemann.lean',
+    'src/2/riemann.lean',
   ),
   createReassessment(
     'P vs NP',
@@ -978,7 +978,7 @@ export const HONEST_REASSESSMENT: readonly HonestDemarcation[] = [
       'Separation argument based on intuition, not logic',
     ],
     '1. Formalize computational complexity in proof assistant\n2. Define σ rigorously on complexity classes\n3. Prove or refute: σ-involution forces P≠NP\n4. OR: show this approach is insufficient',
-    'src/pair/formal/proofs/p-vs-np.lean',
+    'src/4/p-vs-np.lean',
   ),
   createReassessment(
     'Hodge Conjecture',
@@ -991,7 +991,7 @@ export const HONEST_REASSESSMENT: readonly HonestDemarcation[] = [
       'Dependent on unproven assumptions about Dolbeault cohomology',
     ],
     '1. Formalize algebraic topology in Lean\n2. Define Hodge σ-involution rigorously\n3. Attempt proof; if fails, clearly state why\n4. Contribute counterexample or new insight',
-    'src/pair/formal/proofs/hodge.lean',
+    'src/5/hodge.lean',
   ),
 ]
 
@@ -1062,7 +1062,7 @@ export const ESCAPE_PATH_IMPOSSIBILITY = `
  */
 
 export const LEAN_PROOF_STUB = `
--- src/pair/formal/proofs/riemann.lean
+-- src/2/riemann.lean
 
 import Mathlib.Analysis.Complex.Polynomial
 import Mathlib.Data.Real.Basic
@@ -1121,7 +1121,7 @@ AFTER:
     status: 'structurally_supported',  // HONEST
     confidence: 0.7,  // Likelihood involution path leads to proof
     formalProofStatus: 'lean-stub-exists',  // Path to rigor
-    leanPath: 'src/pair/formal/proofs/riemann.lean',
+    leanPath: 'src/2/riemann.lean',
     gaps: [
       'Functional equation closure not rigorously shown',
       'Escape-path impossibility requires formal induction',
@@ -1526,7 +1526,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Fixed-point argument assumes fixed point = unique solution set',
       'Coverage of all analytic continuations incomplete',
     ],
-    'src/pair/formal/proofs/riemann.lean',
+    'src/2/riemann.lean',
     'scaffold-only',
   ),
   createHonestTheorem(
@@ -1538,7 +1538,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Complexity hierarchy closure not formalized',
       'Separation argument based on intuition, not logic',
     ],
-    'src/pair/formal/proofs/p-vs-np.lean',
+    'src/4/p-vs-np.lean',
     'no-attempt',
   ),
   createHonestTheorem(
@@ -1550,7 +1550,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Dependent on unproven assumptions about Dolbeault cohomology',
       'No rigorous proof why σ forces standard conjecture',
     ],
-    'src/pair/formal/proofs/hodge.lean',
+    'src/5/hodge.lean',
     'no-attempt',
   ),
   createHonestTheorem(
@@ -1562,7 +1562,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Mass gap emergence from involution structure unproven',
       'Rigorous mathematical framework for QFT still developing',
     ],
-    'src/pair/formal/proofs/yang-mills.lean',
+    'src/8/yang-mills.lean',
     'no-attempt',
   ),
   createHonestTheorem(
@@ -1574,7 +1574,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Functional analysis foundation incomplete',
       'Missing: formal treatment of singularity formation',
     ],
-    'src/pair/formal/proofs/navier-stokes.lean',
+    'src/7/navier-stokes.lean',
     'scaffold-only',
   ),
   createHonestTheorem(
@@ -1586,7 +1586,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
       'Arithmetic geometry formalization sparse',
       'No rigorous proof of rank = order of L-function zero',
     ],
-    'src/pair/formal/proofs/bsd.lean',
+    'src/5/bsd.lean',
     'no-attempt',
   ),
   // Proven by PERELMAN (2002-03, Ricci flow with surgery, after Hamilton) — NOT by this
@@ -1597,7 +1597,7 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
     'Poincaré Conjecture (proven by Perelman 2002-03; NOT proven by this corpus)',
     'proven_elsewhere_cited_here',
     ['This corpus reproduces no part of the Ricci-flow-with-surgery proof; the only honest content is the citation'],
-    'src/pair/formal/proofs/poincare.lean',
+    'src/1/poincare.lean',
     'scaffold-only',
   ),
 ]
@@ -2107,7 +2107,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Fixed-point argument assumes what it proves',
       'Coverage of all analytic continuations incomplete',
     ],
-    formalProofPath: 'src/pair/formal/proofs/riemann.lean',
+    formalProofPath: 'src/2/riemann.lean',
     formalProofStatus: 'scaffold-only',
     involutionDual: 'Riemann Hypothesis Negation (∃ nontrivial zero off critical line)',
     involutionKind: 'negation',
@@ -2122,7 +2122,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Complexity hierarchy closure not formalized',
       'Separation argument intuitive, not rigorous',
     ],
-    formalProofPath: 'src/pair/formal/proofs/p-vs-np.lean',
+    formalProofPath: 'src/4/p-vs-np.lean',
     formalProofStatus: 'no-attempt',
     involutionDual: 'P ≠ NP (separation proven)',
     involutionKind: 'duality',
@@ -2137,7 +2137,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Dependent on unproven Dolbeault cohomology assumptions',
       'Why σ forces standard conjecture unproven',
     ],
-    formalProofPath: 'src/pair/formal/proofs/hodge.lean',
+    formalProofPath: 'src/5/hodge.lean',
     formalProofStatus: 'no-attempt',
     involutionDual: 'Hodge Conjecture Negation (counterexample exists)',
     involutionKind: 'negation',
@@ -2152,7 +2152,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Mass gap emergence from involution unproven',
       'QFT mathematical framework still developing',
     ],
-    formalProofPath: 'src/pair/formal/proofs/yang-mills.lean',
+    formalProofPath: 'src/8/yang-mills.lean',
     formalProofStatus: 'no-attempt',
     involutionDual: 'Yang-Mills No Mass Gap (gapless spectrum)',
     involutionKind: 'negation',
@@ -2167,7 +2167,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Functional analysis foundation incomplete',
       'Singular formation treatment formal missing',
     ],
-    formalProofPath: 'src/pair/formal/proofs/navier-stokes.lean',
+    formalProofPath: 'src/7/navier-stokes.lean',
     formalProofStatus: 'scaffold-only',
     involutionDual: 'Navier-Stokes Finite-Time Blowup',
     involutionKind: 'negation',
@@ -2182,7 +2182,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
       'Arithmetic geometry formalization sparse',
       'Rank = L-function zero order unproven',
     ],
-    formalProofPath: 'src/pair/formal/proofs/bsd.lean',
+    formalProofPath: 'src/5/bsd.lean',
     formalProofStatus: 'no-attempt',
     involutionDual: 'BSD Negation (counterexample rank)',
     involutionKind: 'negation',

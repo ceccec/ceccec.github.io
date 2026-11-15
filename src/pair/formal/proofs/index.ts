@@ -1205,13 +1205,15 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
     const uncommented = (text: string) => { let out = '', depth = 0; for (let i = 0; i < text.length; i += 1) { if (text.startsWith('/-', i)) { depth += 1; i += 1 } else if (depth > 0 && text.startsWith('-/', i)) { depth -= 1; i += 1 } else if (depth === 0) out += text[i] } return out }
     const declared = (text: string) => (uncommented(text).match(/^[ \t]*theorem[ \t]/gm) ?? []).length
     const byProblem = lean
-      .filter((p) => String(p).startsWith(proofsDir))
+      // the involution corpus: src/pair/formal/proofs, and each Clay case's file in its station folder (named by the case,
+      // not by the station's digit word — the word file is the station's own perspective)
+      .filter((p) => String(p).startsWith(proofsDir) || /^[1-9][\\/](?!(?:one|two|three|four|five|six|seven|eight|nine)\.lean$)[^\\/]+\.lean$/.test(String(p)))
       .map((p) => ({ file: path.basename(String(p)), theorems: declared(fs.readFileSync(path.join(src, String(p)), 'utf8')) }))
       .sort((a, b) => (a.file < b.file ? -1 : a.file > b.file ? 1 : 0))
     const registryDir = path.join('pair', 'lean', 'proofs')
     const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
     // THE DIGIT CORPUS: a .lean file directly inside a station folder src/1 … src/9 — the station's own perspective.
-    const digit = lean.filter((p) => /^[1-9][\\/][^\\/]+\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
+    const digit = lean.filter((p) => /^[1-9][\\/](?:one|two|three|four|five|six|seven|eight|nine)\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
     return {
       digitFiles: digit.length,
       digitTheorems: digit.reduce((n, t) => n + t, 0),
@@ -1386,7 +1388,16 @@ export const LEAN_DIGIT_DIRS: readonly string[] = Array.from({ length: 9 }, (_, 
 
 /** Every theorem in the nine station perspective files — the same reader over each station folder. */
 export function leanDigitTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
-  return LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root, dir)])
+  return LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root, dir)].filter((t) => LEAN_STATION_FILE.test(t.file)))
+}
+/** A station's own perspective file is named by its digit word (one.lean … nine.lean); every other .lean in a station folder
+ *  is a Clay case's file, which belongs to the involution corpus wherever it sits (owner, 2026-11-15: a case per folder). */
+export const LEAN_STATION_FILE = /^(one|two|three|four|five|six|seven|eight|nine)\.lean$/
+/** Whether a Lean file belongs to the involution corpus: anything in src/pair/formal/proofs, or a Clay case's file in a station folder. */
+export const isInvolutionFile = (dir: string, file: string): boolean => dir === LEAN_INVOLUTION_DIR || (LEAN_DIGIT_DIRS.includes(dir) && !LEAN_STATION_FILE.test(file))
+/** The involution corpus: src/pair/formal/proofs, and each Clay case's file in its station folder. */
+export function leanInvolutionTheorems(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
+  return [...readLeanTheorems(root, LEAN_INVOLUTION_DIR), ...LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root, dir)].filter((t) => !LEAN_STATION_FILE.test(t.file)))]
 }
 
 /** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
@@ -1403,7 +1414,7 @@ export function leanBlockCommentLines(lines: readonly string[]): boolean[] {
 
 /** Every theorem in the sealed involution proofs, read from the Lean itself. */
 export function leanTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
-  return readLeanTheorems(root, LEAN_INVOLUTION_DIR)
+  return leanInvolutionTheorems(root)
 }
 /** Every theorem in the registry corpus — the same reader over the other folder. */
 export function leanRegistryTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
@@ -1664,6 +1675,38 @@ export type LeanPageRow = {
   /** The post's tag cloud, every tag read from the theorem itself: its source file, the account it is credited to
    *  (the kernel alone, or the axioms the kernel reports), and the corpus it belongs to. Nav, feed and sitemap group by these. */
   readonly tags: readonly string[]
+  /** The Clay cases this theorem is bonded to (clayCasesOf) — empty for a theorem whose subject is not a Clay case. */
+  readonly cases: readonly ClayCase[]
+}
+
+/**
+ * THE CLAY COORDINATES OF A THEOREM — measured by shared definitions, never assigned (owner, 2026-11-15: "each lean has
+ * coordinates in the clay problem solutions"). The Lean files import nothing from one another, so a name means what its OWN
+ * file defines: a theorem is bonded to a case when it sits in that case's own file, or when its file defines one of that
+ * case's maps and its statement uses it. Matching a name across files is coincidence (spacetime.lean's star is not
+ * Yang–Mills' Hodge star) and is not done. Measured 2026-11-15: 64 of 597 theorems bond; each case draws on exactly three
+ * files — its own, its station's, and cross.lean, where the theorems relating cases bond to several at once.
+ * A bond says which formalised perspective bears on a case. It does not solve the case; every Clay problem here stays open.
+ */
+export const CLAY_CASES = ['poincare', 'riemann', 'p-vs-np', 'hodge', 'bsd', 'navier-stokes', 'yang-mills'] as const
+export type ClayCase = (typeof CLAY_CASES)[number]
+/** Per file, the maps it defines and the case each models — read from the files' own doc comments. */
+export const CLAY_CASE_MAPS: Readonly<Record<string, Partial<Record<ClayCase, readonly string[]>>>> = {
+  'src/pair/lean/proofs/cross.lean': { riemann: ['riemann'], bsd: ['bsd'], hodge: ['hodge'], 'navier-stokes': ['viscous'], 'yang-mills': ['Form2', 'star', 'asd'], 'p-vs-np': ['Class', 'complement'], poincare: ['chi', 'genus'] },
+  'src/1/one.lean': { poincare: ['chi', 'genus'] },
+  'src/2/two.lean': { riemann: ['riemannReflect'] },
+  'src/4/four.lean': { 'p-vs-np': ['Class', 'complement'] },
+  'src/5/five.lean': { hodge: ['hodgeConjugate'], bsd: ['bsdReflect'] },
+  'src/7/seven.lean': { 'navier-stokes': ['viscous'] },
+  'src/8/eight.lean': { 'yang-mills': ['Form2', 'star', 'asd'] },
+}
+/** The cases a theorem is bonded to: its own case file, or a case map its own file defines and its statement uses. */
+export function clayCasesOf(sourcePath: string, proposition: string): ClayCase[] {
+  const own = CLAY_CASES.filter((c) => new RegExp(`/${c}\\.lean$`).test(sourcePath))
+  const maps = CLAY_CASE_MAPS[sourcePath] ?? {}
+  const uses = (name: string) => new RegExp(`(^|[^\\w.'])${name}([^\\w']|$)`).test(proposition)
+  const via = (Object.keys(maps) as ClayCase[]).filter((c) => (maps[c] ?? []).some(uses))
+  return [...new Set([...own, ...via])]
 }
 
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
@@ -1693,12 +1736,13 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
     sourcePath: `${t.dir}/${t.file}`,
     texPath: 'src/research/lean-theorems.tex',
     axioms: t.axioms,
-    depositId: t.dir === LEAN_INVOLUTION_DIR ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
+    depositId: isInvolutionFile(t.dir, t.file) ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
+    cases: clayCasesOf(`${t.dir}/${t.file}`, t.proposition),
     seals: LEAN_SEALED_REGISTRY.filter((row) => row.leanFile === `${t.dir}/${t.file}` && row.theorems.includes(t.name)).map((row) => row.theorem),
     tags: [
       t.file.replace(/\.lean$/, ''),
       t.axioms === null ? 'unrecorded' : t.axioms.length === 0 ? 'kernel' : t.axioms.join(' + '),
-      t.dir === LEAN_INVOLUTION_DIR ? 'involution' : t.dir === LEAN_REGISTRY_DIR ? 'registry' : 'station',
+      isInvolutionFile(t.dir, t.file) ? 'involution' : t.dir === LEAN_REGISTRY_DIR ? 'registry' : 'station',
     ],
   }))
 }

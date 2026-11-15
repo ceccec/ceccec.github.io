@@ -12124,10 +12124,10 @@ function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process
       return out;
     };
     const declared = (text) => (uncommented(text).match(/^[ \t]*theorem[ \t]/gm) ?? []).length;
-    const byProblem = lean.filter((p) => String(p).startsWith(proofsDir)).map((p) => ({ file: path12.basename(String(p)), theorems: declared(fs.readFileSync(path12.join(src, String(p)), "utf8")) })).sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0);
+    const byProblem = lean.filter((p) => String(p).startsWith(proofsDir) || /^[1-9][\\/](?!(?:one|two|three|four|five|six|seven|eight|nine)\.lean$)[^\\/]+\.lean$/.test(String(p))).map((p) => ({ file: path12.basename(String(p)), theorems: declared(fs.readFileSync(path12.join(src, String(p)), "utf8")) })).sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0);
     const registryDir = path12.join("pair", "lean", "proofs");
     const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
-    const digit11 = lean.filter((p) => /^[1-9][\\/][^\\/]+\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
+    const digit11 = lean.filter((p) => /^[1-9][\\/](?:one|two|three|four|five|six|seven|eight|nine)\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
     return {
       digitFiles: digit11.length,
       digitTheorems: digit11.reduce((n, t) => n + t, 0),
@@ -12453,7 +12453,7 @@ function computerScienceResearch(matrix = buildMatrix()) {
   return memoByRoot("computerScienceResearch", matrix, () => {
     const sequence = buildSequenceReducesComputations(matrix);
     const guard = stackOverflowGuard(matrix);
-    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid("cs-research"), boundary: "CS fundamentals, plus the complementation involution machine-checked in Lean (src/pair/formal/proofs/p-vs-np.lean)." };
+    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid("cs-research"), boundary: "CS fundamentals, plus the complementation involution machine-checked in Lean (src/4/p-vs-np.lean)." };
   });
 }
 function computerScienceComputes(matrix = buildMatrix(), at = 0) {
@@ -12466,7 +12466,7 @@ function computerScienceComputes(matrix = buildMatrix(), at = 0) {
       { facet: "stackComputes", on: stack.computes },
       { facet: "srcAllComputes", on: srcAll.computes && srcAll.registry.gapless },
       { facet: "pairs", on: QUANTUM_COMMAND_PAIR_IDS.length >= 8 * 5 },
-      { facet: `P vs NP is carried as the complementation involution \u2014 ${leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0} machine-checked theorems in src/pair/formal/proofs/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0) > 0 }
+      { facet: `P vs NP is carried as the complementation involution \u2014 ${leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0} machine-checked theorems in src/4/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0) > 0 }
     ]);
     return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root10]), statement: "Computer science computes.", boundary: research.boundary };
   });

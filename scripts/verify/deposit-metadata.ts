@@ -30,7 +30,7 @@
  * credentials, never this script's.
  */
 
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const OAI = 'https://zenodo.org/oai2d'
@@ -259,12 +259,14 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
   const deposits = JSON.parse(readFileSync(join(root, 'src/research/theorem-deposits.json'), 'utf8')) as {
     repositoryDoi: string
     orcid: string
-    records: { title: string; file: string; priorArt: { kind: string; searched?: string } }[]
+    records: { title: string; file: string; repoPaths?: string[]; priorArt: { kind: string; searched?: string } }[]
   }
   const recs = deposits.records
   const claimed = recs.filter((r) => r.priorArt.kind === 'searched-none-found')
   const attributed = recs.filter((r) => r.priorArt.kind === 'attributed')
   const files = [...new Set(recs.map((r) => r.file))].sort()
+  // each file's path as its deposit records it (a Clay case's file lives in its station folder) — never a folder assumed for it
+  const pathOf = (file: string) => { const p = recs.find((r) => r.file === file)?.repoPaths?.[0]; if (!p) throw new Error(`corrected metadata: no deposit records a path for ${file}`); return p }
 
   const description = [
     `<p><strong>A machine-checked corpus of ${recs.length} theorems in Lean 4, across ${files.length} files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>`,
@@ -294,7 +296,7 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
       related_identifiers: [
         { identifier: REPO_URL, relation: 'isSupplementTo', scheme: 'url' },
         { identifier: SITE_URL, relation: 'isPublishedIn', scheme: 'url' },
-        ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/src/pair/formal/proofs/${f}`, relation: 'isDerivedFrom', scheme: 'url' })),
+        ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/${pathOf(f)}`, relation: 'isDerivedFrom', scheme: 'url' })),
       ],
       notes: `Publish as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under the shared concept DOI, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
     },
@@ -382,9 +384,14 @@ export function citedDois(root: string = process.cwd()): CitedDoi[] {
 export function assertDepositCountsMatchTheProofs(root: string = process.cwd()): void {
   const stripped = (text: string) =>
     text.replace(/\/-[\s\S]*?-\//g, '').split('\n').map((line) => line.split('--')[0]).join('\n')
-  const dir = join(root, 'src/pair/formal/proofs')
-  if (!existsSync(dir)) { console.log('  no Lean proof corpus at src/pair/formal/proofs — NOT MEASURED, not passed'); return }
-  const files = readdirSync(dir).filter((f) => f.endsWith('.lean'))
+  // THE FILES THE DEPOSIT DESCRIBES, AT THE PATHS IT RECORDS: the involution corpus spans src/pair/formal/proofs and the Clay
+  // case files in their station folders, so a folder listing would count part of it. No record, or a missing file, refuses.
+  const records = (JSON.parse(readFileSync(join(root, 'src/research/theorem-deposits.json'), 'utf8')) as { records: { repoPaths?: string[] }[] }).records
+  const files = [...new Set(records.map((r) => r.repoPaths?.[0]).filter((p): p is string => !!p && p.endsWith('.lean')))]
+  if (!files.length) throw new Error('deposit counts: theorem-deposits.json records no Lean file, so there is nothing to count the deposit against')
+  const missing = files.filter((p) => !existsSync(join(root, p)))
+  if (missing.length) throw new Error(`deposit counts: ${missing.length} recorded Lean file(s) do not exist: ${missing.join(', ')}`)
+  const dir = root
   let theorems = 0, sorries = 0, axioms = 0
   for (const file of files) {
     const code = stripped(readFileSync(join(dir, file), 'utf8'))

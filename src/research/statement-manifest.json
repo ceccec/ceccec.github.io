@@ -166,6 +166,66 @@
       "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9"
     },
     {
+      "statementUuid": "1717d2a1-6ed4-8bd8-937e-ddba05f91a91",
+      "file": "src/1/poincare.lean",
+      "name": "chi_and_genus_are_inverse",
+      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g"
+    },
+    {
+      "statementUuid": "21fa0a30-10d4-8e82-8da4-8a7bcffe4f9b",
+      "file": "src/1/poincare.lean",
+      "name": "sphere_has_euler_characteristic_two",
+      "statement": "chi 0 = 2"
+    },
+    {
+      "statementUuid": "37399553-937f-8aa3-81c4-c7821489868a",
+      "file": "src/1/poincare.lean",
+      "name": "torus_has_euler_characteristic_zero",
+      "statement": "chi 1 = 0"
+    },
+    {
+      "statementUuid": "1b025c6f-9591-8b60-abc5-b8e0b322480e",
+      "file": "src/1/poincare.lean",
+      "name": "double_torus_has_chi_minus_two_and_rank_four",
+      "statement": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4"
+    },
+    {
+      "statementUuid": "0ff924b2-06cd-84b6-9aa8-6846e6378050",
+      "file": "src/1/poincare.lean",
+      "name": "homology_rank_is_twice_the_genus",
+      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g"
+    },
+    {
+      "statementUuid": "9a04b317-96c4-8c86-a1c0-adcec2aa1676",
+      "file": "src/2/riemann.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n"
+    },
+    {
+      "statementUuid": "458cdb64-f58b-876d-9852-9eb71ae26e12",
+      "file": "src/2/riemann.lean",
+      "name": "critical_line_is_the_fixed_point",
+      "statement": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)"
+    },
+    {
+      "statementUuid": "449f66c0-7393-8a71-ab8b-6587ae5155f5",
+      "file": "src/2/riemann.lean",
+      "name": "sigma_pairs_the_plane",
+      "statement": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2"
+    },
+    {
+      "statementUuid": "292823aa-9648-8a74-a6e2-ce8afaf66e25",
+      "file": "src/2/riemann.lean",
+      "name": "the_fixed_line_is_one_half",
+      "statement": "∀ n : Int, σ n = n ↔ n = 1"
+    },
+    {
+      "statementUuid": "1c0537f0-a564-8ab6-ba81-aba3e6608b9e",
+      "file": "src/2/riemann.lean",
+      "name": "involution_fixes_the_critical_line",
+      "statement": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1"
+    },
+    {
       "statementUuid": "209376e8-a80c-8693-8251-a0eaa0fd4726",
       "file": "src/2/two.lean",
       "name": "from_two_the_sequence_is_one_cycle_through_every_station",
@@ -640,6 +700,54 @@
       "statement": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6"
     },
     {
+      "statementUuid": "ce03f161-7058-8a3f-90b8-932832460c34",
+      "file": "src/4/p-vs-np.lean",
+      "name": "fixed_points_are_p_and_pspace",
+      "statement": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]"
+    },
+    {
+      "statementUuid": "fbc53f30-218c-874a-9b33-d143148c80a7",
+      "file": "src/4/p-vs-np.lean",
+      "name": "np_and_conp_are_swapped",
+      "statement": "σ NP = coNP ∧ σ coNP = NP"
+    },
+    {
+      "statementUuid": "2339aa02-06ed-8aa1-862d-dc3ade18ccd8",
+      "file": "src/4/p-vs-np.lean",
+      "name": "if_np_is_fixed_then_np_equals_conp",
+      "statement": "σ NP = NP → NP = coNP"
+    },
+    {
+      "statementUuid": "11515ce7-7e26-8bbb-8714-d917634ef57f",
+      "file": "src/4/p-vs-np.lean",
+      "name": "p_is_closed_under_complement",
+      "statement": "σ P = P"
+    },
+    {
+      "statementUuid": "07b6d2c8-c011-84ef-98f1-e2a09f45d568",
+      "file": "src/5/bsd.lean",
+      "name": "central_point_is_the_fixed_point",
+      "statement": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)"
+    },
+    {
+      "statementUuid": "6b014baa-9965-8b9c-9717-cf3a6d16195d",
+      "file": "src/5/bsd.lean",
+      "name": "root_number_squares_to_one",
+      "statement": "∀ (w : Int) (Λ : Int → Int),\n    (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1"
+    },
+    {
+      "statementUuid": "799e7a3e-e9a3-8e41-ae23-58f022c73050",
+      "file": "src/5/bsd.lean",
+      "name": "root_number_one_iff_rank_even",
+      "statement": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)"
+    },
+    {
+      "statementUuid": "7c440efb-ebd7-888b-8764-3d09eb9d18da",
+      "file": "src/5/bsd.lean",
+      "name": "parity_is_an_involution",
+      "statement": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧\n    (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)"
+    },
+    {
       "statementUuid": "5f26e720-49a6-80c7-ba50-a601d866687a",
       "file": "src/5/five.lean",
       "name": "the_sequence_is_one_cycle_through_every_station",
@@ -814,6 +922,30 @@
       "statement": "∀ s : Int, bsdReflect s = s ↔ s = 1"
     },
     {
+      "statementUuid": "debf8f5a-e4e5-889f-b1c0-30c5e5f9fdb6",
+      "file": "src/5/hodge.lean",
+      "name": "sigma_preserves_degree",
+      "statement": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2"
+    },
+    {
+      "statementUuid": "e41db480-87c7-84fe-84ae-990f00100b6e",
+      "file": "src/5/hodge.lean",
+      "name": "fixed_type_is_p_equals_q",
+      "statement": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]"
+    },
+    {
+      "statementUuid": "24780eb2-1fb2-8250-88f9-1a8f3de36bd1",
+      "file": "src/5/hodge.lean",
+      "name": "diagonal_is_fixed_at_every_k",
+      "statement": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧\n    (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))"
+    },
+    {
+      "statementUuid": "d6d361e8-d180-8c3a-a29b-89d4d0135834",
+      "file": "src/5/hodge.lean",
+      "name": "involution_fixes_the_diagonal",
+      "statement": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)"
+    },
+    {
       "statementUuid": "7e472d56-667b-8e9c-82b6-b499374324e4",
       "file": "src/6/six.lean",
       "name": "from_six_the_sequence_is_one_cycle_through_every_station",
@@ -962,6 +1094,30 @@
       "file": "src/6/six.lean",
       "name": "walking_from_the_mirror_is_walking_from_here_shifted",
       "statement": "stepsTo 6 4 = 5 ∧ ∀ k : Fin 10, walk 4 k.val = walk 6 (k.val + 5)"
+    },
+    {
+      "statementUuid": "db94b4db-e59e-8bb9-900f-469c8c3626b1",
+      "file": "src/7/navier-stokes.lean",
+      "name": "reversal_is_an_involution",
+      "statement": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler"
+    },
+    {
+      "statementUuid": "ed9b254b-49dc-8a6b-b8ed-47f2350fa258",
+      "file": "src/7/navier-stokes.lean",
+      "name": "euler_is_time_reversible",
+      "statement": "T euler = euler"
+    },
+    {
+      "statementUuid": "6c893934-7d28-87eb-b517-a0d64909070b",
+      "file": "src/7/navier-stokes.lean",
+      "name": "viscosity_breaks_time_reversal",
+      "statement": "T navierStokes ≠ navierStokes ∧\n    (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧\n    (T navierStokes).convective = navierStokes.convective ∧\n    (T navierStokes).pressure = navierStokes.pressure ∧\n    (T navierStokes).viscous ≠ navierStokes.viscous"
+    },
+    {
+      "statementUuid": "79204fc1-b139-80ca-b43f-b0455a4d44d9",
+      "file": "src/7/navier-stokes.lean",
+      "name": "fixed_points_are_exactly_the_inviscid",
+      "statement": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩"
     },
     {
       "statementUuid": "b6c9b8f1-6fd4-8c53-9598-5a21aaabe811",
@@ -1288,6 +1444,36 @@
       "statement": "∀ v : Form2, star (asd v) = neg (asd v)"
     },
     {
+      "statementUuid": "e5e7dbf8-f519-8781-bf56-554995b591b3",
+      "file": "src/8/yang-mills.lean",
+      "name": "middle_forms_have_dimension_six",
+      "statement": "choose 4 2 = 6"
+    },
+    {
+      "statementUuid": "005db163-da11-84a1-a1db-a96b6b6bbc82",
+      "file": "src/8/yang-mills.lean",
+      "name": "star_squares_to_the_identity",
+      "statement": "∀ v : Form2, star (star v) = v"
+    },
+    {
+      "statementUuid": "dea0c3a2-ab97-8074-9ea2-2e9bef05aa4d",
+      "file": "src/8/yang-mills.lean",
+      "name": "selfdual_and_antiselfdual_split_the_six",
+      "statement": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧\n    star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧\n    star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧\n    star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧\n    3 + 3 = choose 4 2"
+    },
+    {
+      "statementUuid": "e7c9a664-4ed2-8617-aebd-36d2a910de03",
+      "file": "src/8/yang-mills.lean",
+      "name": "star_is_an_endomorphism_only_in_the_middle",
+      "statement": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)"
+    },
+    {
+      "statementUuid": "e1865376-113f-84ad-9c34-9773f1dacd79",
+      "file": "src/8/yang-mills.lean",
+      "name": "involution_splits_the_middle_forms",
+      "statement": "∀ v : Form2,\n    star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧\n    add (add v (star v)) (sub v (star v)) = add v v"
+    },
+    {
       "statementUuid": "96790a0a-55bf-858f-875d-89f2aa33356b",
       "file": "src/9/nine.lean",
       "name": "from_nine_the_sequence_is_one_cycle_through_every_station",
@@ -1516,30 +1702,6 @@
       "statement": "poles.all (fun p =>\n      let v"
     },
     {
-      "statementUuid": "07b6d2c8-c011-84ef-98f1-e2a09f45d568",
-      "file": "src/pair/formal/proofs/bsd.lean",
-      "name": "central_point_is_the_fixed_point",
-      "statement": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)"
-    },
-    {
-      "statementUuid": "6b014baa-9965-8b9c-9717-cf3a6d16195d",
-      "file": "src/pair/formal/proofs/bsd.lean",
-      "name": "root_number_squares_to_one",
-      "statement": "∀ (w : Int) (Λ : Int → Int),\n    (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1"
-    },
-    {
-      "statementUuid": "799e7a3e-e9a3-8e41-ae23-58f022c73050",
-      "file": "src/pair/formal/proofs/bsd.lean",
-      "name": "root_number_one_iff_rank_even",
-      "statement": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)"
-    },
-    {
-      "statementUuid": "7c440efb-ebd7-888b-8764-3d09eb9d18da",
-      "file": "src/pair/formal/proofs/bsd.lean",
-      "name": "parity_is_an_involution",
-      "statement": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧\n    (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)"
-    },
-    {
       "statementUuid": "69295a42-f914-87f2-93af-fb6d259593ef",
       "file": "src/pair/formal/proofs/coin.lean",
       "name": "the_coin_is_an_involution",
@@ -1624,30 +1786,6 @@
       "statement": "[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧\n    [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7"
     },
     {
-      "statementUuid": "debf8f5a-e4e5-889f-b1c0-30c5e5f9fdb6",
-      "file": "src/pair/formal/proofs/hodge.lean",
-      "name": "sigma_preserves_degree",
-      "statement": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2"
-    },
-    {
-      "statementUuid": "e41db480-87c7-84fe-84ae-990f00100b6e",
-      "file": "src/pair/formal/proofs/hodge.lean",
-      "name": "fixed_type_is_p_equals_q",
-      "statement": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]"
-    },
-    {
-      "statementUuid": "24780eb2-1fb2-8250-88f9-1a8f3de36bd1",
-      "file": "src/pair/formal/proofs/hodge.lean",
-      "name": "diagonal_is_fixed_at_every_k",
-      "statement": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧\n    (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))"
-    },
-    {
-      "statementUuid": "d6d361e8-d180-8c3a-a29b-89d4d0135834",
-      "file": "src/pair/formal/proofs/hodge.lean",
-      "name": "involution_fixes_the_diagonal",
-      "statement": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)"
-    },
-    {
       "statementUuid": "a0c96efe-adea-8346-a214-861d145ae712",
       "file": "src/pair/formal/proofs/involution.lean",
       "name": "the_instance_is_an_involution",
@@ -1670,114 +1808,6 @@
       "file": "src/pair/formal/proofs/involution.lean",
       "name": "the_instance_splits_without_loss",
       "statement": "∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d"
-    },
-    {
-      "statementUuid": "db94b4db-e59e-8bb9-900f-469c8c3626b1",
-      "file": "src/pair/formal/proofs/navier-stokes.lean",
-      "name": "reversal_is_an_involution",
-      "statement": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler"
-    },
-    {
-      "statementUuid": "ed9b254b-49dc-8a6b-b8ed-47f2350fa258",
-      "file": "src/pair/formal/proofs/navier-stokes.lean",
-      "name": "euler_is_time_reversible",
-      "statement": "T euler = euler"
-    },
-    {
-      "statementUuid": "6c893934-7d28-87eb-b517-a0d64909070b",
-      "file": "src/pair/formal/proofs/navier-stokes.lean",
-      "name": "viscosity_breaks_time_reversal",
-      "statement": "T navierStokes ≠ navierStokes ∧\n    (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧\n    (T navierStokes).convective = navierStokes.convective ∧\n    (T navierStokes).pressure = navierStokes.pressure ∧\n    (T navierStokes).viscous ≠ navierStokes.viscous"
-    },
-    {
-      "statementUuid": "79204fc1-b139-80ca-b43f-b0455a4d44d9",
-      "file": "src/pair/formal/proofs/navier-stokes.lean",
-      "name": "fixed_points_are_exactly_the_inviscid",
-      "statement": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩"
-    },
-    {
-      "statementUuid": "ce03f161-7058-8a3f-90b8-932832460c34",
-      "file": "src/pair/formal/proofs/p-vs-np.lean",
-      "name": "fixed_points_are_p_and_pspace",
-      "statement": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]"
-    },
-    {
-      "statementUuid": "fbc53f30-218c-874a-9b33-d143148c80a7",
-      "file": "src/pair/formal/proofs/p-vs-np.lean",
-      "name": "np_and_conp_are_swapped",
-      "statement": "σ NP = coNP ∧ σ coNP = NP"
-    },
-    {
-      "statementUuid": "2339aa02-06ed-8aa1-862d-dc3ade18ccd8",
-      "file": "src/pair/formal/proofs/p-vs-np.lean",
-      "name": "if_np_is_fixed_then_np_equals_conp",
-      "statement": "σ NP = NP → NP = coNP"
-    },
-    {
-      "statementUuid": "11515ce7-7e26-8bbb-8714-d917634ef57f",
-      "file": "src/pair/formal/proofs/p-vs-np.lean",
-      "name": "p_is_closed_under_complement",
-      "statement": "σ P = P"
-    },
-    {
-      "statementUuid": "1717d2a1-6ed4-8bd8-937e-ddba05f91a91",
-      "file": "src/pair/formal/proofs/poincare.lean",
-      "name": "chi_and_genus_are_inverse",
-      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g"
-    },
-    {
-      "statementUuid": "21fa0a30-10d4-8e82-8da4-8a7bcffe4f9b",
-      "file": "src/pair/formal/proofs/poincare.lean",
-      "name": "sphere_has_euler_characteristic_two",
-      "statement": "chi 0 = 2"
-    },
-    {
-      "statementUuid": "37399553-937f-8aa3-81c4-c7821489868a",
-      "file": "src/pair/formal/proofs/poincare.lean",
-      "name": "torus_has_euler_characteristic_zero",
-      "statement": "chi 1 = 0"
-    },
-    {
-      "statementUuid": "1b025c6f-9591-8b60-abc5-b8e0b322480e",
-      "file": "src/pair/formal/proofs/poincare.lean",
-      "name": "double_torus_has_chi_minus_two_and_rank_four",
-      "statement": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4"
-    },
-    {
-      "statementUuid": "0ff924b2-06cd-84b6-9aa8-6846e6378050",
-      "file": "src/pair/formal/proofs/poincare.lean",
-      "name": "homology_rank_is_twice_the_genus",
-      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g"
-    },
-    {
-      "statementUuid": "9a04b317-96c4-8c86-a1c0-adcec2aa1676",
-      "file": "src/pair/formal/proofs/riemann.lean",
-      "name": "sigma_is_an_involution",
-      "statement": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n"
-    },
-    {
-      "statementUuid": "458cdb64-f58b-876d-9852-9eb71ae26e12",
-      "file": "src/pair/formal/proofs/riemann.lean",
-      "name": "critical_line_is_the_fixed_point",
-      "statement": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)"
-    },
-    {
-      "statementUuid": "449f66c0-7393-8a71-ab8b-6587ae5155f5",
-      "file": "src/pair/formal/proofs/riemann.lean",
-      "name": "sigma_pairs_the_plane",
-      "statement": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2"
-    },
-    {
-      "statementUuid": "292823aa-9648-8a74-a6e2-ce8afaf66e25",
-      "file": "src/pair/formal/proofs/riemann.lean",
-      "name": "the_fixed_line_is_one_half",
-      "statement": "∀ n : Int, σ n = n ↔ n = 1"
-    },
-    {
-      "statementUuid": "1c0537f0-a564-8ab6-ba81-aba3e6608b9e",
-      "file": "src/pair/formal/proofs/riemann.lean",
-      "name": "involution_fixes_the_critical_line",
-      "statement": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1"
     },
     {
       "statementUuid": "7d925937-5680-8f50-a460-1d8fd3cc2c29",
@@ -1922,36 +1952,6 @@
       "file": "src/pair/formal/proofs/three.lean",
       "name": "the_involution_laws_are_general",
       "statement": "(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧\n    (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧\n    (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧\n    (orbitPositionsCancel 3 3 = true) ∧\n    -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does.\n    (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧\n    (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)"
-    },
-    {
-      "statementUuid": "e5e7dbf8-f519-8781-bf56-554995b591b3",
-      "file": "src/pair/formal/proofs/yang-mills.lean",
-      "name": "middle_forms_have_dimension_six",
-      "statement": "choose 4 2 = 6"
-    },
-    {
-      "statementUuid": "005db163-da11-84a1-a1db-a96b6b6bbc82",
-      "file": "src/pair/formal/proofs/yang-mills.lean",
-      "name": "star_squares_to_the_identity",
-      "statement": "∀ v : Form2, star (star v) = v"
-    },
-    {
-      "statementUuid": "dea0c3a2-ab97-8074-9ea2-2e9bef05aa4d",
-      "file": "src/pair/formal/proofs/yang-mills.lean",
-      "name": "selfdual_and_antiselfdual_split_the_six",
-      "statement": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧\n    star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧\n    star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧\n    star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧\n    3 + 3 = choose 4 2"
-    },
-    {
-      "statementUuid": "e7c9a664-4ed2-8617-aebd-36d2a910de03",
-      "file": "src/pair/formal/proofs/yang-mills.lean",
-      "name": "star_is_an_endomorphism_only_in_the_middle",
-      "statement": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)"
-    },
-    {
-      "statementUuid": "e1865376-113f-84ad-9c34-9773f1dacd79",
-      "file": "src/pair/formal/proofs/yang-mills.lean",
-      "name": "involution_splits_the_middle_forms",
-      "statement": "∀ v : Form2,\n    star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧\n    add (add v (star v)) (sub v (star v)) = add v v"
     },
     {
       "statementUuid": "2acd5388-fa31-8b88-ade3-02706b285b8e",

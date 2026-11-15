@@ -1,15 +1,13 @@
 {
-  "tree": "7c33ddd6fad3be98",
-  "address": "4e261f7456c9978a",
+  "tree": "ff05f552231fff9a",
+  "address": "708f263aac2417eb",
   "gates": 68,
-  "clean": 65,
+  "clean": 66,
   "violated": [
-    "verify:deposit-counts",
     "verify:deposit-metadata",
     "verify:release-live"
   ],
   "violatedLive": [
-    "verify:deposit-counts",
     "verify:deposit-metadata",
     "verify:release-live"
   ],

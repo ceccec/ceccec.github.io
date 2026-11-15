@@ -586,6 +586,13 @@ export declare const LEAN_REGISTRY_DIR = "src/pair/lean/proofs";
 export declare const LEAN_DIGIT_DIRS: readonly string[];
 /** Every theorem in the nine station perspective files — the same reader over each station folder. */
 export declare function leanDigitTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
+/** A station's own perspective file is named by its digit word (one.lean … nine.lean); every other .lean in a station folder
+ *  is a Clay case's file, which belongs to the involution corpus wherever it sits (owner, 2026-11-15: a case per folder). */
+export declare const LEAN_STATION_FILE: RegExp;
+/** Whether a Lean file belongs to the involution corpus: anything in src/pair/formal/proofs, or a Clay case's file in a station folder. */
+export declare const isInvolutionFile: (dir: string, file: string) => boolean;
+/** The involution corpus: src/pair/formal/proofs, and each Clay case's file in its station folder. */
+export declare function leanInvolutionTheorems(root?: string): readonly LeanTheoremLatex[];
 /** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
 export declare function leanBlockCommentLines(lines: readonly string[]): boolean[];
 /** Every theorem in the sealed involution proofs, read from the Lean itself. */
@@ -703,7 +710,24 @@ export type LeanPageRow = {
     /** The post's tag cloud, every tag read from the theorem itself: its source file, the account it is credited to
      *  (the kernel alone, or the axioms the kernel reports), and the corpus it belongs to. Nav, feed and sitemap group by these. */
     readonly tags: readonly string[];
+    /** The Clay cases this theorem is bonded to (clayCasesOf) — empty for a theorem whose subject is not a Clay case. */
+    readonly cases: readonly ClayCase[];
 };
+/**
+ * THE CLAY COORDINATES OF A THEOREM — measured by shared definitions, never assigned (owner, 2026-11-15: "each lean has
+ * coordinates in the clay problem solutions"). The Lean files import nothing from one another, so a name means what its OWN
+ * file defines: a theorem is bonded to a case when it sits in that case's own file, or when its file defines one of that
+ * case's maps and its statement uses it. Matching a name across files is coincidence (spacetime.lean's star is not
+ * Yang–Mills' Hodge star) and is not done. Measured 2026-11-15: 64 of 597 theorems bond; each case draws on exactly three
+ * files — its own, its station's, and cross.lean, where the theorems relating cases bond to several at once.
+ * A bond says which formalised perspective bears on a case. It does not solve the case; every Clay problem here stays open.
+ */
+export declare const CLAY_CASES: readonly ["poincare", "riemann", "p-vs-np", "hodge", "bsd", "navier-stokes", "yang-mills"];
+export type ClayCase = (typeof CLAY_CASES)[number];
+/** Per file, the maps it defines and the case each models — read from the files' own doc comments. */
+export declare const CLAY_CASE_MAPS: Readonly<Record<string, Partial<Record<ClayCase, readonly string[]>>>>;
+/** The cases a theorem is bonded to: its own case file, or a case map its own file defines and its statement uses. */
+export declare function clayCasesOf(sourcePath: string, proposition: string): ClayCase[];
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
 export declare function leanPageSlug(file: string, name: string): string;
 /** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every

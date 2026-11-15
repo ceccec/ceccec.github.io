@@ -27,6 +27,26 @@
   "walk_reaches_yangMills": [],
   "walking_from_the_mirror_is_walking_from_here_shifted": []
  },
+ "src/1/poincare.lean": {
+  "chi_and_genus_are_inverse": [],
+  "double_torus_has_chi_minus_two_and_rank_four": [],
+  "homology_rank_is_twice_the_genus": [],
+  "sphere_has_euler_characteristic_two": [],
+  "torus_has_euler_characteristic_zero": []
+ },
+ "src/2/riemann.lean": {
+  "critical_line_is_the_fixed_point": [],
+  "involution_fixes_the_critical_line": [
+   "Quot.sound",
+   "propext"
+  ],
+  "sigma_is_an_involution": [],
+  "sigma_pairs_the_plane": [],
+  "the_fixed_line_is_one_half": [
+   "Quot.sound",
+   "propext"
+  ]
+ },
  "src/2/two.lean": {
   "at_two_mirroring_twice_is_the_sequence": [],
   "at_two_the_nine_complement_commutes_with_the_walk": [],
@@ -118,6 +138,23 @@
   "walk_reaches_yangMills": [],
   "walking_from_the_mirror_is_walking_from_here_shifted": []
  },
+ "src/4/p-vs-np.lean": {
+  "fixed_points_are_p_and_pspace": [],
+  "if_np_is_fixed_then_np_equals_conp": [],
+  "np_and_conp_are_swapped": [],
+  "p_is_closed_under_complement": [],
+  "sigma_is_an_involution": []
+ },
+ "src/5/bsd.lean": {
+  "central_point_is_the_fixed_point": [],
+  "parity_is_an_involution": [],
+  "root_number_one_iff_rank_even": [],
+  "root_number_squares_to_one": [
+   "Quot.sound",
+   "propext"
+  ],
+  "sigma_is_an_involution": []
+ },
  "src/5/five.lean": {
   "bsd_reflection_fixes_exactly_the_central_point": [
    "Quot.sound",
@@ -158,6 +195,13 @@
   "walking_from_the_mirror_is_walking_from_here_shifted": [],
   "walking_the_reflection_experiences_the_sequence": []
  },
+ "src/5/hodge.lean": {
+  "diagonal_is_fixed_at_every_k": [],
+  "fixed_type_is_p_equals_q": [],
+  "involution_fixes_the_diagonal": [],
+  "sigma_is_an_involution": [],
+  "sigma_preserves_degree": []
+ },
  "src/6/six.lean": {
   "at_six_mirroring_twice_is_the_sequence": [],
   "at_six_the_nine_complement_commutes_with_the_walk": [],
@@ -184,6 +228,12 @@
   "walk_reaches_riemann": [],
   "walk_reaches_yangMills": [],
   "walking_from_the_mirror_is_walking_from_here_shifted": []
+ },
+ "src/7/navier-stokes.lean": {
+  "euler_is_time_reversible": [],
+  "fixed_points_are_exactly_the_inviscid": [],
+  "reversal_is_an_involution": [],
+  "viscosity_breaks_time_reversal": []
  },
  "src/7/seven.lean": {
   "at_seven_mirroring_twice_is_the_sequence": [],
@@ -251,6 +301,18 @@
   "walk_reaches_yangMills": [],
   "walking_from_the_mirror_is_walking_from_here_shifted": []
  },
+ "src/8/yang-mills.lean": {
+  "involution_splits_the_middle_forms": [
+   "Quot.sound",
+   "propext"
+  ],
+  "middle_forms_have_dimension_six": [],
+  "selfdual_and_antiselfdual_split_the_six": [],
+  "star_is_an_endomorphism_only_in_the_middle": [],
+  "star_squares_to_the_identity": [
+   "propext"
+  ]
+ },
  "src/9/nine.lean": {
   "at_nine_mirroring_twice_is_the_sequence": [],
   "at_nine_the_nine_complement_commutes_with_the_walk": [],
@@ -313,16 +375,6 @@
    "propext"
   ]
  },
- "src/pair/formal/proofs/bsd.lean": {
-  "central_point_is_the_fixed_point": [],
-  "parity_is_an_involution": [],
-  "root_number_one_iff_rank_even": [],
-  "root_number_squares_to_one": [
-   "Quot.sound",
-   "propext"
-  ],
-  "sigma_is_an_involution": []
- },
  "src/pair/formal/proofs/coin.lean": {
   "all_that_is_not_harmonic_is_moved": [],
   "every_bit_of_resistance_drains": [],
@@ -342,13 +394,6 @@
   "verified_at_every_point_below_the_bound": [],
   "what_a_finite_check_does_establish": []
  },
- "src/pair/formal/proofs/hodge.lean": {
-  "diagonal_is_fixed_at_every_k": [],
-  "fixed_type_is_p_equals_q": [],
-  "involution_fixes_the_diagonal": [],
-  "sigma_is_an_involution": [],
-  "sigma_preserves_degree": []
- },
  "src/pair/formal/proofs/involution.lean": {
   "evenPart_is_symmetric": [
    "propext"
@@ -364,39 +409,6 @@
   "the_instance_is_an_involution": [],
   "the_instance_splits_without_loss": [],
   "the_split_loses_nothing": [
-   "propext"
-  ]
- },
- "src/pair/formal/proofs/navier-stokes.lean": {
-  "euler_is_time_reversible": [],
-  "fixed_points_are_exactly_the_inviscid": [],
-  "reversal_is_an_involution": [],
-  "viscosity_breaks_time_reversal": []
- },
- "src/pair/formal/proofs/p-vs-np.lean": {
-  "fixed_points_are_p_and_pspace": [],
-  "if_np_is_fixed_then_np_equals_conp": [],
-  "np_and_conp_are_swapped": [],
-  "p_is_closed_under_complement": [],
-  "sigma_is_an_involution": []
- },
- "src/pair/formal/proofs/poincare.lean": {
-  "chi_and_genus_are_inverse": [],
-  "double_torus_has_chi_minus_two_and_rank_four": [],
-  "homology_rank_is_twice_the_genus": [],
-  "sphere_has_euler_characteristic_two": [],
-  "torus_has_euler_characteristic_zero": []
- },
- "src/pair/formal/proofs/riemann.lean": {
-  "critical_line_is_the_fixed_point": [],
-  "involution_fixes_the_critical_line": [
-   "Quot.sound",
-   "propext"
-  ],
-  "sigma_is_an_involution": [],
-  "sigma_pairs_the_plane": [],
-  "the_fixed_line_is_one_half": [
-   "Quot.sound",
    "propext"
   ]
  },
@@ -477,18 +489,6 @@
   "the_closure_is_eighty_one_orbits": [],
   "the_compound_fraction_clears": [],
   "the_involution_laws_are_general": []
- },
- "src/pair/formal/proofs/yang-mills.lean": {
-  "involution_splits_the_middle_forms": [
-   "Quot.sound",
-   "propext"
-  ],
-  "middle_forms_have_dimension_six": [],
-  "selfdual_and_antiselfdual_split_the_six": [],
-  "star_is_an_endomorphism_only_in_the_middle": [],
-  "star_squares_to_the_identity": [
-   "propext"
-  ]
  },
  "src/pair/intelligence/harmonisation/lean-proofs.lean": {
   "confidence_is_one_minus_loss_by_definition": [],

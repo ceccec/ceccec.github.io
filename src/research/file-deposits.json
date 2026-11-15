@@ -63,7 +63,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/5/bsd.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -109,7 +109,7 @@
         "bsd"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/bsd.lean",
+        "src/5/bsd.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -437,7 +437,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/5/hodge.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -483,7 +483,7 @@
         "hodge"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/hodge.lean",
+        "src/5/hodge.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -678,7 +678,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/7/navier-stokes.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -719,7 +719,7 @@
         "navier-stokes"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/7/navier-stokes.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -781,7 +781,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/4/p-vs-np.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -827,7 +827,7 @@
         "p-vs-np"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/4/p-vs-np.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -889,7 +889,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/1/poincare.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -935,7 +935,7 @@
         "poincare"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/poincare.lean",
+        "src/1/poincare.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -997,7 +997,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/2/riemann.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -1043,7 +1043,7 @@
         "riemann"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/riemann.lean",
+        "src/2/riemann.lean",
         "src/research/lean-theorems.tex"
       ]
     },
@@ -1600,7 +1600,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/8/yang-mills.lean",
           "relation": "isDerivedFrom",
           "scheme": "url"
         },
@@ -1646,7 +1646,7 @@
         "yang-mills"
       ],
       "repoPaths": [
-        "src/pair/formal/proofs/yang-mills.lean",
+        "src/8/yang-mills.lean",
         "src/research/lean-theorems.tex"
       ]
     }

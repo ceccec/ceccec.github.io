@@ -428,7 +428,7 @@ export function computerScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('computerScienceResearch', matrix, () => {
     const sequence = buildSequenceReducesComputations(matrix)
     const guard = __ns_up_stack_overflow.stackOverflowGuard(matrix)
-    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid('cs-research'), boundary: 'CS fundamentals, plus the complementation involution machine-checked in Lean (src/pair/formal/proofs/p-vs-np.lean).' }
+    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid('cs-research'), boundary: 'CS fundamentals, plus the complementation involution machine-checked in Lean (src/4/p-vs-np.lean).' }
   })
 }
 export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -441,7 +441,7 @@ export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'stackComputes', on: stack.computes },
       { facet: 'srcAllComputes', on: srcAll.computes && srcAll.registry.gapless },
       { facet: 'pairs', on: __ns_up_pair_enforcement.QUANTUM_COMMAND_PAIR_IDS.length >= (8 * 5) },
-      { facet: `P vs NP is carried as the complementation involution — ${leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0} machine-checked theorems in src/pair/formal/proofs/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0) > 0 },
+      { facet: `P vs NP is carried as the complementation involution — ${leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0} machine-checked theorems in src/4/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0) > 0 },
     ])
     return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root]), statement: 'Computer science computes.', boundary: research.boundary }
   })
