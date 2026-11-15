@@ -1,3 +1,4 @@
+import type { QuantumState } from '../../0/index.ts';
 /** NuFit-6.0 atmospheric neutrino mass-squared splitting |Δm²₃ₗ|, eV². */
 export declare const NEUTRINO_DM2_ATM_EV2 = 0.002513;
 /** Aksak rhythm — bounded short:long ratio walk in the documented elastic band. */
@@ -419,10 +420,13 @@ export declare function kleinFourActsSimplyTransitivelyOnBellStates(): {
     statement: string;
     boundary: string;
 };
-export declare function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToTheoremsWhichArethePresentInverted(): {
-    unifies: boolean;
+export declare function everySimulatorGateIsLinearTheSuperpositionPrincipleTheorem(): {
+    computes: boolean;
+    maps: number;
+    samples: number;
+    nonLinear: string[];
+    linear: (map: (state: QuantumState) => QuantumState) => boolean;
     facets: {
-        receipt: string;
         facet: string;
         on: boolean;
     }[];
@@ -430,20 +434,10 @@ export declare function quantumIsLinearSuperpositionsAreLinearCombinationsEntang
     statement: string;
     boundary: string;
 };
-export declare function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdBitIsTheThirdEyeThatSeesWhatAndDiscards(): {
-    realises: boolean;
-    facets: {
-        receipt: string;
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
-export declare function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgebraicTheoremsFuseAll(): {
-    fuses: boolean;
-    collisionPreimages: number;
+export declare function theQuantumToffoliIsTheClassicalReversibleToffoliEmbeddedTheorem(): {
+    computes: boolean;
+    placements: number;
+    mismatches: string[];
     facets: {
         facet: string;
         on: boolean;

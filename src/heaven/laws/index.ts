@@ -2101,16 +2101,40 @@ export function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroS
     // 4 — PARTITION to the bit: sources (axioms) + derived (theorems) = every node, no leftover
     const derived = nodeCount - known.sources.length
     const partitions = known.sources.length + derived === nodeCount
+    // 5 — THE GENERAL THEOREM, NOT ONE EXAMPLE: every finite DAG has a source. Decided over EVERY labelled directed graph
+    // on n ≤ 4 nodes (2^(n(n−1)) edge sets each): an acyclic one always has a source and Kahn's order starts at one
+    // (so, contrapositively, a sourceless graph is never acyclic). The DAG counts are held to Robinson's recurrence
+    // a(n) = Σₖ (−1)^(k+1) C(n,k) 2^(k(n−k)) a(n−k), so the enumeration cannot silently skip graphs.
+    const maxNodes = 4
+    const binom = (n: number, k: number): number => k === 0 ? 1 : binom(n - 1, k - 1) * n / k
+    const robinson: number[] = [1]
+    for (let n = 1; n <= maxNodes; n += 1) { let s = 0; for (let k = 1; k <= n; k += 1) s += (k % 2 ? 1 : -1) * binom(n, k) * 2 ** (k * (n - k)) * robinson[n - k]!; robinson.push(s) }
+    const counted: number[] = [1]
+    const sourceless: string[] = []
+    for (let n = 1; n <= maxNodes; n += 1) {
+      const pairs: [number, number][] = []
+      for (let a = 0; a < n; a += 1) for (let b = 0; b < n; b += 1) if (a !== b) pairs.push([a, b])
+      let dags = 0
+      for (let mask = 0; mask < 2 ** pairs.length; mask += 1) {
+        const edges = pairs.filter((_, i) => (mask >> i) & 1)
+        const g = topologicalOrder(n, edges)
+        if (g.isDAG) { dags += 1; if (!g.sources.length || !g.sources.includes(g.order[0]!)) sourceless.push(`n=${n} mask=${mask}`) }
+      }
+      counted.push(dags)
+    }
+    const everyDagHasASource = !sourceless.length && counted.every((c, n) => c === robinson[n])
     const facets = [
       { facet: `AXIOMS = IN-DEGREE-0 SOURCES — the underived premises {${known.sources.join(',')}} are exactly the sources of the theorem dependency DAG, and they equal the declared axioms {${declaredAxioms.join(',')}} (${sourcesAreDeclared}); every other node (2..5) is a THEOREM with premises, so nothing derives the axioms — that is what makes them axioms`, on: sourcesAreDeclared },
       { facet: `EVERY KNOWN THEOREM TRACES BACK TO AN AXIOM — the graph is acyclic (${known.isDAG}) so following deps backward from any theorem terminates at a source; the topological order begins with the axioms (${known.order.join('→')}) — no theorem floats free of the axioms it rests on`, on: tracesToAxioms },
       { facet: `SEARCHING THE THEOREMS DISCOVERS THE UNKNOWN AXIOM — when theorem 5 secretly uses an undeclared premise 6, tracing the DAG surfaces 6 as a NEW source; discovered = sources ∖ declared = {${discovered.join(',')}} (${discoveredTheUnknown}) — the unknown axiom is FOUND by searching the known theorems backward, not guessed`, on: discoveredTheUnknown },
+      { facet: `EVERY FINITE DAG HAS A SOURCE — THE GENERAL THEOREM, decided on every labelled directed graph with up to ${maxNodes} nodes: the acyclic ones number ${counted.slice(1).join(', ')} (Robinson's recurrence gives ${robinson.slice(1).join(', ')}), each has a source and Kahn's order begins at one (${everyDagHasASource}) — so axioms can be reduced but never to zero in a finite corpus. This is well-foundedness of a finite order; it is not Gödel's second incompleteness theorem, which concerns what a consistent system can prove about itself`, on: everyDagHasASource },
       { facet: `AXIOMS + THEOREMS PARTITION THE CORPUS TO THE BIT — ${known.sources.length} axioms + ${derived} theorems = ${nodeCount} nodes, no leftover (${partitions}): every node is either an underived axiom (a source) or a derived theorem, and the split is exact — a clean accounting with no gap`, on: partitions },
     ]
     return {
       computes: facets.every((entry) => entry.on),
       axioms: known.sources,
       discovered,
+      dagsByNodes: counted.slice(1),
       facets,
       statement: `Search the known theorems to discover the unknown axioms — they are the in-degree-0 sources of the dependency DAG — ${facets.filter((entry) => entry.on).length}/${facets.length}. Model the known theorems as a dependency graph (edge = derived-from: each premise points to the theorem that uses it). The AXIOMS are exactly the sources (in-degree 0) — the premises nothing derives; every other node is a theorem with premises, and the DAG being acyclic means every theorem traces backward to an axiom. When a theorem secretly uses an undeclared premise, that premise surfaces as a NEW source: the unknown axiom is DISCOVERED by searching the known theorems backward (discovered = sources ∖ declared). Axioms and theorems partition the corpus to the bit, no leftover. The same root primitive (topologicalOrder in src/0) that removed the Kahn redundancy performs the discovery.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }

@@ -851,20 +851,6 @@ export declare function savedThoughtsFormAContentAddressedDagEachCommittingToIts
     statement: string;
     boundary: string;
 };
-export declare function theDagLeavesAreTheAxiomsMinimisingThemIsTheProgramOneAlwaysRemains(): {
-    computes: boolean;
-    axioms: string[];
-    derived: string[];
-    axiomsAfterMinimising: string[];
-    programShrinksAxioms: boolean;
-    atLeastOneAxiomRemains: boolean;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function theWavesAreTheTopologicalLevelsOfTheDagComputableInParallel(): {
     computes: boolean;
     nodes: number;
@@ -1144,22 +1130,6 @@ export declare function theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines()
     invertedRecoversSource: boolean;
     isInvolution: boolean;
     movieDiffersFromSource: boolean;
-    root: string;
-    facets: {
-        receipt: string;
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
-export declare function theMeasuredPoleIsNotTheTrueAxisAndTheClockIsAnAxiom(): {
-    computes: boolean;
-    declinationNonzero: boolean;
-    drifts: boolean;
-    magneticReverses: boolean;
-    clockRungs: number;
-    recomputable: boolean;
     root: string;
     facets: {
         receipt: string;

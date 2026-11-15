@@ -1032,6 +1032,7 @@ export declare function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDeg
     computes: boolean;
     axioms: number[];
     discovered: number[];
+    dagsByNodes: number[];
     facets: {
         facet: string;
         on: boolean;

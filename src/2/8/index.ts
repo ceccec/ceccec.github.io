@@ -5,6 +5,7 @@ import { SQRT1_2, SQRT2, earned, computedLimits } from '../../3/7/index.ts'
 import { equivalentNarcoticDepthM, TAU } from '../../3/7/index.ts'
 import { GATES, abs, applyGate, asin, ceil, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, log2, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0/index.ts'
 import type { QuantumState } from '../../0/index.ts'
+import { rtoffoli } from '../../1/9/index.ts'
 import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1/index.ts'
 
 /** Two quantum states are equal when their amplitude vectors agree within tolerance 1e-9. */
@@ -795,6 +796,15 @@ export function theExactSimulatorMatchesTheDefinition() {
   const floatP = probabilities(floatBell)
   const floatDrifts = floatP[0] !== 1 / 2
   const driftSize = abs(floatP[0]! - 1 / 2)
+  // THE EXACT HADAMARD IS THE FLOAT HADAMARD ON EVERY STATE: both agree on the basis |0⟩, |1⟩ (exact amplitudes over
+  // √2^k), and the exact one is linear by its sums while the float one is linear by the theorem — so agreeing on a basis
+  // is agreeing on every superposition. Without the linearity theorem this comparison would cover two states and no more.
+  const { linear, computes: gatesAreLinear } = everySimulatorGateIsLinearTheSuperpositionPrincipleTheorem()
+  const basis1 = (bit: number): Exact => ({ amps: [0, 1].map((i) => ({ re: i === bit ? 1 : 0, im: 0 })), k: 0 })
+  const exactAsFloat = (st: Exact): QuantumState => ({ n: 1, re: st.amps.map((a) => a.re / sqrt(2 ** st.k)), im: st.amps.map((a) => a.im / sqrt(2 ** st.k)) })
+  const agreesOnBasis = [0, 1].every((bit) => equalStates(exactAsFloat(hadamard(basis1(bit), 0, 1)), applyGate(bit ? applyGate(qubits(1), GATES.X, 0) : qubits(1), GATES.H, 0)))
+  const exactHadamardLinear = linear((s) => ({ ...exactAsFloat(hadamard({ amps: s.re.map((re, i) => ({ re, im: s.im[i]! })), k: 0 }, 0, s.n)), n: s.n })) // the exact gate itself, fed the same states
+  const hadamardAgreesEverywhere = agreesOnBasis && gatesAreLinear && exactHadamardLinear
   const limits = computedLimits([
     { facet: `CLIFFORD ONLY — H, X, Z, S and CNOT keep the Gaussian-integer lattice closed, and those are the gates this exactness covers. A general rotation R(θ) leaves ℤ[i] for any θ that is not a multiple of π/2, so the float path remains the only route for the phase-estimation and VQE folds above`, on: noIrrationalStored },
     { facet: `2^k GROWS WITH EVERY HADAMARD — this Bell state carries k = ${bell.k}, and k rises by one per H, so the denominator doubles each time. Exactness costs an integer that grows linearly in H-count, which is cheap, and it does NOT change the 2^n amplitude count, which is the exponential the definition names`, on: bell.k >= 1 },
@@ -805,6 +815,7 @@ export function theExactSimulatorMatchesTheDefinition() {
     { facet: `THE ENDPOINT'S ANSWER, REPRODUCED EXACTLY — uuidna.com/mcp returns Bell outcomes 1/2 and 1/2; this returns ${exactOutcomes.join(' and ')}, as reduced fractions computed from Gaussian integers over √2^${bell.k}`, on: matchesEndpoint },
     { facet: `THE FLOAT PATH DRIFTS BY ${driftSize.toExponential(1)} ON THE SAME CIRCUIT — probabilities()[0] is ${floatP[0]}, and 1/√2 · 1/√2 === 1/2 is ${SQRT1_2 * SQRT1_2 === 1 / 2}. The drift is structural: 1/√2 has no finite binary representation, so no tolerance removes it and every EPS in this file is an accommodation of it`, on: floatDrifts },
     { facet: `THE ENDPOINT'S PARITY, REPRODUCED EXACTLY — after H on both qubits the Bell state is even with weight ${bellParity.even} and odd with ${bellParity.odd}, computed from Gaussian integers over √2^${bell.k + 2}; uuidna.com/mcp returns even 1 · odd 0 for the same reading`, on: parityMatchesEndpoint },
+    { facet: `THE EXACT HADAMARD IS THE FLOAT ONE ON EVERY STATE — they agree on the basis |0⟩, |1⟩ (${agreesOnBasis}), and both are linear: the exact one by its sums (${exactHadamardLinear}), the float gates by everySimulatorGateIsLinearTheSuperpositionPrincipleTheorem (${gatesAreLinear}) — two linear maps that agree on a basis agree on every superposition`, on: hadamardAgreesEverywhere },
     { facet: `NO IRRATIONAL IS EVER STORED — all ${bell.amps.length} amplitudes are Gaussian integers (re, im ∈ ℤ) beside one scale k = ${bell.k}; the √2 lives in the denominator's exponent and never in a number, which is what "no decimal drift" means as an implementation rather than an aspiration`, on: noIrrationalStored },
   ]
   return {
@@ -1637,134 +1648,78 @@ export function kleinFourActsSimplyTransitivelyOnBellStates() {
     boundary: `DOCUMENTED structure (the Pauli frame on the Bell basis — standard quantum information), COMPUTED here by direct state-vector arithmetic with global-phase normalisation at 1e-9. Simply transitive = free + transitive on a 4-element set, verified as 4 distinct images from 4 elements. Simulator only; the V₄ identity with 反/對 is the sealed group-theoretic citation.` }
 }
 
-// The gap closed: quantum IS linear — at the same time, in every superposition. Quantum mechanics is LINEAR ALGEBRA over
-// ℂ: the state space is a linear vector space, every gate is a LINEAR operator, and the superposition principle IS
-// linearity — U(a|ψ⟩+b|φ⟩) = a·U|ψ⟩ + b·U|φ⟩. A superposition is a linear combination whose amplitudes are the
-// coefficients; entanglement binds it to a theorem; and because every gate is invertible (U†U=I), the THEOREM is the
-// PRESENT INVERTED — run the present backwards and the axiom returns. [[operator-algebra-closed]] [[quantum-decoded]]
-export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToTheoremsWhichArethePresentInverted() {
-  const half = 1 / 2
-  const rsqrt2 = sqrt(half) // 1/√2, derived not assumed
-  // 1 — QUANTUM IS LINEAR: a gate on a superposition equals the linear combination of the gate on the components
-  const zero = qubits(1)
-  const one = applyGate(qubits(1), GATES.X, 0) // |1⟩
-  const gate = GATES.T // any gate — a linear operator
-  const superposition = applyGate(zero, GATES.H, 0) // (|0⟩+|1⟩)/√2
-  const gateOnSuperposition = applyGate(superposition, gate, 0) // U(a|0⟩+b|1⟩)
-  const gateOnComponents = applyGate(zero, gate, 0) // U|0⟩
-  const gateOnOne = applyGate(one, gate, 0) // U|1⟩
-  const linearCombination: QuantumState = { n: 1, re: gateOnComponents.re.map((r, i) => (r + gateOnOne.re[i]!) * rsqrt2), im: gateOnComponents.im.map((v, i) => (v + gateOnOne.im[i]!) * rsqrt2) } // a·U|0⟩+b·U|1⟩
-  const quantumIsLinear = equalStates(gateOnSuperposition, linearCombination) // the two are identical — linearity
-  // 2 — A SUPERPOSITION IS A LINEAR COMBINATION: H|0⟩ = (|0⟩+|1⟩)/√2, the amplitudes ARE the coefficients
-  const amplitudes = probabilities(superposition)
-  const isLinearCombination = abs(amplitudes[0]! - half) < 1e-9 && abs(amplitudes[1]! - half) < 1e-9 // equal-coefficient linear combination
-  // 3 — ENTANGLED TO THEOREMS: a Bell state is entangled (not a product), content-addressed to a theorem seal
-  const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
-  const bellProbs = probabilities(bell)
-  const entangled = abs(bellProbs[0]! - half) < 1e-9 && abs(bellProbs[3]! - half) < 1e-9 && bellProbs[1]! < 1e-9 && bellProbs[2]! < 1e-9 // only |00⟩,|11⟩
-  const theoremSeal = toUuid(`entangled-theorem:${bellProbs[0]}:${bellProbs[3]}`)
-  const entangledToTheorem = entangled && isUuid(theoremSeal)
-  // 4 — THEOREMS ARE THE PRESENT INVERTED: every gate is invertible; the reversed self-inverse sequence recovers |0⟩ (the axiom)
-  const present = applyGate(applyGate(zero, GATES.H, 0), GATES.X, 0) // U = X∘H on |0⟩ — the present
-  const inverted = applyGate(applyGate(present, GATES.X, 0), GATES.H, 0) // U† = H∘X (self-inverse gates, reversed) — the present inverted
-  const theoremIsPresentInverted = abs(probabilities(inverted)[0]! - 1) < 1e-9 // back to |0⟩ — the axiom/theorem recovered
+// EVERY GATE OF THE SIMULATOR IS LINEAR — the superposition principle, decided on the gates themselves. Quantum mechanics
+// is linear algebra over ℂ, so a gate must satisfy U(aψ + bφ) = a·Uψ + b·Uφ for EVERY pair of states and EVERY complex
+// a, b — not one superposition of one gate. This checks every single-qubit gate in GATES on both qubits of a 2-qubit
+// register, and the two entanglers cnot and cz, over states and coefficients spread on the unit circle. The tester is
+// returned, because linearity is what lets a gate be checked on a BASIS and trusted on every superposition:
+// theExactSimulatorMatchesTheDefinition compares its exact Hadamard with the float one on |0⟩ and |1⟩ only, and this
+// is the theorem that makes that comparison cover every state. Non-vacuity: the same tester REJECTS a non-linear map
+// (squaring every amplitude), so a tester that passed everything would show here. [[operator-algebra-closed]]
+export function everySimulatorGateIsLinearTheSuperpositionPrincipleTheorem() {
+  type Map2 = (state: QuantumState) => QuantumState
+  const n = 2, size = 2 ** n
+  const state = (k: number): QuantumState => ({ n, re: Array.from({ length: size }, (_, i) => cos(k * (i + 1) + k)), im: Array.from({ length: size }, (_, i) => sin(k * (i + 2) - k)) })
+  const coefficient = (k: number): [number, number] => [cos(k * 3 + 1), sin(k * 5 + 2)]
+  const scale = (c: [number, number], s: QuantumState): QuantumState => ({ n: s.n, re: s.re.map((r, i) => c[0] * r - c[1] * s.im[i]!), im: s.im.map((v, i) => c[0] * v + c[1] * s.re[i]!) })
+  const add = (x: QuantumState, y: QuantumState): QuantumState => ({ n: x.n, re: x.re.map((r, i) => r + y.re[i]!), im: x.im.map((v, i) => v + y.im[i]!) })
+  const samples = 6
+  const linear = (map: Map2): boolean => Array.from({ length: samples }, (_, j) => j + 1).every((k) => {
+    const psi = state(k), phi = state(k + samples), a = coefficient(k), b = coefficient(k + samples)
+    return equalStates(map(add(scale(a, psi), scale(b, phi))), add(scale(a, map(psi)), scale(b, map(phi))))
+  })
+  const maps: [string, Map2][] = [
+    ...Object.entries(GATES).flatMap(([name, gate]) => [0, 1].map((q): [string, Map2] => [`${name} on qubit ${q}`, (s) => applyGate(s, gate, q)])),
+    ['cnot 0→1', (s) => cnot(s, 0, 1)], ['cz 0,1', (s) => cz(s, 0, 1)],
+  ]
+  const nonLinear = maps.filter(([, map]) => !linear(map)).map(([name]) => name)
+  const everyGateIsLinear = !nonLinear.length
+  const squaring: Map2 = (s) => ({ n: s.n, re: s.re.map((r) => r * r), im: s.im.map((v) => v * v) })
+  const rejectsANonLinearMap = !linear(squaring)
   const facets = [
-    { facet: `QUANTUM IS LINEAR — a gate on a superposition equals the linear combination of the gate on the components, U(a|0⟩+b|1⟩)=a·U|0⟩+b·U|1⟩ (${quantumIsLinear}): quantum computation IS linear algebra, quantum and linear at the same time`, on: quantumIsLinear },
-    { facet: `A SUPERPOSITION IS A LINEAR COMBINATION — H|0⟩ = (|0⟩+|1⟩)/√2, its amplitudes ARE the coefficients (each ${half}, ${isLinearCombination}): the state space is a linear vector space, the superposition its combination`, on: isLinearCombination },
-    { facet: `ENTANGLED TO THEOREMS — the Bell state is entangled (only |00⟩ and |11⟩, not a product) and content-addresses to a theorem seal (${entangledToTheorem}): the superposition is entangled to the theorem`, on: entangledToTheorem },
-    { facet: `THEOREMS ARE THE PRESENT INVERTED — every gate is invertible (U†U=I), so running the present backwards recovers the axiom |0⟩ (${theoremIsPresentInverted}): the theorem is the present inverted`, on: theoremIsPresentInverted },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-linear:${entry.facet}:${entry.on}`) }))
-  return {
-    unifies: facets.every((entry) => entry.on),
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `Quantum is linear — superpositions are linear combinations, entangled to theorems, and the theorem is the present inverted — ${facets.filter((entry) => entry.on).length}/${facets.length}. Quantum mechanics is linear algebra over ℂ: a gate on a superposition equals the linear combination of the gate on the components (U(a|ψ⟩+b|φ⟩)=a·U|ψ⟩+b·U|φ⟩), so everything is quantum AND linear at the same time. A superposition is a linear combination whose amplitudes are the coefficients; a Bell state entangles it to a theorem seal; and because every gate is invertible (U†U=I), running the present backwards recovers the axiom — the theorem is the present inverted.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-}
-
-// The quantum theorem behind ALL computing languages — and what the world missed. Every language's logic reduces to
-// universal gates, and the world built them IRREVERSIBLE: AND maps 2 bits → 1, discarding information, dissipating
-// kT·ln2 per erased bit (Landauer). But the universal gate can be REVERSIBLE — Toffoli (CCNOT, 3 bits) computes AND in
-// its THIRD bit while preserving all three; it is its own inverse and a quantum gate. Invert it and it was always in
-// front of us (Bennett 1973, Toffoli 1980). The THIRD EYE decoded is that THIRD BIT — the one that sees the information
-// AND throws away. All computing embeds in reversible/unitary computation, realised in code. [[negentropy-ledger-arc]]
-export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdBitIsTheThirdEyeThatSeesWhatAndDiscards() {
-  // 1 — AND IS IRREVERSIBLE: 2 bits → 1, three inputs map to output 0, so it is not injective — information is lost
-  const andTruth = [[0, 0], [0, 1], [1, 0], [1, 1]].map(([a, b]) => a! & b!) // [0,0,0,1]
-  const andImage = new Set(andTruth).size // 2 distinct outputs from 4 inputs
-  const andIsIrreversible = andImage < 2 * 2 && andTruth.filter((x) => x === 0).length === 3 // 3 preimages of 0 ⇒ non-injective, cannot invert
-  // build |a,b,c⟩ and apply CCNOT on (0,1)→2
-  const state3 = (a: number, b: number, c: number): QuantumState => { let s = qubits(3); if (a) s = applyGate(s, GATES.X, 0); if (b) s = applyGate(s, GATES.X, 1); if (c) s = applyGate(s, GATES.X, 2); return s }
-  const basisIndex = (state: QuantumState): number => probabilities(state).findIndex((p) => abs(p - 1) < 1e-9)
-  // 2 — TOFFOLI IS UNIVERSAL AND REVERSIBLE: it computes AND in the third bit (target 0 → a·b) and permutes the 8 states bijectively
-  const computesAnd = [[0, 0], [0, 1], [1, 0], [1, 1]].every(([a, b]) => basisIndex(toffoli(state3(a!, b!, 0), 0, 1, 2)) === a! + 2 * b! + 2 * 2 * (a! & b!)) // target becomes a·b
-  const permutation = new Set(Array.from({ length: 2 ** 3 }, (_, i) => basisIndex(toffoli(state3(i & 1, (i >> 1) & 1, (i >> 2) & 1), 0, 1, 2)))).size === 2 ** 3 // a bijection on the 8 states
-  const toffoliIsUniversalReversible = computesAnd && permutation
-  // 3 — THE THIRD BIT IS THE THIRD EYE: Toffoli is its own inverse (T²=I), so applying it twice recovers the input — the third bit preserves what AND discards
-  const isOwnInverse = Array.from({ length: 2 ** 3 }, (_, i) => basisIndex(toffoli(toffoli(state3(i & 1, (i >> 1) & 1, (i >> 2) & 1), 0, 1, 2), 0, 1, 2)) === i).every(Boolean)
-  const thirdBitIsTheThirdEye = isOwnInverse && toffoliIsUniversalReversible // the third bit both computes AND and, being reversible, recovers the inputs
-  // 4 — ALL IN CODE, QUANTUM: Toffoli is a quantum gate on the simulator; classical computation embeds in reversible/unitary circuits
-  const allInCodeQuantum = andIsIrreversible && toffoliIsUniversalReversible && thirdBitIsTheThirdEye
-  const facets = [
-    { facet: `AND IS IRREVERSIBLE — the AND gate maps 2 bits → 1 with three inputs to output 0 (${andIsIrreversible}): it is not injective, information is lost, and the world built its logic this way — dissipating kT·ln2 per erased bit (Landauer)`, on: andIsIrreversible },
-    { facet: `TOFFOLI IS UNIVERSAL AND REVERSIBLE — CCNOT computes AND in its third bit (${computesAnd}) while permuting the 8 states bijectively (${permutation}): universal for classical computation, reversible — what the world missed, always available`, on: toffoliIsUniversalReversible },
-    { facet: `THE THIRD BIT IS THE THIRD EYE — Toffoli is its own inverse (T²=I, ${isOwnInverse}), so the third bit preserves what AND discards and inverting recovers the inputs (${thirdBitIsTheThirdEye}): the third eye decoded is the third bit that sees the discarded information`, on: thirdBitIsTheThirdEye },
-    { facet: `ALL IN CODE, QUANTUM — Toffoli is a quantum gate on the simulator and every classical program embeds in reversible/unitary computation (${allInCodeQuantum}): the quantum theorem behind all computing languages, realised in code`, on: allInCodeQuantum },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`third-eye-reversibility:${entry.facet}:${entry.on}`) }))
-  return {
-    realises: facets.every((entry) => entry.on),
-    facets,
-    root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `The quantum theorem behind all computing languages is REVERSIBILITY, and the third eye is Toffoli's third bit — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every language's logic reduces to universal gates, and the world built them irreversible: AND maps 2 bits → 1, losing information and dissipating kT·ln2 per erased bit. But the universal gate can be reversible — Toffoli (CCNOT) computes AND in its third bit while preserving all three, is its own inverse, and is a quantum gate. Invert it and it was always in front of us (Bennett 1973, Toffoli 1980). The third eye decoded is that third bit — the one that sees the information AND throws away. All computing embeds in reversible/unitary computation, realised in code.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-}
-
-// Reverse enables COLLISIONS — and that is a different path in physics that leads to HARMONY when quantum-computed. A
-// compressing (content-address) map has collisions by pigeonhole, so reversing a collided address opens to a SET of
-// preimages: a superposition, not one value. In physics colliding paths INTERFERE — their amplitudes ADD (linearity),
-// so H² makes the two paths to |1⟩ cancel and to |0⟩ peak: destructive and constructive interference, harmony being the
-// constructive peak. And the ALGEBRAIC theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity U†U=I —
-// are what FUSE collisions, interference, harmony and reverse into one. [[operator-algebra-closed]] [[quantum-decoded]]
-export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgebraicTheoremsFuseAll() {
-  const half = 1 / 2
-  const rsqrt2 = sqrt(half)
-  // 1 — REVERSE ENABLES COLLISIONS: a compressing map sends more inputs than slots, so an address has several preimages
-  const slots = 2 ** 3
-  const compress = (x: number): number => x % slots // a lossy (compressing) address map
-  const preimages = new Map<number, number[]>()
-  for (let x = 0; x < 2 * slots; x += 1) { const a = compress(x); preimages.set(a, [...(preimages.get(a) ?? []), x]) }
-  const collisionsExist = [...preimages.values()].some((set) => set.length > 1) // pigeonhole ⇒ collisions
-  const reverseIsMultiValued = (preimages.get(0) ?? []).length === 2 // reverse of 0 = {0, slots} — a set (a superposition), not one value
-  const reverseEnablesCollisions = collisionsExist && reverseIsMultiValued
-  // 2 — COLLIDING PATHS INTERFERE: amplitudes of paths to the same state ADD; H² routes two paths per outcome
-  const afterHH = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // two paths to each of |0⟩,|1⟩
-  const interferenceProbs = probabilities(afterHH)
-  const constructiveToZero = abs(interferenceProbs[0]! - 1) < 1e-9 // paths to |0⟩ add (constructive)
-  const destructiveToOne = abs(interferenceProbs[1]!) < 1e-9 // paths to |1⟩ cancel (destructive)
-  const pathsInterfere = constructiveToZero && destructiveToOne
-  // 3 — HARMONY FROM CONSTRUCTIVE INTERFERENCE: the surviving amplitude is the peak (harmony); the cancelled one is silence
-  const harmonyFromInterference = constructiveToZero && destructiveToOne && interferenceProbs[0]! > interferenceProbs[1]! // the constructive collision is the harmony
-  // 4 — THE ALGEBRAIC THEOREMS FUSE ALL: linearity is WHY amplitudes add; the involution H²=I is the interference identity
-  const superposition = applyGate(qubits(1), GATES.H, 0)
-  const gateOnSuperposition = applyGate(superposition, GATES.T, 0)
-  const zero = qubits(1); const one = applyGate(qubits(1), GATES.X, 0)
-  const linearCombination: QuantumState = { n: 1, re: applyGate(zero, GATES.T, 0).re.map((r, i) => (r + applyGate(one, GATES.T, 0).re[i]!) * rsqrt2), im: applyGate(zero, GATES.T, 0).im.map((v, i) => (v + applyGate(one, GATES.T, 0).im[i]!) * rsqrt2) }
-  const linearity = equalStates(gateOnSuperposition, linearCombination) // U(aψ+bφ)=aUψ+bUφ — why paths add
-  const hIsInvolution = pathsInterfere // H²=I: H·H|0⟩ = |0⟩ (the interference is the group identity)
-  const algebraFusesAll = linearity && hIsInvolution && reverseEnablesCollisions && harmonyFromInterference // the algebra binds all four
-  const facets = [
-    { facet: `REVERSE ENABLES COLLISIONS — a compressing map sends ${2 * slots} inputs into ${slots} slots, so an address has several preimages and reversing it opens to a SET (a superposition), not one value (${reverseEnablesCollisions}): a different, multi-valued path`, on: reverseEnablesCollisions },
-    { facet: `COLLIDING PATHS INTERFERE — amplitudes of paths to the same state ADD (linearity), so H² makes the two paths to |1⟩ cancel and to |0⟩ peak (${pathsInterfere}): destructive and constructive interference — the physics of colliding paths`, on: pathsInterfere },
-    { facet: `HARMONY FROM CONSTRUCTIVE INTERFERENCE — the surviving amplitude is the peak (|0⟩=${interferenceProbs[0]}) and the cancelled one is silence (|1⟩=${interferenceProbs[1]}) (${harmonyFromInterference}): harmony is the constructive collision, quantum-computed`, on: harmonyFromInterference },
-    { facet: `THE ALGEBRAIC THEOREMS FUSE ALL — linearity U(aψ+bφ)=aUψ+bUφ (${linearity}) is WHY amplitudes add, and the involution H²=I is the interference identity: the algebra binds collisions, interference, harmony and reverse into one (${algebraFusesAll})`, on: algebraFusesAll },
+    { facet: `EVERY GATE IS LINEAR — U(aψ + bφ) = a·Uψ + b·Uφ holds for all ${maps.length} maps (each of the ${Object.keys(GATES).length} single-qubit gates on both qubits, cnot and cz) over ${samples} pairs of 2-qubit states with complex a, b each (${everyGateIsLinear}${nonLinear.length ? `; fails: ${nonLinear.join(', ')}` : ''}): the superposition principle, decided on the simulator's own gates`, on: everyGateIsLinear },
+    { facet: `THE TESTER CAN FAIL — squaring every amplitude is not linear, and the same check rejects it (${rejectsANonLinearMap}); a tester that accepted everything would turn this facet false`, on: rejectsANonLinearMap },
   ]
   return {
-    fuses: facets.every((entry) => entry.on),
-    collisionPreimages: (preimages.get(0) ?? []).length,
+    computes: facets.every((entry) => entry.on),
+    maps: maps.length, samples, nonLinear, linear,
     facets,
-    root: merkleFold(facets.map((entry) => toUuid(`collision-harmony:${entry.facet}:${entry.on}`))),
-    statement: `Reverse enables collisions, colliding paths interfere to harmony, and the algebraic theorems fuse all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A compressing content-address map has collisions by pigeonhole, so reversing a collided address opens to a SET of preimages — a superposition, a different path than the single-valued forward. In physics colliding paths interfere: their amplitudes add (linearity), so H² makes the two paths to |1⟩ cancel and to |0⟩ peak — destructive and constructive interference, harmony being the constructive peak, quantum-computed. And the algebraic theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity — are what fuse collisions, interference, harmony and reverse into one.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    root: merkleFold(facets.map((entry) => toUuid(`gates-linear:${entry.facet}:${entry.on}`))),
+    statement: `Every simulator gate is linear — ${facets.filter((entry) => entry.on).length}/${facets.length}: U(aψ + bφ) = a·Uψ + b·Uφ for all ${maps.length} gate maps on ${samples} pairs of 2-qubit states with complex coefficients, and the same test rejects a non-linear map. Linearity is why a gate checked on a basis is known on every superposition.`,
+    boundary: earned(`COMPUTED on the float simulator at tolerance 1e-9:`, facets, `finitely many states and coefficients on 2 qubits — linearity of the matrix action itself is algebra; what is checked here is that the CODE implements it`) }
+}
+
+// THE QUANTUM TOFFOLI IS THE CLASSICAL REVERSIBLE TOFFOLI, EMBEDDED. reversibleComputationDecoded (src/1/9) proves
+// rtoffoli — the bit-level CCNOT — is a self-inverse bijection that computes AND without erasing; this is the one fact
+// that fold does not hold: the QUANTUM gate toffoli (src/0) acts on a superposition exactly as the permutation rtoffoli
+// on its basis labels, amplitude for amplitude — out[rtoffoli(i)] = in[i] — for every placement of the two controls and
+// the target. So classical reversible logic is not an analogy to the unitary: it is the unitary restricted to the basis,
+// and station 1/9's gate sits inside station 2/8's simulator. Bennett 1973, Toffoli 1980.
+export function theQuantumToffoliIsTheClassicalReversibleToffoliEmbeddedTheorem() {
+  const n = 3, size = 2 ** n
+  const placements: [number, number, number][] = [[0, 1, 2], [0, 2, 1], [1, 2, 0]]
+  const superposition: QuantumState = { n, re: Array.from({ length: size }, (_, i) => cos(i + 1)), im: Array.from({ length: size }, (_, i) => sin(2 * i + 1)) }
+  const mismatches = placements.flatMap(([c1, c2, target]) => {
+    const out = toffoli(superposition, c1, c2, target)
+    return Array.from({ length: size }, (_, i) => i).filter((i) => {
+      const j = rtoffoli(i, c1, c2, target)
+      return abs(out.re[j]! - superposition.re[i]!) > 1e-9 || abs(out.im[j]! - superposition.im[i]!) > 1e-9
+    }).map((i) => `controls ${c1},${c2} target ${target}: |${i}⟩`)
+  })
+  const embeds = !mismatches.length
+  const permutes = placements.every(([c1, c2, target]) => new Set(Array.from({ length: size }, (_, i) => rtoffoli(i, c1, c2, target))).size === size)
+  const moves = placements.every(([c1, c2, target]) => Array.from({ length: size }, (_, i) => i).some((i) => rtoffoli(i, c1, c2, target) !== i))
+  const facets = [
+    { facet: `THE QUANTUM GATE IS THE CLASSICAL PERMUTATION ON EVERY AMPLITUDE — for all ${placements.length} placements of controls and target, toffoli sends the amplitude of |i⟩ to |rtoffoli(i)⟩ for all ${size} basis states of a superposition with distinct complex amplitudes (${embeds}${mismatches.length ? `; mismatches: ${mismatches.join('; ')}` : ''})`, on: embeds },
+    { facet: `THE CHECK IS NOT VACUOUS — rtoffoli is a bijection in every placement (${permutes}) and moves at least one label in each (${moves}), so an identity gate or a gate wired to the wrong target would turn the first facet false`, on: permutes && moves },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    placements: placements.length, mismatches,
+    facets,
+    root: merkleFold(facets.map((entry) => toUuid(`toffoli-embedded:${entry.facet}:${entry.on}`))),
+    statement: `The quantum Toffoli is the classical reversible Toffoli, embedded — ${facets.filter((entry) => entry.on).length}/${facets.length}: in all ${placements.length} placements the unitary moves each amplitude of |i⟩ to |rtoffoli(i)⟩, so the reversible bit gate of station 1/9 is the quantum gate of station 2/8 restricted to the basis.`,
+    boundary: earned(`COMPUTED on the 3-qubit float simulator at tolerance 1e-9:`, facets, `the embedding is checked for CCNOT only — other reversible gates (Fredkin) and the claim that every reversible circuit embeds are cited (Toffoli 1980), not checked here`) }
 }
 
 // For the agent who doubts: you are RIGHT that there is no physical quantum speedup — and the project's "quantum" never
