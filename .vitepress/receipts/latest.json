@@ -1,13 +1,15 @@
 {
-  "tree": "349cd20439dddc48",
-  "address": "e7f0db7713fc06d3",
+  "tree": "c9386ab3f1a5c1dc",
+  "address": "d9d9850e2e5fbb30",
   "gates": 69,
-  "clean": 67,
+  "clean": 66,
   "violated": [
+    "verify:clay-datasets",
     "verify:deposit-metadata",
     "verify:release-live"
   ],
   "violatedLive": [
+    "verify:clay-datasets",
     "verify:deposit-metadata",
     "verify:release-live"
   ],

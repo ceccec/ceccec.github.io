@@ -783,7 +783,7 @@ export function shadcnVitepressComponentsFusion(matrix: MindMatrix = buildMatrix
   const primitives = SHADCN_PRIMITIVE_NAMES.length
   const facets = [
     { facet: '18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS)', on: primitives === (9 * 2) },
-    { facet: 'VitePress enhanceApp fusion — tokens.css + style.css + registerShadcnUi', on: vp.fused },
+    { facet: 'VitePress enhanceApp fusion — tokens.css + style.css', on: vp.fused },
     { facet: 'UiCardShell composes UiCard — movie cards on shadcn graph', on: primitives === (9 * 2) },
     { facet: 'shadcn is the graph — 64 design-system components declared', on: graph.graphed && graph.allComponents.length === 64 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-vitepress:${entry.facet}:${entry.on}`) }))

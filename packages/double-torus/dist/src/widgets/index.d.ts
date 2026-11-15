@@ -133,7 +133,6 @@ export type QuantumWidgetTier = 'core' | 'modality' | 'preview' | 'meta';
 export type QuantumWidgetEntry = {
     readonly id: string;
     readonly title: string;
-    readonly component: string;
     readonly barrel: string;
     readonly computesGate: string;
     readonly tier: QuantumWidgetTier;

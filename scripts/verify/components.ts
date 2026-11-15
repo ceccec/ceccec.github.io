@@ -13,7 +13,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { VITEPRESS_ONE_COMPONENT_PATHS } from '../../src/quantum/apps/index.ts'
-import { decided, everyRatchet, ratchet } from './status.ts'
+import { decided, everyRatchet } from './status.ts'
 
 const COMPONENTS = '.vitepress/theme/components'
 
@@ -72,9 +72,10 @@ export function assertComponentsAreReached(root: string = process.cwd()): void {
       law: 'the catalog names exactly the component files on disk — a name with no file, or a file with no name, is a list that stopped being read',
       evidence: () => [...orphans.map((p) => `on disk, not in the catalog: ${p}`), ...missing.map((p) => `in the catalog, not on disk: ${p}`)],
     }))
-    console.log(ratchet('components.unreached', unreached.length, {
+    // A RATCHET AT ZERO IS A UNIVERSAL STATEMENT (purge 2026-11-16: 25 → 0): decided, with nothing stored to loosen.
+    console.log(decided('components.unreached', unreached.length, {
       root,
-      law: 'a component no page, layout or theme entry reaches ships to nobody — it is deleted, or a page that needs it uses it; the count only falls',
+      law: 'a component no page, layout or theme entry reaches ships to nobody — delete it, or let a page that needs it use it',
       evidence: () => unreached.map((p) => `unreached: ${p}`),
     }))
   })

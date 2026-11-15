@@ -3001,7 +3001,7 @@
   "form": "bars",
   "values": [
    0,
-   47,
+   46,
    54,
    2
   ],
@@ -3013,7 +3013,7 @@
   "values": [
    0,
    0,
-   47
+   46
   ],
   "holds": true,
   "caption": "numbers theGatesAreRefutableTheoremsThatFailClosedWithAWitness computes for this theorem (witnessed[].witnesses), drawn from its own run — no other proof returns them"
@@ -3021,8 +3021,8 @@
  "Config files detach to theorems where they can; the remainder is honest policy axiom": {
   "form": "bars",
   "values": [
-   9,
-   9,
+   3,
+   3,
    1
   ],
   "holds": true,

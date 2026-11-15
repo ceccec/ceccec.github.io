@@ -19938,25 +19938,21 @@ export const VUE_UNIVERSAL_SET_MORPHS = [
   {
     before: 'fire/physics raw UiCard',
     after: 'UiCardShell',
-    path: 'src/fire/physics/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'thunder/resonance raw UiCard',
     after: 'UiCardShell',
-    path: 'src/thunder/resonance/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'heaven/sky/astronomy raw UiCard',
     after: 'UiCardShell',
-    path: 'src/heaven/sky/astronomy/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'quantum/dynamics raw UiCard',
     after: 'UiCardShell',
-    path: 'src/quantum/dynamics/index.vue',
     status: 'removed' as const,
   },
   {
@@ -19968,31 +19964,26 @@ export const VUE_UNIVERSAL_SET_MORPHS = [
   {
     before: 'render/compute/storage raw UiCard',
     after: 'UiCardShell',
-    path: 'src/render/compute/storage/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'render/compute/memory raw UiCard',
     after: 'UiCardShell',
-    path: 'src/render/compute/memory/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'render/compute/gpu raw UiCard',
     after: 'UiCardShell',
-    path: 'src/render/compute/gpu/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'render/compute/cpu raw UiCard',
     after: 'UiCardShell',
-    path: 'src/render/compute/cpu/index.vue',
     status: 'removed' as const,
   },
   {
     before: 'render/compute/display raw UiCard',
     after: 'UiCardShell',
-    path: 'src/render/compute/display/index.vue',
     status: 'removed' as const,
   },
 ] as const
@@ -20176,7 +20167,7 @@ export function runDryCleanAllVueComponentsToTheUniversalSetExit(
   )
   for (const m of report.morphs) {
     process.stdout.write(
-      `  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after} (${m.path})\n`,
+      `  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`,
     )
   }
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -29670,12 +29661,7 @@ export const VITEPRESS_ONE_COMPONENT_PATHS = [
   'GlobalHelp.vue', 'HeroBackgroundLayer.vue', 'LeanTheoremIndex.vue', 'LeanTheoremPages.vue',
   'LinkedHeroCard.vue', 'PaperFrame.vue', 'RevolutAside.vue', 'SpeechReader.vue',
   'TrinityGateways.vue', 'UiAsideShell.vue', 'UiCardShell.vue', 'VitePressPossibilities.vue',
-  'ui/Accordion.vue', 'ui/AccordionItem.vue', 'ui/Alert.vue', 'ui/AspectRatio.vue',
-  'ui/Avatar.vue', 'ui/Badge.vue', 'ui/Button.vue', 'ui/Card.vue',
-  'ui/CardContent.vue', 'ui/Checkbox.vue', 'ui/Collapsible.vue', 'ui/Input.vue',
-  'ui/Label.vue', 'ui/Progress.vue', 'ui/Separator.vue', 'ui/Skeleton.vue',
-  'ui/Switch.vue', 'ui/Tabs.vue', 'ui/TabsContent.vue', 'ui/TabsList.vue',
-  'ui/TabsTrigger.vue', 'ui/Textarea.vue', 'ui/Tooltip.vue',
+  'ui/Card.vue', 'ui/CardContent.vue',
 ] as const
 
 export const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED = [
@@ -29711,12 +29697,10 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
     const uiFamily = paths.filter((p) => p.startsWith('ui/')).length
     const movieFamily = paths.filter((p) =>
       p === 'HeroBackgroundLayer.vue' || p === 'BackgroundMovie.vue' || p === 'CardBackgroundMovie.vue').length
-    const oneComponentSet =
-      uniquePaths &&
-      shellsPresent &&
-      uiFamily === (5 * 4) + 3 && // 23 ui primitives
-      movieFamily === 3 &&
-      afterCount === paths.length
+    // A COUNT COMPARED TO A TYPED NUMBER MEASURES WHETHER SOMEONE UPDATED THE NUMBER: this required 23 ui primitives and
+    // 3 movie layers. Whether the catalog is the disk, and whether a page reaches every entry, verify:components decides
+    // against the folder; what this fold can state is that the catalog has no duplicate and holds the shells pages write.
+    const oneComponentSet = uniquePaths && shellsPresent
     const morphsCleared = morphs.every((m) => m.status === 'removed')
     const duplicatesRemovedOn = morphsCleared && duplicatesRemoved === morphs.length && beforeCount === afterCount + duplicatesRemoved
     // Soft-compose vite/mirror · page/trinity · format/canon · gaps/invisible · gate/monitor

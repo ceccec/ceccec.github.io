@@ -2775,18 +2775,6 @@ export declare const UI_FEED_SURFACES: readonly [{
     readonly id: "quantum-apps";
     readonly rel: "src/quantum/apps/index.ts";
     readonly kind: "apps-ui";
-}, {
-    readonly id: "quantum-apps-vue";
-    readonly rel: "src/quantum/apps/index.vue";
-    readonly kind: "apps-vue";
-}, {
-    readonly id: "ssltest-tools";
-    readonly rel: ".vitepress/theme/components/SslTestTools.vue";
-    readonly kind: "ssltest";
-}, {
-    readonly id: "register-ssltest";
-    readonly rel: ".vitepress/lib/register-components.ts";
-    readonly kind: "ssltest-register";
 }];
 export declare const UI_FEED_PHRASES: readonly ["ui", "feed ui", "ui feed", "ui/feed", "feed the ui", "self evolving ui", "ui observes itself"];
 export declare function feedUiIntoItself(root?: string): {
@@ -2795,10 +2783,9 @@ export declare function feedUiIntoItself(root?: string): {
     uiFed: boolean;
     surfacesFed: number;
     toolboxOn: boolean;
-    sslRegistered: boolean;
     surfaces: {
-        id: "quantum-apps" | "quantum-apps-vue" | "ssltest-tools" | "register-ssltest";
-        kind: "ssltest" | "apps-ui" | "apps-vue" | "ssltest-register";
+        id: "quantum-apps";
+        kind: "apps-ui";
         bytes: number;
         on: boolean;
     }[];

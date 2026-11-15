@@ -1041,7 +1041,7 @@ export function educationalGapsFromIncompleteApis(root = enforcementScanRoot()):
       gapId: 'iching-computes-barrel',
       api: 'src/earth/iching/index.ts — ichingComputes mount (☷ Kūn · Earth plane)',
       impact: 'Hexagram/trigram/scales/trinity gate missing from dimension cascade',
-      closed: existsSync(join(root, 'src/earth/iching/index.ts')) && existsSync(join(root, 'src/earth/iching/index.vue')) },
+      closed: existsSync(join(root, 'src/earth/iching/index.ts')) },
     {
       gapId: 'rosetta-computes-barrel',
       api: 'src/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',

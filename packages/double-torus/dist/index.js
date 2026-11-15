@@ -2756,8 +2756,6 @@ var CRACK_LEDGER = [
   { file: "src/quantum/index.ts", literal: "12", count: 2, kind: "tuned", source: "fixed-point solver iteration cap", frontier: "a convergence budget" },
   { file: "src/quantum/testing/index.ts", literal: "0.5", count: 1, kind: "tuned", source: "marked-probability threshold a Grover run must exceed to count as found", frontier: "a pass criterion: above one half the marked state is the modal outcome" },
   { file: "src/quantum/voice/index.ts", literal: "13", count: 1, kind: "data", source: "voice/tone table entry", frontier: "presentation data" },
-  { file: "src/ui/layouts/index.vue", literal: "50", count: 1, kind: "data", source: "layout percentage split", frontier: "presentation" },
-  { file: "src/ui/layouts/index.vue", literal: "53", count: 1, kind: "data", source: "layout percentage split", frontier: "presentation" },
   // ── crypto — RSA standard exponent, algorithm bounds, and console rule width ──
   { file: "src/crypto/reverse/index.ts", literal: "65537", count: 1, kind: "data", source: "RSA public exponent F4 = 2^16 + 1 \u2014 RFC 8017 (PKCS#1) default", frontier: "a standard choice, not a derivation" },
   { file: "src/crypto/reverse/index.ts", literal: "70", count: 12, kind: "tuned", source: "console rule width in characters \u2014 terminal display convention", frontier: "presentation only; no computation depends on it" },
@@ -8874,7 +8872,6 @@ function scanVaultViolations(root10, codeFiles, bodies) {
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
-var LOGIC_DISPLAY_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/quantum\/lake\/|src\/quantum\/water\/(?:enforcement|cache)\/|src\/[0-9]+\/)/;
 var VITEPRESS_AUTOMOUNT_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/library\/|src\/spirit\/|src\/world\/|src\/quantum\/lake\/|src\/quantum\/water\/|src\/[0-9]+\/)/;
 function collectIndexTsUnderSrc(root10) {
   const srcRoot = join(root10, "src");
@@ -8900,12 +8897,7 @@ function indexCompleteness(root10, logicRel, allMindTails) {
   const full = join(root10, logicRel);
   if (!existsSync(full)) reasons.push("missing index.ts");
   else if (readFileSync(full, "utf8").trim().length < 8) reasons.push("empty index.ts");
-  if (logicIndexRequiresDisplayGate(logicRel)) {
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (uiRel && !existsSync(join(root10, uiRel))) {
-      reasons.push(`incomplete display dual \u2014 missing ${uiRel}`);
-    }
-  }
+  void allMindTails;
   return { complete: reasons.length === 0, reasons };
 }
 function discoverSrcIndexes(root10, indexTsFiles) {
@@ -8942,24 +8934,13 @@ function displayUiPathFromLogicIndex(logicRel, allMindTails) {
   const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
   return displayUiPathFromLogicIndexComputed(logicRel, [tail]);
 }
-function logicIndexRequiresDisplayGate(logicRel) {
-  const rel = logicRel.replace(/\\/g, "/");
-  if (LOGIC_DISPLAY_EXCLUDE.test(rel)) return false;
-  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) return true;
-  return displayUiPathFromLogicIndex(rel) !== null;
-}
 function scanLogicDisplayViolations(root10, indexTsFiles) {
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root10);
   const offenders = [];
   for (const full of indexTsFiles) {
     const logicRel = relative(root10, full).replace(/\\/g, "/");
-    if (!logicIndexRequiresDisplayGate(logicRel)) continue;
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (!existsSync(join(root10, uiRel))) {
-      offenders.push({
-        file: logicRel,
-        reason: `display dual missing \u2014 add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component`
-      });
+    const uiRel = logicRel.replace(/index\.ts$/, "index.vue");
+    if (existsSync(join(root10, uiRel))) {
+      offenders.push({ file: uiRel, reason: `a view in src (${uiRel}) \u2014 nothing mounts a fold by name since the site became a Lean blog; a view lives in .vitepress/theme/components, reached from a page` });
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
@@ -25987,16 +25968,16 @@ function widgetDimensionControls(matrix = buildMatrix()) {
   };
 }
 var QUANTUM_WIDGET_REGISTRY = [
-  { id: "driver-status", title: "Driver substrate status", component: "src/render/compute/display/index.vue", barrel: "src/water/stack", computesGate: "compute.__ns_up_up_computer.drivers.computes", tier: "core", receipt: toUuid("qwidget:driver-status") },
-  { id: "schumann-phase", title: "Schumann phase", component: "src/thunder/resonance/index.vue", barrel: "src/thunder/resonance", computesGate: "__ns_up_up_resonance.computes", tier: "modality", receipt: toUuid("qwidget:schumann-phase") },
-  { id: "gold-fusion-score", title: "Gold fusion aggregate", component: "src/fusion/gold/index.vue", barrel: "src/fusion/gold", computesGate: "fusion.__ns_up_up_fusion_gold.product", tier: "modality", receipt: toUuid("qwidget:gold-fusion-score") },
-  { id: "astronomy-orbit", title: "Astronomy orbit mini", component: "src/heaven/sky/astronomy/index.vue", barrel: "src/heaven/sky/astronomy", computesGate: "__ns_up_up_astronomy.computes", tier: "modality", receipt: toUuid("qwidget:astronomy-orbit") },
-  { id: "quantum-dynamics", title: "Quantum dynamics bars", component: "src/quantum/dynamics/index.vue", barrel: "src/quantum/dynamics", computesGate: "quantum.__ns_up_dynamics.computes", tier: "modality", receipt: toUuid("qwidget:quantum-dynamics") },
-  { id: "research-row", title: "Research program row", component: "src/research/index.vue", barrel: "src/research", computesGate: "__ns_up_up_research.computes", tier: "meta", receipt: toUuid("qwidget:research-row") },
-  { id: "screensaver-toggle", title: "Movie screensaver", component: "src/fire/plasma/ball/index.vue", barrel: "src/fire/plasma/ball", computesGate: "screensaver.movie.computes", tier: "preview", receipt: toUuid("qwidget:screensaver-toggle") },
-  { id: "display-probe", title: "Display driver probe", component: "src/render/compute/display/index.vue", barrel: "src/heaven/compute/computer/substrate", computesGate: "display.terminal.computes", tier: "core", receipt: toUuid("qwidget:display-probe") },
-  { id: "power-draw", title: "Power draw phase", component: "src/power/index.vue", barrel: "src/water/stack/driver-surface", computesGate: "__ns_up_up_stack_overflow.driver.computes", tier: "core", receipt: toUuid("qwidget:power-draw") },
-  { id: "plasma-preview", title: "Plasma paint preview", component: "src/fire/plasma/ball/index.vue", barrel: "src/fire/plasma/ball", computesGate: "__ns_up_up_plasma_ball.ball.computes", tier: "preview", receipt: toUuid("qwidget:plasma-preview") }
+  { id: "driver-status", title: "Driver substrate status", barrel: "src/water/stack", computesGate: "compute.__ns_up_up_computer.drivers.computes", tier: "core", receipt: toUuid("qwidget:driver-status") },
+  { id: "schumann-phase", title: "Schumann phase", barrel: "src/thunder/resonance", computesGate: "__ns_up_up_resonance.computes", tier: "modality", receipt: toUuid("qwidget:schumann-phase") },
+  { id: "gold-fusion-score", title: "Gold fusion aggregate", barrel: "src/fusion/gold", computesGate: "fusion.__ns_up_up_fusion_gold.product", tier: "modality", receipt: toUuid("qwidget:gold-fusion-score") },
+  { id: "astronomy-orbit", title: "Astronomy orbit mini", barrel: "src/heaven/sky/astronomy", computesGate: "__ns_up_up_astronomy.computes", tier: "modality", receipt: toUuid("qwidget:astronomy-orbit") },
+  { id: "quantum-dynamics", title: "Quantum dynamics bars", barrel: "src/quantum/dynamics", computesGate: "quantum.__ns_up_dynamics.computes", tier: "modality", receipt: toUuid("qwidget:quantum-dynamics") },
+  { id: "research-row", title: "Research program row", barrel: "src/research", computesGate: "__ns_up_up_research.computes", tier: "meta", receipt: toUuid("qwidget:research-row") },
+  { id: "screensaver-toggle", title: "Movie screensaver", barrel: "src/fire/plasma/ball", computesGate: "screensaver.movie.computes", tier: "preview", receipt: toUuid("qwidget:screensaver-toggle") },
+  { id: "display-probe", title: "Display driver probe", barrel: "src/heaven/compute/computer/substrate", computesGate: "display.terminal.computes", tier: "core", receipt: toUuid("qwidget:display-probe") },
+  { id: "power-draw", title: "Power draw phase", barrel: "src/water/stack/driver-surface", computesGate: "__ns_up_up_stack_overflow.driver.computes", tier: "core", receipt: toUuid("qwidget:power-draw") },
+  { id: "plasma-preview", title: "Plasma paint preview", barrel: "src/fire/plasma/ball", computesGate: "__ns_up_up_plasma_ball.ball.computes", tier: "preview", receipt: toUuid("qwidget:plasma-preview") }
 ];
 function quantumWidgetsRegistry() {
   return QUANTUM_WIDGET_REGISTRY;
@@ -26063,7 +26044,7 @@ function quantumWidgetsComputes(matrix = buildMatrix(), at = 0) {
       { facet: "registry sealed \u2014 ten dashboard tiles", on: registry.length === 5 * 2 },
       { facet: "every tile render receipt at at", on: paints.every((paint) => isUuid(paint.root)) },
       { facet: "state-of-the-art harmonised standard", on: sota.exemplary },
-      { facet: `${registry.length} widgets, each painting to a UUID root from a sealed Vue component \u2014 the fold IS the registry, and nothing loads from outside it`, on: registry.length === 5 * 2 && paints.every((paint) => isUuid(paint.root)) }
+      { facet: `${registry.length} widgets, each painting to a UUID root from its own fold \u2014 the fold IS the registry, and nothing loads from outside it`, on: registry.length === 5 * 2 && paints.every((paint) => isUuid(paint.root)) }
     ]);
     return { computes, registry, paints, sota, facets, root: merkleFold([root10, sota.root, ...registry.map((entry2) => entry2.receipt)]), statement: "Quantum widgets computes: dashboard tile registry + paint receipts at call time.", boundary: "Widgets = sealed Vue mounts + compute facets \u2014 NOT App Store plugins or third-party embeds." };
   });
@@ -51890,7 +51871,9 @@ function folderLaw() {
         maxRecursion: `exactly 3 folder levels \u2014 ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; science \xB7 model \xB7 action; no prefix chains; every folder is an index (never name a folder "index")`
       }
     },
-    // Display dual — co-located index.ts + index.vue at science/model/action.
+    // Display dual — the logic lives in src as index.ts; the view lives where a page reaches it (.vitepress/theme/components,
+    // decided by verify:components). Each fold once carried an index.vue mounted by name; the site became a Lean blog
+    // (2026-11-15), nothing mounted them, and the owner purged all 91 (2026-11-16). A src .vue is now the violation.
     displayDual: {
       schema: SRC_SCIENCE_MODEL_ACTION_SCHEMA,
       sciencesAreEightFold: true,
@@ -51899,7 +51882,7 @@ function folderLaw() {
       targetLogicMount: "src/",
       uiMount: "src/",
       maxRecursion: 3,
-      law: `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index; index.ts + index.vue co-located at src/<science>/<model>/<action>/`,
+      law: `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index.ts; no index.vue in src \u2014 a view lives in .vitepress/theme/components, reached from a page`,
       mask: {
         science: "b\u0101gu\xE0 home \u2014 one of EIGHT_FOLD_SCIENCES (earth \u2026 heaven); which trigram domain owns the fold",
         model: `structural plane \u2014 "${SCHEMA_TWO_LEVEL_MODEL}" inserted for two-word mind tails; actual middle word when three (e.g. folds)`,

@@ -328,7 +328,6 @@ export type QuantumWidgetTier = 'core' | 'modality' | 'preview' | 'meta'
 export type QuantumWidgetEntry = {
   readonly id: string
   readonly title: string
-  readonly component: string
   readonly barrel: string
   readonly computesGate: string
   readonly tier: QuantumWidgetTier
@@ -348,16 +347,16 @@ export type QuantumWidgetPaint = {
 }
 
 const QUANTUM_WIDGET_REGISTRY: readonly QuantumWidgetEntry[] = [
-  { id: 'driver-status', title: 'Driver substrate status', component: 'src/render/compute/display/index.vue', barrel: 'src/water/stack', computesGate: 'compute.__ns_up_up_computer.drivers.computes', tier: 'core', receipt: toUuid('qwidget:driver-status') },
-  { id: 'schumann-phase', title: 'Schumann phase', component: 'src/thunder/resonance/index.vue', barrel: 'src/thunder/resonance', computesGate: '__ns_up_up_resonance.computes', tier: 'modality', receipt: toUuid('qwidget:schumann-phase') },
-  { id: 'gold-fusion-score', title: 'Gold fusion aggregate', component: 'src/fusion/gold/index.vue', barrel: 'src/fusion/gold', computesGate: 'fusion.__ns_up_up_fusion_gold.product', tier: 'modality', receipt: toUuid('qwidget:gold-fusion-score') },
-  { id: 'astronomy-orbit', title: 'Astronomy orbit mini', component: 'src/heaven/sky/astronomy/index.vue', barrel: 'src/heaven/sky/astronomy', computesGate: '__ns_up_up_astronomy.computes', tier: 'modality', receipt: toUuid('qwidget:astronomy-orbit') },
-  { id: 'quantum-dynamics', title: 'Quantum dynamics bars', component: 'src/quantum/dynamics/index.vue', barrel: 'src/quantum/dynamics', computesGate: 'quantum.__ns_up_dynamics.computes', tier: 'modality', receipt: toUuid('qwidget:quantum-dynamics') },
-  { id: 'research-row', title: 'Research program row', component: 'src/research/index.vue', barrel: 'src/research', computesGate: '__ns_up_up_research.computes', tier: 'meta', receipt: toUuid('qwidget:research-row') },
-  { id: 'screensaver-toggle', title: 'Movie screensaver', component: 'src/fire/plasma/ball/index.vue', barrel: 'src/fire/plasma/ball', computesGate: 'screensaver.movie.computes', tier: 'preview', receipt: toUuid('qwidget:screensaver-toggle') },
-  { id: 'display-probe', title: 'Display driver probe', component: 'src/render/compute/display/index.vue', barrel: 'src/heaven/compute/computer/substrate', computesGate: 'display.terminal.computes', tier: 'core', receipt: toUuid('qwidget:display-probe') },
-  { id: 'power-draw', title: 'Power draw phase', component: 'src/power/index.vue', barrel: 'src/water/stack/driver-surface', computesGate: '__ns_up_up_stack_overflow.driver.computes', tier: 'core', receipt: toUuid('qwidget:power-draw') },
-  { id: 'plasma-preview', title: 'Plasma paint preview', component: 'src/fire/plasma/ball/index.vue', barrel: 'src/fire/plasma/ball', computesGate: '__ns_up_up_plasma_ball.ball.computes', tier: 'preview', receipt: toUuid('qwidget:plasma-preview') },
+  { id: 'driver-status', title: 'Driver substrate status', barrel: 'src/water/stack', computesGate: 'compute.__ns_up_up_computer.drivers.computes', tier: 'core', receipt: toUuid('qwidget:driver-status') },
+  { id: 'schumann-phase', title: 'Schumann phase', barrel: 'src/thunder/resonance', computesGate: '__ns_up_up_resonance.computes', tier: 'modality', receipt: toUuid('qwidget:schumann-phase') },
+  { id: 'gold-fusion-score', title: 'Gold fusion aggregate', barrel: 'src/fusion/gold', computesGate: 'fusion.__ns_up_up_fusion_gold.product', tier: 'modality', receipt: toUuid('qwidget:gold-fusion-score') },
+  { id: 'astronomy-orbit', title: 'Astronomy orbit mini', barrel: 'src/heaven/sky/astronomy', computesGate: '__ns_up_up_astronomy.computes', tier: 'modality', receipt: toUuid('qwidget:astronomy-orbit') },
+  { id: 'quantum-dynamics', title: 'Quantum dynamics bars', barrel: 'src/quantum/dynamics', computesGate: 'quantum.__ns_up_dynamics.computes', tier: 'modality', receipt: toUuid('qwidget:quantum-dynamics') },
+  { id: 'research-row', title: 'Research program row', barrel: 'src/research', computesGate: '__ns_up_up_research.computes', tier: 'meta', receipt: toUuid('qwidget:research-row') },
+  { id: 'screensaver-toggle', title: 'Movie screensaver', barrel: 'src/fire/plasma/ball', computesGate: 'screensaver.movie.computes', tier: 'preview', receipt: toUuid('qwidget:screensaver-toggle') },
+  { id: 'display-probe', title: 'Display driver probe', barrel: 'src/heaven/compute/computer/substrate', computesGate: 'display.terminal.computes', tier: 'core', receipt: toUuid('qwidget:display-probe') },
+  { id: 'power-draw', title: 'Power draw phase', barrel: 'src/water/stack/driver-surface', computesGate: '__ns_up_up_stack_overflow.driver.computes', tier: 'core', receipt: toUuid('qwidget:power-draw') },
+  { id: 'plasma-preview', title: 'Plasma paint preview', barrel: 'src/fire/plasma/ball', computesGate: '__ns_up_up_plasma_ball.ball.computes', tier: 'preview', receipt: toUuid('qwidget:plasma-preview') },
 ] as const
 
 export function quantumWidgetsRegistry(): readonly QuantumWidgetEntry[] {
@@ -427,7 +426,7 @@ export function quantumWidgetsComputes(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'registry sealed — ten dashboard tiles', on: registry.length === (5 * 2) },
       { facet: 'every tile render receipt at at', on: paints.every((paint) => isUuid(paint.root)) },
       { facet: 'state-of-the-art harmonised standard', on: sota.exemplary },
-    { facet: `${registry.length} widgets, each painting to a UUID root from a sealed Vue component — the fold IS the registry, and nothing loads from outside it`, on: registry.length === (5 * 2) && paints.every((paint) => isUuid(paint.root)) },
+    { facet: `${registry.length} widgets, each painting to a UUID root from its own fold — the fold IS the registry, and nothing loads from outside it`, on: registry.length === (5 * 2) && paints.every((paint) => isUuid(paint.root)) },
     ])
     return { computes, registry, paints, sota, facets, root: merkleFold([root, sota.root, ...registry.map((entry) => entry.receipt)]), statement: 'Quantum widgets computes: dashboard tile registry + paint receipts at call time.', boundary: 'Widgets = sealed Vue mounts + compute facets — NOT App Store plugins or third-party embeds.' }
   })

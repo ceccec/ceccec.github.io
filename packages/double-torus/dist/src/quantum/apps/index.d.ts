@@ -33439,22 +33439,18 @@ export declare const VUE_UNIVERSAL_SET_SHELLS: {
 export declare const VUE_UNIVERSAL_SET_MORPHS: readonly [{
     readonly before: "fire/physics raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/fire/physics/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "thunder/resonance raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/thunder/resonance/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "heaven/sky/astronomy raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/heaven/sky/astronomy/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "quantum/dynamics raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/quantum/dynamics/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "orphan domain-sim card chrome without sharedHero seed";
@@ -33464,27 +33460,22 @@ export declare const VUE_UNIVERSAL_SET_MORPHS: readonly [{
 }, {
     readonly before: "render/compute/storage raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/render/compute/storage/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "render/compute/memory raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/render/compute/memory/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "render/compute/gpu raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/render/compute/gpu/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "render/compute/cpu raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/render/compute/cpu/index.vue";
     readonly status: "removed";
 }, {
     readonly before: "render/compute/display raw UiCard";
     readonly after: "UiCardShell";
-    readonly path: "src/render/compute/display/index.vue";
     readonly status: "removed";
 }];
 export declare function dryCleanAllVueComponentsToTheUniversalSet(matrix?: MindMatrix, at?: number): {
@@ -33506,22 +33497,18 @@ export declare function dryCleanAllVueComponentsToTheUniversalSet(matrix?: MindM
     morphs: ({
         readonly before: "fire/physics raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/fire/physics/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "thunder/resonance raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/thunder/resonance/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "heaven/sky/astronomy raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/heaven/sky/astronomy/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "quantum/dynamics raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/quantum/dynamics/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "orphan domain-sim card chrome without sharedHero seed";
@@ -33531,27 +33518,22 @@ export declare function dryCleanAllVueComponentsToTheUniversalSet(matrix?: MindM
     } | {
         readonly before: "render/compute/storage raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/render/compute/storage/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "render/compute/memory raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/render/compute/memory/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "render/compute/gpu raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/render/compute/gpu/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "render/compute/cpu raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/render/compute/cpu/index.vue";
         readonly status: "removed";
     } | {
         readonly before: "render/compute/display raw UiCard";
         readonly after: "UiCardShell";
-        readonly path: "src/render/compute/display/index.vue";
         readonly status: "removed";
     })[];
     morphCount: 10;
@@ -132869,7 +132851,7 @@ export declare function runQuantumSelfHealExit(_root?: string, _argv?: readonly 
  * disk by verify:components (components.catalog-is-disk), which also counts the ones no page reaches.
  * Pair: vite/one · comp/seal.
  */
-export declare const VITEPRESS_ONE_COMPONENT_PATHS: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "PaperFrame.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
+export declare const VITEPRESS_ONE_COMPONENT_PATHS: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "PaperFrame.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Card.vue", "ui/CardContent.vue"];
 export declare const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED: readonly [{
     readonly before: "inline-paper-sections";
     readonly after: "ScientificPaperBody";
@@ -132904,12 +132886,12 @@ export declare function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix?:
     sealedAtGates: boolean;
     duplicatesRemoved: boolean;
     beforeCount: number;
-    afterCount: 39;
+    afterCount: 18;
     morphCount: 5;
-    pathCount: 39;
+    pathCount: 18;
     uiFamily: number;
     movieFamily: number;
-    paths: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "PaperFrame.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
+    paths: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "PaperFrame.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Card.vue", "ui/CardContent.vue"];
     morphs: readonly [{
         readonly before: "inline-paper-sections";
         readonly after: "ScientificPaperBody";

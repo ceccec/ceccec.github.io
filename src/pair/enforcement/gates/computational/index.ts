@@ -451,12 +451,7 @@ function indexCompleteness(
   const full = join(root, logicRel)
   if (!existsSync(full)) reasons.push('missing index.ts')
   else if (readFileSync(full, 'utf8').trim().length < 8) reasons.push('empty index.ts')
-  if (logicIndexRequiresDisplayGate(logicRel)) {
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails)
-    if (uiRel && !existsSync(join(root, uiRel))) {
-      reasons.push(`incomplete display dual — missing ${uiRel}`)
-    }
-  }
+  void allMindTails // completeness no longer asks for a view beside the logic (folderLaw.displayDual, inverted 2026-11-16)
   return { complete: reasons.length === 0, reasons }
 }
 
@@ -532,16 +527,14 @@ export function scanLogicDisplayViolations(
   root: string,
   indexTsFiles: readonly string[],
 ): ComputationalViolation[] {
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root)
+  // THE LAW INVERTED (folderLaw.displayDual, 2026-11-16): a fold's view is no longer required beside its index.ts —
+  // nothing mounts one — so the violation is a view that IS there: an index.vue in src, which ships to nobody.
   const offenders: ComputationalViolation[] = []
   for (const full of indexTsFiles) {
     const logicRel = relative(root, full).replace(/\\/g, '/')
-    if (!logicIndexRequiresDisplayGate(logicRel)) continue
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails)!
-    if (!existsSync(join(root, uiRel))) {
-      offenders.push({
-        file: logicRel,
-        reason: `display dual missing — add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component` })
+    const uiRel = logicRel.replace(/index\.ts$/, 'index.vue')
+    if (existsSync(join(root, uiRel))) {
+      offenders.push({ file: uiRel, reason: `a view in src (${uiRel}) — nothing mounts a fold by name since the site became a Lean blog; a view lives in .vitepress/theme/components, reached from a page` })
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file))

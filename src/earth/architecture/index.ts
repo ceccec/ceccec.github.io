@@ -723,7 +723,9 @@ export function folderLaw() {
         oneWord: 'one word per name — strip the useless prefixes and suffixes (the entropy), keep the core: theMovieIsHere ⇒ movie, theMatrixTrilogyDecoded ⇒ the matrix core at its path. A concept that truly needs more than one word becomes a folder PATH (methodWordsAreFolders), so every name is one word per level and the path is the full name. When two cores would collide (e.g. matrix, already everywhere) they do NOT re-grow a prefix — the folder path namespaces them and the content-address (the double fold) keeps them distinct, so all collapse to themselves in quantum equilibrium with no collision',
         routesFromTree: 'no manual routing: the route is the folder path, computed from the tree, never a hand-listed slug — to change a route you MOVE the folder and the route follows',
         maxRecursion: `exactly 3 folder levels — ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; science · model · action; no prefix chains; every folder is an index (never name a folder "index")` } },
-    // Display dual — co-located index.ts + index.vue at science/model/action.
+    // Display dual — the logic lives in src as index.ts; the view lives where a page reaches it (.vitepress/theme/components,
+    // decided by verify:components). Each fold once carried an index.vue mounted by name; the site became a Lean blog
+    // (2026-11-15), nothing mounted them, and the owner purged all 91 (2026-11-16). A src .vue is now the violation.
     displayDual: {
       schema: SRC_SCIENCE_MODEL_ACTION_SCHEMA,
       sciencesAreEightFold: true,
@@ -732,7 +734,7 @@ export function folderLaw() {
       targetLogicMount: 'src/',
       uiMount: 'src/',
       maxRecursion: 3,
-      law: `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} — every folder is an index; index.ts + index.vue co-located at src/<science>/<model>/<action>/`,
+      law: `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} — every folder is an index.ts; no index.vue in src — a view lives in .vitepress/theme/components, reached from a page`,
       mask: {
         science: 'bāguà home — one of EIGHT_FOLD_SCIENCES (earth … heaven); which trigram domain owns the fold',
         model: `structural plane — "${SCHEMA_TWO_LEVEL_MODEL}" inserted for two-word mind tails; actual middle word when three (e.g. folds)`,
@@ -2418,8 +2420,8 @@ export function displayDualDebtReceipt(
       facet: 'gate waiver — fifth/no-file BLOCKING deferred to display-dual convergence wave',
       on: waiverNeedsDebt(missing) },
     {
-      facet: 'folderLaw.displayDual law unchanged — index.ts + index.vue co-located at science/model/action',
-      on: typeof law.displayDual?.law === 'string' && law.displayDual.law.includes('index.vue') },
+      facet: 'folderLaw.displayDual — src carries logic only (index.ts); a view lives in the theme, reached from a page',
+      on: typeof law.displayDual?.law === 'string' && law.displayDual.law.includes('no index.vue in src') },
     {
       // WAS `on: true`. It asserted an INTENTION — that the debt must shrink — and an intention cannot
       // be false, so the facet could not fail and the word HONEST in its own text was doing the work a

@@ -1993,8 +1993,6 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/index.ts', literal: '12', count: 2, kind: 'tuned', source: 'fixed-point solver iteration cap', frontier: 'a convergence budget' },
   { file: 'src/quantum/testing/index.ts', literal: '0.5', count: 1, kind: 'tuned', source: 'marked-probability threshold a Grover run must exceed to count as found', frontier: 'a pass criterion: above one half the marked state is the modal outcome' },
   { file: 'src/quantum/voice/index.ts', literal: '13', count: 1, kind: 'data', source: 'voice/tone table entry', frontier: 'presentation data' },
-  { file: 'src/ui/layouts/index.vue', literal: '50', count: 1, kind: 'data', source: 'layout percentage split', frontier: 'presentation' },
-  { file: 'src/ui/layouts/index.vue', literal: '53', count: 1, kind: 'data', source: 'layout percentage split', frontier: 'presentation' },
   // ── crypto — RSA standard exponent, algorithm bounds, and console rule width ──
   { file: 'src/crypto/reverse/index.ts', literal: '65537', count: 1, kind: 'data', source: 'RSA public exponent F4 = 2^16 + 1 — RFC 8017 (PKCS#1) default', frontier: 'a standard choice, not a derivation' },
   { file: 'src/crypto/reverse/index.ts', literal: '70', count: 12, kind: 'tuned', source: 'console rule width in characters — terminal display convention', frontier: 'presentation only; no computation depends on it' },

@@ -766,26 +766,18 @@ report.push(
     : 'Display-dual debt: 0 — fifth/no-file gate active (every declared component has a .vue file).',
 )
 
-// Display dual — each logic index.ts pairs with mirror-path index.vue (folderLaw.displayDual); the folder
-// becomes a reusable Vue component that imports its fold through render/ui/lib. Recomputed every build.
+// Display dual, inverted (folderLaw.displayDual, 2026-11-16): src carries logic only; a view lives in the theme, reached
+// from a page (verify:components). A src index.vue is the violation — it ships to nobody. Recomputed every build.
 const displayDual = law.displayDual
 if (displayDual) {
-  const logicIndexRels = enforcementFacts.indexTsFiles.map((file) => relative(root, file).replace(/\\/g, '/'))
-  const missingDisplay = scanLogicDisplayViolations(root, enforcementFacts.indexTsFiles)
-  const paired = logicIndexRels.filter((rel) => displayUiPathFromLogicIndex(rel)).length - missingDisplay.length
-  if (missingDisplay.length > 0) {
-    const sample = missingDisplay
-      .slice(0, 3)
-      .map((v) => `${v.file} → ${displayUiPathFromLogicIndex(v.file)}`)
-      .join('; ')
+  const viewsInSrc = scanLogicDisplayViolations(root, enforcementFacts.indexTsFiles)
+  if (viewsInSrc.length > 0) {
     ratchetPush({
       kind: 'display-dual',
       harmonic: 'render',
-      detail: `${missingDisplay.length} logic index.ts without mirror index.vue (${paired} paired) — ${displayDual.law}; sample: ${sample} …` })
+      detail: `${viewsInSrc.length} view(s) in src — ${displayDual.law}; ${viewsInSrc.slice(0, 3).map((v) => v.file).join('; ')} …` })
   }
-  report.push(
-    `Display dual: ${paired}/${logicIndexRels.filter((rel) => displayUiPathFromLogicIndex(rel)).length} mind logic folders have mirror index.vue — ${missingDisplay.length} gap(s) (folderLaw.displayDual).`,
-  )
+  report.push(`Display dual: ${viewsInSrc.length} view(s) in src (folderLaw.displayDual — src carries logic only).`)
 }
 
 // THE CENSUS — encryption per byte (not per file). The codebase is a content-address seed: each byte

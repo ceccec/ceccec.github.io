@@ -8,7 +8,6 @@ import '../../src/render/ui/tokens.css'
 import '../../src/render/ui/style.css'
 // the one animation SDK — every number the canvases paint with, as custom properties the painters bind from
 import '../../packages/double-torus/double-torus.scss'
-import { registerShadcnUi } from '../lib/shadcn-ui.ts'
 import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
@@ -24,7 +23,6 @@ export default {
   Layout,
   async enhanceApp(ctx) {
     await DefaultTheme.enhanceApp?.(ctx)
-    registerShadcnUi(ctx.app)
     if (!ctx.app.component('ClientOnly')) ctx.app.component('ClientOnly', ClientOnly)
     if (!ctx.app.component('LeanTheoremPages')) ctx.app.component('LeanTheoremPages', LeanTheoremPages)
     if (!ctx.app.component('LeanTheoremIndex')) ctx.app.component('LeanTheoremIndex', LeanTheoremIndex)

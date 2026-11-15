@@ -6072,9 +6072,6 @@ export const runUserWavesExit = runFreeUserWavesTestUiMeasureEfficiencyExit
  */
 export const UI_FEED_SURFACES = [
   { id: 'quantum-apps', rel: 'src/quantum/apps/index.ts', kind: 'apps-ui' as const },
-  { id: 'quantum-apps-vue', rel: 'src/quantum/apps/index.vue', kind: 'apps-vue' as const },
-  { id: 'ssltest-tools', rel: '.vitepress/theme/components/SslTestTools.vue', kind: 'ssltest' as const },
-  { id: 'register-ssltest', rel: '.vitepress/lib/register-components.ts', kind: 'ssltest-register' as const },
 ] as const
 
 export const UI_FEED_PHRASES = [
@@ -6115,18 +6112,10 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       ? readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
       : ''
   const toolboxOn = appsText.includes('standardToolboxIoCatalog')
-  const sslRegistered =
-    surfaces.find((s) => s.id === 'register-ssltest')?.on === true &&
-    (existsSync(join(root, '.vitepress/lib/register-components.ts'))
-      ? readFileSync(join(root, '.vitepress/lib/register-components.ts'), 'utf8').includes('SslTestTools')
-      : false)
+  // THE PANEL VIEW AND THE SSL TOOL ARE GONE (purge 2026-11-16): sslRegistered and the ssltest surface were false from
+  // the day register-components left, and nothing noticed. The feed now asks only what still exists: every surface fed.
   const surfacesFed = surfaces.filter((s) => s.on).length
-  const uiFed =
-    surfacesFed >= 3 &&
-    toolboxOn &&
-    sslRegistered &&
-    surfaces.some((s) => s.kind === 'apps-ui' && s.on) &&
-    surfaces.some((s) => s.kind === 'ssltest' && s.on)
+  const uiFed = surfacesFed === surfaces.length && toolboxOn
   // 2) SCAN realtime — uiAudit watches served UI; other scanners soft-composed via CLI duals.
   const audit = uiAudit(root)
   const scanners = {
@@ -6202,7 +6191,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
   ] as const
   const facets = [
     {
-      facet: `uiFed — surfaces=${surfacesFed}/${UI_FEED_SURFACES.length} toolbox=${toolboxOn ? 1 : 0} sslRegistered=${sslRegistered ? 1 : 0}`,
+      facet: `uiFed — surfaces=${surfacesFed}/${UI_FEED_SURFACES.length} toolbox=${toolboxOn ? 1 : 0}`,
       on: uiFed,
     },
     {
@@ -6237,7 +6226,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     uiFed,
     surfacesFed,
     toolboxOn,
-    sslRegistered,
     surfaces: surfaces.map((s) => ({ id: s.id, kind: s.kind, bytes: s.bytes, on: s.on })),
     scanners,
     scannerCount,
@@ -6291,7 +6279,7 @@ export function runFeedUiIntoItselfExit(root = '', _argv: readonly string[] = []
   const report = feedUiIntoItself(root || process.cwd())
   foldVerdict('feed-ui', report)
   process.stdout.write(
-    `  surfaces=${report.surfacesFed} toolbox=${report.toolboxOn ? 1 : 0} ssl=${report.sslRegistered ? 1 : 0} ` +
+    `  surfaces=${report.surfacesFed} toolbox=${report.toolboxOn ? 1 : 0} ` +
       `scanRealtime=${report.scanningRealtime ? 1 : 0} scanners=${report.scannerCount}/7 ` +
       `evolve=${report.selfEvolveHandles ? 1 : 0} loop=${report.feedScanEvolveProved ? 1 : 0}\n`,
   )
