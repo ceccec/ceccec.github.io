@@ -15,6 +15,10 @@ import TheoremFigure from './TheoremFigure.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import { theoremFigure } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
+// THE LEDGER ENTRY, measured once by the build (measuredOncePlugin → registryLedger, scripts/verify/axiom-ledger.ts): a
+// sealed theorem credited to its Lean theorem's accounts, a computed one to binary64 and to what its fold reads.
+import { data as registryLedger } from 'virtual:registry-ledger'
+const ledgerOf = (theorem: string) => (registryLedger as Record<string, { kind: string; credit: { name: string; statement: string; meaning: string }[] }>)[theorem]
 
 // autotranslate headings + paper prose via t(); formulas, code, receipts stay technical. bg glossary-bounded ·
 // gla transliterated · en unchanged. Locale from VitePress-native useSiteLocale (useData/route).
@@ -104,6 +108,12 @@ const paperLine = (line: string): { label: string; body: string } => {
       <section>
         <h2>1 · {{ t('Classification') }}</h2>
         <p>{{ t(row.classification) }}</p>
+        <dl v-if="ledgerOf(row.theorem)" class="theorem-ledger">
+          <dt>{{ t('Debit') }}</dt>
+          <dd>{{ t('this theorem') }} — {{ ledgerOf(row.theorem)!.kind === 'sealed' ? t('sealed by a Lean theorem') : t('computed by its fold') }}</dd>
+          <dt>{{ t('Credit') }}</dt>
+          <dd v-for="a in ledgerOf(row.theorem)!.credit" :key="a.name"><code>{{ a.name }}</code><template v-if="a.statement !== a.name"> : <code>{{ a.statement }}</code></template> — {{ t(a.meaning) }}</dd>
+        </dl>
       </section>
 
       <section>
@@ -145,6 +155,9 @@ const paperLine = (line: string): { label: string; body: string } => {
 </template>
 
 <style scoped>
+.theorem-ledger { display: grid; grid-template-columns: max-content 1fr; gap: var(--ich-sp2) var(--ich-sp4); margin: var(--ich-sp4) 0 0; padding: var(--ich-sp3) var(--ich-sp4); border: 1px solid var(--vp-c-divider); border-radius: var(--ich-radius); }
+.theorem-ledger dt { font-weight: var(--ich-weight-semibold); }
+.theorem-ledger dd { grid-column: 2; margin: 0; }
 /* ── the paper, on screen and on A4 — serif body, justified measure, numbered sections ── */
 .theorem-papers { display: grid; gap: var(--ich-sp6); }
 .theorem-paper {
