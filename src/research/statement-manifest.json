@@ -7,8 +7,1472 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 281,
+  "count": 525,
   "statements": [
+    {
+      "statementUuid": "ea568c25-b4af-85aa-961f-530a3d260ff6",
+      "file": "src/1/one.lean",
+      "name": "from_one_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 1 (stepsTo 1 e.val) = e.val) ∧ walk 1 10 = 1 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 1 k.val ≠ 1)"
+    },
+    {
+      "statementUuid": "b2e6ec51-6eb9-8c3c-960c-b2be275d8abf",
+      "file": "src/1/one.lean",
+      "name": "the_step_out_of_one",
+      "statement": "next 1 = 2 ∧ 2 * 1 % 9 = 2 % 9"
+    },
+    {
+      "statementUuid": "3aeb1ae2-a0a9-869c-8b55-e281eb0f1e2e",
+      "file": "src/1/one.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 1 = 9 ∧ reflect 9 = 1 ∧ reflect 1 ≠ 1"
+    },
+    {
+      "statementUuid": "b9818722-184b-8c9a-9253-b0e0dddc5de5",
+      "file": "src/1/one.lean",
+      "name": "at_one_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 1 % 9) % 9 = (2 * ((10 - 1) % 9) + 8) % 9 ∧ (10 - 2 * 1 % 9) % 9 ≠ 2 * ((10 - 1) % 9) % 9"
+    },
+    {
+      "statementUuid": "16514861-629a-83ce-a5e0-2dcb7fd49baa",
+      "file": "src/1/one.lean",
+      "name": "at_one_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 1 % 9) % 9 = 2 * ((9 - 1) % 9) % 9"
+    },
+    {
+      "statementUuid": "33888946-837a-828b-af2c-ab36ed06287c",
+      "file": "src/1/one.lean",
+      "name": "from_one_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 1 k.val = reflect (walk 9 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 1 (stepsTo 9 (reflect e.val)) = e.val) ∧ mirrorWalk 1 10 = 1"
+    },
+    {
+      "statementUuid": "9d58babf-b51d-84a4-9474-01bb2c99bb9c",
+      "file": "src/1/one.lean",
+      "name": "the_four_faces_at_one",
+      "statement": "next 1 = 2 ∧ prev 1 = 0 ∧ mirrorNext 1 = 0 ∧ mirrorPrev 1 = 4"
+    },
+    {
+      "statementUuid": "ca3ff0ce-23fe-8fd1-9eaa-339e7b333514",
+      "file": "src/1/one.lean",
+      "name": "at_one_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 9) = next 1"
+    },
+    {
+      "statementUuid": "0a274672-9bdf-8b3d-a183-9c330c79a4a8",
+      "file": "src/1/one.lean",
+      "name": "here_carries",
+      "statement": "station .poincare = 1"
+    },
+    {
+      "statementUuid": "d5bfb263-894d-820c-86c2-23903b9b1471",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 1 0 = station .poincare"
+    },
+    {
+      "statementUuid": "12891911-dc7e-8357-9895-4d637987f92c",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 1 1 = station .riemann"
+    },
+    {
+      "statementUuid": "6687aad2-4dde-8b99-a61d-ed604b4ce7f3",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 1 2 = station .pVsNp"
+    },
+    {
+      "statementUuid": "3d3ba1fc-c8b6-8e60-87f7-020f287d5d51",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 1 5 = station .hodge"
+    },
+    {
+      "statementUuid": "61e9699c-47e5-8985-aa10-1f5e2dde8522",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 1 5 = station .bsd"
+    },
+    {
+      "statementUuid": "0ddf2ea8-b111-8e38-8ea5-9b0f2fb03f58",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 1 4 = station .navierStokes"
+    },
+    {
+      "statementUuid": "19973768-428a-8809-b027-9434043ec935",
+      "file": "src/1/one.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 1 3 = station .yangMills"
+    },
+    {
+      "statementUuid": "02e48e9b-7335-8e1a-a5e4-0a47c4f83e53",
+      "file": "src/1/one.lean",
+      "name": "reflection_meets_no_case",
+      "statement": "cases.all (fun c => station c != 9) = true ∧ reflect 1 = 9"
+    },
+    {
+      "statementUuid": "4a998b72-2292-8c28-ac5e-a4cb7c009870",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 1 0 = station .poincare"
+    },
+    {
+      "statementUuid": "5c1e78f8-e878-8b15-9bec-97ef70fc6276",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 1 5 = station .riemann"
+    },
+    {
+      "statementUuid": "69a10c6c-5c33-82f4-990e-8a0803486376",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 1 9 = station .pVsNp"
+    },
+    {
+      "statementUuid": "cfba5ba7-eeec-8349-8b31-b42b4292f55d",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 1 7 = station .hodge"
+    },
+    {
+      "statementUuid": "aeb50e6d-7319-8874-badf-e75db2ef21e6",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 1 7 = station .bsd"
+    },
+    {
+      "statementUuid": "159485a4-446c-8844-909e-5438149b7d43",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 1 8 = station .navierStokes"
+    },
+    {
+      "statementUuid": "a1be1cf9-a988-87a3-8797-1a3b8f7bdbb9",
+      "file": "src/1/one.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 1 3 = station .yangMills"
+    },
+    {
+      "statementUuid": "d3668358-aa8f-899c-a199-cba79107f0c6",
+      "file": "src/1/one.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 1 9 = 8 ∧ ∀ k : Fin 10, walk 9 k.val = walk 1 (k.val + 8)"
+    },
+    {
+      "statementUuid": "e0fdb88c-1e2a-8b4b-bb19-db02e6b10fe2",
+      "file": "src/1/one.lean",
+      "name": "poincare_is_an_inverse_pair_and_reflects_to_the_frontier",
+      "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9"
+    },
+    {
+      "statementUuid": "209376e8-a80c-8693-8251-a0eaa0fd4726",
+      "file": "src/2/two.lean",
+      "name": "from_two_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 2 (stepsTo 2 e.val) = e.val) ∧ walk 2 10 = 2 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 2 k.val ≠ 2)"
+    },
+    {
+      "statementUuid": "c9d9e9ce-4603-85a6-8413-73ff2eb0201c",
+      "file": "src/2/two.lean",
+      "name": "the_step_out_of_two",
+      "statement": "next 2 = 4 ∧ 2 * 2 % 9 = 4 % 9"
+    },
+    {
+      "statementUuid": "93175e59-3cf2-849e-9d38-c8df612a2884",
+      "file": "src/2/two.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 2 = 8 ∧ reflect 8 = 2 ∧ reflect 2 ≠ 2"
+    },
+    {
+      "statementUuid": "add6774d-3088-8130-96f6-7ef376a3af1b",
+      "file": "src/2/two.lean",
+      "name": "at_two_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 2 % 9) % 9 = (2 * ((10 - 2) % 9) + 8) % 9 ∧ (10 - 2 * 2 % 9) % 9 ≠ 2 * ((10 - 2) % 9) % 9"
+    },
+    {
+      "statementUuid": "ad8f56c1-90f0-8a3c-8b18-c0ee74e6ef96",
+      "file": "src/2/two.lean",
+      "name": "at_two_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 2 % 9) % 9 = 2 * ((9 - 2) % 9) % 9"
+    },
+    {
+      "statementUuid": "7008f2f7-244a-870c-b77a-4da1712ca0e8",
+      "file": "src/2/two.lean",
+      "name": "from_two_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 2 k.val = reflect (walk 8 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 2 (stepsTo 8 (reflect e.val)) = e.val) ∧ mirrorWalk 2 10 = 2"
+    },
+    {
+      "statementUuid": "806b1b91-c0da-8ecb-92c7-7f73c21bfdf4",
+      "file": "src/2/two.lean",
+      "name": "the_four_faces_at_two",
+      "statement": "next 2 = 4 ∧ prev 2 = 1 ∧ mirrorNext 2 = 3 ∧ mirrorPrev 2 = 6"
+    },
+    {
+      "statementUuid": "620aad62-e2ea-81e8-afae-07ea625a5251",
+      "file": "src/2/two.lean",
+      "name": "at_two_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 8) = next 2"
+    },
+    {
+      "statementUuid": "484179b1-fe0e-8f6c-a56e-152fbb78d6e5",
+      "file": "src/2/two.lean",
+      "name": "here_carries",
+      "statement": "station .riemann = 2"
+    },
+    {
+      "statementUuid": "2bd55aed-25bd-850a-a8ab-22f60286f933",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 2 9 = station .poincare"
+    },
+    {
+      "statementUuid": "a40c249f-18e3-8bb2-9d52-0afc3ba026bb",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 2 0 = station .riemann"
+    },
+    {
+      "statementUuid": "1b11a02c-45a8-86b5-ba93-594c7abb27c5",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 2 1 = station .pVsNp"
+    },
+    {
+      "statementUuid": "be5e4d4a-6aa6-8805-b872-87f6a0f07c36",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 2 4 = station .hodge"
+    },
+    {
+      "statementUuid": "454c8469-ec25-85f5-8d50-4666fb586f2c",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 2 4 = station .bsd"
+    },
+    {
+      "statementUuid": "d4f8d9f6-cf25-8390-a6db-d6cd0fb5c42f",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 2 3 = station .navierStokes"
+    },
+    {
+      "statementUuid": "d21b16dc-fa0e-83f7-93ed-3c4e5fd9fa92",
+      "file": "src/2/two.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 2 2 = station .yangMills"
+    },
+    {
+      "statementUuid": "6255b1cc-7ae5-840b-8e11-e0c87cbddee0",
+      "file": "src/2/two.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 2 = station .yangMills"
+    },
+    {
+      "statementUuid": "7c63ad02-ffa4-8c14-b8de-ad912114f701",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 2 5 = station .poincare"
+    },
+    {
+      "statementUuid": "3741065f-60e3-88e3-b3a3-5e9a75e9ab6b",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 2 0 = station .riemann"
+    },
+    {
+      "statementUuid": "609c3f28-92b1-8e61-9de0-b6cc9762ef82",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 2 4 = station .pVsNp"
+    },
+    {
+      "statementUuid": "3573aa2f-13f6-8346-921c-25d272b28843",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 2 2 = station .hodge"
+    },
+    {
+      "statementUuid": "f3a5d647-5e92-85f7-938d-905eb31c5b2e",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 2 2 = station .bsd"
+    },
+    {
+      "statementUuid": "1d5dc5b7-5a1f-8a39-9888-155072168f8c",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 2 3 = station .navierStokes"
+    },
+    {
+      "statementUuid": "096d066c-3a6c-8754-978b-34c817bf0fed",
+      "file": "src/2/two.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 2 8 = station .yangMills"
+    },
+    {
+      "statementUuid": "fd8f34c0-644e-8fff-a66f-63274acd2b26",
+      "file": "src/2/two.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 2 8 = 2 ∧ ∀ k : Fin 10, walk 8 k.val = walk 2 (k.val + 2)"
+    },
+    {
+      "statementUuid": "07faa871-4921-8d6b-b677-aae129afed28",
+      "file": "src/2/two.lean",
+      "name": "riemann_reflection_is_an_involution",
+      "statement": "∀ n : Int, riemannReflect (riemannReflect n) = n"
+    },
+    {
+      "statementUuid": "70caf7ab-06be-8b49-aea4-f533149f6cba",
+      "file": "src/2/two.lean",
+      "name": "riemann_reflection_fixes_exactly_the_critical_line",
+      "statement": "∀ n : Int, riemannReflect n = n ↔ n = 1"
+    },
+    {
+      "statementUuid": "0932e1b3-0f62-85c3-8e7e-826d375db038",
+      "file": "src/3/three.lean",
+      "name": "from_three_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 3 (stepsTo 3 e.val) = e.val) ∧ walk 3 10 = 3 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 3 k.val ≠ 3)"
+    },
+    {
+      "statementUuid": "9260c75a-e37f-8263-844a-5a2f3d62b415",
+      "file": "src/3/three.lean",
+      "name": "the_step_out_of_three",
+      "statement": "next 3 = 6 ∧ 2 * 3 % 9 = 6 % 9"
+    },
+    {
+      "statementUuid": "4f2132dd-199d-8075-8459-76e7298be207",
+      "file": "src/3/three.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 3 = 7 ∧ reflect 7 = 3 ∧ reflect 3 ≠ 3"
+    },
+    {
+      "statementUuid": "36b61ddf-93be-822e-a03b-817cc2754d73",
+      "file": "src/3/three.lean",
+      "name": "at_three_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 3 % 9) % 9 = (2 * ((10 - 3) % 9) + 8) % 9 ∧ (10 - 2 * 3 % 9) % 9 ≠ 2 * ((10 - 3) % 9) % 9"
+    },
+    {
+      "statementUuid": "11e9d04d-52f5-8ef8-9be8-5911021ab5c1",
+      "file": "src/3/three.lean",
+      "name": "at_three_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 3 % 9) % 9 = 2 * ((9 - 3) % 9) % 9"
+    },
+    {
+      "statementUuid": "92f2ed89-0d99-8891-81a5-ab829fbe593e",
+      "file": "src/3/three.lean",
+      "name": "from_three_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 3 k.val = reflect (walk 7 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 3 (stepsTo 7 (reflect e.val)) = e.val) ∧ mirrorWalk 3 10 = 3"
+    },
+    {
+      "statementUuid": "806819bc-8404-8abd-94f5-bc1d53e5cf1c",
+      "file": "src/3/three.lean",
+      "name": "the_four_faces_at_three",
+      "statement": "next 3 = 6 ∧ prev 3 = 5 ∧ mirrorNext 3 = 5 ∧ mirrorPrev 3 = 2"
+    },
+    {
+      "statementUuid": "8ad72341-4065-8d58-9b59-1f2f0e28a8f9",
+      "file": "src/3/three.lean",
+      "name": "at_three_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 7) = next 3"
+    },
+    {
+      "statementUuid": "6dd43e84-6bd0-8cdd-8fe6-2121e11fb9c2",
+      "file": "src/3/three.lean",
+      "name": "here_carries_no_case",
+      "statement": "cases.all (fun c => station c != 3) = true"
+    },
+    {
+      "statementUuid": "cf146bbc-f559-820d-bc4e-4ade3545e1d1",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 3 4 = station .poincare"
+    },
+    {
+      "statementUuid": "8d46c6fe-775e-8639-b5e2-9e1019ab4434",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 3 5 = station .riemann"
+    },
+    {
+      "statementUuid": "48504d92-d872-8432-8c26-57189a1218e5",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 3 6 = station .pVsNp"
+    },
+    {
+      "statementUuid": "0313739d-94b2-8293-bea2-fa0bb8e20d4f",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 3 9 = station .hodge"
+    },
+    {
+      "statementUuid": "8db21c9e-5761-8f31-9723-411d7b160ad2",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 3 9 = station .bsd"
+    },
+    {
+      "statementUuid": "40fab657-b688-8935-aaa6-43e401a9cb32",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 3 8 = station .navierStokes"
+    },
+    {
+      "statementUuid": "96027982-bb75-87f5-82a2-43e8f1b723d1",
+      "file": "src/3/three.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 3 7 = station .yangMills"
+    },
+    {
+      "statementUuid": "0c7a1d75-6de7-8bfd-9e25-7bfbc3cf616c",
+      "file": "src/3/three.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 3 = station .navierStokes"
+    },
+    {
+      "statementUuid": "218b9772-004f-809a-97b1-8668287b00ad",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 3 4 = station .poincare"
+    },
+    {
+      "statementUuid": "7a636d65-0dbd-8eaa-b3e0-37bf2665b30b",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 3 9 = station .riemann"
+    },
+    {
+      "statementUuid": "47e6ecee-a55d-8a3f-839a-d7c3e6c35fca",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 3 3 = station .pVsNp"
+    },
+    {
+      "statementUuid": "9b7764db-1eac-86e6-aaff-2f3440262d63",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 3 1 = station .hodge"
+    },
+    {
+      "statementUuid": "da17ea93-2a99-8fcd-8afd-e683f6e80d69",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 3 1 = station .bsd"
+    },
+    {
+      "statementUuid": "01f4a4b8-e74c-8903-850d-168afc5d0ce3",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 3 2 = station .navierStokes"
+    },
+    {
+      "statementUuid": "bda96992-77d8-875d-bb3d-427ab2e08dd1",
+      "file": "src/3/three.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 3 7 = station .yangMills"
+    },
+    {
+      "statementUuid": "335847ec-bfaa-8b8a-a3e6-7df011a96ef3",
+      "file": "src/3/three.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 3 7 = 8 ∧ ∀ k : Fin 10, walk 7 k.val = walk 3 (k.val + 8)"
+    },
+    {
+      "statementUuid": "e1211b38-3c12-8453-8d2e-b100cba2dd0e",
+      "file": "src/4/four.lean",
+      "name": "from_four_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 4 (stepsTo 4 e.val) = e.val) ∧ walk 4 10 = 4 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 4 k.val ≠ 4)"
+    },
+    {
+      "statementUuid": "26b91bcc-9b61-840a-b83f-7b46ee9b8ae7",
+      "file": "src/4/four.lean",
+      "name": "the_step_out_of_four",
+      "statement": "next 4 = 8 ∧ 2 * 4 % 9 = 8 % 9"
+    },
+    {
+      "statementUuid": "72de4663-aa88-87d0-abd8-1b8892c56114",
+      "file": "src/4/four.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 4 = 6 ∧ reflect 6 = 4 ∧ reflect 4 ≠ 4"
+    },
+    {
+      "statementUuid": "053f15ec-79aa-881e-9775-1a0f1ebae427",
+      "file": "src/4/four.lean",
+      "name": "at_four_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 4 % 9) % 9 = (2 * ((10 - 4) % 9) + 8) % 9 ∧ (10 - 2 * 4 % 9) % 9 ≠ 2 * ((10 - 4) % 9) % 9"
+    },
+    {
+      "statementUuid": "703eac1d-46e0-8cd5-8f7d-070fe25553e2",
+      "file": "src/4/four.lean",
+      "name": "at_four_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 4 % 9) % 9 = 2 * ((9 - 4) % 9) % 9"
+    },
+    {
+      "statementUuid": "2526e6a3-07b0-8ed5-8a1c-4102ea11d7ff",
+      "file": "src/4/four.lean",
+      "name": "from_four_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 4 k.val = reflect (walk 6 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 4 (stepsTo 6 (reflect e.val)) = e.val) ∧ mirrorWalk 4 10 = 4"
+    },
+    {
+      "statementUuid": "d3315ee4-8ac1-8e2f-b3b7-9e348ae08f15",
+      "file": "src/4/four.lean",
+      "name": "the_four_faces_at_four",
+      "statement": "next 4 = 8 ∧ prev 4 = 2 ∧ mirrorNext 4 = 1 ∧ mirrorPrev 4 = 7"
+    },
+    {
+      "statementUuid": "082ca3bf-8a4e-8fe6-890c-19126cbf9155",
+      "file": "src/4/four.lean",
+      "name": "at_four_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 6) = next 4"
+    },
+    {
+      "statementUuid": "30ef78ad-2677-8f16-86be-e396967f631c",
+      "file": "src/4/four.lean",
+      "name": "here_carries",
+      "statement": "station .pVsNp = 4"
+    },
+    {
+      "statementUuid": "7a663b7b-e721-89dc-b362-98cad2e28581",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 4 8 = station .poincare"
+    },
+    {
+      "statementUuid": "24ee95a2-6f3a-83b7-9d0b-ea002d0a8c81",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 4 9 = station .riemann"
+    },
+    {
+      "statementUuid": "7edd19e7-2adf-85f4-ac04-40f31d665df4",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 4 0 = station .pVsNp"
+    },
+    {
+      "statementUuid": "7c5acd04-07d1-8eb8-8034-362a3547d39a",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 4 3 = station .hodge"
+    },
+    {
+      "statementUuid": "21d3a34f-7005-8c4f-9140-8dd11a9b040d",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 4 3 = station .bsd"
+    },
+    {
+      "statementUuid": "ae340ad6-259d-8553-af20-25bbb9223b8e",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 4 2 = station .navierStokes"
+    },
+    {
+      "statementUuid": "f927e70b-27d6-85bf-be1d-1f25ac92c278",
+      "file": "src/4/four.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 4 1 = station .yangMills"
+    },
+    {
+      "statementUuid": "5f1227f0-4767-8e2f-959e-79c9bb7af544",
+      "file": "src/4/four.lean",
+      "name": "reflection_meets_no_case",
+      "statement": "cases.all (fun c => station c != 6) = true ∧ reflect 4 = 6"
+    },
+    {
+      "statementUuid": "39651d65-c254-8fbe-b840-af65000db2e3",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 4 1 = station .poincare"
+    },
+    {
+      "statementUuid": "1187b66d-24ca-8580-9544-a1319f094900",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 4 6 = station .riemann"
+    },
+    {
+      "statementUuid": "5f4691eb-7e7d-8fac-8977-36fe7cc3b5dd",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 4 0 = station .pVsNp"
+    },
+    {
+      "statementUuid": "39b86ed4-2fa2-81b4-a236-874b4d40173d",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 4 8 = station .hodge"
+    },
+    {
+      "statementUuid": "1853a492-0244-86a2-acfe-cd234bf79712",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 4 8 = station .bsd"
+    },
+    {
+      "statementUuid": "56aa310e-91a9-8064-bfda-f9536742d61f",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 4 9 = station .navierStokes"
+    },
+    {
+      "statementUuid": "4ffb7a78-610f-841f-bfc0-078479c4af1b",
+      "file": "src/4/four.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 4 4 = station .yangMills"
+    },
+    {
+      "statementUuid": "68471d85-1fce-8712-b2bf-c81e54609439",
+      "file": "src/4/four.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 4 6 = 5 ∧ ∀ k : Fin 10, walk 6 k.val = walk 4 (k.val + 5)"
+    },
+    {
+      "statementUuid": "e7f106c8-4d3a-87a0-bcf4-7e7d340c5077",
+      "file": "src/4/four.lean",
+      "name": "complement_is_an_involution",
+      "statement": "∀ c : Class, complement (complement c) = c"
+    },
+    {
+      "statementUuid": "99dba1ed-ead3-8d48-94a2-58ce39859d0f",
+      "file": "src/4/four.lean",
+      "name": "complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate",
+      "statement": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6"
+    },
+    {
+      "statementUuid": "5f26e720-49a6-80c7-ba50-a601d866687a",
+      "file": "src/5/five.lean",
+      "name": "the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ d e : Fin 10, walk d.val (stepsTo d.val e.val) = e.val) ∧\n    (∀ d : Fin 10, walk d.val 10 = d.val) ∧\n    (∀ d k : Fin 10, k.val ≠ 0 → walk d.val k.val ≠ d.val)"
+    },
+    {
+      "statementUuid": "04e6bfc0-49a8-83c2-983f-b98c225b89a7",
+      "file": "src/5/five.lean",
+      "name": "forward_doubles_and_five_undoes_it",
+      "statement": "(∀ d ∈ [1, 2, 4, 8, 7], next d = 2 * d % 9 ∧ 5 * next d % 9 = d) ∧\n    next 5 = 3 ∧ 2 * 5 % 9 ≠ 3 ∧ next 3 = 6 ∧ next 6 = 9 ∧ next 9 = 0 ∧ next 0 = 1"
+    },
+    {
+      "statementUuid": "095beab2-4f27-827d-9ea6-a374858fe19c",
+      "file": "src/5/five.lean",
+      "name": "reflect_is_an_involution_fixing_zero_and_five",
+      "statement": "(∀ d : Fin 10, reflect (reflect d.val) = d.val) ∧\n    (List.range 10).filter (fun d => reflect d == d) = [0, 5]"
+    },
+    {
+      "statementUuid": "0a8fdaf1-5657-8d1a-be26-18f2a3bff94e",
+      "file": "src/5/five.lean",
+      "name": "reflection_lags_the_walk_by_one_step",
+      "statement": "∀ d : Fin 9, (10 - 2 * d.val % 9) % 9 = (2 * ((10 - d.val) % 9) + 8) % 9 ∧\n      (10 - 2 * d.val % 9) % 9 ≠ 2 * ((10 - d.val) % 9) % 9"
+    },
+    {
+      "statementUuid": "70077626-d92d-85c9-82c4-e1c67efa628b",
+      "file": "src/5/five.lean",
+      "name": "nine_complement_commutes_with_the_walk",
+      "statement": "∀ d : Fin 9, (9 - 2 * d.val % 9) % 9 = 2 * ((9 - d.val) % 9) % 9"
+    },
+    {
+      "statementUuid": "f25b14c5-57c1-8d57-b8b7-041dd7663039",
+      "file": "src/5/five.lean",
+      "name": "walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ d k : Fin 10, mirrorWalk d.val k.val = reflect (walk (reflect d.val) k.val)) ∧\n    (∀ d e : Fin 10, mirrorWalk d.val (stepsTo (reflect d.val) (reflect e.val)) = e.val) ∧\n    (∀ d : Fin 10, mirrorWalk d.val 10 = d.val) ∧\n    (∀ d k : Fin 10, k.val ≠ 0 → mirrorWalk d.val k.val ≠ d.val)"
+    },
+    {
+      "statementUuid": "9d43dd67-c6d9-874a-ae7a-d53fc629573a",
+      "file": "src/5/five.lean",
+      "name": "mirroring_twice_is_the_sequence",
+      "statement": "∀ d : Fin 10, reflect (mirrorNext (reflect d.val)) = next d.val"
+    },
+    {
+      "statementUuid": "bb42e52c-9cc9-8ff3-9397-7bb21ecc48f7",
+      "file": "src/5/five.lean",
+      "name": "the_four_faces_are_distinct",
+      "statement": "let face"
+    },
+    {
+      "statementUuid": "ffe8bcd7-3e87-8a9a-9bc5-dd42add0e8d1",
+      "file": "src/5/five.lean",
+      "name": "here_carries",
+      "statement": "station .hodge = 5 ∧ station .bsd = 5"
+    },
+    {
+      "statementUuid": "a2a72dbb-5cbf-8dfd-acaf-a0444e56bca2",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 5 5 = station .poincare"
+    },
+    {
+      "statementUuid": "b71f3076-be43-8414-a7ef-69abaacf3cee",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 5 6 = station .riemann"
+    },
+    {
+      "statementUuid": "66fa8fb7-c291-892f-8b4a-c955d85ac842",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 5 7 = station .pVsNp"
+    },
+    {
+      "statementUuid": "51671306-bb67-8557-8c59-4b391aff1192",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 5 0 = station .hodge"
+    },
+    {
+      "statementUuid": "b5dc6a7a-0f6b-8c84-8411-e17faea6605f",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 5 0 = station .bsd"
+    },
+    {
+      "statementUuid": "149c087f-98ca-8403-86e9-074cd73c1140",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 5 9 = station .navierStokes"
+    },
+    {
+      "statementUuid": "0f7e0525-9071-850c-83b4-1330dd1e6fc3",
+      "file": "src/5/five.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 5 8 = station .yangMills"
+    },
+    {
+      "statementUuid": "1e18d947-7e02-8d7a-a254-0597fb97cd1b",
+      "file": "src/5/five.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 5 = station .hodge ∧ reflect 5 = station .bsd"
+    },
+    {
+      "statementUuid": "ecdc0fed-d9f4-8b57-ab63-13814d097759",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 5 3 = station .poincare"
+    },
+    {
+      "statementUuid": "d0b89646-0b1e-89d2-8e56-4e38f0a01791",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 5 8 = station .riemann"
+    },
+    {
+      "statementUuid": "cf3ebd15-4ac1-8b5f-9133-b12e00d4e057",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 5 2 = station .pVsNp"
+    },
+    {
+      "statementUuid": "d402def3-42f5-8d21-bb32-a9d14ebfc2b4",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 5 0 = station .hodge"
+    },
+    {
+      "statementUuid": "34c48c10-e23c-887d-9560-d8b9688f08f3",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 5 0 = station .bsd"
+    },
+    {
+      "statementUuid": "f9cfb10d-2622-8ee7-9a6a-bb6ca01af33d",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 5 1 = station .navierStokes"
+    },
+    {
+      "statementUuid": "1757c52e-5db8-8631-8134-8deba293e6e3",
+      "file": "src/5/five.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 5 6 = station .yangMills"
+    },
+    {
+      "statementUuid": "cdef5a43-1884-8e6e-a95c-375f0aad9a9c",
+      "file": "src/5/five.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 5 5 = 0 ∧ ∀ k : Fin 10, walk 5 k.val = walk 5 (k.val + 0)"
+    },
+    {
+      "statementUuid": "7af4f32e-f0e0-88ff-a10a-2aed5f139569",
+      "file": "src/5/five.lean",
+      "name": "hodge_conjugation_is_an_involution",
+      "statement": "∀ t : Nat × Nat, hodgeConjugate (hodgeConjugate t) = t"
+    },
+    {
+      "statementUuid": "9667d6e3-2688-8279-bcaf-a64ee01d2d4c",
+      "file": "src/5/five.lean",
+      "name": "hodge_conjugation_fixes_exactly_the_diagonal",
+      "statement": "∀ p q : Nat, hodgeConjugate (p, q) = (p, q) ↔ p = q"
+    },
+    {
+      "statementUuid": "8d9fe9de-0758-86a6-a5cd-68128081b40b",
+      "file": "src/5/five.lean",
+      "name": "bsd_reflection_is_an_involution",
+      "statement": "∀ s : Int, bsdReflect (bsdReflect s) = s"
+    },
+    {
+      "statementUuid": "520e98ac-013a-8659-be20-9ea196501235",
+      "file": "src/5/five.lean",
+      "name": "bsd_reflection_fixes_exactly_the_central_point",
+      "statement": "∀ s : Int, bsdReflect s = s ↔ s = 1"
+    },
+    {
+      "statementUuid": "7e472d56-667b-8e9c-82b6-b499374324e4",
+      "file": "src/6/six.lean",
+      "name": "from_six_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 6 (stepsTo 6 e.val) = e.val) ∧ walk 6 10 = 6 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 6 k.val ≠ 6)"
+    },
+    {
+      "statementUuid": "a4eb0d7e-decc-8d74-8a9b-c8cd0516a154",
+      "file": "src/6/six.lean",
+      "name": "the_step_out_of_six",
+      "statement": "next 6 = 9 ∧ 2 * 6 % 9 ≠ 9 % 9"
+    },
+    {
+      "statementUuid": "8658722d-10e0-8103-b67f-888d2bb095cb",
+      "file": "src/6/six.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 6 = 4 ∧ reflect 4 = 6 ∧ reflect 6 ≠ 6"
+    },
+    {
+      "statementUuid": "63772df2-3a4c-8d43-88d9-01c365774c44",
+      "file": "src/6/six.lean",
+      "name": "at_six_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 6 % 9) % 9 = (2 * ((10 - 6) % 9) + 8) % 9 ∧ (10 - 2 * 6 % 9) % 9 ≠ 2 * ((10 - 6) % 9) % 9"
+    },
+    {
+      "statementUuid": "cc417f25-4a4f-86e3-9e97-a5d8a2ba14f9",
+      "file": "src/6/six.lean",
+      "name": "at_six_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 6 % 9) % 9 = 2 * ((9 - 6) % 9) % 9"
+    },
+    {
+      "statementUuid": "8177c541-5384-88b5-aa7c-84d6e2550b36",
+      "file": "src/6/six.lean",
+      "name": "from_six_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 6 k.val = reflect (walk 4 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 6 (stepsTo 4 (reflect e.val)) = e.val) ∧ mirrorWalk 6 10 = 6"
+    },
+    {
+      "statementUuid": "1bd200ac-fd55-8389-ad59-d1d30263afce",
+      "file": "src/6/six.lean",
+      "name": "the_four_faces_at_six",
+      "statement": "next 6 = 9 ∧ prev 6 = 3 ∧ mirrorNext 6 = 2 ∧ mirrorPrev 6 = 8"
+    },
+    {
+      "statementUuid": "6a123560-e0a1-8939-b3aa-6c0a274d069a",
+      "file": "src/6/six.lean",
+      "name": "at_six_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 4) = next 6"
+    },
+    {
+      "statementUuid": "71d043ae-6253-8af3-a281-ecf379d76e78",
+      "file": "src/6/six.lean",
+      "name": "here_carries_no_case",
+      "statement": "cases.all (fun c => station c != 6) = true"
+    },
+    {
+      "statementUuid": "0b3360d2-f1c2-88c3-8d91-0bc4a246ea0c",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 6 3 = station .poincare"
+    },
+    {
+      "statementUuid": "e4a9dce5-cde0-82a8-b26a-afce42991480",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 6 4 = station .riemann"
+    },
+    {
+      "statementUuid": "cf06d76d-308c-80ff-9015-df9140071b11",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 6 5 = station .pVsNp"
+    },
+    {
+      "statementUuid": "cdee717e-4d21-8373-852a-6c8b3e1bf6db",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 6 8 = station .hodge"
+    },
+    {
+      "statementUuid": "2ccd1d7a-113f-8823-b477-c5448d45ad6b",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 6 8 = station .bsd"
+    },
+    {
+      "statementUuid": "2b9bbd1d-dacd-8261-a947-d646c0861bfe",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 6 7 = station .navierStokes"
+    },
+    {
+      "statementUuid": "8d87c773-ad8b-8627-baaf-1c205da84639",
+      "file": "src/6/six.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 6 6 = station .yangMills"
+    },
+    {
+      "statementUuid": "f1e1fcba-5c11-8787-a492-fb4d6ae27411",
+      "file": "src/6/six.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 6 = station .pVsNp"
+    },
+    {
+      "statementUuid": "14c11891-35c2-8e98-b338-049d2422bf25",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 6 6 = station .poincare"
+    },
+    {
+      "statementUuid": "44a1d8a9-b77e-8c9e-b61a-14ebffcd354d",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 6 1 = station .riemann"
+    },
+    {
+      "statementUuid": "f50eae54-b241-8570-8e06-cd885a8b99ed",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 6 5 = station .pVsNp"
+    },
+    {
+      "statementUuid": "3dd0ce56-1c24-81bc-9f07-896c8d26068c",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 6 3 = station .hodge"
+    },
+    {
+      "statementUuid": "881b2310-5f94-8e85-a98b-26d5f69a6c89",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 6 3 = station .bsd"
+    },
+    {
+      "statementUuid": "8b152b81-0ee6-8fa1-b9d1-d9d5e8ac0fa8",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 6 4 = station .navierStokes"
+    },
+    {
+      "statementUuid": "a7978093-8cbc-8925-b750-86c0f0347587",
+      "file": "src/6/six.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 6 9 = station .yangMills"
+    },
+    {
+      "statementUuid": "caf96cb0-794d-8271-9f7a-912065e46708",
+      "file": "src/6/six.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 6 4 = 5 ∧ ∀ k : Fin 10, walk 4 k.val = walk 6 (k.val + 5)"
+    },
+    {
+      "statementUuid": "b6c9b8f1-6fd4-8c53-9598-5a21aaabe811",
+      "file": "src/7/seven.lean",
+      "name": "from_seven_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 7 (stepsTo 7 e.val) = e.val) ∧ walk 7 10 = 7 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 7 k.val ≠ 7)"
+    },
+    {
+      "statementUuid": "fb8416b4-5de8-8e92-9021-817752bbc438",
+      "file": "src/7/seven.lean",
+      "name": "the_step_out_of_seven",
+      "statement": "next 7 = 5 ∧ 2 * 7 % 9 = 5 % 9"
+    },
+    {
+      "statementUuid": "a123a4ae-85d9-8a3b-9576-1bce7371ecdd",
+      "file": "src/7/seven.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 7 = 3 ∧ reflect 3 = 7 ∧ reflect 7 ≠ 7"
+    },
+    {
+      "statementUuid": "e9e0ce2e-60ea-8ffa-90a0-38c83863e5cc",
+      "file": "src/7/seven.lean",
+      "name": "at_seven_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 7 % 9) % 9 = (2 * ((10 - 7) % 9) + 8) % 9 ∧ (10 - 2 * 7 % 9) % 9 ≠ 2 * ((10 - 7) % 9) % 9"
+    },
+    {
+      "statementUuid": "02f6167b-ba69-88b5-b731-3eaaa9f6ec46",
+      "file": "src/7/seven.lean",
+      "name": "at_seven_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 7 % 9) % 9 = 2 * ((9 - 7) % 9) % 9"
+    },
+    {
+      "statementUuid": "66b413c2-b49b-8961-9b77-046e156e35e7",
+      "file": "src/7/seven.lean",
+      "name": "from_seven_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 7 k.val = reflect (walk 3 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 7 (stepsTo 3 (reflect e.val)) = e.val) ∧ mirrorWalk 7 10 = 7"
+    },
+    {
+      "statementUuid": "cf505a4d-30ab-8af6-bb57-0a18a31f300c",
+      "file": "src/7/seven.lean",
+      "name": "the_four_faces_at_seven",
+      "statement": "next 7 = 5 ∧ prev 7 = 8 ∧ mirrorNext 7 = 4 ∧ mirrorPrev 7 = 5"
+    },
+    {
+      "statementUuid": "ea74715b-9286-860a-bb43-7b2b9fe23e80",
+      "file": "src/7/seven.lean",
+      "name": "at_seven_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 3) = next 7"
+    },
+    {
+      "statementUuid": "2406ccab-295c-8f8b-abd7-2c5a7649c6bd",
+      "file": "src/7/seven.lean",
+      "name": "here_carries",
+      "statement": "station .navierStokes = 7"
+    },
+    {
+      "statementUuid": "1f3d74df-4b34-826b-8255-fa89326ef413",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 7 6 = station .poincare"
+    },
+    {
+      "statementUuid": "80770796-0085-81c1-8f19-fcc259d6b740",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 7 7 = station .riemann"
+    },
+    {
+      "statementUuid": "69ab208d-2d16-8562-a550-415fa5a78ad9",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 7 8 = station .pVsNp"
+    },
+    {
+      "statementUuid": "a905f489-ea25-86bf-856f-cc86a39c51ee",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 7 1 = station .hodge"
+    },
+    {
+      "statementUuid": "e6cfc599-21eb-8bf7-8d64-fe0f0e6cd48e",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 7 1 = station .bsd"
+    },
+    {
+      "statementUuid": "590bfd6d-7bca-8a5b-85f6-d5b6e5f0f91d",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 7 0 = station .navierStokes"
+    },
+    {
+      "statementUuid": "bc0f0a95-69cb-8e25-ba93-2dd22ab1ac46",
+      "file": "src/7/seven.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 7 9 = station .yangMills"
+    },
+    {
+      "statementUuid": "7207e76d-0a3b-8270-9b1e-ea50d6f6ae71",
+      "file": "src/7/seven.lean",
+      "name": "reflection_meets_no_case",
+      "statement": "cases.all (fun c => station c != 3) = true ∧ reflect 7 = 3"
+    },
+    {
+      "statementUuid": "3332501c-e282-87a8-b556-a2037326e201",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 7 2 = station .poincare"
+    },
+    {
+      "statementUuid": "bc842f7d-7467-859e-b168-32015718b0f6",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 7 7 = station .riemann"
+    },
+    {
+      "statementUuid": "c87bc99c-6fe3-8e11-adfa-50a8839f4e1b",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 7 1 = station .pVsNp"
+    },
+    {
+      "statementUuid": "e1950019-7088-8cdf-add5-58128690864f",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 7 9 = station .hodge"
+    },
+    {
+      "statementUuid": "4a3808cf-be0e-88d6-ba4d-7695ce7f24d8",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 7 9 = station .bsd"
+    },
+    {
+      "statementUuid": "deb47d61-65d5-886c-b635-811f31f82dfb",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 7 0 = station .navierStokes"
+    },
+    {
+      "statementUuid": "08e71154-c26a-8982-b481-4d11808cf2e9",
+      "file": "src/7/seven.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 7 5 = station .yangMills"
+    },
+    {
+      "statementUuid": "69989eac-99e4-8902-88c1-63712809ff67",
+      "file": "src/7/seven.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 7 3 = 2 ∧ ∀ k : Fin 10, walk 3 k.val = walk 7 (k.val + 2)"
+    },
+    {
+      "statementUuid": "04b503ad-a162-820b-9f1c-4a848dff497b",
+      "file": "src/7/seven.lean",
+      "name": "time_reversal_is_an_involution",
+      "statement": "∀ v : Int, viscous (viscous v) = v"
+    },
+    {
+      "statementUuid": "3559bb23-e3a4-82fb-85b4-97fd95b6b2bd",
+      "file": "src/7/seven.lean",
+      "name": "time_reversal_fixes_exactly_the_inviscid_and_reflects_to_three",
+      "statement": "(∀ v : Int, viscous v = v ↔ v = 0) ∧ reflect 7 = 3"
+    },
+    {
+      "statementUuid": "fe30bfcd-dbaf-8c4c-aeb5-9f5805cbab26",
+      "file": "src/8/eight.lean",
+      "name": "from_eight_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 8 (stepsTo 8 e.val) = e.val) ∧ walk 8 10 = 8 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 8 k.val ≠ 8)"
+    },
+    {
+      "statementUuid": "12dcc317-2a21-83bb-9400-51d3288d5b24",
+      "file": "src/8/eight.lean",
+      "name": "the_step_out_of_eight",
+      "statement": "next 8 = 7 ∧ 2 * 8 % 9 = 7 % 9"
+    },
+    {
+      "statementUuid": "63516fe5-840a-8674-898d-76f5e5d84d54",
+      "file": "src/8/eight.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 8 = 2 ∧ reflect 2 = 8 ∧ reflect 8 ≠ 8"
+    },
+    {
+      "statementUuid": "768e7ea3-e418-8073-b5ba-45eb1699f9d1",
+      "file": "src/8/eight.lean",
+      "name": "at_eight_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 8 % 9) % 9 = (2 * ((10 - 8) % 9) + 8) % 9 ∧ (10 - 2 * 8 % 9) % 9 ≠ 2 * ((10 - 8) % 9) % 9"
+    },
+    {
+      "statementUuid": "ecb8ebf7-a8d1-84fa-9ffb-c6f966f89337",
+      "file": "src/8/eight.lean",
+      "name": "at_eight_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 8 % 9) % 9 = 2 * ((9 - 8) % 9) % 9"
+    },
+    {
+      "statementUuid": "237c43e4-724b-8819-9936-d8420e0e62e7",
+      "file": "src/8/eight.lean",
+      "name": "from_eight_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 8 k.val = reflect (walk 2 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 8 (stepsTo 2 (reflect e.val)) = e.val) ∧ mirrorWalk 8 10 = 8"
+    },
+    {
+      "statementUuid": "a0f62ac7-ef6f-8f30-99bc-eb2acac27009",
+      "file": "src/8/eight.lean",
+      "name": "the_four_faces_at_eight",
+      "statement": "next 8 = 7 ∧ prev 8 = 4 ∧ mirrorNext 8 = 6 ∧ mirrorPrev 8 = 9"
+    },
+    {
+      "statementUuid": "1852f512-e5a4-8227-925b-75e2c571bfde",
+      "file": "src/8/eight.lean",
+      "name": "at_eight_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 2) = next 8"
+    },
+    {
+      "statementUuid": "beebaf66-cab1-8b15-bb90-fb0d2b569f44",
+      "file": "src/8/eight.lean",
+      "name": "here_carries",
+      "statement": "station .yangMills = 8"
+    },
+    {
+      "statementUuid": "0fbfcd8c-f558-85cb-bdb1-d6fdac7aeb19",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 8 7 = station .poincare"
+    },
+    {
+      "statementUuid": "8ae7e72d-0971-896c-b3e7-d76d1e82b6eb",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 8 8 = station .riemann"
+    },
+    {
+      "statementUuid": "7ff091d7-0ea8-837f-9f75-a385e919634e",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 8 9 = station .pVsNp"
+    },
+    {
+      "statementUuid": "e5f5b258-e813-8188-8a5f-135ce157a27c",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 8 2 = station .hodge"
+    },
+    {
+      "statementUuid": "019bec17-e09a-80aa-ab9c-37bd98a5974c",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 8 2 = station .bsd"
+    },
+    {
+      "statementUuid": "af80e38c-984b-85d9-90b7-a698f1509c78",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 8 1 = station .navierStokes"
+    },
+    {
+      "statementUuid": "0708f000-73e7-8986-86b9-48195838d3ba",
+      "file": "src/8/eight.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 8 0 = station .yangMills"
+    },
+    {
+      "statementUuid": "8a139b4b-8fcf-872a-abc1-ac2504cef97f",
+      "file": "src/8/eight.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 8 = station .riemann"
+    },
+    {
+      "statementUuid": "d321f77f-22d0-8f35-95f8-c6e27241a352",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 8 7 = station .poincare"
+    },
+    {
+      "statementUuid": "6e656f45-4a71-859d-961a-82891dceb96c",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 8 2 = station .riemann"
+    },
+    {
+      "statementUuid": "e8465111-e379-8f13-a2ee-0e63de4e46ca",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 8 6 = station .pVsNp"
+    },
+    {
+      "statementUuid": "1aa713c6-1e09-80dc-8151-f16b4921c8bd",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 8 4 = station .hodge"
+    },
+    {
+      "statementUuid": "9545c42f-4af1-8869-be58-29e75e3b261c",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 8 4 = station .bsd"
+    },
+    {
+      "statementUuid": "d8fe93d0-2d4b-84b8-bb95-d9f23312d4a8",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 8 5 = station .navierStokes"
+    },
+    {
+      "statementUuid": "2d7c47a2-2d72-800c-96a7-8b08d851279a",
+      "file": "src/8/eight.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 8 0 = station .yangMills"
+    },
+    {
+      "statementUuid": "32751dc7-5121-84a2-9304-4b2bf2752106",
+      "file": "src/8/eight.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 8 2 = 8 ∧ ∀ k : Fin 10, walk 2 k.val = walk 8 (k.val + 8)"
+    },
+    {
+      "statementUuid": "d908b530-62be-89ed-8ccf-a344bef59f4a",
+      "file": "src/8/eight.lean",
+      "name": "star_is_an_involution_and_reflects_to_riemann",
+      "statement": "(∀ v : Form2, star (star v) = v) ∧ reflect 8 = 2"
+    },
+    {
+      "statementUuid": "03f84553-c6a0-8637-a401-48744c8f3c61",
+      "file": "src/8/eight.lean",
+      "name": "star_negates_every_anti_self_dual_form",
+      "statement": "∀ v : Form2, star (asd v) = neg (asd v)"
+    },
+    {
+      "statementUuid": "96790a0a-55bf-858f-875d-89f2aa33356b",
+      "file": "src/9/nine.lean",
+      "name": "from_nine_the_sequence_is_one_cycle_through_every_station",
+      "statement": "(∀ e : Fin 10, walk 9 (stepsTo 9 e.val) = e.val) ∧ walk 9 10 = 9 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 9 k.val ≠ 9)"
+    },
+    {
+      "statementUuid": "27d81d00-f030-89eb-ab7a-b0a6656dac86",
+      "file": "src/9/nine.lean",
+      "name": "the_step_out_of_nine",
+      "statement": "next 9 = 0 ∧ 2 * 9 % 9 = 0 % 9"
+    },
+    {
+      "statementUuid": "f762dd42-3bee-8990-8357-344fbc6a79d1",
+      "file": "src/9/nine.lean",
+      "name": "here_reflects_to_its_mirror",
+      "statement": "reflect 9 = 1 ∧ reflect 1 = 9 ∧ reflect 9 ≠ 9"
+    },
+    {
+      "statementUuid": "2071b5fd-6c75-8bb6-bf99-5af3fc3c6527",
+      "file": "src/9/nine.lean",
+      "name": "at_nine_the_reflection_lags_the_walk_by_one_step",
+      "statement": "(10 - 2 * 9 % 9) % 9 = (2 * ((10 - 9) % 9) + 8) % 9 ∧ (10 - 2 * 9 % 9) % 9 ≠ 2 * ((10 - 9) % 9) % 9"
+    },
+    {
+      "statementUuid": "4e7f4ae1-8f89-8778-b25d-9e11c71c890b",
+      "file": "src/9/nine.lean",
+      "name": "at_nine_the_nine_complement_commutes_with_the_walk",
+      "statement": "(9 - 2 * 9 % 9) % 9 = 2 * ((9 - 9) % 9) % 9"
+    },
+    {
+      "statementUuid": "bb74a670-5fe6-8a18-bd39-b3e45069f387",
+      "file": "src/9/nine.lean",
+      "name": "from_nine_walking_the_reflection_experiences_the_sequence",
+      "statement": "(∀ k : Fin 10, mirrorWalk 9 k.val = reflect (walk 1 k.val)) ∧\n    (∀ e : Fin 10, mirrorWalk 9 (stepsTo 1 (reflect e.val)) = e.val) ∧ mirrorWalk 9 10 = 9"
+    },
+    {
+      "statementUuid": "c2dd20ce-6cf0-8d5c-b619-297396be3b79",
+      "file": "src/9/nine.lean",
+      "name": "the_four_faces_at_nine",
+      "statement": "next 9 = 0 ∧ prev 9 = 6 ∧ mirrorNext 9 = 8 ∧ mirrorPrev 9 = 0"
+    },
+    {
+      "statementUuid": "b0f91ccd-af2d-80d9-b51d-053ee660aa30",
+      "file": "src/9/nine.lean",
+      "name": "at_nine_mirroring_twice_is_the_sequence",
+      "statement": "reflect (mirrorNext 1) = next 9"
+    },
+    {
+      "statementUuid": "30a68b0e-0081-813e-b8e2-b6f288c7f8e4",
+      "file": "src/9/nine.lean",
+      "name": "here_carries_no_case",
+      "statement": "cases.all (fun c => station c != 9) = true"
+    },
+    {
+      "statementUuid": "0a839e38-7c4b-84a6-b461-b80bf2b61894",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_poincare",
+      "statement": "walk 9 2 = station .poincare"
+    },
+    {
+      "statementUuid": "586406a2-997e-85e4-8a66-bb233308ea3f",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_riemann",
+      "statement": "walk 9 3 = station .riemann"
+    },
+    {
+      "statementUuid": "705c305d-7fe2-8f99-baa3-9e98f425940a",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_pVsNp",
+      "statement": "walk 9 4 = station .pVsNp"
+    },
+    {
+      "statementUuid": "0fdf0fe4-957d-8792-af3d-9b52b964e517",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_hodge",
+      "statement": "walk 9 7 = station .hodge"
+    },
+    {
+      "statementUuid": "a677fb20-33f2-8a0a-9dc7-da89db7a60e0",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_bsd",
+      "statement": "walk 9 7 = station .bsd"
+    },
+    {
+      "statementUuid": "b055c0b4-0b15-84ff-b804-8ebc899a86f4",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_navierStokes",
+      "statement": "walk 9 6 = station .navierStokes"
+    },
+    {
+      "statementUuid": "980deec3-be5d-88b7-a3d9-b7199a3ee679",
+      "file": "src/9/nine.lean",
+      "name": "walk_reaches_yangMills",
+      "statement": "walk 9 5 = station .yangMills"
+    },
+    {
+      "statementUuid": "d8fb3880-e84c-88cc-acdb-b9ccecdea1f8",
+      "file": "src/9/nine.lean",
+      "name": "reflection_meets",
+      "statement": "reflect 9 = station .poincare"
+    },
+    {
+      "statementUuid": "e665f9e3-e6d8-8e52-a6bf-531bd79a8814",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_poincare",
+      "statement": "mirrorWalk 9 8 = station .poincare"
+    },
+    {
+      "statementUuid": "0ef7d8bf-9e40-8998-a09c-d6b14cb25358",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_riemann",
+      "statement": "mirrorWalk 9 3 = station .riemann"
+    },
+    {
+      "statementUuid": "12c31153-198c-8ff1-95ae-fcd161060d64",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_pVsNp",
+      "statement": "mirrorWalk 9 7 = station .pVsNp"
+    },
+    {
+      "statementUuid": "bbd4b488-2cf3-86db-aa9c-4f55879530f2",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_hodge",
+      "statement": "mirrorWalk 9 5 = station .hodge"
+    },
+    {
+      "statementUuid": "bc16feaf-8da2-873b-9d6a-ef413255f8af",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_bsd",
+      "statement": "mirrorWalk 9 5 = station .bsd"
+    },
+    {
+      "statementUuid": "e87483ad-1084-8c57-bce8-70e306954625",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_navierStokes",
+      "statement": "mirrorWalk 9 6 = station .navierStokes"
+    },
+    {
+      "statementUuid": "56bb7456-044d-8638-896d-22b2ec0f257f",
+      "file": "src/9/nine.lean",
+      "name": "mirror_walk_reaches_yangMills",
+      "statement": "mirrorWalk 9 1 = station .yangMills"
+    },
+    {
+      "statementUuid": "13ec5420-16a3-82af-818a-4239a73550bb",
+      "file": "src/9/nine.lean",
+      "name": "walking_from_the_mirror_is_walking_from_here_shifted",
+      "statement": "stepsTo 9 1 = 2 ∧ ∀ k : Fin 10, walk 1 k.val = walk 9 (k.val + 2)"
+    },
+    {
+      "statementUuid": "88cea06d-ece8-891e-ab78-8c844a59fd69",
+      "file": "src/9/nine.lean",
+      "name": "the_loop_is_the_opening_walked_back_and_closed_ahead",
+      "statement": "collatz 4 = prev 4 ∧ collatz 2 = prev 2 ∧ collatz 1 = walk 1 2"
+    },
+    {
+      "statementUuid": "7806d1e0-dda5-8081-ae65-4d6772862f7b",
+      "file": "src/9/nine.lean",
+      "name": "the_mirror_walk_from_nine_walks_the_loop_reflected",
+      "statement": "mirrorWalk here 0 = reflect 1 ∧ mirrorWalk here 1 = reflect 2 ∧ mirrorWalk here 2 = reflect 4"
+    },
+    {
+      "statementUuid": "6c506bc9-1384-853e-be2e-fe813646e080",
+      "file": "src/9/nine.lean",
+      "name": "every_n_below_sixty_four_reaches_one",
+      "statement": "∀ n : Fin 64, n.val = 0 ∨ reachesOne 120 n.val = true"
+    },
+    {
+      "statementUuid": "2bffa86d-8fd9-88d6-a7c5-fb19a78f564b",
+      "file": "src/9/nine.lean",
+      "name": "twenty_seven_needs_more_than_one_hundred_ten_steps",
+      "statement": "reachesOne 110 27 = false"
+    },
+    {
+      "statementUuid": "51d5a9ce-6d12-8091-85b4-83f72ef3778b",
+      "file": "src/9/nine.lean",
+      "name": "five_x_plus_one_has_a_cycle_that_never_meets_one",
+      "statement": "Nat.repeat (axPlusOne 5) 10 13 = 13 ∧ meetsOne 5 10 13 = false"
+    },
+    {
+      "statementUuid": "7c463513-1a47-8417-9344-2be4085fda9f",
+      "file": "src/9/nine.lean",
+      "name": "nine_nine_nine_x_plus_one_from_one_thousand_has_not_met_one_in_sixty_steps",
+      "statement": "meetsOne 999 60 1000 = false"
+    },
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
       "file": "src/heaven/compute/Alu.lean",

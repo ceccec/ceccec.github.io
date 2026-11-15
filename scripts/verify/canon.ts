@@ -171,9 +171,10 @@ export function findCanonBreaks(root: string = process.cwd()): {
   unmovableClaim: Site[]
   decorativeConjunct: Site[]
   facetSealsAMeasurement: Site[]
+  filterThenEvery: Site[]
 } {
   const ts = require('typescript') as typeof import('typescript')
-  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = [], facetSealsAMeasurement: Site[] = []
+  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = [], facetSealsAMeasurement: Site[] = [], filterThenEvery: Site[] = []
   for (const file of corpusFiles(root)) {
     const sf = file.ast()
     const src = file.text
@@ -223,7 +224,24 @@ export function findCanonBreaks(root: string = process.cwd()): {
       ts.forEachChild(n, findEmpty)
     }
     findEmpty(sf)
+    // A FILTER RE-TESTED BY ITS OWN PREDICATE DECIDES NOTHING (owner, 2026-11-15: "remove all assumptions"). `X = Y.filter(p)`
+    // followed by `X.every(p)` holds for every Y, so a facet resting on it cannot fail: the DAG fold filtered nodes with no
+    // dependencies and then checked they had none. The predicates are compared with the parameter renamed; a name the
+    // file declares twice or reassigns resolves to no initialiser, as everywhere in this gate.
+    const predicateOf = (fn: import('typescript').Node | undefined): string | null => {
+      if (!fn || !(ts.isArrowFunction(fn) || ts.isFunctionExpression(fn)) || !fn.parameters.length) return null
+      const param = fn.parameters[0]!.name.getText(sf)
+      return fn.body.getText(sf).replace(new RegExp(`\\b${param.replace(/[^\w$]/g, '\\$&')}\\b`, 'g'), '§').replace(/\s+/g, '')
+    }
     const visit = (n: import('typescript').Node): void => {
+      if (ts.isCallExpression(n) && ts.isPropertyAccessExpression(n.expression) && n.expression.name.text === 'every'
+        && ts.isIdentifier(n.expression.expression) && !reassigned.has(n.expression.expression.text)) {
+        const init = inits.get(n.expression.expression.text)
+        if (init && ts.isCallExpression(init) && ts.isPropertyAccessExpression(init.expression) && init.expression.name.text === 'filter') {
+          const built = predicateOf(init.arguments[0]), tested = predicateOf(n.arguments[0])
+          if (built !== null && built === tested) filterThenEvery.push({ file: file.rel, line: at(n), text: cut(n) })
+        }
+      }
       if (ts.isBinaryExpression(n)) {
         const k = n.operatorToken.kind
         const eq = k === ts.SyntaxKind.EqualsEqualsEqualsToken || k === ts.SyntaxKind.EqualsEqualsToken
@@ -349,7 +367,7 @@ export function findCanonBreaks(root: string = process.cwd()): {
     }
     visit(sf)
   }
-  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct, facetSealsAMeasurement }
+  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct, facetSealsAMeasurement, filterThenEvery }
 }
 
 /**
@@ -636,6 +654,14 @@ export function assertCanonicalForms(): void {
     console.log(ratchet('canon.self-comparison', found.selfComparison.length, { evidence: () => found.selfComparison.map(show) }))
     console.log(decided('canon.typed-boolean-conjunct', found.typedBoolean.length, { evidence: () => found.typedBoolean.map(show) }))
     console.log(decided('canon.facet-missing-on', found.facetMissingOn.length, { evidence: () => found.facetMissingOn.map(show) }))
+    console.log(`  ${found.filterThenEvery.length}  a filter re-tested by its own predicate — \`X = Y.filter(p)\` then \`X.every(p)\` holds for every Y`)
+    for (const s of found.filterThenEvery.slice(0, 4)) console.log(`      ${show(s)}`)
+    // A RATCHET, NOT YET A DECISION: the sites left are in src/4/6, a protected digit folder whose edits wait for the
+    // owner's word; it becomes `decided` (zero) the wave they are fixed.
+    console.log(ratchet('canon.filter-then-every', found.filterThenEvery.length, {
+      law: 'a step justified by itself proves nothing: re-testing a filtered list by the predicate that built it holds for every input, so the facet resting on it cannot fail',
+      evidence: () => found.filterThenEvery.map(show),
+    }))
     console.log(`  ${found.elementBlindPredicate.length}  a predicate over a collection that never sees an element — holds for an empty list and a wrong one alike`)
     for (const s of found.elementBlindPredicate.slice(0, 4)) console.log(`      ${show(s)}`)
     console.log(decided('canon.empty-as-const-read', found.emptyAsConstRead.length, { evidence: () => found.emptyAsConstRead.map(show) }))

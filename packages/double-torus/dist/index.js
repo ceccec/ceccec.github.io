@@ -12103,7 +12103,7 @@ var riemann_proof_status = {
   `
 };
 function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], registryFiles: 0, registryTheorems: 0, source: "absent" };
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], registryFiles: 0, registryTheorems: 0, digitFiles: 0, digitTheorems: 0, source: "absent" };
   const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return empty;
@@ -12129,7 +12129,10 @@ function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process
     const byProblem = lean.filter((p) => String(p).startsWith(proofsDir)).map((p) => ({ file: path12.basename(String(p)), theorems: declared(fs.readFileSync(path12.join(src, String(p)), "utf8")) })).sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0);
     const registryDir = path12.join("pair", "lean", "proofs");
     const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
+    const digit11 = lean.filter((p) => /^[1-9][\\/][^\\/]+\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
     return {
+      digitFiles: digit11.length,
+      digitTheorems: digit11.reduce((n, t) => n + t, 0),
       registryFiles: registry.length,
       registryTheorems: registry.reduce((n, t) => n + t, 0),
       files: lean.length,
@@ -12142,6 +12145,7 @@ function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process
     return empty;
   }
 }
+var LEAN_DIGIT_DIRS = Array.from({ length: 9 }, (_, i) => `src/${i + 1}`);
 var LEAN_THEOREMS_ABSENT = Object.freeze(Object.assign([], { source: "absent" }));
 
 // ../../src/quantum/computer/index.ts
@@ -17956,8 +17960,8 @@ function shorBreaksWhichPublicKey(matrix = buildMatrix()) {
       // NOT `=== 4` and `=== 3`. Those are the table's own row counts typed back at it, and they stay true while
       // a family sits in neither class. What is asserted here is the PARTITION: breaks and safe cover the table
       // exactly, so each side equals the whole minus the other. Add a row with any other `shor` and both fail.
-      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === families.length - safe.length && broken.every((f2) => f2.shor === "breaks") },
-      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === families.length - broken.length && safe.every((f2) => f2.shor === "safe") },
+      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === families.length - safe.length },
+      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === families.length - broken.length },
       { facet: "content-address/merkle marked Shor-safe (no exposed period)", on: families.some((f2) => f2.family.includes("merkle") && f2.shor === "safe") },
       { facet: "every broken family names a PQC replace (NIST/ISO path)", on: broken.every((f2) => f2.pqcReplace.length > 0) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`shor-map:${entry2.facet}:${entry2.on}`) }));
@@ -31352,7 +31356,7 @@ function multidimensional() {
   const isServed = (route) => servedRouteFromSlugs(route, servedSlugs);
   const dimsServed = dims3.map((d) => ({ ...d, items: d.items.filter((item) => isServed(item.route)) })).filter((d) => d.items.length > 0);
   return {
-    mapped: dimsServed.length > 0 && dimsServed.length <= 8 && dimsServed.every((d) => d.items.length > 0),
+    mapped: dimsServed.length > 0 && dimsServed.length <= 8,
     dimensions: dimsServed,
     count: dimsServed.reduce((sum, d) => sum + d.items.length, 0),
     root: merkleFold(dimsServed.flatMap((d) => d.items.map((item) => toUuid(`multidim:${item.label}`)))),
@@ -33353,7 +33357,7 @@ function fusionMilestonesResearched(matrix = buildMatrix()) {
   const flagged = milestones.filter((m) => m.band === "flagged");
   const facets = [
     { facet: "documented milestones sealed \u2014 JET \xB7 NIF \xB7 ITER first plasma \xB7 W7-X", on: documented.length >= 5 },
-    { facet: "planned milestones labeled honestly \u2014 ITER Q\u226510 not yet achieved", on: planned.length >= 1 && planned.every((m) => m.band === "planned") },
+    { facet: "planned milestones labeled honestly \u2014 ITER Q\u226510 not yet achieved", on: planned.length >= 1 && milestones.every((m) => m.band === "planned" === m.date.includes("planned")) },
     { facet: "commercial-imminent overclaim flagged separately", on: flagged.length === 1 && flagged[0].id === "commercial-imminent" },
     { facet: "every milestone content-addressed with source", on: milestones.every((m) => isUuid(m.receipt) && m.source.length > 0) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`fusion-milestones-researched:${entry2.facet}:${entry2.on}`) }));
@@ -55171,7 +55175,7 @@ function sciencePortalParts(matrix = buildMatrix()) {
     const assigned = parts.reduce((sum, part) => sum + part.count, 0);
     const root10 = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(",")}`)));
     return {
-      computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root10),
+      computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && isUuid(root10),
       parts,
       partCount: parts.length,
       pageCount: pages.length,
@@ -74462,7 +74466,7 @@ function humanDesignChartStructureAt(matrix = buildMatrix(), birthJd = MEEUS_J20
       { facet: "Meeus W4 ephemeris + Design Sun\u221288\xB0 computes", on: ephCore.computes },
       { facet: "13 personality + 13 design activations", on: personality.length === 13 && design.length === 13 },
       { facet: "defined channels \u2286 sealed 36-pair table", on: defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
-      { facet: "cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp", on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG && cuspWarnings.every((w) => w.cusp) },
+      { facet: "cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp", on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG },
       { facet: `what this returns is a structure receipt \u2014 ${personality.length}+${design.length} activations over the sealed channel table, computed from the Meeus ephemeris; nothing here scores a person`, on: ephCore.computes && defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`hd-chart-w5:${entry2.facet}:${entry2.on}`) }));
     const computes = facets.every((f2) => f2.on);

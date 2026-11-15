@@ -1171,11 +1171,14 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
   /** The registry corpus (src/pair/lean/proofs), counted the same way and never added to the involution count. */
   readonly registryFiles: number
   readonly registryTheorems: number
+  /** The digit corpus (src/1 … src/9, one perspective file per station), counted apart from both. */
+  readonly digitFiles: number
+  readonly digitTheorems: number
   // Where the numbers came from: counted off the .lean sources here, read from the block sealed at build,
   // or neither — a caller that cannot tell these apart cannot tell a corpus from a zero.
   readonly source: 'counted' | 'sealed' | 'absent'
 } {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const, registryFiles: 0, registryTheorems: 0, source: 'absent' as const }
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const, registryFiles: 0, registryTheorems: 0, digitFiles: 0, digitTheorems: 0, source: 'absent' as const }
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
     : undefined
@@ -1207,7 +1210,11 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
       .sort((a, b) => (a.file < b.file ? -1 : a.file > b.file ? 1 : 0))
     const registryDir = path.join('pair', 'lean', 'proofs')
     const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
+    // THE DIGIT CORPUS: a .lean file directly inside a station folder src/1 … src/9 — the station's own perspective.
+    const digit = lean.filter((p) => /^[1-9][\\/][^\\/]+\.lean$/.test(String(p))).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
     return {
+      digitFiles: digit.length,
+      digitTheorems: digit.reduce((n, t) => n + t, 0),
       registryFiles: registry.length,
       registryTheorems: registry.reduce((n, t) => n + t, 0),
       files: lean.length,
@@ -1373,6 +1380,14 @@ function texEscape(text: string): string {
  *  thousand-bit tests. They are read by one reader and never counted as one another. */
 export const LEAN_INVOLUTION_DIR = 'src/pair/formal/proofs'
 export const LEAN_REGISTRY_DIR = 'src/pair/lean/proofs'
+/** THE DIGIT CORPUS — each station src/1 … src/9 holds its own perspective file (src/d/<word>.lean): the sequence walked
+ *  and the reflection experienced from that digit, for every Clay case. Owner, 2026-11-15. Read beside the other two. */
+export const LEAN_DIGIT_DIRS: readonly string[] = Array.from({ length: 9 }, (_, i) => `src/${i + 1}`)
+
+/** Every theorem in the nine station perspective files — the same reader over each station folder. */
+export function leanDigitTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
+  return LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root, dir)])
+}
 
 /** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
 export function leanBlockCommentLines(lines: readonly string[]): boolean[] {
@@ -1556,6 +1571,7 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
 export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): string {
   const involution = leanTheoremsForLatex(root)
   const registry = leanRegistryTheoremsForLatex(root)
+  const digit = leanDigitTheoremsForLatex(root)
   const environment = (r: LeanTheoremLatex) => [
     `\\begin{theorem}[${texEscape(r.title)}]`,
     r.doc ? texEscape(r.doc) : '',
@@ -1602,6 +1618,7 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
     '',
     ...part('Machine-checked involutions', LEAN_INVOLUTION_DIR, involution),
     ...part('Machine-checked registry theorems', LEAN_REGISTRY_DIR, registry),
+    ...part('Machine-checked station perspectives', 'src/1 … src/9', digit),
     '\\section*{Sources}',
     '\\begin{enumerate}',
     `\\item Rouschev, Tsvetan. \\emph{Double-torus corpus}: Lean sources in \\texttt{${texEscape(LEAN_INVOLUTION_DIR)}} and \\texttt{${texEscape(LEAN_REGISTRY_DIR)}}. Repository: \\url{https://github.com/ceccec/ceccec.github.io}.`,
@@ -1653,7 +1670,7 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
   // BOTH CORPORA GET PAGES. The registry corpus had none: its theorems could seal a registry row and had no URL.
   // A deposit record exists only for the involution corpus (scripts/verify/discoveries.ts), so the registry rows
   // carry an empty depositId and the page shows no deposit line for them.
-  return [...leanTheoremsForLatex(root), ...leanRegistryTheoremsForLatex(root)].map((t) => ({
+  return [...leanTheoremsForLatex(root), ...leanRegistryTheoremsForLatex(root), ...leanDigitTheoremsForLatex(root)].map((t) => ({
     slug: leanPageSlug(t.file, t.name),
     title: t.title,
     name: t.name,

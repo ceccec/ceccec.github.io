@@ -507,6 +507,9 @@ export declare function leanInvolutionCorpus(root?: string): {
     /** The registry corpus (src/pair/lean/proofs), counted the same way and never added to the involution count. */
     readonly registryFiles: number;
     readonly registryTheorems: number;
+    /** The digit corpus (src/1 … src/9, one perspective file per station), counted apart from both. */
+    readonly digitFiles: number;
+    readonly digitTheorems: number;
     readonly source: 'counted' | 'sealed' | 'absent';
 };
 /**
@@ -578,6 +581,11 @@ export type LeanTheoremLatex = {
  *  thousand-bit tests. They are read by one reader and never counted as one another. */
 export declare const LEAN_INVOLUTION_DIR = "src/pair/formal/proofs";
 export declare const LEAN_REGISTRY_DIR = "src/pair/lean/proofs";
+/** THE DIGIT CORPUS — each station src/1 … src/9 holds its own perspective file (src/d/<word>.lean): the sequence walked
+ *  and the reflection experienced from that digit, for every Clay case. Owner, 2026-11-15. Read beside the other two. */
+export declare const LEAN_DIGIT_DIRS: readonly string[];
+/** Every theorem in the nine station perspective files — the same reader over each station folder. */
+export declare function leanDigitTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
 /** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
 export declare function leanBlockCommentLines(lines: readonly string[]): boolean[];
 /** Every theorem in the sealed involution proofs, read from the Lean itself. */

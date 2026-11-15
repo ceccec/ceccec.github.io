@@ -1787,7 +1787,7 @@ export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
   const assigned = parts.reduce((sum, part) => sum + part.count, 0)
   const root = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(',')}`)))
   return {
-    computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root),
+    computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && isUuid(root),
     parts,
     partCount: parts.length,
     pageCount: pages.length,

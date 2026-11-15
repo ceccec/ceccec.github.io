@@ -1669,9 +1669,8 @@ export function sessionGapsFilledAndSealedByTools() {
   const sealedByRegisteredTools = sealed.length >= 4 && sealed.every((row) => row.tool.length > 0)
   const failClosedSeals = ledger.filter((row) => row.failClosed).length >= 3 && animationGate.pageWithoutAnimationFails
   const openNamedWithResolution = open.length >= 1 && open.every((row) => row.tool.includes('deliberate')) // named, not faked closed
-  const ledgerHonest = sealed.every((row) => row.sealed) && open.every((row) => !row.sealed) // status matches reality
   const facets = [
-    { facet: `SESSION GAPS ENUMERATED — ${ledger.length} gaps identified this session with their status: ${sealed.length} sealed, ${open.length} open (named with a resolution)`, on: ledger.length >= 5 && ledgerHonest },
+    { facet: `SESSION GAPS ENUMERATED — ${ledger.length} gaps identified this session with their status: ${sealed.length} sealed, ${open.length} open (named with a resolution)`, on: ledger.length >= 5 },
     { facet: `SEALED BY REGISTERED TOOLS — ${sealed.length} gaps are sealed by a registered fold that exists in the ${THEOREM_ATOM_SEED.length}-atom registry (visual channel, OG, unsigned code, DRY duplicate); the sealing tool is real, not asserted`, on: sealedByRegisteredTools },
     { facet: `FAIL-CLOSED SEALS — the visual, OG, and unsigned-code gates REJECT the gap condition (fail closed, e.g. no-animation fails ${animationGate.pageWithoutAnimationFails}), so a reopened gap is caught at the gate`, on: failClosedSeals },
     { facet: `OPEN GAPS NAMED WITH RESOLUTION — the readme↔site roster coupling and the registry monolith are named OPEN with a computed resolution (lower the roster / redistribute), deliberate not faked closed (${openNamedWithResolution})`, on: openNamedWithResolution },
@@ -2281,7 +2280,7 @@ export function everyPageIsAProofWithFormulasTheoremsGraphsAnimations() {
   const graphsComputable = hasTheoremFigure(figureSlug) && figure !== null && figure.series.length > 0 && theoremFigure('__no_such_figure__') === null
   // ANIMATIONS — the one 108 s fractal clock: 108 = 2²·3³ has σ₀ = 12 divisors, each a nested rung 108/d.
   const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0)
-  const animationsAreClockRungs = divisorsOf108.length === (2 + 1) * (3 + 1) && divisorsOf108.every((d) => 108 % d === 0)
+  const animationsAreClockRungs = divisorsOf108.length === (2 + 1) * (3 + 1)
   // INVOLVED STANDARDS — attached as registered proof-pages (the global cyber audit is itself a proof in the registry).
   const standardsAttached = atoms.some((atom) => atom.provedBy === 'globalCyberStandardsAuditEveryAspect')
     && atoms.some((atom) => atom.provedBy === 'euCyberStandardsAuditEveryAspect')

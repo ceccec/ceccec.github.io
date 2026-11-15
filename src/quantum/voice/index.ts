@@ -226,7 +226,7 @@ export function multidimensional() {
   const isServed = (route: string) => servedRouteFromSlugs(route, servedSlugs) // ONE route grammar (src/3/7)
   const dimsServed = dims.map((d) => ({ ...d, items: d.items.filter((item) => isServed(item.route)) })).filter((d) => d.items.length > 0)
   return {
-    mapped: dimsServed.length > 0 && dimsServed.length <= 8 && dimsServed.every((d) => d.items.length > 0),
+    mapped: dimsServed.length > 0 && dimsServed.length <= 8,
     dimensions: dimsServed,
     count: dimsServed.reduce((sum, d) => sum + d.items.length, 0),
     root: merkleFold(dimsServed.flatMap((d) => d.items.map((item) => toUuid(`multidim:${item.label}`)))),

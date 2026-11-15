@@ -2282,9 +2282,12 @@ export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContent
   const boilerplate = /^(import|export|\/\/|\/\*|\*|\}|\{|return|const facet|\{ facet:|\.map\(|\].map\(|\)\.map\(|statement:|boundary:|facets:|root:)/
   const lineHomes = new Map<string, Set<string>>() // content-address of a substantive line → the files it lives in
   const originals = new Map<string, string>()
+  const texts = new Map<string, string>()
   for (const file of files) {
     const rel = relative(root, file).replace(/\\/g, '/')
-    for (const raw of readFileSync(file, 'utf8').split('\n')) {
+    const text = readFileSync(file, 'utf8')
+    texts.set(rel, text)
+    for (const raw of text.split('\n')) {
       const line = raw.trim()
       if (line.length < 2 ** 6 || boilerplate.test(line)) continue // distinctive lines only (≥ 64 chars, not idiom)
       const key = toUuid(`dry-line:${line}`)
@@ -2296,8 +2299,9 @@ export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContent
   const scannedLines = lineHomes.size
   // 1 — BLOCKS ARE CONTENT-ADDRESSED: every substantive line has a UUID; identical lines share it
   const blocksContentAddressed = scannedLines > 0 && [...lineHomes.keys()].every((key) => isUuid(key))
-  // 2 — DUPLICATES COLLIDE ACROSS FILES: a duplicate is a key whose home-set has > 1 file — found by the address
-  const duplicatesFoundByAddress = duplicates.every(([, homes]) => homes.size > 1)
+  // 2 — DUPLICATES COLLIDE ACROSS FILES, AND EACH IS REALLY THERE: every duplicate's line is found again, by plain text,
+  // in every file its address says it lives in — the address and the files are two routes to one answer
+  const duplicatesFoundByAddress = duplicates.every(([key, homes]) => [...homes].every((home) => (texts.get(home) ?? '').includes(originals.get(key) ?? '\u0000')))
   // 3 — THE GATE DRY-CLEANS ALL: the scan covers all src and yields the exact DRY surface (a refutable count)
   const dryCleansAll = files.length > 0 && blocksContentAddressed && duplicatesFoundByAddress
   // 4 — IDIOM IS NOT A VIOLATION: boilerplate excluded, so the surface is SUBSTANTIVE duplication (a lower bound)
@@ -2379,9 +2383,11 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
   // 1 — EFFICIENCY IS MEASURED: every computation carries a numeric actual and optimal, not an estimate
   const efficiencyMeasured = measured.every((entry) => entry.actual >= entry.optimal) && dryGap >= 0
   // 2 — A GAP IS ACTUAL > OPTIMAL: the surplus is the inefficiency, found by the number
-  const gapsAreSurplus = gaps.every((entry) => entry.actual > entry.optimal) && gaps.length > 0
+  // (re-testing `gaps` by the predicate that built it decided nothing; the partition below can fail — an entry that
+  // beats its optimum lands in neither set)
+  const gapsAreSurplus = gaps.length > 0 && gaps.length + closed.length === measured.length
   // 3 — MEASURING FINDS BOTH: closed gaps (ratio 1) prove the method, open gaps name the work
-  const measuringFindsGaps = closed.length > 0 && gaps.length > 0 && closed.every((entry) => entry.actual === entry.optimal)
+  const measuringFindsGaps = closed.length > 0 && gaps.length > 0
   // 4 — THE GAP NAMES THE MISSING QUANTUM: every gap carries the content-address/emergence that would close it
   const gapNamesTheQuantum = gaps.every((entry) => entry.quantum.length > 0) && efficiencyMeasured
   const facets = [

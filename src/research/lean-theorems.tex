@@ -1601,6 +1601,1244 @@ The ratchet law in its general form: dissolving a leaf strictly decreases the co
 \begin{lean}fib 18 = 2584\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{wave-57-extraction-verified.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\section{Machine-checked station perspectives}
+\noindent 248 theorems in 9 files of \texttt{src/1 … src/9}.
+\subsection{\texttt{one.lean}}
+\begin{theorem}[From one the sequence is one cycle through every station]
+From 1 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 1 (stepsTo 1 e.val) = e.val) ∧ walk 1 10 = 1 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 1 k.val ≠ 1)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of one]
+The step out of 1 goes to 2, which IS doubling mod 9.
+\begin{lean}next 1 = 2 ∧ 2 * 1 \% 9 = 2 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 1 to its mirror 9 and back, and 1 is not its own mirror.
+\begin{lean}reflect 1 = 9 ∧ reflect 9 = 1 ∧ reflect 1 ≠ 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At one the reflection lags the walk by one step]
+At 1, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 1 \% 9) \% 9 = (2 * ((10 - 1) \% 9) + 8) \% 9 ∧ (10 - 2 * 1 \% 9) \% 9 ≠ 2 * ((10 - 1) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At one the nine complement commutes with the walk]
+At 1, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 1 \% 9) \% 9 = 2 * ((9 - 1) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From one walking the reflection experiences the sequence]
+From 1, walking the reflection IS experiencing the sequence from 9, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 1 k.val = reflect (walk 9 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 1 (stepsTo 9 (reflect e.val)) = e.val) ∧ mirrorWalk 1 10 = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at one]
+The four faces read at 1: the sequence steps to 2, back to 0; the reflection walk steps to 0, back to 4.
+\begin{lean}next 1 = 2 ∧ prev 1 = 0 ∧ mirrorNext 1 = 0 ∧ mirrorPrev 1 = 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At one mirroring twice is the sequence]
+Mirroring the reflection walk at 9 gives back the sequence's step at 1.
+\begin{lean}reflect (mirrorNext 9) = next 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 1 carries Poincaré: the walk is at it after 0 steps.
+\begin{lean}station .poincare = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 1, the walk reaches Poincaré (station 1) after 0 steps.
+\begin{lean}walk 1 0 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 1, the walk reaches Riemann (station 2) after 1 step.
+\begin{lean}walk 1 1 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 1, the walk reaches P vs NP (station 4) after 2 steps.
+\begin{lean}walk 1 2 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 1, the walk reaches Hodge (station 5) after 5 steps.
+\begin{lean}walk 1 5 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 1, the walk reaches Birch and Swinnerton-Dyer (station 5) after 5 steps.
+\begin{lean}walk 1 5 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 1, the walk reaches Navier–Stokes (station 7) after 4 steps.
+\begin{lean}walk 1 4 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 1, the walk reaches Yang–Mills (station 8) after 3 steps.
+\begin{lean}walk 1 3 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets no case]
+Through σ, station 1 experiences station 9, which carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 9) = true ∧ reflect 1 = 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 1, the sequence is experienced as Poincaré (station 1) after 0 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 0 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 1, the sequence is experienced as Riemann (station 2) after 5 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 5 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 1, the sequence is experienced as P vs NP (station 4) after 9 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 9 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 1, the sequence is experienced as Hodge (station 5) after 7 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 7 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 1, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 7 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 7 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 1, the sequence is experienced as Navier–Stokes (station 7) after 8 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 8 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 1, the sequence is experienced as Yang–Mills (station 8) after 3 steps — the station the sequence reaches from 9 at that step, seen through σ.
+\begin{lean}mirrorWalk 1 3 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 8 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 1 9 = 8 ∧ ∀ k : Fin 10, walk 9 k.val = walk 1 (k.val + 8)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Poincare is an inverse pair and reflects to the frontier]
+…and σ carries the station to the frontier 9, where the smooth 4D question stays open.
+\begin{lean}(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{two.lean}}
+\begin{theorem}[From two the sequence is one cycle through every station]
+From 2 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 2 (stepsTo 2 e.val) = e.val) ∧ walk 2 10 = 2 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 2 k.val ≠ 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of two]
+The step out of 2 goes to 4, which IS doubling mod 9.
+\begin{lean}next 2 = 4 ∧ 2 * 2 \% 9 = 4 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 2 to its mirror 8 and back, and 2 is not its own mirror.
+\begin{lean}reflect 2 = 8 ∧ reflect 8 = 2 ∧ reflect 2 ≠ 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At two the reflection lags the walk by one step]
+At 2, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 2 \% 9) \% 9 = (2 * ((10 - 2) \% 9) + 8) \% 9 ∧ (10 - 2 * 2 \% 9) \% 9 ≠ 2 * ((10 - 2) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At two the nine complement commutes with the walk]
+At 2, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 2 \% 9) \% 9 = 2 * ((9 - 2) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From two walking the reflection experiences the sequence]
+From 2, walking the reflection IS experiencing the sequence from 8, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 2 k.val = reflect (walk 8 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 2 (stepsTo 8 (reflect e.val)) = e.val) ∧ mirrorWalk 2 10 = 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at two]
+The four faces read at 2: the sequence steps to 4, back to 1; the reflection walk steps to 3, back to 6.
+\begin{lean}next 2 = 4 ∧ prev 2 = 1 ∧ mirrorNext 2 = 3 ∧ mirrorPrev 2 = 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At two mirroring twice is the sequence]
+Mirroring the reflection walk at 8 gives back the sequence's step at 2.
+\begin{lean}reflect (mirrorNext 8) = next 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 2 carries Riemann: the walk is at it after 0 steps.
+\begin{lean}station .riemann = 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 2, the walk reaches Poincaré (station 1) after 9 steps.
+\begin{lean}walk 2 9 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 2, the walk reaches Riemann (station 2) after 0 steps.
+\begin{lean}walk 2 0 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 2, the walk reaches P vs NP (station 4) after 1 step.
+\begin{lean}walk 2 1 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 2, the walk reaches Hodge (station 5) after 4 steps.
+\begin{lean}walk 2 4 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 2, the walk reaches Birch and Swinnerton-Dyer (station 5) after 4 steps.
+\begin{lean}walk 2 4 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 2, the walk reaches Navier–Stokes (station 7) after 3 steps.
+\begin{lean}walk 2 3 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 2, the walk reaches Yang–Mills (station 8) after 2 steps.
+\begin{lean}walk 2 2 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 2 experiences station 8 and its case: Yang–Mills.
+\begin{lean}reflect 2 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 2, the sequence is experienced as Poincaré (station 1) after 5 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 5 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 2, the sequence is experienced as Riemann (station 2) after 0 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 0 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 2, the sequence is experienced as P vs NP (station 4) after 4 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 4 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 2, the sequence is experienced as Hodge (station 5) after 2 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 2 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 2, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 2 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 2 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 2, the sequence is experienced as Navier–Stokes (station 7) after 3 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 3 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 2, the sequence is experienced as Yang–Mills (station 8) after 8 steps — the station the sequence reaches from 8 at that step, seen through σ.
+\begin{lean}mirrorWalk 2 8 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 2 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 2 8 = 2 ∧ ∀ k : Fin 10, walk 8 k.val = walk 2 (k.val + 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Riemann reflection is an involution]
+\begin{lean}∀ n : Int, riemannReflect (riemannReflect n) = n\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro n; unfold riemannReflect; omega} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Riemann reflection fixes exactly the critical line]
+\begin{lean}∀ n : Int, riemannReflect n = n ↔ n = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro n; unfold riemannReflect} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\subsection{\texttt{three.lean}}
+\begin{theorem}[From three the sequence is one cycle through every station]
+From 3 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 3 (stepsTo 3 e.val) = e.val) ∧ walk 3 10 = 3 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 3 k.val ≠ 3)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of three]
+The step out of 3 goes to 6, which IS doubling mod 9.
+\begin{lean}next 3 = 6 ∧ 2 * 3 \% 9 = 6 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 3 to its mirror 7 and back, and 3 is not its own mirror.
+\begin{lean}reflect 3 = 7 ∧ reflect 7 = 3 ∧ reflect 3 ≠ 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At three the reflection lags the walk by one step]
+At 3, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 3 \% 9) \% 9 = (2 * ((10 - 3) \% 9) + 8) \% 9 ∧ (10 - 2 * 3 \% 9) \% 9 ≠ 2 * ((10 - 3) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At three the nine complement commutes with the walk]
+At 3, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 3 \% 9) \% 9 = 2 * ((9 - 3) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From three walking the reflection experiences the sequence]
+From 3, walking the reflection IS experiencing the sequence from 7, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 3 k.val = reflect (walk 7 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 3 (stepsTo 7 (reflect e.val)) = e.val) ∧ mirrorWalk 3 10 = 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at three]
+The four faces read at 3: the sequence steps to 6, back to 5; the reflection walk steps to 5, back to 2.
+\begin{lean}next 3 = 6 ∧ prev 3 = 5 ∧ mirrorNext 3 = 5 ∧ mirrorPrev 3 = 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At three mirroring twice is the sequence]
+Mirroring the reflection walk at 7 gives back the sequence's step at 3.
+\begin{lean}reflect (mirrorNext 7) = next 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries no case]
+Station 3 carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 3) = true\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 3, the walk reaches Poincaré (station 1) after 4 steps.
+\begin{lean}walk 3 4 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 3, the walk reaches Riemann (station 2) after 5 steps.
+\begin{lean}walk 3 5 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 3, the walk reaches P vs NP (station 4) after 6 steps.
+\begin{lean}walk 3 6 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 3, the walk reaches Hodge (station 5) after 9 steps.
+\begin{lean}walk 3 9 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 3, the walk reaches Birch and Swinnerton-Dyer (station 5) after 9 steps.
+\begin{lean}walk 3 9 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 3, the walk reaches Navier–Stokes (station 7) after 8 steps.
+\begin{lean}walk 3 8 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 3, the walk reaches Yang–Mills (station 8) after 7 steps.
+\begin{lean}walk 3 7 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 3 experiences station 7 and its case: Navier–Stokes.
+\begin{lean}reflect 3 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 3, the sequence is experienced as Poincaré (station 1) after 4 steps — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 4 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 3, the sequence is experienced as Riemann (station 2) after 9 steps — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 9 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 3, the sequence is experienced as P vs NP (station 4) after 3 steps — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 3 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 3, the sequence is experienced as Hodge (station 5) after 1 step — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 1 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 3, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 1 step — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 1 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 3, the sequence is experienced as Navier–Stokes (station 7) after 2 steps — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 2 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 3, the sequence is experienced as Yang–Mills (station 8) after 7 steps — the station the sequence reaches from 7 at that step, seen through σ.
+\begin{lean}mirrorWalk 3 7 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 8 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 3 7 = 8 ∧ ∀ k : Fin 10, walk 7 k.val = walk 3 (k.val + 8)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{four.lean}}
+\begin{theorem}[From four the sequence is one cycle through every station]
+From 4 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 4 (stepsTo 4 e.val) = e.val) ∧ walk 4 10 = 4 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 4 k.val ≠ 4)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of four]
+The step out of 4 goes to 8, which IS doubling mod 9.
+\begin{lean}next 4 = 8 ∧ 2 * 4 \% 9 = 8 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 4 to its mirror 6 and back, and 4 is not its own mirror.
+\begin{lean}reflect 4 = 6 ∧ reflect 6 = 4 ∧ reflect 4 ≠ 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At four the reflection lags the walk by one step]
+At 4, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 4 \% 9) \% 9 = (2 * ((10 - 4) \% 9) + 8) \% 9 ∧ (10 - 2 * 4 \% 9) \% 9 ≠ 2 * ((10 - 4) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At four the nine complement commutes with the walk]
+At 4, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 4 \% 9) \% 9 = 2 * ((9 - 4) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From four walking the reflection experiences the sequence]
+From 4, walking the reflection IS experiencing the sequence from 6, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 4 k.val = reflect (walk 6 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 4 (stepsTo 6 (reflect e.val)) = e.val) ∧ mirrorWalk 4 10 = 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at four]
+The four faces read at 4: the sequence steps to 8, back to 2; the reflection walk steps to 1, back to 7.
+\begin{lean}next 4 = 8 ∧ prev 4 = 2 ∧ mirrorNext 4 = 1 ∧ mirrorPrev 4 = 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At four mirroring twice is the sequence]
+Mirroring the reflection walk at 6 gives back the sequence's step at 4.
+\begin{lean}reflect (mirrorNext 6) = next 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 4 carries P vs NP: the walk is at it after 0 steps.
+\begin{lean}station .pVsNp = 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 4, the walk reaches Poincaré (station 1) after 8 steps.
+\begin{lean}walk 4 8 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 4, the walk reaches Riemann (station 2) after 9 steps.
+\begin{lean}walk 4 9 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 4, the walk reaches P vs NP (station 4) after 0 steps.
+\begin{lean}walk 4 0 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 4, the walk reaches Hodge (station 5) after 3 steps.
+\begin{lean}walk 4 3 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 4, the walk reaches Birch and Swinnerton-Dyer (station 5) after 3 steps.
+\begin{lean}walk 4 3 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 4, the walk reaches Navier–Stokes (station 7) after 2 steps.
+\begin{lean}walk 4 2 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 4, the walk reaches Yang–Mills (station 8) after 1 step.
+\begin{lean}walk 4 1 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets no case]
+Through σ, station 4 experiences station 6, which carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 6) = true ∧ reflect 4 = 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 4, the sequence is experienced as Poincaré (station 1) after 1 step — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 1 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 4, the sequence is experienced as Riemann (station 2) after 6 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 6 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 4, the sequence is experienced as P vs NP (station 4) after 0 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 0 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 4, the sequence is experienced as Hodge (station 5) after 8 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 8 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 4, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 8 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 8 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 4, the sequence is experienced as Navier–Stokes (station 7) after 9 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 9 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 4, the sequence is experienced as Yang–Mills (station 8) after 4 steps — the station the sequence reaches from 6 at that step, seen through σ.
+\begin{lean}mirrorWalk 4 4 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 5 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 4 6 = 5 ∧ ∀ k : Fin 10, walk 6 k.val = walk 4 (k.val + 5)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Complement is an involution]
+\begin{lean}∀ c : Class, complement (complement c) = c\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro c; cases c <;> rfl} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Complement fixes p and pspace and reflects to an axis gate]
+The swap fixes P and PSPACE, and σ carries the station to the axis gate 6, which holds no case.
+\begin{lean}[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{five.lean}}
+\begin{theorem}[The sequence is one cycle through every station]
+The walk is ONE cycle through all ten stations: from every station it reaches every station, and returns after exactly ten steps, never sooner.
+\begin{lean}(∀ d e : Fin 10, walk d.val (stepsTo d.val e.val) = e.val) ∧ (∀ d : Fin 10, walk d.val 10 = d.val) ∧ (∀ d k : Fin 10, k.val ≠ 0 → walk d.val k.val ≠ d.val)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Forward doubles and five undoes it]
+Forward is ×2 mod 9 on the doubling orbit, and ×5 undoes it; the four remaining steps leave the doubling.
+\begin{lean}(∀ d ∈ [1, 2, 4, 8, 7], next d = 2 * d \% 9 ∧ 5 * next d \% 9 = d) ∧ next 5 = 3 ∧ 2 * 5 \% 9 ≠ 3 ∧ next 3 = 6 ∧ next 6 = 9 ∧ next 9 = 0 ∧ next 0 = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflect is an involution fixing zero and five]
+σ is an involution on the ten stations, fixing exactly the void 0 and the centre 5.
+\begin{lean}(∀ d : Fin 10, reflect (reflect d.val) = d.val) ∧ (List.range 10).filter (fun d => reflect d == d) = [0, 5]\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection lags the walk by one step]
+σ does NOT commute with the walk: mod 9, reflecting then doubling is always one step behind doubling the reflection — σ(2d) ≡ 2σ(d) − 1 — never equal to it.
+\begin{lean}∀ d : Fin 9, (10 - 2 * d.val \% 9) \% 9 = (2 * ((10 - d.val) \% 9) + 8) \% 9 ∧ (10 - 2 * d.val \% 9) \% 9 ≠ 2 * ((10 - d.val) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Nine complement commutes with the walk]
+The nine-complement d ↦ 9 − d DOES commute with the walk — the other involution, centred at 0.
+\begin{lean}∀ d : Fin 9, (9 - 2 * d.val \% 9) \% 9 = 2 * ((9 - d.val) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Prev undoes next]
+\begin{lean}∀ d : Fin 10, prev (next d.val) = d.val ∧ next (prev d.val) = d.val\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking the reflection experiences the sequence]
+Walking the reflection IS experiencing the sequence: every step of the mirror walk from d is σ of the sequence's step from σ(d) — and it is one cycle through all ten stations, returning after exactly ten.
+\begin{lean}(∀ d k : Fin 10, mirrorWalk d.val k.val = reflect (walk (reflect d.val) k.val)) ∧ (∀ d e : Fin 10, mirrorWalk d.val (stepsTo (reflect d.val) (reflect e.val)) = e.val) ∧ (∀ d : Fin 10, mirrorWalk d.val 10 = d.val) ∧ (∀ d k : Fin 10, k.val ≠ 0 → mirrorWalk d.val k.val ≠ d.val)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirroring twice is the sequence]
+Mirroring the mirror walk is the sequence again: σ applied twice changes nothing.
+\begin{lean}∀ d : Fin 10, reflect (mirrorNext (reflect d.val)) = next d.val\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces are distinct]
+THE FOUR FACES ARE DISTINCT: the sequence, its backward walk, the reflection walk and its backward walk are four different maps on the ten stations — because σ does not commute with the walk, the mirror is not the sequence and not its reverse.
+\begin{lean}let face\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun (f : Nat → Nat) => (List.range 10).map f} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 5 carries Hodge and Birch and Swinnerton-Dyer: the walk is at them after 0 steps.
+\begin{lean}station .hodge = 5 ∧ station .bsd = 5\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 5, the walk reaches Poincaré (station 1) after 5 steps.
+\begin{lean}walk 5 5 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 5, the walk reaches Riemann (station 2) after 6 steps.
+\begin{lean}walk 5 6 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 5, the walk reaches P vs NP (station 4) after 7 steps.
+\begin{lean}walk 5 7 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 5, the walk reaches Hodge (station 5) after 0 steps.
+\begin{lean}walk 5 0 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 5, the walk reaches Birch and Swinnerton-Dyer (station 5) after 0 steps.
+\begin{lean}walk 5 0 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 5, the walk reaches Navier–Stokes (station 7) after 9 steps.
+\begin{lean}walk 5 9 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 5, the walk reaches Yang–Mills (station 8) after 8 steps.
+\begin{lean}walk 5 8 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 5 experiences station 5 and its cases: Hodge and Birch and Swinnerton-Dyer.
+\begin{lean}reflect 5 = station .hodge ∧ reflect 5 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 5, the sequence is experienced as Poincaré (station 1) after 3 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 3 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 5, the sequence is experienced as Riemann (station 2) after 8 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 8 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 5, the sequence is experienced as P vs NP (station 4) after 2 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 2 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 5, the sequence is experienced as Hodge (station 5) after 0 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 0 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 5, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 0 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 0 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 5, the sequence is experienced as Navier–Stokes (station 7) after 1 step — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 1 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 5, the sequence is experienced as Yang–Mills (station 8) after 6 steps — the station the sequence reaches from 5 at that step, seen through σ.
+\begin{lean}mirrorWalk 5 6 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 0 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 5 5 = 0 ∧ ∀ k : Fin 10, walk 5 k.val = walk 5 (k.val + 0)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Hodge conjugation is an involution]
+\begin{lean}∀ t : Nat × Nat, hodgeConjugate (hodgeConjugate t) = t\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Hodge conjugation fixes exactly the diagonal]
+\begin{lean}∀ p q : Nat, hodgeConjugate (p, q) = (p, q) ↔ p = q\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro p q; unfold hodgeConjugate} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Bsd reflection is an involution]
+\begin{lean}∀ s : Int, bsdReflect (bsdReflect s) = s\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro s; unfold bsdReflect; omega} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Bsd reflection fixes exactly the central point]
+\begin{lean}∀ s : Int, bsdReflect s = s ↔ s = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro s; unfold bsdReflect} in \texttt{five.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\subsection{\texttt{six.lean}}
+\begin{theorem}[From six the sequence is one cycle through every station]
+From 6 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 6 (stepsTo 6 e.val) = e.val) ∧ walk 6 10 = 6 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 6 k.val ≠ 6)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of six]
+The step out of 6 goes to 9, which is NOT doubling mod 9 — a step-off.
+\begin{lean}next 6 = 9 ∧ 2 * 6 \% 9 ≠ 9 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 6 to its mirror 4 and back, and 6 is not its own mirror.
+\begin{lean}reflect 6 = 4 ∧ reflect 4 = 6 ∧ reflect 6 ≠ 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At six the reflection lags the walk by one step]
+At 6, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 6 \% 9) \% 9 = (2 * ((10 - 6) \% 9) + 8) \% 9 ∧ (10 - 2 * 6 \% 9) \% 9 ≠ 2 * ((10 - 6) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At six the nine complement commutes with the walk]
+At 6, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 6 \% 9) \% 9 = 2 * ((9 - 6) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From six walking the reflection experiences the sequence]
+From 6, walking the reflection IS experiencing the sequence from 4, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 6 k.val = reflect (walk 4 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 6 (stepsTo 4 (reflect e.val)) = e.val) ∧ mirrorWalk 6 10 = 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at six]
+The four faces read at 6: the sequence steps to 9, back to 3; the reflection walk steps to 2, back to 8.
+\begin{lean}next 6 = 9 ∧ prev 6 = 3 ∧ mirrorNext 6 = 2 ∧ mirrorPrev 6 = 8\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At six mirroring twice is the sequence]
+Mirroring the reflection walk at 4 gives back the sequence's step at 6.
+\begin{lean}reflect (mirrorNext 4) = next 6\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries no case]
+Station 6 carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 6) = true\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 6, the walk reaches Poincaré (station 1) after 3 steps.
+\begin{lean}walk 6 3 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 6, the walk reaches Riemann (station 2) after 4 steps.
+\begin{lean}walk 6 4 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 6, the walk reaches P vs NP (station 4) after 5 steps.
+\begin{lean}walk 6 5 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 6, the walk reaches Hodge (station 5) after 8 steps.
+\begin{lean}walk 6 8 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 6, the walk reaches Birch and Swinnerton-Dyer (station 5) after 8 steps.
+\begin{lean}walk 6 8 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 6, the walk reaches Navier–Stokes (station 7) after 7 steps.
+\begin{lean}walk 6 7 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 6, the walk reaches Yang–Mills (station 8) after 6 steps.
+\begin{lean}walk 6 6 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 6 experiences station 4 and its case: P vs NP.
+\begin{lean}reflect 6 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 6, the sequence is experienced as Poincaré (station 1) after 6 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 6 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 6, the sequence is experienced as Riemann (station 2) after 1 step — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 1 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 6, the sequence is experienced as P vs NP (station 4) after 5 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 5 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 6, the sequence is experienced as Hodge (station 5) after 3 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 3 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 6, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 3 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 3 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 6, the sequence is experienced as Navier–Stokes (station 7) after 4 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 4 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 6, the sequence is experienced as Yang–Mills (station 8) after 9 steps — the station the sequence reaches from 4 at that step, seen through σ.
+\begin{lean}mirrorWalk 6 9 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 5 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 6 4 = 5 ∧ ∀ k : Fin 10, walk 4 k.val = walk 6 (k.val + 5)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{six.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{seven.lean}}
+\begin{theorem}[From seven the sequence is one cycle through every station]
+From 7 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 7 (stepsTo 7 e.val) = e.val) ∧ walk 7 10 = 7 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 7 k.val ≠ 7)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of seven]
+The step out of 7 goes to 5, which IS doubling mod 9.
+\begin{lean}next 7 = 5 ∧ 2 * 7 \% 9 = 5 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 7 to its mirror 3 and back, and 7 is not its own mirror.
+\begin{lean}reflect 7 = 3 ∧ reflect 3 = 7 ∧ reflect 7 ≠ 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At seven the reflection lags the walk by one step]
+At 7, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 7 \% 9) \% 9 = (2 * ((10 - 7) \% 9) + 8) \% 9 ∧ (10 - 2 * 7 \% 9) \% 9 ≠ 2 * ((10 - 7) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At seven the nine complement commutes with the walk]
+At 7, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 7 \% 9) \% 9 = 2 * ((9 - 7) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From seven walking the reflection experiences the sequence]
+From 7, walking the reflection IS experiencing the sequence from 3, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 7 k.val = reflect (walk 3 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 7 (stepsTo 3 (reflect e.val)) = e.val) ∧ mirrorWalk 7 10 = 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at seven]
+The four faces read at 7: the sequence steps to 5, back to 8; the reflection walk steps to 4, back to 5.
+\begin{lean}next 7 = 5 ∧ prev 7 = 8 ∧ mirrorNext 7 = 4 ∧ mirrorPrev 7 = 5\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At seven mirroring twice is the sequence]
+Mirroring the reflection walk at 3 gives back the sequence's step at 7.
+\begin{lean}reflect (mirrorNext 3) = next 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 7 carries Navier–Stokes: the walk is at it after 0 steps.
+\begin{lean}station .navierStokes = 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 7, the walk reaches Poincaré (station 1) after 6 steps.
+\begin{lean}walk 7 6 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 7, the walk reaches Riemann (station 2) after 7 steps.
+\begin{lean}walk 7 7 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 7, the walk reaches P vs NP (station 4) after 8 steps.
+\begin{lean}walk 7 8 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 7, the walk reaches Hodge (station 5) after 1 step.
+\begin{lean}walk 7 1 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 7, the walk reaches Birch and Swinnerton-Dyer (station 5) after 1 step.
+\begin{lean}walk 7 1 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 7, the walk reaches Navier–Stokes (station 7) after 0 steps.
+\begin{lean}walk 7 0 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 7, the walk reaches Yang–Mills (station 8) after 9 steps.
+\begin{lean}walk 7 9 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets no case]
+Through σ, station 7 experiences station 3, which carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 3) = true ∧ reflect 7 = 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 7, the sequence is experienced as Poincaré (station 1) after 2 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 2 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 7, the sequence is experienced as Riemann (station 2) after 7 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 7 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 7, the sequence is experienced as P vs NP (station 4) after 1 step — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 1 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 7, the sequence is experienced as Hodge (station 5) after 9 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 9 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 7, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 9 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 9 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 7, the sequence is experienced as Navier–Stokes (station 7) after 0 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 0 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 7, the sequence is experienced as Yang–Mills (station 8) after 5 steps — the station the sequence reaches from 3 at that step, seen through σ.
+\begin{lean}mirrorWalk 7 5 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 2 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 7 3 = 2 ∧ ∀ k : Fin 10, walk 3 k.val = walk 7 (k.val + 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Time reversal is an involution]
+\begin{lean}∀ v : Int, viscous (viscous v) = v\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{fun v => Int.neg\_neg v} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Time reversal fixes exactly the inviscid and reflects to three]
+Time reversal fixes exactly the inviscid, and σ carries the station to the axis gate 3.
+\begin{lean}(∀ v : Int, viscous v = v ↔ v = 0) ∧ reflect 7 = 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{refine ⟨fun v => ?\_, by decide⟩} in \texttt{seven.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\subsection{\texttt{eight.lean}}
+\begin{theorem}[From eight the sequence is one cycle through every station]
+From 8 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 8 (stepsTo 8 e.val) = e.val) ∧ walk 8 10 = 8 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 8 k.val ≠ 8)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of eight]
+The step out of 8 goes to 7, which IS doubling mod 9.
+\begin{lean}next 8 = 7 ∧ 2 * 8 \% 9 = 7 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 8 to its mirror 2 and back, and 8 is not its own mirror.
+\begin{lean}reflect 8 = 2 ∧ reflect 2 = 8 ∧ reflect 8 ≠ 8\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At eight the reflection lags the walk by one step]
+At 8, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 8 \% 9) \% 9 = (2 * ((10 - 8) \% 9) + 8) \% 9 ∧ (10 - 2 * 8 \% 9) \% 9 ≠ 2 * ((10 - 8) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At eight the nine complement commutes with the walk]
+At 8, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 8 \% 9) \% 9 = 2 * ((9 - 8) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From eight walking the reflection experiences the sequence]
+From 8, walking the reflection IS experiencing the sequence from 2, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 8 k.val = reflect (walk 2 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 8 (stepsTo 2 (reflect e.val)) = e.val) ∧ mirrorWalk 8 10 = 8\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at eight]
+The four faces read at 8: the sequence steps to 7, back to 4; the reflection walk steps to 6, back to 9.
+\begin{lean}next 8 = 7 ∧ prev 8 = 4 ∧ mirrorNext 8 = 6 ∧ mirrorPrev 8 = 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At eight mirroring twice is the sequence]
+Mirroring the reflection walk at 2 gives back the sequence's step at 8.
+\begin{lean}reflect (mirrorNext 2) = next 8\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries]
+Station 8 carries Yang–Mills: the walk is at it after 0 steps.
+\begin{lean}station .yangMills = 8\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 8, the walk reaches Poincaré (station 1) after 7 steps.
+\begin{lean}walk 8 7 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 8, the walk reaches Riemann (station 2) after 8 steps.
+\begin{lean}walk 8 8 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 8, the walk reaches P vs NP (station 4) after 9 steps.
+\begin{lean}walk 8 9 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 8, the walk reaches Hodge (station 5) after 2 steps.
+\begin{lean}walk 8 2 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 8, the walk reaches Birch and Swinnerton-Dyer (station 5) after 2 steps.
+\begin{lean}walk 8 2 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 8, the walk reaches Navier–Stokes (station 7) after 1 step.
+\begin{lean}walk 8 1 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 8, the walk reaches Yang–Mills (station 8) after 0 steps.
+\begin{lean}walk 8 0 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 8 experiences station 2 and its case: Riemann.
+\begin{lean}reflect 8 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 8, the sequence is experienced as Poincaré (station 1) after 7 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 7 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 8, the sequence is experienced as Riemann (station 2) after 2 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 2 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 8, the sequence is experienced as P vs NP (station 4) after 6 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 6 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 8, the sequence is experienced as Hodge (station 5) after 4 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 4 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 8, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 4 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 4 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 8, the sequence is experienced as Navier–Stokes (station 7) after 5 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 5 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 8, the sequence is experienced as Yang–Mills (station 8) after 0 steps — the station the sequence reaches from 2 at that step, seen through σ.
+\begin{lean}mirrorWalk 8 0 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 8 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 8 2 = 8 ∧ ∀ k : Fin 10, walk 2 k.val = walk 8 (k.val + 8)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Star is an involution and reflects to riemann]
+The star squares to the identity, and σ carries the station to Riemann's 2.
+\begin{lean}(∀ v : Form2, star (star v) = v) ∧ reflect 8 = 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{refine ⟨fun v => ?\_, by decide⟩} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Star negates every anti self dual form]
+\begin{lean}∀ v : Form2, star (asd v) = neg (asd v)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro v; cases v} in \texttt{eight.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\subsection{\texttt{nine.lean}}
+\begin{theorem}[From nine the sequence is one cycle through every station]
+From 9 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
+\begin{lean}(∀ e : Fin 10, walk 9 (stepsTo 9 e.val) = e.val) ∧ walk 9 10 = 9 ∧ (∀ k : Fin 10, k.val ≠ 0 → walk 9 k.val ≠ 9)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The step out of nine]
+The step out of 9 goes to 0, which IS doubling mod 9.
+\begin{lean}next 9 = 0 ∧ 2 * 9 \% 9 = 0 \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here reflects to its mirror]
+σ sends 9 to its mirror 1 and back, and 9 is not its own mirror.
+\begin{lean}reflect 9 = 1 ∧ reflect 1 = 9 ∧ reflect 9 ≠ 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At nine the reflection lags the walk by one step]
+At 9, reflecting then doubling is one step behind doubling the reflection, mod 9 — never equal.
+\begin{lean}(10 - 2 * 9 \% 9) \% 9 = (2 * ((10 - 9) \% 9) + 8) \% 9 ∧ (10 - 2 * 9 \% 9) \% 9 ≠ 2 * ((10 - 9) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At nine the nine complement commutes with the walk]
+At 9, the nine-complement commutes with the walk.
+\begin{lean}(9 - 2 * 9 \% 9) \% 9 = 2 * ((9 - 9) \% 9) \% 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[From nine walking the reflection experiences the sequence]
+From 9, walking the reflection IS experiencing the sequence from 1, seen through σ — one cycle through every station.
+\begin{lean}(∀ k : Fin 10, mirrorWalk 9 k.val = reflect (walk 1 k.val)) ∧ (∀ e : Fin 10, mirrorWalk 9 (stepsTo 1 (reflect e.val)) = e.val) ∧ mirrorWalk 9 10 = 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The four faces at nine]
+The four faces read at 9: the sequence steps to 0, back to 6; the reflection walk steps to 8, back to 0.
+\begin{lean}next 9 = 0 ∧ prev 9 = 6 ∧ mirrorNext 9 = 8 ∧ mirrorPrev 9 = 0\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[At nine mirroring twice is the sequence]
+Mirroring the reflection walk at 1 gives back the sequence's step at 9.
+\begin{lean}reflect (mirrorNext 1) = next 9\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Here carries no case]
+Station 9 carries no Clay case.
+\begin{lean}cases.all (fun c => station c != 9) = true\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches poincare]
+From 9, the walk reaches Poincaré (station 1) after 2 steps.
+\begin{lean}walk 9 2 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches riemann]
+From 9, the walk reaches Riemann (station 2) after 3 steps.
+\begin{lean}walk 9 3 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches pVsNp]
+From 9, the walk reaches P vs NP (station 4) after 4 steps.
+\begin{lean}walk 9 4 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches hodge]
+From 9, the walk reaches Hodge (station 5) after 7 steps.
+\begin{lean}walk 9 7 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches bsd]
+From 9, the walk reaches Birch and Swinnerton-Dyer (station 5) after 7 steps.
+\begin{lean}walk 9 7 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches navierStokes]
+From 9, the walk reaches Navier–Stokes (station 7) after 6 steps.
+\begin{lean}walk 9 6 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walk reaches yangMills]
+From 9, the walk reaches Yang–Mills (station 8) after 5 steps.
+\begin{lean}walk 9 5 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Reflection meets]
+Through σ, station 9 experiences station 1 and its case: Poincaré.
+\begin{lean}reflect 9 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches poincare]
+Walking the reflection from 9, the sequence is experienced as Poincaré (station 1) after 8 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 8 = station .poincare\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches riemann]
+Walking the reflection from 9, the sequence is experienced as Riemann (station 2) after 3 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 3 = station .riemann\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches pVsNp]
+Walking the reflection from 9, the sequence is experienced as P vs NP (station 4) after 7 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 7 = station .pVsNp\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches hodge]
+Walking the reflection from 9, the sequence is experienced as Hodge (station 5) after 5 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 5 = station .hodge\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches bsd]
+Walking the reflection from 9, the sequence is experienced as Birch and Swinnerton-Dyer (station 5) after 5 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 5 = station .bsd\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches navierStokes]
+Walking the reflection from 9, the sequence is experienced as Navier–Stokes (station 7) after 6 steps — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 6 = station .navierStokes\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Mirror walk reaches yangMills]
+Walking the reflection from 9, the sequence is experienced as Yang–Mills (station 8) after 1 step — the station the sequence reaches from 1 at that step, seen through σ.
+\begin{lean}mirrorWalk 9 1 = station .yangMills\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Walking from the mirror is walking from here shifted]
+Walking from the mirror is walking from here, 2 steps ahead: the reflection moves the walk along the same cycle and changes nothing else.
+\begin{lean}stepsTo 9 1 = 2 ∧ ∀ k : Fin 10, walk 1 k.val = walk 9 (k.val + 2)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Collatz has the trivial loop]
+\begin{lean}collatz 1 = 4 ∧ collatz 4 = 2 ∧ collatz 2 = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The loop is the opening walked back and closed ahead]
+The loop IS the sequence's opening walked back: halving is prev on 4 and 2, and 3x + 1 at 1 lands where the sequence stands two steps ahead of 1.
+\begin{lean}collatz 4 = prev 4 ∧ collatz 2 = prev 2 ∧ collatz 1 = walk 1 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The mirror walk from nine walks the loop reflected]
+Walking the reflection from 9 experiences the loop through σ: 9, 8, 6 are σ of 1, 2, 4.
+\begin{lean}mirrorWalk here 0 = reflect 1 ∧ mirrorWalk here 1 = reflect 2 ∧ mirrorWalk here 2 = reflect 4\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Every n below sixty four reaches one]
+Every n from 1 to 63 reaches 1 within 120 steps (27 needs 111). Finite: it decides these 63 numbers and no other.
+\begin{lean}∀ n : Fin 64, n.val = 0 ∨ reachesOne 120 n.val = true\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Twenty seven needs more than one hundred ten steps]
+The bound is not slack: 27 does not reach 1 within 110 steps.
+\begin{lean}reachesOne 110 27 = false\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Nine nine nine n plus one is station one in the ring]
+\begin{lean}∀ n : Nat, (999 * n + 1) \% 9 = 1\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro n; omega} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Three n plus one lands on one four or seven]
+\begin{lean}∀ n : Nat, (3 * n + 1) \% 9 = 1 ∨ (3 * n + 1) \% 9 = 4 ∨ (3 * n + 1) \% 9 = 7\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro n; omega} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Five x plus one has a cycle that never meets one]
+5x + 1 has a cycle without 1: from 13 it returns to 13 after ten steps and never meets 1 on the way.
+\begin{lean}Nat.repeat (axPlusOne 5) 10 13 = 13 ∧ meetsOne 5 10 13 = false\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Nine nine nine x plus one from one thousand has not met one in sixty steps]
+999x + 1 from 999·1 + 1 = 1000 has not met 1 after 60 steps — measured, not a proof that it never does.
+\begin{lean}meetsOne 999 60 1000 = false\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{nine.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \section*{Sources}
 \begin{enumerate}
 \item Rouschev, Tsvetan. \emph{Double-torus corpus}: Lean sources in \texttt{src/pair/formal/proofs} and \texttt{src/pair/lean/proofs}. Repository: \url{https://github.com/ceccec/ceccec.github.io}.

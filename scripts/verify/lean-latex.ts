@@ -10,7 +10,7 @@
  * different routes, so a disagreement means one of them is wrong about what is in the corpus — and a
  * generated paper section is exactly where that must not happen silently.
  */
-import { leanInvolutionCorpus, leanRegistryTheoremsForLatex, leanTheoremsAsLatex, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+import { leanDigitTheoremsForLatex, leanInvolutionCorpus, leanRegistryTheoremsForLatex, leanTheoremsAsLatex, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
 import { decided } from './status.ts'
 
 const OUT = 'src/research/lean-theorems.tex'
@@ -35,7 +35,14 @@ export function assertLeanLatexAgrees(): void {
   if (readRegistry !== countedRegistry) {
     throw new Error(`lean→latex: the reader found ${readRegistry} registry theorems and the counter ${countedRegistry} — one of them is wrong about the registry corpus`)
   }
-  const empty = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex()].filter((r) => r.proposition.length === 0)
+  // THE DIGIT CORPUS, BY THE SAME TWO ROUTES (owner, 2026-11-15): the station perspective files src/1 … src/9.
+  const readDigit = leanDigitTheoremsForLatex().length
+  const countedDigit = leanInvolutionCorpus().digitTheorems
+  console.log(`lean→latex: ${readDigit} station-perspective theorems read · ${countedDigit} counted`)
+  if (readDigit !== countedDigit) {
+    throw new Error(`lean→latex: the reader found ${readDigit} station-perspective theorems and the counter ${countedDigit} — one of them is wrong about the digit corpus`)
+  }
+  const empty = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex(), ...leanDigitTheoremsForLatex()].filter((r) => r.proposition.length === 0)
   if (empty.length) throw new Error(`lean→latex: ${empty.length} theorem(s) parsed with an empty proposition: ${empty.map((e) => e.name).join(', ')}`)
 }
 
@@ -67,7 +74,7 @@ export function assertLeanLatexProveEachOther(): void {
   const emitted = leanTheoremsAsLatex() + '\n'
   let committed = ''
   try { committed = fs.readFileSync(OUT, 'utf8') } catch { committed = '' }
-  const rows = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex()]
+  const rows = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex(), ...leanDigitTheoremsForLatex()]
 
   // LEAN → LATEX
   const drift = committed !== emitted
@@ -105,7 +112,7 @@ export function writeLeanLatex(): void {
   assertLeanLatexAgrees()
   const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule!('node:fs')
   fs.writeFileSync(OUT, leanTheoremsAsLatex() + '\n')
-  console.log(`wrote ${OUT} — ${leanTheoremsForLatex().length} involution + ${leanRegistryTheoremsForLatex().length} registry theorem environments, one document`)
+  console.log(`wrote ${OUT} — ${leanTheoremsForLatex().length} involution + ${leanRegistryTheoremsForLatex().length} registry + ${leanDigitTheoremsForLatex().length} station-perspective theorem environments, one document`)
 }
 
 /**

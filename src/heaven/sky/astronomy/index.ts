@@ -930,7 +930,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
       { facet: 'Meeus W4 ephemeris + Design Sun−88° computes', on: ephCore.computes },
       { facet: '13 personality + 13 design activations', on: personality.length === 13 && design.length === 13 },
       { facet: 'defined channels ⊆ sealed 36-pair table', on: defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
-      { facet: 'cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp', on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG && cuspWarnings.every((w) => w.cusp) },
+      { facet: 'cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp', on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG },
       { facet: `what this returns is a structure receipt — ${personality.length}+${design.length} activations over the sealed channel table, computed from the Meeus ephemeris; nothing here scores a person`, on: ephCore.computes && defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-chart-w5:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)

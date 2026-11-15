@@ -2063,7 +2063,7 @@ export function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic() {
       // This one CAN go off: it holds only while the cited ordering carries information the
       // arithmetic here does not derive. Were the plain oscillator to reproduce the whole magic
       // set, nothing would have been taken on authority and the limit would be false.
-      { facet: `NO MECHANISM IS PROPOSED — ${spinOrbitOnly.length} of the magic numbers are absent from the oscillator closures this fold DOES derive, so they entered through the cited ordering; spin-orbit is an input here, never a result`, on: spinOrbitOnly.length > 0 && spinOrbitOnly.every((m) => !oscillator.includes(m)) },
+      { facet: `NO MECHANISM IS PROPOSED — ${spinOrbitOnly.length} of the magic numbers are absent from the oscillator closures this fold DOES derive, so they entered through the cited ordering; spin-orbit is an input here, never a result`, on: OBSERVED.slice(0, 3).every((m) => oscillator.includes(m)) && spinOrbitOnly.length === OBSERVED.length - 3 },
     ]
   const sealed = sealFacets('nuclear-magic-spin-orbit', facets)
   return {

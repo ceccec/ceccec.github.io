@@ -1319,7 +1319,7 @@ export function fusionMilestonesResearched(matrix: MindMatrix = buildMatrix()) {
   const flagged = milestones.filter((m) => m.band === 'flagged')
   const facets = [
     { facet: 'documented milestones sealed — JET · NIF · ITER first plasma · W7-X', on: documented.length >= 5 },
-    { facet: 'planned milestones labeled honestly — ITER Q≥10 not yet achieved', on: planned.length >= 1 && planned.every((m) => m.band === 'planned') },
+    { facet: 'planned milestones labeled honestly — ITER Q≥10 not yet achieved', on: planned.length >= 1 && milestones.every((m) => (m.band === 'planned') === m.date.includes('planned')) },
     { facet: 'commercial-imminent overclaim flagged separately', on: flagged.length === 1 && flagged[0]!.id === 'commercial-imminent' },
     { facet: 'every milestone content-addressed with source', on: milestones.every((m) => isUuid(m.receipt) && m.source.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-milestones-researched:${entry.facet}:${entry.on}`) }))

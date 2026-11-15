@@ -20,7 +20,7 @@ import { spawnSync } from 'node:child_process'
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { LEAN_AXIOM_ACCOUNTS, LEAN_KERNEL_ACCOUNT, LEAN_SEALED_REGISTRY, leanLedger, leanLedgerEntry, leanRegistryTheoremsForLatex, leanTheoremsForLatex, type LeanAccount } from '../../src/pair/formal/proofs/index.ts'
+import { LEAN_AXIOM_ACCOUNTS, LEAN_KERNEL_ACCOUNT, LEAN_SEALED_REGISTRY, leanLedger, leanLedgerEntry, leanDigitTheoremsForLatex, leanRegistryTheoremsForLatex, leanTheoremsForLatex, type LeanAccount } from '../../src/pair/formal/proofs/index.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 import { theoremAxiomFamilies } from './axioms.ts'
 import { decided } from './status.ts'
@@ -100,7 +100,7 @@ export function registryLedger(root: string) {
 }
 
 export function assertAxiomLedgerBalancesExit(root: string = process.cwd()): number {
-  const rows = [...leanTheoremsForLatex(root), ...leanRegistryTheoremsForLatex(root)]
+  const rows = [...leanTheoremsForLatex(root), ...leanRegistryTheoremsForLatex(root), ...leanDigitTheoremsForLatex(root)]
   if (!rows.length) throw new Error('axiom ledger: ABSENT — no Lean theorems were read from this tree, so there is no ledger to balance')
   const ledger = leanLedger(rows)
 
