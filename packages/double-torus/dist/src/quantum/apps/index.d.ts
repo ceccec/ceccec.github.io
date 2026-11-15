@@ -33501,7 +33501,7 @@ export declare function dryCleanAllVueComponentsToTheUniversalSet(matrix?: MindM
         readonly paper: readonly ["ScientificPageCanon.vue", "ScientificPaperBody.vue"];
         readonly page: readonly ["UniversalPageTemplate.vue", "ScientificPageCanon.vue"];
     };
-    shellNames: ("HeroBackgroundLayer.vue" | "LinkedHeroCard.vue" | "ProofAnimation.vue" | "ScientificPageCanon.vue" | "ScientificPaperBody.vue" | "UiCardShell.vue" | "UniversalPageTemplate.vue")[];
+    shellNames: ("HeroBackgroundLayer.vue" | "LinkedHeroCard.vue" | "UiCardShell.vue" | "ProofAnimation.vue" | "ScientificPaperBody.vue" | "ScientificPageCanon.vue" | "UniversalPageTemplate.vue")[];
     shellCount: number;
     morphs: ({
         readonly before: "fire/physics raw UiCard";
@@ -132865,11 +132865,11 @@ export declare function quantumSelfHeal(matrix?: MindMatrix, at?: number): {
 /** npm run quantum:self-heal (dual heal/quantum) */
 export declare function runQuantumSelfHealExit(_root?: string, _argv?: readonly string[]): number;
 /**
- * Sealed one-quantum VitePress theme component paths — must match disk under
- * `.vitepress/theme/components` (no orphan/wet parallel families).
+ * The VitePress theme component paths — exactly the files under `.vitepress/theme/components`, decided against the
+ * disk by verify:components (components.catalog-is-disk), which also counts the ones no page reaches.
  * Pair: vite/one · comp/seal.
  */
-export declare const VITEPRESS_ONE_COMPONENT_PATHS: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "DecodedCard.vue", "DomainProofPages.vue", "DoubleTorusExperience.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "HubCardGrid.vue", "HumanDesignBodyGraph.vue", "LinkedHeroCard.vue", "LivingTorus.vue", "ModelCardPages.vue", "MonographFold.vue", "PageComputedGaps.vue", "PaperFrame.vue", "ProofAnimation.vue", "RayHub.vue", "RevolutAside.vue", "ScientificPageCanon.vue", "ScientificPaperBody.vue", "SourceAtlas.vue", "TagBrowser.vue", "TheoremFigure.vue", "TheoremIndex.vue", "TheoremPages.vue", "TheoremSupport.vue", "TheoremsPanel.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "UniversalPageTemplate.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
+export declare const VITEPRESS_ONE_COMPONENT_PATHS: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "DoubleTorusExperience.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "ModelCardPages.vue", "PaperFrame.vue", "RayHub.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
 export declare const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED: readonly [{
     readonly before: "inline-paper-sections";
     readonly after: "ScientificPaperBody";
@@ -132904,12 +132904,12 @@ export declare function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix?:
     sealedAtGates: boolean;
     duplicatesRemoved: boolean;
     beforeCount: number;
-    afterCount: 57;
+    afterCount: 42;
     morphCount: 5;
-    pathCount: 57;
+    pathCount: 42;
     uiFamily: number;
     movieFamily: number;
-    paths: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "DecodedCard.vue", "DomainProofPages.vue", "DoubleTorusExperience.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "HubCardGrid.vue", "HumanDesignBodyGraph.vue", "LinkedHeroCard.vue", "LivingTorus.vue", "ModelCardPages.vue", "MonographFold.vue", "PageComputedGaps.vue", "PaperFrame.vue", "ProofAnimation.vue", "RayHub.vue", "RevolutAside.vue", "ScientificPageCanon.vue", "ScientificPaperBody.vue", "SourceAtlas.vue", "TagBrowser.vue", "TheoremFigure.vue", "TheoremIndex.vue", "TheoremPages.vue", "TheoremSupport.vue", "TheoremsPanel.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "UniversalPageTemplate.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
+    paths: readonly ["BackgroundMovie.vue", "CardBackgroundMovie.vue", "ClientOnly.vue", "CollectiveMind.vue", "DoubleTorusExperience.vue", "GlobalHelp.vue", "HeroBackgroundLayer.vue", "LeanTheoremIndex.vue", "LeanTheoremPages.vue", "LinkedHeroCard.vue", "ModelCardPages.vue", "PaperFrame.vue", "RayHub.vue", "RevolutAside.vue", "SpeechReader.vue", "TrinityGateways.vue", "UiAsideShell.vue", "UiCardShell.vue", "VitePressPossibilities.vue", "ui/Accordion.vue", "ui/AccordionItem.vue", "ui/Alert.vue", "ui/AspectRatio.vue", "ui/Avatar.vue", "ui/Badge.vue", "ui/Button.vue", "ui/Card.vue", "ui/CardContent.vue", "ui/Checkbox.vue", "ui/Collapsible.vue", "ui/Input.vue", "ui/Label.vue", "ui/Progress.vue", "ui/Separator.vue", "ui/Skeleton.vue", "ui/Switch.vue", "ui/Tabs.vue", "ui/TabsContent.vue", "ui/TabsList.vue", "ui/TabsTrigger.vue", "ui/Textarea.vue", "ui/Tooltip.vue"];
     morphs: readonly [{
         readonly before: "inline-paper-sections";
         readonly after: "ScientificPaperBody";

@@ -1,8 +1,8 @@
 {
-  "tree": "0950c333ac190590",
-  "address": "f57324b7a2c8e362",
-  "gates": 68,
-  "clean": 66,
+  "tree": "e0ee69ebaa83169b",
+  "address": "0b3e195b2aeeb844",
+  "gates": 69,
+  "clean": 67,
   "violated": [
     "verify:deposit-metadata",
     "verify:release-live"

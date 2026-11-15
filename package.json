@@ -931,6 +931,7 @@
     "verify:three": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/three.ts assertThreeCoverage",
     "verify:bagua": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/bagua.ts assertBaguaNamesRealFolders",
     "verify:deposit-metadata": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertDepositMetadataIsHonest",
+    "verify:components": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/components.ts assertComponentsAreReached",
     "verify:credits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/credits.ts assertEveryPageIsCredited",
     "verify:build-time": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/build-time.ts assertBuildIsNotSlower",
     "verify:barrel": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/barrel.ts assertBarrelExportsResolve",

@@ -1,41 +1,23 @@
 /**
  * One VitePress-compatible component set — shared library for theme chrome and page shells.
- * Lazy OVERRIDES (RayHub, LivingTorus, TheoremsPanel, …) stay dynamic in register-components
- * so they are not pulled into the enhanceApp chunk. Panels import named exports from here or
+ * Panels import named exports from here or
  * from sibling .vue files under this folder only — no second UI stack.
  * Pair: vite/one · comp/seal · fold: oneQuantumSetOfVitepressComponentsSealedAtGates.
  */
 export { default as ClientOnly } from './ClientOnly.vue'
 export { default as LinkedHeroCard } from './LinkedHeroCard.vue'
-export { default as HubCardGrid } from './HubCardGrid.vue'
 export { default as UiCardShell } from './UiCardShell.vue'
 export { default as UiAsideShell } from './UiAsideShell.vue'
-export { default as DecodedCard } from './DecodedCard.vue'
-export { default as UniversalPageTemplate } from './UniversalPageTemplate.vue'
-export { default as TagBrowser } from './TagBrowser.vue'
 export { default as PaperFrame } from './PaperFrame.vue'
-export { default as TheoremSupport } from './TheoremSupport.vue'
 export { default as ModelCardPages } from './ModelCardPages.vue'
-export { default as TheoremPages } from './TheoremPages.vue'
 export { default as LeanTheoremPages } from './LeanTheoremPages.vue'
 export { default as LeanTheoremIndex } from './LeanTheoremIndex.vue'
-export { default as DomainProofPages } from './DomainProofPages.vue'
-export { default as TheoremIndex } from './TheoremIndex.vue'
-export { default as SourceAtlas } from './SourceAtlas.vue'
-// HandsFold is NOT re-exported here on purpose. A static re-export of a .vue from this barrel lands the
-// component in the ENTRY chunk even when its only consumer imports it dynamically — package.json declares
-// no `sideEffects`, so Rollup must assume the module has them and cannot drop it. It is registered with
-// defineAsyncComponent in ../index.ts and loads with /hands/.
-export { default as ThreeClosure } from './ThreeClosure.vue'
 export { default as TrinityGateways } from './TrinityGateways.vue'
 export { default as GlobalHelp } from './GlobalHelp.vue'
 export { default as CollectiveMind } from './CollectiveMind.vue'
 export { default as RevolutAside } from './RevolutAside.vue'
 export { default as VitePressPossibilities } from './VitePressPossibilities.vue'
 export { default as HeroBackgroundLayer } from './HeroBackgroundLayer.vue'
-export { default as ScientificPageCanon } from './ScientificPageCanon.vue'
-export { default as ScientificPaperBody } from './ScientificPaperBody.vue'
-export { default as PageComputedGaps } from './PageComputedGaps.vue'
 
 /**
  * Sealed one-quantum catalog — every theme .vue is named here (eager · page · override · movie · ui).
@@ -45,22 +27,12 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   // Eager enhanceApp mounts
   { id: 'ClientOnly', path: 'ClientOnly.vue', kind: 'eager' as const, role: 'mount' },
   { id: 'LinkedHeroCard', path: 'LinkedHeroCard.vue', kind: 'eager' as const, role: 'card' },
-  { id: 'HubCardGrid', path: 'HubCardGrid.vue', kind: 'eager' as const, role: 'grid' },
   { id: 'UiCardShell', path: 'UiCardShell.vue', kind: 'eager' as const, role: 'shell' },
   { id: 'UiAsideShell', path: 'UiAsideShell.vue', kind: 'eager' as const, role: 'shell' },
-  { id: 'DecodedCard', path: 'DecodedCard.vue', kind: 'eager' as const, role: 'card' },
-  { id: 'UniversalPageTemplate', path: 'UniversalPageTemplate.vue', kind: 'eager' as const, role: 'page-shell' },
-  { id: 'TagBrowser', path: 'TagBrowser.vue', kind: 'eager' as const, role: 'browser' },
   { id: 'PaperFrame', path: 'PaperFrame.vue', kind: 'eager' as const, role: 'paper' },
-  { id: 'TheoremSupport', path: 'TheoremSupport.vue', kind: 'eager' as const, role: 'aside' },
   { id: 'ModelCardPages', path: 'ModelCardPages.vue', kind: 'eager' as const, role: 'page' },
-  { id: 'TheoremPages', path: 'TheoremPages.vue', kind: 'eager' as const, role: 'page-shell' },
   { id: 'LeanTheoremPages', path: 'LeanTheoremPages.vue', kind: 'eager' as const, role: 'page-shell' },
   { id: 'LeanTheoremIndex', path: 'LeanTheoremIndex.vue', kind: 'eager' as const, role: 'index' },
-  { id: 'DomainProofPages', path: 'DomainProofPages.vue', kind: 'eager' as const, role: 'page-shell' },
-  { id: 'TheoremIndex', path: 'TheoremIndex.vue', kind: 'eager' as const, role: 'index' },
-  { id: 'SourceAtlas', path: 'SourceAtlas.vue', kind: 'eager' as const, role: 'atlas' },
-  { id: 'ThreeClosure', path: 'ThreeClosure.vue', kind: 'eager' as const, role: 'proof' },
   { id: 'TrinityGateways', path: 'TrinityGateways.vue', kind: 'eager' as const, role: 'chrome' },
   { id: 'GlobalHelp', path: 'GlobalHelp.vue', kind: 'eager' as const, role: 'chrome' },
   { id: 'CollectiveMind', path: 'CollectiveMind.vue', kind: 'eager' as const, role: 'chrome' },
@@ -68,18 +40,9 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   { id: 'VitePressPossibilities', path: 'VitePressPossibilities.vue', kind: 'eager' as const, role: 'chrome' },
   { id: 'HeroBackgroundLayer', path: 'HeroBackgroundLayer.vue', kind: 'eager' as const, role: 'movie' },
   // Canon page / paper / gaps (compose format/canon · page/trinity)
-  { id: 'ScientificPageCanon', path: 'ScientificPageCanon.vue', kind: 'page' as const, role: 'page-shell' },
-  { id: 'ScientificPaperBody', path: 'ScientificPaperBody.vue', kind: 'page' as const, role: 'paper' },
-  { id: 'PageComputedGaps', path: 'PageComputedGaps.vue', kind: 'page' as const, role: 'gaps' },
-  { id: 'TheoremFigure', path: 'TheoremFigure.vue', kind: 'page' as const, role: 'figure' },
   // Async OVERRIDES / experience
-  { id: 'TheoremsPanel', path: 'TheoremsPanel.vue', kind: 'override' as const, role: 'panel' },
   { id: 'RayHub', path: 'RayHub.vue', kind: 'override' as const, role: 'hub' },
-  { id: 'MonographFold', path: 'MonographFold.vue', kind: 'override' as const, role: 'monograph' },
-  { id: 'LivingTorus', path: 'LivingTorus.vue', kind: 'override' as const, role: 'experience' },
-  { id: 'HumanDesignBodyGraph', path: 'HumanDesignBodyGraph.vue', kind: 'override' as const, role: 'experience' },
   { id: 'DoubleTorusExperience', path: 'DoubleTorusExperience.vue', kind: 'override' as const, role: 'experience' },
-  { id: 'ProofAnimation', path: 'ProofAnimation.vue', kind: 'override' as const, role: 'animation' },
   // One movie family (layers, not parallel stacks)
   { id: 'BackgroundMovie', path: 'BackgroundMovie.vue', kind: 'movie' as const, role: 'movie' },
   { id: 'CardBackgroundMovie', path: 'CardBackgroundMovie.vue', kind: 'movie' as const, role: 'movie' },
@@ -113,20 +76,10 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
 export const VITEPRESS_COMPONENT_SET = [
   'ClientOnly',
   'LinkedHeroCard',
-  'HubCardGrid',
   'UiCardShell',
   'UiAsideShell',
-  'DecodedCard',
-  'UniversalPageTemplate',
-  'TagBrowser',
   'PaperFrame',
-  'TheoremSupport',
   'ModelCardPages',
-  'TheoremPages',
-  'DomainProofPages',
-  'TheoremIndex',
-  'SourceAtlas',
-  'ThreeClosure',
   'TrinityGateways',
   'GlobalHelp',
   'CollectiveMind',

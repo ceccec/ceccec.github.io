@@ -29661,25 +29661,22 @@ export function runQuantumSelfHealExit(_root = '', _argv: readonly string[] = []
 }
 
 /**
- * Sealed one-quantum VitePress theme component paths — must match disk under
- * `.vitepress/theme/components` (no orphan/wet parallel families).
+ * The VitePress theme component paths — exactly the files under `.vitepress/theme/components`, decided against the
+ * disk by verify:components (components.catalog-is-disk), which also counts the ones no page reaches.
  * Pair: vite/one · comp/seal.
  */
 export const VITEPRESS_ONE_COMPONENT_PATHS = [
   'BackgroundMovie.vue', 'CardBackgroundMovie.vue', 'ClientOnly.vue', 'CollectiveMind.vue',
-  'DecodedCard.vue', 'DomainProofPages.vue', 'DoubleTorusExperience.vue', 'GlobalHelp.vue',
-  'HeroBackgroundLayer.vue', 'HubCardGrid.vue', 'HumanDesignBodyGraph.vue', 'LinkedHeroCard.vue',
-  'LivingTorus.vue', 'ModelCardPages.vue', 'MonographFold.vue', 'PageComputedGaps.vue',
-  'PaperFrame.vue', 'ProofAnimation.vue', 'RayHub.vue', 'RevolutAside.vue',
-  'ScientificPageCanon.vue', 'ScientificPaperBody.vue', 'SourceAtlas.vue', 'TagBrowser.vue',
-  'TheoremFigure.vue', 'TheoremIndex.vue', 'TheoremPages.vue', 'TheoremSupport.vue',
-  'TheoremsPanel.vue', 'TrinityGateways.vue', 'UiAsideShell.vue', 'UiCardShell.vue',
-  'UniversalPageTemplate.vue', 'VitePressPossibilities.vue',
-  'ui/Accordion.vue', 'ui/AccordionItem.vue', 'ui/Alert.vue', 'ui/AspectRatio.vue',
-  'ui/Avatar.vue', 'ui/Badge.vue', 'ui/Button.vue', 'ui/Card.vue', 'ui/CardContent.vue',
-  'ui/Checkbox.vue', 'ui/Collapsible.vue', 'ui/Input.vue', 'ui/Label.vue', 'ui/Progress.vue',
-  'ui/Separator.vue', 'ui/Skeleton.vue', 'ui/Switch.vue', 'ui/Tabs.vue', 'ui/TabsContent.vue',
-  'ui/TabsList.vue', 'ui/TabsTrigger.vue', 'ui/Textarea.vue', 'ui/Tooltip.vue',
+  'DoubleTorusExperience.vue', 'GlobalHelp.vue', 'HeroBackgroundLayer.vue', 'LeanTheoremIndex.vue',
+  'LeanTheoremPages.vue', 'LinkedHeroCard.vue', 'ModelCardPages.vue', 'PaperFrame.vue',
+  'RayHub.vue', 'RevolutAside.vue', 'SpeechReader.vue', 'TrinityGateways.vue',
+  'UiAsideShell.vue', 'UiCardShell.vue', 'VitePressPossibilities.vue', 'ui/Accordion.vue',
+  'ui/AccordionItem.vue', 'ui/Alert.vue', 'ui/AspectRatio.vue', 'ui/Avatar.vue',
+  'ui/Badge.vue', 'ui/Button.vue', 'ui/Card.vue', 'ui/CardContent.vue',
+  'ui/Checkbox.vue', 'ui/Collapsible.vue', 'ui/Input.vue', 'ui/Label.vue',
+  'ui/Progress.vue', 'ui/Separator.vue', 'ui/Skeleton.vue', 'ui/Switch.vue',
+  'ui/Tabs.vue', 'ui/TabsContent.vue', 'ui/TabsList.vue', 'ui/TabsTrigger.vue',
+  'ui/Textarea.vue', 'ui/Tooltip.vue',
 ] as const
 
 export const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED = [
@@ -29690,13 +29687,10 @@ export const VITEPRESS_COMPONENT_DUP_MORPHS_SEALED = [
   { before: 'parallel-movie-stacks', after: 'HeroBackgroundLayer+BackgroundMovie+CardBackgroundMovie', status: 'removed' as const },
 ] as const
 
+// the shells the pages write: the feed and monographs (<LeanTheoremIndex/>) and the posts (<LeanTheoremPages/>)
 const VITEPRESS_ONE_REQUIRED_SHELLS = [
-  'UniversalPageTemplate.vue',
-  'ScientificPageCanon.vue',
-  'TheoremPages.vue',
-  'DomainProofPages.vue',
-  'ScientificPaperBody.vue',
-  'PageComputedGaps.vue',
+  'LeanTheoremIndex.vue',
+  'LeanTheoremPages.vue',
 ] as const
 
 /**
