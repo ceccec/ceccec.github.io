@@ -132,7 +132,7 @@ export type { UuidReading, UuidVariant } from '../../../src/quantum/index.ts'
 // The one animation SDK — every number the animations paint with (decided in movie.lean), the theorem angles, the kernel
 // theorems as movie streams, and the stylesheet double-torus.scss is emitted from (shipped beside this bundle):
 export {
-  ANIMATION_DESIGN, MOVIE_ANGLES, animationScss, animationToken, bindAnimationDesign, kernelTheoremStreams,
+  ANIMATION_DESIGN, MOVIE_ANGLES, animationScss, animationToken, bindAnimationDesign, drawProofAnimation, kernelTheoremStreams,
 } from '../../../src/quantum/wind/geometry/index.ts'
 export type { KernelTheoremRecord, KernelTheoremStream } from '../../../src/quantum/wind/geometry/index.ts'
 

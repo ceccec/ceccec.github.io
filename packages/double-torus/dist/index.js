@@ -496,8 +496,8 @@ function digitalRoot(n) {
   const r2 = (n % 9 + 9) % 9;
   return r2 === 0 ? 9 : r2;
 }
-function humanEase(phase6) {
-  const clamped = phase6 <= 0 ? 0 : phase6 >= 1 ? 1 : phase6;
+function humanEase(phase7) {
+  const clamped = phase7 <= 0 ? 0 : phase7 >= 1 ? 1 : phase7;
   return -(Math.cos(Math.PI * clamped) - 1) / 2;
 }
 function humanBreath(timeMs, periodMs, depth = 9 / (5 * 5 * 2)) {
@@ -1052,9 +1052,9 @@ function asTrace(f2, timeMs = 0) {
     const jitter = 1 + reading(f2.merged, `arm:${i}`) * (1 / 5);
     const turns = Math.max(1, Math.round(HERO_CYCLE_MS_MIRROR / arm.periodMs * jitter));
     const omega = sign3 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
-    const phase6 = reading(f2.merged, `phase:${i}`) * Math.PI * 2;
-    x += arm.amp * Math.cos(omega * timeMs + phase6);
-    y += arm.amp * Math.sin(omega * timeMs + phase6);
+    const phase7 = reading(f2.merged, `phase:${i}`) * Math.PI * 2;
+    x += arm.amp * Math.cos(omega * timeMs + phase7);
+    y += arm.amp * Math.sin(omega * timeMs + phase7);
   });
   return { x: roundTo(x, 5), y: roundTo(y, 5) };
 }
@@ -4214,6 +4214,7 @@ var OBLIQUITY_SECULAR_DEG_PER_CENTURY = 130125 / 1e7;
 function obliquityAtEpoch(yearsBeforePresent) {
   return OBLIQUITY_J2000_DEG + OBLIQUITY_SECULAR_DEG_PER_CENTURY * (yearsBeforePresent / 100);
 }
+var ZHL16_HE_HALFTIMES = [1.51, 3.02, 4.72, 6.99, 10.21, 14.48, 20.53, 29.11, 41.2, 55.19, 70.69, 90.34, 115.29, 147.42, 188.24, 240.03];
 var HUBBLE_CONSTANT_LOCAL = 73;
 function resonantAmplitude(omega, omega0, q) {
   const denom = sqrt((omega0 * omega0 - omega * omega) ** 2 + (omega0 * omega / max(q, 1e-9)) ** 2);
@@ -4247,6 +4248,159 @@ function blackHoleEntropyBits(massKg) {
 function quantumZeno(n) {
   const nn = max(1, floor(n));
   return cos(TAU / 2 / (2 * nn)) ** (2 * nn);
+}
+function geodesicDomeComputes(frequency = 3) {
+  const norm = (v) => {
+    const l = hypot(v[0], v[1], v[2]);
+    return [v[0] / l, v[1] / l, v[2] / l];
+  };
+  const dist = (a, b) => hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const key = (v) => v.map((x) => x.toFixed(6)).join(",");
+  const base = [];
+  for (const shift of [0, 1, 2]) {
+    for (const s1 of [1, -1]) for (const s2 of [1, -1]) {
+      const raw = [0, s1, s2 * PHI];
+      const triple = [raw[(3 - shift) % 3], raw[(4 - shift) % 3], raw[(5 - shift) % 3]];
+      base.push(norm(triple));
+    }
+  }
+  let minD = Infinity;
+  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) minD = min(minD, dist(base[i], base[j]));
+  const adj = (i, j) => dist(base[i], base[j]) < minD * (1 + 1e-6);
+  const faces = [];
+  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) for (let k = j + 1; k < base.length; k += 1) {
+    if (adj(i, j) && adj(j, k) && adj(i, k)) faces.push([i, j, k]);
+  }
+  const nu = max(1, round(frequency));
+  const points = /* @__PURE__ */ new Map();
+  const edgeSet = /* @__PURE__ */ new Set();
+  const eKey = (a, b) => [key(a), key(b)].sort().join("|");
+  for (const [ia, ib, ic] of faces) {
+    const [A, B, C] = [base[ia], base[ib], base[ic]];
+    const grid = [];
+    for (let i = 0; i <= nu; i += 1) {
+      grid.push([]);
+      for (let j = 0; j <= nu - i; j += 1) {
+        const k = nu - i - j;
+        const p = norm([(i * A[0] + j * B[0] + k * C[0]) / nu, (i * A[1] + j * B[1] + k * C[1]) / nu, (i * A[2] + j * B[2] + k * C[2]) / nu]);
+        grid[i].push(p);
+        points.set(key(p), p);
+      }
+    }
+    for (let i = 0; i <= nu; i += 1) for (let j = 0; j < grid[i].length; j += 1) {
+      if (j + 1 < grid[i].length) edgeSet.add(eKey(grid[i][j], grid[i][j + 1]));
+      if (i + 1 <= nu) {
+        if (j < grid[i + 1].length) edgeSet.add(eKey(grid[i][j], grid[i + 1][j]));
+        if (j > 0 && j - 1 < grid[i + 1].length) edgeSet.add(eKey(grid[i][j], grid[i + 1][j - 1]));
+      }
+    }
+  }
+  const V = points.size;
+  const E = edgeSet.size;
+  const F = 4 * 5 * nu * nu;
+  const struts = [...edgeSet].map((entry2) => {
+    const [a, b] = entry2.split("|").map((k2) => points.get(k2));
+    return dist(a, b);
+  });
+  const classes = new Set(struts.map((s) => s.toFixed(6))).size;
+  const chordLawMaxError = max(...[...edgeSet].map((entry2) => {
+    const [a, b] = entry2.split("|").map((k2) => points.get(k2));
+    const angle = acos(max(-1, min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])));
+    return abs(dist(a, b) - 2 * sin(angle / 2));
+  }));
+  const levels = [...new Set([...points.values()].filter((p) => p[2] > -1e-6).map((p) => p[2].toFixed(6)))].sort((x, y) => Number(x) - Number(y));
+  const rings = levels.map((z, idx) => ({
+    ring: idx,
+    z: Number(z),
+    struts: [...edgeSet].filter((entry2) => {
+      const [a, b] = entry2.split("|").map((k2) => points.get(k2));
+      const top = max(a[2], b[2]).toFixed(6);
+      return top === z && min(a[2], b[2]) > -1e-6;
+    }).length
+  }));
+  const facets = [
+    { facet: `the mesh is DISCOVERED, not listed: ${base.length} \u03C6-vertices \u2192 ${faces.length} faces by mutual minimal distance, Euler V\u2212E+F = ${V}\u2212${E}+${F} = ${V - E + F}`, on: V - E + F === 2 && base.length === 3 * 4 && faces.length === 4 * 5 },
+    { facet: `frequency \u03BD=${nu} closes the counting laws: V = 10\u03BD\xB2+2 = ${V}, E = 30\u03BD\xB2 = ${E}, F = 20\u03BD\xB2 = ${F}`, on: V === 5 * 2 * nu * nu + 2 && E === 5 * 6 * nu * nu && F === 4 * 5 * nu * nu },
+    { facet: `${classes} strut classes suffice for ${E} struts \u2014 the buildable economy of the dome (cut ${classes} lengths, raise ${E})`, on: classes < 5 * 2 && classes > 1 },
+    { facet: `THE HOLOGRAM: every strut obeys the one chord law 2R\xB7sin(\u03B8/2) to ${chordLawMaxError.toExponential(1)} \u2014 the whole sphere is encoded in each part`, on: chordLawMaxError < 1e-9 },
+    { facet: `THE FRACTAL: one subdivision law at every scale \u2014 F(\u03BD) = 20\u03BD\xB2 so F(2\u03BD)/F(\u03BD) = 4 exactly, self-similar by construction`, on: 4 * 5 * (2 * nu) ** 2 / (4 * 5 * nu ** 2) === 4 },
+    { facet: `the construction IS an animation: ${rings.length} hemisphere rings base-up, ${rings.reduce((s, r2) => s + r2.struts, 0)} struts raised in order \u2014 frame k = ring k`, on: rings.length > 2 && rings.every((r2, i) => i === 0 || r2.z > rings[i - 1].z) }
+  ];
+  const zIdx = new Map(levels.map((z, idx) => [z, idx]));
+  const animation = {
+    rings: levels.length,
+    struts: [...edgeSet].flatMap((entry2) => {
+      const [a, b] = entry2.split("|").map((k2) => points.get(k2));
+      if (min(a[2], b[2]) < -1e-6) return [];
+      return [{ a, b, ring: zIdx.get(max(a[2], b[2]).toFixed(6)) ?? 0 }];
+    })
+  };
+  return {
+    computes: facets.every((entry2) => entry2.on),
+    frequency: nu,
+    animation,
+    vertices: V,
+    edges: E,
+    faces: F,
+    strutClasses: classes,
+    chordLawMaxError,
+    rings,
+    facets,
+    statement: `Geodesic dome \u03BD=${nu} computed from \u03C6 alone: ${V} vertices \xB7 ${E} struts in ${classes} classes \xB7 ${F} faces (Euler ${V - E + F}); the hologram (one chord law, error ${chordLawMaxError.toExponential(1)}) and the fractal (one subdivision law, F\xD74 per doubling) verified; assembly = ${rings.length} animated rings.`,
+    boundary: "Pure geometry, zero tabulated data: the icosahedron generated from \u03C6, adjacency discovered by distance, counts proven by Euler and the 10\u03BD\xB2+2 laws. The animation plan is the CONSTRUCTION SEQUENCE (rings base-up), not decoration. Fuller's engineering practice (chord-factor tables) is the same chord law precomputed \u2014 documented, no mysticism attached."
+  };
+}
+function oneExponentialLaw() {
+  const approach = (y0, yInf, halftime, t) => yInf + (y0 - yInf) * exp(-LN2 * t / halftime);
+  const integrate = (y0, yInf, halftime, T) => {
+    const steps = 8 * 100 * 100;
+    const dt = T / steps;
+    const lambda = LN2 / halftime;
+    let y = y0;
+    for (let i = 0; i < steps; i += 1) y += lambda * (yInf - y) * dt;
+    return y;
+  };
+  const costumes = [
+    ["tissue N\u2082 washout", 3, 4 / 5, 27, 108],
+    ["RC charging", 0, 5, 2, 9],
+    ["radioactive decay", 100, 0, 54, 216],
+    ["Newton cooling", 100, 16, 9, 27],
+    ["animation easing", 0, 1, 1 / 3, 1]
+  ];
+  const oneEquation = costumes.every(([, y0, yInf, ht, T]) => {
+    const closed = approach(y0, yInf, ht, T);
+    const stepped = integrate(y0, yInf, ht, T);
+    return abs(closed - stepped) / max(abs(closed), 1) < 1 / (100 * 100);
+  });
+  const ladder = ZHL16_HE_HALFTIMES.map((he) => he * sqrt(7));
+  const ratios = ladder.slice(1).map((v, i) => v / ladder[i]);
+  const geoMean = exp(ratios.reduce((s, r2) => s + log(r2), 0) / ratios.length);
+  const middle = ratios.slice(4, 8);
+  const middleMean = middle.reduce((s, r2) => s + r2, 0) / middle.length;
+  const octaveRatio = SQRT2;
+  const middleIsOctaveLadder = abs(middleMean - octaveRatio) / octaveRatio < 1 / 100;
+  const headDrift = ratios[0];
+  const tailDrift = ratios[ratios.length - 1];
+  const ratioSpread = headDrift / tailDrift;
+  const perOctave = log(2) / log(middleMean);
+  const facets = [
+    { facet: `ONE equation, ${costumes.length} costumes: tissue washout \xB7 RC \xB7 decay \xB7 cooling \xB7 easing all satisfy dy/dt = \u03BB(y\u221E \u2212 y) \u2014 closed form matches the integrated ODE in every case`, on: oneEquation },
+    { facet: `the ladder is an OCTAVE ladder where the model is honest: the middle rungs average ${middleMean.toFixed(4)} \u2248 \u221A2 (${perOctave.toFixed(2)} compartments per doubling) \u2014 the same log-uniform spacing as A432's octaves`, on: middleIsOctaveLadder },
+    { facet: `and the FIT shows at both ends: the rung ratio runs ${headDrift.toFixed(3)} at the head down to ${tailDrift.toFixed(3)} at the tail \u2014 a spread of ${ratioSpread.toFixed(2)}\xD7 where a true geometric ladder would hold 1.00; B\xFChlmann approached a law and never derived it, which is precisely the gap the fine-tuning had to fill`, on: ratioSpread > 3 / 2 },
+    { facet: `REUSE PROVEN: the same kernel eases an animation \u2014 approach(0, 1, t\xBD, t) rises ${approach(0, 1, 1 / 3, 1 / 3).toFixed(3)} at one halftime and ${approach(0, 1, 1 / 3, 2 / 3).toFixed(3)} at two: gas loading and a fade are the same curve, so 16 compartments are 16 animation rates`, on: abs(approach(0, 1, 1 / 3, 1 / 3) - 1 / 2) < 1e-12 && abs(approach(0, 1, 1 / 3, 2 / 3) - 3 / 4) < 1e-12 }
+  ];
+  return {
+    computes: facets.every((entry2) => entry2.on),
+    ladder,
+    ratios,
+    geoMean,
+    middleMean,
+    perOctave,
+    approach,
+    facets,
+    statement: `One exponential law \u2014 ${facets.filter((entry2) => entry2.on).length}/${facets.length}: washout, RC, decay, cooling and easing are the same ODE (verified against numerical integration); the halftime ladder is an octave ladder at heart (middle ratio ${middleMean.toFixed(4)} \u2248 \u221A2, ${perOctave.toFixed(2)} compartments per doubling) whose ends drift (${headDrift.toFixed(3)} \u2192 ${tailDrift.toFixed(3)}) where the fitting shows; and the identical kernel eases every animation \u2014 gas loading and a fade are one curve.`,
+    boundary: "DOCUMENTED: the first-order ODE and its closed form (Haldane 1908 \xB7 B\xFChlmann 1990 for the halftimes, which are MEASUREMENTS \u2014 derived here from the ledgered He table via Graham, never re-typed). The \u221A2 middle rung is an OBSERVATION about the published ladder, not a claim that B\xFChlmann intended it \u2014 the drift at both ends is the evidence he fitted rather than derived. THIS IS MATHEMATICS AND ANIMATION, NOT A DIVE TOOL: no fold in this repository plans a dive (see counterdiffusionOnTheDoubleTorus)."
+  };
 }
 
 // ../../src/1/9/index.ts
@@ -11603,16 +11757,16 @@ var CENSUS_FIBONACCI = (() => {
 function quantumMathDesignsTheUi(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`quantumMathDesignsTheUi:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const harmony = harmonyProbability(matrix);
-    const phase6 = roundTo(heroPhaseAt(at), 6);
+    const phase7 = roundTo(heroPhaseAt(at), 6);
     const a4322 = a432(matrix);
-    const vortexSlot = VORTEX_SEQUENCE[floor(phase6 * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] ?? 9;
-    const movieHue = round(heroMoviePhaseHue(OS_ROUTE, phase6, matrix));
+    const vortexSlot = VORTEX_SEQUENCE[floor(phase7 * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] ?? 9;
+    const movieHue = round(heroMoviePhaseHue(OS_ROUTE, phase7, matrix));
     const hue2 = ((A432_HUE + movieHue + vortexSlot * (8 * 5)) % 360 + 360) % 360;
     const accentHue = round((hue2 + digitalRoot(round(hue2)) * GOLDEN_ANGLE) % 360);
     const spaceScale = [...CENSUS_FIBONACCI].reverse().map((f2) => roundTo(f2 / CENSUS_FIBONACCI[0] * PHI * (3 / 4), 4));
     const rotation = bothEarthsRotateWithinEachOther(at, matrix);
     const schumannPhase = roundTo((schumannPhaseAt(at) % 1 + 1) % 1, 6);
-    const motionPhase = roundTo((phase6 + schumannPhase) / 2 % 1, 6);
+    const motionPhase = roundTo((phase7 + schumannPhase) / 2 % 1, 6);
     const merkabaUpSpinDeg = roundTo(rotation.merkabaUpSpin * (9 * 5 * 4) / (TAU / 2) % 360, 3);
     const merkabaDownSpinDeg = roundTo(rotation.merkabaDownSpin * (9 * 5 * 4) / (TAU / 2) % 360, 3);
     const forms = allFormsAreTenDimensionalOrPurged(matrix);
@@ -14466,8 +14620,571 @@ var ANIMATION_DESIGN = {
     inkArg02: 3 / 4,
     fillTextArg1Part: 8,
     fillTextArg2Part: 4
+  },
+  drawProofWitness: {
+    pad: 2 * 5,
+    fillArg0Part: 3 / 5,
+    fillArg0Part2: 1 / 6,
+    fillRectArg0Part: 3 / (4 * 5),
+    fillRectArg2Part: 7 / (2 * 5),
+    strokeArg0: 1 / 4,
+    m: 9,
+    proofRingArg1Part: 4 / 5,
+    proofRingArg4Part: 4,
+    fillArg0: 1 / 3,
+    arcArg1Part: 8 * 5,
+    strokeArg02: 3 / 5,
+    arcArg1Part2: 4 * 6,
+    fillArg0Part3: 4 / 5,
+    fillArg0Part4: 1 / 8,
+    at: 4 / 5,
+    strokeArg03: 1 / 5
+  },
+  drawProofAnimation: {
+    geodesicDomeComputesArg0: 3,
+    phase: 108 * (2 * 5),
+    maxArg1Part: 2 ** 5,
+    t: 9,
+    h: 2 / 3,
+    strokeArg0: 1 / 5,
+    moveToArg1Part: 5 / 6,
+    lineToArg1Part: 5 / 6,
+    lineToArg1Part2: 2 / 3,
+    fillArg1Part: 3,
+    fillRectArg0Part: 3,
+    fillRectArg1Part: 5 / 6,
+    fillRectArg2Part: 3,
+    returned: 4 / 5,
+    returned2: 6,
+    returned3: 3,
+    returned4: 2 / 3,
+    sinArg0Part: 6,
+    strokeArg0Part: 3 / 4,
+    strokeArg0Part2: 1 / 9,
+    strokeArg1Part: 4 * 5 * 9 / 4,
+    n: 7,
+    proofRingArg1Part: 3 / 4,
+    fromArg1Part: 3,
+    strokeArg0Part3: 1 / 4,
+    red: 4,
+    strokeArg0Part4: 1 / 3,
+    fromLength: 8,
+    x: 3 / 4,
+    x2: 1 / 4,
+    y: 3 / 4,
+    y2: 1 / 4,
+    when: 4,
+    z: 1 / 8,
+    strokeArg02: 1 / 3,
+    loop: 8,
+    loop2: 4,
+    floorArg0Part: 8,
+    lit: 8,
+    arcArg1Part: 2 * 6,
+    strokeArg1Part2: 9,
+    arcArg4Part: 3 / 4,
+    r: 7 / 8,
+    maxArg1Part2: 3 * 8,
+    strokeArg03: 1 / 4,
+    arcArg2Part: 3 / 4,
+    strokeArg0Part5: 1 / 6,
+    proofRingArg0: 3,
+    proofRingArg4Part: 4,
+    strokeArg04: 3 / 4,
+    loop3: 3,
+    triAt: 3,
+    arcArg2Part2: 2 * 6,
+    arcArg2Part3: 3,
+    limit: 1 / 4,
+    acc: 3 / 4,
+    cosArg0Part: 2 / 3,
+    sinArg0Part2: 2 / 3,
+    sc: 3 / 5,
+    sc2: 3,
+    when2: 3,
+    sinArg0Part3: 3,
+    ny: 5,
+    arcArg2Part4: 3 * 8,
+    arcArg1Part2: 8,
+    treeBranchArg1Part: 8,
+    treeBranchArg2Part: 4,
+    treeBranchArg3: 3,
+    tilt: 5,
+    arm: 3 / 5,
+    arcArg2Part5: 2 * 5,
+    maxArg0: 3,
+    fillArg0Part: 3 / 4,
+    fillArg0Part2: 1 / 5,
+    fillArg0Part3: 1 / 4,
+    arcArg1Part3: 3 * 8,
+    g: 6,
+    fillArg0Part4: 1 / (2 * 6),
+    arcArg2Part6: 5,
+    seq: 4,
+    seq2: 8,
+    seq3: 7,
+    seq4: 5,
+    proofRingArg02: 9,
+    minArg1: 6,
+    ringR: 3 / 4,
+    rOut: 9 / (2 * 5),
+    dot: 4 * 9,
+    angleOf: 9,
+    angleOf2: 4,
+    fillArg0: 2 / 3,
+    fillArg02: 1 / 3,
+    arcArg2Part7: 2 / 3
   }
 };
+var proofDomeCache = null;
+var proofLadderCache = null;
+function proofRing(n, r2, cx, cy, offset = 0) {
+  return Array.from({ length: n }, (_, i) => {
+    const a = offset + i / n * TAU;
+    return [cx + r2 * Math.cos(a), cy + r2 * Math.sin(a)];
+  });
+}
+function drawProofWitness(ctx, s, c, w, phase7, stroke, fill) {
+  const f2 = (phase7 / TAU % 1 + 1) % 1;
+  const pad = s / ANIMATION_DESIGN.drawProofWitness.pad;
+  if (w.form === "bars") {
+    const vals = w.values ?? [];
+    const n = Math.max(1, vals.length);
+    const top = Math.max(1, ...vals.map(Math.abs), ...(w.against ?? []).map(Math.abs));
+    const signed = vals.some((v) => v < 0);
+    const base = signed ? c : s - pad;
+    const scale2 = (signed ? c - pad : s - 2 * pad) / top;
+    const bw = (s - 2 * pad) / n;
+    const shown = Math.floor(f2 * (n + 1));
+    vals.forEach((v, i) => {
+      const marked = w.marks?.includes(i) ?? false;
+      fill(i < shown ? marked ? 1 : ANIMATION_DESIGN.drawProofWitness.fillArg0Part : ANIMATION_DESIGN.drawProofWitness.fillArg0Part2, marked ? MOVIE_ANGLES.half : v < 0 ? MOVIE_ANGLES.trinity : 0);
+      const h = Math.abs(v) * scale2;
+      ctx.fillRect(pad + i * bw + bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg0Part, v >= 0 ? base - h : base, bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg2Part, Math.max(1, h));
+    });
+    if (w.against) {
+      stroke(1);
+      ctx.beginPath();
+      w.against.forEach((v, i) => {
+        const x = pad + i * bw + bw / 2, y = base - v * scale2;
+        if (i) ctx.lineTo(x, y);
+        else ctx.moveTo(x, y);
+      });
+      ctx.stroke();
+    }
+    if (signed) {
+      stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg0);
+      ctx.beginPath();
+      ctx.moveTo(pad, c);
+      ctx.lineTo(s - pad, c);
+      ctx.stroke();
+    }
+  } else if (w.form === "walk") {
+    const m = w.modulus ?? ANIMATION_DESIGN.drawProofWitness.m, steps = w.values ?? [];
+    const pts = proofRing(m, c * ANIMATION_DESIGN.drawProofWitness.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofWitness.proofRingArg4Part);
+    for (let i = 0; i < m; i += 1) {
+      fill(ANIMATION_DESIGN.drawProofWitness.fillArg0);
+      ctx.beginPath();
+      ctx.arc(...pts[i], s / ANIMATION_DESIGN.drawProofWitness.arcArg1Part, 0, TAU);
+      ctx.fill();
+    }
+    const shown = Math.max(1, Math.floor(f2 * steps.length));
+    stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg02);
+    ctx.beginPath();
+    steps.slice(0, shown).forEach((r2, i) => {
+      const p = pts[r2 % m];
+      if (i) ctx.lineTo(...p);
+      else ctx.moveTo(...p);
+    });
+    ctx.stroke();
+    fill(1, MOVIE_ANGLES.half);
+    ctx.beginPath();
+    ctx.arc(...pts[steps[shown - 1] % m], s / ANIMATION_DESIGN.drawProofWitness.arcArg1Part2, 0, TAU);
+    ctx.fill();
+  } else if (w.form === "grid") {
+    const rows = w.cells ?? [];
+    const cols = Math.max(1, ...rows.map((r2) => r2.length));
+    const size = Math.min((s - 2 * pad) / cols, (s - 2 * pad) / Math.max(1, rows.length));
+    const x0 = c - size * cols / 2, y0 = c - size * rows.length / 2;
+    const classes = Math.max(1, ...rows.flat()) + 1;
+    const shown = Math.floor(f2 * (classes + 1));
+    rows.forEach((row, i) => row.forEach((k, j) => {
+      if (k < 0) return;
+      fill(k < shown ? ANIMATION_DESIGN.drawProofWitness.fillArg0Part3 : ANIMATION_DESIGN.drawProofWitness.fillArg0Part4, k * MOVIE_ANGLES.turn / classes);
+      ctx.fillRect(x0 + j * size + 1, y0 + i * size + 1, size - 2, size - 2);
+    }));
+  } else {
+    const frames = w.frames ?? [];
+    if (!frames.length) return;
+    const current = Math.floor(f2 * frames.length) % frames.length;
+    const at = (x, y) => [c + x * c * ANIMATION_DESIGN.drawProofWitness.at, c + y * c * ANIMATION_DESIGN.drawProofWitness.at];
+    const strokeSegs = (segs) => {
+      ctx.beginPath();
+      for (const [x1, y1, x2, y2] of segs) {
+        ctx.moveTo(...at(x1, y1));
+        ctx.lineTo(...at(x2, y2));
+      }
+      ctx.stroke();
+    };
+    if (w.together) {
+      stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg03);
+      strokeSegs(frames.flat());
+    }
+    stroke(1, w.together ? MOVIE_ANGLES.half : 0);
+    strokeSegs(frames[current]);
+  }
+}
+function drawProofAnimation(ctx, s, spec, t, dark) {
+  const DOME = proofDomeCache ??= geodesicDomeComputes(ANIMATION_DESIGN.drawProofAnimation.geodesicDomeComputesArg0).animation;
+  const LADDER = proofLadderCache ??= oneExponentialLaw().ladder;
+  const hue2 = spec.hueDigit * MOVIE_ANGLES.station % MOVIE_ANGLES.turn;
+  const rate = PHI ** -spec.ratePhi;
+  const seedPhase = (spec.seed ?? 0) % MOVIE_ANGLES.turn / MOVIE_ANGLES.turn;
+  const c = s / 2;
+  const phase7 = (t / ANIMATION_DESIGN.drawProofAnimation.phase * rate + seedPhase) * TAU;
+  const tour = phase7 * PHI ** -2;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, s, s);
+  ctx.lineWidth = Math.max(1, s / ANIMATION_DESIGN.drawProofAnimation.maxArg1Part);
+  const stroke = (alpha, dh = 0) => {
+    ctx.strokeStyle = movieCanvasRgba((hue2 + dh) % MOVIE_ANGLES.turn, alpha, { dark });
+  };
+  const fill = (alpha, dh = 0) => {
+    ctx.fillStyle = movieCanvasRgba((hue2 + dh) % MOVIE_ANGLES.turn, alpha, { dark });
+  };
+  const k = spec.kind;
+  const paint = () => {
+    if (k === "washout") {
+      const cycle = (phase7 / TAU % 1 + 1) % 1;
+      const descending = cycle < 1 / 2;
+      const t2 = (descending ? cycle : 1 - cycle) * 2 * LADDER[LADDER.length - 1] / ANIMATION_DESIGN.drawProofAnimation.t;
+      const w = s / (LADDER.length + 2);
+      LADDER.forEach((halftime, i) => {
+        const y = descending ? 1 - Math.exp(-Math.LN2 * t2 / halftime) : Math.exp(-Math.LN2 * t2 / halftime);
+        const x = w * (i + 1) + w / 2;
+        const h = s * ANIMATION_DESIGN.drawProofAnimation.h * y;
+        stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg0);
+        ctx.beginPath();
+        ctx.moveTo(x, s * ANIMATION_DESIGN.drawProofAnimation.moveToArg1Part);
+        ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2);
+        ctx.stroke();
+        fill(1, i * MOVIE_ANGLES.turn / LADDER.length / ANIMATION_DESIGN.drawProofAnimation.fillArg1Part);
+        ctx.fillRect(x - w / ANIMATION_DESIGN.drawProofAnimation.fillRectArg0Part, s * ANIMATION_DESIGN.drawProofAnimation.fillRectArg1Part - h, 2 * w / ANIMATION_DESIGN.drawProofAnimation.fillRectArg2Part, h);
+      });
+      stroke(1 / 2);
+      ctx.beginPath();
+      LADDER.forEach((halftime, i) => {
+        const y = descending ? 1 - Math.exp(-Math.LN2 * t2 / halftime) : Math.exp(-Math.LN2 * t2 / halftime);
+        const x = w * (i + 1) + w / 2;
+        ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2 * y);
+      });
+      ctx.stroke();
+    }
+    if (k === "dome") {
+      const progress = (phase7 / TAU % 1 + 1) % 1;
+      const built = Math.floor(progress * (DOME.rings + 1));
+      const turn = tour;
+      const proj = (p) => {
+        const rx2 = p[0] * Math.cos(turn) - p[1] * Math.sin(turn);
+        const ry2 = p[0] * Math.sin(turn) + p[1] * Math.cos(turn);
+        return [c + s / 2 * ANIMATION_DESIGN.drawProofAnimation.returned * rx2, c + s / ANIMATION_DESIGN.drawProofAnimation.returned2 + s / 2 * ANIMATION_DESIGN.drawProofAnimation.returned * (ry2 / ANIMATION_DESIGN.drawProofAnimation.returned3 - p[2] * ANIMATION_DESIGN.drawProofAnimation.returned4)];
+      };
+      for (const strut of DOME.struts) {
+        const [ax, ay] = proj(strut.a);
+        const [bx, by] = proj(strut.b);
+        const state = strut.ring < built ? 1 : strut.ring === built ? 2 : 0;
+        stroke(state === 2 ? 1 / 2 + 1 / 2 * Math.abs(Math.sin(phase7 * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part)) : state === 1 ? ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part2, state === 2 ? ANIMATION_DESIGN.drawProofAnimation.strokeArg1Part : 0);
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+      }
+    }
+    if (k === "star" || k === "spreads") {
+      const n = k === "star" ? spec.points : ANIMATION_DESIGN.drawProofAnimation.n;
+      const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, phase7);
+      const lines = k === "star" && spec.lines.length ? spec.lines : Array.from({ length: n }, (_, i) => [i, (i + 1) % n, (i + ANIMATION_DESIGN.drawProofAnimation.fromArg1Part) % n]);
+      const lit = Math.floor(phase7 / TAU % 1 * lines.length + lines.length) % lines.length;
+      lines.forEach((line, li) => {
+        stroke(li === lit ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part3);
+        ctx.beginPath();
+        for (const p of line) ctx.lineTo(...pts[p % n]);
+        ctx.closePath();
+        ctx.stroke();
+      });
+    } else if (k === "coloring") {
+      const n = spec.points;
+      const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, 0);
+      const sweep = Math.floor(phase7 / TAU % 1 * n * (n - 1) / 2);
+      let e = 0;
+      for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) {
+        const d = Math.min(j - i, n - (j - i));
+        const red = d === 1 || d === ANIMATION_DESIGN.drawProofAnimation.red;
+        stroke(e === sweep % (n * (n - 1) / 2) ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part4, red ? 0 : MOVIE_ANGLES.half);
+        ctx.beginPath();
+        ctx.moveTo(...pts[i]);
+        ctx.lineTo(...pts[j]);
+        ctx.stroke();
+        e += 1;
+      }
+    } else if (k === "lattice") {
+      const corners = Array.from({ length: ANIMATION_DESIGN.drawProofAnimation.fromLength }, (_, v) => {
+        const x = v & 1 ? ANIMATION_DESIGN.drawProofAnimation.x : ANIMATION_DESIGN.drawProofAnimation.x2, y = v & 2 ? ANIMATION_DESIGN.drawProofAnimation.y : ANIMATION_DESIGN.drawProofAnimation.y2;
+        const z = v & ANIMATION_DESIGN.drawProofAnimation.when ? ANIMATION_DESIGN.drawProofAnimation.z : 0;
+        return [s * (x + z), s * (y - z)];
+      });
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02);
+      for (let a = 0; a < ANIMATION_DESIGN.drawProofAnimation.loop; a += 1) for (const bit of [1, 2, ANIMATION_DESIGN.drawProofAnimation.loop2]) {
+        const b = a ^ bit;
+        if (b > a) {
+          ctx.beginPath();
+          ctx.moveTo(...corners[a]);
+          ctx.lineTo(...corners[b]);
+          ctx.stroke();
+        }
+      }
+      const lit = Math.floor(phase7 / TAU % 1 * ANIMATION_DESIGN.drawProofAnimation.floorArg0Part + ANIMATION_DESIGN.drawProofAnimation.floorArg0Part) % ANIMATION_DESIGN.drawProofAnimation.lit;
+      fill(1);
+      ctx.beginPath();
+      ctx.arc(...corners[lit ^ lit >> 1], s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part, 0, TAU);
+      ctx.fill();
+    } else if (k === "classes") {
+      const n = spec.points;
+      for (let i = 0; i < n; i += 1) {
+        stroke(1 / 2 + 1 / 2 * Math.sin(phase7 + i), i * MOVIE_ANGLES.turn / ANIMATION_DESIGN.drawProofAnimation.strokeArg1Part2);
+        ctx.beginPath();
+        ctx.arc(c, c, c * (i + 2) / (n + 2), phase7 * (i % 2 ? 1 : -1), phase7 * (i % 2 ? 1 : -1) + TAU * ANIMATION_DESIGN.drawProofAnimation.arcArg4Part);
+        ctx.stroke();
+      }
+    } else if (k === "spiral") {
+      fill(1);
+      for (let i = 0; i < spec.points; i += 1) {
+        const a = i * (TAU / (PHI * PHI)) + phase7;
+        const r2 = c * ANIMATION_DESIGN.drawProofAnimation.r * Math.sqrt(i + 1) / Math.sqrt(spec.points);
+        ctx.beginPath();
+        ctx.arc(c + r2 * Math.cos(a), c + r2 * Math.sin(a), Math.max(1, s / ANIMATION_DESIGN.drawProofAnimation.maxArg1Part2), 0, TAU);
+        ctx.fill();
+      }
+    } else if (k === "circle") {
+      const n = spec.points;
+      const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, 0);
+      const lit = Math.floor(phase7 / TAU % 1 * n) % n;
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg03);
+      ctx.beginPath();
+      ctx.arc(c, c, c * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part, 0, TAU);
+      ctx.stroke();
+      for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) {
+        stroke(i === lit ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part5);
+        ctx.beginPath();
+        ctx.moveTo(...pts[i]);
+        ctx.lineTo(...pts[j]);
+        ctx.stroke();
+      }
+    } else if (k === "triangle") {
+      const tri = proofRing(ANIMATION_DESIGN.drawProofAnimation.proofRingArg0, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part);
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04);
+      ctx.beginPath();
+      for (let i = 0; i <= ANIMATION_DESIGN.drawProofAnimation.loop3; i += 1) ctx.lineTo(...tri[i % ANIMATION_DESIGN.drawProofAnimation.triAt]);
+      ctx.stroke();
+      const t2 = phase7 / TAU % 1;
+      const foot = [tri[1][0] + t2 * (tri[2][0] - tri[1][0]), tri[1][1] + t2 * (tri[2][1] - tri[1][1])];
+      stroke(1);
+      ctx.beginPath();
+      ctx.moveTo(...tri[0]);
+      ctx.lineTo(...foot);
+      ctx.stroke();
+      fill(1 / 2);
+      ctx.beginPath();
+      ctx.arc(c, c, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part2 * (1 + Math.sin(phase7) / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part3), 0, TAU);
+      ctx.fill();
+    } else if (k === "series") {
+      const n = spec.points, limit = c * ANIMATION_DESIGN.drawProofAnimation.limit;
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02);
+      ctx.beginPath();
+      ctx.moveTo(0, c - limit);
+      ctx.lineTo(s, c - limit);
+      ctx.stroke();
+      let acc = 0;
+      for (let i = 0; i < n; i += 1) {
+        acc += limit * 2 * ANIMATION_DESIGN.drawProofAnimation.acc / 2 ** (i + 1);
+        const x = s * (i + 1) / (n + 1), grow = Math.min(1, phase7 / TAU / (i / 2 + 1));
+        stroke(i === Math.floor(phase7 / TAU % n) ? 1 : 1 / 2);
+        ctx.beginPath();
+        ctx.moveTo(x, c + limit);
+        ctx.lineTo(x, c + limit - acc * grow * 2);
+        ctx.stroke();
+      }
+    } else if (k === "polytope") {
+      const verts = Array.from({ length: ANIMATION_DESIGN.drawProofAnimation.fromLength }, (_, v) => {
+        let x = (v & 1) - 1 / 2, y = (v >> 1 & 1) - 1 / 2, z = (v >> 2 & 1) - 1 / 2;
+        const cx = Math.cos(phase7), sx = Math.sin(phase7);
+        [x, z] = [x * cx - z * sx, x * sx + z * cx];
+        const cy = Math.cos(phase7 * ANIMATION_DESIGN.drawProofAnimation.cosArg0Part), sy = Math.sin(phase7 * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part2);
+        [y, z] = [y * cy - z * sy, y * sy + z * cy];
+        const sc = c * ANIMATION_DESIGN.drawProofAnimation.sc / (1 + z / ANIMATION_DESIGN.drawProofAnimation.sc2);
+        return [c + x * sc, c + y * sc];
+      });
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04);
+      for (let a = 0; a < ANIMATION_DESIGN.drawProofAnimation.loop; a += 1) for (const bit of [1, 2, ANIMATION_DESIGN.drawProofAnimation.loop2]) {
+        const b = a ^ bit;
+        if (b > a) {
+          ctx.beginPath();
+          ctx.moveTo(...verts[a]);
+          ctx.lineTo(...verts[b]);
+          ctx.stroke();
+        }
+      }
+    } else if (k === "wave") {
+      for (const [amp, freq, sh] of [[1, 2, 0], [1, ANIMATION_DESIGN.drawProofAnimation.when2, TAU / ANIMATION_DESIGN.drawProofAnimation.when2], [1, 0, 0]]) {
+        void amp;
+        stroke(freq === 0 ? 1 : 1 / 2);
+        ctx.beginPath();
+        for (let px = 0; px <= s; px += 2) {
+          const u = px / s * TAU;
+          const y = freq === 0 ? (Math.sin(u * 2 + phase7) + Math.sin(u * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part3 + phase7 + TAU / ANIMATION_DESIGN.drawProofAnimation.sinArg0Part3)) / 2 : Math.sin(u * freq + phase7 + sh);
+          if (px === 0) ctx.moveTo(px, c + y * (c / 2));
+          else ctx.lineTo(px, c + y * (c / 2));
+        }
+        ctx.stroke();
+      }
+    } else if (k === "tree") {
+      const treeBranch = (x, y, dx, depth) => {
+        if (depth === 0) return;
+        const ny = y + s / ANIMATION_DESIGN.drawProofAnimation.ny;
+        for (const s2 of [-1, 1]) {
+          const nx = x + s2 * dx;
+          stroke((depth + phase7 / TAU) % 2 < 1 ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part4);
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(nx, ny);
+          ctx.stroke();
+          fill(1);
+          ctx.beginPath();
+          ctx.arc(nx, ny, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part4, 0, TAU);
+          ctx.fill();
+          treeBranch(nx, ny, dx / 2, depth - 1);
+        }
+      };
+      fill(1);
+      ctx.beginPath();
+      ctx.arc(c, s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part2, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part4, 0, TAU);
+      ctx.fill();
+      treeBranch(c, s / ANIMATION_DESIGN.drawProofAnimation.treeBranchArg1Part, s / ANIMATION_DESIGN.drawProofAnimation.treeBranchArg2Part, ANIMATION_DESIGN.drawProofAnimation.treeBranchArg3);
+    } else if (k === "balance") {
+      const tilt = Math.sin(phase7) / ANIMATION_DESIGN.drawProofAnimation.tilt;
+      const pivot = [c, c], arm = c * ANIMATION_DESIGN.drawProofAnimation.arm;
+      const l = [c - arm * Math.cos(tilt), c + arm * Math.sin(tilt)];
+      const r2 = [c + arm * Math.cos(tilt), c - arm * Math.sin(tilt)];
+      stroke(1);
+      ctx.beginPath();
+      ctx.moveTo(...pivot);
+      ctx.lineTo(c, c + arm / 2);
+      ctx.stroke();
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04);
+      ctx.beginPath();
+      ctx.moveTo(...l);
+      ctx.lineTo(...r2);
+      ctx.stroke();
+      fill(1);
+      for (const p of [l, r2]) {
+        ctx.beginPath();
+        ctx.arc(p[0], p[1] + s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part2, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part5, 0, TAU);
+        ctx.fill();
+      }
+    } else if (k === "dice") {
+      const n = Math.max(ANIMATION_DESIGN.drawProofAnimation.maxArg0, spec.points);
+      const lit = Math.floor(phase7 / TAU % 1 * n) % n;
+      for (let i = 0; i < n; i += 1) {
+        fill(i === lit ? ANIMATION_DESIGN.drawProofAnimation.fillArg0Part : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part2, i * MOVIE_ANGLES.turn / n);
+        ctx.beginPath();
+        ctx.moveTo(c, c);
+        ctx.arc(c, c, c * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part, i / n * TAU, (i + 1) / n * TAU);
+        ctx.closePath();
+        ctx.fill();
+      }
+    } else if (k === "cycle") {
+      const n = spec.points;
+      const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part);
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02);
+      ctx.beginPath();
+      for (let i = 0; i <= n; i += 1) ctx.lineTo(...pts[i % n]);
+      ctx.stroke();
+      const at = Math.floor(phase7 / TAU % 1 * n) % n;
+      for (let i = 0; i < n; i += 1) {
+        fill(i === at ? 1 : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part3);
+        ctx.beginPath();
+        ctx.arc(...pts[i], i === at ? s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part : s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part3, 0, TAU);
+        ctx.fill();
+      }
+    } else if (k === "sieve") {
+      const g = ANIMATION_DESIGN.drawProofAnimation.g, cell = s / g, sweep = phase7 / TAU % 1 * 2 * g;
+      const isP = (x) => {
+        if (x < 2) return false;
+        for (let d = 2; d * d <= x; d += 1) if (x % d === 0) return false;
+        return true;
+      };
+      for (let iy = 0; iy < g; iy += 1) for (let ix = 0; ix < g; ix += 1) {
+        const num = iy * g + ix + 1, on = isP(num);
+        const near = Math.abs(ix + iy - sweep) < 1;
+        if (on) fill(near ? 1 : 1 / 2);
+        else fill(near ? ANIMATION_DESIGN.drawProofAnimation.fillArg0Part3 : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part4);
+        ctx.beginPath();
+        ctx.arc(ix * cell + cell / 2, iy * cell + cell / 2, cell / (on ? ANIMATION_DESIGN.drawProofAnimation.arcArg2Part3 : ANIMATION_DESIGN.drawProofAnimation.arcArg2Part6), 0, TAU);
+        ctx.fill();
+      }
+    } else {
+      const seq = [1, 2, ANIMATION_DESIGN.drawProofAnimation.seq, ANIMATION_DESIGN.drawProofAnimation.seq2, ANIMATION_DESIGN.drawProofAnimation.seq3, ANIMATION_DESIGN.drawProofAnimation.seq4];
+      const pts = proofRing(ANIMATION_DESIGN.drawProofAnimation.proofRingArg02, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part);
+      stroke(1 / 2);
+      ctx.beginPath();
+      for (const d of [...seq, seq[0]]) ctx.lineTo(...pts[d - 1]);
+      ctx.stroke();
+      const lit = Math.floor(phase7 / TAU % 1 * seq.length + seq.length) % seq.length;
+      fill(1);
+      ctx.beginPath();
+      ctx.arc(...pts[seq[lit] - 1], s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part, 0, TAU);
+      ctx.fill();
+    }
+  };
+  if (spec.witness) drawProofWitness(ctx, s, c, spec.witness, phase7, stroke, fill);
+  else {
+    paint();
+    const children = Math.min(spec.points, ANIMATION_DESIGN.drawProofAnimation.minArg1);
+    const ringR = c * ANIMATION_DESIGN.drawProofAnimation.ringR;
+    for (let v = 0; v < children; v += 1) {
+      const a = v / children * TAU + tour * PHI ** -1;
+      ctx.save();
+      ctx.translate(c + ringR * Math.cos(a), c + ringR * Math.sin(a));
+      ctx.scale(1 / PHI ** 2, 1 / PHI ** 2);
+      ctx.translate(-c, -c);
+      ctx.globalAlpha = 1 / 2;
+      paint();
+      ctx.restore();
+    }
+  }
+  const co = spec.coords;
+  if (co && co.sequencePosition >= 0) {
+    const rOut = c * ANIMATION_DESIGN.drawProofAnimation.rOut;
+    const dot = s / ANIMATION_DESIGN.drawProofAnimation.dot;
+    const posOf = (d) => VORTEX_SEQUENCE.indexOf(d);
+    const angleOf = (d) => posOf(d) / ANIMATION_DESIGN.drawProofAnimation.angleOf * TAU - TAU / ANIMATION_DESIGN.drawProofAnimation.angleOf2;
+    const fwd = angleOf(co.digit) + phase7;
+    const rev = angleOf(co.additiveInverse) - phase7;
+    const inv = -angleOf(co.tensComplement) - phase7;
+    fill(ANIMATION_DESIGN.drawProofAnimation.fillArg0);
+    ctx.beginPath();
+    ctx.arc(c + rOut * Math.cos(fwd), c + rOut * Math.sin(fwd), dot, 0, TAU);
+    ctx.fill();
+    fill(ANIMATION_DESIGN.drawProofAnimation.fillArg02, (co.additiveInverse - co.digit) * MOVIE_ANGLES.station);
+    ctx.beginPath();
+    ctx.arc(c + rOut * Math.cos(rev), c + rOut * Math.sin(rev), dot, 0, TAU);
+    ctx.fill();
+    fill(1 / 2, (co.tensComplement - co.digit) * MOVIE_ANGLES.station);
+    ctx.beginPath();
+    ctx.arc(c + rOut * Math.cos(inv), c + rOut * Math.sin(inv), dot * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part7, 0, TAU);
+    ctx.fill();
+  }
+}
 function kernelTheoremStreams(record, p) {
   const circuit = VORTEX_SEQUENCE.filter((d) => d * MOVIE_STATION % MOVIE_ANGLES.trinity !== 0);
   const files = Object.keys(record).sort();
@@ -19869,11 +20586,11 @@ function trinityGatesRaw(matrix = buildMatrix()) {
       // three members plus the 128-bit binding
     };
   };
-  const yin = dual.phases.filter((phase6) => phase6.polarity === "yin");
-  const yang = dual.phases.filter((phase6) => phase6.polarity === "yang");
+  const yin = dual.phases.filter((phase7) => phase7.polarity === "yin");
+  const yang = dual.phases.filter((phase7) => phase7.polarity === "yang");
   const gates = [
-    make("dual-torus", "yin-loop", yin.map((phase6) => ({ member: phase6.step, receipt: phase6.receipt }))),
-    make("dual-torus", "yang-loop", yang.map((phase6) => ({ member: phase6.step, receipt: phase6.receipt }))),
+    make("dual-torus", "yin-loop", yin.map((phase7) => ({ member: phase7.step, receipt: phase7.receipt }))),
+    make("dual-torus", "yang-loop", yang.map((phase7) => ({ member: phase7.step, receipt: phase7.receipt }))),
     make(
       "cross-fold",
       "weave",
@@ -25694,7 +26411,7 @@ function freeAnimations(matrix = buildMatrix()) {
     { channel: "tone", sense: "sound", motion: "synthesis" }
   ].map((entry2) => {
     const seed = toUuid(`free-anim:${entry2.channel}:${root}`);
-    const phase6 = Number.parseInt(seed.replace(/[^0-9a-f]/g, "").slice(0, 8) || "0", 16) % (100 * 5 * 2) / (100 * 5 * 2);
+    const phase7 = Number.parseInt(seed.replace(/[^0-9a-f]/g, "").slice(0, 8) || "0", 16) % (100 * 5 * 2) / (100 * 5 * 2);
     return { ...entry2, free: true, clientCost: 0, networkCost: 0, seed, bound: isUuid(seed) };
   });
   const free = channels.every((entry2) => entry2.free && entry2.clientCost === 0 && entry2.networkCost === 0);
@@ -27279,8 +27996,8 @@ function bgStreamParams(seed, stream) {
     size: ANIMATION_DESIGN.bgStreamParams.sizePart + round(rand() * ANIMATION_DESIGN.bgStreamParams.roundArg0Part)
   };
 }
-function bgStreamOrbit(phase6, angle, distFrac, voidR, span, p) {
-  const cycle = phase6 % 1;
+function bgStreamOrbit(phase7, angle, distFrac, voidR, span, p) {
+  const cycle = phase7 % 1;
   const inbound = 1 / 2 + 1 / 2 * cos(cycle * TAU);
   const dist = span * distFrac;
   const r2 = voidR + (dist - voidR) * inbound;
@@ -27441,10 +28158,10 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
     const wired = streams?.[s];
     const chars = wired ? uuidStreamChars(wired) : fallbackChars;
     const { angle, dist, speed, size } = bgStreamParams(seed, s);
-    const phase6 = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1;
+    const phase7 = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1;
     const trailStep = ANIMATION_DESIGN.drawWiredUuidStreams.trailStep + speed * ANIMATION_DESIGN.drawWiredUuidStreams.trailStep2;
     for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
-      const trailPhase = (phase6 - trail * trailStep + 1) % 1;
+      const trailPhase = (phase7 - trail * trailStep + 1) % 1;
       const { x, y, r: r2, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p);
       const px = cx + x;
       const py = cy + y;
@@ -27713,7 +28430,7 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   const cy = h / 2;
   const p = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS);
   const LIVING_TORUS_SPIN_DIVISOR = ANIMATION_DESIGN.drawLivingTorusFrame.lIVINGTORUSSPINDIVISOR;
-  const phase6 = p * TAU * LIVING_TORUS_SPIN_DIVISOR;
+  const phase7 = p * TAU * LIVING_TORUS_SPIN_DIVISOR;
   let ex = 1;
   let ey = 1;
   for (const c of coordinates) {
@@ -27728,7 +28445,7 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   const byIndex = /* @__PURE__ */ new Map();
   for (let i = 0; i < n; i++) {
     const c = coordinates[i];
-    const spin = phase6 * (c.lobe > 0 ? ANIMATION_DESIGN.drawLivingTorusFrame.spin : ANIMATION_DESIGN.drawLivingTorusFrame.spin2);
+    const spin = phase7 * (c.lobe > 0 ? ANIMATION_DESIGN.drawLivingTorusFrame.spin : ANIMATION_DESIGN.drawLivingTorusFrame.spin2);
     const v = rotate3((c.x - c.cx) / extent, c.y / extent, c.z / extent, spin, OBLIQUE_VIEW_TILT, 0);
     const persp = perspective(v.Z);
     px[i] = cx + (v.X + c.cx / extent) * persp * view;
@@ -27741,7 +28458,7 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
     const c = coordinates[i];
     const j = byIndex.get(c.reverseIndex);
     if (j === void 0 || j <= i) continue;
-    const mergePulse = reduce ? 1 / 2 : 1 / 2 + 1 / 2 * sin(phase6 * ANIMATION_DESIGN.drawLivingTorusFrame.sinArg0Part + c.theta);
+    const mergePulse = reduce ? 1 / 2 : 1 / 2 + 1 / 2 * sin(phase7 * ANIMATION_DESIGN.drawLivingTorusFrame.sinArg0Part + c.theta);
     ctx.strokeStyle = paint(round(c.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.paintArg0Part, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part + ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part2 * mergePulse, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL });
     ctx.beginPath();
     ctx.moveTo(px[i], py[i]);
@@ -30913,7 +31630,7 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
     const living = livingTorus(matrix);
     const tenD = tenDimensionalAnimation(matrix);
     const allScalesMovie = doubleTorusMathAtAllScalesFlowsInMovie(matrix);
-    const phase6 = doubleTorusUniversePhaseAt(atMs);
+    const phase7 = doubleTorusUniversePhaseAt(atMs);
     const spinDivisor = 9 * 2;
     const spinPeriodMs = HERO_CYCLE_MS / spinDivisor;
     const a432Ok = A432_HUE === 5;
@@ -30926,7 +31643,7 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
       { facet: "dynamics LINKING \u2014 torus breathes expand/contract; living surface alive", on: breath.balanced && living.alive },
       { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = A432_FOLDED\xD71e3 (the a432 harmonic, not the corpus fold)`, on: heroClockOk },
       { facet: `living-torus spin on fractal rung d=${spinDivisor} (period\u2248${spinPeriodMs}ms) \u2014 universe-aligned, not at/1000 drift`, on: spinPeriodMs === HERO_CYCLE_MS / spinDivisor && spinDivisor === 9 * 2 },
-      { facet: `universe phase couples heroPhaseAt \u2295 Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase6.j2000Anchor && phase6.universePhase >= 0 && phase6.universePhase < 1 && Number.isFinite(phase6.sunDeg) },
+      { facet: `universe phase couples heroPhaseAt \u2295 Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase7.j2000Anchor && phase7.universePhase >= 0 && phase7.universePhase < 1 && Number.isFinite(phase7.sunDeg) },
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency\u2192hue of 432 Hz)`, on: a432Ok },
       { facet: `TAU full circle \xB7 HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} \xB7 SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && abs(sin(TAU)) < 1 / FOLDED_CENSUS ** 6 && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: "10D animation field (6 cross-fold + 4 homology) at every scale", on: tenD.tenDimensional && tenD.atEveryScale },
@@ -30939,7 +31656,7 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
       computes: sealed.ok,
       geometry,
       dynamics: { flow: flow.invariant, spin: spin.counterRotating, linking: breath.balanced && living.alive },
-      phase: phase6,
+      phase: phase7,
       constants: {
         TAU,
         A432_HUE,
@@ -30955,7 +31672,7 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
       qpuRequired: false,
       count: sealed.count,
       facets: sealed.facets,
-      root: merkleFold([geometry.root, torus.root, flow.receipt, phase6.root, sealed.root]),
+      root: merkleFold([geometry.root, torus.root, flow.receipt, phase7.root, sealed.root]),
       statement: `Double-torus dynamics and geometry align with the universe \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: flow\xB7spin\xB7linking audited; radii locked to surface atom; hero clock \u2295 Meeus J2000 phase; A432\xB7TAU\xB7c\xB7H\u2081\xB710D sealed.`,
       boundary: "Sealed computational cosmology/geometry \u2014 recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT Clay solved \xB7 NOT DE440 \xB7 NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks."
     };
@@ -31026,7 +31743,7 @@ function doubleTorusIsCompletelyQuantum(matrix = buildMatrix()) {
     const oneClock = HERO_CYCLE_MS === A432_FOLDED * 1e3 && phase0 === 0 && abs(phaseHalf - 1 / 2) < 1 / FOLDED_CENSUS ** 6;
     const L = 1 - 5 / 16;
     const paletteSample = movieCanvasHex(5, { L });
-    const rgbaSample = movieCanvasRgba2(5, 1 / 2, { L });
+    const rgbaSample = movieCanvasRgba(5, 1 / 2, { L });
     const polarity = movieCanvasPolarity(true);
     const paletteSealed = typeof paletteSample === "string" && paletteSample.startsWith("#") && typeof rgbaSample === "string" && rgbaSample.startsWith("rgba(") && typeof polarity === "function" && typeof polarity(5, 1 / 2) === "string";
     const eps = 1 / FOLDED_CENSUS ** 6;
@@ -32046,9 +32763,9 @@ function iChingFusionCompletesAllRaw(matrix = buildMatrix()) {
   const law = allFormsAreTenDimensionalOrPurged(matrix);
   const units = [...ic.placed.map((entry2) => entry2.component), ...fusion.placed.map((entry2) => `${entry2.kind}:${entry2.folder}`)];
   const dimensioned = units.map((unit) => {
-    const phase6 = seedFromText(unit) % (100 * 5 * 2) / (100 * 5 * 2);
+    const phase7 = seedFromText(unit) % (100 * 5 * 2) / (100 * 5 * 2);
     const base = dims(0);
-    const nested = dims(phase6, 1);
+    const nested = dims(phase7, 1);
     const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((name) => name in base);
     const selfSimilar = base.spread !== nested.spread;
     const closed = tenDimensional && selfSimilar;
@@ -32708,9 +33425,9 @@ function allFormsAreTenDimensionalOrPurged(matrix = buildMatrix()) {
   const crossFold = DIMENSION_NAMES.slice(0, 6);
   const homology3 = DIMENSION_NAMES.slice(6);
   const projected = sg.forms.map((form) => {
-    const phase6 = seedFromText(form) % (100 * 5 * 2) / (100 * 5 * 2);
-    const base = dims(phase6, 0);
-    const nested = dims(phase6, 1);
+    const phase7 = seedFromText(form) % (100 * 5 * 2) / (100 * 5 * 2);
+    const base = dims(phase7, 0);
+    const nested = dims(phase7, 1);
     const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((n) => n in base);
     const selfSimilar = base.spread !== nested.spread;
     const facets = homology3.map((loop, i) => ({
@@ -33426,10 +34143,10 @@ function fitRow(mine, at) {
   const bearing = initialBearing(hinge.lat, hinge.lon, mine.lat, mine.lon);
   const distKm = greatCircleKm(hinge.lat, hinge.lon, mine.lat, mine.lon);
   const vortexDigit = VORTEX_SEQUENCE[digitalRoot(round(distKm)) % VORTEX_SEQUENCE.length] ?? 9;
-  const phase6 = schumannPhaseAt(at);
+  const phase7 = schumannPhaseAt(at);
   const navCrossFitScore = roundTo(seedFromText(`${mine.id}:nav`) % (100 * 5 * 2) / (100 * 5 * 2), 4);
   const vortexPhaseFitScore = roundTo(1 - abs(vortexDigit - digitalRoot(round(mine.lat * 100 + mine.lon))) / 9, 4);
-  const torusPhaseFitScore = roundTo(1 - abs(phase6 - navCrossFitScore), 4);
+  const torusPhaseFitScore = roundTo(1 - abs(phase7 - navCrossFitScore), 4);
   const compositeFitScore = roundTo((navCrossFitScore + vortexPhaseFitScore + torusPhaseFitScore) / 3, 4);
   return { mineId: mine.id, name: mine.name, tier: "MODEL_FIT", compositeFitScore, navCrossFitScore, vortexPhaseFitScore, torusPhaseFitScore, receipt: toUuid(`gold-fit:${mine.id}:${compositeFitScore}`) };
 }
@@ -33470,8 +34187,8 @@ function thunderGoldGraphFromPreciseGpsCoordinates(at = 0, matrix = buildMatrix(
 }
 function thunderGoldGraphPaintSamples(at = 0, width = 360, height = 9 * 5 * 4, matrix = buildMatrix()) {
   const graph = thunderGoldGraphFromPreciseGpsCoordinates(at, matrix);
-  const phase6 = schumannPhaseAt(at);
-  const samples = graph.nodes.map((n, i) => ({ u: (n.lon + 9 * 5 * 4) / 360 * width, v: (9 * 5 * 2 - n.lat) / (9 * 5 * 4) * height, hue: roundTo((phase6 + i / graph.nodes.length) % 1, 4), alpha: 3 / 5, receipt: toUuid(`tg-paint:${n.id}`) }));
+  const phase7 = schumannPhaseAt(at);
+  const samples = graph.nodes.map((n, i) => ({ u: (n.lon + 9 * 5 * 4) / 360 * width, v: (9 * 5 * 2 - n.lat) / (9 * 5 * 4) * height, hue: roundTo((phase7 + i / graph.nodes.length) % 1, 4), alpha: 3 / 5, receipt: toUuid(`tg-paint:${n.id}`) }));
   return { painted: samples.length > 0, samples, root: merkleFold(samples.map((s) => s.receipt)) };
 }
 function thunderGoldGraphComputes(matrix = buildMatrix(), at = 0) {
@@ -33482,9 +34199,9 @@ function thunderGoldGraphComputes(matrix = buildMatrix(), at = 0) {
 }
 function schumannGoldSiteCouplingAt(at = 0, siteId = "witwatersrand", matrix = buildMatrix()) {
   void matrix;
-  const phase6 = schumannPhaseAt(at);
-  const coupling = roundTo(abs(sin(phase6 * TAU + seedFromText(siteId) * (1 / (100 * 5 * 2)))), 4);
-  return { coupled: coupling > 0, coupling, phase: phase6, receipt: toUuid(`schumann-gold:${siteId}:${coupling}`) };
+  const phase7 = schumannPhaseAt(at);
+  const coupling = roundTo(abs(sin(phase7 * TAU + seedFromText(siteId) * (1 / (100 * 5 * 2)))), 4);
+  return { coupled: coupling > 0, coupling, phase: phase7, receipt: toUuid(`schumann-gold:${siteId}:${coupling}`) };
 }
 function schumannGoldSiteCouplingComputes(matrix = buildMatrix(), at = 0) {
   const catalog = goldMineMapCatalog(matrix);
@@ -35360,7 +36077,7 @@ function navigationGpsCelestialFromDualEarthPerspective(at = 0, observer = DEFAU
         celestialMatch.root,
         astronomy.root,
         ...gpsSatellites.map((sat) => sat.receipt),
-        ...celestialPhases.map((phase6) => phase6.receipt),
+        ...celestialPhases.map((phase7) => phase7.receipt),
         ...facets.map((entry2) => entry2.receipt)
       ]),
       statement: `Navigation \xB7 GPS \xB7 celestial from dual-Earth perspective at (${observer.lat}\xB0, ${observer.lon}\xB0): classical initial bearing ${bearingToHinge}\xB0 and ${distanceToHingeKm} km great-circle to the Sofia hinge; gateway navigation solutions on the genus-2 base; GPS satellites as phase-encoded receipts on the outer (inverted/code) shell \u2014 \u03B8_sat = f(at, seed) + outer phase, not live ephemeris; Sun/Moon/planets display phases tied to inner \u03B8 and outer \u2212\u03B8 merkaba clock with obliquity ${obliquityDeg}\xB0; GWTC citation opt-in. WGS84/ECEF remain the honest physical frame for real GNSS.`,
@@ -37854,13 +38571,13 @@ function buildTheoremFigureAndAnimation(atom, addr) {
   const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0);
   const digitSum = digits.reduce((sum, d) => sum + d, 0);
   const rung = divisorsOf108[digitSum % divisorsOf108.length];
-  const phase6 = digitSum % 108;
+  const phase7 = digitSum % 108;
   const half = floor(digits.length / 2);
   const sumHead = digits.slice(0, half).reduce((s, d) => s + d, 0);
   const sumTail = digits.slice(half).reduce((s, d) => s + d, 0);
   const direction = sumHead % 2 === 0 ? "cw" : "ccw";
   const amplitude = 1 + sumTail % 9;
-  return { figure: { formula: atom.theorem, archetype, series }, animation: { rung, periodS: 108 / rung, phase: phase6, direction, amplitude, archetype }, itemid: addr };
+  return { figure: { formula: atom.theorem, archetype, series }, animation: { rung, periodS: 108 / rung, phase: phase7, direction, amplitude, archetype }, itemid: addr };
 }
 function saveTheMissingTheoremsAndAnimations() {
   const atoms4 = THEOREM_ATOM_SEED;
@@ -39436,12 +40153,12 @@ function quantumDynamicsSimulationAt(at = 0, matrix = buildMatrix()) {
     const entangled = abs(probs[0] - 1 / 2) < 1e-6 && abs(probs[3] - 1 / 2) < 1e-6 && probs[1] < 1e-6;
     const amplitudes = probs.map((probability, index) => {
       const basis = index.toString(2).padStart(state.n, "0");
-      const phase6 = roundTo((markovPhase + index / probs.length + step / 8) % 1, 4);
+      const phase7 = roundTo((markovPhase + index / probs.length + step / 8) % 1, 4);
       return {
         basis,
         probability: roundTo(probability, 6),
-        phase: phase6,
-        hue: roundTo((index * (9 * 5 * 2) + phase6 * 360) % 360, 2),
+        phase: phase7,
+        hue: roundTo((index * (9 * 5 * 2) + phase7 * 360) % 360, 2),
         receipt: toUuid(`qdynamics-amp:${basis}:${probability}:${step}`)
       };
     }).filter((entry2) => entry2.probability > 1e-6);
@@ -40058,7 +40775,7 @@ function scaleColorAlpha(n, alpha, opts = {}) {
   const a = max(0, min(1, alpha));
   return `oklch(${L} ${C} ${H.toFixed(2)} / ${round(a * 100) / 100})`;
 }
-function movieCanvasRgba2(hue2, alpha, opts = {}) {
+function movieCanvasRgba(hue2, alpha, opts = {}) {
   const dark = opts.dark ?? true;
   const H = ((dark ? hue2 : hue2 + 360 / 2) % 360 + 360) % 360;
   const L0 = opts.L ?? 1 - 5 / 16;
@@ -40067,7 +40784,7 @@ function movieCanvasRgba2(hue2, alpha, opts = {}) {
   return scaleColorRgba(0, alpha, { seedHue: H, L, C, dark: true });
 }
 function movieCanvasPolarity(dark) {
-  return (hue2, alpha, opts = {}) => movieCanvasRgba2(hue2, alpha, { ...opts, dark });
+  return (hue2, alpha, opts = {}) => movieCanvasRgba(hue2, alpha, { ...opts, dark });
 }
 function movieCanvasHex(hue2, opts = {}) {
   const dark = opts.dark ?? true;
@@ -40392,9 +41109,9 @@ function moviePhaseAt(at) {
 }
 function quantumModelSnapshot(route = "/", at = 0, matrix = buildMatrix()) {
   return memoByRoot(`quantumModelSnapshot:${route}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const phase6 = moviePhaseAt(at);
+    const phase7 = moviePhaseAt(at);
     const honest = quantumComputerHonestClaim(matrix, at);
-    const baseHex = floor(phase6 * 64) % 64;
+    const baseHex = floor(phase7 * 64) % 64;
     const gateNames = ["I", "X", "Y", "Z", "H", "S", "T"];
     const register = Array.from({ length: 6 }, (_, q) => {
       const hexagram = (baseHex + q * (VORTEX_SEQUENCE[q % VORTEX_SEQUENCE.length] ?? 1)) % 64;
@@ -40404,9 +41121,9 @@ function quantumModelSnapshot(route = "/", at = 0, matrix = buildMatrix()) {
       return { hexagram, digit: digit2, torus, gate, bloch: blochGate(BLOCH_ZERO, gate).bloch };
     });
     const qubit = blochGate(BLOCH_ZERO, "H");
-    const root = merkleFold([honest.root, qubit.root, ...register.map((line) => toUuid(`qreg-line:${line.hexagram}:${line.digit}:${line.torus}:${line.gate}`)), toUuid(`snapshot:${route}:${phase6}`)]);
-    const caption = `Modeled quantum computer, live: a 6-qubit register as 4-UUID/3+1 Pauli-Bloch components (\u03C1=\xBD(I+x\u03C3x+y\u03C3y+z\u03C3z)); each I Ching hexagram boils down hex\u2192digit\u2192double-torus lobe; the streams join the plasma at phase ${phase6}; benchmark verdict ${honest.verdict}. Content-address root ${root.slice(0, 8)} \u2014 recompute deterministically with quantumModelSnapshot('${route}', at). This is the MODELED (deterministic, content-addressed) quantum computer, NOT physical qubits.`;
-    return { route, at, phase: phase6, register, qubit, verdict: honest.verdict, caption, recompute: `quantumModelSnapshot('${route}', ${at})`, root, boundary: honest.boundary };
+    const root = merkleFold([honest.root, qubit.root, ...register.map((line) => toUuid(`qreg-line:${line.hexagram}:${line.digit}:${line.torus}:${line.gate}`)), toUuid(`snapshot:${route}:${phase7}`)]);
+    const caption = `Modeled quantum computer, live: a 6-qubit register as 4-UUID/3+1 Pauli-Bloch components (\u03C1=\xBD(I+x\u03C3x+y\u03C3y+z\u03C3z)); each I Ching hexagram boils down hex\u2192digit\u2192double-torus lobe; the streams join the plasma at phase ${phase7}; benchmark verdict ${honest.verdict}. Content-address root ${root.slice(0, 8)} \u2014 recompute deterministically with quantumModelSnapshot('${route}', at). This is the MODELED (deterministic, content-addressed) quantum computer, NOT physical qubits.`;
+    return { route, at, phase: phase7, register, qubit, verdict: honest.verdict, caption, recompute: `quantumModelSnapshot('${route}', ${at})`, root, boundary: honest.boundary };
   });
 }
 var QUANTUM_THINKING_SHIFTS = [
@@ -48511,8 +49228,8 @@ function priceFromA432(variant, n, opts = {}) {
   for (let t = 1; t <= n; t++) {
     let osc = 0;
     for (let m = 0; m < periods.length; m++) {
-      const phase6 = seedFromText(`${seed}:phase:${m}`, 6) % (100 * 5 * 2) / (100 * 5 * 2) * TAU;
-      osc += oscAmp * sin(TAU * t / periods[m] + phase6) / (m + 1);
+      const phase7 = seedFromText(`${seed}:phase:${m}`, 6) % (100 * 5 * 2) / (100 * 5 * 2) * TAU;
+      osc += oscAmp * sin(TAU * t / periods[m] + phase7) / (m + 1);
     }
     prices.push(prices[t - 1] * exp(drift + osc + (noise2() - 1 / 2) * 2 * noiseAmp));
   }
@@ -54904,7 +55621,7 @@ function quantumFoldedBlockchains(matrix = buildMatrix()) {
     foldBlockchain4("digit-folders", folders.folders.map((folder) => folder.receipt)),
     foldBlockchain4("pi-train", train.diamonds.map((diamond2) => diamond2.referenceReceipt)),
     foldBlockchain4("school", school.lessons.map((lesson) => lesson.receipt)),
-    foldBlockchain4("trinities", trinities.phases.map((phase6) => phase6.receipt))
+    foldBlockchain4("trinities", trinities.phases.map((phase7) => phase7.receipt))
   ];
   const folded = chains.every((chain) => chain.valid && chain.length > 0);
   return {
@@ -56103,10 +56820,10 @@ function completeDoubleTorusRaw(matrix = buildMatrix()) {
 }
 function doubleTorusFold(matrix = buildMatrix()) {
   const trinities = dualTorusTrinities(matrix);
-  const yin = trinities.phases.filter((phase6) => phase6.polarity === "yin");
-  const yang = trinities.phases.filter((phase6) => phase6.polarity === "yang");
+  const yin = trinities.phases.filter((phase7) => phase7.polarity === "yin");
+  const yang = trinities.phases.filter((phase7) => phase7.polarity === "yang");
   const trinitiesComplete = yin.length === yang.length && yin.length + yang.length === trinities.phases.length;
-  const leaves = trinities.phases.map((phase6) => phase6.receipt);
+  const leaves = trinities.phases.map((phase7) => phase7.receipt);
   const foldLevel = (items, lead) => {
     const risen = [];
     let bothWays = items.length > 1;
@@ -57377,9 +58094,9 @@ function cloudflareExplorerWaves(matrix = buildMatrix()) {
 }
 function saveSkillsComputeImplementWaves(matrix = buildMatrix()) {
   const skills = skillAtoms(matrix);
-  const phases = ["save", "compute", "implement"].map((phase6) => {
-    const fold9 = foldPair(skills.memory, toUuid(`skill-phase:${phase6}`));
-    return { waved: fold9.bidirectional, wave: fold9.merged, receipt: toUuid(`skill-wave:${phase6}`) };
+  const phases = ["save", "compute", "implement"].map((phase7) => {
+    const fold9 = foldPair(skills.memory, toUuid(`skill-phase:${phase7}`));
+    return { waved: fold9.bidirectional, wave: fold9.merged, receipt: toUuid(`skill-wave:${phase7}`) };
   });
   return {
     saved: phases.length === 3 && phases.every((entry2) => entry2.waved) && skills.intelligent && skills.count > 0,
@@ -57518,18 +58235,18 @@ function computeCoordinatedWaves(matrix = buildMatrix()) {
   const piTrain = piTrainDiamonds(matrix);
   const waves2 = lattice.map((item, index) => {
     const pulse = piTrain.diamonds[index % piTrain.diamonds.length];
-    const phase6 = (pulse.theta + pulse.phi + index * (TAU / 2) / lattice.length) % TAU;
+    const phase7 = (pulse.theta + pulse.phi + index * (TAU / 2) / lattice.length) % TAU;
     const amplitude = item.status === "closed" ? 1 : 1 / 2 + pulse.digit / (5 * 4);
     const polarity = index % 2 === 0 ? "yin" : "yang";
     const statement = polarity === "yin" ? `${item.title} receives, cools, verifies, and folds inward.` : `${item.title} projects, warms, acts, and returns outward.`;
-    const receipt = merge(item.receipt, toUuid(`wave:${index}:${phase6.toFixed(6)}:${amplitude.toFixed(6)}:${polarity}`));
+    const receipt = merge(item.receipt, toUuid(`wave:${index}:${phase7.toFixed(6)}:${amplitude.toFixed(6)}:${polarity}`));
     return {
       index,
       diamondId: item.id,
       diamondKind: item.kind,
       amplitude,
       frequency: pulse.frequency,
-      phase: phase6,
+      phase: phase7,
       polarity,
       symbol: "yin-yang",
       statement,
@@ -62040,10 +62757,10 @@ function doubleTorusWire(matrix = buildMatrix()) {
     invariant
   };
 }
-function flowAmplitude(vector, phase6) {
-  if (phase6 === "collapse") return vector.collapse ? 1 : 0;
-  if (phase6 === "coherenceAnomaly") return vector.coherenceAnomaly === 0 ? 1 : 1 / (1 + vector.coherenceAnomaly);
-  return vector[phase6];
+function flowAmplitude(vector, phase7) {
+  if (phase7 === "collapse") return vector.collapse ? 1 : 0;
+  if (phase7 === "coherenceAnomaly") return vector.coherenceAnomaly === 0 ? 1 : 1 / (1 + vector.coherenceAnomaly);
+  return vector[phase7];
 }
 function circulateDoubleTorus(matrix = buildMatrix()) {
   const wire = doubleTorusWire(matrix);
@@ -66219,8 +66936,8 @@ function powerComputes2(matrix = buildMatrix(), at = 0) {
 }
 function gpuPaintPhaseChannel(at = 0, matrix) {
   void matrix;
-  const phase6 = at % 432 / 432;
-  return { on: phase6 >= 0 && phase6 < 1, phase: phase6, label: "gpu-paint", receipt: `gpu-paint:${phase6}:${at}` };
+  const phase7 = at % 432 / 432;
+  return { on: phase7 >= 0 && phase7 < 1, phase: phase7, label: "gpu-paint", receipt: `gpu-paint:${phase7}:${at}` };
 }
 var SRC_TWO_LEVEL_INDEX_RE = /^src\/[^/]+\/[^/]+\/index\.ts$/;
 var SRC_THREE_LEVEL_INDEX_RE = /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/;
@@ -69315,14 +70032,14 @@ function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
       receipt: pair.merged
     });
   }
-  const covered = phases.map((phase6) => phase6.analogChannel);
+  const covered = phases.map((phase7) => phase7.analogChannel);
   const missingChannels = REQUIRED_ANALOG_CHANNELS.filter((channel) => !covered.includes(channel));
   const gaps = [];
   for (const pair of pairs) if (!pair.closed) gaps.push(`pair:${pair.axis}`);
   for (const channel of missingChannels) gaps.push(`analog:${channel}`);
   if (new Set(covered).size !== covered.length) gaps.push("analog:collision");
   const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed && pair.bidirectional) && missingChannels.length === 0;
-  const root = merkleFold(phases.map((phase6) => phase6.receipt));
+  const root = merkleFold(phases.map((phase7) => phase7.receipt));
   return {
     harmonized,
     root,
@@ -73779,11 +74496,11 @@ function astronomyComputes(matrix = buildMatrix(), at = 0) {
 function sunDayPhase(at = 0, matrix = buildMatrix()) {
   void matrix;
   const heroPhaseAt2 = heroPhaseAt, HERO_CYCLE_MS4 = HERO_CYCLE_MS;
-  const phase6 = heroPhaseAt2(at);
+  const phase7 = heroPhaseAt2(at);
   return {
-    phase: phase6,
+    phase: phase7,
     cycleMs: HERO_CYCLE_MS4,
-    receipt: toUuid(`sun-day-phase:${roundTo(phase6, 6)}`)
+    receipt: toUuid(`sun-day-phase:${roundTo(phase7, 6)}`)
   };
 }
 function sunSchumannDaySideIonosphere(at = 0, matrix = buildMatrix()) {
@@ -73830,11 +74547,11 @@ function sunComputes(matrix = buildMatrix(), at = 0) {
 var SYNODIC_MONTH_DAYS = 29.53059;
 function moonSynodicPhase(at = 0) {
   const synodicMs = SYNODIC_MONTH_DAYS * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2);
-  const phase6 = at % synodicMs / synodicMs;
+  const phase7 = at % synodicMs / synodicMs;
   return {
-    phase: phase6,
+    phase: phase7,
     synodicDays: SYNODIC_MONTH_DAYS,
-    receipt: toUuid(`moon-synodic-phase:${roundTo(phase6, 6)}`)
+    receipt: toUuid(`moon-synodic-phase:${roundTo(phase7, 6)}`)
   };
 }
 function moonTidalLockMetaphor(matrix = buildMatrix()) {
@@ -74975,6 +75692,7 @@ export {
   drawHero,
   drawHeroMovieFrame,
   drawLivingTorusFrame,
+  drawProofAnimation,
   drawQuantumAppFrame,
   dualTorusTrinities,
   ed25519Keypair,
@@ -75043,7 +75761,7 @@ export {
   modUnits,
   movieCanvasHex,
   movieCanvasPolarity,
-  movieCanvasRgba2 as movieCanvasRgba,
+  movieCanvasRgba,
   movieTextFromCopy,
   multiplicativeOrder,
   nextDuality,

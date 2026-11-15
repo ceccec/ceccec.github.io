@@ -10,7 +10,7 @@ export { heroPhaseAt } from '../../../src/fire/plasma/ball/index.ts';
 export { subscribeHeroClock } from '../../../src/quantum/index.ts';
 export { readUuid, uuidOfBytes, sealUuid, verifyUuid, uuidStamp, uuidRegister, minimalRegisterWidth, theQuantumUuidIsReadSealedAndCountedByItsTheorems, QUANTUM_UUID_THEOREM_FILE, addressSearchCostsLog2, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, } from '../../../src/quantum/index.ts';
 export type { UuidReading, UuidVariant } from '../../../src/quantum/index.ts';
-export { ANIMATION_DESIGN, MOVIE_ANGLES, animationScss, animationToken, bindAnimationDesign, kernelTheoremStreams, } from '../../../src/quantum/wind/geometry/index.ts';
+export { ANIMATION_DESIGN, MOVIE_ANGLES, animationScss, animationToken, bindAnimationDesign, drawProofAnimation, kernelTheoremStreams, } from '../../../src/quantum/wind/geometry/index.ts';
 export type { KernelTheoremRecord, KernelTheoremStream } from '../../../src/quantum/wind/geometry/index.ts';
 export { movieCanvasHex, movieCanvasRgba, movieCanvasPolarity } from '../../../src/quantum/science/index.ts';
 export { TAU } from '../../../src/3/7/index.ts';

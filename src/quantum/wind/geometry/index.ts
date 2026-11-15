@@ -2,11 +2,12 @@
 // with. rotate3 turns a vector through all three planes (xy, yz, zx) so the figure tumbles in space, not just
 // spins in the plane; perspective() turns the rotated z into a foreshortening factor (nearer grows, farther
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.
-import { phase } from '../../../6/4/index.ts'
+import { geodesicDomeComputes, oneExponentialLaw, phase } from '../../../6/4/index.ts'
 import type { Dims } from '../../mountain/dimensions/index.ts'
-import { movieCanvasPolarity } from '../../science/index.ts'
+import { movieCanvasPolarity, movieCanvasRgba } from '../../science/index.ts'
+import type { ProofAnimationSpec } from '../../../thunder/waves/index.ts'
 import { FIBONACCI } from '../../../3/7/index.ts'
-import { TAU } from '../../../3/7/index.ts'
+import { PHI, TAU } from '../../../3/7/index.ts'
 import { VORTEX_SEQUENCE, abs, atan, cos, floor, hypot, max, min, pow, sin, sqrt, toUuid } from '../../../0/index.ts'
 
 /**
@@ -828,6 +829,450 @@ export const ANIMATION_DESIGN = {
     fillTextArg1Part: 8,
     fillTextArg2Part: 4,
   },
+  drawProofWitness: {
+    pad: (2 * 5),
+    fillArg0Part: 3 / 5,
+    fillArg0Part2: 1 / 6,
+    fillRectArg0Part: (3 / (4 * 5)),
+    fillRectArg2Part: (7 / (2 * 5)),
+    strokeArg0: 1 / 4,
+    m: 9,
+    proofRingArg1Part: (4 / 5),
+    proofRingArg4Part: 4,
+    fillArg0: 1 / 3,
+    arcArg1Part: (8 * 5),
+    strokeArg02: 3 / 5,
+    arcArg1Part2: (4 * 6),
+    fillArg0Part3: 4 / 5,
+    fillArg0Part4: 1 / 8,
+    at: (4 / 5),
+    strokeArg03: 1 / 5,
+  },
+  drawProofAnimation: {
+    geodesicDomeComputesArg0: 3,
+    phase: (108 * (2 * 5)),
+    maxArg1Part: 2 ** 5,
+    t: 9,
+    h: (2 / 3),
+    strokeArg0: 1 / 5,
+    moveToArg1Part: (5 / 6),
+    lineToArg1Part: (5 / 6),
+    lineToArg1Part2: (2 / 3),
+    fillArg1Part: 3,
+    fillRectArg0Part: 3,
+    fillRectArg1Part: (5 / 6),
+    fillRectArg2Part: 3,
+    returned: (4 / 5),
+    returned2: 6,
+    returned3: 3,
+    returned4: (2 / 3),
+    sinArg0Part: 6,
+    strokeArg0Part: 3 / 4,
+    strokeArg0Part2: 1 / 9,
+    strokeArg1Part: (4 * 5 * 9) / 4,
+    n: 7,
+    proofRingArg1Part: (3 / 4),
+    fromArg1Part: 3,
+    strokeArg0Part3: 1 / 4,
+    red: 4,
+    strokeArg0Part4: 1 / 3,
+    fromLength: 8,
+    x: 3 / 4,
+    x2: 1 / 4,
+    y: 3 / 4,
+    y2: 1 / 4,
+    when: 4,
+    z: 1 / 8,
+    strokeArg02: 1 / 3,
+    loop: 8,
+    loop2: 4,
+    floorArg0Part: 8,
+    lit: 8,
+    arcArg1Part: (2 * 6),
+    strokeArg1Part2: 9,
+    arcArg4Part: (3 / 4),
+    r: (7 / 8),
+    maxArg1Part2: (3 * 8),
+    strokeArg03: 1 / 4,
+    arcArg2Part: (3 / 4),
+    strokeArg0Part5: 1 / 6,
+    proofRingArg0: 3,
+    proofRingArg4Part: 4,
+    strokeArg04: 3 / 4,
+    loop3: 3,
+    triAt: 3,
+    arcArg2Part2: (2 * 6),
+    arcArg2Part3: 3,
+    limit: (1 / 4),
+    acc: (3 / 4),
+    cosArg0Part: (2 / 3),
+    sinArg0Part2: (2 / 3),
+    sc: (3 / 5),
+    sc2: 3,
+    when2: 3,
+    sinArg0Part3: 3,
+    ny: 5,
+    arcArg2Part4: (3 * 8),
+    arcArg1Part2: 8,
+    treeBranchArg1Part: 8,
+    treeBranchArg2Part: 4,
+    treeBranchArg3: 3,
+    tilt: 5,
+    arm: (3 / 5),
+    arcArg2Part5: (2 * 5),
+    maxArg0: 3,
+    fillArg0Part: 3 / 4,
+    fillArg0Part2: 1 / 5,
+    fillArg0Part3: 1 / 4,
+    arcArg1Part3: (3 * 8),
+    g: 6,
+    fillArg0Part4: 1 / (2 * 6),
+    arcArg2Part6: 5,
+    seq: 4,
+    seq2: 8,
+    seq3: 7,
+    seq4: 5,
+    proofRingArg02: 9,
+    minArg1: 6,
+    ringR: (3 / 4),
+    rOut: (9 / (2 * 5)),
+    dot: (4 * 9),
+    angleOf: 9,
+    angleOf2: 4,
+    fillArg0: 2 / 3,
+    fillArg02: 1 / 3,
+    arcArg2Part7: (2 / 3),
+  },
+}
+
+/**
+ * THE PROOF ANIMATIONS, PAINTED FROM THE SDK — one renderer for every ProofAnimationSpec (kind · points · lines · ratePhi ·
+ * hueDigit · seed · witness · coords). It lived inside .vitepress/theme/components/ProofAnimation.vue, outside src, with
+ * its numbers typed in the component; it is here now, a pure painter beside the movie's, so verify:movie reads it like any
+ * other and every number it draws with is an ANIMATION_DESIGN value movie.lean decides. Moved line for line: the same
+ * spec at the same time paints the same pixels. Rates are φ^−k, hues are vortex digits on the one circle (d·360/9).
+ */
+let proofDomeCache: ReturnType<typeof geodesicDomeComputes>['animation'] | null = null
+let proofLadderCache: readonly number[] | null = null
+
+function proofRing(n: number, r: number, cx: number, cy: number, offset = 0) {
+  return Array.from({ length: n }, (_, i) => {
+    const a = offset + (i / n) * TAU
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)] as const
+  })
+}
+
+type ProofWitness = NonNullable<ProofAnimationSpec['witness']>
+// THE PROOF'S OWN OBJECT — when the spec carries a witness, this draws its data and nothing else: the bars, the walk,
+// the grid or the graph the theorem's computation produced, revealed in order as the phase turns.
+function drawProofWitness(ctx: CanvasRenderingContext2D, s: number, c: number, w: ProofWitness, phase: number,
+  stroke: (alpha: number, dh?: number) => void, fill: (alpha: number, dh?: number) => void): void {
+  const f = ((phase / TAU) % 1 + 1) % 1
+  const pad = s / ANIMATION_DESIGN.drawProofWitness.pad
+  if (w.form === 'bars') {
+    const vals = w.values ?? []
+    const n = Math.max(1, vals.length)
+    const top = Math.max(1, ...vals.map(Math.abs), ...(w.against ?? []).map(Math.abs))
+    const signed = vals.some((v) => v < 0)
+    const base = signed ? c : s - pad
+    const scale = (signed ? c - pad : s - 2 * pad) / top
+    const bw = (s - 2 * pad) / n
+    const shown = Math.floor(f * (n + 1))
+    vals.forEach((v, i) => {
+      const marked = w.marks?.includes(i) ?? false
+      fill(i < shown ? (marked ? 1 : ANIMATION_DESIGN.drawProofWitness.fillArg0Part) : ANIMATION_DESIGN.drawProofWitness.fillArg0Part2, marked ? MOVIE_ANGLES.half : v < 0 ? MOVIE_ANGLES.trinity : 0)
+      const h = Math.abs(v) * scale
+      ctx.fillRect(pad + i * bw + bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg0Part, v >= 0 ? base - h : base, bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg2Part, Math.max(1, h))
+    })
+    if (w.against) {
+      stroke(1)
+      ctx.beginPath()
+      w.against.forEach((v, i) => { const x = pad + i * bw + bw / 2, y = base - v * scale; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y) })
+      ctx.stroke()
+    }
+    if (signed) { stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg0); ctx.beginPath(); ctx.moveTo(pad, c); ctx.lineTo(s - pad, c); ctx.stroke() }
+  } else if (w.form === 'walk') {
+    const m = w.modulus ?? ANIMATION_DESIGN.drawProofWitness.m, steps = w.values ?? []
+    const pts = proofRing(m, c * ANIMATION_DESIGN.drawProofWitness.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofWitness.proofRingArg4Part)
+    for (let i = 0; i < m; i += 1) { fill(ANIMATION_DESIGN.drawProofWitness.fillArg0); ctx.beginPath(); ctx.arc(...pts[i]!, s / ANIMATION_DESIGN.drawProofWitness.arcArg1Part, 0, TAU); ctx.fill() }
+    const shown = Math.max(1, Math.floor(f * steps.length))
+    stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg02)
+    ctx.beginPath()
+    steps.slice(0, shown).forEach((r, i) => { const p = pts[r % m]!; if (i) ctx.lineTo(...p); else ctx.moveTo(...p) })
+    ctx.stroke()
+    fill(1, MOVIE_ANGLES.half); ctx.beginPath(); ctx.arc(...pts[steps[shown - 1]! % m]!, s / ANIMATION_DESIGN.drawProofWitness.arcArg1Part2, 0, TAU); ctx.fill()
+  } else if (w.form === 'grid') {
+    const rows = w.cells ?? []
+    const cols = Math.max(1, ...rows.map((r) => r.length))
+    const size = Math.min((s - 2 * pad) / cols, (s - 2 * pad) / Math.max(1, rows.length))
+    const x0 = c - (size * cols) / 2, y0 = c - (size * rows.length) / 2
+    const classes = Math.max(1, ...rows.flat()) + 1
+    const shown = Math.floor(f * (classes + 1))
+    rows.forEach((row, i) => row.forEach((k, j) => {
+      if (k < 0) return
+      fill(k < shown ? ANIMATION_DESIGN.drawProofWitness.fillArg0Part3 : ANIMATION_DESIGN.drawProofWitness.fillArg0Part4, (k * MOVIE_ANGLES.turn) / classes)
+      ctx.fillRect(x0 + j * size + 1, y0 + i * size + 1, size - 2, size - 2)
+    }))
+  } else {
+    const frames = w.frames ?? []
+    if (!frames.length) return
+    const current = Math.floor(f * frames.length) % frames.length
+    const at = (x: number, y: number) => [c + x * c * ANIMATION_DESIGN.drawProofWitness.at, c + y * c * ANIMATION_DESIGN.drawProofWitness.at] as const
+    const strokeSegs = (segs: readonly (readonly [number, number, number, number])[]) => {
+      ctx.beginPath()
+      for (const [x1, y1, x2, y2] of segs) { ctx.moveTo(...at(x1, y1)); ctx.lineTo(...at(x2, y2)) }
+      ctx.stroke()
+    }
+    if (w.together) { stroke(ANIMATION_DESIGN.drawProofWitness.strokeArg03); strokeSegs(frames.flat()) }
+    stroke(1, w.together ? MOVIE_ANGLES.half : 0)
+    strokeSegs(frames[current]!)
+  }
+}
+
+/** Paint one proof animation frame for `spec` at hero-clock time `t` onto a square canvas of side `s`. */
+export function drawProofAnimation(ctx: CanvasRenderingContext2D, s: number, spec: ProofAnimationSpec, t: number, dark: boolean): void {
+  const DOME = (proofDomeCache ??= geodesicDomeComputes(ANIMATION_DESIGN.drawProofAnimation.geodesicDomeComputesArg0).animation)
+  const LADDER = (proofLadderCache ??= oneExponentialLaw().ladder)
+  const hue = (spec.hueDigit * MOVIE_ANGLES.station) % MOVIE_ANGLES.turn
+  const rate = PHI ** -spec.ratePhi
+  const seedPhase = ((spec.seed ?? 0) % MOVIE_ANGLES.turn) / MOVIE_ANGLES.turn
+  const c = s / 2
+  const phase = ((t / ANIMATION_DESIGN.drawProofAnimation.phase) * rate + seedPhase) * TAU // the census clock scaled by the φ-rate, offset by the theorem's own seed
+  const tour = phase * PHI ** -2
+  ctx.setTransform(1, 0, 0, 1, 0, 0)
+  ctx.clearRect(0, 0, s, s)
+  ctx.lineWidth = Math.max(1, s / ANIMATION_DESIGN.drawProofAnimation.maxArg1Part)
+  const stroke = (alpha: number, dh = 0) => { ctx.strokeStyle = movieCanvasRgba((hue + dh) % MOVIE_ANGLES.turn, alpha, { dark }) }
+  const fill = (alpha: number, dh = 0) => { ctx.fillStyle = movieCanvasRgba((hue + dh) % MOVIE_ANGLES.turn, alpha, { dark }) }
+  const k = spec.kind
+  const paint = () => {
+
+  if (k === 'washout') {
+    const cycle = ((phase / TAU) % 1 + 1) % 1
+    const descending = cycle < 1 / 2
+    const t = (descending ? cycle : 1 - cycle) * 2 * LADDER[LADDER.length - 1]! / ANIMATION_DESIGN.drawProofAnimation.t
+    const w = s / (LADDER.length + 2)
+    LADDER.forEach((halftime, i) => {
+      const y = descending ? 1 - Math.exp(-Math.LN2 * t / halftime) : Math.exp(-Math.LN2 * t / halftime)
+      const x = w * (i + 1) + w / 2
+      const h = (s * ANIMATION_DESIGN.drawProofAnimation.h) * y
+      stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg0)
+      ctx.beginPath(); ctx.moveTo(x, s * ANIMATION_DESIGN.drawProofAnimation.moveToArg1Part); ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2); ctx.stroke()
+      fill(1, (i * MOVIE_ANGLES.turn) / LADDER.length / ANIMATION_DESIGN.drawProofAnimation.fillArg1Part)
+      ctx.fillRect(x - w / ANIMATION_DESIGN.drawProofAnimation.fillRectArg0Part, s * ANIMATION_DESIGN.drawProofAnimation.fillRectArg1Part - h, (2 * w) / ANIMATION_DESIGN.drawProofAnimation.fillRectArg2Part, h)
+    })
+    stroke(1 / 2)
+    ctx.beginPath()
+    LADDER.forEach((halftime, i) => {
+      const y = descending ? 1 - Math.exp(-Math.LN2 * t / halftime) : Math.exp(-Math.LN2 * t / halftime)
+      const x = w * (i + 1) + w / 2
+      ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - (s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2) * y)
+    })
+    ctx.stroke()
+  }
+
+  if (k === 'dome') {
+    const progress = ((phase / TAU) % 1 + 1) % 1
+    const built = Math.floor(progress * (DOME.rings + 1))
+    const turn = tour
+    const proj = (p: readonly [number, number, number]) => {
+      const rx = p[0] * Math.cos(turn) - p[1] * Math.sin(turn)
+      const ry = p[0] * Math.sin(turn) + p[1] * Math.cos(turn)
+      return [c + (s / 2) * ANIMATION_DESIGN.drawProofAnimation.returned * rx, c + s / ANIMATION_DESIGN.drawProofAnimation.returned2 + (s / 2) * ANIMATION_DESIGN.drawProofAnimation.returned * (ry / ANIMATION_DESIGN.drawProofAnimation.returned3 - p[2] * ANIMATION_DESIGN.drawProofAnimation.returned4)] as const
+    }
+    for (const strut of DOME.struts) {
+      const [ax, ay] = proj(strut.a)
+      const [bx, by] = proj(strut.b)
+      const state = strut.ring < built ? 1 : strut.ring === built ? 2 : 0
+      stroke(state === 2 ? (1 / 2) + (1 / 2) * Math.abs(Math.sin(phase * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part)) : state === 1 ? ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part2, state === 2 ? ANIMATION_DESIGN.drawProofAnimation.strokeArg1Part : 0)
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke()
+    }
+  }
+
+  if (k === 'star' || k === 'spreads') {
+    const n = k === 'star' ? spec.points : ANIMATION_DESIGN.drawProofAnimation.n
+    const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, phase)
+    const lines = k === 'star' && spec.lines.length ? spec.lines : Array.from({ length: n }, (_, i) => [i, (i + 1) % n, (i + ANIMATION_DESIGN.drawProofAnimation.fromArg1Part) % n])
+    const lit = Math.floor(((phase / TAU) % 1) * lines.length + lines.length) % lines.length
+    lines.forEach((line, li) => {
+      stroke(li === lit ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part3)
+      ctx.beginPath()
+      for (const p of line) ctx.lineTo(...pts[p % n]!)
+      ctx.closePath()
+      ctx.stroke()
+    })
+  } else if (k === 'coloring') {
+    const n = spec.points
+    const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, 0)
+    const sweep = Math.floor(((phase / TAU) % 1) * n * (n - 1) / 2)
+    let e = 0
+    for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) {
+      const d = Math.min(j - i, n - (j - i))
+      const red = d === 1 || d === ANIMATION_DESIGN.drawProofAnimation.red
+      stroke(e === sweep % (n * (n - 1) / 2) ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part4, red ? 0 : MOVIE_ANGLES.half)
+      ctx.beginPath(); ctx.moveTo(...pts[i]!); ctx.lineTo(...pts[j]!); ctx.stroke()
+      e += 1
+    }
+  } else if (k === 'lattice') {
+    const corners = Array.from({ length: ANIMATION_DESIGN.drawProofAnimation.fromLength }, (_, v) => {
+      const x = (v & 1) ? ANIMATION_DESIGN.drawProofAnimation.x : ANIMATION_DESIGN.drawProofAnimation.x2, y = (v & 2) ? ANIMATION_DESIGN.drawProofAnimation.y : ANIMATION_DESIGN.drawProofAnimation.y2
+      const z = (v & ANIMATION_DESIGN.drawProofAnimation.when) ? ANIMATION_DESIGN.drawProofAnimation.z : 0
+      return [s * (x + z), s * (y - z)] as const
+    })
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02)
+    for (let a = 0; a < ANIMATION_DESIGN.drawProofAnimation.loop; a += 1) for (const bit of [1, 2, ANIMATION_DESIGN.drawProofAnimation.loop2]) {
+      const b = a ^ bit
+      if (b > a) { ctx.beginPath(); ctx.moveTo(...corners[a]!); ctx.lineTo(...corners[b]!); ctx.stroke() }
+    }
+    const lit = Math.floor(((phase / TAU) % 1) * ANIMATION_DESIGN.drawProofAnimation.floorArg0Part + ANIMATION_DESIGN.drawProofAnimation.floorArg0Part) % ANIMATION_DESIGN.drawProofAnimation.lit
+    fill(1)
+    ctx.beginPath(); ctx.arc(...corners[lit ^ (lit >> 1)]!, s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part, 0, TAU); ctx.fill()
+  } else if (k === 'classes') {
+    const n = spec.points
+    for (let i = 0; i < n; i += 1) {
+      stroke(1 / 2 + (1 / 2) * Math.sin(phase + i), (i * MOVIE_ANGLES.turn) / ANIMATION_DESIGN.drawProofAnimation.strokeArg1Part2)
+      ctx.beginPath()
+      ctx.arc(c, c, (c * (i + 2)) / (n + 2), phase * (i % 2 ? 1 : -1), phase * (i % 2 ? 1 : -1) + TAU * ANIMATION_DESIGN.drawProofAnimation.arcArg4Part)
+      ctx.stroke()
+    }
+  } else if (k === 'spiral') {
+    fill(1)
+    for (let i = 0; i < spec.points; i += 1) {
+      const a = i * (TAU / (PHI * PHI)) + phase
+      const r = (c * ANIMATION_DESIGN.drawProofAnimation.r * Math.sqrt(i + 1)) / Math.sqrt(spec.points)
+      ctx.beginPath(); ctx.arc(c + r * Math.cos(a), c + r * Math.sin(a), Math.max(1, s / ANIMATION_DESIGN.drawProofAnimation.maxArg1Part2), 0, TAU); ctx.fill()
+    }
+  } else if (k === 'circle') {
+    const n = spec.points
+    const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, 0)
+    const lit = Math.floor(((phase / TAU) % 1) * n) % n
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg03); ctx.beginPath(); ctx.arc(c, c, c * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part, 0, TAU); ctx.stroke()
+    for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) { stroke(i === lit ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part5); ctx.beginPath(); ctx.moveTo(...pts[i]!); ctx.lineTo(...pts[j]!); ctx.stroke() }
+  } else if (k === 'triangle') {
+    const tri = proofRing(ANIMATION_DESIGN.drawProofAnimation.proofRingArg0, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part)
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04); ctx.beginPath(); for (let i = 0; i <= ANIMATION_DESIGN.drawProofAnimation.loop3; i += 1) ctx.lineTo(...tri[i % ANIMATION_DESIGN.drawProofAnimation.triAt]!); ctx.stroke()
+    const t = (phase / TAU) % 1
+    const foot = [tri[1]![0] + t * (tri[2]![0] - tri[1]![0]), tri[1]![1] + t * (tri[2]![1] - tri[1]![1])] as const
+    stroke(1); ctx.beginPath(); ctx.moveTo(...tri[0]!); ctx.lineTo(...foot); ctx.stroke()
+    fill(1 / 2); ctx.beginPath(); ctx.arc(c, c, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part2 * (1 + Math.sin(phase) / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part3), 0, TAU); ctx.fill()
+  } else if (k === 'series') {
+    const n = spec.points, limit = c * ANIMATION_DESIGN.drawProofAnimation.limit
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02); ctx.beginPath(); ctx.moveTo(0, c - limit); ctx.lineTo(s, c - limit); ctx.stroke()
+    let acc = 0
+    for (let i = 0; i < n; i += 1) {
+      acc += (limit * 2 * ANIMATION_DESIGN.drawProofAnimation.acc) / 2 ** (i + 1)
+      const x = (s * (i + 1)) / (n + 1), grow = Math.min(1, (phase / TAU) / (i / 2 + 1))
+      stroke(i === Math.floor((phase / TAU) % n) ? 1 : 1 / 2)
+      ctx.beginPath(); ctx.moveTo(x, c + limit); ctx.lineTo(x, c + limit - acc * grow * 2); ctx.stroke()
+    }
+  } else if (k === 'polytope') {
+    const verts = Array.from({ length: ANIMATION_DESIGN.drawProofAnimation.fromLength }, (_, v) => {
+      let x = (v & 1) - 1 / 2, y = ((v >> 1) & 1) - 1 / 2, z = ((v >> 2) & 1) - 1 / 2
+      const cx = Math.cos(phase), sx = Math.sin(phase);[x, z] = [x * cx - z * sx, x * sx + z * cx]
+      const cy = Math.cos(phase * ANIMATION_DESIGN.drawProofAnimation.cosArg0Part), sy = Math.sin(phase * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part2);[y, z] = [y * cy - z * sy, y * sy + z * cy]
+      const sc = c * ANIMATION_DESIGN.drawProofAnimation.sc / (1 + z / ANIMATION_DESIGN.drawProofAnimation.sc2)
+      return [c + x * sc, c + y * sc] as const
+    })
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04)
+    for (let a = 0; a < ANIMATION_DESIGN.drawProofAnimation.loop; a += 1) for (const bit of [1, 2, ANIMATION_DESIGN.drawProofAnimation.loop2]) { const b = a ^ bit; if (b > a) { ctx.beginPath(); ctx.moveTo(...verts[a]!); ctx.lineTo(...verts[b]!); ctx.stroke() } }
+  } else if (k === 'wave') {
+    for (const [amp, freq, sh] of [[1, 2, 0], [1, ANIMATION_DESIGN.drawProofAnimation.when2, TAU / ANIMATION_DESIGN.drawProofAnimation.when2], [1, 0, 0]] as const) {
+      void amp
+      stroke(freq === 0 ? 1 : 1 / 2)
+      ctx.beginPath()
+      for (let px = 0; px <= s; px += 2) {
+        const u = (px / s) * TAU
+        const y = freq === 0
+          ? (Math.sin(u * 2 + phase) + Math.sin(u * ANIMATION_DESIGN.drawProofAnimation.sinArg0Part3 + phase + TAU / ANIMATION_DESIGN.drawProofAnimation.sinArg0Part3)) / 2
+          : Math.sin(u * freq + phase + sh)
+        if (px === 0) ctx.moveTo(px, c + y * (c / 2)); else ctx.lineTo(px, c + y * (c / 2))
+      }
+      ctx.stroke()
+    }
+  } else if (k === 'tree') {
+    const treeBranch = (x: number, y: number, dx: number, depth: number): void => {
+      if (depth === 0) return
+      const ny = y + s / ANIMATION_DESIGN.drawProofAnimation.ny
+      for (const s2 of [-1, 1]) { const nx = x + s2 * dx; stroke((depth + phase / TAU) % 2 < 1 ? 1 : ANIMATION_DESIGN.drawProofAnimation.strokeArg0Part4); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(nx, ny); ctx.stroke(); fill(1); ctx.beginPath(); ctx.arc(nx, ny, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part4, 0, TAU); ctx.fill(); treeBranch(nx, ny, dx / 2, depth - 1) }
+    }
+    fill(1); ctx.beginPath(); ctx.arc(c, s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part2, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part4, 0, TAU); ctx.fill()
+    treeBranch(c, s / ANIMATION_DESIGN.drawProofAnimation.treeBranchArg1Part, s / ANIMATION_DESIGN.drawProofAnimation.treeBranchArg2Part, ANIMATION_DESIGN.drawProofAnimation.treeBranchArg3)
+  } else if (k === 'balance') {
+    const tilt = Math.sin(phase) / ANIMATION_DESIGN.drawProofAnimation.tilt
+    const pivot = [c, c] as const, arm = c * ANIMATION_DESIGN.drawProofAnimation.arm
+    const l = [c - arm * Math.cos(tilt), c + arm * Math.sin(tilt)] as const
+    const r = [c + arm * Math.cos(tilt), c - arm * Math.sin(tilt)] as const
+    stroke(1); ctx.beginPath(); ctx.moveTo(...pivot); ctx.lineTo(c, c + arm / 2); ctx.stroke()
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg04); ctx.beginPath(); ctx.moveTo(...l); ctx.lineTo(...r); ctx.stroke()
+    fill(1); for (const p of [l, r]) { ctx.beginPath(); ctx.arc(p[0], p[1] + s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part2, s / ANIMATION_DESIGN.drawProofAnimation.arcArg2Part5, 0, TAU); ctx.fill() }
+  } else if (k === 'dice') {
+    const n = Math.max(ANIMATION_DESIGN.drawProofAnimation.maxArg0, spec.points)
+    const lit = Math.floor(((phase / TAU) % 1) * n) % n
+    for (let i = 0; i < n; i += 1) {
+      fill(i === lit ? ANIMATION_DESIGN.drawProofAnimation.fillArg0Part : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part2, (i * MOVIE_ANGLES.turn) / n)
+      ctx.beginPath(); ctx.moveTo(c, c); ctx.arc(c, c, c * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part, (i / n) * TAU, ((i + 1) / n) * TAU); ctx.closePath(); ctx.fill()
+    }
+  } else if (k === 'cycle') {
+    const n = spec.points
+    const pts = proofRing(n, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part)
+    stroke(ANIMATION_DESIGN.drawProofAnimation.strokeArg02); ctx.beginPath(); for (let i = 0; i <= n; i += 1) ctx.lineTo(...pts[i % n]!); ctx.stroke()
+    const at = Math.floor(((phase / TAU) % 1) * n) % n
+    for (let i = 0; i < n; i += 1) { fill(i === at ? 1 : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part3); ctx.beginPath(); ctx.arc(...pts[i]!, i === at ? s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part : s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part3, 0, TAU); ctx.fill() }
+  } else if (k === 'sieve') {
+    const g = ANIMATION_DESIGN.drawProofAnimation.g, cell = s / g, sweep = ((phase / TAU) % 1) * 2 * g
+    const isP = (x: number) => { if (x < 2) return false; for (let d = 2; d * d <= x; d += 1) if (x % d === 0) return false; return true }
+    for (let iy = 0; iy < g; iy += 1) for (let ix = 0; ix < g; ix += 1) {
+      const num = iy * g + ix + 1, on = isP(num)
+      const near = Math.abs((ix + iy) - sweep) < 1
+      if (on) fill(near ? 1 : 1 / 2); else fill(near ? ANIMATION_DESIGN.drawProofAnimation.fillArg0Part3 : ANIMATION_DESIGN.drawProofAnimation.fillArg0Part4)
+      ctx.beginPath(); ctx.arc(ix * cell + cell / 2, iy * cell + cell / 2, cell / (on ? ANIMATION_DESIGN.drawProofAnimation.arcArg2Part3 : ANIMATION_DESIGN.drawProofAnimation.arcArg2Part6), 0, TAU); ctx.fill()
+    }
+  } else {
+    const seq = [1, 2, ANIMATION_DESIGN.drawProofAnimation.seq, ANIMATION_DESIGN.drawProofAnimation.seq2, ANIMATION_DESIGN.drawProofAnimation.seq3, ANIMATION_DESIGN.drawProofAnimation.seq4]
+    const pts = proofRing(ANIMATION_DESIGN.drawProofAnimation.proofRingArg02, c * ANIMATION_DESIGN.drawProofAnimation.proofRingArg1Part, c, c, -TAU / ANIMATION_DESIGN.drawProofAnimation.proofRingArg4Part)
+    stroke(1 / 2)
+    ctx.beginPath()
+    for (const d of [...seq, seq[0]!]) ctx.lineTo(...pts[d - 1]!)
+    ctx.stroke()
+    const lit = Math.floor(((phase / TAU) % 1) * seq.length + seq.length) % seq.length
+    fill(1)
+    ctx.beginPath(); ctx.arc(...pts[seq[lit]! - 1]!, s / ANIMATION_DESIGN.drawProofAnimation.arcArg1Part, 0, TAU); ctx.fill()
+  }
+  }
+
+  if (spec.witness) drawProofWitness(ctx, s, c, spec.witness, phase, stroke, fill)
+  else {
+  paint()
+  const children = Math.min(spec.points, ANIMATION_DESIGN.drawProofAnimation.minArg1)
+  const ringR = c * ANIMATION_DESIGN.drawProofAnimation.ringR
+  for (let v = 0; v < children; v += 1) {
+    const a = (v / children) * TAU + tour * (PHI ** -1)
+    ctx.save()
+    ctx.translate(c + ringR * Math.cos(a), c + ringR * Math.sin(a))
+    ctx.scale(1 / PHI ** 2, 1 / PHI ** 2)
+    ctx.translate(-c, -c)
+    ctx.globalAlpha = 1 / 2
+    paint()
+    ctx.restore()
+  }
+  }
+
+  const co = spec.coords
+  if (co && co.sequencePosition >= 0) {
+    const rOut = c * ANIMATION_DESIGN.drawProofAnimation.rOut
+    const dot = s / ANIMATION_DESIGN.drawProofAnimation.dot
+    const posOf = (d: number) => (VORTEX_SEQUENCE as readonly number[]).indexOf(d)
+    const angleOf = (d: number) => (posOf(d) / ANIMATION_DESIGN.drawProofAnimation.angleOf) * TAU - TAU / ANIMATION_DESIGN.drawProofAnimation.angleOf2
+    const fwd = angleOf(co.digit) + phase
+    const rev = angleOf(co.additiveInverse) - phase
+    const inv = -angleOf(co.tensComplement) - phase
+    fill(ANIMATION_DESIGN.drawProofAnimation.fillArg0)
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(fwd), c + rOut * Math.sin(fwd), dot, 0, TAU); ctx.fill()
+    fill(ANIMATION_DESIGN.drawProofAnimation.fillArg02, (co.additiveInverse - co.digit) * MOVIE_ANGLES.station)
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(rev), c + rOut * Math.sin(rev), dot, 0, TAU); ctx.fill()
+    fill(1 / 2, (co.tensComplement - co.digit) * MOVIE_ANGLES.station)
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(inv), c + rOut * Math.sin(inv), dot * ANIMATION_DESIGN.drawProofAnimation.arcArg2Part7, 0, TAU); ctx.fill()
+  }
 }
 
 /** What the Lean kernel recorded: file → theorem → the axioms it rests on (.vitepress/data/lean-axioms.json). */

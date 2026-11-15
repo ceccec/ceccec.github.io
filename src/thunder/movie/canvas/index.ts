@@ -622,14 +622,31 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
 export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`movieUnbalancedAroundCenterIsCrack:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const theorems = movieAllElementsAreTheorems(matrix, at)
-    const proofSrc = readMoviePainterSource('.vitepress/theme/components/ProofAnimation.vue')
+    // THE PROOF PAINTER IS READ WHERE IT LIVES, AND FOR ITS GEOMETRY. It moved out of ProofAnimation.vue into the animation
+    // SDK (drawProofAnimation). The old test also wanted the word movieUnbalancedAroundCenterIsCrack to appear in the
+    // component — a comment, which proves nothing — and forbade one exact spelling, ctx.translate((s / 9). Now: the painter
+    // resets the transform before it paints, and every translate in it sits inside a save()/restore() pair, so the
+    // frame itself is never moved off centre; only the self-similar children are placed, and put back.
+    const sdkSrc = readMoviePainterSource('src/quantum/wind/geometry/index.ts')
+    const proofStart = sdkSrc.indexOf('export function drawProofAnimation')
+    const proofNext = proofStart < 0 ? -1 : sdkSrc.slice(proofStart + 1).search(/\n(?:export )?function /)
+    const proofSrc = proofStart < 0 ? '' : proofNext < 0 ? sdkSrc.slice(proofStart) : sdkSrc.slice(proofStart, proofStart + 1 + proofNext)
     const layoutSrc = readMoviePainterSource('.vitepress/theme/Layout.vue')
     const srcReadable = proofSrc.length > 0 && layoutSrc.length > 0
+    const translatesSaved = (src: string): boolean => {
+      let depth = 0
+      for (const m of src.matchAll(/ctx\.(save|restore|translate)\(/g)) {
+        if (m[1] === 'save') depth += 1
+        else if (m[1] === 'restore') depth -= 1
+        else if (depth <= 0) return false
+      }
+      return depth === 0
+    }
     const proofCentered =
       srcReadable &&
-      (!proofSrc.includes('ctx.translate((s / 9)') &&
-        !proofSrc.includes('ctx.translate((s/9)') &&
-        proofSrc.includes('movieUnbalancedAroundCenterIsCrack'))
+      proofSrc.includes('ctx.setTransform(1, 0, 0, 1, 0, 0)') &&
+      proofSrc.indexOf('ctx.setTransform(1, 0, 0, 1, 0, 0)') < proofSrc.indexOf('ctx.translate(') &&
+      translatesSaved(proofSrc)
     const layoutBackdropCentered =
       srcReadable &&
       (layoutSrc.includes('vp-with-hero-movie__backdrop') &&
