@@ -450,7 +450,7 @@ export declare function formulaDrivenSiteConfig(matrix?: MindMatrix): {
     statement: string;
 };
 /** THE TRINITY FAMILIES, the fold's mirror of the SDK's placement (verify:mcp-transport holds the two equal and equal to the
- *  served list): every tool is one role of one family. Five families × (research, edit, verify) = 15 = 2×7+1, the rosetta count. */
+ *  served list): every tool is one role of one family; the count is families × (research, edit, verify), computed — 18 with the Lean family. */
 export declare const MCP_TRINITY: readonly ["research", "edit", "verify"];
 export declare const MCP_TRINITIES: readonly [{
     readonly family: "meta";
@@ -477,12 +477,17 @@ export declare const MCP_TRINITIES: readonly [{
     readonly research: "release_readiness";
     readonly edit: "publish_package";
     readonly verify: "live_connectors";
+}, {
+    readonly family: "lean";
+    readonly research: "lean_search";
+    readonly edit: "lean_source";
+    readonly verify: "lean_verify";
 }];
-export declare const MCP_TOOLS: ("census_status" | "compute_from_source" | "list_capabilities" | "fold_report" | "run_gate" | "run_wave" | "run_export" | "next_leads" | "live_testing" | "quantum_capabilities" | "quantum_submit_job" | "quantum_get_status" | "release_readiness" | "publish_package" | "live_connectors")[];
+export declare const MCP_TOOLS: ("census_status" | "compute_from_source" | "list_capabilities" | "fold_report" | "run_gate" | "run_wave" | "run_export" | "next_leads" | "live_testing" | "quantum_capabilities" | "quantum_submit_job" | "quantum_get_status" | "release_readiness" | "publish_package" | "live_connectors" | "lean_search" | "lean_source" | "lean_verify")[];
 export type McpToolName = (typeof MCP_TOOLS)[number];
 export declare function isMcpTool(name: string): name is McpToolName;
 export declare function mcpToolList(): {
-    name: "census_status" | "compute_from_source" | "list_capabilities" | "fold_report" | "run_gate" | "run_wave" | "run_export" | "next_leads" | "live_testing" | "quantum_capabilities" | "quantum_submit_job" | "quantum_get_status" | "release_readiness" | "publish_package" | "live_connectors";
+    name: "census_status" | "compute_from_source" | "list_capabilities" | "fold_report" | "run_gate" | "run_wave" | "run_export" | "next_leads" | "live_testing" | "quantum_capabilities" | "quantum_submit_job" | "quantum_get_status" | "release_readiness" | "publish_package" | "live_connectors" | "lean_search" | "lean_source" | "lean_verify";
     description: string;
 }[];
 export type QuantumHardwareProvider = 'ibm' | 'aws' | 'azure';
@@ -572,7 +577,7 @@ export declare function mcpCombinatorsVerify(): {
         facet: string;
         on: boolean;
     }[];
-    families: ("compute" | "quantum" | "meta" | "leads" | "release")[];
+    families: ("compute" | "quantum" | "meta" | "leads" | "release" | "lean")[];
     statement: string;
 };
 export type ToolDispatch = {

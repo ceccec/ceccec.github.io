@@ -69636,7 +69636,8 @@ var MCP_TRINITIES = [
   { family: "leads", research: "next_leads", edit: "run_wave", verify: "census_status" },
   { family: "compute", research: "fold_report", edit: "compute_from_source", verify: "live_testing" },
   { family: "quantum", research: "quantum_capabilities", edit: "quantum_submit_job", verify: "quantum_get_status" },
-  { family: "release", research: "release_readiness", edit: "publish_package", verify: "live_connectors" }
+  { family: "release", research: "release_readiness", edit: "publish_package", verify: "live_connectors" },
+  { family: "lean", research: "lean_search", edit: "lean_source", verify: "lean_verify" }
 ];
 var MCP_TOOLS = MCP_TRINITIES.flatMap((f2) => MCP_TRINITY.map((role2) => f2[role2]));
 var ROSETTA_WIDTH = 2;

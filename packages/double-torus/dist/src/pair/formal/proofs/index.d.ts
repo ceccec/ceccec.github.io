@@ -744,6 +744,38 @@ export type LeanMonograph = {
     readonly posts: readonly string[];
 };
 export declare function leanMonographs(root?: string): readonly LeanMonograph[];
+/**
+ * THE VERIFICATION INDEX — what a client needs to check every theorem WITHOUT TRUSTING THIS SITE (owner, 2026-11-15:
+ * "complete all mcp tools for the clients to verify the lean formulas in their session online"). For each .lean file: its
+ * path, its SHA-256, its raw URL on GitHub, and a link to the official Lean 4 web editor with the file loaded; for each
+ * theorem: its fully qualified name, its statement, the axioms the kernel recorded, its Clay cases, and the one line to
+ * append — `#print axioms <name>` — so the kernel says, in the client's own browser or terminal, what it rests on.
+ * Every file is standalone (Lean 4 core, no Mathlib, no imports between files), so the file alone is the whole proof.
+ */
+export declare const LEAN_SOURCE_RAW = "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main";
+export declare const LEAN_WEB_EDITOR = "https://live.lean-lang.org/#code=";
+export type LeanVerificationFile = {
+    readonly path: string;
+    readonly sha256: string;
+    readonly bytes: number;
+    readonly rawUrl: string;
+};
+export type LeanVerificationTheorem = {
+    readonly slug: string;
+    readonly name: string;
+    readonly qualified: string;
+    readonly path: string;
+    readonly proposition: string;
+    readonly axioms: readonly string[] | null;
+    readonly cases: readonly string[];
+    readonly tags: readonly string[];
+    readonly verifyLine: string;
+};
+export declare function leanVerificationIndex(root?: string): {
+    readonly editor: string;
+    readonly files: readonly LeanVerificationFile[];
+    readonly theorems: readonly LeanVerificationTheorem[];
+};
 /** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every
  *  locale home loads this body: a heading and the feed component, which reads the posts' own rows and tags. The heading is
  *  passed in already translated by the caller's locale transform, so this stays one generator for all three homes. */

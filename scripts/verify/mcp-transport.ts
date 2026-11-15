@@ -184,7 +184,7 @@ export function assertMcpTransport(): void {
   if (h.tools.join(' ') !== cross.join(' ')) throw new Error(`the served order is not the trinity cross — served: ${h.tools.join(', ')} · cross: ${cross.join(', ')}`)
   const mirror = MCP_TRINITIES.flatMap((f) => MCP_TRINITY.map((role) => f[role] as string))
   if (mirror.join(' ') !== cross.join(' ')) throw new Error(`the fold's trinity mirror disagrees with the SDK families — fold: ${mirror.join(', ')}`)
-  console.log(`  the trinity cross is served: ${MCP_FAMILIES.length} families × ${MCP_TRINITY.length} roles = ${cross.length} = 2×7+1`)
+  console.log(`  the trinity cross is served: ${MCP_FAMILIES.length} families × ${MCP_TRINITY.length} roles = ${cross.length}`)
 
   // THE SERVER'S OWN CENSUS MUST BE THE CORPUS'S. It shipped 110/108 to every client for as long
   // as the band ladder has had four bands, under a note claiming the constants came from src/3/7.

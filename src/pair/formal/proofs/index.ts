@@ -2,6 +2,7 @@
 // involution, zero-crossing emergence — merged flat to satisfy the src index census.
 
 import harmonic from '../../../ui/harmonic/index.ts'
+import { sha256Sync } from '../../../0/index.ts'
 
 // ───── module: growthRateImpossibilityUnified ─────
 // Wave 28: Unified Growth-Rate Impossibility Framework
@@ -1735,6 +1736,36 @@ export function leanMonographs(root?: string): readonly LeanMonograph[] {
   }
   const titled = (slug: string) => (slug === 'sequence' ? 'The sequence and its reflection' : slug.replace(/[-_]/g, ' ').replace(/^./, (c) => c.toUpperCase()))
   return [...clay, ...[...subjects.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([slug, posts]): LeanMonograph => ({ slug, title: titled(slug), kind: 'subject', posts }))]
+}
+
+/**
+ * THE VERIFICATION INDEX — what a client needs to check every theorem WITHOUT TRUSTING THIS SITE (owner, 2026-11-15:
+ * "complete all mcp tools for the clients to verify the lean formulas in their session online"). For each .lean file: its
+ * path, its SHA-256, its raw URL on GitHub, and a link to the official Lean 4 web editor with the file loaded; for each
+ * theorem: its fully qualified name, its statement, the axioms the kernel recorded, its Clay cases, and the one line to
+ * append — `#print axioms <name>` — so the kernel says, in the client's own browser or terminal, what it rests on.
+ * Every file is standalone (Lean 4 core, no Mathlib, no imports between files), so the file alone is the whole proof.
+ */
+export const LEAN_SOURCE_RAW = 'https://raw.githubusercontent.com/ceccec/ceccec.github.io/main'
+export const LEAN_WEB_EDITOR = 'https://live.lean-lang.org/#code='
+export type LeanVerificationFile = { readonly path: string; readonly sha256: string; readonly bytes: number; readonly rawUrl: string }
+export type LeanVerificationTheorem = { readonly slug: string; readonly name: string; readonly qualified: string; readonly path: string; readonly proposition: string; readonly axioms: readonly string[] | null; readonly cases: readonly string[]; readonly tags: readonly string[]; readonly verifyLine: string }
+export function leanVerificationIndex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): { readonly editor: string; readonly files: readonly LeanVerificationFile[]; readonly theorems: readonly LeanVerificationTheorem[] } {
+  const fs = typeof process !== 'undefined' ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs') : undefined
+  if (!fs) throw new Error('leanVerificationIndex: no filesystem here — the index is computed at build, where the sources are')
+  const rows = leanPageRows(root)
+  const paths = [...new Set(rows.map((r) => r.sourcePath))].sort()
+  const text = new Map(paths.map((p) => [p, fs.readFileSync(`${root}/${p}`, 'utf8')]))
+  const namespaceOf = (p: string) => /^namespace\s+([A-Za-z_][\w.]*)/m.exec(text.get(p)!)?.[1] ?? ''
+  const files = paths.map((p): LeanVerificationFile => ({ path: p, sha256: sha256Sync(text.get(p)!), bytes: Buffer.byteLength(text.get(p)!), rawUrl: `${LEAN_SOURCE_RAW}/${p}` }))
+  const theorems = rows.map((r): LeanVerificationTheorem => {
+    const ns = namespaceOf(r.sourcePath)
+    const qualified = ns ? `${ns}.${r.name}` : r.name
+    return { slug: r.slug, name: r.name, qualified, path: r.sourcePath, proposition: r.proposition, axioms: r.axioms, cases: r.cases, tags: r.tags, verifyLine: `#print axioms ${qualified}` }
+  })
+  // the editor link is the editor base + the URL-encoded file: built by the client from the raw file it fetched (and by
+  // lean_source on request) — embedding it per file made the index a megabyte of repeated source
+  return { editor: LEAN_WEB_EDITOR, files, theorems }
 }
 
 /** THE HOME IS THE LEAN FEED (owner, 2026-11-15: 'consolidate all around lean feed so vitepress becomes lean blog'). Every

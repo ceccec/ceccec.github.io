@@ -7,7 +7,18 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { leanPageRows } from '../../src/pair/formal/proofs/index.ts'
+import { leanPageRows, leanVerificationIndex } from '../../src/pair/formal/proofs/index.ts'
+
+/** The verification index as one JSON line — what the lean_* MCP tools read. */
+export function runLeanIndexJsonExit(): number {
+  // THE INDEX TRAVELS AS A FILE: it is larger than a pipe flushes before the child exits (the MCP server read exactly 65 536
+  // characters of it), so it is written to the build cache and its path is the one line printed.
+  const out = join(process.cwd(), '.vitepress/cache/lean-verification-index.json')
+  mkdirSync(join(process.cwd(), '.vitepress/cache'), { recursive: true })
+  writeFileSync(out, JSON.stringify(leanVerificationIndex(process.cwd())))
+  process.stdout.write(`${out}\n`)
+  return 0
+}
 
 export const LEAN_CORPUS_FILE = '.vitepress/data/lean-corpus.json'
 

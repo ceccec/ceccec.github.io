@@ -63,7 +63,73 @@ function respondError(id: string | number | null | undefined, message: string) {
 type Handler = (args: Record<string, unknown>) => unknown | Promise<unknown>
 /** THE DISPATCH IS A TABLE KEYED BY THE DERIVED DEFS, NOT AN IF-CHAIN. Every served name has exactly one handler; a def with
  *  no handler, or a handler for no def, is a disagreement verify:mcp-transport surfaces by calling census_status over stdio. */
+// THE LEAN FAMILY. The index comes from the repo (scripts/verify/lean-corpus.ts runLeanIndexJsonExit), read once per server process.
+type LeanIndex = { editor: string; files: { path: string; sha256: string; rawUrl: string }[]; theorems: { slug: string; name: string; qualified: string; path: string; proposition: string; axioms: string[] | null; cases: string[]; tags: string[]; verifyLine: string }[] }
+let leanIndexCache: LeanIndex | null = null
+async function leanIndex(): Promise<LeanIndex> {
+  if (leanIndexCache) return leanIndexCache
+  const r = await runBootstrapCli(['run', 'scripts/verify/lean-corpus.ts', 'runLeanIndexJsonExit'])
+  const path = r.stdout.trim().split('\n').filter((l) => l.endsWith('lean-verification-index.json')).at(-1)
+  if (!path) throw new Error(`lean index not written (exit ${r.exitCode}): ${r.stderr.slice(0, 200)}`)
+  const { readFileSync } = await import('node:fs')
+  leanIndexCache = JSON.parse(readFileSync(path, 'utf8')) as LeanIndex
+  return leanIndexCache
+}
+async function leanTheorem(args: Record<string, unknown>) {
+  const idx = await leanIndex()
+  const key = String(args.slug ?? args.name ?? '')
+  const t = idx.theorems.find((row) => row.slug === key || row.qualified === key || row.name === key)
+  if (!t) return { idx, t: null, error: `no theorem named "${key}" — call lean_search first` }
+  return { idx, t, file: idx.files.find((f) => f.path === t.path)! }
+}
+
 const HANDLERS: Record<string, Handler> = {
+  lean_search: async (args) => {
+    const idx = await leanIndex()
+    const q = String(args.query ?? '').toLowerCase()
+    const limit = Number(args.limit ?? 20)
+    const hits = idx.theorems.filter((t) => (!q || `${t.qualified} ${t.proposition}`.toLowerCase().includes(q))
+      && (!args.case || t.cases.includes(String(args.case))) && (!args.tag || t.tags.includes(String(args.tag))) && (!args.file || t.path.endsWith(String(args.file))))
+    return { total: hits.length, theorems: hits.slice(0, limit).map(({ slug, qualified, proposition, axioms, cases, path }) => ({ slug, qualified, proposition, axioms, cases, path })), index: 'https://ceccec.psg.bg/lean-theorems.json' }
+  },
+  lean_source: async (args) => {
+    const found = await leanTheorem(args)
+    if (!found.t) return { ok: false, error: found.error }
+    const { readFileSync } = await import('node:fs')
+    const { createHash } = await import('node:crypto')
+    const source = readFileSync(found.t.path, 'utf8')
+    const sha256 = createHash('sha256').update(source).digest('hex')
+    return {
+      ok: sha256 === found.file.sha256, theorem: found.t.qualified, statement: found.t.proposition, recordedAxioms: found.t.axioms,
+      file: found.t.path, sha256, indexSha256: found.file.sha256, rawUrl: found.file.rawUrl, editorUrl: `${found.idx.editor}${encodeURIComponent(source)}`,
+      verifyLine: found.t.verifyLine, source,
+      howToVerify: 'Open editorUrl (the official Lean 4 web editor) or save source and run lean on it; append verifyLine at the end. The kernel prints the axioms it rests on; compare with recordedAxioms. Check sha256 against the raw file first.',
+    }
+  },
+  lean_verify: async (args) => {
+    const found = await leanTheorem(args)
+    if (!found.t) return { ok: false, error: found.error }
+    const { readFileSync, mkdtempSync, writeFileSync, rmSync } = await import('node:fs')
+    const { tmpdir } = await import('node:os')
+    const { join } = await import('node:path')
+    const { spawnSync } = await import('node:child_process')
+    const probe = spawnSync('lean', ['--version'], { encoding: 'utf8' })
+    if (probe.status !== 0) return { verdict: 'absent', theorem: found.t.qualified, why: 'Lean is not installed on the machine this server runs on — nothing was decided here', measureIt: `${found.idx.editor}${encodeURIComponent(readFileSync(found.t.path, 'utf8'))}`, verifyLine: found.t.verifyLine }
+    const dir = mkdtempSync(join(tmpdir(), 'lean-verify-'))
+    try {
+      const file = join(dir, 'Check.lean')
+      writeFileSync(file, `${readFileSync(found.t.path, 'utf8')}\n${found.t.verifyLine}\n`)
+      const run = spawnSync('lean', [file], { encoding: 'utf8', timeout: 300_000 })
+      const out = `${run.stdout}\n${run.stderr}`
+      const none = /does not depend on any axioms/.test(out)
+      const listed = /depends on axioms: \[([^\]]*)\]/.exec(out)
+      const kernelAxioms = none ? [] : listed ? listed[1]!.split(',').map((s) => s.trim()).filter(Boolean).sort() : null
+      const recorded = found.t.axioms ? [...found.t.axioms].sort() : null
+      const holds = run.status === 0 && kernelAxioms !== null && recorded !== null && kernelAxioms.join(',') === recorded.join(',')
+      return { verdict: holds ? 'holds' : 'refuted', theorem: found.t.qualified, lean: probe.stdout.trim(), kernelAxioms, recordedAxioms: recorded, exitCode: run.status, ...(holds ? {} : { output: out.slice(0, 2000) }) }
+    } finally { rmSync(dir, { recursive: true, force: true }) }
+  },
+
   list_capabilities: () => listStdioCapabilities(),
   next_leads: async () => {
     const result = await runBootstrapCli(['run', 'scripts/verify/next.ts', 'runNextJsonExit'])

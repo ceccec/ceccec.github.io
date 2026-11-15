@@ -154,6 +154,21 @@ const TOOL_DEF_LIST = [
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
+    name: 'lean_search',
+    description: 'Research: find kernel-checked Lean theorems by text, Clay case, tag or file — each with its fully qualified name, statement, the axioms the kernel recorded, and its source path. Answers from the same index the site publishes at /lean-theorems.json.',
+    inputSchema: { type: 'object', properties: { query: { type: 'string' }, case: { type: 'string' }, tag: { type: 'string' }, file: { type: 'string' }, limit: { type: 'number' } }, additionalProperties: false },
+  },
+  {
+    name: 'lean_source',
+    description: 'Edit: the verification packet for one theorem — its standalone Lean file (Lean 4 core, no Mathlib), the file SHA-256 and raw GitHub URL to check it against, a link to the official Lean 4 web editor with the file loaded, and the #print axioms line to append so the kernel reports what it rests on in the client\'s own session.',
+    inputSchema: { type: 'object', properties: { slug: { type: 'string' }, name: { type: 'string' } }, additionalProperties: false },
+  },
+  {
+    name: 'lean_verify',
+    description: 'Verify: compile the theorem\'s file with the Lean kernel on this machine and compare what #print axioms reports with the recorded axioms — holds, or refuted with the difference. Where Lean is not installed the verdict is absent, stated as such with the web-editor route, never a pass.',
+    inputSchema: { type: 'object', properties: { slug: { type: 'string' }, name: { type: 'string' } }, additionalProperties: false },
+  },
+  {
     name: 'publish_package',
     description: 'Edit: build the artifacts the tag would publish — the kernel (npm run build:package) and the npmjs package (packages/double-torus) — and report them. It never publishes and never tags: a tag fires npm and an immutable DOI, and release-cut cuts it on green only, at a terminal.',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
@@ -161,8 +176,9 @@ const TOOL_DEF_LIST = [
 ] as const
 
 /** THE TRINITY FAMILIES — nothing placed by hand. Every tool is one role of one family: research reads a state, edit runs an
- *  action through the bootstrap, verify measures. Five families × the trinity = 15 = 2×7+1, the rosetta count — an identity
- *  listStdioCapabilities reports and verify:mcp-transport measures against the served list and the fold's mirror. */
+ *  action through the bootstrap, verify measures. The served count is families × the trinity — computed, never written: it was
+ *  15 = 2×7+1 with five families, and is 18 with the Lean family; verify:mcp-transport measures it against the served list and
+ *  the fold's mirror. */
 export const MCP_TRINITY = ['research', 'edit', 'verify'] as const
 export const MCP_FAMILIES = [
   { family: 'meta', research: 'list_capabilities', edit: 'run_export', verify: 'run_gate' },
@@ -170,6 +186,7 @@ export const MCP_FAMILIES = [
   { family: 'compute', research: 'fold_report', edit: 'compute_from_source', verify: 'live_testing' },
   { family: 'quantum', research: 'quantum_capabilities', edit: 'quantum_submit_job', verify: 'quantum_get_status' },
   { family: 'release', research: 'release_readiness', edit: 'publish_package', verify: 'live_connectors' },
+  { family: 'lean', research: 'lean_search', edit: 'lean_source', verify: 'lean_verify' },
 ] as const
 const byName = new Map<string, (typeof TOOL_DEF_LIST)[number]>(TOOL_DEF_LIST.map((d) => [d.name, d]))
 export const MCP_PLACEMENT = new Map<string, { family: string; role: (typeof MCP_TRINITY)[number] }>(

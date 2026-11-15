@@ -68,7 +68,7 @@ import { domainProofPagePaths } from '../../research/index.ts'
 import { catchAllRoutePaths } from '../../wind/routes/automount/index.ts'
 import { vitepressAutomountPaths } from '../../pair/enforcement/gates/computational/index.ts'
 import { routeAliasTarget } from '../../wind/site/index.ts'
-import { leanPagePaths } from '../../pair/formal/proofs/index.ts'
+import { leanPagePaths, leanVerificationIndex } from '../../pair/formal/proofs/index.ts'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion/index.ts'
 import { honestRevolutionFpgaHonesty } from '../computer/index.ts'
 import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify/index.ts'
@@ -487,6 +487,9 @@ export function computedDistFiles(siteUrl: string, matrix: MindMatrix = buildMat
     { path: 'robots.txt', content: robotsTxt(site), mime: 'text/plain' },
     { path: 'digit-index.json', content: JSON.stringify(digitIndexJson(matrix, now), null, 2), mime: 'application/json' },
     { path: 'mcp.json', content: mcpJson(matrix), mime: 'application/json' },
+    // THE LEAN VERIFICATION INDEX, ONLINE: every file's SHA-256, raw URL and web-editor link, every theorem's statement,
+    // recorded axioms and #print-axioms line — what the lean_* MCP tools answer from, fetchable by any client.
+    { path: 'lean-theorems.json', content: JSON.stringify(leanVerificationIndex()), mime: 'application/json' },
     { path: 'skills.json', content: skillsJson(matrix), mime: 'application/json' },
     // The saved manual workflows (agentBashWorkflowsAreToolsSavedInSrc) as a served surface — the
     // agent's operational toolkit fetchable over MCP, computed from the one fold, never a second list.

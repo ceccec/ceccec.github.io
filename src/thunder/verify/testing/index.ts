@@ -1128,7 +1128,7 @@ export function formulaDrivenSiteConfig(matrix: MindMatrix = buildMatrix()) {
 
 
 /** THE TRINITY FAMILIES, the fold's mirror of the SDK's placement (verify:mcp-transport holds the two equal and equal to the
- *  served list): every tool is one role of one family. Five families × (research, edit, verify) = 15 = 2×7+1, the rosetta count. */
+ *  served list): every tool is one role of one family; the count is families × (research, edit, verify), computed — 18 with the Lean family. */
 export const MCP_TRINITY = ['research', 'edit', 'verify'] as const
 export const MCP_TRINITIES = [
   { family: 'meta', research: 'list_capabilities', edit: 'run_export', verify: 'run_gate' },
@@ -1136,6 +1136,7 @@ export const MCP_TRINITIES = [
   { family: 'compute', research: 'fold_report', edit: 'compute_from_source', verify: 'live_testing' },
   { family: 'quantum', research: 'quantum_capabilities', edit: 'quantum_submit_job', verify: 'quantum_get_status' },
   { family: 'release', research: 'release_readiness', edit: 'publish_package', verify: 'live_connectors' },
+  { family: 'lean', research: 'lean_search', edit: 'lean_source', verify: 'lean_verify' },
 ] as const
 export const MCP_TOOLS = MCP_TRINITIES.flatMap((f) => MCP_TRINITY.map((role) => f[role]))
 
@@ -1169,6 +1170,9 @@ function mcpToolDescription(name: McpToolName): string {
     quantum_get_status: 'Poll quantum job status and retrieve results',
     quantum_capabilities: 'List available quantum hardware backends and providers',
     live_testing: 'Run live API test suite (patents, research citations, quantum)',
+    lean_search: 'Find kernel-checked Lean theorems by text, Clay case, tag or file',
+    lean_source: 'The verification packet for one theorem: standalone Lean file, SHA-256, raw URL, web-editor link, #print axioms line',
+    lean_verify: 'Compile the theorem with the Lean kernel and compare its axioms with the record — holds, refuted, or absent (no Lean here)',
   }
   return descriptions[name] || 'Unknown tool'
 }
