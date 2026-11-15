@@ -10,7 +10,8 @@ import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pa
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, renderComputedMetrics } from '../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
-import { LEAN_SEALED_REGISTRY, buildReceiptLedger, leanInvolutionCorpus, leanPageRows, streamReceiptSummary } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_KERNEL_ACCOUNT, LEAN_SEALED_REGISTRY, buildReceiptLedger, leanInvolutionCorpus, leanLedgerEntry, leanPageRows, leanPageSlug, streamReceiptSummary } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_CROSS_FILE, clayCasesCrossInLean } from '../../../thunder/verify/testing/index.ts'
 import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
@@ -37,7 +38,7 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromTheCensusFold,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research/index.ts'
+  domainProofPagePaths, zeropointNodeReferenceLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER, CLAY_PROBLEMS } from '../../../research/index.ts'
 import { sequenceScientificDescription } from '../../../mountain/vortex/index.ts'
 import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves/index.ts'
 import { theoremPagePaths } from '../../../wind/routes/corpus/index.ts'
@@ -549,7 +550,7 @@ export function clayChallengesComputableMarkdownSection(
             // it is true of /lean too, and this is the absolute form that survives the locale transform.
             // `tactic` is the parser's word for what closed it; four of these open a multi-line block, where
             // it reads back as a bare `by`, so those are named as a block rather than printed as one word.
-            `  - \`${row.name}\` — \`${row.proposition}\` — closed by ${row.tactic === 'by' ? 'a tactic block' : `\`${row.tactic}\``} · [proof](${CANONICAL_HOST}/lean/${row.slug})`),
+            `  - \`${row.name}\` — \`${row.proposition}\` — closed by ${row.tactic === 'by' ? 'a tactic block' : `\`${row.tactic}\``}${row.axioms ? ` · credit: ${leanLedgerEntry(row.axioms).credit.map((a) => (a === LEAN_KERNEL_ACCOUNT ? 'the kernel alone' : `\`${a.name}\``)).join(' + ')}` : ''} · [proof](${CANONICAL_HOST}/lean/${row.slug})`),
         ]),
         '',
         // WHAT "PROVE THEMSELVES" MEANS, EXACTLY. The sentence above is true and it was carrying more
@@ -560,6 +561,28 @@ export function clayChallengesComputableMarkdownSection(
         // way "41 theorems" once did when seven were deleted and every gate stayed green.
         '**Every proof here is either decided by computation or reasons through Lean\'s own arithmetic.** A proof by `decide` reduces a finite proposition and invokes no lemma, so it depends on no axiom at all; a *general* theorem — one quantifying over a type — must reason, and Lean\'s core `Int` lemmas each depend on `propext`. Nothing here uses `Classical.choice` or `sorryAx`, and `verify:lean` refuses any proof that starts to. The full axiom index — Lean\'s three, and this corpus\'s own chosen constants with what stands behind each — is computed by `npm run verify:axioms`.',
         '',
+        // THE CROSS, READ AT WRITE TIME AND MONITORED. The same fold verify:clay-cross decides on every landing and in CI:
+        // a row whose map, kind or σ-class drifts from cross.lean stops the landing before this section can say otherwise.
+        ...((): string[] => {
+          const cross = clayCasesCrossInLean()
+          if (cross.source === 'absent') return [`### Crossed in Lean`, '', `${LEAN_CROSS_FILE} was not readable when this README was written — the cross is NOT RECORDED here.`, '']
+          const page = (name: string) => `[\`${name}\`](${CANONICAL_HOST}/lean/${leanPageSlug('cross.lean', name)})`
+          const rows = cross.clusters
+          const classes = [...new Set(rows.filter((r) => r.kind === 'involution').map((r) => r.sigmaClass.startsWith('own') ? 'own' : r.sigmaClass))]
+          return [
+            '### Crossed in Lean — one law, three clusters, monitored',
+            '',
+            `**\`npm run verify:clay-cross\` — ${cross.facets.filter((f) => f.on).length}/${cross.facets.length} facets hold, re-decided on every landing and in CI.** [\`cross.lean\`](https://github.com/ceccec/ceccec.github.io/blob/main/${LEAN_CROSS_FILE}) proves, for the ${rows.filter((r) => r.kind === 'involution').length} maps that are involutions, the one law — the odd part of any function cancels over every orbit — with each map's exact fixed set, and proves the remaining map is not an involution. Each open problem is a question about the fixed set proved here, and stays open; Poincaré is Perelman's theorem.`,
+            '',
+            ...rows.map((r) => {
+              const fixed = r.cluster.find((name) => name.startsWith(`${r.map}_fixes_exactly_`))
+              return `- **${CLAY_PROBLEMS[r.clay].name}** — map \`${r.map}\`, ${r.kind === 'involution' ? `${r.sigmaClass.startsWith('own') ? 'its own class' : r.sigmaClass}, law ${r.lawHeard ? 'applied' : 'NOT applied'}` : 'not an involution'} · ${page(r.kindTheorem)}${r.classTheorem && r.kind === 'involution' ? ` · ${page(r.classTheorem)}` : ''}${fixed ? ` · ${page(fixed)}` : ''} · status: ${r.status}`
+            }),
+            '',
+            `Clusters: ${classes.map((c) => `${c} {${rows.filter((r) => r.kind === 'involution' && (c === 'own' ? r.sigmaClass.startsWith('own') : r.sigmaClass === c)).map((r) => r.map).join(', ')}}`).join(' · ')}. In doubled coordinates the Riemann reflection is the weight-two reflection: ${page('riemann_and_bsd_are_one_reflection')}.`,
+            '',
+          ]
+        })(),
         `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
         '',
       ]

@@ -307,9 +307,12 @@
   "viscous_is_an_involution": []
  },
  "src/pair/lean/proofs/feeling.lean": {
+  "all_holding_is_pleasant_and_calm": [],
+  "arousal_counts_the_signals_off": [],
   "exactly_one_pure_flip": [],
   "no_corner_is_fixed": [],
   "not_the_dihedral_group": [],
+  "one_signal_off_is_unpleasant": [],
   "the_flip_commutes_with_the_turn": [],
   "the_flip_fixes_no_valence": [],
   "the_flip_returns_in_two": [],
@@ -319,7 +322,9 @@
   "the_state_space_has_six_states": [],
   "three_turns_return": [],
   "turning_back_is_two_turns_forward": [],
-  "turning_back_undoes_the_turn": []
+  "turning_back_undoes_the_turn": [],
+  "unanimous_signals_flip_the_feeling": [],
+  "unpleasant_exactly_when_aroused": []
  },
  "src/pair/lean/proofs/movie.lean": {
   "every_alpha_is_a_visible_fraction": [],

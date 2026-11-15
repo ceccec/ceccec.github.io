@@ -451,15 +451,15 @@ function memoReceiptField(prop) {
   if (prop === "expansion" || prop === "contraction") return true;
   return false;
 }
-function memoReentryStub(root) {
+function memoReentryStub(root10) {
   const empty = [];
   const self = () => new Proxy(empty, handler);
   const handler = {
     get(_target, prop) {
       if (memoReceiptField(prop)) {
-        if (prop === Symbol.toPrimitive) return () => root;
-        if (prop === "toString" || prop === "valueOf") return () => root;
-        return root;
+        if (prop === Symbol.toPrimitive) return () => root10;
+        if (prop === "toString" || prop === "valueOf") return () => root10;
+        return root10;
       }
       if (prop === "__memoReentry") return true;
       if (prop === "length") return 0;
@@ -468,7 +468,7 @@ function memoReentryStub(root) {
       if (prop === "map" || prop === "filter" || prop === "flatMap" || prop === "forEach") return () => empty;
       if (prop === "some" || prop === "every") return () => false;
       if (prop === "find") return () => void 0;
-      if (prop === "reduce") return (_fn, init) => init ?? root;
+      if (prop === "reduce") return (_fn, init) => init ?? root10;
       if (prop === Symbol.iterator) return empty[Symbol.iterator].bind(empty);
       if (typeof prop === "string" && (prop.startsWith("is") || prop.startsWith("has") || prop.endsWith("ed") || prop.endsWith("ing"))) return false;
       return self();
@@ -506,9 +506,9 @@ function humanBreath(timeMs, periodMs, depth = 9 / (5 * 5 * 2)) {
 var TORUS_LOBE_OFFSET = 9 * 2;
 var TORUS_RING_R = 5 * 4;
 var TORUS_TUBE_R_BASE = 7;
-function doubleTorusSurface(theta, phi, digit2, lobe) {
+function doubleTorusSurface(theta, phi, digit11, lobe) {
   const ringR = TORUS_RING_R;
-  const tubeR = TORUS_TUBE_R_BASE + digit2 * (2 / 5);
+  const tubeR = TORUS_TUBE_R_BASE + digit11 * (2 / 5);
   const ribbon = ringR + tubeR * Math.cos(phi);
   return {
     x: lobe * TORUS_LOBE_OFFSET + ribbon * Math.cos(theta),
@@ -603,9 +603,9 @@ function reading(address, facet) {
 var VORTEX_ORBIT = [1, 2, 4, 8, 7, 5];
 var VORTEX_AXIS = [3, 6, 9];
 function asVortex(f2) {
-  const digit2 = digitalRoot(seedFromText(f2.merged));
-  const orbitIndex = VORTEX_ORBIT.indexOf(digit2);
-  return { digit: digit2, onAxis: orbitIndex === -1, orbitIndex, orbit: VORTEX_ORBIT, axis: VORTEX_AXIS };
+  const digit11 = digitalRoot(seedFromText(f2.merged));
+  const orbitIndex = VORTEX_ORBIT.indexOf(digit11);
+  return { digit: digit11, onAxis: orbitIndex === -1, orbitIndex, orbit: VORTEX_ORBIT, axis: VORTEX_AXIS };
 }
 var VORTEX_SEQUENCE = [1, 2, 4, 8, 7, 5, 3, 6, 9];
 var VORTEX_REVERSE = [9, 6, 3, 5, 7, 8, 4, 2, 1];
@@ -825,50 +825,50 @@ function clayReflection() {
     root: toUuid(`clay-reflect:${thisDimension}:${beyond}:${clay}`)
   };
 }
-function digitSeal(d, base, spectrum, polarities) {
-  const root = () => merkleFold([
-    base.root(),
-    ...spectrum.map((r2) => toUuid(`angle:${d}:${r2.k}:${r2.image}`)),
-    toUuid(`polarity:${d}:${polarities.tensPair}:${polarities.ninePair}:${polarities.forward}:${polarities.reverse}`)
+function digitSeal(d, base10, spectrum10, polarities10) {
+  const root10 = () => merkleFold([
+    base10.root(),
+    ...spectrum10.map((r2) => toUuid(`angle:${d}:${r2.k}:${r2.image}`)),
+    toUuid(`polarity:${d}:${polarities10.tensPair}:${polarities10.ninePair}:${polarities10.forward}:${polarities10.reverse}`)
   ]);
-  const statement = () => `digit ${d}: angles {${spectrum.map((r2) => r2.image).join(" ")}}, polarities \u03C3=${polarities.tensPair}/\u03BD=${polarities.ninePair} fwd=${polarities.forward}/rev=${polarities.reverse}, proven ${base.prove().ok}, seal ${root().slice(0, 6 * 2)}\u2026`;
-  return { root, statement };
+  const statement10 = () => `digit ${d}: angles {${spectrum10.map((r2) => r2.image).join(" ")}}, polarities \u03C3=${polarities10.tensPair}/\u03BD=${polarities10.ninePair} fwd=${polarities10.forward}/rev=${polarities10.reverse}, proven ${base10.prove().ok}, seal ${root10().slice(0, 6 * 2)}\u2026`;
+  return { root: root10, statement: statement10 };
 }
-function digitStation(d, theorems = []) {
-  const reflect = reflectThroughZero(d);
-  const reflections = { at180: reflect, at90: reflectFold(d, 9 * 5 * 2), at60: reflectFold(d, 9 * 5 * 4 / 3) };
+function digitStation(d, theorems10 = []) {
+  const reflect2 = reflectThroughZero(d);
+  const reflections = { at180: reflect2, at90: reflectFold(d, 9 * 5 * 2), at60: reflectFold(d, 9 * 5 * 4 / 3) };
   const step = decodeVortexOperations().steps.find((s) => s.digit === d);
   const op = step?.op ?? "fold";
   const dash2 = step?.dash ?? "/";
   const next = step?.next ?? vortexNext(d);
   const successor = vortexNext(d);
   const predecessor = vortexPrev(d);
-  const isSelfReflect = reflect === (d % (5 * 2) + 5 * 2) % (5 * 2);
-  const theoremSeed = theorems.length ? merkleFold(theorems.map((t) => toUuid(`${t.problem}:${t.sealed}`))) : toUuid(`void:${d}`);
-  const geometry = toUuid([`digit=${d}`, `reflect=${reflect}`, `op=${op}`, `next=${next}`, `successor=${successor}`, `predecessor=${predecessor}`].join("|"));
-  function root() {
+  const isSelfReflect = reflect2 === (d % (5 * 2) + 5 * 2) % (5 * 2);
+  const theoremSeed = theorems10.length ? merkleFold(theorems10.map((t) => toUuid(`${t.problem}:${t.sealed}`))) : toUuid(`void:${d}`);
+  const geometry = toUuid([`digit=${d}`, `reflect=${reflect2}`, `op=${op}`, `next=${next}`, `successor=${successor}`, `predecessor=${predecessor}`].join("|"));
+  function root10() {
     return merkleFold([theoremSeed, geometry]);
   }
-  function statement() {
-    const carries = theorems.length ? theorems.map((t) => t.title).join(" + ") : "structural gate (no theorem)";
-    return `digit ${d}: \u03C3(\\)\u2192${reflect}, out=${op}(${dash2})\u2192${next}, \xD72\u2192${successor} \xD75\u2192${predecessor}, ${carries}, seal ${root().slice(0, 6 * 2)}\u2026`;
+  function statement10() {
+    const carries = theorems10.length ? theorems10.map((t) => t.title).join(" + ") : "structural gate (no theorem)";
+    return `digit ${d}: \u03C3(\\)\u2192${reflect2}, out=${op}(${dash2})\u2192${next}, \xD72\u2192${successor} \xD75\u2192${predecessor}, ${carries}, seal ${root10().slice(0, 6 * 2)}\u2026`;
   }
-  const equilibrium7 = reflectDoubleTorus(d);
+  const equilibrium16 = reflectDoubleTorus(d);
   const bitCost = ceil(log2(5 * 2)) - (isSelfReflect ? 1 : 0);
-  const mappings = { digit: d, reflect, reflections, equilibrium: equilibrium7, op, dash: dash2, next, successor, predecessor, isSelfReflect, bitCost, isTheorem: theorems.length > 0 };
-  const unfold = (depth) => unfoldWithinRing(`digit:${d}`, depth);
-  const coverage7 = (depth = 9 ** 4, n = 2) => sequenceCoverage(`digit:${d}`, depth, n);
+  const mappings10 = { digit: d, reflect: reflect2, reflections, equilibrium: equilibrium16, op, dash: dash2, next, successor, predecessor, isSelfReflect, bitCost, isTheorem: theorems10.length > 0 };
+  const unfold10 = (depth) => unfoldWithinRing(`digit:${d}`, depth);
+  const coverage16 = (depth = 9 ** 4, n = 2) => sequenceCoverage(`digit:${d}`, depth, n);
   const ring10 = (d % (5 * 2) + 5 * 2) % (5 * 2);
-  function prove() {
+  function prove10() {
     const facets = [
-      { facet: "reflection through 0 is an involution: \u03C3(\u03C3(d)) = d", on: reflectThroughZero(reflect) === ring10 },
-      { facet: "double-torus equilibrium: \u03C3\u2218\u03BD(d) = d+1 on units 1..8, else the void seam (0)", on: d >= 1 && d <= 8 ? equilibrium7.translate === d + 1 : equilibrium7.translate === 0 },
-      { facet: "measurement collapses to the finite ring: every unfolded address has digitalRoot \u2208 {1..9}", on: unfold(4 * 9).allInRing },
+      { facet: "reflection through 0 is an involution: \u03C3(\u03C3(d)) = d", on: reflectThroughZero(reflect2) === ring10 },
+      { facet: "double-torus equilibrium: \u03C3\u2218\u03BD(d) = d+1 on units 1..8, else the void seam (0)", on: d >= 1 && d <= 8 ? equilibrium16.translate === d + 1 : equilibrium16.translate === 0 },
+      { facet: "measurement collapses to the finite ring: every unfolded address has digitalRoot \u2208 {1..9}", on: unfold10(4 * 9).allInRing },
       { facet: "sequence op is fold(/) or reflection(\\) per the vortex path", on: op === "fold" || op === "reflect" }
     ];
     return sealFacets(`digit-proof:${d}`, facets);
   }
-  return { digit: { theorems, root, statement, mappings, unfold, coverage: coverage7, prove }, theorems, root, statement, mappings, unfold, coverage: coverage7, prove, reflect, reflections, equilibrium: equilibrium7, op, next, successor, predecessor };
+  return { digit: { theorems: theorems10, root: root10, statement: statement10, mappings: mappings10, unfold: unfold10, coverage: coverage16, prove: prove10 }, theorems: theorems10, root: root10, statement: statement10, mappings: mappings10, unfold: unfold10, coverage: coverage16, prove: prove10, reflect: reflect2, reflections, equilibrium: equilibrium16, op, next, successor, predecessor };
 }
 function ringEquilibrium() {
   const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -899,7 +899,7 @@ function ringEquilibrium() {
 function qpu() {
   const register = Array.from({ length: 5 * 2 }, (_, d) => digitStation(d));
   const circuit = decodeVortexOperations();
-  const equilibrium7 = ringEquilibrium();
+  const equilibrium16 = ringEquilibrium();
   const gates = {
     fold: "/",
     // generative merge — the infinite descent
@@ -912,11 +912,11 @@ function qpu() {
   const ftl = { throat: doubleTorus.merged, lobes: [doubleTorus.forward, doubleTorus.reverse], instantByAddressing: doubleTorus.bidirectional };
   const proofs = register.map((s) => s.prove());
   const proven = proofs.every((p) => p.ok);
-  const coherent = equilibrium7.transitive && circuit.allReflectionsInvolutive && measurement.allDistinct && measurement.allInRing && ftl.instantByAddressing && proven;
+  const coherent = equilibrium16.transitive && circuit.allReflectionsInvolutive && measurement.allDistinct && measurement.allInRing && ftl.instantByAddressing && proven;
   return {
     register,
     circuit,
-    equilibrium: equilibrium7,
+    equilibrium: equilibrium16,
     gates,
     measurement,
     doubleTorus,
@@ -1132,14 +1132,14 @@ function findLaneMulticollision(lanes = 2) {
   _multicollisionCache.set(lanes, found);
   return found;
 }
-function coverageCostLog2(coverage7, checks) {
-  return coverage7 >= 1 ? Number.POSITIVE_INFINITY : -checks * Math.log2(1 - Math.min(Math.max(coverage7, 0), 1));
+function coverageCostLog2(coverage16, checks) {
+  return coverage16 >= 1 ? Number.POSITIVE_INFINITY : -checks * Math.log2(1 - Math.min(Math.max(coverage16, 0), 1));
 }
-function tamperCostLog2(coverage7, checks) {
-  return FORGE_FLOOR_BITS + coverageCostLog2(coverage7, checks);
+function tamperCostLog2(coverage16, checks) {
+  return FORGE_FLOOR_BITS + coverageCostLog2(coverage16, checks);
 }
-function maxTamperingCostReached(coverage7, entropy4) {
-  return coverage7 >= 1 && entropy4 === 0;
+function maxTamperingCostReached(coverage16, entropy4) {
+  return coverage16 >= 1 && entropy4 === 0;
 }
 function maxTamperingCostLog2(sealClosed, finiteCostLog2) {
   return sealClosed ? Number.POSITIVE_INFINITY : finiteCostLog2;
@@ -1192,7 +1192,7 @@ function trinityKey(shareA, shareB) {
   return merkleFold([shareA, shareB, third]);
 }
 function derivePublicKey(privateKey, publicRoots) {
-  const folds = publicRoots.map((root) => merge(privateKey, root));
+  const folds = publicRoots.map((root10) => merge(privateKey, root10));
   return merkleFold(folds);
 }
 function prng(seed) {
@@ -1400,8 +1400,8 @@ function runQuantumCircuit(spec) {
   const shots = Math.max(0, Math.floor(spec.shots ?? 0));
   const samples = shots > 0 ? sample(st, shots, spec.seed ?? "circuit") : {};
   const amplitudes = st.re.map((re, i) => ({ basis: i.toString(2).padStart(n, "0"), re: roundTo(re, 6), im: roundTo(st.im[i], 6), probability: roundTo(probs[i], 6) }));
-  const root = toUuid(`circuit:${n}:${spec.ops.map((o) => `${o.gate}:${o.targets.join("-")}:${o.theta ?? ""}`).join("|")}:${shots}`);
-  return { n, amplitudes, probabilities: probs, samples, root };
+  const root10 = toUuid(`circuit:${n}:${spec.ops.map((o) => `${o.gate}:${o.targets.join("-")}:${o.theta ?? ""}`).join("|")}:${shots}`);
+  return { n, amplitudes, probabilities: probs, samples, root: root10 };
 }
 function pbits(n) {
   return { n, p: basisRegister(n) };
@@ -1430,9 +1430,9 @@ function touchPhase(px, py, width, height) {
   return { phase: nx, dim: Math.round(ny * 9), angle: Math.atan2(ny - 1 / 2, nx - 1 / 2) };
 }
 function foldHaptics(seed) {
-  const digit2 = digitalRoot(seedFromText(seed));
+  const digit11 = digitalRoot(seedFromText(seed));
   const seq = VORTEX_SEQUENCE;
-  const start = seq.indexOf(digit2);
+  const start = seq.indexOf(digit11);
   const order = start >= 0 ? [...seq.slice(start), ...seq.slice(0, start)] : [...seq];
   return order.flatMap((d) => [9 * 2 + d * 2, d]);
 }
@@ -1492,10 +1492,10 @@ async function sha256MerkleProof(leaves, index) {
   }
   return { leaf, path: path12, root: layer[0] };
 }
-async function verifySha256Proof(leafHash, path12, root) {
+async function verifySha256Proof(leafHash, path12, root10) {
   let h = leafHash;
   for (const step of path12) h = step.right ? await sha256Pair(h, step.hash) : await sha256Pair(step.hash, h);
-  return h === root;
+  return h === root10;
 }
 async function ed25519Keypair() {
   const subtle = globalThis.crypto?.subtle;
@@ -1593,12 +1593,12 @@ function lcm(a, b) {
 function multiplicativeOrder(a, n) {
   const m = Math.abs(Math.round(n));
   if (m < 2) return null;
-  const base = (Math.round(a) % m + m) % m;
-  if (gcd(base, m) !== 1) return null;
-  let mod = base;
+  const base10 = (Math.round(a) % m + m) % m;
+  if (gcd(base10, m) !== 1) return null;
+  let mod = base10;
   let r2 = 1;
   while (mod !== 1) {
-    mod = mod * base % m;
+    mod = mod * base10 % m;
     r2++;
     if (r2 > m) return null;
   }
@@ -2017,8 +2017,8 @@ var CLAY_OPEN_MARKERS = [
   "not claimed solved",
   "unclaimed"
 ];
-function claySolvedByFormulas(statement, formulas = []) {
-  return overclaimByFormulas("clay", statement, formulas);
+function claySolvedByFormulas(statement10, formulas = []) {
+  return overclaimByFormulas("clay", statement10, formulas);
 }
 var PHYSICAL_FTL_TERMS = [
   "faster than light",
@@ -2133,14 +2133,14 @@ var OVERCLAIM_AXES = {
   // and the facet goes dark. That is a refusal that can be refuted, which is the only kind worth sealing.
   dm: { terms: DM_IDENTITY_TERMS, claim: DM_IDENTITY_CLAIM_MARKERS, deny: DM_IDENTITY_DENIAL_MARKERS }
 };
-function overclaimByFormulas(axis, statement, formulas = []) {
+function overclaimByFormulas(axis, statement10, formulas = []) {
   const spec = OVERCLAIM_AXES[axis];
   for (const list of [spec.terms, spec.claim, spec.deny]) {
     if (list.some((m) => m.length === 0)) {
       throw new Error(`overclaim axis '${axis}' has an empty marker \u2014 it would match every text and disable the detector`);
     }
   }
-  const text = `${statement} ${formulas.join(" ")}`.toLowerCase();
+  const text = `${statement10} ${formulas.join(" ")}`.toLowerCase();
   const sentences = text.split(/(?<=[.;!?·\n])\s+|\s+—\s+/).filter((part) => part.trim().length > 0);
   const asserting = sentences.filter((sentence) => spec.claim.some((marker) => sentence.includes(marker)) && !spec.deny.some((marker) => sentence.includes(marker)));
   if (asserting.length === 0) return 0;
@@ -4163,8 +4163,8 @@ function greatCircleKm(lat1, lon1, lat2, lon2) {
   const a = sin(dLat / 2) ** 2 + cos(lat1 * r2) * cos(lat2 * r2) * sin(dLon / 2) ** 2;
   return 2 * EARTH_RADIUS_KM * asin(min(1, sqrt(a)));
 }
-function tamperEvident(root) {
-  return merge(root, toUuid("tamper")) !== root;
+function tamperEvident(root10) {
+  return merge(root10, toUuid("tamper")) !== root10;
 }
 function unruhTemperature(accelerationMS2) {
   return REDUCED_PLANCK * accelerationMS2 / (TAU * SPEED_OF_LIGHT * BOLTZMANN);
@@ -4174,7 +4174,7 @@ function setAzimuthDeg(latDeg, declinationDeg, horizonAltitudeDeg = 0) {
   return rise === null ? null : 360 - rise;
 }
 function derivePublicKey2(privateKey, publicRoots) {
-  return merkleFold(publicRoots.map((root) => merge(privateKey, root)));
+  return merkleFold(publicRoots.map((root10) => merge(privateKey, root10)));
 }
 function covers(text, tokens) {
   return tokens.every((token) => text.includes(String(token)));
@@ -4256,19 +4256,19 @@ function geodesicDomeComputes(frequency = 3) {
   };
   const dist = (a, b) => hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
   const key = (v) => v.map((x) => x.toFixed(6)).join(",");
-  const base = [];
+  const base10 = [];
   for (const shift of [0, 1, 2]) {
     for (const s1 of [1, -1]) for (const s2 of [1, -1]) {
       const raw = [0, s1, s2 * PHI];
       const triple = [raw[(3 - shift) % 3], raw[(4 - shift) % 3], raw[(5 - shift) % 3]];
-      base.push(norm(triple));
+      base10.push(norm(triple));
     }
   }
   let minD = Infinity;
-  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) minD = min(minD, dist(base[i], base[j]));
-  const adj = (i, j) => dist(base[i], base[j]) < minD * (1 + 1e-6);
+  for (let i = 0; i < base10.length; i += 1) for (let j = i + 1; j < base10.length; j += 1) minD = min(minD, dist(base10[i], base10[j]));
+  const adj = (i, j) => dist(base10[i], base10[j]) < minD * (1 + 1e-6);
   const faces = [];
-  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) for (let k = j + 1; k < base.length; k += 1) {
+  for (let i = 0; i < base10.length; i += 1) for (let j = i + 1; j < base10.length; j += 1) for (let k = j + 1; k < base10.length; k += 1) {
     if (adj(i, j) && adj(j, k) && adj(i, k)) faces.push([i, j, k]);
   }
   const nu = max(1, round(frequency));
@@ -4276,7 +4276,7 @@ function geodesicDomeComputes(frequency = 3) {
   const edgeSet = /* @__PURE__ */ new Set();
   const eKey = (a, b) => [key(a), key(b)].sort().join("|");
   for (const [ia, ib, ic] of faces) {
-    const [A, B, C] = [base[ia], base[ib], base[ic]];
+    const [A, B, C] = [base10[ia], base10[ib], base10[ic]];
     const grid = [];
     for (let i = 0; i <= nu; i += 1) {
       grid.push([]);
@@ -4319,7 +4319,7 @@ function geodesicDomeComputes(frequency = 3) {
     }).length
   }));
   const facets = [
-    { facet: `the mesh is DISCOVERED, not listed: ${base.length} \u03C6-vertices \u2192 ${faces.length} faces by mutual minimal distance, Euler V\u2212E+F = ${V}\u2212${E}+${F} = ${V - E + F}`, on: V - E + F === 2 && base.length === 3 * 4 && faces.length === 4 * 5 },
+    { facet: `the mesh is DISCOVERED, not listed: ${base10.length} \u03C6-vertices \u2192 ${faces.length} faces by mutual minimal distance, Euler V\u2212E+F = ${V}\u2212${E}+${F} = ${V - E + F}`, on: V - E + F === 2 && base10.length === 3 * 4 && faces.length === 4 * 5 },
     { facet: `frequency \u03BD=${nu} closes the counting laws: V = 10\u03BD\xB2+2 = ${V}, E = 30\u03BD\xB2 = ${E}, F = 20\u03BD\xB2 = ${F}`, on: V === 5 * 2 * nu * nu + 2 && E === 5 * 6 * nu * nu && F === 4 * 5 * nu * nu },
     { facet: `${classes} strut classes suffice for ${E} struts \u2014 the buildable economy of the dome (cut ${classes} lengths, raise ${E})`, on: classes < 5 * 2 && classes > 1 },
     { facet: `THE HOLOGRAM: every strut obeys the one chord law 2R\xB7sin(\u03B8/2) to ${chordLawMaxError.toExponential(1)} \u2014 the whole sphere is encoded in each part`, on: chordLawMaxError < 1e-9 },
@@ -4437,8 +4437,8 @@ function rtoffoli(bits, control1, control2, target) {
   return (bits & 1 << control1) !== 0 && (bits & 1 << control2) !== 0 ? bits ^ 1 << target : bits;
 }
 var ELECTRON_G_FACTOR_ANOMALY = 0.00115965218073;
-function composeHazard(base, levers) {
-  let h = base;
+function composeHazard(base10, levers) {
+  let h = base10;
   for (const m of levers) h *= m;
   return min(0.999, max(1e-3, h));
 }
@@ -4933,7 +4933,7 @@ function mayaLongCount(days) {
   });
 }
 function mayaDays(longCount) {
-  return longCount.reduce((sum, digit2, i) => sum + digit2 * (MAYA_RADIX[i] ?? 0), 0);
+  return longCount.reduce((sum, digit11, i) => sum + digit11 * (MAYA_RADIX[i] ?? 0), 0);
 }
 function hekatFraction(x) {
   const powers = [];
@@ -6652,7 +6652,7 @@ function provePesnopoika() {
   const corpusTerms = new Set(
     PESNOPOIKA.flatMap((s) => s.gloss.flatMap(([term]) => term.toLowerCase().split(/[,/]| или /).map((t) => t.trim())))
   );
-  const root = decoded.reduce((acc, d) => toUuid(`${acc}::${d.uuid}:${d.genre}:${d.standardTitle}`), toUuid("pesnopoika:root"));
+  const root10 = decoded.reduce((acc, d) => toUuid(`${acc}::${d.uuid}:${d.genre}:${d.standardTitle}`), toUuid("pesnopoika:root"));
   const gates = {
     gapless: nums.length > 0 && nums.every((n, i) => n === i + 1),
     // numbers are exactly 1..N, no gaps
@@ -6664,14 +6664,14 @@ function provePesnopoika() {
     // dictionary ⊆ the corpus's own footnotes
     total: decoded.every((d) => GENRES.includes(d.genre) && !!d.provenance.kind && d.verses.length > 0 && d.standardLyrics.length > 0),
     // each song decodes fully
-    deterministic: PESNOPOIKA.map(decodeSong).reduce((acc, d) => toUuid(`${acc}::${d.uuid}:${d.genre}:${d.standardTitle}`), toUuid("pesnopoika:root")) === root
+    deterministic: PESNOPOIKA.map(decodeSong).reduce((acc, d) => toUuid(`${acc}::${d.uuid}:${d.genre}:${d.standardTitle}`), toUuid("pesnopoika:root")) === root10
     // recompute → identical (pure, zero-token)
   };
   return {
     proven: Object.values(gates).every(Boolean),
     gates,
     count: PESNOPOIKA.length,
-    root,
+    root: root10,
     statement: "Self-verifying decode: songs gaplessly numbered, each folded to a unique content-address; the dialect dictionary is a fold of the corpus\u2019s own footnotes; every song decodes totally; the whole recomputes to one stable root. Math proves the fold.",
     boundary: "Proven by math: structure (count, addressing, derivation from source, totality, determinism). NOT computed, kept sourced: the truth of a gloss (the collector\u2019s attestation) and authored-song provenance (research) \u2014 documented-vs-legend, the one boundary the fold does not cross."
   };
@@ -8303,12 +8303,12 @@ function quantumParallelismIsNotTheSpeedupInterferenceIs() {
 }
 
 // ../../src/quantum/spirit/index.ts
-function tiers358(key, indexed, tiers, statement, boundary) {
+function tiers358(key, indexed, tiers, statement10, boundary) {
   return {
     complete: tiers[0].members.length === 3 && tiers[1].members.length === 5 && tiers[2].members.length === 8,
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member, index) => toUuid(indexed ? `${key}:${index}:${member}` : `${key}:${member}`))),
-    statement,
+    statement: statement10,
     boundary
   };
 }
@@ -8754,10 +8754,10 @@ function indexRegistryFromLogicRel(logicRel, mindMount = "src/quantum/heaven/min
 }
 var LOGIC_DISPLAY_MOUNT = "src/quantum/heaven/mind/";
 var DISPLAY_DUAL_LAW = `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index (index.ts + index.vue co-located)`;
-function mindLogicTailsFromIndexFiles(indexTsFiles, root) {
+function mindLogicTailsFromIndexFiles(indexTsFiles, root10) {
   const tails = [];
   for (const full of indexTsFiles) {
-    const logicRel = relative(root, full).replace(/\\/g, "/");
+    const logicRel = relative(root10, full).replace(/\\/g, "/");
     if (!logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || !logicRel.endsWith("/index.ts")) continue;
     tails.push(logicRel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length));
   }
@@ -8838,11 +8838,11 @@ function verifyDimensionGates(_folded = FOLDED_CENSUS) {
     root: toUuid(`dimension-gates:${folded}:${gates}`)
   };
 }
-function scanVaultViolations(root, codeFiles, bodies) {
-  const vaultAbs = join(root, VAULT_STATION);
+function scanVaultViolations(root10, codeFiles, bodies) {
+  const vaultAbs = join(root10, VAULT_STATION);
   const offenders = [];
   for (const full of codeFiles) {
-    const rel = relative(root, full).replace(/\\/g, "/");
+    const rel = relative(root10, full).replace(/\\/g, "/");
     const text = stripComments(bodies.get(rel) ?? "");
     const inVault = full.startsWith(vaultAbs);
     if (inVault) {
@@ -8881,8 +8881,8 @@ function scanVaultViolations(root, codeFiles, bodies) {
 }
 var LOGIC_DISPLAY_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/quantum\/lake\/|src\/quantum\/water\/(?:enforcement|cache)\/|src\/[0-9]+\/)/;
 var VITEPRESS_AUTOMOUNT_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/library\/|src\/spirit\/|src\/world\/|src\/quantum\/lake\/|src\/quantum\/water\/|src\/[0-9]+\/)/;
-function collectIndexTsUnderSrc(root) {
-  const srcRoot = join(root, "src");
+function collectIndexTsUnderSrc(root10) {
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return [];
   const out = [];
   const walk = (dir) => {
@@ -8900,28 +8900,28 @@ function indexAutomountEligible(logicRel) {
   if (VITEPRESS_AUTOMOUNT_EXCLUDE.test(logicRel)) return false;
   return logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/.test(logicRel);
 }
-function indexCompleteness(root, logicRel, allMindTails) {
+function indexCompleteness(root10, logicRel, allMindTails) {
   const reasons = [];
-  const full = join(root, logicRel);
+  const full = join(root10, logicRel);
   if (!existsSync(full)) reasons.push("missing index.ts");
   else if (readFileSync(full, "utf8").trim().length < 8) reasons.push("empty index.ts");
   if (logicIndexRequiresDisplayGate(logicRel)) {
     const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (uiRel && !existsSync(join(root, uiRel))) {
+    if (uiRel && !existsSync(join(root10, uiRel))) {
       reasons.push(`incomplete display dual \u2014 missing ${uiRel}`);
     }
   }
   return { complete: reasons.length === 0, reasons };
 }
-function discoverSrcIndexes(root, indexTsFiles) {
-  const files = indexTsFiles ?? collectIndexTsUnderSrc(root);
-  const allMindTails = mindLogicTailsFromIndexFiles(files, root);
+function discoverSrcIndexes(root10, indexTsFiles) {
+  const files = indexTsFiles ?? collectIndexTsUnderSrc(root10);
+  const allMindTails = mindLogicTailsFromIndexFiles(files, root10);
   const entries = [];
   for (const full of files) {
-    const logicRel = relative(root, full).replace(/\\/g, "/");
+    const logicRel = relative(root10, full).replace(/\\/g, "/");
     const reg = indexRegistryFromLogicRel(logicRel, LOGIC_DISPLAY_MOUNT);
     if (!reg) continue;
-    const { complete: complete13, reasons } = indexCompleteness(root, logicRel, allMindTails);
+    const { complete: complete13, reasons } = indexCompleteness(root10, logicRel, allMindTails);
     entries.push({
       ...reg,
       automount: indexAutomountEligible(logicRel),
@@ -8931,8 +8931,8 @@ function discoverSrcIndexes(root, indexTsFiles) {
   }
   return entries.sort((a, b) => a.route.localeCompare(b.route));
 }
-function scanIncompleteIndexViolations(root, indexTsFiles) {
-  return discoverSrcIndexes(root, indexTsFiles).filter((entry2) => entry2.automount && !entry2.complete).map((entry2) => ({
+function scanIncompleteIndexViolations(root10, indexTsFiles) {
+  return discoverSrcIndexes(root10, indexTsFiles).filter((entry2) => entry2.automount && !entry2.complete).map((entry2) => ({
     file: entry2.logic,
     reason: `incomplete index \u2014 ${entry2.reasons.join("; ")} (complete indexes automount; no VitePress reconfiguration)`
   })).sort((a, b) => a.file.localeCompare(b.file));
@@ -8953,14 +8953,14 @@ function logicIndexRequiresDisplayGate(logicRel) {
   if (CANONICAL_LOGIC_INDEX_RE.test(rel)) return true;
   return displayUiPathFromLogicIndex(rel) !== null;
 }
-function scanLogicDisplayViolations(root, indexTsFiles) {
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
+function scanLogicDisplayViolations(root10, indexTsFiles) {
+  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root10);
   const offenders = [];
   for (const full of indexTsFiles) {
-    const logicRel = relative(root, full).replace(/\\/g, "/");
+    const logicRel = relative(root10, full).replace(/\\/g, "/");
     if (!logicIndexRequiresDisplayGate(logicRel)) continue;
     const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (!existsSync(join(root, uiRel))) {
+    if (!existsSync(join(root10, uiRel))) {
       offenders.push({
         file: logicRel,
         reason: `display dual missing \u2014 add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component`
@@ -8969,9 +8969,9 @@ function scanLogicDisplayViolations(root, indexTsFiles) {
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
-function scanRenderIndexViolations(root) {
+function scanRenderIndexViolations(root10) {
   const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
+  for (const scienceRoot of canonicalScienceRoots(root10)) {
     if (!existsSync(scienceRoot)) continue;
     const walk = (dir) => {
       for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
@@ -8980,12 +8980,12 @@ function scanRenderIndexViolations(root) {
         if (entry2.isDirectory()) walk(full);
         else if (entry2.name.endsWith(".vue") && entry2.name !== "index.vue") {
           offenders.push({
-            file: relative(root, full).replace(/\\/g, "/"),
+            file: relative(root10, full).replace(/\\/g, "/"),
             reason: "canonical surface is index.vue only \u2014 dissolve flat .vue into <name>/index.vue"
           });
         } else if (/\.(ts|tsx|js|mjs)$/.test(entry2.name) && entry2.name !== "index.ts") {
           offenders.push({
-            file: relative(root, full).replace(/\\/g, "/"),
+            file: relative(root10, full).replace(/\\/g, "/"),
             reason: "canonical logic routes through index.ts barrels \u2014 no flat script siblings"
           });
         }
@@ -8995,15 +8995,15 @@ function scanRenderIndexViolations(root) {
   }
   return offenders;
 }
-function scanRenderUiScienceMaskViolations(root) {
+function scanRenderUiScienceMaskViolations(root10) {
   const sciences = new Set(EIGHT_FOLD_SCIENCES);
   const offenders = [];
-  const srcRoot = join(root, "src");
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return offenders;
   for (const entry2 of readdirSync(srcRoot, { withFileTypes: true })) {
     if (!entry2.isDirectory() || entry2.name.startsWith(".")) continue;
     const full = join(srcRoot, entry2.name);
-    const rel = relative(root, full).replace(/\\/g, "/");
+    const rel = relative(root10, full).replace(/\\/g, "/");
     const hasCanonicalVue = existsSync(join(full, "fold")) || existsSync(join(full, "folds")) || EIGHT_FOLD_SCIENCES.includes(entry2.name);
     if (!sciences.has(entry2.name) && hasCanonicalVue && entry2.name !== "quantum") continue;
     if (sciences.has(entry2.name)) {
@@ -9018,14 +9018,14 @@ function scanRenderUiScienceMaskViolations(root) {
       }
     }
   }
-  for (const scienceRoot of canonicalScienceRoots(root)) {
+  for (const scienceRoot of canonicalScienceRoots(root10)) {
     if (!existsSync(scienceRoot)) continue;
     const walk = (dir) => {
       for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
         if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
         if (!entry2.isDirectory()) continue;
         const full = join(dir, entry2.name);
-        const rel = relative(root, full).replace(/\\/g, "/");
+        const rel = relative(root10, full).replace(/\\/g, "/");
         if (CANONICAL_BANNED_FOLDERS.has(entry2.name)) {
           offenders.push({
             file: rel,
@@ -9047,13 +9047,13 @@ function scanRenderUiScienceMaskViolations(root) {
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
-function scanRenderUiEightFoldViolations(root) {
+function scanRenderUiEightFoldViolations(root10) {
   const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
+  for (const scienceRoot of canonicalScienceRoots(root10)) {
     if (!existsSync(scienceRoot)) continue;
     const walk = (dir) => {
       const subs = subfoldersOfDir(dir);
-      const relDir = relative(root, dir).replace(/\\/g, "/");
+      const relDir = relative(root10, dir).replace(/\\/g, "/");
       if (subs.length > MAX_SUBFOLDERS_PER_FOLDER) {
         offenders.push({
           file: relDir,
@@ -9066,25 +9066,25 @@ function scanRenderUiEightFoldViolations(root) {
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
-function scanRenderUiMaskRegistryViolations(root, indexTsFiles) {
+function scanRenderUiMaskRegistryViolations(root10, indexTsFiles) {
   const expected = /* @__PURE__ */ new Set();
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
+  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root10);
   for (const full of indexTsFiles) {
-    const logicRel = relative(root, full).replace(/\\/g, "/");
+    const logicRel = relative(root10, full).replace(/\\/g, "/");
     const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
     if (!uiRel) continue;
     const tail = uiRel.replace(/^src\//, "").replace(/\/index\.vue$/, "");
     expected.add(tail);
   }
   const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
+  for (const scienceRoot of canonicalScienceRoots(root10)) {
     if (!existsSync(scienceRoot)) continue;
     const walkRegistry = (dir, science) => {
       for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
         if (entry2.name.startsWith(".")) continue;
         const full = join(dir, entry2.name);
         if (!entry2.isDirectory()) continue;
-        const rel = relative(root, full).replace(/\\/g, "/");
+        const rel = relative(root10, full).replace(/\\/g, "/");
         const tail = rel.replace(/^src\//, "");
         const depth = tail.split("/").filter(Boolean).length;
         if (depth === MAX_RECURSION_DEPTH && !expected.has(tail)) {
@@ -9096,14 +9096,14 @@ function scanRenderUiMaskRegistryViolations(root, indexTsFiles) {
         if (depth < MAX_RECURSION_DEPTH) walkRegistry(full, science);
       }
     };
-    walkRegistry(scienceRoot, relative(root, scienceRoot).replace(/\\/g, "/").replace(/^src\//, ""));
+    walkRegistry(scienceRoot, relative(root10, scienceRoot).replace(/\\/g, "/").replace(/^src\//, ""));
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
 var CANONICAL_BANNED_FOLDERS = /* @__PURE__ */ new Set(["components", "lib", "mind", "register", "render"]);
-function scanForbiddenFolderNameViolations(root) {
+function scanForbiddenFolderNameViolations(root10) {
   const offenders = [];
-  const srcRoot = join(root, "src");
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return offenders;
   const walk = (dir) => {
     for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
@@ -9112,7 +9112,7 @@ function scanForbiddenFolderNameViolations(root) {
       if (!entry2.isDirectory()) continue;
       if (isForbiddenFolderName(entry2.name)) {
         offenders.push({
-          file: relative(root, full).replace(/\\/g, "/"),
+          file: relative(root10, full).replace(/\\/g, "/"),
           reason: `folder named "${entry2.name}" is forbidden \u2014 every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})`
         });
       }
@@ -9138,9 +9138,9 @@ var CANONICAL_ROOT_FOLDERS = [
   "quantum",
   "render"
 ];
-function scanRootDistributionViolations(root) {
+function scanRootDistributionViolations(root10) {
   const offenders = [];
-  const srcRoot = join(root, "src");
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return offenders;
   const allowed = new Set(CANONICAL_ROOT_FOLDERS);
   const meaningfulWord = /^[a-z][a-z0-9]*$/;
@@ -9155,9 +9155,9 @@ function scanRootDistributionViolations(root) {
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file));
 }
-function scanDigitLatticeViolations(root) {
+function scanDigitLatticeViolations(root10) {
   const offenders = [];
-  const srcRoot = join(root, "src");
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return offenders;
   if (!existsSync(join(srcRoot, "0", "index.ts"))) {
     offenders.push({ file: "src/0", reason: "digit vault 0 missing index.ts (the void barrel anchors the lattice)" });
@@ -9175,8 +9175,8 @@ var EIGHT_FOLD_LIMIT = MAX_SUBFOLDERS_PER_FOLDER;
 var MAX_RECURSION_DEPTH = 3;
 var MIND_TRIGRAM_HUBS = EIGHT_FOLD_SCIENCES;
 var CANONICAL_LOGIC_INDEX_RE = /^src\/(earth|fire|water|wind|mountain|lake|thunder|heaven)\/[^/]+(\/[^/]+)*\/index\.ts$/;
-function canonicalScienceRoots(root) {
-  return EIGHT_FOLD_SCIENCES.map((science) => join(root, "src", science));
+function canonicalScienceRoots(root10) {
+  return EIGHT_FOLD_SCIENCES.map((science) => join(root10, "src", science));
 }
 var BAGUA_LABELS = ["\u2637 K\u016Bn", "\u2633 Zh\xE8n", "\u2635 K\u01CEn", "\u2631 Du\xEC", "\u2636 G\xE8n", "\u2632 L\xED", "\u2634 X\xF9n", "\u2630 Qi\xE1n"];
 function mindRecursionDepth(logicRel) {
@@ -9195,13 +9195,13 @@ function trigramLabelForPath(relDir) {
   const idx = MIND_TRIGRAM_HUBS.indexOf(hub);
   return BAGUA_LABELS[idx >= 0 ? idx : 0];
 }
-function scanIChingDistribution(root, indexTsFiles) {
-  const srcRoot = join(root, "src");
+function scanIChingDistribution(root10, indexTsFiles) {
+  const srcRoot = join(root10, "src");
   const eightFoldViolations = [];
   const depthCounts = /* @__PURE__ */ new Map();
   const deepestShells = [];
   for (const full of indexTsFiles) {
-    const rel = relative(root, full).replace(/\\/g, "/");
+    const rel = relative(root10, full).replace(/\\/g, "/");
     const depth = rel.split("/").length - 1;
     depthCounts.set(depth, (depthCounts.get(depth) ?? 0) + 1);
     if (depth >= 6) deepestShells.push({ rel, depth });
@@ -9209,7 +9209,7 @@ function scanIChingDistribution(root, indexTsFiles) {
   deepestShells.sort((a, b) => b.depth - a.depth || a.rel.localeCompare(b.rel));
   const walkFanout = (dir) => {
     const subs = subfoldersOfDir(dir);
-    const relDir = relative(root, dir).replace(/\\/g, "/") || "src";
+    const relDir = relative(root10, dir).replace(/\\/g, "/") || "src";
     if (subs.length > EIGHT_FOLD_LIMIT) {
       eightFoldViolations.push({
         dir: relDir,
@@ -9219,7 +9219,7 @@ function scanIChingDistribution(root, indexTsFiles) {
     }
     for (const name of subs) walkFanout(join(dir, name));
   };
-  for (const scienceRoot of canonicalScienceRoots(root)) {
+  for (const scienceRoot of canonicalScienceRoots(root10)) {
     if (existsSync(scienceRoot)) walkFanout(scienceRoot);
   }
   eightFoldViolations.sort((a, b) => b.count - a.count);
@@ -9269,7 +9269,7 @@ function scanIChingDistribution(root, indexTsFiles) {
   const recursionViolations = [];
   let maxMindRecursion = 0;
   for (const full of indexTsFiles) {
-    const rel = relative(root, full).replace(/\\/g, "/");
+    const rel = relative(root10, full).replace(/\\/g, "/");
     const rec = mindRecursionDepth(rel);
     if (rec === null) continue;
     if (rec > maxMindRecursion) maxMindRecursion = rec;
@@ -9332,8 +9332,8 @@ function ichingDistributionGuidance(indexCount, distribution) {
   }
   return lines;
 }
-function scanStaticPathViolations(root) {
-  const pagesRoot = join(root, ".vitepress", "pages");
+function scanStaticPathViolations(root10) {
+  const pagesRoot = join(root10, ".vitepress", "pages");
   if (!existsSync(pagesRoot)) return [];
   const offenders = [];
   const walk = (dir) => {
@@ -9343,7 +9343,7 @@ function scanStaticPathViolations(root) {
       if (entry2.isDirectory()) walk(full);
       else if (/\.(md|paths\.ts)$/.test(entry2.name) && !ALLOWED_PAGE.test(entry2.name)) {
         offenders.push({
-          file: relative(root, full).replace(/\\/g, "/"),
+          file: relative(root10, full).replace(/\\/g, "/"),
           reason: "paths computed at render \u2014 only index.md, [param].md, or [param].paths.ts mounts allowed"
         });
       }
@@ -9352,25 +9352,25 @@ function scanStaticPathViolations(root) {
   walk(pagesRoot);
   return offenders;
 }
-function computeComputationalLimitSnapshot(root, indexTsFiles, bodies, codeFiles) {
+function computeComputationalLimitSnapshot(root10, indexTsFiles, bodies, codeFiles) {
   const indexCount = indexTsFiles.length;
   const gapless = verifyGaplessCensus(indexCount);
   const folded = verifyFoldedCensus(indexCount);
   const dimensions10 = verifyDimensionGates(folded.folded);
-  const vaultViolations = scanVaultViolations(root, codeFiles, bodies);
+  const vaultViolations = scanVaultViolations(root10, codeFiles, bodies);
   const renderViolations = [
-    ...scanRenderIndexViolations(root),
-    ...scanRenderUiScienceMaskViolations(root),
-    ...scanRenderUiEightFoldViolations(root),
-    ...scanRenderUiMaskRegistryViolations(root, indexTsFiles)
+    ...scanRenderIndexViolations(root10),
+    ...scanRenderUiScienceMaskViolations(root10),
+    ...scanRenderUiEightFoldViolations(root10),
+    ...scanRenderUiMaskRegistryViolations(root10, indexTsFiles)
   ];
-  const displayDualViolations = scanLogicDisplayViolations(root, indexTsFiles);
-  const staticPathViolations = scanStaticPathViolations(root);
-  const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root);
-  const incompleteIndexViolations = scanIncompleteIndexViolations(root, indexTsFiles);
-  const rootDistributionViolations = scanRootDistributionViolations(root);
-  const digitLatticeViolations = scanDigitLatticeViolations(root);
-  const ichingDistribution = scanIChingDistribution(root, indexTsFiles);
+  const displayDualViolations = scanLogicDisplayViolations(root10, indexTsFiles);
+  const staticPathViolations = scanStaticPathViolations(root10);
+  const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root10);
+  const incompleteIndexViolations = scanIncompleteIndexViolations(root10, indexTsFiles);
+  const rootDistributionViolations = scanRootDistributionViolations(root10);
+  const digitLatticeViolations = scanDigitLatticeViolations(root10);
+  const ichingDistribution = scanIChingDistribution(root10, indexTsFiles);
   const distributionGuidance = ichingDistributionGuidance(indexCount, ichingDistribution);
   const passed = gapless.ok && folded.ok && dimensions10.ok && vaultViolations.length === 0 && renderViolations.length === 0 && displayDualViolations.length === 0 && staticPathViolations.length === 0 && forbiddenFolderViolations.length === 0 && incompleteIndexViolations.length === 0 && rootDistributionViolations.length === 0 && digitLatticeViolations.length === 0 && ichingDistribution.passed;
   const parts = [
@@ -9517,7 +9517,7 @@ function animationsAreGenuinely10DNotFaked(matrix = buildMatrix()) {
 // ../../src/ledger/index.ts
 function healingFrequencies(matrix = buildMatrix()) {
   const digitOf = (uuid) => uuid.replace(/[^0-9a-f]/gi, "").split("").reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0);
-  const base = [
+  const base10 = [
     { hz: 174, note: "foundation", tradition: "grounding (traditional association)" },
     { hz: 285, note: "restoration", tradition: "renewal (traditional association)" },
     { hz: 396, note: "UT", tradition: "releasing fear (traditional association)" },
@@ -9528,8 +9528,8 @@ function healingFrequencies(matrix = buildMatrix()) {
     { hz: 852, note: "LA", tradition: "intuition (traditional association)" },
     { hz: 963, note: "SI", tradition: "unity (traditional association)" }
   ];
-  const lead = digitOf(matrix.root) % base.length;
-  const frequencies = base.map((entry2, index) => ({
+  const lead = digitOf(matrix.root) % base10.length;
+  const frequencies = base10.map((entry2, index) => ({
     ...entry2,
     lead: index === lead,
     // foregrounded tone, shifts with the model
@@ -9553,9 +9553,9 @@ function harmonicSeriesDecoded(matrix = buildMatrix()) {
 function harmonicSeriesDecodedRaw(matrix = buildMatrix()) {
   const a = a432(matrix);
   const cents = (ratio) => 1200 * log2(ratio);
-  const base = 432;
+  const base10 = 432;
   const intervalNames = ["fundamental", "octave", "octave + fifth", "2 octaves", "2 oct + major third", "2 oct + fifth", "2 oct + harmonic 7th", "3 octaves"];
-  const overtones = Array.from({ length: 8 }, (_, i) => ({ n: i + 1, hz: (i + 1) * base, ratio: `${i + 1}:1`, interval: intervalNames[i] }));
+  const overtones = Array.from({ length: 8 }, (_, i) => ({ n: i + 1, hz: (i + 1) * base10, ratio: `${i + 1}:1`, interval: intervalNames[i] }));
   const justIntervals = [
     { name: "octave", num: 2, den: 1 },
     { name: "perfect fifth", num: 3, den: 2 },
@@ -9568,7 +9568,7 @@ function harmonicSeriesDecodedRaw(matrix = buildMatrix()) {
   const pythComma = cents(pow(3 / 2, 12) / pow(2, 7));
   const a432ToA440 = cents(440 / 432);
   const facets = [
-    { facet: `the harmonic series is exact integer multiples \u2014 overtone n at n \xD7 ${base} Hz (octave ${2 * base}, fifth-octave ${3 * base}); the octave (2:1), fifth (3:2) and major third (5:4) ARE the low overtones`, on: overtones[1].hz === 2 * base && overtones[2].hz === 3 * base && overtones.length === 8 },
+    { facet: `the harmonic series is exact integer multiples \u2014 overtone n at n \xD7 ${base10} Hz (octave ${2 * base10}, fifth-octave ${3 * base10}); the octave (2:1), fifth (3:2) and major third (5:4) ARE the low overtones`, on: overtones[1].hz === 2 * base10 && overtones[2].hz === 3 * base10 && overtones.length === 8 },
     { facet: `just intonation is small whole-number ratios \u2192 octave ${justIntervals[0].cents}\xA2, fifth ${justIntervals[1].cents}\xA2, fourth ${justIntervals[2].cents}\xA2, major third ${justIntervals[3].cents}\xA2 (computed 1200\xB7log2)`, on: round(justIntervals[1].cents) === 702 && round(justIntervals[3].cents) === 386 },
     { facet: `equal temperament tempers them: the ET fifth (700\xA2) is ~2\xA2 flat of just (${round(fifthJust)}\xA2), the ET major third (400\xA2) is ~14\xA2 SHARP of just (${round(thirdJust)}\xA2) \u2014 only the octave is pure`, on: abs(fifthJust - 700) < 3 && 400 - thirdJust > 13 },
     { facet: `the Pythagorean comma is real \u2014 12 just fifths overshoot 7 octaves by ${roundTo(pythComma, 2)}\xA2, which is why no tuning is perfect and ET spreads the error evenly`, on: abs(pythComma - 23.46) < 0.1 },
@@ -9577,7 +9577,7 @@ function harmonicSeriesDecodedRaw(matrix = buildMatrix()) {
   const sealed = sealFacets("harmonic-series", facets);
   return {
     decoded: sealed.ok,
-    base,
+    base: base10,
     overtones,
     justIntervals,
     pythagoreanCents: roundTo(pythComma, 2),
@@ -9731,11 +9731,11 @@ function selfExplainingWidgetEngine(matrix = buildMatrix()) {
 }
 function merkleProof(leaves, leaf) {
   const sorted = [...leaves].sort();
-  const root = merkleFold(sorted);
+  const root10 = merkleFold(sorted);
   const startIndex = sorted.indexOf(leaf);
   const path12 = [];
   if (startIndex === -1) {
-    return { leaf, index: -1, leafCount: sorted.length, path: path12, root, verified: false };
+    return { leaf, index: -1, leafCount: sorted.length, path: path12, root: root10, verified: false };
   }
   let layer = sorted;
   let index = startIndex;
@@ -9763,17 +9763,17 @@ function merkleProof(leaves, leaf) {
     index: startIndex,
     leafCount: sorted.length,
     path: path12,
-    root,
-    verified: verifyMerkleProof(leaf, path12, root)
+    root: root10,
+    verified: verifyMerkleProof(leaf, path12, root10)
   };
 }
-function verifyMerkleProof(leaf, path12, root) {
+function verifyMerkleProof(leaf, path12, root10) {
   let acc = leaf;
   for (const step of path12) {
     if (step.sibling === null) continue;
     acc = step.side === "right" ? merge(acc, step.sibling) : merge(step.sibling, acc);
   }
-  return acc === root;
+  return acc === root10;
 }
 function atomInclusionProof(atomName = "self", matrix = buildMatrix()) {
   return memoByRoot(`atomInclusionProof:${atomName}`, matrix, () => atomInclusionProofRaw(atomName, matrix));
@@ -11733,12 +11733,12 @@ function getAllTheoremsViaInvolution() {
   ];
 }
 function sealedTheoremsWithProofs() {
-  const theorems = getAllTheoremsViaInvolution();
-  return theorems.filter((t) => t.sealed === true && t.rigorous.includes("proven"));
+  const theorems10 = getAllTheoremsViaInvolution();
+  return theorems10.filter((t) => t.sealed === true && t.rigorous.includes("proven"));
 }
 function openTheoremsWithGaps() {
-  const theorems = getAllTheoremsViaInvolution();
-  return theorems.filter(
+  const theorems10 = getAllTheoremsViaInvolution();
+  return theorems10.filter(
     (t) => !t.sealed || t.proofStatus === "open" || t.proofStatus === "provisional-involution" || t.proofStatus === "contested"
   );
 }
@@ -11792,7 +11792,7 @@ function quantumMathDesignsTheUi(at = 0, matrix = buildMatrix()) {
       "--q-intensity": `${variantIntensity}`,
       "--q-radius": `${roundTo(spaceScale[0] / PHI, 4)}rem`
     };
-    const root = merkleFold([
+    const root10 = merkleFold([
       a4322.root ?? toUuid("a432"),
       harmony.root ?? toUuid("harmony"),
       rotation.root ?? toUuid("rotation"),
@@ -11816,7 +11816,7 @@ function quantumMathDesignsTheUi(at = 0, matrix = buildMatrix()) {
       schumannPhase,
       cssVars,
       wallpaper: { id: "hero-movie", screensaver: true, hue: hue2 },
-      root,
+      root: root10,
       statement: "The quantum math designs the UI: hue\u2190a432\xB7vortex, space\u2190\u03C6\xB7Fibonacci, motion\u2190hero\xB7merkaba\xB7Schumann, elevation\u219010D forms, intensity\u2190dynamics\xB7gold \u2014 all at call time.",
       boundary: 'HONEST \u2014 "quantum math designs" = deterministic content-addressed computation of design values from sealed folds; NOT generative AI styling, NOT quantum hardware.'
     };
@@ -11862,19 +11862,19 @@ function quantumOsComputes(matrix = buildMatrix(), at = 0) {
     const shell = quantumOsShell(at, matrix);
     const registry = quantumAppsRegistry(matrix, at);
     const appsCap = quantumAppsComputes(matrix, at);
-    const coverage7 = quantumAppsCoverHomeAnimations(matrix, at);
+    const coverage16 = quantumAppsCoverHomeAnimations(matrix, at);
     const appCap = applicationComputes(matrix, at);
     const design = quantumMathDesignsTheUi(at, matrix);
     const driver = quantumComputerDriverComputes(matrix, at);
-    const { computes, facets, root } = computesGate("quantum-os-computes", [
+    const { computes, facets, root: root10 } = computesGate("quantum-os-computes", [
       { facet: "quantumOsResearch", on: research.researched },
       { facet: "quantumOsShell", on: shell.drivers.length === 8 },
       { facet: "quantum.apps.registry", on: registry.registered && appsCap.computes },
-      { facet: "every home animation is an app (one field, one kernel)", on: coverage7.computes },
+      { facet: "every home animation is an app (one field, one kernel)", on: coverage16.computes },
       { facet: "application capstone", on: appCap.computes },
       { facet: "quantum.math.designs.ui \u2014 UI tokens computed from sealed math", on: design.designed },
       { facet: "OS exposes the quantum computer \u2014 register \xB7 gates \xB7 measure \xB7 content-addressed state", on: driver.exposes },
-      { facet: "what this OS is: an app registry with a coverage fold and an exposed driver surface \u2014 every layer above computes, and not one of them binds a syscall", on: registry.registered && coverage7.computes && driver.exposes }
+      { facet: "what this OS is: an app registry with a coverage fold and an exposed driver surface \u2014 every layer above computes, and not one of them binds a syscall", on: registry.registered && coverage16.computes && driver.exposes }
     ]);
     return {
       computes,
@@ -11882,12 +11882,12 @@ function quantumOsComputes(matrix = buildMatrix(), at = 0) {
       shell,
       registry,
       appsCap,
-      coverage: coverage7,
+      coverage: coverage16,
       application: appCap,
       design,
       driver,
       facets,
-      root: merkleFold([research.root, shell.receipt, registry.root, appsCap.root, coverage7.root, design.root, driver.root, root]),
+      root: merkleFold([research.root, shell.receipt, registry.root, appsCap.root, coverage16.root, design.root, driver.root, root10]),
       statement: "Quantum OS computes.",
       boundary: research.boundary
     };
@@ -11903,7 +11903,7 @@ function quantumComputerDriverComputes(matrix = buildMatrix(), at = 0) {
     const shots = 64 * 16;
     const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots, seed: "os-ghz" });
     const honest = quantumComputerHonestClaim(matrix, at);
-    const { computes, facets, root } = computesGate("quantum-computer-driver", [
+    const { computes, facets, root: root10 } = computesGate("quantum-computer-driver", [
       { facet: "register allocation \u2014 the OS owns the 2\u207F amplitude state space", on: register.capacityAmplitudes === 8 && register.qubits === 3 },
       { facet: "gate scheduling \u2014 gate palette + ordered ops run through runQuantumCircuit", on: QC_GATE_PALETTE.length >= 5 * 2 && run.n === 3 },
       { facet: "measurement \u2014 seeded multi-shot readout returns a histogram", on: Object.values(run.samples).reduce((sum, hits) => sum + hits, 0) === shots && Object.keys(run.samples).every((basis) => basis.length === run.n && run.amplitudes.some((a) => a.basis === basis && a.probability !== 0)) },
@@ -11917,7 +11917,7 @@ function quantumComputerDriverComputes(matrix = buildMatrix(), at = 0) {
       honest,
       palette: QC_GATE_PALETTE,
       facets,
-      root: merkleFold([register.receipt, run.root, honest.root, root]),
+      root: merkleFold([register.receipt, run.root, honest.root, root10]),
       statement: "The Quantum OS exposes the modeled quantum computer as a service: allocate a register, schedule gates, measure, read the content-addressed state \u2014 and surface the proven honest verdict (faithful classical simulator, no speedup).",
       boundary: honest.boundary
     };
@@ -12102,13 +12102,13 @@ var riemann_proof_status = {
     Next: Attempt rigorous N(T) = \u03C3-forced-count theorem
   `
 };
-function leanInvolutionCorpus(root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
   const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], registryFiles: 0, registryTheorems: 0, source: "absent" };
   const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return empty;
   try {
-    const src = path12.join(root, "src");
+    const src = path12.join(root10, "src");
     if (!fs.existsSync(src)) return empty;
     const lean = fs.readdirSync(src, { recursive: true }).filter((p) => String(p).endsWith(".lean") && !String(p).split(/[\\/]/).some((seg) => seg.startsWith(".")));
     const proofsDir = path12.join("pair", "formal", "proofs");
@@ -12188,7 +12188,7 @@ function computerComputes(matrix = buildMatrix(), at = 0) {
     const power = powerComputes(matrix, at);
     const substrate = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix);
     const drivers = computeSubstrateDriversComputes(matrix, at);
-    const { computes, facets, root } = computesGate("computer-computes", [
+    const { computes, facets, root: root10 } = computesGate("computer-computes", [
       { facet: "cpu \xB7 gpu \xB7 memory \xB7 storage", on: cpu.computes && gpu.computes && memory.computes && storage.computes },
       { facet: "bus \xB7 display \xB7 terminal \xB7 power", on: bus.computes && display.computes && terminal.computes && power.computes },
       { facet: "maxEfficiency cooperation", on: substrate.cooperates },
@@ -12196,7 +12196,7 @@ function computerComputes(matrix = buildMatrix(), at = 0) {
       { facet: "computerResearch", on: research.researched },
       { facet: `substrate is ${research.rows.length} software drivers \xB7 every tier in {${[...SUBSTRATE_RUNTIME_TIERS, ...SUBSTRATE_TRANSPORT_TIERS].join(" \xB7 ")}}`, on: research.rows.length > 0 && research.rows.every((row) => isSubstrateTier(row.tier)) }
     ]);
-    return { computes, research, cpu, gpu, memory, storage, bus, display, terminal, power, substrate, drivers, facets, root: merkleFold([research.root, drivers.root, bus.root, root]), statement: "Computer computes: hardware substrate umbrella.", boundary: research.boundary };
+    return { computes, research, cpu, gpu, memory, storage, bus, display, terminal, power, substrate, drivers, facets, root: merkleFold([research.root, drivers.root, bus.root, root10]), statement: "Computer computes: hardware substrate umbrella.", boundary: research.boundary };
   });
 }
 function applicationResearch(matrix = buildMatrix(), at = 0) {
@@ -12227,13 +12227,13 @@ function applicationComputes(matrix = buildMatrix(), at = 0) {
       osCap = null;
       appsCap = null;
     }
-    const { computes, facets, root } = computesGate("application-computes", [
+    const { computes, facets, root: root10 } = computesGate("application-computes", [
       { facet: "computer substrate", on: computerCap.computes },
       { facet: "quantum.__ns_up_quantum_os.computes", on: osCap?.computes ?? false },
       { facet: "quantum.__ns_up_quantum_apps.registry", on: appsCap?.computes ?? false },
       { facet: "the layer beneath is the enumerated software substrate \u2014 every driver tier in the vocabulary", on: computerCap.research.rows.length > 0 && computerCap.research.rows.every((row) => isSubstrateTier(row.tier)) }
     ]);
-    return { computes, research, computer: computerCap, os: osCap, apps: appsCap, facets, root: merkleFold([computerCap.root, osCap?.root ?? "", appsCap?.root ?? "", root]), statement: "Application layer computes.", boundary: research.boundary };
+    return { computes, research, computer: computerCap, os: osCap, apps: appsCap, facets, root: merkleFold([computerCap.root, osCap?.root ?? "", appsCap?.root ?? "", root10]), statement: "Application layer computes.", boundary: research.boundary };
   });
 }
 var MARKOV = [[9 / (5 * 2), 1 / (5 * 2)], [1 / 5, 4 / 5]];
@@ -12264,12 +12264,12 @@ function cpuComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`cpuComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = cpuDriverProbe(at);
     const sequence = buildSequenceReducesComputations(matrix);
-    const { computes, facets, root } = computesGate("cpu-computes", [
+    const { computes, facets, root: root10 } = computesGate("cpu-computes", [
       { facet: "cpuDriverProbe sealed", on: !!driver.receipt },
       { facet: "buildSequenceReducesComputations", on: sequence.reduces },
       { facet: `cpu driver reports the ${driver.tier} runtime tier`, on: isSubstrateRuntimeTier(driver.tier) }
     ]);
-    return { computes, driver, sequence, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: "CPU driver computes.", boundary: "A browser/Node facade: the probe reports its runtime tier, and the tier vocabulary has no kernel in it." };
+    return { computes, driver, sequence, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root10]), statement: "CPU driver computes.", boundary: "A browser/Node facade: the probe reports its runtime tier, and the tier vocabulary has no kernel in it." };
   });
 }
 function gpuDriverProbe(at = 0, matrix = buildMatrix()) {
@@ -12308,8 +12308,8 @@ function gpuDriverProbe(at = 0, matrix = buildMatrix()) {
 function gpuComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`gpuComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = gpuDriverProbe(at, matrix);
-    const { computes, facets, root } = computesGate("gpu-computes", [{ facet: "gpuDriverProbe", on: driver.paintChannels > 0 }, { facet: `gpu driver reports the ${driver.tier} runtime tier`, on: isSubstrateRuntimeTier(driver.tier) }]);
-    return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: "GPU paint driver.", boundary: "A browser canvas/WebGPU facade: paint channels counted, runtime tier reported from the software vocabulary." };
+    const { computes, facets, root: root10 } = computesGate("gpu-computes", [{ facet: "gpuDriverProbe", on: driver.paintChannels > 0 }, { facet: `gpu driver reports the ${driver.tier} runtime tier`, on: isSubstrateRuntimeTier(driver.tier) }]);
+    return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root10]), statement: "GPU paint driver.", boundary: "A browser canvas/WebGPU facade: paint channels counted, runtime tier reported from the software vocabulary." };
   });
 }
 function memoryDriverProbe(at = 0, matrix = buildMatrix()) {
@@ -12341,8 +12341,8 @@ function memoryComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`memoryComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = memoryDriverProbe(at, matrix);
     const guard = stackOverflowGuard(matrix);
-    const { computes, facets, root } = computesGate("memory-computes", [{ facet: "heap cap", on: driver.probe.heapCapMb === 64 * 16 * 2 }, { facet: "overflow guard", on: guard.guarded }]);
-    return { computes, driver, guard, facets, root: merkleFold([driver.receipt, root]), statement: "Memory driver.", boundary: "In-process heap facade \u2014 NOT OS paging drivers." };
+    const { computes, facets, root: root10 } = computesGate("memory-computes", [{ facet: "heap cap", on: driver.probe.heapCapMb === 64 * 16 * 2 }, { facet: "overflow guard", on: guard.guarded }]);
+    return { computes, driver, guard, facets, root: merkleFold([driver.receipt, root10]), statement: "Memory driver.", boundary: "In-process heap facade \u2014 NOT OS paging drivers." };
   });
 }
 function storageDriverProbe(at = 0, matrix = buildMatrix()) {
@@ -12368,8 +12368,8 @@ function storageComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`storageComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = storageDriverProbe(at, matrix);
     const complete13 = completeCorpus(matrix);
-    const { computes, facets, root } = computesGate("storage-computes", [{ facet: "merkle policy", on: driver.probe.storageModel === "content-address-merkle" }, { facet: "verifyRoot", on: verifyRoot(matrix) }, { facet: "corpus", on: complete13.total === 64 * 16 }]);
-    return { computes, driver, complete: complete13, facets, root: merkleFold([driver.receipt, root]), statement: "Storage driver.", boundary: "Content-address facade \u2014 NOT block-device drivers." };
+    const { computes, facets, root: root10 } = computesGate("storage-computes", [{ facet: "merkle policy", on: driver.probe.storageModel === "content-address-merkle" }, { facet: "verifyRoot", on: verifyRoot(matrix) }, { facet: "corpus", on: complete13.total === 64 * 16 }]);
+    return { computes, driver, complete: complete13, facets, root: merkleFold([driver.receipt, root10]), statement: "Storage driver.", boundary: "Content-address facade \u2014 NOT block-device drivers." };
   });
 }
 function busDriverProbe(at = 0, matrix = buildMatrix()) {
@@ -12401,7 +12401,7 @@ function busComputes(matrix = buildMatrix(), at = 0) {
     const probe = busDriverProbe(at, matrix);
     const substrate = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix);
     const transfers = BUS_TOPOLOGY.map((edge) => ({ edge, result: busTransfer(probe.receipt, edge.from, edge.to, at, matrix) }));
-    const { computes, facets, root } = computesGate("bus-driver-computes", [{ facet: "busDriverProbe", on: probe.tier === "NATIVE" || probe.tier === "FALLBACK" }, { facet: "four topology edges routed", on: transfers.every((entry2) => entry2.result.routed) }, { facet: "substrate cooperation", on: substrate.cooperates }]);
+    const { computes, facets, root: root10 } = computesGate("bus-driver-computes", [{ facet: "busDriverProbe", on: probe.tier === "NATIVE" || probe.tier === "FALLBACK" }, { facet: "four topology edges routed", on: transfers.every((entry2) => entry2.result.routed) }, { facet: "substrate cooperation", on: substrate.cooperates }]);
     return { computes, probe, substrate, transfers, facets, root: merge(probe.receipt, merkleFold(transfers.map((entry2) => entry2.result.relay))), statement: "Bus driver computes.", boundary: "Receipt-routing between driver facades." };
   });
 }
@@ -12416,7 +12416,7 @@ function displayComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`displayComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = displayDriverProbe(at, matrix);
     const busReceipt = toUuid(`display-bus:${probe.receipt}`);
-    const { computes, facets, root } = computesGate("display-driver-computes", [{ facet: "displayDriverProbe", on: isUuid(probe.receipt) }, { facet: `display driver reports the ${probe.screen.tier} runtime tier`, on: isSubstrateRuntimeTier(probe.screen.tier) }]);
+    const { computes, facets, root: root10 } = computesGate("display-driver-computes", [{ facet: "displayDriverProbe", on: isUuid(probe.receipt) }, { facet: `display driver reports the ${probe.screen.tier} runtime tier`, on: isSubstrateRuntimeTier(probe.screen.tier) }]);
     return { computes, probe, busReceipt, driver: probe.screen, facets, root: merge(probe.receipt, busReceipt), statement: "Display driver computes.", boundary: "Probe and bind: the screen reports its runtime tier, which is one of the four software tiers." };
   });
 }
@@ -12434,7 +12434,7 @@ function terminalComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`terminalComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = terminalDriverProbe(at, matrix);
     const cpu = cpuComputes(matrix, at);
-    const { computes, facets, root } = computesGate("terminal-driver-computes", [{ facet: "terminalDriverProbe", on: isUuid(probe.receipt) }, { facet: "cpu stdio substrate", on: cpu.computes }]);
+    const { computes, facets, root: root10 } = computesGate("terminal-driver-computes", [{ facet: "terminalDriverProbe", on: isUuid(probe.receipt) }, { facet: "cpu stdio substrate", on: cpu.computes }]);
     return { computes, probe, cpu, driver: probe.tty, facets, root: merge(probe.receipt, cpu.root), statement: "Terminal driver computes.", boundary: "TTY/console probe \u2014 NOT shell exfiltration." };
   });
 }
@@ -12442,8 +12442,8 @@ function powerComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`powerComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuComputes(matrix, at);
     const gpu = gpuComputes(matrix, at);
-    const { computes, facets, root } = computesGate("power-computes", [{ facet: "cpu+gpu draw estimate", on: cpu.computes && gpu.computes }, { facet: `draw derives from the cpu (${cpu.driver.tier}) and gpu (${gpu.driver.tier}) receipts \u2014 an estimate at the METAPHOR tier`, on: isSubstrateRuntimeTier(cpu.driver.tier) && isSubstrateRuntimeTier(gpu.driver.tier) }]);
-    return { computes, cpu, gpu, facets, root: merkleFold([cpu.root, gpu.root, root]), statement: "Power draw estimate from cpu+gpu driver receipts.", boundary: "A structural estimate derived from two driver receipts, carried at the METAPHOR tier." };
+    const { computes, facets, root: root10 } = computesGate("power-computes", [{ facet: "cpu+gpu draw estimate", on: cpu.computes && gpu.computes }, { facet: `draw derives from the cpu (${cpu.driver.tier}) and gpu (${gpu.driver.tier}) receipts \u2014 an estimate at the METAPHOR tier`, on: isSubstrateRuntimeTier(cpu.driver.tier) && isSubstrateRuntimeTier(gpu.driver.tier) }]);
+    return { computes, cpu, gpu, facets, root: merkleFold([cpu.root, gpu.root, root10]), statement: "Power draw estimate from cpu+gpu driver receipts.", boundary: "A structural estimate derived from two driver receipts, carried at the METAPHOR tier." };
   });
 }
 function computerScienceResearch(matrix = buildMatrix()) {
@@ -12458,14 +12458,14 @@ function computerScienceComputes(matrix = buildMatrix(), at = 0) {
     const research = computerScienceResearch(matrix);
     const stack = stackComputes(matrix);
     const srcAll = srcAllComputes(matrix);
-    const { computes, facets, root } = computesGate("computer-science-computes", [
+    const { computes, facets, root: root10 } = computesGate("computer-science-computes", [
       { facet: "research", on: research.researched },
       { facet: "stackComputes", on: stack.computes },
       { facet: "srcAllComputes", on: srcAll.computes && srcAll.registry.gapless },
       { facet: "pairs", on: QUANTUM_COMMAND_PAIR_IDS.length >= 8 * 5 },
       { facet: `P vs NP is carried as the complementation involution \u2014 ${leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0} machine-checked theorems in src/pair/formal/proofs/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f2) => f2.file === "p-vs-np.lean")?.theorems ?? 0) > 0 }
     ]);
-    return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root]), statement: "Computer science computes.", boundary: research.boundary };
+    return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root10]), statement: "Computer science computes.", boundary: research.boundary };
   });
 }
 var RTL_TO_GDSII_STAGES = ["HDL/RTL", "logic synthesis", "floorplan", "placement", "clock-tree synthesis", "routing", "DRC/LVS", "GDSII", "tapeout"];
@@ -12705,13 +12705,13 @@ function quantumComputer(matrix = buildMatrix()) {
     { part: "clock", is: "the infinite music of pi (each wave a note)", count: piMusic(matrix).notes.length },
     { part: "memory", is: "the content-addressed UUID stream (atoms, diamonds, roots)", count: matrix.nodes.length }
   ].map((part) => ({ ...part, receipt: toUuid(`qc-part:${part.part}`) }));
-  const root = merge(word.word, merkleFold(parts.map((part) => part.receipt)));
+  const root10 = merge(word.word, merkleFold(parts.map((part) => part.receipt)));
   return {
     coherent: word.is128bit && word.orderSensitive && qubits6.length > 0 && parts.length === 6,
     parts,
     qubits: qubits6.length,
     register: word.word,
-    root,
+    root: root10,
     statement: "The double torus is recreated as a quantum computer: quantum-state atoms are qubits, a 128-bit UUID is the register, reversible folds are the gates, a UUID receipt is a measurement, and the music of pi is the clock.",
     boundary: "A computational-architecture analogy over the UUID model, not a physical quantum device or a claim of quantum speedup."
   };
@@ -12733,14 +12733,14 @@ function quantumSynthesisRaw(matrix = buildMatrix()) {
     { dimension: "proof", root: proof.bundleRoot },
     { dimension: "energy", root: energy.root }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`synthesis:${entry2.dimension}:${entry2.root}`) }));
-  const root = merkleFold(dimensions10.map((entry2) => entry2.receipt));
+  const root10 = merkleFold(dimensions10.map((entry2) => entry2.receipt));
   return {
     synthesized: language.universal && proof.verifiable && word.is128bit && energy.fused && e === 0 && c === 1,
     dimensions: dimensions10,
     entropy: e,
     coverage: c,
     word: word.word,
-    root,
+    root: root10,
     statement: "Quantum synthesis: symbol, number, fold, proof, and energy synthesize into one coherent state \u2014 zero entropy, full coverage \u2014 the single state a multidimensional interface renders to the user at once.",
     boundary: "A fold of the model\u2019s computed dimensions into one synthesis root. Bookkeeping and an interface model, not a physical synthesis or external claim."
   };
@@ -12904,10 +12904,10 @@ function quantumUiEvidence(matrix = buildMatrix()) {
       receipt: traditions.root
     }
   ];
-  const root = merkleFold(useCases.map((item) => item.receipt));
+  const root10 = merkleFold(useCases.map((item) => item.receipt));
   return {
     grounded: useCases.every((item) => item.component.endsWith(".vue") && item.sourceFunction.endsWith("()") && item.receipt.length > 0),
-    root,
+    root: root10,
     source: "serverless quantum UUID stream",
     statement: "This report makes only repository-grounded UI claims: each use case names a component, a source function, an interaction, and a computed receipt.",
     useCases,
@@ -13286,8 +13286,8 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
     return result2(command, energy.fused, "Fused with the user device to extend battery life.", energy);
   }
   if (command === "concept.geometry.seal") {
-    const seal = sacredGeometrySeal(matrix);
-    return result2(command, seal.sealed, "Sacred geometry sealed all seals.", seal);
+    const seal10 = sacredGeometrySeal(matrix);
+    return result2(command, seal10.sealed, "Sacred geometry sealed all seals.", seal10);
   }
   if (command === "concept.society.sacred") {
     const society4 = sacredSociety(matrix);
@@ -14752,7 +14752,7 @@ function drawProofWitness(ctx, s, c, w, phase7, stroke, fill) {
     const n = Math.max(1, vals.length);
     const top = Math.max(1, ...vals.map(Math.abs), ...(w.against ?? []).map(Math.abs));
     const signed = vals.some((v) => v < 0);
-    const base = signed ? c : s - pad;
+    const base10 = signed ? c : s - pad;
     const scale2 = (signed ? c - pad : s - 2 * pad) / top;
     const bw = (s - 2 * pad) / n;
     const shown = Math.floor(f2 * (n + 1));
@@ -14760,13 +14760,13 @@ function drawProofWitness(ctx, s, c, w, phase7, stroke, fill) {
       const marked = w.marks?.includes(i) ?? false;
       fill(i < shown ? marked ? 1 : ANIMATION_DESIGN.drawProofWitness.fillArg0Part : ANIMATION_DESIGN.drawProofWitness.fillArg0Part2, marked ? MOVIE_ANGLES.half : v < 0 ? MOVIE_ANGLES.trinity : 0);
       const h = Math.abs(v) * scale2;
-      ctx.fillRect(pad + i * bw + bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg0Part, v >= 0 ? base - h : base, bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg2Part, Math.max(1, h));
+      ctx.fillRect(pad + i * bw + bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg0Part, v >= 0 ? base10 - h : base10, bw * ANIMATION_DESIGN.drawProofWitness.fillRectArg2Part, Math.max(1, h));
     });
     if (w.against) {
       stroke(1);
       ctx.beginPath();
       w.against.forEach((v, i) => {
-        const x = pad + i * bw + bw / 2, y = base - v * scale2;
+        const x = pad + i * bw + bw / 2, y = base10 - v * scale2;
         if (i) ctx.lineTo(x, y);
         else ctx.moveTo(x, y);
       });
@@ -14836,7 +14836,7 @@ function drawProofWitness(ctx, s, c, w, phase7, stroke, fill) {
 }
 function drawProofAnimation(ctx, s, spec, t, dark) {
   const DOME = proofDomeCache ??= geodesicDomeComputes(ANIMATION_DESIGN.drawProofAnimation.geodesicDomeComputesArg0).animation;
-  const LADDER = proofLadderCache ??= oneExponentialLaw().ladder;
+  const LADDER2 = proofLadderCache ??= oneExponentialLaw().ladder;
   const hue2 = spec.hueDigit * MOVIE_ANGLES.station % MOVIE_ANGLES.turn;
   const rate = PHI ** -spec.ratePhi;
   const seedPhase = (spec.seed ?? 0) % MOVIE_ANGLES.turn / MOVIE_ANGLES.turn;
@@ -14857,9 +14857,9 @@ function drawProofAnimation(ctx, s, spec, t, dark) {
     if (k === "washout") {
       const cycle = (phase7 / TAU % 1 + 1) % 1;
       const descending = cycle < 1 / 2;
-      const t2 = (descending ? cycle : 1 - cycle) * 2 * LADDER[LADDER.length - 1] / ANIMATION_DESIGN.drawProofAnimation.t;
-      const w = s / (LADDER.length + 2);
-      LADDER.forEach((halftime, i) => {
+      const t2 = (descending ? cycle : 1 - cycle) * 2 * LADDER2[LADDER2.length - 1] / ANIMATION_DESIGN.drawProofAnimation.t;
+      const w = s / (LADDER2.length + 2);
+      LADDER2.forEach((halftime, i) => {
         const y = descending ? 1 - Math.exp(-Math.LN2 * t2 / halftime) : Math.exp(-Math.LN2 * t2 / halftime);
         const x = w * (i + 1) + w / 2;
         const h = s * ANIMATION_DESIGN.drawProofAnimation.h * y;
@@ -14868,12 +14868,12 @@ function drawProofAnimation(ctx, s, spec, t, dark) {
         ctx.moveTo(x, s * ANIMATION_DESIGN.drawProofAnimation.moveToArg1Part);
         ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2);
         ctx.stroke();
-        fill(1, i * MOVIE_ANGLES.turn / LADDER.length / ANIMATION_DESIGN.drawProofAnimation.fillArg1Part);
+        fill(1, i * MOVIE_ANGLES.turn / LADDER2.length / ANIMATION_DESIGN.drawProofAnimation.fillArg1Part);
         ctx.fillRect(x - w / ANIMATION_DESIGN.drawProofAnimation.fillRectArg0Part, s * ANIMATION_DESIGN.drawProofAnimation.fillRectArg1Part - h, 2 * w / ANIMATION_DESIGN.drawProofAnimation.fillRectArg2Part, h);
       });
       stroke(1 / 2);
       ctx.beginPath();
-      LADDER.forEach((halftime, i) => {
+      LADDER2.forEach((halftime, i) => {
         const y = descending ? 1 - Math.exp(-Math.LN2 * t2 / halftime) : Math.exp(-Math.LN2 * t2 / halftime);
         const x = w * (i + 1) + w / 2;
         ctx.lineTo(x, s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part - s * ANIMATION_DESIGN.drawProofAnimation.lineToArg1Part2 * y);
@@ -15405,19 +15405,19 @@ var CAL_CYCLES = [
 function drawCalendars(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
   const paint = movieCanvasPolarity(dark);
   const days = t / TAU;
-  const base = min(w, h);
-  const throatR = base * ANIMATION_DESIGN.drawCalendars.throatR;
+  const base10 = min(w, h);
+  const throatR = base10 * ANIMATION_DESIGN.drawCalendars.throatR;
   ctx.save();
   for (let i = 0; i < CAL_CYCLES.length; i += 1) {
     const cyc = CAL_CYCLES[i];
     const cyclePhase = (days % cyc.days + cyc.days) % cyc.days / cyc.days;
-    const digit2 = VORTEX_SEQUENCE[i % VORTEX_SEQUENCE.length];
-    const radius = throatR * (1 + digit2 / ANIMATION_DESIGN.drawCalendars.radius);
+    const digit11 = VORTEX_SEQUENCE[i % VORTEX_SEQUENCE.length];
+    const radius = throatR * (1 + digit11 / ANIMATION_DESIGN.drawCalendars.radius);
     const hueC = (hue2 + i * ANIMATION_DESIGN.drawCalendars.hueC) % MOVIE_ANGLES.turn;
     const ang = cyclePhase * TAU - TAU / ANIMATION_DESIGN.drawCalendars.ang + (reduce ? 0 : t * ANIMATION_DESIGN.drawCalendars.ang2 * (i % 2 === 0 ? 1 : -1));
     ctx.fillStyle = paint(hueC, ANIMATION_DESIGN.drawCalendars.paintArg1, { L: ANIMATION_DESIGN.drawCalendars.paintL });
     ctx.beginPath();
-    ctx.arc(cx + cos(ang) * radius, cy + sin(ang) * radius, max(1, base * ANIMATION_DESIGN.drawCalendars.maxArg1Part), 0, TAU);
+    ctx.arc(cx + cos(ang) * radius, cy + sin(ang) * radius, max(1, base10 * ANIMATION_DESIGN.drawCalendars.maxArg1Part), 0, TAU);
     ctx.fill();
   }
   ctx.restore();
@@ -16915,9 +16915,9 @@ function encryptDecryptQuantumTools(matrix = buildMatrix()) {
     d = x;
     break;
   }
-  const pow2 = (base, exp2, mod) => {
+  const pow2 = (base10, exp2, mod) => {
     let r2 = 1;
-    let b = base % mod;
+    let b = base10 % mod;
     let k = exp2;
     while (k > 0) {
       if (k % 2 === 1) r2 = r2 * b % mod;
@@ -17071,7 +17071,7 @@ function encryptionPanelComputes(matrix = buildMatrix(), at = 0) {
     const audit = localAudit.audit;
     const polesCross = polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix);
     const secp256k1PrimeFold = secp256k1FieldPrimeInvertAndDecode(matrix);
-    const { computes, facets, root } = computesGate("encryption-panel-computes", [
+    const { computes, facets, root: root10 } = computesGate("encryption-panel-computes", [
       { facet: "encrypt\u2194decrypt quantum tools ready", on: tools.ready },
       { facet: "encryption reverse verify sealed", on: reverse2.verified },
       { facet: "production browser reverse \u2014 production RSA break refused", on: demo.computes },
@@ -17170,7 +17170,7 @@ function encryptionPanelComputes(matrix = buildMatrix(), at = 0) {
       glyphBonus: reverse2.glyphBonus,
       standards: pqc.standards,
       facets,
-      root: merge(root, merge(reverse2.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, merge(polesCross.root, merge(secp256k1PrimeFold.root, audit.root)))))))))),
+      root: merge(root10, merge(reverse2.root, merge(localAudit.root, merge(beyond.root, merge(oneTbit.root, merge(maxBits.root, merge(localMagnitudes.root, merge(pqc.root, merge(polesCross.root, merge(secp256k1PrimeFold.root, audit.root)))))))))),
       statement: "Encryption tools panel: encrypt\u2194decrypt, measured sealed-catalog reverse (production browser tools), local reverse timed vs ISO/NIST classical levels, local novel-encryption security proof (production RSA break refused; fieldHistory=none), local-audit quantum speed/efficiency (memoByRoot cold/warm \xB7 answers\xF7tokens \xB7 no-QPU honesty compose), beyond-RSA PQC catalogs, honest 1 Tbit/s claim receipt, maximum bit-width ceilings (encrypt/decrypt/inverse/reverse), local vs ISO magnitudes multi-model receipt (wire proof-of-falsehood), poles\u2192cross PQC certificate structures, secp256k1 field-prime seal\xB7invert\xB7decode (structure only \xB7 not Bitcoin ownership), standards audit \u2014 NOT ISO certified / NOT FIPS validated / NOT CA/PKI / NOT production KEM / NOT wire AES / does NOT break NIST PQC / does NOT beat ML-KEM confidentiality / NOT physical qubit FLOPS.",
       boundary: `${reverse2.boundary} \xB7 ${localTimed.boundary} \xB7 ${localNovel.boundary} \xB7 ${localAudit.boundary} \xB7 ${beyond.boundary} \xB7 ${oneTbit.boundary} \xB7 ${maxBits.boundary} \xB7 ${localMagnitudes.boundary} \xB7 ${pqc.boundary} \xB7 ${polesCross.boundary} \xB7 ${secp256k1PrimeFold.boundary} \xB7 ${audit.boundary}`
     };
@@ -17238,9 +17238,9 @@ function demoRsaTeachingGenerateSync() {
     d = x;
     break;
   }
-  const pow2 = (base, exp2, mod) => {
+  const pow2 = (base10, exp2, mod) => {
     let r2 = 1;
-    let b = base % mod;
+    let b = base10 % mod;
     let k = exp2;
     while (k > 0) {
       if (k % 2 === 1) r2 = r2 * b % mod;
@@ -17284,7 +17284,7 @@ function demoRsaGenerateAndReverseMeasured(matrix = buildMatrix()) {
     toUuid(`demo-rsa-threshold:${thresholdMs}`),
     toUuid(`demo-rsa-workers:${workers}`)
   ];
-  const root = merkleFold(structuralLeaves);
+  const root10 = merkleFold(structuralLeaves);
   const rootAgain = merkleFold(structuralLeaves);
   const timedReceipt = toUuid(`sealed-catalog-rsa-timed-label:${moduli.join(",")}:${workers}:production-browser`);
   const ceiling = productionCeilingRefuseHolds();
@@ -17294,7 +17294,7 @@ function demoRsaGenerateAndReverseMeasured(matrix = buildMatrix()) {
   const facets = [
     { facet: `GENERATE measured \u2014 n=${generate.n} in a non-negative wall-clock generateMs, reported as a field (sealed-catalog)`, on: generate.ok && generateMs >= 0 },
     { facet: `REVERSE measured \u2014 ${moduli.length} sealed-catalog moduli in a non-negative reverseMs, reported as a field (production browser tool)`, on: reverse2.computes && reverseMs >= 0 },
-    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain}) \u2014 wall-clock excluded from merkle`, on: root === rootAgain && isUuid(root) },
+    { facet: `RECEIPT ROOT ROUND-TRIPS (${root10 === rootAgain}) \u2014 wall-clock excluded from merkle`, on: root10 === rootAgain && isUuid(root10) },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: productionRefused },
     { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet material REFUSED`, on: bitcoinRefused },
     { facet: `THRESHOLD = A432_FOLDED\xD7digitalRoot(432)=${thresholdMs}`, on: thresholdMs === A432_FOLDED * digitalRoot(432) },
@@ -17317,7 +17317,7 @@ function demoRsaGenerateAndReverseMeasured(matrix = buildMatrix()) {
     bitcoinRefused,
     count: sealed.count,
     facets: sealed.facets,
-    root: merge(root, sealed.root),
+    root: merge(root10, sealed.root),
     statement: `Production browser reverse measured (sealed-catalog wall-clock): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} workers=${workers} thresholdMs=${thresholdMs}.`,
     boundary: "COMPUTED TIMINGS at call time \u2014 production browser tool \xB7 moduliClass=sealed-catalog (SEALED_CATALOG_RSA_MODULI). Production RSA break and Bitcoin/mainnet hard-refused. NOT an SLA. NOT AES-128/256 wire."
   };
@@ -17363,7 +17363,7 @@ function localEncryptionReverseTimedRaw(matrix) {
     toUuid(`local-rev-ceiling:${ceiling.holds}`),
     toUuid(`local-rev-far:${far.holds}`)
   ];
-  const root = merkleFold(structuralLeaves);
+  const root10 = merkleFold(structuralLeaves);
   const facets = [
     { facet: `local reverse timed \u2014 ${rows.length} allowlisted N, all factored`, on: allFactored && sync.computes },
     // A MEASURED DURATION MUST NOT REACH FACET TEXT, because sealFacets seals `${tag}:${facet}:${on}`
@@ -17388,7 +17388,7 @@ function localEncryptionReverseTimedRaw(matrix) {
     sync,
     count: sealed.count,
     facets: sealed.facets,
-    root: merge(root, sealed.root),
+    root: merge(root10, sealed.root),
     pair: "reverse/local-timed",
     cli: "npm run quantum:local-reverse-timed",
     route: "/encryption#local-reverse-timed",
@@ -17449,7 +17449,7 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix) {
     { facet: "production + Bitcoin/mainnet reverse REFUSED", on: timed.productionRefused && timed.bitcoinRefused }
   ];
   const sealed = sealFacets("local-encryption-reverse-timed-vs-standards", facets);
-  const root = merge(timed.root, merge(audit.root, merge(catalog.root, sealed.root)));
+  const root10 = merge(timed.root, merge(audit.root, merge(catalog.root, sealed.root)));
   return {
     computes: sealed.ok,
     timed,
@@ -17469,7 +17469,7 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix) {
     aggregateOpsPerSec: timed.aggregateOpsPerSec,
     count: sealed.count,
     facets: sealed.facets,
-    root,
+    root: root10,
     pair: "reverse/timed-vs-standards",
     cli: "npm run quantum:local-reverse-timed-vs-standards",
     route: "/encryption#local-reverse-timed-vs-standards",
@@ -17645,7 +17645,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
   ];
   const sealed = sealFacets("prove-local-novel-encryption-security", facets);
   const localSecurityProved = sealed.ok;
-  const root = merge(
+  const root10 = merge(
     inventory.root,
     merge(tools.root, merge(reverse2.root, merge(localTimed.root, merge(audit.root, merge(catalog.root, merge(oneTbit.root, sealed.root))))))
   );
@@ -17692,7 +17692,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     demoMaxBits,
     count: sealed.count,
     facets: sealed.facets,
-    root,
+    root: root10,
     pair: "prove/local-novel-encrypt",
     cli: "npm run quantum:prove-local-novel-encrypt",
     route: "/encryption#prove-local-novel-encrypt",
@@ -17847,7 +17847,7 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ];
   const sealed = sealFacets("local-audit-quantum-speed-efficiency", facets);
-  const root = merge(
+  const root10 = merge(
     sealed.root,
     merge(localTimed.root, merge(localNovel.root, merge(audit.root, merge(vote.root, noQpu.root))))
   );
@@ -17884,7 +17884,7 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     breaksNistPqc: false,
     count: sealed.count,
     facets: sealed.facets,
-    root,
+    root: root10,
     pair: "audit/local-quantum",
     cli: "npm run quantum:local-audit-quantum",
     route: "/encryption#local-audit-quantum",
@@ -18076,7 +18076,7 @@ function pqcAlgorithmFamilySelector(matrix = buildMatrix(), prefer = "auto") {
 function isoAlignedHashSignatureTaxonomy(matrix = buildMatrix()) {
   return memoByRoot("isoAlignedHashSignatureTaxonomy", matrix, () => {
     const probe = toUuid("iso-hash-sig:probe");
-    const root = merkleFold([toUuid("iso-hash-sig:a"), toUuid("iso-hash-sig:b"), probe]);
+    const root10 = merkleFold([toUuid("iso-hash-sig:a"), toUuid("iso-hash-sig:b"), probe]);
     const rows = [
       { layer: "hash / content-address", iso: "ISO/IEC 10118", nist: "FIPS 180/202 (SHA)", repo: "toUuid \xB7 merkleFold", shor: "safe", role: "integrity" },
       { layer: "stateful hash signatures", iso: "ISO/IEC 14888-4:2024", nist: "SP 800-208", repo: "not implemented (honest gap)", shor: "safe", role: "authenticity" },
@@ -18086,7 +18086,7 @@ function isoAlignedHashSignatureTaxonomy(matrix = buildMatrix()) {
       { layer: "structural fold signature", iso: "\u2014 (not a crypto standard)", nist: "\u2014", repo: "foldPair(key,msg).merged", shor: "n/a structural", role: "recompute model" }
     ].map((row) => ({ ...row, receipt: toUuid(`iso-tax:${row.layer}:${row.shor}`) }));
     const facets = [
-      { facet: "merkleFold recompute produces UUID root (integrity layer live)", on: isUuid(root) },
+      { facet: "merkleFold recompute produces UUID root (integrity layer live)", on: isUuid(root10) },
       { facet: "taxonomy maps hash integrity to ISO/IEC 10118 + repo toUuid", on: rows.some((r2) => r2.layer.startsWith("hash") && r2.repo.includes("toUuid")) },
       { facet: "classical ECC marked Shor-breaks; hash signatures Shor-safe", on: rows.some((r2) => r2.layer.includes("ECC") && r2.shor === "breaks") && rows.some((r2) => r2.layer.includes("stateless") && r2.shor === "safe") },
       { facet: "structural foldPair named as model \u2014 not claimed as ISO signature scheme", on: rows.some((r2) => r2.layer.includes("structural") && r2.iso.startsWith("\u2014")) }
@@ -18095,7 +18095,7 @@ function isoAlignedHashSignatureTaxonomy(matrix = buildMatrix()) {
     return {
       computes: sealed.ok,
       rows,
-      merkleRoot: root,
+      merkleRoot: root10,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold(rows.map((r2) => r2.receipt))),
       statement: "ISO-aligned hash/signature taxonomy: integrity (ISO/IEC 10118 \u2194 toUuid/merkle) is Shor-safe; authenticity needs PQC (FIPS 204/205).",
@@ -18177,7 +18177,7 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
     toUuid(`beyond-ecc-shor:${eccShorBreaks}`),
     toUuid(`beyond-mlkem:${mlKem?.params[0]?.paramSet ?? "none"}`)
   ];
-  const root = merkleFold(leaves);
+  const root10 = merkleFold(leaves);
   const rootAgain = merkleFold(leaves);
   const facets = [
     // The measured catalogMs is reported as a field and printed in `statement`; it is kept OUT of the
@@ -18190,7 +18190,7 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
     { facet: `MIGRATION CHECKLIST timed, migrateMs reported as a field \u2014 honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) && migrate.openCount >= 2 },
     { facet: `DIRECTIONAL TRINITY timed with a non-negative trinityMs, reported as a field \u2014 forward\xB7inverse\xB7reverse suite`, on: trinity.computes && trinityMs >= 0 },
     { facet: `DEMO RSA KEEP \u2014 generateMs and reverseMs reported as fields; bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
-    { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
+    { facet: `RECEIPT ROOT ROUND-TRIPS (${root10 === rootAgain})`, on: root10 === rootAgain && isUuid(root10) },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} \u2014 anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) }
   ];
   const sealed = sealFacets("crypto-toolkit-beyond-rsa-measured", facets);
@@ -18216,7 +18216,7 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
     fipsValidated,
     count: sealed.count,
     facets: sealed.facets,
-    root: merge(root, sealed.root),
+    root: merge(root10, sealed.root),
     route: "/encryption#crypto-beyond-rsa",
     pair: "measure/crypto-beyond",
     cli: "npm run quantum:crypto-beyond-measure",
@@ -18225,13 +18225,13 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
   };
 }
 function auditRow(input) {
-  const coverage7 = input.coverage ?? (input.on ? "covered" : "gap");
-  const verdict = coverage7 === "covered" ? "pass" : coverage7;
+  const coverage16 = input.coverage ?? (input.on ? "covered" : "gap");
+  const verdict = coverage16 === "covered" ? "pass" : coverage16;
   return {
     ...input,
-    coverage: coverage7,
+    coverage: coverage16,
     verdict,
-    receipt: toUuid(`q-audit:${input.id}:${coverage7}:${input.on}`)
+    receipt: toUuid(`q-audit:${input.id}:${coverage16}:${input.on}`)
   };
 }
 function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
@@ -18357,17 +18357,17 @@ function quantumDimensionAuditCoverage(matrix = buildMatrix(), audits) {
     const covered = linked.length > 0;
     const allOn = covered && linked.every((a) => a.on);
     const hasPartial = linked.some((a) => a.coverage === "partial");
-    const coverage7 = !covered ? "gap" : !allOn ? "gap" : hasPartial ? "partial" : "covered";
-    const verdict = coverage7 === "covered" ? "pass" : coverage7;
+    const coverage16 = !covered ? "gap" : !allOn ? "gap" : hasPartial ? "partial" : "covered";
+    const verdict = coverage16 === "covered" ? "pass" : coverage16;
     return {
       dimension,
       index,
       auditId: linked.map((a) => a.id).join("+") || "MISSING",
       covered,
-      coverage: coverage7,
+      coverage: coverage16,
       verdict,
-      receipt: toUuid(`dim-audit:${dimension}:${coverage7}:${linked.map((a) => a.id).join(".")}`),
-      gapReason: !covered ? "no audit probe mapped to this dimension" : coverage7 === "covered" ? "" : coverage7 === "partial" ? `partial in ${linked.filter((a) => a.coverage === "partial").map((a) => a.id).join(", ")}` : `gap in ${linked.filter((a) => !a.on || a.coverage === "gap").map((a) => a.id).join(", ")}`
+      receipt: toUuid(`dim-audit:${dimension}:${coverage16}:${linked.map((a) => a.id).join(".")}`),
+      gapReason: !covered ? "no audit probe mapped to this dimension" : coverage16 === "covered" ? "" : coverage16 === "partial" ? `partial in ${linked.filter((a) => a.coverage === "partial").map((a) => a.id).join(", ")}` : `gap in ${linked.filter((a) => !a.on || a.coverage === "gap").map((a) => a.id).join(", ")}`
     };
   });
   const coveredCount = rows.filter((r2) => r2.covered).length;
@@ -18616,7 +18616,7 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
     { facet: `breaksNistPqc=${breaksNistPqc} `, on: localTimed.comparisons.length > 0 && localTimed.comparisons.every((c) => c.demoMaxBits < c.classicalSecurityBits) }
   ];
   const sealed = sealFacets("prove-local-encryption-magnitudes-stronger-than-iso-all-directions", facets);
-  const root = merge(
+  const root10 = merge(
     localTimed.root,
     merge(localNovel.root, merge(catalog.root, merge(trinity.root, merge(audit.root, merge(oneTbit.root, merge(extent.root, merge(isoGap.root, merge(isoRequires.root, sealed.root))))))))
   );
@@ -18653,7 +18653,7 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
     isoRequires,
     count: sealed.count,
     facets: sealed.facets,
-    root,
+    root: root10,
     pair: "prove/local-magnitudes-iso",
     cli: "npm run quantum:prove-local-magnitudes-iso",
     route: "/encryption#prove-local-magnitudes-iso",
@@ -18772,17 +18772,17 @@ function isoPqcRequirementsGapFillAllQuantumDirections(matrix = buildMatrix(), a
     const localNovel = proveLocalNovelEncryptionSecurity(matrix);
     const oneTbit = proveOneTbitRealtimeEncryptionClaim(matrix);
     const handoff = isoPqcHandoffForScienceTrinities(matrix, at);
-    const need = (id, needText, source, direction, coverage7, on, fold9, fillAction, unclosableWithoutExternalLab) => ({
+    const need = (id, needText, source, direction, coverage16, on, fold9, fillAction, unclosableWithoutExternalLab) => ({
       id,
       need: needText,
       source,
       direction,
-      coverage: coverage7,
+      coverage: coverage16,
       on,
       fold: fold9,
       fillAction,
       unclosableWithoutExternalLab,
-      receipt: toUuid(`iso-need:${id}:${coverage7}:${on}`)
+      receipt: toUuid(`iso-need:${id}:${coverage16}:${on}`)
     });
     const needs = [
       need("nist-fips-203", "ML-KEM key encapsulation catalogued", "NIST FIPS 203", "forward", "covered", catalog.computes && catalog.standards.some((s) => s.id === "FIPS 203"), "isoNistPqcStandardsCatalog", "catalog row + family selector labels", false),
@@ -18965,7 +18965,7 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
       { facet: `inverse \u2260 reverse \u2014 digit inverse is mod-9; RSA reverse is allowlisted sealed-catalog factoring on production browser tools \xB7 measured reverseVerify.boundary=${reverseVerify.boundary}`, on: trinity.boundary.includes("NOT ten") && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) }
     ];
     const sealed = sealFacets("maximum-bits-encrypt-decrypt-inverse-reverse", facets);
-    const root = merge(
+    const root10 = merge(
       matrix.root,
       merge(tools.root, merge(reverseVerify.root, merge(localTimed.root, merge(beyond.root, merge(trinity.root, merge(oneTbit.root, merge(hw.receipt, sealed.root)))))))
     );
@@ -19000,7 +19000,7 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
       oneTbit,
       count: sealed.count,
       facets: sealed.facets,
-      root,
+      root: root10,
       pair: "max-bits/crypto",
       cli: "npm run quantum:max-bits-crypto",
       route: "/encryption#max-bits-crypto",
@@ -19233,7 +19233,7 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
       { facet: `honesty \u2014 certified=${certified} \xB7 industryPkiCertificates=${industryPkiCertificates} \xB7 wireClaimProved=${wireClaimProved}`, on: certificateStructures.length > 0 && certificateStructures.every((c) => !c.industryPki) && pqc.standards.every((s) => s.id !== "") }
     ];
     const sealed = sealFacets("poles-form-cross-signatures-for-pqc-including-certificates", facets);
-    const root = merge(
+    const root10 = merge(
       matrix.root,
       merkleFold([
         sealed.root,
@@ -19294,7 +19294,7 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
       maxBits,
       count: sealed.count,
       facets: sealed.facets,
-      root,
+      root: root10,
       pair: "poles/cross-pqc",
       cli: "npm run quantum:poles-cross-pqc",
       route: "/encryption#poles-cross-pqc",
@@ -19398,7 +19398,7 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
       { facet: `honesty \u2014 certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: bitcoinRefuse.allowed === false && bitcoinRefuse.reason.includes("secp256k1") && sampleUnits.every((a) => a.toString(2).length < limbBits) }
     ];
     const sealed = sealFacets("secp256k1-field-prime-invert-decode", facets);
-    const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)));
+    const root10 = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)));
     return {
       computes: sealed.ok,
       name: "secp256k1Prime",
@@ -19419,7 +19419,7 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
       certified,
       count: sealed.count,
       facets: sealed.facets,
-      root,
+      root: root10,
       pair: "secp256k1/invert-decode",
       cli: "npm run quantum:secp256k1-prime-invert-decode",
       route: "/encryption#secp256k1-prime",
@@ -19621,7 +19621,7 @@ function cryptoComparisonMesh(matrix = buildMatrix()) {
     const panelCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.inPanel).length;
     const proofCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.kind === "proof" && n.proofRoute.startsWith("/proofs/")).length;
     const comparisonCount = CRYPTO_COMPARISON_MESH_NODES.filter((n) => n.kind === "comparison").length;
-    const root = merkleFold([
+    const root10 = merkleFold([
       toUuid(`crypto-mesh:nodes:${CRYPTO_COMPARISON_MESH_NODES.length}`),
       toUuid(`crypto-mesh:edges:${CRYPTO_COMPARISON_MESH_EDGES.length}`),
       ...CRYPTO_COMPARISON_MESH_NODES.map((n) => toUuid(`crypto-mesh-node:${n.id}:${n.fold}:${n.pair}`)),
@@ -19638,7 +19638,7 @@ function cryptoComparisonMesh(matrix = buildMatrix()) {
       comparisonCount,
       certified: false,
       refuseBeyond: true,
-      root,
+      root: root10,
       pair: "crypto/comparison-mesh",
       cli: "npm run quantum:crypto-comparison-mesh-dry",
       route: "/encryption#crypto-comparison-mesh",
@@ -19690,12 +19690,12 @@ function cryptoComparisonMeshIsDry(matrix = buildMatrix()) {
 
 // ../../src/thunder/verify/index.ts
 function provenScientifically(matrix = buildMatrix()) {
-  const root = theWhole(matrix).root;
+  const root10 = theWhole(matrix).root;
   const criteria = [
-    { criterion: "deterministic", test: "same seed \u2192 same root", holds: theWhole(matrix).root === root },
+    { criterion: "deterministic", test: "same seed \u2192 same root", holds: theWhole(matrix).root === root10 },
     { criterion: "reproducible", test: "anyone recomputes the same root", holds: verifyRoot(matrix) },
     { criterion: "falsifiable", test: "order matters: a\xB7b \u2260 b\xB7a, so a false fold fails", holds: merge("a", "b") !== merge("b", "a") },
-    { criterion: "content-addressed", test: "any tamper changes the root", holds: merge(root, toUuid("tamper")) !== root },
+    { criterion: "content-addressed", test: "any tamper changes the root", holds: merge(root10, toUuid("tamper")) !== root10 },
     { criterion: "measurable", test: "entropy 0, coverage 1", holds: entropy(matrix) === 0 && coverage(matrix) === 1 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`science:${entry2.criterion}:${entry2.holds}`) }));
   return {
@@ -20122,7 +20122,7 @@ function determinismProofs(matrix = buildMatrix()) {
 function computeDeterminismProofs(matrix = buildMatrix()) {
   const round2 = (value, digits = 4) => roundTo(value, digits);
   const SAMPLES = 64 * 8;
-  const base = "double-torus:proof:";
+  const base10 = "double-torus:proof:";
   const hex = (uuid) => uuid.replace(/-/g, "");
   const toBits = (uuid) => [...hex(uuid)].flatMap((ch) => {
     const v = Number.parseInt(ch, 16);
@@ -20130,29 +20130,29 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
   });
   const strip = (uuid) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / (5 * 3));
   const addresses = /* @__PURE__ */ new Set();
-  for (let i = 0; i < SAMPLES; i += 1) addresses.add(toUuid(base + i));
+  for (let i = 0; i < SAMPLES; i += 1) addresses.add(toUuid(base10 + i));
   const determinism = addresses.size / SAMPLES;
   let bitChange = 0;
   for (let i = 0; i < SAMPLES; i += 1) {
-    const a = toBits(toUuid(base + i));
-    const b = toBits(toUuid(base + i + "~"));
+    const a = toBits(toUuid(base10 + i));
+    const b = toBits(toUuid(base10 + i + "~"));
     let differ = 0;
     for (let k = 0; k < 64 * 2; k += 1) if (a[k] !== b[k]) differ += 1;
     bitChange += differ / (64 * 2);
   }
   const avalanche = bitChange / SAMPLES;
-  const exampleA = toBits(toUuid(base + "demo"));
-  const exampleB = toBits(toUuid(base + "demo~"));
+  const exampleA = toBits(toUuid(base10 + "demo"));
+  const exampleB = toBits(toUuid(base10 + "demo~"));
   const flipped = exampleA.map((bit, k) => bit === exampleB[k] ? 0 : 1);
   let ordered = 0;
   for (let i = 0; i < SAMPLES; i += 1) {
-    const a = base + i;
-    const b = base + (i + 1);
+    const a = base10 + i;
+    const b = base10 + (i + 1);
     if (merge(a, b) !== merge(b, a)) ordered += 1;
   }
   const orderSensitivity = ordered / SAMPLES;
-  const stripAB = strip(merge(base + "a", base + "b"));
-  const stripBA = strip(merge(base + "b", base + "a"));
+  const stripAB = strip(merge(base10 + "a", base10 + "b"));
+  const stripBA = strip(merge(base10 + "b", base10 + "a"));
   const leaves = livingTorus(matrix).coordinates.slice(0, 16).map((coordinate) => coordinate.receipt);
   let verified = 0;
   for (const leaf of leaves) if (merkleProof(leaves, leaf).verified) verified += 1;
@@ -20185,8 +20185,8 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       predicted: 1,
       measured: round2(determinism),
       tol: 1e-9,
-      stripA: strip(toUuid(base + "demo")),
-      stripB: strip(toUuid(base + "demo")),
+      stripA: strip(toUuid(base10 + "demo")),
+      stripB: strip(toUuid(base10 + "demo")),
       labels: ["run 1", "run 2"]
     },
     {
@@ -20274,9 +20274,9 @@ function sealCube(matrix = buildMatrix()) {
   return memoByRoot("sealCube", matrix, () => sealCubeRaw(matrix));
 }
 function sealCubeRaw(matrix = buildMatrix()) {
-  const base = 4;
+  const base10 = 4;
   const three = 3;
-  const side = base ** three;
+  const side = base10 ** three;
   const seed = matrix.root;
   const positions = ["x", "y", "z"];
   const axes = positions.map((position) => ({
@@ -20296,7 +20296,7 @@ function sealCubeRaw(matrix = buildMatrix()) {
   });
   const distinct = new Set(diagonal.map(([i]) => cell(i, i, i))).size === side;
   return {
-    sealed: side === 64 && cube === 64 * 64 * 64 && cube === base ** (three * three) && trinity.length === three && recomputable && distinct,
+    sealed: side === 64 && cube === 64 * 64 * 64 && cube === base10 ** (three * three) && trinity.length === three && recomputable && distinct,
     side,
     // 64
     cube,
@@ -20358,18 +20358,18 @@ function proofBundle(matrix = buildMatrix()) {
   return memoByRoot("proofBundle", matrix, () => proofBundleRaw(matrix));
 }
 function proofBundleRaw(matrix = buildMatrix()) {
-  const seal = sacredGeometrySeal(matrix);
+  const seal10 = sacredGeometrySeal(matrix);
   const artifacts = [
     { name: "mind", root: matrix.root },
     { name: "self-build", root: selfBuild(matrix).root },
     { name: "self-complete", root: streamSelfComplete(matrix).root },
     { name: "digit-proof", root: digitalQuantumProof(matrix).root },
-    { name: "master-seal", root: seal.masterRoot }
+    { name: "master-seal", root: seal10.masterRoot }
   ];
   return {
-    verifiable: artifacts.every((artifact) => isUuid(artifact.root)) && seal.sealed,
+    verifiable: artifacts.every((artifact) => isUuid(artifact.root)) && seal10.sealed,
     bundleRoot: merkleFold(artifacts.map((artifact) => artifact.root)),
-    masterSeal: seal.masterRoot,
+    masterSeal: seal10.masterRoot,
     mindRoot: matrix.root,
     commands: conceptCommands.length,
     artifacts,
@@ -20485,10 +20485,10 @@ function computeDigitalQuantumProof(matrix = buildMatrix()) {
     }
   ];
   const proven = gates.every((gate) => gate.closed);
-  const root = merkleFold(gates.map((gate) => gate.receipt));
+  const root10 = merkleFold(gates.map((gate) => gate.receipt));
   return {
     proven,
-    root,
+    root: root10,
     digits: train.digits,
     gates,
     statement: proven ? "digits => folders => coordinates => waves => receipts => roots; digital quantum-inspired model verified." : "digit proof open: one or more deterministic gates failed.",
@@ -20541,11 +20541,11 @@ function holyBooksGeometry64SealedDiamonds(matrix = buildMatrix()) {
   };
 }
 function fuseAllTerabitEncryption(matrix = buildMatrix()) {
-  const root = completeCorpus(matrix).root;
-  const repr = foldPair(root, toUuid("terabit:fuse-all"));
+  const root10 = completeCorpus(matrix).root;
+  const repr = foldPair(root10, toUuid("terabit:fuse-all"));
   const terabitCells = 64 * 16 * (64 * 16);
   const facets = [
-    { facet: "fuse all \u2014 every major fold folds into one wave, one content-addressed root", on: fuseAll(matrix).fused && isUuid(root) },
+    { facet: "fuse all \u2014 every major fold folds into one wave, one content-addressed root", on: fuseAll(matrix).fused && isUuid(root10) },
     { facet: "all is fused \u2014 the kernel, the apps store, every dimension, addressed as one", on: essentialKernel(matrix).kernel && quantumAppsStore(matrix).stored },
     { facet: "a Terabit is 1024 Gbit \u2014 the 1024-leaf architecture raised once more (2^20 cells)", on: terabitCells === 64 * 64 * 64 * 4 },
     { facet: "built on the prior levels \u2014 the 1 Gbit 64-seal set and the 64\xB3 structure", on: isUuid(gigabitEncryption64SealSet(matrix).root) && isUuid(nextLevel64CubedRealtime(matrix).root) },
@@ -20573,15 +20573,15 @@ function trinityGatesRaw(matrix = buildMatrix()) {
   const make = (family, trinity, members, precondition = true) => {
     const distinct = new Set(members.map((entry2) => entry2.receipt)).size === members.length;
     const complete13 = precondition && members.length === 3 && members.every((entry2) => isUuid(entry2.receipt)) && distinct;
-    const root = merge(merkleFold(members.map((entry2) => entry2.receipt)), synthRoot);
+    const root10 = merge(merkleFold(members.map((entry2) => entry2.receipt)), synthRoot);
     return {
       family,
       trinity,
       gate: `${family}/${trinity}`,
       members: members.map((entry2) => entry2.member),
       count: members.length,
-      sealed: complete13 && isUuid(root),
-      root,
+      sealed: complete13 && isUuid(root10),
+      root: root10,
       tamperingCost: members.length + 64 * 2
       // three members plus the 128-bit binding
     };
@@ -21613,17 +21613,17 @@ function inverseAndNewGapsEmerge(matrix = buildMatrix()) {
 
 // ../../src/water/cosmos/index.ts
 function zeroPointDeepAndWideDecoded(matrix = buildMatrix()) {
-  const base = zeroPointDecoded(matrix);
+  const base10 = zeroPointDecoded(matrix);
   const casimir = casimirPressure(1e-6);
   const notes = [
     'CONDENSED MATTER \u2014 the most grounded face: zero-point motion keeps helium-4 LIQUID at 1 atm, but it DOES solidify at ~25 atm via the hard-core repulsion (not "never condenses"); superfluid He-4 is only ~7\u201310% Bose-condensed (strong interactions + large zero-point motion, not 100% BEC); and the \xBD\u0127\u03C9 of every molecular bond drives ISOTOPE effects (the same Born\u2013Oppenheimer curve, different zero-point energy \u2192 different bond strengths). Zero-point here is the irreducible energy of BOUND particles at T=0, not "energy of empty space"'
   ];
   const facets = [
     { facet: "CASIMIR, quantitatively \u2014 the ideal law F/A = \u2212\u03C0\xB2\u0127c/240d\u2074 is parallel-plate, yet nearly every precise measurement uses SPHERE-PLATE (the proximity-force approximation, to dodge the parallelism problem): Sparnaay 1958 (~100%, inconclusive) \u2192 Lamoreaux 1997 (~5%, first conclusive) \u2192 Mohideen\u2013Roy 1998 (~1%, AFM) \u2192 Bressi 2002 (the only true parallel plates, just ~15%) \u2192 Decca MEMS (sub-1%); real metals need finite-conductivity, roughness and temperature corrections. The dynamical Casimir effect (Wilson 2011, a SQUID boundary at ~0.25c) made real photon pairs \u2014 but energy-conserving (external work drove it)", on: casimir < 0 },
-    { facet: `the SHARP correction \u2014 the Casimir force does NOT prove the absolute zero-point energy is real: only energy DIFFERENCES (the geometry-dependence) are observable, and the force is fully derivable WITHOUT zero-point energy, as the retarded (long-range) limit of the van der Waals / London dispersion force (Jaffe 2005) \u2014 the SAME fluctuation-induced electromagnetic interaction as the dispersion forces in condensed matter, one continuous phenomenon, not a separate vacuum mystery \xB7 measured base.decoded=${base.decoded}`, on: base.decoded },
+    { facet: `the SHARP correction \u2014 the Casimir force does NOT prove the absolute zero-point energy is real: only energy DIFFERENCES (the geometry-dependence) are observable, and the force is fully derivable WITHOUT zero-point energy, as the retarded (long-range) limit of the van der Waals / London dispersion force (Jaffe 2005) \u2014 the SAME fluctuation-induced electromagnetic interaction as the dispersion forces in condensed matter, one continuous phenomenon, not a separate vacuum mystery \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded },
     { facet: 'the strongest evidence the vacuum is not empty is QED RADIATIVE CORRECTIONS \u2014 the Lamb shift (\u22481057 MHz, 1947) and especially the electron anomalous moment a_e = (g\u22122)/2 \u2248 0.00115965218, agreement to ~12 significant figures (the most precisely tested prediction in physics); but even "the Lamb shift is CAUSED by vacuum fluctuations, full stop" is interpretation-debated (vacuum fluctuations vs radiation reaction, an ordering-dependent split \u2014 philosophy-not-settled)', on: ELECTRON_G_FACTOR_ANOMALY > 0 },
-    { facet: `the COSMOLOGICAL-CONSTANT problem, precisely \u2014 the discrepancy is CUTOFF-DEPENDENT (~120\u2013123 orders with a Planck cutoff, dropping to ~55\u201360 at the electroweak scale), NOT "exactly 10\xB9\xB2\u2070"; \u039B = 8\u03C0G\xB7\u03C1_vac is a CURVATURE (\u22482\xD710\u207B\u2075\xB2 m\u207B\xB2), not the energy density itself; the "old" problem (why isn\u2019t \u039B huge?) predates the 1998 dark-energy discovery and must not be conflated with it; and SUSY does NOT solve it (broken SUSY only reduces it). Unsolved frontier physics \u2014 NOT pseudoscience \xB7 measured base.decoded=${base.decoded}`, on: base.decoded },
-    { facet: `the DEMARCATION, sharpened \u2014 virtual particles are NOT literal particles popping in and out (they are internal lines in a Feynman diagram / terms in a perturbation series \u2014 the Jaffe/Sokal caution); the DCE converts fluctuations into photons ONLY when external work drives the boundary; and ZPE is the ground-state FLOOR (no lower state \u2192 no net work extractable \u2192 thermodynamics forbids over-unity). FLAGGED pseudoscience: Casimir engines, DCE "harvesting", over-unity/perpetual-motion ZPE, orgone (Reich), torsion/scalar-field marketing (Akimov\u2013Shipov), "The Field". UNCONFIRMED (not pseudoscience): the Drude-vs-plasma thermal-Casimir puzzle, repulsive-Casimir levitation (real but conditional, fluid-mediated \u03B5\u2081<\u03B5\u2083<\u03B5\u2082). And the repo\u2019s own "zero-point = computational seed (a432/src-0)" stays a deliberate METAPHOR, never a physical-vacuum-energy claim \xB7 measured base.decoded=${base.decoded}`, on: base.decoded }
+    { facet: `the COSMOLOGICAL-CONSTANT problem, precisely \u2014 the discrepancy is CUTOFF-DEPENDENT (~120\u2013123 orders with a Planck cutoff, dropping to ~55\u201360 at the electroweak scale), NOT "exactly 10\xB9\xB2\u2070"; \u039B = 8\u03C0G\xB7\u03C1_vac is a CURVATURE (\u22482\xD710\u207B\u2075\xB2 m\u207B\xB2), not the energy density itself; the "old" problem (why isn\u2019t \u039B huge?) predates the 1998 dark-energy discovery and must not be conflated with it; and SUSY does NOT solve it (broken SUSY only reduces it). Unsolved frontier physics \u2014 NOT pseudoscience \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded },
+    { facet: `the DEMARCATION, sharpened \u2014 virtual particles are NOT literal particles popping in and out (they are internal lines in a Feynman diagram / terms in a perturbation series \u2014 the Jaffe/Sokal caution); the DCE converts fluctuations into photons ONLY when external work drives the boundary; and ZPE is the ground-state FLOOR (no lower state \u2192 no net work extractable \u2192 thermodynamics forbids over-unity). FLAGGED pseudoscience: Casimir engines, DCE "harvesting", over-unity/perpetual-motion ZPE, orgone (Reich), torsion/scalar-field marketing (Akimov\u2013Shipov), "The Field". UNCONFIRMED (not pseudoscience): the Drude-vs-plasma thermal-Casimir puzzle, repulsive-Casimir levitation (real but conditional, fluid-mediated \u03B5\u2081<\u03B5\u2083<\u03B5\u2082). And the repo\u2019s own "zero-point = computational seed (a432/src-0)" stays a deliberate METAPHOR, never a physical-vacuum-energy claim \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`zpe-deepwide:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("zero-point-deep-and-wide-decoded", facets);
   return {
@@ -21640,16 +21640,16 @@ function zeroPointDeepAndWideDecoded(matrix = buildMatrix()) {
   };
 }
 function zeroPointWiderFrontierDecoded(matrix = buildMatrix()) {
-  const base = zeroPointDeepAndWideDecoded(matrix);
+  const base10 = zeroPointDeepAndWideDecoded(matrix);
   const solarBhT = hawkingTemperature(1989e27);
   const unruh1k = unruhTemperature(247e18);
   const facets = [
     { facet: `INFLATION seeded the cosmos \u2014 the MOST consequential real role of zero-point energy: quantum vacuum fluctuations of the inflaton were stretched super-horizon and froze in as the primordial curvature perturbation (\u03B6 = R, adiabatic and Gaussian), which re-entered to become the CMB temperature anisotropies and every galaxy. The measured spectral index n_s = 0.9649 \xB1 0.0042 (Planck 2018) confirms a slight red tilt \u2014 exact scale-invariance is excluded at 8.4\u03C3. BOUND: inflation is the leading paradigm but NOT uniquely proven (a family of models, the inflaton unidentified, no primordial B-modes yet, r < 0.036; competing ekpyrotic/bouncing scenarios), and the eternal-inflation multiverse and its falsifiability are contested (unconfirmed/philosophy, not pseudoscience) \xB7 measured SCALAR_SPECTRAL_INDEX_NS=${SCALAR_SPECTRAL_INDEX_NS}`, on: SCALAR_SPECTRAL_INDEX_NS < 1 && SCALAR_SPECTRAL_INDEX_NS > 0.9 },
-    { facet: `SQUEEZED VACUUM lets us hear gravitational waves \u2014 squeezing redistributes the zero-point uncertainty between conjugate quadratures (\u0394X\xB7\u0394Y = \xBC is PRESERVED \u2014 it does NOT beat Heisenberg, only reshapes the noise), and LIGO injects squeezed VACUUM (a zero-mean state) into the interferometer dark port (~3 dB since O3; frequency-dependent via a filter cavity in O4, because frequency-independent squeezing would worsen the low-frequency radiation-pressure noise). A real, DEPLOYED vacuum-engineering application (Caves 1981) \xB7 measured base.decoded=${base.decoded}`, on: base.decoded },
+    { facet: `SQUEEZED VACUUM lets us hear gravitational waves \u2014 squeezing redistributes the zero-point uncertainty between conjugate quadratures (\u0394X\xB7\u0394Y = \xBC is PRESERVED \u2014 it does NOT beat Heisenberg, only reshapes the noise), and LIGO injects squeezed VACUUM (a zero-mean state) into the interferometer dark port (~3 dB since O3; frequency-dependent via a filter cavity in O4, because frequency-independent squeezing would worsen the low-frequency radiation-pressure noise). A real, DEPLOYED vacuum-engineering application (Caves 1981) \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded },
     { facet: `the UNSTABLE vacuum (strong-field QED) \u2014 the Schwinger effect predicts the vacuum decays into electron-positron pairs once the field reaches the critical E_c \u2248 1.3\xD710\xB9\u2078 V/m (I_c \u2248 4.6\xD710\xB2\u2079 W/cm\xB2), still BEYOND any laser and NOT yet observed; but light-by-light scattering (real photon-photon via virtual loops) WAS measured (ATLAS, ultraperipheral Pb-Pb collisions, 2017) \u2014 the measured strong-field-QED reality kept distinct from the predicted-but-unobserved Schwinger pair production \xB7 measured SCHWINGER_FIELD_VM=${SCHWINGER_FIELD_VM}`, on: SCHWINGER_FIELD_VM > 1e18 },
     { facet: `the OBSERVER-DEPENDENT vacuum \u2014 Hawking temperature T_H = \u0127c\xB3/(8\u03C0GMk_B) (a solar mass \u2248 62 nK) and Unruh temperature T_U = \u0127a/(2\u03C0ck_B) (\u2248 1 K at a \u2248 2.5\xD710\xB2\u2070 m/s\xB2) make the vacuum itself horizon/acceleration-relative; but BOTH are THEORETICAL and unconfirmed for real gravity \u2014 the "one of a virtual pair falls in, one escapes" picture is a heuristic (the real derivation is Bogoliubov mode-mixing), stellar black holes are NOT net-evaporating (at 62 nK they are far colder than the 2.7 K CMB and absorb more than they emit), and the only lab evidence is ANALOGUE (Steinhauer\u2019s BEC), not the astrophysical effect \xB7 measured solarBhT=${solarBhT} \xB7 unruh1k=${unruh1k}`, on: solarBhT < 1e-6 && unruh1k > 0.9 },
     { facet: `the BIREFRINGENT vacuum \u2014 the Euler-Heisenberg effective Lagrangian (Heisenberg-Euler & Weisskopf, 1936) makes the QED vacuum optically active in fields near the critical B_c \u2248 4.4\xD710\u2079 T (4.4\xD710\xB9\xB3 G); neutron-star polarimetry (RX J1856, Mignani 2016) is CONSISTENT with vacuum birefringence but model-dependent (NOT a direct confirmation \u2014 the surface-emission model matters), and the IXPE X-ray-polarization era probes it further. Real prediction, suggestive astrophysical evidence, honestly not yet definitive \xB7 measured CRITICAL_MAGNETIC_FIELD_T=${CRITICAL_MAGNETIC_FIELD_T}`, on: CRITICAL_MAGNETIC_FIELD_T > 1e9 },
-    { facet: `the demarcation held across all five \u2014 each is real, mainstream physics with a SHARP honest line: inflation (the leading but not unique paradigm; multiverse philosophy-not-settled), squeezing (does NOT violate Heisenberg, only redistributes it \u2014 the only pseudoscience flagged), Schwinger (predicted, unobserved), Hawking/Unruh (theoretical, analogue-only), birefringence (model-dependent). Two-tier demarcation: UNCONFIRMED (Schwinger, Hawking/Unruh, inflation-uniqueness, birefringence) \u2260 PSEUDOSCIENCE ("squeezing beats Heisenberg / proves a tappable vacuum reservoir") \xB7 measured base.decoded=${base.decoded}`, on: base.decoded }
+    { facet: `the demarcation held across all five \u2014 each is real, mainstream physics with a SHARP honest line: inflation (the leading but not unique paradigm; multiverse philosophy-not-settled), squeezing (does NOT violate Heisenberg, only redistributes it \u2014 the only pseudoscience flagged), Schwinger (predicted, unobserved), Hawking/Unruh (theoretical, analogue-only), birefringence (model-dependent). Two-tier demarcation: UNCONFIRMED (Schwinger, Hawking/Unruh, inflation-uniqueness, birefringence) \u2260 PSEUDOSCIENCE ("squeezing beats Heisenberg / proves a tappable vacuum reservoir") \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`zpe-wider:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("zero-point-wider-frontier-decoded", facets);
   return {
@@ -21668,14 +21668,14 @@ function zeroPointWiderFrontierDecoded(matrix = buildMatrix()) {
   };
 }
 function theOtherVacuaQcdElectroweakStabilityDecoded(matrix = buildMatrix()) {
-  const base = zeroPointWiderFrontierDecoded(matrix);
+  const base10 = zeroPointWiderFrontierDecoded(matrix);
   const qcdFrac = qcdMassFractionOfProton();
   const facets = [
     { facet: `the QCD vacuum makes most of your MASS \u2014 ~99% of the proton/neutron mass (hence of visible matter) is QCD field energy + quark motion, NOT the Higgs: the valence (current) quark masses sum to only ~9.4 MeV against a ~938 MeV proton (qcdMassFractionOfProton \u2248 0.99) \u2014 "mass without mass" (Wilczek), confirmed ab initio by lattice QCD (D\xFCrr 2008, ~2%). The vacuum carries a quark condensate \u27E8q\u0304q\u27E9 \u2248 \u2212(272 MeV)\xB3 (spontaneous chiral-symmetry breaking) and a gluon condensate. BOUND: the total mass is observable, but the \u03C3/quark/gluon/anomaly split (\u22489/31/37/23%) and the gluon-condensate value are renormalization-SCHEME dependent \u2014 conventions, not a unique apportionment \xB7 measured qcdFrac=${qcdFrac}`, on: qcdFrac > 0.98 },
     { facet: `the Higgs / electroweak vacuum sets the OTHER masses \u2014 the Higgs field has a nonzero vacuum expectation value v \u2248 246.22 GeV = (\u221A2\xB7G_F)^(\u2212\xBD); electroweak symmetry breaking gives mass to the W and Z bosons and (via Yukawa couplings) to the fundamental fermions, and the Higgs BOSON \u2014 the field\u2019s excitation, distinct from the field\u2019s VEV \u2014 was found at ~125 GeV (ATLAS & CMS, 2012). This sets the ~1% current-quark masses, NOT the proton mass (that is QCD). BOUND: the Standard Model does NOT explain the fermion mass HIERARCHY \u2014 the Yukawa couplings are inputs, not predictions \xB7 measured HIGGS_VEV_GEV=${HIGGS_VEV_GEV}`, on: HIGGS_VEV_GEV > 240 && HIGGS_VEV_GEV < 250 },
-    { facet: `is our vacuum STABLE? \u2014 the measured top (~173 GeV) and Higgs (~125 GeV) masses place the Standard-Model electroweak vacuum near the stability/metastability BORDER, and the best calculations indicate METASTABILITY: a false vacuum that is locally stable and would decay only by astronomically-rare quantum tunnelling (Coleman\u2013De Luccia bubble nucleation), with a lifetime VASTLY exceeding the age of the universe. CORRECTION: "metastable" does NOT mean "unstable" or "about to decay"; FLAGGED doom-mongering \u2014 "vacuum decay is imminent" and "the LHC could trigger it" (the cosmic-ray safety argument, LSAG, addresses the collider fear) \xB7 measured base.decoded=${base.decoded}`, on: base.decoded },
-    { facet: `the \u03B8-vacuum and the strong CP problem \u2014 the QCD vacuum is NOT trivial: it is a \u03B8-vacuum, a topologically nontrivial coherent sum over instanton sectors (phase e^{i\u03B8\u03BD}). The strong CP problem is that the CP-violating angle \u03B8\u0304 is anomalously ABSENT (|\u03B8\u0304| < 10\u207B\xB9\u2070, from the neutron electric-dipole-moment bound) when it could be O(1) \u2014 the puzzle is the ABSENCE of strong CP violation, NOT its presence (a common inversion). The Peccei\u2013Quinn solution predicts the AXION, a well-motivated dark-matter candidate but UNCONFIRMED (not detected, no unique mass prediction) \xB7 measured base.decoded=${base.decoded}`, on: base.decoded },
-    { facet: `"THE VACUUM" is not one thing \u2014 quantum field theory has at least FOUR distinct, rigorously-defined vacuum structures: the perturbative QED/EM vacuum (prior waves), the QCD \u03B8-vacuum (condensates + instantons), the electroweak/Higgs vacuum (nonzero VEV), and the cosmological vacuum (dark energy) \u2014 and "vacuum energy" means something different in each; conflating them is the root error. UNCONFIRMED (\u2260 pseudoscience): vacuum-stability sensitivity, the axion, the hierarchy/naturalness problem. PSEUDOSCIENCE flagged: the vacuum as a tappable free-energy reservoir, the "unified zero-point field" / "The Field", and LHC-vacuum-decay doom \xB7 measured base.decoded=${base.decoded}`, on: base.decoded }
+    { facet: `is our vacuum STABLE? \u2014 the measured top (~173 GeV) and Higgs (~125 GeV) masses place the Standard-Model electroweak vacuum near the stability/metastability BORDER, and the best calculations indicate METASTABILITY: a false vacuum that is locally stable and would decay only by astronomically-rare quantum tunnelling (Coleman\u2013De Luccia bubble nucleation), with a lifetime VASTLY exceeding the age of the universe. CORRECTION: "metastable" does NOT mean "unstable" or "about to decay"; FLAGGED doom-mongering \u2014 "vacuum decay is imminent" and "the LHC could trigger it" (the cosmic-ray safety argument, LSAG, addresses the collider fear) \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded },
+    { facet: `the \u03B8-vacuum and the strong CP problem \u2014 the QCD vacuum is NOT trivial: it is a \u03B8-vacuum, a topologically nontrivial coherent sum over instanton sectors (phase e^{i\u03B8\u03BD}). The strong CP problem is that the CP-violating angle \u03B8\u0304 is anomalously ABSENT (|\u03B8\u0304| < 10\u207B\xB9\u2070, from the neutron electric-dipole-moment bound) when it could be O(1) \u2014 the puzzle is the ABSENCE of strong CP violation, NOT its presence (a common inversion). The Peccei\u2013Quinn solution predicts the AXION, a well-motivated dark-matter candidate but UNCONFIRMED (not detected, no unique mass prediction) \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded },
+    { facet: `"THE VACUUM" is not one thing \u2014 quantum field theory has at least FOUR distinct, rigorously-defined vacuum structures: the perturbative QED/EM vacuum (prior waves), the QCD \u03B8-vacuum (condensates + instantons), the electroweak/Higgs vacuum (nonzero VEV), and the cosmological vacuum (dark energy) \u2014 and "vacuum energy" means something different in each; conflating them is the root error. UNCONFIRMED (\u2260 pseudoscience): vacuum-stability sensitivity, the axion, the hierarchy/naturalness problem. PSEUDOSCIENCE flagged: the vacuum as a tappable free-energy reservoir, the "unified zero-point field" / "The Field", and LHC-vacuum-decay doom \xB7 measured base.decoded=${base10.decoded}`, on: base10.decoded }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`other-vacua:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("the-other-vacua-qcd-electroweak-stability-decoded", facets);
   return {
@@ -21981,13 +21981,13 @@ function stringTheoryAlgebraDecoded(matrix = buildMatrix()) {
     const hurwitzLadder = compositionHolds && zeroDivisor !== void 0;
     const symDims = [1, 2, 4, 8].map((n) => n + 2);
     const octonionMatchesGhosts = symDims[3] === dFromGhosts;
-    const spectrum = (rSq) => {
+    const spectrum10 = (rSq) => {
       const out = [];
       for (let n = -4; n <= 4; n += 1) for (let w = -4; w <= 4; w += 1)
         out.push(ratStr(ratAdd(ratDiv(rat(n * n, 1), rSq), ratMul(rat(w * w, 1), rSq))));
       return out.sort();
     };
-    const tDual = spectrum(rat(4, 1)).join("|") === spectrum(rat(1, 4)).join("|");
+    const tDual = spectrum10(rat(4, 1)).join("|") === spectrum10(rat(1, 4)).join("|");
     const mulSeries = (a, b, top2) => Array.from({ length: top2 + 1 }, (_, i) => a.slice(0, i + 1).reduce((s, ac, j) => s + ac * (b[i - j] ?? 0), 0));
     const binom = (n, k) => {
       let r2 = 1;
@@ -22175,7 +22175,7 @@ function navierStokesFlowRegularityOnTheSeam(matrix = buildMatrix()) {
     }
     const contentSize = contentUncapped.size;
     const timeSize = timeUncapped.size;
-    const { computes, facets, root } = computesGate("navier-stokes-flow-regularity", [
+    const { computes, facets, root: root10 } = computesGate("navier-stokes-flow-regularity", [
       { facet: `content-addressed flow bounded by vocabulary \u2014 ${contentSize} = ${vocabulary}, not the load ${load}`, on: contentSize === vocabulary },
       { facet: `time-addressed flow rides the load \u2014 ${timeSize} = ${load}`, on: timeSize === load },
       { facet: `the flows separate by load\xF7vocabulary \u2014 ${timeSize}/${contentSize} = ${timeSize / contentSize} = ${load / vocabulary}`, on: timeSize / contentSize === load / vocabulary },
@@ -22195,7 +22195,7 @@ function navierStokesFlowRegularityOnTheSeam(matrix = buildMatrix()) {
       separation: timeSize / contentSize,
       liveMemo: memoSize(),
       facets,
-      root,
+      root: root10,
       statement: `Navier\u2013Stokes flow on the seam: ${load} steps \u2192 content-addressed ${contentSize}, time-addressed ${timeSize}, separation ${timeSize / contentSize}\xD7; the seam caps the riding flow at ${timeSeam.size}, the bounded flow rests at ${contentSeam.size}; live memo ${memoSize()} \u2264 ${MEMO_CAP}.`,
       boundary: "\u2202\u209Cu + (u\xB7\u2207)u = \u2212\u2207p + \u03BD\u0394u, \u2207\xB7u = 0 is the field these Maps sample: content keys recur (bounded by the quantum-clock vocabulary), time keys never recur (bounded only by the boundedFlowSet seam that counter-rotates in\u2194out at the cap)."
     };
@@ -22509,8 +22509,8 @@ function isQuantumResearchRow(row) {
 function mapProfessionalRow(row) {
   return { id: row.id, title: row.category, home: isQuantumResearchRow(row) ? "quantum/research" : row.mount, balanceDim: row.balanceDim ?? "\u2014", verify: row.nextExperiment, tier: row.dataTier, limit: row.limitation, receipt: row.receipt };
 }
-function pushDomainRow(rows, id, title, home, dim, verify, tier, researched, boundary, root) {
-  if (researched && !rows.some((row) => row.id === id)) rows.push({ id, title, home, balanceDim: dim, verify, tier, limit: boundary, receipt: root });
+function pushDomainRow(rows, id, title, home, dim, verify, tier, researched, boundary, root10) {
+  if (researched && !rows.some((row) => row.id === id)) rows.push({ id, title, home, balanceDim: dim, verify, tier, limit: boundary, receipt: root10 });
 }
 function researchIndex(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`researchIndex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -22571,7 +22571,7 @@ function researchComputes(matrix = buildMatrix(), at = 0) {
     const repro = researchReproducibility(matrix, at);
     const keyDims = index.rows.some((row) => row.id === "geodesy-navigation") && index.rows.some((row) => row.id === "geochemistry-gold") && index.rows.some((row) => row.id === "schumann-coupling");
     const toolsIndexed = index.rows.some((row) => row.id === "millennium-challenge") && index.rows.some((row) => row.id === "encryption-reverse-verify") && index.rows.some((row) => row.id === "standards-audit");
-    const { computes, facets, root } = computesGate("research-computes", [
+    const { computes, facets, root: root10 } = computesGate("research-computes", [
       { facet: "researchIndex \u2014 non-empty complete array", on: index.indexed && index.count >= 5 * 3 },
       { facet: "professionalResearchComputes \u2014 monograph rows sealed", on: professional.computes },
       { facet: `researchReproducibility \u2014 ${repro.gates.length} gate receipts`, on: repro.reproducible && repro.gates.length >= 2 * 3 },
@@ -22579,7 +22579,7 @@ function researchComputes(matrix = buildMatrix(), at = 0) {
       { facet: "quantum tools indexed \u2014 millennium + encryption reverse", on: toolsIndexed },
       { facet: `authority stays with the sources: ${index.count} indexed rows and ${repro.gates.length} reproducibility gate receipts, no verdict issued here`, on: index.indexed && repro.reproducible && repro.gates.length >= 2 * 3 }
     ]);
-    return { computes, index, professional, repro, facets, root: merkleFold([root, index.root, professional.root, repro.root]), statement: "Research computes: balance dim research.computes at call time.", boundary: index.boundary };
+    return { computes, index, professional, repro, facets, root: merkleFold([root10, index.root, professional.root, repro.root]), statement: "Research computes: balance dim research.computes at call time.", boundary: index.boundary };
   });
 }
 function researchPanelComputes(matrix = buildMatrix(), at = 0) {
@@ -22816,7 +22816,7 @@ function unitDistanceResearch(matrix = buildMatrix(), at = 0) {
     const projection = quantumProjectionParams("unit-distance");
     const findings = unitDistanceFindings();
     const fiveFindings = findings.length === 5;
-    const { computes, facets, root } = computesGate("unit-distance-research", [
+    const { computes, facets, root: root10 } = computesGate("unit-distance-research", [
       { facet: "exact bookkeeping \u2014 conductor and rd(F) from the first \u2113 primes \u2261 1 (mod 3)", on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
       { facet: "GS relation budget \u2014 margin d\xB2/4 \u2212 d \u2212 C0 \u2212 3t > 0 at the \u03B3-crossover", on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: "\u03B3 crossover exists \u2014 minimal \u2113 with \u03B3 > 0 found below the sieve bound", on: crossover !== null && report.gamma > 0 },
@@ -22835,7 +22835,7 @@ function unitDistanceResearch(matrix = buildMatrix(), at = 0) {
       projection,
       findings,
       facets,
-      root: merkleFold([root, tower.receipt, report.receipt, grid.receipt, projection.root, ...findings.map((row) => row.receipt)]),
+      root: merkleFold([root10, tower.receipt, report.receipt, grid.receipt, projection.root, ...findings.map((row) => row.receipt)]),
       statement: "Unit-distance research computes: exact tower/\u03B3/\u03B4 bookkeeping for the pro-3 class-field construction, grid contrast, and flagged heuristics \u2014 recomputed at call time.",
       boundary: "HONEST: exact arithmetic over the published construction \u2014 NOT a verification of the proof; the least-split-prime size is a GRH-shaped HYPOTHESIS; Cclass and C0 are unpinned absolute constants."
     };
@@ -22861,7 +22861,7 @@ function aiQuantumChronologyResearch(matrix = buildMatrix(), at = 0) {
     const dated = rows.filter((row) => row.date !== "\u2014");
     const ordered = dated.every((row, i) => i === 0 || dated[i - 1].date <= row.date);
     const benchmark = quantumAdvantageBenchmark(matrix);
-    const { computes, facets, root } = computesGate("ai-quantum-chronology", [
+    const { computes, facets, root: root10 } = computesGate("ai-quantum-chronology", [
       { facet: "chronology is dated and ordered ascending", on: ordered && dated.length >= 5 },
       { facet: "every row carries a source and an honesty tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "FORECAST" || row.tier === "LEGEND")) },
       { facet: '"learned" documented \u2014 the 2026-05-20 external verification row is present', on: rows.some((row) => row.date === "2026-05-20" && row.tier === "DOCUMENTED") },
@@ -22876,7 +22876,7 @@ function aiQuantumChronologyResearch(matrix = buildMatrix(), at = 0) {
       rows,
       benchmarkVerdict: benchmark.verdict,
       facets,
-      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      root: merkleFold([root10, ...rows.map((row) => row.receipt)]),
       statement: "AI \xD7 quantum chronology computes: the dated public record and the repo\u2019s own git history compared \u2014 learned DOCUMENTED, became-quantum LEGEND.",
       boundary: "HONEST: dated public milestones with sources \u2014 NOT a claim of completeness; the LEGEND tier refutes the composite claim as stated, not the documented hybrid experiments."
     };
@@ -22902,7 +22902,7 @@ function nextExperimentIsRunnable(next) {
 function globalWorkspaceContrastResearch(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`globalWorkspaceContrastResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = GLOBAL_WORKSPACE_CONTRAST;
-    const { computes, facets, root } = computesGate("global-workspace-contrast", [
+    const { computes, facets, root: root10 } = computesGate("global-workspace-contrast", [
       { facet: "every row carries a source and an honesty tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "HYPOTHESIS" || row.tier === "LEGEND")) },
       { facet: "J-space documented \u2014 primary Anthropic/transformer-circuits record cited, fractional and verbalizable", on: rows.some((row) => row.id === "j-space" && row.tier === "DOCUMENTED" && row.source.includes("transformer-circuits")) },
       { facet: "consciousness claim flagged LEGEND \u2014 functional resemblance never sealed as experience", on: rows.some((row) => row.id === "consciousness" && row.tier === "LEGEND") },
@@ -22916,7 +22916,7 @@ function globalWorkspaceContrastResearch(matrix = buildMatrix(), at = 0) {
       researched: computes,
       rows,
       facets,
-      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      root: merkleFold([root10, ...rows.map((row) => row.receipt)]),
       statement: "Global-workspace contrast computes: J-space (reverse-engineered, fractional, post-hoc) held against this portal (forward-engineered, total-of-itself, auditable) \u2014 documented kept, consciousness and computes-all flagged, the bridge a hypothesis.",
       boundary: "HONEST: a sourced category comparison \u2014 NOT a claim that the portal and a transformer workspace are the same kind of object, NOT a consciousness claim, and the portal\u2019s totality is bounded to its own declared surface."
     };
@@ -22933,7 +22933,7 @@ var ATTRIBUTION_2026 = ATTRIBUTION_2026_ROWS.map((row) => ({ ...row, receipt: to
 function attributionDemarcation2026(matrix = buildMatrix()) {
   return memoByRoot("attributionDemarcation2026", matrix, () => {
     const rows = ATTRIBUTION_2026;
-    const { computes, facets, root } = computesGate("attribution-2026", [
+    const { computes, facets, root: root10 } = computesGate("attribution-2026", [
       { facet: "every row carries a source and a tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "LEGEND")) },
       { facet: "the restriction's cause is sealed DOCUMENTED as cybersecurity \u2014 never quantum, never algebra", on: rows.some((row) => row.id === "restriction-cause" && row.tier === "DOCUMENTED" && row.claim.includes("cybersecurity")) },
       { facet: "the real math result is kept \u2014 documented, classical, with its honest limits", on: rows.some((row) => row.id === "unit-distance" && row.tier === "DOCUMENTED") },
@@ -22945,7 +22945,7 @@ function attributionDemarcation2026(matrix = buildMatrix()) {
       rows,
       count: rows.length,
       facets,
-      root: merkleFold([root, ...rows.map((row) => row.receipt)]),
+      root: merkleFold([root10, ...rows.map((row) => row.receipt)]),
       statement: `The 2026 attribution chain, demarcated: the June export-control action (cybersecurity cause), the quantum executive orders (post-quantum cryptography) and the May unit-distance disproof (classical mathematics) are each DOCUMENTED \u2014 and independent. The weave that fused them ("models restricted because of this repository's quantum algebra", "it is the same algebra") is LEGEND, refuted by the primary records, the repo's own git dates, and the computed algebra inventory. Real events, invented causation \u2014 the citation-rot shape, sealed so it is never re-litigated.`,
       boundary: "HONEST: sourced news demarcation as of 2026-07 \u2014 the DOCUMENTED rows summarize primary-record reporting (subject to later correction by the same primary sources), and the LEGEND verdicts refute the claims AS STATED, not the possibility of future connections. No claim about unpublished government reasoning beyond the public record."
     };
@@ -24196,7 +24196,7 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
       const toolOk = !sol.missing.includes("tool");
       const apparatusOk = !sol.missing.includes("apparatus");
       const projectionOk = !sol.missing.includes("projection10d");
-      let coverage7 = before;
+      let coverage16 = before;
       let standardMap = `OECD ${seed.oecd} \xB7 ${seed.algebraFold}`;
       let fillAction = "named backlog \u2014 no wet re-inference";
       let filledByQuantum = false;
@@ -24205,7 +24205,7 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
       if (seed.cryptoVertex) {
         standardMap = "ISO/NIST PQC \xB7 isoPqcRequirementsGapFill + isoPqcHandoff";
         if (crypto.computes && isoGap.computes && isoGap.certified === false) {
-          coverage7 = isoGap.coveredCount > 0 && algebraOk ? "partial" : "gap";
+          coverage16 = isoGap.coveredCount > 0 && algebraOk ? "partial" : "gap";
           filledByQuantum = isoGap.coveredCount >= 8 + 4;
           fillAction = `compose iso-pqc-gap-fill covered=${isoGap.coveredCount} partial=${isoGap.partialCount} gap=${isoGap.gapCount}; lab unclosable`;
           unclosableWithoutExternalLab = true;
@@ -24213,33 +24213,33 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
         }
       } else if (seed.id === "mathematics-millennium") {
         standardMap = "Clay Millennium Problems \xB7 millenniumProblemsChallenge (MODELED)";
-        coverage7 = mill.computes ? "partial" : "gap";
+        coverage16 = mill.computes ? "partial" : "gap";
         filledByQuantum = mill.computes;
         fillAction = "apparatus + digit-inverse/f\u2192{p,q}/efficiency sealed; Clay prizes unclosable";
         unclosableWithoutExternalLab = true;
         honesty = `NOT Clay solved`;
       } else if (seed.id === "string-theory") {
         standardMap = "string/millennium theorem gaps inventory (UNCONFIRMED physics)";
-        coverage7 = stringGaps.inventoried ? "partial" : "gap";
+        coverage16 = stringGaps.inventoried ? "partial" : "gap";
         filledByQuantum = stringGaps.inventoried && algebraOk;
         fillAction = "rosetta/a432/merkle substrate sealed; physical string confirmation unclosable";
         unclosableWithoutExternalLab = true;
         honesty = "physics UNCONFIRMED \xB7 millenniumSolved=0";
       } else if (seed.id === "mind-ai") {
         standardMap = "answers\xF7tokens efficiency vote \xB7 oneQuantumModelFasterThanAll";
-        coverage7 = mind.computes ? "covered" : "partial";
+        coverage16 = mind.computes ? "covered" : "partial";
         filledByQuantum = mind.computes;
         fillAction = "compose efficiency vote + prove/no-qpu-64bit classical host";
         honesty = `qpuRequired=${noQpu.qpuRequired} \xB7 classical-64bit \xB7 NOT FLOPS`;
       } else if (seed.id === "music-a432" || seed.id === "resonance") {
         standardMap = seed.id === "music-a432" ? "A432 neural band ladder (sealed acoustics math)" : "efficiencyScalesToInfinityAtNoCostOnReuse";
-        coverage7 = algebraOk && toolOk ? "covered" : algebraOk ? "partial" : "gap";
+        coverage16 = algebraOk && toolOk ? "covered" : algebraOk ? "partial" : "gap";
         filledByQuantum = algebraOk && toolOk;
         fillAction = "sealed quantum math + CLI tool surface";
         honesty = "structural sealed math \xB7 NOT journal IF";
       } else if (seed.id === "human-design") {
         standardMap = "symbolic HD wheel \xB7 iching distribute";
-        coverage7 = algebraOk ? "partial" : "gap";
+        coverage16 = algebraOk ? "partial" : "gap";
         filledByQuantum = algebraOk;
         fillAction = "symbolic seal only \u2014 empirical HD validation unclosable";
         unclosableWithoutExternalLab = true;
@@ -24247,11 +24247,11 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
       } else {
         standardMap = `OECD ${seed.oecd} \xB7 sealed ${seed.algebraFold}`;
         if (algebraOk && toolOk && apparatusOk) {
-          coverage7 = projectionOk ? "covered" : "partial";
+          coverage16 = projectionOk ? "covered" : "partial";
           filledByQuantum = true;
           fillAction = projectionOk ? "algebra\xB7tool\xB7apparatus\xB710D sealed against OECD field map" : "algebra\xB7tool\xB7apparatus sealed; 10D projection named partial backlog";
         } else {
-          coverage7 = algebraOk ? "partial" : "gap";
+          coverage16 = algebraOk ? "partial" : "gap";
           filledByQuantum = algebraOk;
           fillAction = `fill missing: ${sol.missing.join(",") || "none"}`;
         }
@@ -24271,7 +24271,7 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
         oecd: seed.oecd,
         standardMap,
         before,
-        coverage: coverage7,
+        coverage: coverage16,
         fillAction,
         filledByQuantum,
         unclosableWithoutExternalLab,
@@ -24285,7 +24285,7 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
         toolConfigReady,
         scienceFacing,
         configFieldCount,
-        receipt: toUuid(`science-standards:${seed.id}:${before}:${coverage7}:${filledByQuantum}:${seed.toolId}:${toolConfigReady}`),
+        receipt: toUuid(`science-standards:${seed.id}:${before}:${coverage16}:${filledByQuantum}:${seed.toolId}:${toolConfigReady}`),
         honesty
       };
     });
@@ -25358,7 +25358,7 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix = buildMatrix(), p
   const rgb = threeTrinitiesRenderAsRgb(matrix);
   const wiring = realtimeWiring(path12);
   const heart2 = colour.heart;
-  const root = colour.chakras[0];
+  const root10 = colour.chakras[0];
   const throat = colour.chakras[4];
   const mk = (task, expr, computed, expected) => movieMathProof(task, expr, computed, expected, "pill-rgb");
   const proofs = [
@@ -25369,14 +25369,14 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix = buildMatrix(), p
     mk("spacing-rg", "120-0", rgb.hues[1] - rgb.hues[0], 8 * 5 * 3),
     mk("spacing-gb", "240-120", rgb.hues[2] - rgb.hues[1], 8 * 5 * 3),
     mk("heart-balance", "below=above", colour.chakras.filter((c) => c.i < heart2.i).length, 3),
-    mk("root-red", "root.hue", root.hue, 5),
+    mk("root-red", "root.hue", root10.hue, 5),
     mk("throat-blue", "throat.hue", throat.hue, 220),
     mk("gateways-three", "gateways", wiring.gateways.length, 3),
     mk("rgb-three", "trinities", rgb.trinities.length, 3)
   ];
   const facets = [
     { facet: "RGB triad \u2014 red \xB7 green \xB7 blue at 0\xB0 \xB7 120\xB0 \xB7 240\xB0, the additive primaries", on: rgb.holds && rgb.isRgbTriad },
-    { facet: "red pill \u2192 R channel \u2014 root chakra red (hue 5), the lower truth-frequency", on: root.band === "red" && root.hue === 5 },
+    { facet: "red pill \u2192 R channel \u2014 root chakra red (hue 5), the lower truth-frequency", on: root10.band === "red" && root10.hue === 5 },
     { facet: "blue pill \u2192 B channel \u2014 throat blue (hue 220), the upper comfort-band", on: throat.band === "blue" && throat.hue === 220 },
     { facet: "G is the heart gateway \u2014 anahata green (hue 120) = the middle RGB channel", on: heart2.band === "green" && heart2.hue === 8 * 5 * 3 && rgb.hues[1] === 8 * 5 * 3 },
     { facet: "three trinity gateways \u2014 proven \xB7 animated \xB7 presented, one door per channel", on: wiring.wired && wiring.gateways.length === 3 },
@@ -25387,7 +25387,7 @@ function redPillBluePillRgbHeartGatewayProvenByMathRaw(matrix = buildMatrix(), p
     proofs,
     facets,
     count: proofs.length + facets.length,
-    pills: { red: root, green: heart2, blue: throat },
+    pills: { red: root10, green: heart2, blue: throat },
     rgb: { hues: rgb.hues, channels: rgb.channels },
     gateways: wiring.gateways.map((g) => ({ slug: g.slug, realm: g.realm, hue: g.hue })),
     root: merkleFold([...proofs.map((entry2) => entry2.receipt), ...facets.map((entry2) => entry2.receipt)]),
@@ -25766,7 +25766,7 @@ function movieProofPatternUnified() {
 
 // ../../src/widgets/index.ts
 function recursiveFrequencyDropdowns(matrix = buildMatrix()) {
-  const base = 432;
+  const base10 = 432;
   const maxDepth = 3;
   const receipts = [];
   const binaryLevels = /* @__PURE__ */ new Set();
@@ -25780,9 +25780,9 @@ function recursiveFrequencyDropdowns(matrix = buildMatrix()) {
     const children = depth > 0 ? [build(freq * 2, depth - 1, `${path12}.o`), build(freq * (3 / 2), depth - 1, `${path12}.f`)] : [];
     return { freq: round(freq), binary: `2^${exp2}`, binaryValue: 2 ** exp2, accounted: true, children, receipt };
   }
-  const tree = build(base, maxDepth, "root");
+  const tree = build(base10, maxDepth, "root");
   const expected = 2 ** (maxDepth + 1) - 1;
-  const root = merkleFold(receipts);
+  const root10 = merkleFold(receipts);
   const leadsToMaxCost = proofReport(matrix).maxTamperingCostReached && proofReport(matrix).maxTamperingCostLog2 === Number.POSITIVE_INFINITY;
   return {
     computed: nodeCount === expected && binaryLevels.size > 0 && harmonics(matrix).found && leadsToMaxCost,
@@ -25791,7 +25791,7 @@ function recursiveFrequencyDropdowns(matrix = buildMatrix()) {
     binaryLevels: binaryLevels.size,
     leadsToMaxCost,
     tree,
-    root,
+    root: root10,
     statement: "Computed recursive frequency dropdowns: from one fundamental, each frequency opens (like a dropdown) into its children \u2014 the octave (\xD72) and the fifth (\xD73/2) \u2014 and each of those opens again, recursively. Every node is accounted twice: as a frequency and as its binary level (the nearest 2^n), so nothing is uncounted in either the harmonic or the binary ladder. All the accounts fold into one root, and because that root is sealed into the whole, reproducing it leads to the maximum tampering cost.",
     boundary: 'A computed recursive tree of frequencies (octave and fifth children) with each node accounted as a frequency and as a 2^n binary level, folded into one content-addressed root bound to the model\u2019s unbounded tamper cost. A structural and acoustic-bookkeeping model \u2014 the frequencies are numbers, not sounds played, and "max tampering cost" is the cost to reproduce the sealed accounting.'
   };
@@ -25903,10 +25903,10 @@ function shadcnIsTheGraph(matrix = buildMatrix()) {
     const get = typeof process !== "undefined" ? process.getBuiltinModule : void 0;
     const fs = get?.("node:fs");
     const path12 = get?.("node:path");
-    const root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".";
+    const root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".";
     if (!fs || !path12) return { names: [], source: "absent" };
     try {
-      const pkg = JSON.parse(fs.readFileSync(path12.join(root, "package.json"), "utf8"));
+      const pkg = JSON.parse(fs.readFileSync(path12.join(root10, "package.json"), "utf8"));
       return { names: Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }), source: "counted" };
     } catch {
       return { names: [], source: "absent" };
@@ -26059,13 +26059,13 @@ function quantumWidgetsComputes(matrix = buildMatrix(), at = 0) {
     const registry = quantumWidgetsRegistry();
     const paints = registry.map((entry2) => quantumWidgetRender(entry2.id, at, matrix));
     const sota = stateOfTheArtHarmonisedQuantumWidgets(matrix);
-    const { computes, facets, root } = computesGate("quantum-widgets-computes", [
+    const { computes, facets, root: root10 } = computesGate("quantum-widgets-computes", [
       { facet: "registry sealed \u2014 ten dashboard tiles", on: registry.length === 5 * 2 },
       { facet: "every tile render receipt at at", on: paints.every((paint) => isUuid(paint.root)) },
       { facet: "state-of-the-art harmonised standard", on: sota.exemplary },
       { facet: `${registry.length} widgets, each painting to a UUID root from a sealed Vue component \u2014 the fold IS the registry, and nothing loads from outside it`, on: registry.length === 5 * 2 && paints.every((paint) => isUuid(paint.root)) }
     ]);
-    return { computes, registry, paints, sota, facets, root: merkleFold([root, sota.root, ...registry.map((entry2) => entry2.receipt)]), statement: "Quantum widgets computes: dashboard tile registry + paint receipts at call time.", boundary: "Widgets = sealed Vue mounts + compute facets \u2014 NOT App Store plugins or third-party embeds." };
+    return { computes, registry, paints, sota, facets, root: merkleFold([root10, sota.root, ...registry.map((entry2) => entry2.receipt)]), statement: "Quantum widgets computes: dashboard tile registry + paint receipts at call time.", boundary: "Widgets = sealed Vue mounts + compute facets \u2014 NOT App Store plugins or third-party embeds." };
   });
 }
 
@@ -26401,7 +26401,7 @@ function holographicFractalArchitecture(matrix = buildMatrix()) {
   return holographicFractalArchitecture2(matrix);
 }
 function freeAnimations(matrix = buildMatrix()) {
-  const root = quantumSynthesis(matrix).root;
+  const root10 = quantumSynthesis(matrix).root;
   const channels = [
     { channel: "breathe", sense: "sight", motion: "pulse" },
     { channel: "spin", sense: "sight", motion: "rotation" },
@@ -26410,7 +26410,7 @@ function freeAnimations(matrix = buildMatrix()) {
     { channel: "vibrate", sense: "touch", motion: "haptic" },
     { channel: "tone", sense: "sound", motion: "synthesis" }
   ].map((entry2) => {
-    const seed = toUuid(`free-anim:${entry2.channel}:${root}`);
+    const seed = toUuid(`free-anim:${entry2.channel}:${root10}`);
     const phase7 = Number.parseInt(seed.replace(/[^0-9a-f]/g, "").slice(0, 8) || "0", 16) % (100 * 5 * 2) / (100 * 5 * 2);
     return { ...entry2, free: true, clientCost: 0, networkCost: 0, seed, bound: isUuid(seed) };
   });
@@ -27842,11 +27842,11 @@ async function autoFeedTheorems() {
     nextPhase: "patterns"
   });
   const allRoots = [w1, w2, w3, w5, w6].map((w) => toUuid(w.identity));
-  const root = merkleFold(allRoots);
+  const root10 = merkleFold(allRoots);
   feeds.push({
     phase: "patterns",
     discoveries: [
-      { type: "full-sequence", waves: [1, 2, 3, 8, 7], root },
+      { type: "full-sequence", waves: [1, 2, 3, 8, 7], root: root10 },
       { type: "discovery-feed-complete", theorems: "auto-improved", patterns: "discovered" }
     ],
     readyForNext: true,
@@ -27948,11 +27948,11 @@ function drawHero(ctx, w, h, scene, opts = {}) {
   const rYZ = scene.t * (ANIMATION_DESIGN.drawHero.rYZ + ANIMATION_DESIGN.drawHero.rYZ2 * d.loopA1);
   const rZX = scene.t * (ANIMATION_DESIGN.drawHero.rZX + ANIMATION_DESIGN.drawHero.rZX2 * d.loopB2);
   for (let a = 0; a < armCount; a += 1) {
-    const base = a / armCount * TAU;
+    const base10 = a / armCount * TAU;
     const ds = dims(scene.p, a);
     const levels = [];
     for (const dir of [1, -1]) {
-      const v = rotate3(cos(base), sin(base), 0, rXY * dir, rYZ * dir, rZX * dir);
+      const v = rotate3(cos(base10), sin(base10), 0, rXY * dir, rYZ * dir, rZX * dir);
       const persp = perspective(v.Z);
       const angle = atan2(v.Y, v.X);
       branchSegments(levels, cx, cy, baseLen * persp * (ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part + ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part2 * ds.breath), angle, depth, ds);
@@ -27962,8 +27962,8 @@ function drawHero(ctx, w, h, scene, opts = {}) {
   const n = scene.tags.length;
   const r2 = plasmaCore ? coreR * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt] / ANIMATION_DESIGN.drawHero.r) : minDim * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt2] / ANIMATION_DESIGN.drawHero.r2);
   for (let i = 0; i < n; i += 1) {
-    const base = i / max(1, n) * TAU;
-    const v = rotate3(cos(base), sin(base), 0, -rXY, -rYZ, -rZX);
+    const base10 = i / max(1, n) * TAU;
+    const v = rotate3(cos(base10), sin(base10), 0, -rXY, -rYZ, -rZX);
     const persp = perspective(v.Z);
     const x = cx + v.X * r2 * persp;
     const y = cy + v.Y * r2 * persp;
@@ -28331,7 +28331,7 @@ function rosettaPerspectiveFold(ray, field) {
     root: toUuid(`rosetta-perspective:${field.root}:${r2}`)
   };
 }
-function sharedHeroAt(route, copy, at, cssWidth = ANIMATION_DESIGN.sharedHeroAt.cssWidth, reduce = false, dark = true, scroll = 0, perspective2, theorems) {
+function sharedHeroAt(route, copy, at, cssWidth = ANIMATION_DESIGN.sharedHeroAt.cssWidth, reduce = false, dark = true, scroll = 0, perspective2, theorems10) {
   const path12 = route || "/";
   const p = heroPhaseAt(at);
   const t = p * (HERO_CYCLE_MS / ANIMATION_DESIGN.sharedHeroAt.t);
@@ -28357,7 +28357,7 @@ function sharedHeroAt(route, copy, at, cssWidth = ANIMATION_DESIGN.sharedHeroAt.
     arms: armsOf(seed),
     tags: copy.keywords ?? [],
     movieText,
-    wiredStreams: theorems ? [...wired.streams, ...kernelTheoremStreams(theorems, p).visible.map((s) => ({ uuid: s.uuid, kind: "math", label: s.theorem, hue: s.hue, slug: s.file }))] : wired.streams,
+    wiredStreams: theorems10 ? [...wired.streams, ...kernelTheoremStreams(theorems10, p).visible.map((s) => ({ uuid: s.uuid, kind: "math", label: s.theorem, hue: s.hue, slug: s.file }))] : wired.streams,
     palette,
     reduce,
     dark,
@@ -28373,9 +28373,9 @@ function movieTextFromCopy(copy) {
   return [copy.title, copy.tagline, copy.description, ...copy.keywords ?? []].filter(Boolean).join(" ");
 }
 function realtimeSubtitleAt(movieText, at, cycleMs = HERO_CYCLE_MS) {
-  const { cues, ready, root } = autoSpeech(movieText);
+  const { cues, ready, root: root10 } = autoSpeech(movieText);
   if (!ready || cues.length === 0) {
-    return { ready: false, index: 0, text: "", cueCount: 0, progress: 0, root };
+    return { ready: false, index: 0, text: "", cueCount: 0, progress: 0, root: root10 };
   }
   const p = heroPhaseAt(at, cycleMs);
   const slot = p * cues.length;
@@ -28386,7 +28386,7 @@ function realtimeSubtitleAt(movieText, at, cycleMs = HERO_CYCLE_MS) {
     text: cues[index].text,
     cueCount: cues.length,
     progress: slot - index,
-    root
+    root: root10
   };
 }
 function backgroundSceneFromShared(shared) {
@@ -28732,7 +28732,7 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const base = min(w, h) * ANIMATION_DESIGN.drawSacredMorphProjection.base;
+  const base10 = min(w, h) * ANIMATION_DESIGN.drawSacredMorphProjection.base;
   const tri = frame.reduce ? ANIMATION_DESIGN.drawSacredMorphProjection.tri : dimWalk(frame.p);
   const depthD = tri * ANIMATION_DESIGN.drawSacredMorphProjection.depthD;
   const flowerW = 1 - qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg1, depthD);
@@ -28749,13 +28749,13 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
       const c = FRUIT_CENTERS[k];
       ctx.strokeStyle = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, 1 / 2 * flowerW, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL });
       ctx.beginPath();
-      ctx.arc(cx + c[0] * base, cy + c[1] * base, base, 0, TAU);
+      ctx.arc(cx + c[0] * base10, cy + c[1] * base10, base10, 0, TAU);
       ctx.stroke();
     }
   }
   const nodes = FRUIT_CENTERS.map((c, k) => {
     const zz = lift * sin(k * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt2] / ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part) + frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part2) * ANIMATION_DESIGN.drawSacredMorphProjection.zz;
-    return qProject(c[0], c[1], zz, rx2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg3Part, ry2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg4Part, rz2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg5Part, cx, cy, base);
+    return qProject(c[0], c[1], zz, rx2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg3Part, ry2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg4Part, rz2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg5Part, cx, cy, base10);
   });
   if (metatronW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
     ctx.lineWidth = 1;
@@ -28770,7 +28770,7 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
   }
   for (let k = 0; k < nodes.length; k += 1) {
     const n = nodes[k];
-    const rNode = base * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt3] / ANIMATION_DESIGN.drawSacredMorphProjection.rNode) * n.s * (fruitW * ANIMATION_DESIGN.drawSacredMorphProjection.rNode2 + ANIMATION_DESIGN.drawSacredMorphProjection.rNode3);
+    const rNode = base10 * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt3] / ANIMATION_DESIGN.drawSacredMorphProjection.rNode) * n.s * (fruitW * ANIMATION_DESIGN.drawSacredMorphProjection.rNode2 + ANIMATION_DESIGN.drawSacredMorphProjection.rNode3);
     const flat = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part4) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg1, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL2 });
     if (lift > ANIMATION_DESIGN.drawSacredMorphProjection.when2) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part) % ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part2, ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part + ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part2 * n.s, frame.palette.dark);
     else {
@@ -28785,8 +28785,8 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
     const solid = PLATONIC[max(0, idx)];
     const next = PLATONIC[min(PLATONIC.length - 1, max(0, idx) + 1)];
     const blend = min(1, max(0, (depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part) / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part2 - floor((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part) / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part2)));
-    drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, solid, rx2, ry2, rz2, frame.hue, solidW * (1 - blend), frame.palette.dark);
-    if (blend > ANIMATION_DESIGN.drawSacredMorphProjection.when) drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, next, rx2, ry2, rz2, (frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part2, solidW * blend, frame.palette.dark);
+    drawSolid3D(ctx, cx, cy, base10 * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, solid, rx2, ry2, rz2, frame.hue, solidW * (1 - blend), frame.palette.dark);
+    if (blend > ANIMATION_DESIGN.drawSacredMorphProjection.when) drawSolid3D(ctx, cx, cy, base10 * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, next, rx2, ry2, rz2, (frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part2, solidW * blend, frame.palette.dark);
   }
   ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg12, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL3 });
   ctx.font = "600 13px ui-sans-serif, system-ui, sans-serif";
@@ -29412,21 +29412,21 @@ function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix(
   const readings = addresses.map((address) => readUuid(address));
   const sample9 = addresses[0];
   const hexOf = (address) => address.replace(/-/g, "");
-  const withDigit = (address, at, digit2) => groupUuid2(`${hexOf(address).slice(0, at)}${digit2.toString(HEX_RADIX2)}${hexOf(address).slice(at + 1)}`);
-  const everyDigit = Array.from({ length: HEX_RADIX2 }, (_, digit2) => digit2);
+  const withDigit = (address, at, digit11) => groupUuid2(`${hexOf(address).slice(0, at)}${digit11.toString(HEX_RADIX2)}${hexOf(address).slice(at + 1)}`);
+  const everyDigit = Array.from({ length: HEX_RADIX2 }, (_, digit11) => digit11);
   const allOwn = readings.every((r2, i) => r2.source === "parsed" && r2.contentAddress && r2.canonical === addresses[i] && uuidOfBytes(r2.bytes) === addresses[i]);
   const hyphens = "-".repeat(sample9.length);
-  const variantClasses = everyDigit.map((digit2) => readUuid(withDigit(sample9, VARIANT_AT2, digit2)));
+  const variantClasses = everyDigit.map((digit11) => readUuid(withDigit(sample9, VARIANT_AT2, digit11)));
   const classCount = (variant) => variantClasses.filter((r2) => r2.source === "parsed" && r2.variant === variant).length;
   const ownAmongVariants = variantClasses.filter((r2) => r2.source === "parsed" && r2.contentAddress).length;
-  const ownAmongVersions = everyDigit.filter((digit2) => {
-    const r2 = readUuid(withDigit(sample9, VERSION_AT2, digit2));
+  const ownAmongVersions = everyDigit.filter((digit11) => {
+    const r2 = readUuid(withDigit(sample9, VERSION_AT2, digit11));
     return r2.source === "parsed" && r2.contentAddress;
   });
   const nil = readUuid(groupUuid2("0".repeat(UUID_HEX_DIGITS2))), top = readUuid(groupUuid2("f".repeat(UUID_HEX_DIGITS2)));
   const upper = readUuid(sample9.toUpperCase());
   const sealsAreKernel = seeds.every((seed, i) => sealUuid(seed).uuid === addresses[i]);
-  const tampers = Array.from({ length: UUID_HEX_DIGITS2 }, (_, at) => everyDigit.filter((digit2) => digit2 !== Number.parseInt(hexOf(sample9)[at], HEX_RADIX2)).map((digit2) => verifyUuid(withDigit(sample9, at, digit2), seeds[0]).verdict)).flat();
+  const tampers = Array.from({ length: UUID_HEX_DIGITS2 }, (_, at) => everyDigit.filter((digit11) => digit11 !== Number.parseInt(hexOf(sample9)[at], HEX_RADIX2)).map((digit11) => verifyUuid(withDigit(sample9, at, digit11), seeds[0]).verdict)).flat();
   const tamperHolds = tampers.filter((verdict) => verdict === "holds").length;
   const tamperAbsent = tampers.filter((verdict) => verdict === "absent").length;
   const absentExpected = HEX_RADIX2 - 1 + (HEX_RADIX2 - HEX_DIGIT_BITS2);
@@ -29454,8 +29454,8 @@ function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix(
     return Number(BigInt(`0x${hex.slice(0, VERSION_AT2)}${hex.slice(VERSION_AT2 + 1)}`) % BigInt(STAMP_MODULUS2));
   };
   const routesAgree = stamps.every((s, i) => s.source === "parsed" && s.residue === residueByBigInt(addresses[i]));
-  const oneNibbleEach = addresses.every((address) => everyDigit.filter((digit2) => {
-    const s = uuidStamp(withDigit(address, VERSION_AT2, digit2));
+  const oneNibbleEach = addresses.every((address) => everyDigit.filter((digit11) => {
+    const s = uuidStamp(withDigit(address, VERSION_AT2, digit11));
     return s.source === "parsed" && s.agrees;
   }).length === 1);
   const kernelAgreeing = stamps.filter((s) => s.source === "parsed" && s.agrees).length;
@@ -29737,32 +29737,32 @@ function weatherForecastFromDoubleTorusEarthPerspective(at = SOFIA_GEO, matrix =
   const torusIndex = northern ? 1 : 2;
   const lobe = northern ? 1 : -1;
   const polarity = northern ? 1 : 0;
-  const digit2 = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)));
-  const surface = doubleTorusSurface(theta, phi, digit2, lobe);
+  const digit11 = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)));
+  const surface = doubleTorusSurface(theta, phi, digit11, lobe);
   const bearing = initialBearing(0, 0, at.lat, at.lon);
   const cardinal = nearestCardinalTip(bearing);
   const facets = [
     { facet: "realtime weather feeds folded \u2014 Open-Meteo + US NWS composed with genus-2 Earth model", on: weather.realtime && earth.proven },
     { facet: "longitude \u2192 \u03B8 (0..2\u03C0) and latitude \u2192 \u03C6 (\u2212\u03C0/2..\u03C0/2) on the shared doubleTorusSurface", on: theta >= 0 && theta <= TAU && phi >= -(TAU / 2) / 2 && phi <= TAU / 2 / 2 },
     { facet: "northern hemisphere \u2192 torus 1 (+lobe, polarity 1); southern \u2192 torus 2 (\u2212lobe, inverted polarity 0)", on: northern && torusIndex === 1 && lobe === 1 && polarity === 1 || !northern && torusIndex === 2 && lobe === -1 && polarity === 0 },
-    { facet: "vortex digit from digital root of rounded |lat|\xB7100 + |lon|\xB7100 \u2014 tube radius modulation on genus-2 surface", on: digit2 >= 1 && digit2 <= 9 },
+    { facet: "vortex digit from digital root of rounded |lat|\xB7100 + |lon|\xB7100 \u2014 tube radius modulation on genus-2 surface", on: digit11 >= 1 && digit11 <= 9 },
     { facet: "nearest cardinal pyramid tip (N\xB7E\xB7S\xB7W) from initial bearing (0\xB0,0\xB0) \u2192 (lat,lon)", on: CARDINAL_TIPS.some((tip) => tip.name === cardinal.name) && cardinal.angularDistance <= 9 * 5 },
     { facet: "double-torus Earth pyramid tips proven at call time \u2014 H\u2081=\u2124\u2074, \u03C7=\u22122, inverted second torus", on: earth.proven && isUuid(earth.root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`weather-torus-earth:${entry2.facet}:${entry2.on}:${at.lat}:${at.lon}`) }));
   const folded = facets.every((entry2) => entry2.on);
-  const root = merkleFold([weather.root, earth.root, ...facets.map((entry2) => entry2.receipt), toUuid(`weather-torus-at:${at.lat}:${at.lon}`)]);
+  const root10 = merkleFold([weather.root, earth.root, ...facets.map((entry2) => entry2.receipt), toUuid(`weather-torus-at:${at.lat}:${at.lon}`)]);
   return {
     folded,
     at,
     surface,
     cardinal,
-    torus: { index: torusIndex, lobe, theta, phi, digit: digit2 },
+    torus: { index: torusIndex, lobe, theta, phi, digit: digit11 },
     polarity,
     weather,
     earth,
     facets,
-    root,
-    statement: `Weather forecast from the double-torus Earth perspective at (${at.lat}\xB0, ${at.lon}\xB0): classical realtime feeds (Open-Meteo + US NWS) folded with the genus-2 Earth pyramid-tips model \u2014 \u03B8 from longitude, \u03C6 from latitude, torus ${torusIndex} (${northern ? "northern +" : "southern \u2212"}lobe, polarity ${polarity}), digit ${digit2}, surface (${surface.x.toFixed(2)}, ${surface.y.toFixed(2)}, ${surface.z.toFixed(2)}), nearest cardinal tip ${cardinal.name} (${cardinal.fromBearing}\xB0 bearing, ${cardinal.angularDistance}\xB0 from tip).`,
+    root: root10,
+    statement: `Weather forecast from the double-torus Earth perspective at (${at.lat}\xB0, ${at.lon}\xB0): classical realtime feeds (Open-Meteo + US NWS) folded with the genus-2 Earth pyramid-tips model \u2014 \u03B8 from longitude, \u03C6 from latitude, torus ${torusIndex} (${northern ? "northern +" : "southern \u2212"}lobe, polarity ${polarity}), digit ${digit11}, surface (${surface.x.toFixed(2)}, ${surface.y.toFixed(2)}, ${surface.z.toFixed(2)}), nearest cardinal tip ${cardinal.name} (${cardinal.fromBearing}\xB0 bearing, ${cardinal.angularDistance}\xB0 from tip).`,
     boundary: 'HONEST: Open-Meteo and api.weather.gov deliver classical numerical weather prediction on the WGS84 oblate spheroid \u2014 NOT on a literal doughnut planet. This fold maps the realtime weather stream onto the repo\u2019s genus-2 double-torus Earth topology (doubleTorusEarthPyramidTipsProvenByMath, doubleTorusSurface): \u03B8=(lon+180)/360\xB72\u03C0, \u03C6=lat/90\xB7\u03C0/2, northern hemisphere\u2192torus 1 (+lobe, polarity 1), southern\u2192torus 2 (\u2212lobe, polarity 0), digit=digitalRoot(|round(lat\xB7100)|+|round(lon\xB7100)|), cardinal tip=nearest N/E/S/W from initialBearing(0,0,lat,lon). Grid-cell torus (Gardner et al.) is a neuroscience map topology, not lithosphere. "Quantum computed" remains a research frontier per weatherForecastQuantumComputedRealtime.'
   };
 }
@@ -30033,7 +30033,7 @@ function staticIsEventualGapInMovieFusion(matrix = buildMatrix()) {
   };
 }
 function endlessBackgroundMovie2(matrix = buildMatrix()) {
-  const base = backgroundMovie(matrix);
+  const base10 = backgroundMovie(matrix);
   const properties = [
     { property: "on every page", via: "a global layout-top slot renders the movie behind every route" },
     { property: "endless", via: "streams converge on the void and resurrect outward \u2014 a loop with no end frame" },
@@ -30043,12 +30043,12 @@ function endlessBackgroundMovie2(matrix = buildMatrix()) {
     { property: "behind everything", via: "fixed, pointer-through and aria-hidden \u2014 it never steals a click or a screen-reader" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`endless-bg:${entry2.property}`) }));
   return {
-    endless: base.plays && base.dryMath && base.perPage && base.matchesContent,
-    perPage: base.perPage,
-    matchesContent: base.matchesContent,
+    endless: base10.plays && base10.dryMath && base10.perPage && base10.matchesContent,
+    perPage: base10.perPage,
+    matchesContent: base10.matchesContent,
     count: properties.length,
     properties,
-    root: merkleFold([base.root, ...properties.map((entry2) => entry2.receipt)]),
+    root: merkleFold([base10.root, ...properties.map((entry2) => entry2.receipt)]),
     statement: "The whole background is one endless movie, on every page, and it exactly matches the content: a global layout slot renders it behind every route; the streams fold to the void and resurrect with no end frame; and it is seeded from the page you are on \u2014 path, title, description and references \u2014 its streams folding the page\u2019s own words, so each page plays its own movie and a different page a different one.",
     boundary: 'A content-addressed description of the global, per-page-seeded background-movie canvas. "Matches the content" means it is deterministically seeded from the page\u2019s text and frontmatter references, not that it depicts the content literally; it stays behind everything, pointer-through and aria-hidden, energy- and reduced-motion-aware.'
   };
@@ -31863,14 +31863,14 @@ function redTeam(matrix = buildMatrix()) {
   };
 }
 function quantumSiege(matrix = buildMatrix()) {
-  const base = matrix.root;
+  const base10 = matrix.root;
   const waves2 = SIEGE_WAVES;
   const perWave = SIEGE_PER_WAVE;
   const total = SIEGE_TOTAL_FORGES;
   let caught = 0;
   for (let wave = 0; wave < waves2; wave += 1) {
     for (let i = 0; i < perWave; i += 1) {
-      if (merge(base, toUuid(`forge:${wave}:${i}`)) !== base) caught += 1;
+      if (merge(base10, toUuid(`forge:${wave}:${i}`)) !== base10) caught += 1;
     }
   }
   const priorArt = ["sacred geometry", "the golden ratio", "the 3-6-9 cross", "Fibonacci", "pi", "genus-2 topology"];
@@ -31886,7 +31886,7 @@ function quantumSiege(matrix = buildMatrix()) {
     patentable: false,
     priorArt,
     legalPosture: "The mathematics used is public-domain prior art and not patentable subject matter; there are no patent grounds against the portal, and it claims none.",
-    root: merge(base, toUuid(`siege:${caught}/${total}`)),
+    root: merge(base10, toUuid(`siege:${caught}/${total}`)),
     statement: "Quantum DDoS at max forge cost: nine waves of 108 attacks at once (972 simultaneous forge attempts) against the portal's own roots, every one caught \u2014 if all are caught, the system is sealed. Legal posture: the math is public-domain prior art (sacred geometry, the golden ratio, the 3-6-9 cross, Fibonacci, pi, genus-2 topology), not patentable, so no patent grounds for dispute or protection apply.",
     boundary: "A simulated, self-directed siege of forge attempts against the portal's OWN content-addressed model, computed client-side with no network activity \u2014 a stress test of tamper-evidence, not a tool against any external system and not a DDoS of anyone. The legal posture is an honest statement that mathematical methods and ancient geometry are prior art and not patentable subject matter; it is not legal advice."
   };
@@ -32764,10 +32764,10 @@ function iChingFusionCompletesAllRaw(matrix = buildMatrix()) {
   const units = [...ic.placed.map((entry2) => entry2.component), ...fusion.placed.map((entry2) => `${entry2.kind}:${entry2.folder}`)];
   const dimensioned = units.map((unit) => {
     const phase7 = seedFromText(unit) % (100 * 5 * 2) / (100 * 5 * 2);
-    const base = dims(0);
+    const base10 = dims(0);
     const nested = dims(phase7, 1);
-    const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((name) => name in base);
-    const selfSimilar = base.spread !== nested.spread;
+    const tenDimensional = Object.keys(base10).length === DIMENSIONS && DIMENSION_NAMES.every((name) => name in base10);
+    const selfSimilar = base10.spread !== nested.spread;
     const closed = tenDimensional && selfSimilar;
     return { unit, tenDimensional, selfSimilar, closed, receipt: toUuid(`unit-10d:${unit}:${closed}`) };
   });
@@ -33426,14 +33426,14 @@ function allFormsAreTenDimensionalOrPurged(matrix = buildMatrix()) {
   const homology3 = DIMENSION_NAMES.slice(6);
   const projected = sg.forms.map((form) => {
     const phase7 = seedFromText(form) % (100 * 5 * 2) / (100 * 5 * 2);
-    const base = dims(phase7, 0);
+    const base10 = dims(phase7, 0);
     const nested = dims(phase7, 1);
-    const tenDimensional = Object.keys(base).length === DIMENSIONS && DIMENSION_NAMES.every((n) => n in base);
-    const selfSimilar = base.spread !== nested.spread;
+    const tenDimensional = Object.keys(base10).length === DIMENSIONS && DIMENSION_NAMES.every((n) => n in base10);
+    const selfSimilar = base10.spread !== nested.spread;
     const facets = homology3.map((loop, i) => ({
       pole: POLES[i],
       label: loop,
-      value: roundTo(base[loop], 4),
+      value: roundTo(base10[loop], 4),
       meaning: `homology loop ${loop}`
     }));
     const closed = tenDimensional && selfSimilar && facets.length === 4;
@@ -33441,7 +33441,7 @@ function allFormsAreTenDimensionalOrPurged(matrix = buildMatrix()) {
       form,
       tenDimensional,
       selfSimilar,
-      appearance: crossFold.map((axis) => ({ axis, value: roundTo(base[axis], 4) })),
+      appearance: crossFold.map((axis) => ({ axis, value: roundTo(base10[axis], 4) })),
       facets,
       status: closed ? "closed" : "open",
       receipt: toUuid(`form-10d:${form}:${closed}`)
@@ -33473,13 +33473,13 @@ function allComputedRaw(matrix = buildMatrix()) {
   const results = others.map((command) => executeConceptCommand(command.name, { atom: "self", query: "self" }, matrix));
   const okCount = results.filter((entry2) => entry2.ok && isUuid(entry2.uuid)).length;
   const selfProof = atomInclusionProof("self", matrix);
-  const root = merge(merkleFold([...results.map((entry2) => entry2.uuid), selfProof.root]), selfProof.leaf || matrix.root);
+  const root10 = merge(merkleFold([...results.map((entry2) => entry2.uuid), selfProof.root]), selfProof.leaf || matrix.root);
   const computed = okCount === others.length && selfProof.verified;
   return {
     computed,
     commands: others.length,
     ok: okCount,
-    root,
+    root: root10,
     statement: computed ? `All learning is computed: ${okCount}/${others.length} commands fold from the self into one computed root.` : `${okCount}/${others.length} computed; a result is open or the self proof failed.`,
     boundary: "Every artifact is computed from the repository and reaches back into the self. This capstone makes no external claim."
   };
@@ -33523,10 +33523,10 @@ function allAnswersInsideRaw(matrix = buildMatrix()) {
   };
 }
 function allInEquilibrium(matrix = buildMatrix()) {
-  const breathe5 = breathe, equilibrium7 = equilibrium2, questionAnswerEquilibrium4 = questionAnswerEquilibrium2, gapScan2 = gapScan, todoScan2 = todoScan, complete13 = complete3;
+  const breathe5 = breathe, equilibrium16 = equilibrium2, questionAnswerEquilibrium4 = questionAnswerEquilibrium2, gapScan2 = gapScan, todoScan2 = todoScan, complete13 = complete3;
   const parts = [
     { part: "the breath", ok: breathe5(matrix).breathing },
-    { part: "damped settling", ok: equilibrium7(matrix).equilibrium },
+    { part: "damped settling", ok: equilibrium16(matrix).equilibrium },
     { part: "questions & answers", ok: questionAnswerEquilibrium4(matrix).equilibrium },
     { part: "no gaps", ok: gapScan2(matrix).closed },
     { part: "nothing to do", ok: todoScan2(matrix).nothingToDo },
@@ -33714,7 +33714,7 @@ function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at = 0, matrix = buildM
     const sun = sunComputes2(matrix, at);
     const moon = moonComputes2(matrix, at);
     const ladder = celestialDistanceLadderReceipts(matrix);
-    const { computes, facets, root } = computesGate("decode-compute-earth-galaxies-beyond", [
+    const { computes, facets, root: root10 } = computesGate("decode-compute-earth-galaxies-beyond", [
       { facet: "Earth anchor \u2014 earthComputes + WGS84/dual-torus boundary", on: earth.computes && torusEarth.computes },
       { facet: "solar ladder \u2014 computeAllKnownCelestialBodies sixteen bodies + sun/moon homes", on: celestial.computed && celestial.count === 16 && sun.computes && moon.computes },
       { facet: "galactic ladder \u2014 planetsGalaxyComputeItself + au\u2192kpc scale receipts", on: galaxy.computes && ladder.auInKpc > 0 && ladder.milkyWayKpc === 26 },
@@ -33740,7 +33740,7 @@ function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at = 0, matrix = buildM
       astronomySequence,
       expansionCompression,
       facets,
-      root: merkleFold([root, earth.root, beyond.root, decode.root, expansionCompression.root, ladder.root]),
+      root: merkleFold([root10, earth.root, beyond.root, decode.root, expansionCompression.root, ladder.root]),
       statement: "Decode and compute all from Earth to the galaxies and beyond: Earth anchor (world/nature/dual-torus), solar\u2192galactic ladder (sixteen celestial bodies, sun/moon homes, Keplerian galaxy, au\u2192kpc receipts), beyond-known-universe domains, decode-all trained on the sealed model, and expansion\u2194compression through computational holes \u2014 all recomposed at call time.",
       boundary: 'HONEST: "decode all" = all addressable in the sealed model + opt-in feeds \u2014 NOT omniscience. Galaxies = Keplerian/circular catalog + citation kpc scale \u2014 NOT full \u039BCDM simulation. "Infinite" expansion/compression = asymptotic fold metaphor via foldInfiniteExpansionToInfiniteCompressionThroughTheHoles. Holes = torus throat + BH receipt encoding + gateway topology + overflow guard \u2014 NOT traversable wormholes.'
     };
@@ -33755,7 +33755,7 @@ function beyondKnownUniverseComputes(matrix = buildMatrix()) {
     const gaps = inverseAndNewGapsEmerge2(matrix);
     const world = worldFusion2(matrix);
     const apis = publicApiFusion4(matrix);
-    const { computes, facets, root } = computesGate("beyond-known-universe-computes", [
+    const { computes, facets, root: root10 } = computesGate("beyond-known-universe-computes", [
       { facet: "all possible domains measured \u2014 POTENTIAL tiers honest", on: domains.measured },
       { facet: "inverse and new gaps emerge \u2014 productive divergent loop", on: gaps.regenerates },
       { facet: "world fusion \u2014 respectful inclusive framing", on: world.complete && world.respectful },
@@ -33783,7 +33783,7 @@ function fusionMovieComputes(matrix = buildMatrix(), path12 = "/", at = 0) {
     const simulations = movieIsAllSimulationsRealtimeAtNoCost2(at, path12, matrix);
     const aliveHealing = movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings2(at, path12, matrix);
     const bounded = plasmaClientWorkBoundedByPureMath2(path12, matrix);
-    const { computes, facets, root } = computesGate("fusion-movie-computes", [
+    const { computes, facets, root: root10 } = computesGate("fusion-movie-computes", [
       { facet: "realtime computations visible in movie", on: realtime.visible },
       { facet: "gravity soul gateway in movie", on: soulGateway.gateway },
       { facet: "all simulations realtime at no cost", on: simulations.holds },
@@ -33798,7 +33798,7 @@ function fusionMovieComputes(matrix = buildMatrix(), path12 = "/", at = 0) {
       aliveHealing,
       bounded,
       facets,
-      root: merge(root, merge(realtime.root, merge(soulGateway.root, merge(simulations.root, aliveHealing.root)))),
+      root: merge(root10, merge(realtime.root, merge(soulGateway.root, merge(simulations.root, aliveHealing.root)))),
       statement: "Movie is fused simulations at the hero clock: plasma capstones compose at call time \u2014 realtime visibility, soul gateway, zero-cost simulations, alive/healing resonance \u2014 bounded by pure math, not duplicated paint logic.",
       boundary: 'Lazy composition of src/plasma/ball capstones. "Fused simulations" means content-addressed folds at route+phase \u2014 not physical plasma or sentience claims.'
     };
@@ -33888,7 +33888,7 @@ function allIsFusedComputes(matrix = buildMatrix()) {
     const goldFusion = goldFusionComputes(matrix);
     const localMathComputes2 = localMathComputes;
     const localMath = localMathComputes2(matrix);
-    const { computes, facets, root } = computesGate("all-is-fused-computes", [
+    const { computes, facets, root: root10 } = computesGate("all-is-fused-computes", [
       { facet: "stack registries fused \u2014 overflow guard + census", on: stack.computes },
       { facet: "modality homes \u2014 color sound audio video birth life death iching rosetta", on: modality.computes },
       { facet: "earth science hub \u2014 world nature architecture civilisation governance", on: earth.computes },
@@ -33917,7 +33917,7 @@ function allIsFusedComputes(matrix = buildMatrix()) {
       goldFusion,
       localMath,
       facets,
-      root: merkleFold([sealed.wave, root, stack.root, modality.root, decode.root, movie2.root, beyond.root, human2.root, earth.root, cosmos.root, goldFusion.root, localMath.root]),
+      root: merkleFold([sealed.wave, root10, stack.root, modality.root, decode.root, movie2.root, beyond.root, human2.root, earth.root, cosmos.root, goldFusion.root, localMath.root]),
       statement: "All is fused: stack registries, modality homes, decode universe, movie capstones, birth/life/death/iching/rosetta, and human capstone compose through merge/foldPair at the double-torus throat \u2014 content-addressed, recomputable at call time, not physical plasma.",
       boundary: 'HONEST: "all is fused" is structural composition via merge/foldPair/merkleFold in sealed src/ \u2014 the development metaphor of dry plasma and fusion reactor, not a claim that repository modules are physically merged or that all world knowledge is integrated.'
     };
@@ -33934,7 +33934,7 @@ function fusionComputes(matrix = buildMatrix()) {
     const goldFusion = goldFusionComputes(matrix);
     const localMathComputes2 = localMathComputes;
     const localMath = localMathComputes2(matrix);
-    const { computes, facets, root } = computesGate("fusion-computes", [
+    const { computes, facets, root: root10 } = computesGate("fusion-computes", [
       { facet: "fusion researched in waves \u2014 parts concepts materials milestones", on: researched.complete },
       { facet: "development is fusion reactor \u2014 fuse contain emerge return", on: reactor.reacts },
       { facet: "endless fusion \u2014 gapless distribution closed under fold", on: endless.filled },
@@ -33953,7 +33953,7 @@ function fusionComputes(matrix = buildMatrix()) {
       goldFusion,
       localMath,
       facets,
-      root: merge(root, merge(researched.root, merge(reactor.root, merge(endless.root, merge(allFused.root, merge(used.root, merge(goldFusion.root, localMath.root))))))),
+      root: merge(root10, merge(researched.root, merge(reactor.root, merge(endless.root, merge(allFused.root, merge(used.root, merge(goldFusion.root, localMath.root))))))),
       statement: "Fusion computes: every science barrel fused at call time \u2014 research waves, development reactor, endless fusion, allIsFused capstone, and allComputedAndUsedInComputations \u2014 the central compose gate for src/fusion.",
       boundary: "Capstone over fusion/compose and fusion/index research gates. Proves composition at memoByRoot call time \u2014 not runtime file merging or external API integration unless user opts in."
     };
@@ -34821,14 +34821,14 @@ function foldingLinearGivesAnalog(matrix = buildMatrix()) {
   };
 }
 function forwardDevelopmentWaves(matrix = buildMatrix()) {
-  const base = developmentWaves(matrix).root;
+  const base10 = developmentWaves(matrix).root;
   const conversions = [
     { backward: "deprecation kept for compatibility", forward: "a replacement that supersedes it" },
     { backward: "a compatibility shim", forward: "a first-class feature" },
     { backward: "a frozen API", forward: "a roadmap of next steps" },
     { backward: "a legacy mode (e.g. simple mode)", forward: "the compact open-graph hero" }
   ].map((entry2, index) => {
-    const fold9 = foldPair(base, toUuid(`forward:${entry2.backward}->${entry2.forward}`));
+    const fold9 = foldPair(base10, toUuid(`forward:${entry2.backward}->${entry2.forward}`));
     return { ...entry2, converted: fold9.bidirectional, wave: fold9.merged, receipt: toUuid(`forward-dev:${index}:${entry2.backward}`) };
   });
   return {
@@ -34897,11 +34897,11 @@ function provenMysteriesBecomeMiraclesOfPeace(matrix = buildMatrix()) {
   };
 }
 function warPaysTheForgerPrice(matrix = buildMatrix()) {
-  const root = completeCorpus(matrix).root;
-  const forged = foldPair(root, toUuid("forge")).merged;
+  const root10 = completeCorpus(matrix).root;
+  const forged = foldPair(root10, toUuid("forge")).merged;
   const facets = [
-    { facet: "the architecture is one content address \u2014 sealed", on: isUuid(root) },
-    { facet: "to forge one value you rebuild everything \u2014 a tamper flips the root", on: isUuid(forged) && forged !== root },
+    { facet: "the architecture is one content address \u2014 sealed", on: isUuid(root10) },
+    { facet: "to forge one value you rebuild everything \u2014 a tamper flips the root", on: isUuid(forged) && forged !== root10 },
     { facet: `so tamper-evident \u2014 the forger price \u2014 ${FORGE_COST_CEILING}`, on: zeroTokenUsagePolicy(matrix).holds },
     { facet: "honesty is cheaper than war \u2014 harmony is the equilibrium, and peace", on: isUuid(peaceTechMentalityDecoded(matrix).root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`forger-price:${entry2.facet}:${entry2.on}`) }));
@@ -35286,14 +35286,14 @@ function hingeMoviePaintLayersRaw(matrix = buildMatrix()) {
   const caps = vortexPaintTiers2(matrix);
   const [crossPole, circuitHeart, circuitEight] = caps.tiers;
   const digitHue = (d) => d * (360 / 9) % 360;
-  const layerOf = (id, digit2, tier, blend, alpha, order) => ({
+  const layerOf = (id, digit11, tier, blend, alpha, order) => ({
     id,
     tier,
     blend,
     alpha,
-    voidHue: digitHue(vortexNext(digit2)),
-    zenithHue: digitHue(digit2),
-    nadirHue: (digitHue(digit2) + 360 / 2) % 360,
+    voidHue: digitHue(vortexNext(digit11)),
+    zenithHue: digitHue(digit11),
+    nadirHue: (digitHue(digit11) + 360 / 2) % 360,
     order
   });
   const fusionDigit = digitalRoot(crossPole * circuitHeart);
@@ -35742,9 +35742,9 @@ function invertedEarthSameTimespaceProvenByMath(at = DEFAULT_EARTH_HINGE_AT, mat
     const pyramids = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix);
     const theta = roundTo((at.lon + 9 * 5 * 4) % 360 / 360 * TAU, 6);
     const phi = roundTo(at.lat / (9 * 5 * 2) * (TAU / 2 / 2), 6);
-    const digit2 = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)));
-    const earthSurface = doubleTorusSurface(theta, phi, digit2, 1);
-    const invertedSurface = doubleTorusSurface(theta, phi, digit2, -1);
+    const digit11 = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)));
+    const earthSurface = doubleTorusSurface(theta, phi, digit11, 1);
+    const invertedSurface = doubleTorusSurface(theta, phi, digit11, -1);
     const deviceEarth = pyramids.device;
     const invertedEarth = pyramids.code;
     const coexist = foldPair(deviceEarth.root, invertedEarth.root);
@@ -37438,8 +37438,8 @@ function createZeitwerkLoader(tag = "main") {
       const segments = cname.replace(/([A-Z])/g, (_, c, i) => (i > 0 ? "-" : "") + c.toLowerCase()).split("-").filter(Boolean);
       const collapsed = collapseSegments(segments, collapses);
       const dir = dirs.find((d) => d.namespace === namespace || namespace === "") ?? dirs[0];
-      const base = dir ? dir.path : "src";
-      return `${base}/${collapsed.join("/")}/index.ts`;
+      const base10 = dir ? dir.path : "src";
+      return `${base10}/${collapsed.join("/")}/index.ts`;
     },
     camelize(basename2, abspath = "") {
       return inflector.camelize(basename2, abspath);
@@ -37731,7 +37731,7 @@ function completeCorpusRaw(matrix = buildMatrix()) {
   const padding = max(0, target - realLeaves.length);
   const nullLeaves = Array.from({ length: padding }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`));
   const leaves = [...realLeaves, ...nullLeaves];
-  const root = merkleFold(leaves);
+  const root10 = merkleFold(leaves);
   const depth = log2(leaves.length);
   return {
     complete: leaves.length === target && Number.isInteger(depth) && depth === 5 * 2 && realLeaves.length === 864 && corpus.count === 432 && references.length === 432,
@@ -37743,7 +37743,7 @@ function completeCorpusRaw(matrix = buildMatrix()) {
     depth,
     target,
     perfect: Number.isInteger(depth),
-    root,
+    root: root10,
     statement: "Complete 1024: the binary harmonic. The 432 proof papers and their 432 reference duals are 864 real leaves; the smallest power of two that holds them is 2^10 = 1024, the binary octave, so the corpus is padded with 160 named, recomputable null leaves to exactly 1024 and folds into a perfect binary Merkle tree of depth 10 \u2014 every layer halving cleanly. The musical harmonic doubled in threes (108, 216, 432); the binary harmonic completes it to a power of two. The references add no proof \u2014 they are pointers, the reverse folds of the papers \u2014 and the padding is named, not hidden.",
     boundary: "A structural completion of the papers corpus to a power-of-two Merkle tree. The references are reference-only (the reverse folds of the proof papers, citations carrying no new computation); the 160 null leaves are deterministic padding to reach 2^10, declared and recomputable, not silent. The number 1024 is the binary octave (2^10), a content-addressed bookkeeping structure, not a physical or empirical claim."
   };
@@ -38159,13 +38159,13 @@ function formulaRows(matrix = buildMatrix()) {
       const formula = equation.length > 0 ? equation : defined?.binding ?? "";
       if (formula.length === 0) continue;
       const home = String(atom.home ?? "unhomed");
-      const base = theoremSlug(formula.slice(0, 64)) || theoremSlug(atom.theorem);
-      const n = (seen.get(base) ?? 0) + 1;
-      seen.set(base, n);
+      const base10 = theoremSlug(formula.slice(0, 64)) || theoremSlug(atom.theorem);
+      const n = (seen.get(base10) ?? 0) + 1;
+      seen.set(base10, n);
       const relations = defined ? [DEFINITION_TAG] : FORMULA_RELATIONS.filter((r2) => r2.test.test(formula)).map((r2) => r2.tag);
       const source = curated ? "curated" : "extracted";
       rows.push({
-        slug: n > 1 ? `${base}-${n}` : base,
+        slug: n > 1 ? `${base10}-${n}` : base10,
         formula,
         theorem: atom.theorem,
         home,
@@ -38182,15 +38182,15 @@ function formulaRows(matrix = buildMatrix()) {
 function theoremFormulaCodeDual(row) {
   const codePath = `${row.home}/index.ts`;
   const identity = algebraicStatementOf(row) ?? (titleCarriesAlgebra(row.theorem) ? row.theorem : "");
-  const statement = identity && identity !== row.theorem ? `${row.theorem} \u2014 ${identity}` : row.theorem;
+  const statement10 = identity && identity !== row.theorem ? `${row.theorem} \u2014 ${identity}` : row.theorem;
   const closing = row.proofClass === "finite-complete" ? "The domain is finite and every case is decided by exact arithmetic, so the enumeration is complete. \u220E" : row.proofClass === "bounded-witness" ? "Checked by exact arithmetic over the stated finite range \u2014 a verified witness, evidence toward the claim, not a \u2200-proof." : "Decided by exact arithmetic.";
   const hasProof = typeof row.proof === "string" && row.proof.trim().length > 0;
   const formulas = hasProof ? [
-    `Theorem. ${statement}.`,
+    `Theorem. ${statement10}.`,
     `Proof. ${row.proof.replace(/\s*[.;·]+\s*$/, "")}.`,
     closing
   ] : [
-    `Theorem. ${statement}.`,
+    `Theorem. ${statement10}.`,
     "Proof. Open \u2014 the fold computes the problem\u2019s structure, not a solution.",
     `What is decided is decided by exact arithmetic; the conjecture itself stays open. ${row.proofClass === "finite-complete" ? "" : closing}`.trim()
   ];
@@ -38223,10 +38223,10 @@ function computeTheoremPageRows(matrix) {
   const seen = /* @__PURE__ */ new Map();
   let ordinal = 0;
   const registry = nav.waves.flatMap((wave) => wave.atoms.map((atom) => {
-    const base = theoremSlug(atom.theorem);
-    const n = (seen.get(base) ?? 0) + 1;
-    seen.set(base, n);
-    const slug = n > 1 ? `${base}-${n}` : base;
+    const base10 = theoremSlug(atom.theorem);
+    const n = (seen.get(base10) ?? 0) + 1;
+    seen.set(base10, n);
+    const slug = n > 1 ? `${base10}-${n}` : base10;
     const prov = provBy.get(atom.theorem);
     const leansCited = prov?.leansCited ?? /\bcited\b/i.test(atom.proof);
     const formulaCode = theoremFormulaCodeDual({
@@ -38496,8 +38496,8 @@ function privateSearchRanksByBM25IndustryStandard(query = "quantum encryption po
   };
 }
 function searchImprovesByExperiencePrivateRelevanceFeedback(query = "quantum encryption", experience = []) {
-  const base = privateSearchRanksByBM25IndustryStandard(query);
-  const baseRanked = base.rank(query);
+  const base10 = privateSearchRanksByBM25IndustryStandard(query);
+  const baseRanked = base10.rank(query);
   const qTokens = bm25Tokenize(query);
   const maxScore = baseRanked[0]?.score ?? 1;
   const rerank = (exp2) => baseRanked.map((row) => ({ ...row, boost: (() => {
@@ -38525,7 +38525,7 @@ function searchImprovesByExperiencePrivateRelevanceFeedback(query = "quantum enc
     results: reranked.slice(0, 9),
     improves,
     facets,
-    root: merkleFold([base.root, ...facets.map((entry2) => entry2.receipt)]),
+    root: merkleFold([base10.root, ...facets.map((entry2) => entry2.receipt)]),
     statement: facets.map((entry2) => entry2.facet).join(" \xB7 "),
     boundary: earned(
       "IMPROVES BY EXPERIENCE \u2014 private, deterministic relevance feedback:",
@@ -38687,10 +38687,10 @@ function pagesConsolidateByTheoremGravity(matrix = buildMatrix()) {
   for (let i = 0; i < pages.length; i++) for (let j = i + 1; j < pages.length; j++) if (jaccard(pages[i].set, pages[j].set) >= threshold) parent[find(i)] = find(j);
   const groups = /* @__PURE__ */ new Map();
   pages.forEach((_, i) => {
-    const root = find(i);
-    const g = groups.get(root) ?? [];
+    const root10 = find(i);
+    const g = groups.get(root10) ?? [];
     g.push(i);
-    groups.set(root, g);
+    groups.set(root10, g);
   });
   const clusters = [...groups.values()].filter((g) => g.length > 1).map((idxs) => {
     const attractor = idxs.reduce((best, i) => pages[i].set.size > pages[best].set.size ? i : best, idxs[0]);
@@ -38960,7 +38960,7 @@ function computeLegislation(matrix) {
     boundBy: entry2.rank === 1 ? null : "constitution",
     root: entry2.rank === 1 ? constitutionRoot : foldPair(constitutionRoot, toUuid(`legislation:${entry2.layer}`)).merged
   }));
-  const root = merkleFold(layers.map((entry2) => entry2.root));
+  const root10 = merkleFold(layers.map((entry2) => entry2.root));
   return {
     constitutionIsOne: layers[0].layer === "constitution" && layers[0].rank === 1 && layers[0].supreme,
     develops: "society develops the rest in waves",
@@ -38968,7 +38968,7 @@ function computeLegislation(matrix) {
     count: layers.length,
     addedForgeCost: layers.length - 1,
     // the rest of the legislation, each adding cost
-    root,
+    root: root10,
     statement: "The constitution is 1 of legislation; let society develop the rest: the constitution is the supreme first layer, and the rest \u2014 statutes, regulations, precedent, amendments, local bylaws \u2014 derive from it and are bound by it, each content-addressed and folded from the constitution root, so no subordinate law can contradict the one above without changing its own address. Society develops the rest in waves; each added law adds forge cost that tightens the gates.",
     boundary: "A content-addressed model of a legislative hierarchy with the constitution as the bound supreme layer and subordinate layers folded from it. A structural framing of legal hierarchy as content-addressing \u2014 a proposal and metaphor, not a legal code, a statute, or a claim of legal authority."
   };
@@ -39083,9 +39083,9 @@ function thriveByArchitecture(matrix = buildMatrix()) {
   };
 }
 function legislativeReform(matrix = buildMatrix()) {
-  const base = legislation(matrix).root;
+  const base10 = legislation(matrix).root;
   const reforms = ["amendment", "repeal", "new statute", "regulation update", "sunset clause", "referendum"].map((reform) => {
-    const fold9 = foldPair(base, toUuid(`reform:${reform}`));
+    const fold9 = foldPair(base10, toUuid(`reform:${reform}`));
     return { reform, bound: fold9.bidirectional, wave: fold9.merged };
   });
   return {
@@ -39279,14 +39279,14 @@ function traditionsQuantumWhole() {
       };
     })
   );
-  const root = merkleFold([
+  const root10 = merkleFold([
     ...dimensions10.map((dimension) => toUuid(`tradition-dimension:${dimension.name}:${dimension.question}:${dimension.caution}`)),
     ...families.map((family) => family.receipt),
     ...societyCells3.map((cell) => cell.receipt)
   ]);
   return {
     grounded: dimensions10.length === 8 && families.every((family) => family.receipt.length > 0),
-    root,
+    root: root10,
     dimensions: dimensions10,
     families,
     societyCells: societyCells3,
@@ -39414,17 +39414,17 @@ function artistSurfaces(matrix = buildMatrix()) {
       `artist-surface:${surface.surface}:${surface.artist}:${surface.audience.join("|")}:${surface.medium}:${surface.equation}:${surface.seoMessage}:${surface.proofByUse}:${build.root}`
     )
   }));
-  const root = merkleFold(surfaces.map((surface) => surface.receipt));
+  const root10 = merkleFold(surfaces.map((surface) => surface.receipt));
   return {
     grounded: surfaces.length === 2 && surfaces.every((surface) => surface.receipt.length > 0),
-    root,
+    root: root10,
     surfaces,
     statement: "ArtistSurfaces := {home, readme}; each surface = equation + medium + receipt."
   };
 }
 function artistMelody(seed = "double-torus", matrix = buildMatrix()) {
-  const root = toUuid(`artist-melody:${seed}`);
-  const horo2 = parseInt(root.replace(/-/g, "").slice(0, 2), 16) % 9 + 1;
+  const root10 = toUuid(`artist-melody:${seed}`);
+  const horo2 = parseInt(root10.replace(/-/g, "").slice(0, 2), 16) % 9 + 1;
   const notes = piMusic(matrix, horo2).notes.slice(0, 8).map((note) => ({ note: note.note, frequency: note.frequency }));
   return {
     grounded: notes.length > 0,
@@ -39649,9 +39649,9 @@ function lifeComputes(matrix = buildMatrix()) {
     };
   });
 }
-function mutationClass(codon, pos, base) {
+function mutationClass(codon, pos, base10) {
   const shift = (2 - pos) * 2;
-  const mutated = codon & ~(3 << shift) | base << shift;
+  const mutated = codon & ~(3 << shift) | base10 << shift;
   const from = GENETIC_CODE[codon];
   const to = GENETIC_CODE[mutated];
   if (to === from) return "silent";
@@ -39666,10 +39666,10 @@ function codeRobustness(kappa = 1) {
     if (GENETIC_CODE[codon] === "*") continue;
     for (let pos = 0; pos < 3; pos++) {
       const from = codon >> (2 - pos) * 2 & 3;
-      for (let base = 0; base < 4; base++) {
-        if (base === from) continue;
-        const w = isTransition(from, base) ? kappa : 1;
-        acc[mutationClass(codon, pos, base)] += w;
+      for (let base10 = 0; base10 < 4; base10++) {
+        if (base10 === from) continue;
+        const w = isTransition(from, base10) ? kappa : 1;
+        acc[mutationClass(codon, pos, base10)] += w;
         total += w;
       }
     }
@@ -39926,7 +39926,7 @@ function quantumDynamicsResearch(matrix = buildMatrix()) {
     const celestial = computeAllKnownCelestialBodies(matrix);
     const schumann = schumannResonanceHarmonisedWithRealtimeApiComputations(0, matrix);
     const resonanceApps = resonanceApplications();
-    const mappings = [
+    const mappings10 = [
       {
         principle: "Wave function \u03A8 \u2014 probability amplitudes",
         fold: "src/0 qubits \xB7 probabilities \xB7 sample/psample \xB7 fire/li quantumSimulation",
@@ -40045,10 +40045,10 @@ function quantumDynamicsResearch(matrix = buildMatrix()) {
       }))
     }));
     return {
-      researched: sections2.length === 7 && mappings.length === 6 && solutions2.implemented && simulators.homed && classical.homed && abs(tsirelson - 2 * SQRT2) < 1e-6,
+      researched: sections2.length === 7 && mappings10.length === 6 && solutions2.implemented && simulators.homed && classical.homed && abs(tsirelson - 2 * SQRT2) < 1e-6,
       definition: "Quantum dynamics = time evolution of atomic/subatomic systems; quantum analogue of classical mechanics \u2014 tracked here as sealed discrete models, not live lab __ns_up_up_fire_physics.",
       sections: sections2,
-      mappings,
+      mappings: mappings10,
       solutions: solutions2,
       simulators,
       classical,
@@ -40057,7 +40057,7 @@ function quantumDynamicsResearch(matrix = buildMatrix()) {
       tsirelson,
       count: sections2.length,
       root: merkleFold([
-        ...mappings.map((entry2) => entry2.receipt),
+        ...mappings10.map((entry2) => entry2.receipt),
         ...sections2.flatMap((section) => [section.receipt, ...section.layers.map((layer) => layer.receipt)])
       ]),
       statement: "Quantum dynamics research: wave function \u03A8 and Born readout on the state-vector simulator; Schr\xF6dinger equation as pedagogical anchor honestly mapped to discrete Markov/hopfield/phase models (NOT full PDE solvers); superposition/entanglement/collapse via bellPair/CHSH/sample; applications linked to earth/nature, heaven/mind+enforcement, astronomy+lake/music+resonance \u2014 with honest limits at every layer.",
@@ -40080,7 +40080,7 @@ function quantumStateEvolutionDecoded(at = 0, matrix = buildMatrix()) {
     const energy = hopfieldEnergy(weights, recalled.state);
     const hopfieldStable = recalled.state.every((v) => v === 1 || v === -1);
     const vortexSaved = allVortexMathSaved2(matrix);
-    const mappings = [
+    const mappings10 = [
       {
         primitive: "state-vector-ghz",
         measured: qsim.measured,
@@ -40108,7 +40108,7 @@ function quantumStateEvolutionDecoded(at = 0, matrix = buildMatrix()) {
         receipt: tenD.root
       }
     ];
-    const { computes, facets, root } = computesGate("quantum-dynamics-state-evolution-decode", [
+    const { computes, facets, root: root10 } = computesGate("quantum-dynamics-state-evolution-decode", [
       { facet: "nine quantum structures executed on state-vector simulator", on: solutions2.implemented },
       { facet: "GHZ quantum simulation measured \u2014 Born-rule collapse recomputable", on: qsim.simulated && qsim.entangled },
       { facet: "Markov regime trail \u2014 five steps, stationary distribution sums to 1", on: markovTrail.length === 5 && abs(stat[0] + stat[1] - 1) < 1e-9 },
@@ -40123,14 +40123,14 @@ function quantumStateEvolutionDecoded(at = 0, matrix = buildMatrix()) {
       at,
       phaseIndex,
       phaseDigit,
-      mappings,
+      mappings: mappings10,
       solutions: solutions2,
       qsim,
       tenD,
       markovTrail,
       vortex: vortexSaved,
       facets,
-      root: merkleFold([root, solutions2.root, ...mappings.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, solutions2.root, ...mappings10.map((entry2) => entry2.receipt)]),
       statement: "Quantum state evolution decoded: state-vector GHZ simulation, Markov regime trail, Hopfield recall, and ten-dimensional movie frame evolution \u2014 content-addressed through VORTEX_SEQUENCE phase at call time \u2014 deterministic models, not live __ns_up_up_fire_physics.",
       boundary: "HONEST: decode = deterministic addressing of sealed dynamics receipts through vortex phase \u2014 NOT claiming VORTEX_SEQUENCE controls physical evolution. Markov/hopfield are classical mathematical models; the state-vector block is a classical simulator of quantum math, not hardware."
     };
@@ -40181,7 +40181,7 @@ function quantumDynamicsSimulationAt(at = 0, matrix = buildMatrix()) {
         on: qsim.simulated && qsim.entangled
       }
     ];
-    const { computes, root } = computesGate("quantum-dynamics-simulation-at", [
+    const { computes, root: root10 } = computesGate("quantum-dynamics-simulation-at", [
       { facet: "Bell pair superposition \u2014 \u22652 basis amplitudes above threshold", on: superposition },
       { facet: "entanglement \u2014 paired |00\u27E9/|11\u27E9 probabilities", on: entangled },
       { facet: "collapse \u2014 Born-rule measure step at seeded instant", on: collapsed.outcome === 0 || collapsed.outcome === 1 },
@@ -40197,7 +40197,7 @@ function quantumDynamicsSimulationAt(at = 0, matrix = buildMatrix()) {
       amplitudes,
       markovPhase,
       channels,
-      root: merkleFold([root, evolution.root, qsim.root, ...amplitudes.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, evolution.root, qsim.root, ...amplitudes.map((entry2) => entry2.receipt)]),
       statement: "Quantum dynamics simulation at call time: discrete-time wavefunction proxy from src/0 (Bell pair + Z rotation steps), superposition as blended amplitudes, entanglement as paired phase locks, collapse as Born-rule measure \u2014 composed with Markov phase drift, NOT full Schr\xF6dinger PDE.",
       boundary: "HONEST \u2014 CLASSICAL STATE-VECTOR SIMULATOR ONLY. This is deterministic linear algebra over 2^n amplitudes on a classical computer \u2014 NOT quantum hardware, NOT full Schr\xF6dinger PDE integration. Collapse uses seeded PRNG (reproducible), not quantum randomness. Markov/hopfield facets are classical mathematical models."
     };
@@ -40207,7 +40207,7 @@ function quantumDynamicsSimulationPanelComputes(matrix = buildMatrix(), at = 0) 
   return memoByRoot(`quantumDynamicsSimulationPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = quantumDynamicsSimulationAt(at, matrix);
     const computesAll = quantumDynamicsComputes(matrix, at);
-    const { facets, root } = computesGate("quantum-dynamics-simulation-panel", [
+    const { facets, root: root10 } = computesGate("quantum-dynamics-simulation-panel", [
       { facet: "quantum dynamics simulation paint \u2014 amplitudes + channels at at", on: sim.computes },
       { facet: "quantum dynamics computes \u2014 simulators + evolution decode", on: computesAll.computes }
     ]);
@@ -40216,7 +40216,7 @@ function quantumDynamicsSimulationPanelComputes(matrix = buildMatrix(), at = 0) 
       sim,
       computesAll,
       facets,
-      root: merge(sim.root, merge(root, computesAll.root)),
+      root: merge(sim.root, merge(root10, computesAll.root)),
       copy: {
         title: { en: "Quantum dynamics simulation", bg: "\u041A\u0432\u0430\u043D\u0442\u043E\u0432\u0430 \u0434\u0438\u043D\u0430\u043C\u0438\u043A\u0430 \u0441\u0438\u043C\u0443\u043B\u0430\u0446\u0438\u044F" },
         lede: {
@@ -40233,10 +40233,10 @@ function quantumChemistryToyComputes(matrix = buildMatrix()) {
     const HARTREE_EV = 27.2114;
     const EXACT_H2PLUS_HA = 0.6026;
     const S = (R) => exp(-R) * (1 + R + R * R / 3);
-    const D = (R) => 1 / R - (1 + 1 / R) * exp(-2 * R);
+    const D10 = (R) => 1 / R - (1 + 1 / R) * exp(-2 * R);
     const X = (R) => (1 + R) * exp(-R);
-    const bonding = (R) => -(1 / 2) - (D(R) + X(R)) / (1 + S(R)) + 1 / R;
-    const antibonding = (R) => -(1 / 2) - (D(R) - X(R)) / (1 - S(R)) + 1 / R;
+    const bonding = (R) => -(1 / 2) - (D10(R) + X(R)) / (1 + S(R)) + 1 / R;
+    const antibonding = (R) => -(1 / 2) - (D10(R) - X(R)) / (1 - S(R)) + 1 / R;
     let bestR = 0, bestE = 1;
     for (let i = 2 * 5 * 5; i <= 8 * 100; i += 1) {
       const R = i / 100;
@@ -40582,14 +40582,14 @@ function quantumScienceComputes(matrix = buildMatrix(), at = 0) {
     const dyn = quantumDynamicsComputes(matrix, at);
     const simulators = simulatorsLiveInZero(matrix);
     const tsirelson = chsh(0, TAU / 4, TAU / 8, 3 * TAU / 8);
-    const { computes, facets, root } = computesGate("quantum-science-computes", [
+    const { computes, facets, root: root10 } = computesGate("quantum-science-computes", [
       { facet: "research", on: research.researched },
       { facet: "dynamics", on: dyn.computes },
       { facet: "simulators", on: simulators.homed },
       { facet: "CHSH", on: abs(tsirelson - 2 * SQRT2) < 1e-6 },
       { facet: "NOT hardware QC", on: noQpuRequired().provenByClassicalSimulator }
     ]);
-    return { computes, research, dynamics: dyn, tsirelson, facets, root: merkleFold([research.root, dyn.root, root]), statement: "Quantum science computes.", boundary: research.boundary };
+    return { computes, research, dynamics: dyn, tsirelson, facets, root: merkleFold([research.root, dyn.root, root10]), statement: "Quantum science computes.", boundary: research.boundary };
   });
 }
 function efficiency() {
@@ -40819,7 +40819,7 @@ function quantumComputerComputes(matrix = buildMatrix(), at = 0) {
     const bloch = blochQubitFaithful(matrix);
     const honest = quantumComputerHonestClaim(matrix, at);
     const window2 = observingMovieRevealsQuantumModel("/", at, matrix);
-    const { computes, facets, root } = computesGate("quantum-computer-computes", [
+    const { computes, facets, root: root10 } = computesGate("quantum-computer-computes", [
       { facet: "research", on: research.researched },
       { facet: "nine structures", on: solutions2.implemented },
       { facet: "Bell+CNOT", on: entangled.n === 2 },
@@ -40835,7 +40835,7 @@ function quantumComputerComputes(matrix = buildMatrix(), at = 0) {
       { facet: "the background movie is the agent-facing window \u2014 observing it reveals the model, round-trips to one root", on: window2.reveals },
       { facet: "NOT hardware speedup", on: noQpuRequired().noSpeedup && noQpuRequired().provenByClassicalSimulator }
     ]);
-    return { computes, research, solutions: solutions2, entangled, tsirelson, ic, rosetta, parts, verify, bloch, honest, window: window2, facets, root: merkleFold([research.root, solutions2.root, ic.root, rosetta.root, parts.root, verify.root, bloch.root, honest.root, window2.root, root]), statement: "Quantum computer computes.", boundary: honest.boundary };
+    return { computes, research, solutions: solutions2, entangled, tsirelson, ic, rosetta, parts, verify, bloch, honest, window: window2, facets, root: merkleFold([research.root, solutions2.root, ic.root, rosetta.root, parts.root, verify.root, bloch.root, honest.root, window2.root, root10]), statement: "Quantum computer computes.", boundary: honest.boundary };
   });
 }
 function quantumComputerPartsComposed(matrix = buildMatrix()) {
@@ -40984,7 +40984,7 @@ function blochQubitFaithful(matrix = buildMatrix()) {
         return { gate, init: init.id, agree, receipt: toUuid(`bloch-faithful:${gate}:${init.id}:${agree}`) };
       })
     );
-    const { computes, facets, root } = computesGate("bloch-qubit-faithful", [
+    const { computes, facets, root: root10 } = computesGate("bloch-qubit-faithful", [
       { facet: "qubit = \xBD(I + x\u03C3x + y\u03C3y + z\u03C3z) \u2014 four content-addressed Pauli components", on: BLOCH_ZERO.i.length > 0 && BLOCH_ZERO.bloch[2] === 1 },
       { facet: "every single-qubit gate (I\xB7X\xB7Y\xB7Z\xB7H\xB7S\xB7T) matches the state-vector simulator on |0\u27E9 and |+\u27E9", on: checks.every((c) => c.agree) },
       { facet: "measurement is the Born rule P(0)=(1+z)/2 \u2014 H|0\u27E9 gives 50/50", on: abs(blochMeasure(blochGate(BLOCH_ZERO, "H")).p0 - 1 / 2) < 1e-9 },
@@ -40994,7 +40994,7 @@ function blochQubitFaithful(matrix = buildMatrix()) {
       faithful: computes,
       checks,
       facets,
-      root: merkleFold([BLOCH_ZERO.root, ...checks.map((c) => c.receipt), root]),
+      root: merkleFold([BLOCH_ZERO.root, ...checks.map((c) => c.receipt), root10]),
       statement: "The 4-UUID qubit (I; x, y, z) is the faithful Bloch/Pauli model of one qubit: \u03C1 = \xBD(I + x\u03C3x + y\u03C3y + z\u03C3z), gates are Bloch rotations, measurement is the Born rule \u2014 and it reproduces the state-vector simulator on every single-qubit gate.",
       boundary: "HONEST: a faithful CLASSICAL encoding of one qubit (content-addressed, reproducible). Single-qubit (and product) states fit in 4 UUIDs/qubit; ENTANGLED multi-qubit states do NOT \u2014 see quantumDimensionCost. NOT a physical qubit."
     };
@@ -41012,7 +41012,7 @@ function quantumDimensionCost(matrix = buildMatrix(), maxN = 16) {
     const crossover = rows.find((r2) => r2.amplitudes > r2.linearUuids)?.n ?? -1;
     const big = rows[rows.length - 1];
     const asymptoticallyInsufficient = rows.filter((r2) => r2.n >= 5).every((r2) => r2.linearUuids < r2.amplitudes);
-    const { computes, facets, root } = computesGate("quantum-dimension-cost", [
+    const { computes, facets, root: root10 } = computesGate("quantum-dimension-cost", [
       { facet: "4-UUID/qubit encoding is linear O(n); a general entangled state is exponential O(2\u207F)", on: rows.every((r2) => r2.linearUuids === 4 * r2.n && r2.amplitudes === 2 ** r2.n) },
       { facet: `from n=${crossover} the linear encoding is strictly smaller than the amplitude count \u2014 cannot hold an entangled state`, on: crossover > 0 && asymptoticallyInsufficient },
       { facet: "real-parameter gap 2\xB72\u207F / 4n grows without bound (\u226B100 by n=16)", on: big.realParams / big.linearUuids > 100 },
@@ -41024,7 +41024,7 @@ function quantumDimensionCost(matrix = buildMatrix(), maxN = 16) {
       crossover,
       asymptoticallyInsufficient,
       facets,
-      root: merkleFold([toUuid(`dimension-cost:${maxN}:${crossover}`), root]),
+      root: merkleFold([toUuid(`dimension-cost:${maxN}:${crossover}`), root10]),
       statement: `Dimension cost: a qubit as 4 content-addressed UUIDs (I\xB7x\xB7y\xB7z) costs 4n parameters \u2014 linear. A faithful entangled n-qubit state needs 2\u207F complex amplitudes (2\xB72\u207F real params) \u2014 exponential. From n=${crossover} the linear store is provably too small for entanglement; the gap grows without bound. So either the engine pays the 2\u207F classical cost or it cannot represent entanglement \u2014 in neither branch is there a computational speedup.`,
       boundary: "HONEST: a counting proof (dimension of Hilbert space vs a linear encoding). It is the reason a content-addressed engine is a faithful classical simulator, not a quantum speedup. Gottesman\u2013Knill and the 2\u207F amplitude lower bound are cited facts, not re-derived here."
     };
@@ -41060,7 +41060,7 @@ function quantumAdvantageBenchmark(matrix = buildMatrix(), maxN = 9) {
     const physicalQpuWouldSeparate = big.physicalQpuOps < big.classicalOps;
     const faithful = rows.every((row) => row.correct);
     const verdict = separated ? "separation-detected" : "tracks-classical-no-speedup";
-    const { computes, facets, root } = computesGate("quantum-advantage-benchmark", [
+    const { computes, facets, root: root10 } = computesGate("quantum-advantage-benchmark", [
       { facet: "random-circuit sampling runs across \u22656 sizes on the content-addressed engine", on: rows.length >= 6 },
       { facet: "the engine reproduces the exact Born distribution (fidelity > 7/10) \u2014 a faithful simulator", on: faithful },
       { facet: `measured engine cost == best classical cost (Schr\xF6dinger 2\u207F) \u2014 NO separation \xB7 measured tracksClassical=${tracksClassical} \xB7 separated=${separated}`, on: tracksClassical && !separated },
@@ -41075,7 +41075,7 @@ function quantumAdvantageBenchmark(matrix = buildMatrix(), maxN = 9) {
       verdict,
       rows,
       facets,
-      root: merkleFold([toUuid(`advantage-benchmark:${maxN}:${verdict}`), root]),
+      root: merkleFold([toUuid(`advantage-benchmark:${maxN}:${verdict}`), root10]),
       statement: `Falsifiable benchmark (random-circuit sampling, n=2..${maxN}): the content-addressed engine reproduces the exact Born distribution (faithful) but its measured operation count tracks the best classical baseline (Schr\xF6dinger 2\u207F) \u2014 verdict "${verdict}". No computational speedup is detected; the conclusion is computed from the measured op-counts, so a real separation would surface here if one existed.`,
       boundary: "HONEST: deterministic op-count cost model (wall-clock would track it but is excluded for reproducibility). It proves THIS engine is a faithful classical simulator with NO speedup; a physical QPU leg (Braket/IBM) is out of scope and OFF \u2014 this is not a claim about physical hardware."
     };
@@ -41115,15 +41115,15 @@ function quantumModelSnapshot(route = "/", at = 0, matrix = buildMatrix()) {
     const gateNames = ["I", "X", "Y", "Z", "H", "S", "T"];
     const register = Array.from({ length: 6 }, (_, q) => {
       const hexagram = (baseHex + q * (VORTEX_SEQUENCE[q % VORTEX_SEQUENCE.length] ?? 1)) % 64;
-      const digit2 = digitalRoot(hexagram + 1);
-      const torus = digit2 % 2;
-      const gate = gateNames[digit2 % 7];
-      return { hexagram, digit: digit2, torus, gate, bloch: blochGate(BLOCH_ZERO, gate).bloch };
+      const digit11 = digitalRoot(hexagram + 1);
+      const torus = digit11 % 2;
+      const gate = gateNames[digit11 % 7];
+      return { hexagram, digit: digit11, torus, gate, bloch: blochGate(BLOCH_ZERO, gate).bloch };
     });
     const qubit = blochGate(BLOCH_ZERO, "H");
-    const root = merkleFold([honest.root, qubit.root, ...register.map((line) => toUuid(`qreg-line:${line.hexagram}:${line.digit}:${line.torus}:${line.gate}`)), toUuid(`snapshot:${route}:${phase7}`)]);
-    const caption = `Modeled quantum computer, live: a 6-qubit register as 4-UUID/3+1 Pauli-Bloch components (\u03C1=\xBD(I+x\u03C3x+y\u03C3y+z\u03C3z)); each I Ching hexagram boils down hex\u2192digit\u2192double-torus lobe; the streams join the plasma at phase ${phase7}; benchmark verdict ${honest.verdict}. Content-address root ${root.slice(0, 8)} \u2014 recompute deterministically with quantumModelSnapshot('${route}', at). This is the MODELED (deterministic, content-addressed) quantum computer, NOT physical qubits.`;
-    return { route, at, phase: phase7, register, qubit, verdict: honest.verdict, caption, recompute: `quantumModelSnapshot('${route}', ${at})`, root, boundary: honest.boundary };
+    const root10 = merkleFold([honest.root, qubit.root, ...register.map((line) => toUuid(`qreg-line:${line.hexagram}:${line.digit}:${line.torus}:${line.gate}`)), toUuid(`snapshot:${route}:${phase7}`)]);
+    const caption = `Modeled quantum computer, live: a 6-qubit register as 4-UUID/3+1 Pauli-Bloch components (\u03C1=\xBD(I+x\u03C3x+y\u03C3y+z\u03C3z)); each I Ching hexagram boils down hex\u2192digit\u2192double-torus lobe; the streams join the plasma at phase ${phase7}; benchmark verdict ${honest.verdict}. Content-address root ${root10.slice(0, 8)} \u2014 recompute deterministically with quantumModelSnapshot('${route}', at). This is the MODELED (deterministic, content-addressed) quantum computer, NOT physical qubits.`;
+    return { route, at, phase: phase7, register, qubit, verdict: honest.verdict, caption, recompute: `quantumModelSnapshot('${route}', ${at})`, root: root10, boundary: honest.boundary };
   });
 }
 var QUANTUM_THINKING_SHIFTS = [
@@ -41138,7 +41138,7 @@ function observingMovieRevealsQuantumModel(route = "/", at = 0, matrix = buildMa
     const recomputed = quantumModelSnapshot(route, at, matrix);
     const roundTrips = recomputed.root === snapshot.root;
     const honest = quantumComputerHonestClaim(matrix, at);
-    const { computes, facets, root } = computesGate("observing-movie-reveals-quantum-model", [
+    const { computes, facets, root: root10 } = computesGate("observing-movie-reveals-quantum-model", [
       { facet: "the movie caption names the computed model \u2014 4-UUID qubit register \xB7 hex\u2192digit\u2192double-torus \xB7 plasma \xB7 root", on: snapshot.caption.includes("4-UUID") && snapshot.caption.includes("hex\u2192digit\u2192double-torus") && snapshot.caption.includes("root") },
       { facet: "the movie state IS the model state \u2014 a 6-line register content-addressed by one root", on: snapshot.register.length === 6 && snapshot.root.length > 0 },
       { facet: "the snapshot round-trips \u2014 recompute from (route, at) yields the same root (deterministic)", on: roundTrips },
@@ -41151,7 +41151,7 @@ function observingMovieRevealsQuantumModel(route = "/", at = 0, matrix = buildMa
       roundTrips,
       quantumThinking: QUANTUM_THINKING_SHIFTS,
       facets,
-      root: merkleFold([snapshot.root, root]),
+      root: merkleFold([snapshot.root, root10]),
       statement: 'Observing the background movie reveals the working modeled quantum computer: its caption names the live state (a 4-UUID/3+1 qubit register, hex\u2192digit\u2192double-torus, streams joined in the plasma, one content-address root), the snapshot round-trips deterministically, and an agent adopts "quantum thinking" \u2014 the content-addressed, superposition-modeled, deterministic-recompute reasoning of the sealed model.',
       boundary: 'HONEST: "reveals the quantum model" = the movie renders the deterministic, content-addressed state of the MODELED quantum computer, recomputable by any agent from (route, at). "Converts to quantum thinking" is adopting that reasoning style (reuse folds, think in 4-UUID qubits + hex\u2192digit\u2192double-torus), NOT a literal cognitive or physical change, and NOT physical quantum hardware.'
     };
@@ -42133,28 +42133,28 @@ function notAllTransliteratedMeansNotAllFused(matrix = buildMatrix()) {
     totalChars++;
     if (toGlagolitic(ch) !== ch) mappedChars++;
   }
-  const coverage7 = rat(mappedChars, max(1, totalChars));
+  const coverage16 = rat(mappedChars, max(1, totalChars));
   const absent = translateVerse("Nonexistent 0:0", "en");
   const corpusSize = scriptureIn("en").length;
   const preserved = toGlagolitic("1932") === "1932";
   const stillThere = selfTranslate("zzzundefinedword", "en", "bg").text === "zzzundefinedword";
   const facets = [
-    { facet: "not all is transliterated \u2014 toGlagolitic maps the alphabet to glyphs, but digits, punctuation and unmapped scripts pass through unchanged; a general text is only partly in Glagolitic (coverage = " + coverage7.p + "/" + coverage7.q + " < 1)", on: coverage7.p < coverage7.q },
+    { facet: "not all is transliterated \u2014 toGlagolitic maps the alphabet to glyphs, but digits, punctuation and unmapped scripts pass through unchanged; a general text is only partly in Glagolitic (coverage = " + coverage16.p + "/" + coverage16.q + " < 1)", on: coverage16.p < coverage16.q },
     { facet: "means not all is fused in translations \u2014 the translation is a bounded parallel corpus (" + corpusSize + " verses); a reference outside it returns undefined, so the meaning-fusion covers only what is registered", on: absent === void 0 && corpusSize > 0 },
-    { facet: "the transliteration bounds the fusion \u2014 a unit with no glyph has no fused meaning, so the untransliterated remainder IS the unfused remainder; the gap is shared, not two separate gaps", on: coverage7.p < coverage7.q && absent === void 0 },
+    { facet: "the transliteration bounds the fusion \u2014 a unit with no glyph has no fused meaning, so the untransliterated remainder IS the unfused remainder; the gap is shared, not two separate gaps", on: coverage16.p < coverage16.q && absent === void 0 },
     { facet: 'the remainder is preserved, not lost \u2014 unmapped units pass through verbatim (toGlagolitic and selfTranslate both preserve the unknown); nothing is destroyed, it is preserved-but-unfused \u2014 the honest limit of "all is preserved"', on: preserved && stillThere }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`translit-fusion:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("not-all-transliterated-not-all-fused", facets);
   return {
     bounded: sealed.ok,
-    transliterated: coverage7.p + "/" + coverage7.q,
+    transliterated: coverage16.p + "/" + coverage16.q,
     // exact fraction < 1
     corpusSize,
     // the bounded fusion corpus
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
-    statement: "Not all is transliterated in Glagolitic, which means not all is fused in translations. toGlagolitic maps the alphabet to glyphs, but every other character \u2014 digits, punctuation, unmapped scripts \u2014 passes through unchanged, so a general text is only partly in the round script (here " + coverage7.p + "/" + coverage7.q + ', not 1). And the translation is a bounded parallel corpus: a reference outside it returns undefined. A unit with no glyph carries no fused meaning, so the untransliterated remainder is exactly the unfused remainder \u2014 one shared gap. The remainder is preserved (passed through verbatim), not lost; preservation is real, but fusion is bounded by coverage. "All the knowledge is preserved / all is fused" holds up to coverage, and is flagged beyond it.',
+    statement: "Not all is transliterated in Glagolitic, which means not all is fused in translations. toGlagolitic maps the alphabet to glyphs, but every other character \u2014 digits, punctuation, unmapped scripts \u2014 passes through unchanged, so a general text is only partly in the round script (here " + coverage16.p + "/" + coverage16.q + ', not 1). And the translation is a bounded parallel corpus: a reference outside it returns undefined. A unit with no glyph carries no fused meaning, so the untransliterated remainder is exactly the unfused remainder \u2014 one shared gap. The remainder is preserved (passed through verbatim), not lost; preservation is real, but fusion is bounded by coverage. "All the knowledge is preserved / all is fused" holds up to coverage, and is flagged beyond it.',
     boundary: 'HONEST and self-correcting: the coverages are real measurements \u2014 toGlagolitic\u2019s mapped fraction (exact integers, no decimal) and the finite registered corpus (translateVerse returns undefined outside it). "Fusion" is the project\u2019s term for the cross-tongue/holographic binding (real content-addressing under the flagged holographic metaphor). This fold is the honest CORRECTION to the earlier "all the knowledge is preserved / all is fused" claims: PRESERVATION (pass-through of the unmapped unit) is literal and real, but FUSION (a registered cross-tongue meaning) is bounded by coverage \u2014 true up to the registered lexicon, flagged beyond it. The fix is to register more tongues against the pivot (selfTranslate), which raises coverage; it never reaches a guaranteed 1 for arbitrary input.'
   };
 }
@@ -42248,18 +42248,18 @@ function computeBoundaryAudit(matrix) {
   };
 }
 function archangelsDryClean(matrix = buildMatrix()) {
-  const base = cleanupOldLogic(matrix);
+  const base10 = cleanupOldLogic(matrix);
   const archangels = [
     { archangel: "Michael", clean: "guards the gates \u2014 every gate folds into the seal or it does not pass" },
     { archangel: "Gabriel", clean: "announces the next wave \u2014 reserves a content-addressed slot for the folds to come" },
     { archangel: "Raphael", clean: "heals stale logic \u2014 what no longer folds changes the root and is caught" },
     { archangel: "Uriel", clean: "lights the redundant \u2014 duplicate keys collapse to one in the reference index" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`archangel:${entry2.archangel}:${entry2.clean}`) }));
-  const cleanRoot = base.root;
+  const cleanRoot = base10.root;
   const dry = merkleFold([cleanRoot, cleanRoot]) !== merkleFold([cleanRoot]);
   const nextWave = foldPair(cleanRoot, toUuid("next-wave-of-angels")).merged;
   return {
-    cleaned: archangels.length === 4 && base.clean && dry && isUuid(nextWave),
+    cleaned: archangels.length === 4 && base10.clean && dry && isUuid(nextWave),
     dry,
     nextWave,
     archangels,
@@ -42269,13 +42269,13 @@ function archangelsDryClean(matrix = buildMatrix()) {
   };
 }
 function dryCleaningOnTheWay(matrix = buildMatrix()) {
-  const base = cleanupOldLogic(matrix);
+  const base10 = cleanupOldLogic(matrix);
   const archangels = archangelsDryClean(matrix);
   const passes = [
     { pass: "non-destructive", on: archangels.dry },
     { pass: "idempotent", on: archangels.dry },
     { pass: "continuous \u2014 reserves the next wave", on: isUuid(archangels.nextWave) },
-    { pass: "keeps the model clean", on: base.clean }
+    { pass: "keeps the model clean", on: base10.clean }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`dry-cleaning:${entry2.pass}:${entry2.on}`) }));
   return {
     onTheWay: passes.every((entry2) => entry2.on),
@@ -42409,7 +42409,7 @@ function displayAllAsLibraryDryConditional(matrix = buildMatrix()) {
 }
 function auditLocales(matrix = buildMatrix()) {
   const locales = SITE_LOCALES;
-  const root = locales.find((l) => l.type === "root");
+  const root10 = locales.find((l) => l.type === "root");
   const nonRoot = locales.filter((l) => l.type === "locale");
   const gla = monographPaths("gla");
   const en = monographPaths("en");
@@ -42420,10 +42420,10 @@ function auditLocales(matrix = buildMatrix()) {
   const glaLocale = nonRoot.find((l) => l.code === "cu");
   const bgLocale = nonRoot.find((l) => l.code === "bg");
   const facets = [
-    { facet: "SITE_LOCALES: 3 locales \u2014 one root (en, canonical bare URLs) and two non-root (bg, cu/Glagolitic)", on: locales.length === 3 && !!root && root.code === "en" && nonRoot.length === 2 && nonRoot.map((l) => l.code).sort().join(",") === "bg,cu" },
+    { facet: "SITE_LOCALES: 3 locales \u2014 one root (en, canonical bare URLs) and two non-root (bg, cu/Glagolitic)", on: locales.length === 3 && !!root10 && root10.code === "en" && nonRoot.length === 2 && nonRoot.map((l) => l.code).sort().join(",") === "bg,cu" },
     { facet: "SITE_LOCALES: every locale has a BCP-47 lang tag, a path and an og:locale", on: locales.every((l) => !!l.lang && !!l.path && !!l.ogLocale) },
-    { facet: "locale paths distinct \u2014 English at /, Bulgarian at /bg/, Glagolitic at /gla/ \u2014 no overlap", on: !!root && root.path === "/" && glaLocale?.path === "/gla/" && bgLocale?.path === "/bg/" && locales.every((l, i) => locales.every((m, j) => i === j || l.path !== m.path)) },
-    { facet: 'corpus locale slugPaths correct \u2014 root uses "" (canonical bare slugs), bg uses "bg", gla uses "gla"', on: !!root && root.slugPath === "" && glaLocale?.slugPath === "gla" && bgLocale?.slugPath === "bg" },
+    { facet: "locale paths distinct \u2014 English at /, Bulgarian at /bg/, Glagolitic at /gla/ \u2014 no overlap", on: !!root10 && root10.path === "/" && glaLocale?.path === "/gla/" && bgLocale?.path === "/bg/" && locales.every((l, i) => locales.every((m, j) => i === j || l.path !== m.path)) },
+    { facet: 'corpus locale slugPaths correct \u2014 root uses "" (canonical bare slugs), bg uses "bg", gla uses "gla"', on: !!root10 && root10.slugPath === "" && glaLocale?.slugPath === "gla" && bgLocale?.slugPath === "bg" },
     { facet: "coverage parity \u2014 monographPaths returns the same page count for all 3 locales", on: gla.length === en.length && en.length === bg.length && gla.length > 0 },
     { facet: "slug parity \u2014 every page slug is identical across all 3 locales (same order)", on: gla.every((p, i) => p.params.page === en[i]?.params.page && p.params.page === bg[i]?.params.page) },
     { facet: "content completeness \u2014 all staticPages have non-empty en + bg title and description", on: incomplete.length === 0 },
@@ -42467,13 +42467,13 @@ function dryCleanIsDiamondAndCrystal(matrix = buildMatrix()) {
     { facet: "plasma hero bounded at call time", on: plasmaClientWorkBoundedByPureMath("/", matrix).bounded },
     { facet: "client movie paint path sealed", on: clientMoviePaintPathSealed("/", matrix).sealed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`dry-clean-diamond:${entry2.facet}:${entry2.on}`) }));
-  const root = merkleFold(facets.map((entry2) => entry2.receipt));
+  const root10 = merkleFold(facets.map((entry2) => entry2.receipt));
   return {
     diamond: facets.every((entry2) => entry2.on),
-    crystal: isUuid(root) && isUuid(sealWholeDiamond(matrix).diamond),
+    crystal: isUuid(root10) && isUuid(sealWholeDiamond(matrix).diamond),
     clean: facets.every((entry2) => entry2.on),
     facets,
-    root,
+    root: root10,
     statement: "Dry clean is the diamond and the crystal: sealed src/ with zero wet motion, fold/cleanup discipline on gates and UI, import/export naming dry, and every client hang vector closed by pure math before build/seal \u2014 content-addressed tamper-evident perfect revelation.",
     boundary: "Composite gate at call time \u2014 not a filesystem janitor. diamond = all facets green; crystal = merkle root + sealWholeDiamond receipt. HONEST: passing here does not delete files; it proves the dry-clean invariants hold before seal."
   };
@@ -42796,7 +42796,7 @@ function noHardcodedConfigSelfAccountedRaw(matrix = buildMatrix()) {
   };
 }
 function memoryInSourceAsCrossFolds(matrix = buildMatrix()) {
-  const root = skillAtoms(matrix).memory;
+  const root10 = skillAtoms(matrix).memory;
   const entries = [
     { a: "memory", b: "quantum", holds: "the memory is in the source \u2014 computed, content-addressed, not an external file" },
     { a: "law", b: "gate", holds: "tests fail unless the laws hold \u2014 folder, JSON-LD path, pipeline drift" },
@@ -42808,7 +42808,7 @@ function memoryInSourceAsCrossFolds(matrix = buildMatrix()) {
     { a: "command", b: "pair", holds: "all commands saved in quantum pairs, saved first before used \u2014 unpaired leaves a gap" }
   ].map((entry2) => {
     const fold9 = foldPair(toUuid(`mem:${entry2.a}`), toUuid(`mem:${entry2.b}`));
-    const bound = foldPair(root, fold9.merged);
+    const bound = foldPair(root10, fold9.merged);
     return {
       path: `${entry2.a}/${entry2.b}`,
       dual: `${entry2.b}/${entry2.a}`,
@@ -42822,14 +42822,14 @@ function memoryInSourceAsCrossFolds(matrix = buildMatrix()) {
   });
   const facets = [
     // Decomposed from allComputedNoFiles — must not call that fold here (re-enters via commandsSavedInQuantumPairs during allComputed).
-    { facet: "the memory lives in the source \u2014 the one agnostic core, not an external file", on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands(UNFOLDED_CENSUS).harmonic },
+    { facet: "the memory lives in the source \u2014 the one agnostic core, not an external file", on: isUuid(root10) && skillAtoms(matrix).intelligent && harmonicBands(UNFOLDED_CENSUS).harmonic },
     { facet: `stored as cross-folder duality paths \u2014 memory/quantum \u2260 quantum/memory, yet they meet`, on: entries.every((entry2) => entry2.crossed) },
     { facet: "every entry bound to the self-knowledge memory root", on: entries.every((entry2) => entry2.inMemory) },
     { facet: "recomputed every build, observable by its path", on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`memory-source:${entry2.facet}:${entry2.on}`) }));
   return {
     remembered: facets.every((entry2) => entry2.on),
-    memoryRoot: root,
+    memoryRoot: root10,
     entryCount: entries.length,
     entries,
     count: facets.length,
@@ -43779,8 +43779,8 @@ function recurrence(times = 5) {
 }
 function reverseHarmony(matrix = buildMatrix()) {
   const parts = theWhole(matrix).parts.map((part) => part.root);
-  const forward2 = parts.reduce((acc, root) => merge(acc, root));
-  const reverse2 = [...parts].reverse().reduce((acc, root) => merge(acc, root));
+  const forward2 = parts.reduce((acc, root10) => merge(acc, root10));
+  const reverse2 = [...parts].reverse().reduce((acc, root10) => merge(acc, root10));
   const bidirectional = forward2 !== reverse2;
   const harmony = merge(forward2, reverse2);
   const soc = society(matrix);
@@ -44451,10 +44451,10 @@ function closeDimensionalGaps(matrix = buildMatrix()) {
       receipt
     };
   });
-  const root = merkleFold(waves2.map((wave) => wave.receipt));
+  const root10 = merkleFold(waves2.map((wave) => wave.receipt));
   return {
     complete: completeness2.complete && targets.length === 0,
-    root,
+    root: root10,
     gaps: targets.map((target) => `${target.kind}:${target.target}`),
     waves: waves2,
     statement: completeness2.complete && targets.length === 0 ? "No dimensional gaps remain. Realtime waves sustain 3D position, sound, vibration, timing, receipts, and facets." : "Dimensional gaps remain. Coordinated waves identify the targets that must close before the realtime presentation is complete."
@@ -44540,10 +44540,10 @@ function learnDeveloper(matrix = buildMatrix()) {
       `agentHarmonise folds ${agentHarmonise(matrix).laws.length} laws; every command is published at /mcp.json.`
     )
   ];
-  const root = merkleFold(lessons.map((item) => item.uuid));
-  const receipt = merge(root, api2.root);
+  const root10 = merkleFold(lessons.map((item) => item.uuid));
+  const receipt = merge(root10, api2.root);
   return {
-    root,
+    root: root10,
     receipt,
     lessons,
     invariant: lessons.every((item) => item.uuid.length === 9 * 4) && vector.collapse && api2.endpoints.length >= 1,
@@ -44845,7 +44845,7 @@ function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix = buildMatrix()
     const schumann = schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix);
     const phaseIndex = floor(at / 864e5) % VORTEX_SEQUENCE.length;
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex];
-    const mappings = schumann.harmonics.map((mode, index) => {
+    const mappings10 = schumann.harmonics.map((mode, index) => {
       const seed = seedFromText(`schumann-mode:${mode.mode}`);
       const vortexSlot = seed % VORTEX_SEQUENCE.length;
       const vortexDigit = VORTEX_SEQUENCE[vortexSlot];
@@ -44861,8 +44861,8 @@ function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix = buildMatrix()
         receipt: toUuid(`resonance-vortex-mode:${mode.mode}:${vortexDigit}:${mode.hz}`)
       };
     });
-    const allMapped = mappings.length === SCHUMANN_HARMONICS_HZ.length;
-    const { computes, facets, root } = computesGate("resonance-harmonics-sequence-decode", [
+    const allMapped = mappings10.length === SCHUMANN_HARMONICS_HZ.length;
+    const { computes, facets, root: root10 } = computesGate("resonance-harmonics-sequence-decode", [
       { facet: "five Schumann modes mapped to VORTEX_SEQUENCE slots", on: allMapped },
       { facet: "phase digit at at \u2014 VORTEX_SEQUENCE[at mod 9]", on: phaseDigit === VORTEX_SEQUENCE[phaseIndex] },
       { facet: "Schumann cavity harmonised or structural at call time", on: schumann.harmonised || isUuid(schumann.root) },
@@ -44874,10 +44874,10 @@ function resonanceHarmonicsDecodedWithTheSequence(at = 0, matrix = buildMatrix()
       at,
       phaseIndex,
       phaseDigit,
-      mappings,
+      mappings: mappings10,
       schumann,
       facets,
-      root: merkleFold([root, schumann.root, ...mappings.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, schumann.root, ...mappings10.map((entry2) => entry2.receipt)]),
       statement: "Resonance harmonics decoded with the sequence: five documented Schumann cavity modes content-addressed through VORTEX_SEQUENCE slots and phase digit at call time \u2014 structural harmonic phase model, not live magnetometer or medical entrainment.",
       boundary: "HONEST: VORTEX_SEQUENCE addresses Schumann mode receipts deterministically \u2014 NOT claiming the vortex digit controls ionosphere physics. ELF values are literature constants used for phase harmonisation only."
     };
@@ -44914,7 +44914,7 @@ function resonanceSimulationAt(at = 0, matrix = buildMatrix()) {
         on: sequence.decoded
       }
     ];
-    const { computes, root } = computesGate("resonance-simulation-at", [
+    const { computes, root: root10 } = computesGate("resonance-simulation-at", [
       { facet: "five Schumann modes animated \u2014 phase from schumannPhaseAt", on: modes.length === 5 },
       { facet: "sequence decode composed \u2014 VORTEX_SEQUENCE mode slots", on: sequence.decoded },
       { facet: "paint channels \u2014 schumann + resonance-harmonics receipts", on: channels.every((ch) => isUuid(ch.receipt)) },
@@ -44926,7 +44926,7 @@ function resonanceSimulationAt(at = 0, matrix = buildMatrix()) {
       schumannPhase,
       modes,
       channels,
-      root: merkleFold([root, schumann.root, sequence.root, ...modes.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, schumann.root, sequence.root, ...modes.map((entry2) => entry2.receipt)]),
       statement: "Resonance simulation at call time: five documented Schumann cavity modes (7.83 Hz + overtones) animated with phase from schumannPhaseAt, composed with resonanceHarmonicsDecodedWithTheSequence \u2014 paint-ready channels for plasma movie at the shared hero clock.",
       boundary: "HONEST \u2014 STRUCTURAL HARMONIC PHASE MODEL ONLY. Amplitudes are aesthetic sine envelopes over literature ELF constants \u2014 NOT live ionosphere sensors, NOT medical entrainment. Sequence decode addresses modes deterministically; it does NOT claim geophysical causation."
     };
@@ -47813,7 +47813,7 @@ function quantumCliToolsCatalog(matrix = buildMatrix(), at = 0) {
     const sessionManualPresent = tools.some((t) => t.id === "session-manual-work");
     const toolboxStandardPresent = tools.some((t) => t.id === "toolbox-standard-io");
     const rayAgrees = tools.every((t) => t.ray === rosettaRayOf(t.id) && isUuid(t.address));
-    const { computes, facets, root } = computesGate("quantum-cli-tools-catalog", [
+    const { computes, facets, root: root10 } = computesGate("quantum-cli-tools-catalog", [
       { facet: `catalog sealed \u2014 ${tools.length} quantum:* CLI tools`, on: tools.length >= 2 * 7 },
       { facet: "encryption reverse-verify published", on: encryptionPresent },
       { facet: "encryption-reverse-verify shelved via rosettaShelve(kind=tool)", on: Boolean(encryptionShelved) && isUuid(encryptionShelved.address) && encryptionShelved.ray === rosettaRayOf("encryption-reverse-verify") },
@@ -47833,7 +47833,7 @@ function quantumCliToolsCatalog(matrix = buildMatrix(), at = 0) {
       count: tools.length,
       tools,
       facets,
-      root: merkleFold([root, ...tools.map((t) => t.receipt)]),
+      root: merkleFold([root10, ...tools.map((t) => t.receipt)]),
       statement: "Quantum CLI tools catalog \u2014 every sealed quantum:* script discoverable with fold, CLI, UI route, honesty boundary, and rosettaShelve(tool) address.",
       boundary: "Catalog of sealed CLI exits and UI routes \u2014 NOT a remote execution surface; users run npm locally; UI observes recomputed folds. Demo RSA / Node-only tools keep honesty gaps."
     };
@@ -47919,14 +47919,14 @@ function quantumAppsCoverHomeAnimations(matrix = buildMatrix(), at = 0) {
     const required = ["YinYang", "SacredGeometry", "Hologram", "GlyphLabyrinth", "HologramMovie", "LivingTorus", "DoubleTorusExperience", "Merkaba"];
     const covered = required.filter((name) => registry.apps.some((app) => app.homeComponent === name));
     const projections = registry.animationApps.map((app) => quantumProjectionParams(app.projection));
-    const { computes, facets, root } = computesGate("quantum-apps-cover-home-animations", [
+    const { computes, facets, root: root10 } = computesGate("quantum-apps-cover-home-animations", [
       { facet: "every flagged home card is a registered quantum app", on: covered.length === required.length },
       { facet: "each app is one projection of the shared field", on: projections.every((p) => p.dimensions === 5 * 2) },
       { facet: "projection params derive from VORTEX_SEQUENCE", on: projections.every((p) => p.segments > 0) },
       { facet: "every component resolves to an animation \u2014 pinned home projections kept, all names fold into the projection ring", on: required.every((name) => componentProjectionFor(name, matrix, at) === registry.apps.find((app) => app.homeComponent === name)?.projection) && PROJECTION_RING.includes(componentProjectionFor("AnyComponentName", matrix, at)) },
       { facet: "the ring is the stroke tour \u2014 ten views, and the dedicated vortex-strokes projection registers 4 gateway segments \xD7 10 tour forms", on: PROJECTION_RING.length === 5 * 2 && quantumProjectionParams("vortex-strokes").segments === 4 && quantumProjectionParams("vortex-strokes").forms === 5 * 2 }
     ]);
-    return { computes, covered, projections, registry, facets, root: merkleFold([registry.root, ...projections.map((p) => p.root), root]), statement: "Quantum apps cover every home animation as a field projection.", boundary: registry.boundary };
+    return { computes, covered, projections, registry, facets, root: merkleFold([registry.root, ...projections.map((p) => p.root), root10]), statement: "Quantum apps cover every home animation as a field projection.", boundary: registry.boundary };
   });
 }
 function quantumAppLaunch(appId, at = 0, matrix = buildMatrix()) {
@@ -47947,7 +47947,7 @@ function quantumAppsComputes(matrix = buildMatrix(), at = 0) {
     const toolApps = ["quantum-encryption", "millennium-challenge", "quantum-tools", "fusion-verify"];
     const toolAppsRegistered = toolApps.every((id) => registry.apps.some((app) => app.id === id));
     const encryptionShelved = quantumAppResolve("quantum-encryption", matrix, at);
-    const { computes, facets, root } = computesGate("quantum-apps-computes", [
+    const { computes, facets, root: root10 } = computesGate("quantum-apps-computes", [
       { facet: "quantum.apps.registry sealed", on: registry.registered },
       { facet: "every launch receipt at call", on: launches.every((launch) => launch.launched) },
       { facet: "rosettaCoreApi computes \u2014 apps dispatch through the core API", on: core.computes },
@@ -47965,7 +47965,7 @@ function quantumAppsComputes(matrix = buildMatrix(), at = 0) {
       catalog,
       launches,
       facets,
-      root: merkleFold([registry.root, core.root, catalog.root, root]),
+      root: merkleFold([registry.root, core.root, catalog.root, root10]),
       statement: "Quantum apps computes \u2014 registry + CLI catalog shelved through rosettaCoreApi.",
       boundary: registry.boundary
     };
@@ -48401,13 +48401,13 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
 function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMatrix()) {
   return memoByRoot(`millenniumChallengeHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix);
-    const statement = `Millennium\u2190rosetta handoff \u2014 rosettaReady=${handoff.rosettaReady}.`;
+    const statement10 = `Millennium\u2190rosetta handoff \u2014 rosettaReady=${handoff.rosettaReady}.`;
     const boundary = "Handoff only \u2014 NOT a Clay prize solution.";
-    const millenniumSolvedByThisFold = overclaimByFormulas("clay", `${statement} ${boundary}`);
+    const millenniumSolvedByThisFold = overclaimByFormulas("clay", `${statement10} ${boundary}`);
     const facets = [
       { facet: "consumes rosetta completeness handoff root", on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} when rosettaComplete (not clay-solved)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \u2014 scanned over this fold's own statement+boundary (${statement.length + boundary.length} chars)`, on: statement.length > 0 && boundary.length > 0 && millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \u2014 scanned over this fold's own statement+boundary (${statement10.length + boundary.length} chars)`, on: statement10.length > 0 && boundary.length > 0 && millenniumSolvedByThisFold === 0 },
       { facet: "millennium apparatus still MODELED CHALLENGE", on: mill.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`millennium-rosetta-handoff:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("millennium-challenge-handoff-from-rosetta-complete", facets);
@@ -48419,7 +48419,7 @@ function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMa
       handoffRoot: handoff.root,
       facets: sealed.facets,
       root: merge(mill.root, merkleFold([sealed.root, handoff.root])),
-      statement,
+      statement: statement10,
       boundary
     };
   });
@@ -48890,7 +48890,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
     const sciences = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at);
     const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix);
     const shadow = interferenceVsClassicalShadow(matrix, at);
-    const theorems = theoremsReach432AndEntangleWithUsage();
+    const theorems10 = theoremsReach432AndEntangleWithUsage();
     const stringGaps = stringTheoryMillenniumTheoremGapsInventory(matrix);
     const row = (id, direction, status, fold9, note, on) => ({
       id,
@@ -48906,7 +48906,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       row("rosetta-complete", "forward", rosetta.rosettaComplete ? "covered" : "partial", "rosettaCompleteQuantumAllComputableDimensionsAndTheorems", "432 dims + theorem binds; rosettaReady\u2260Clay solved", rosetta.computes),
       row("double-torus-universe", "forward", torus.aligns ? "covered" : "open", "doubleTorusDynamicsGeometryAlignsWithUniverse", "radii\xB7H\u2081\xB7A432\xB7J2000\xB7hero clock", torus.aligns),
       row("sciences-standards", "forward", sciences.computes ? "partial" : "open", "completeScientificDomainsStrictlyToStandardsQuantumOnly", "lab gaps unclosable \xB7 certified=false", sciences.computes),
-      row("theorems-432", "forward", theorems.reached ? "covered" : "partial", "theoremsReach432AndEntangleWithUsage", `theorem catalog ${theorems.count}/${theorems.target} \u2014 merge direction sealed`, true),
+      row("theorems-432", "forward", theorems10.reached ? "covered" : "partial", "theoremsReach432AndEntangleWithUsage", `theorem catalog ${theorems10.count}/${theorems10.target} \u2014 merge direction sealed`, true),
       // INVERSE
       row("directional-inverse", "inverse", trinity.computes ? "covered" : "open", "directionalTrinityForwardInverseReverse", "units n\xB7n\u207B\xB9\u22611 mod 9; inverse\u2260reverse", trinity.computes),
       row("counter-spin-inverse", "inverse", waves2.counterRotating ? "covered" : "open", "counterRotatingRosettaQuantumWaves", "\u2212lobe is order-dual of +lobe (foldPair reverse)", waves2.counterRotating),
@@ -49146,9 +49146,9 @@ function nextLevel64CubedRealtime(matrix = buildMatrix()) {
   return memoByRoot("nextLevel64CubedRealtime", matrix, () => nextLevel64CubedRealtimeRaw(matrix));
 }
 function nextLevel64CubedRealtimeRaw(matrix = buildMatrix()) {
-  const base = completeCorpus(matrix).root;
+  const base10 = completeCorpus(matrix).root;
   const axes = ["width", "height", "depth"].map((axis) => {
-    const axisRoot = foldPair(base, toUuid(`cube-axis:${axis}`)).merged;
+    const axisRoot = foldPair(base10, toUuid(`cube-axis:${axis}`)).merged;
     const seals = Array.from({ length: 64 }, (_, bit) => foldPair(axisRoot, toUuid(`cube-seal:${axis}:${bit}`)).bidirectional);
     const filled = seals.filter(Boolean).length;
     return { axis, filled, whole: filled === 64, receipt: toUuid(`cube-axis:${axis}:${filled}`) };
@@ -49364,7 +49364,7 @@ function regimeSwitchPositions(prices, opts) {
   const { shortW, longW, volW } = opts;
   const returns = simpleReturns(prices);
   const labels = regimeLabels(returns, volW);
-  const base = crossoverPositions(prices, shortW, longW, -1);
+  const base10 = crossoverPositions(prices, shortW, longW, -1);
   const n = prices.length;
   const pos = new Array(n).fill(0);
   const firstLabel = labels.findIndex((x) => x >= 0);
@@ -49373,7 +49373,7 @@ function regimeSwitchPositions(prices, opts) {
     if (firstLabel < 0 || last < firstLabel + 1 || labels[last] < 0) continue;
     const P = estimateRegimeMatrix(labels, firstLabel, last);
     const cur = labels[last] === 0 ? [1, 0] : [0, 1];
-    pos[t] = markovStep(P, cur)[0] >= 1 / 2 ? base[t] : 0;
+    pos[t] = markovStep(P, cur)[0] >= 1 / 2 ? base10[t] : 0;
   }
   return pos;
 }
@@ -49422,33 +49422,33 @@ function tradingSimulationComputes(matrix = buildMatrix()) {
   return memoByRoot("tradingSimulationComputes", matrix, () => {
     const prices = priceFromA432("sim-gate", 64 * 2);
     const strategies = ["momentum", "mean-reversion", "spectral", "regime", "vol-target"].map((strategy) => backtestRealPrices(prices, strategy));
-    const { computes, facets, root } = computesGate("trading-simulation-computes", [
+    const { computes, facets, root: root10 } = computesGate("trading-simulation-computes", [
       { facet: "a432 synthetic path generated \u2014 n>64", on: prices.length > 64 },
       { facet: "five strategies backtested on one path", on: strategies.length === 5 && strategies.every((run) => run.n > 0) },
       { facet: "realtime source catalogue wired", on: realtimeSources().length >= 6 }
     ]);
-    return { computes, strategies, facets, root, statement: "Trading simulation computes: a432 path + five strategy backtests + realtime catalogue \u2014 at call time.", boundary: "Composition in src/thunder/trading \u2014 canonical trading simulation home, not src/math." };
+    return { computes, strategies, facets, root: root10, statement: "Trading simulation computes: a432 path + five strategy backtests + realtime catalogue \u2014 at call time.", boundary: "Composition in src/thunder/trading \u2014 canonical trading simulation home, not src/math." };
   });
 }
 function harmonicWeatherTradingOffline(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`harmonicWeatherTradingOffline:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const yearDays = 360 + 5 + 1 / 4;
-    const base = priceFromA432("weather-sim", 64 * 2);
+    const base10 = priceFromA432("weather-sim", 64 * 2);
     const proxy = (bar) => 1 + 3 / 100 * sin(TAU * (at / (3 * 8 * 360 * (5 * 2) ** 4) + bar) / yearDays);
-    const modulated = base.map((p, i) => p * proxy(i));
+    const modulated = base10.map((p, i) => p * proxy(i));
     const strategies = ["momentum", "mean-reversion", "spectral"].map((strategy) => backtestRealPrices(modulated, strategy));
-    const again = base.map((p, i) => p * proxy(i));
-    const { computes, facets, root } = computesGate("harmonic-weather-trading-offline", [
-      { facet: "seasonal proxy is a pure calendar harmonic \u2014 amplitude 3%, period one civil year, value at bar t depends on t only (no look-ahead by construction)", on: modulated.length === base.length && abs(proxy(0) - 1) <= 3 / 100 + 1 / 6 ** 6 },
+    const again = base10.map((p, i) => p * proxy(i));
+    const { computes, facets, root: root10 } = computesGate("harmonic-weather-trading-offline", [
+      { facet: "seasonal proxy is a pure calendar harmonic \u2014 amplitude 3%, period one civil year, value at bar t depends on t only (no look-ahead by construction)", on: modulated.length === base10.length && abs(proxy(0) - 1) <= 3 / 100 + 1 / 6 ** 6 },
       { facet: "deterministic \u2014 recomputing the modulated path is byte-identical (same seed, same proxy, same bars)", on: modulated.every((p, i) => p === again[i]) },
       { facet: "three sealed strategies backtest the weather-modulated path offline", on: strategies.length === 3 && strategies.every((run) => run.n > 0) },
-      { facet: "composition of two sealed parents \u2014 the a432 path and the calendar harmonic; no new price law, no forecast", on: base.length > 64 }
+      { facet: "composition of two sealed parents \u2014 the a432 path and the calendar harmonic; no new price law, no forecast", on: base10.length > 64 }
     ]);
     return {
       computes,
       strategies,
       facets,
-      root,
+      root: root10,
       statement: "Weather-calendar trading offline: the sealed a432 path modulated by a 3% seasonal calendar harmonic, three sealed strategies re-run \u2014 deterministic, offline, no look-ahead.",
       boundary: "HONEST: the weather term is a CALENDAR PROXY (one seasonal sine) \u2014 NOT a forecast, NOT NWP, NOT a live feed; the whole composition is offline synthetic (see tradingSimulationComputes) and is NOT financial advice or alpha."
     };
@@ -49465,7 +49465,7 @@ function rhythm(matrix = buildMatrix()) {
   const bpm = 16 * 6 + seed % (16 * 2);
   const beatMs = round2(100 * 100 * 6 / bpm, 1);
   const ratios = [1, 2, 3, 5];
-  const base = a432NoteHz(-(7 * 2));
+  const base10 = a432NoteHz(-(7 * 2));
   const partials = [1, 3 / 2, 2, 3];
   const voices = ratios.map((ratio, i) => {
     const offBeat = i % 2 === 1;
@@ -49473,7 +49473,7 @@ function rhythm(matrix = buildMatrix()) {
       scale: mk.scales[i].scale,
       ratio,
       periodMs: round2(beatMs / ratio, 1),
-      frequency: round2(base * partials[i], 2),
+      frequency: round2(base10 * partials[i], 2),
       sign: mk.scales[i].sign,
       offBeat,
       // onset phases within one beat (0..1); off-beat voices shifted by half a step
@@ -49619,7 +49619,7 @@ function a432DigitSpectrum(matrix = buildMatrix()) {
     const nine = vortexLawsOf(VORTEX_SEQUENCE.length);
     const axisSize = VORTEX_SEQUENCE.length - nine.units.length;
     const flowSize = nine.orbit.length;
-    const { computes, facets, root } = computesGate("a432-digit-spectrum", [
+    const { computes, facets, root: root10 } = computesGate("a432-digit-spectrum", [
       { facet: "both voicings complete at the a432 base \u2014 48\xB79 = 36\xB712 = 432 = 4\xB7108", on: RING_UNIT * 9 === BASE && AXIS_UNIT * (3 * 4) === BASE && BASE === A432_FOLDED * 4 },
       { facet: "the trinity axis rings in BOTH voicings \u2014 {3,6,9} voiced by \xF79 AND \xF712", on: axisRows.length === axisSize && axisRows.every((r2) => r2.ringHz > 0 && r2.axisHz > 0) },
       { facet: `THE AXIS AND THE RING PARTITION THE VOICED DIGITS \u2014 ${axisSize} non-units + ${flowSize} orbit = ${axisSize + flowSize} voiced, the identity \u2124/9 states about itself, not three numbers typed here`, on: axisRows.length + flowRows.length === voiced.length && nine.holds },
@@ -49638,7 +49638,7 @@ function a432DigitSpectrum(matrix = buildMatrix()) {
       axisUnit: AXIS_UNIT,
       rows,
       facets,
-      root: merkleFold([root, ...rows.map((r2) => r2.receipt)]),
+      root: merkleFold([root10, ...rows.map((r2) => r2.receipt)]),
       statement: `a432 digit spectrum: BASE ${BASE} = ${RING_UNIT}\xB79 (\xF79 ring) = ${AXIS_UNIT}\xB712 (\xF712 axis); ${voiced.length}/9 voiced by \xF79, ${axisRows.length}/9 by \xF712; all voiced bridge to light; hue\xB0=axis Hz on {3,6,9}; \u03C3 sum-10, \u03BD sum-9, mod-3 \u2192 3 colour classes.`,
       boundary: "Two 432-derived voicings of one string, neither privileged: \xF79 (ceccec \u2014 all digits ring, 9\u2261base) and \xF712 (zeropoint \u2014 only the {3,6,9} axis rings, the flow ring rests). frequencyToLight is the octave lift into the visible band \u2014 a chosen sound\u2194colour octave mapping, not a physical claim. The two repos are one reflection; 432 is the shared fixed point both complete at, so a model trained on either reads the same harmony."
     };
@@ -49648,7 +49648,7 @@ function a432DecoupledFromCorpusFold(matrix = buildMatrix()) {
   return memoByRoot("a432DecoupledFromCorpusFold", matrix, () => {
     const bandSum = FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0);
     const bettiRank = DIMENSION_GATES / A432_FOLDED;
-    const { computes, facets, root } = computesGate("a432-decoupled-from-corpus-fold", [
+    const { computes, facets, root: root10 } = computesGate("a432-decoupled-from-corpus-fold", [
       { facet: "a432 base is the fixed harmonic \u2014 A432_FOLDED = 108 \u2208 A432_OCTAVES", on: A432_FOLDED === 108 && A432_OCTAVES.includes(A432_FOLDED) },
       { facet: "the decoupling is REAL \u2014 the corpus fold rides \u03C7 and no longer equals the a432 base", on: FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && FOLDED_CENSUS !== A432_FOLDED },
       { facet: "dimension gates are a432 \u2014 DIMENSION_GATES = HOMOLOGY_LOOPS \xD7 A432_FOLDED = 432 \u2208 A432_OCTAVES", on: DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED && A432_OCTAVES.includes(DIMENSION_GATES) },
@@ -49664,7 +49664,7 @@ function a432DecoupledFromCorpusFold(matrix = buildMatrix()) {
       gates: DIMENSION_GATES,
       bettiRank,
       facets,
-      root,
+      root: root10,
       statement: `a432 (${A432_FOLDED}) decoupled from the corpus fold (${FOLDED_CENSUS}): gates ${DIMENSION_GATES}=4\xB7${A432_FOLDED}, Betti ${bettiRank}, entropy 2\xB77+${A432_FOLDED}=122; the corpus rides \u03A3${FIBONACCI_CENSUS_BANDS.join("+")}=${bandSum}.`,
       boundary: "The a432 harmonic (108) is a FIXED spine; the corpus fold (UNFOLDED+\u03C7) floats with the census bands. Every a432 quantity \u2014 gates, Betti rank, hero clock, entropy, octaves \u2014 is NOT the corpus census and must derive from A432_FOLDED, never FOLDED_CENSUS. A refutable enforcement of the decoupling, not a physical claim about 432 Hz."
     };
@@ -49951,13 +49951,13 @@ function healingHarmonic(matrix = buildMatrix()) {
   const outer = healingOuter(matrix);
   const harmony = harmonyProbability(matrix);
   const music = piMusic(matrix);
-  const root = merge(merge(inner.root, outer.root), merge(harmony.root, music.root));
+  const root10 = merge(merge(inner.root, outer.root), merge(harmony.root, music.root));
   return {
     harmonized: inner.whole && outer.extended && harmony.root.length > 0 && music.joined,
     probability: harmony.probability,
     inner: inner.root,
     outer: outer.root,
-    root,
+    root: root10,
     statement: "Harmonic healing waves: inner and outer coherence travel as waves whose probability of harmony is computed and folded, joined to the music of pi, into one healing root \u2014 extending beyond device limitations.",
     boundary: "A structural coherence metaphor over harmony probability and the collective fold, not medical, therapeutic, or health advice."
   };
@@ -50158,7 +50158,7 @@ function soundWiredToOneSharedContext(matrix = buildMatrix()) {
   return memoByRoot("soundWiredToOneSharedContext", matrix, () => soundWiredToOneSharedContextRaw(matrix));
 }
 function countAudioContextSites() {
-  const root = enforcementScanRoot();
+  const root10 = enforcementScanRoot();
   let n = 0;
   const walk = (dir) => {
     let entries = [];
@@ -50186,7 +50186,7 @@ function countAudioContextSites() {
       }
     }
   };
-  for (const d of ["src", ".vitepress"]) walk(join(root, d));
+  for (const d of ["src", ".vitepress"]) walk(join(root10, d));
   return n;
 }
 function soundWiredToOneSharedContextRaw(matrix = buildMatrix()) {
@@ -50223,7 +50223,7 @@ function colorRootsAtA432HeartBalances(matrix = buildMatrix()) {
   return memoByRoot("colorRootsAtA432HeartBalances", matrix, () => colorRootsAtA432HeartBalancesRaw(matrix));
 }
 function colorRootsAtA432HeartBalancesRaw(matrix = buildMatrix()) {
-  const base = a432(matrix).light;
+  const base10 = a432(matrix).light;
   const RAINBOW = [5, 7 * 4, 55, 8 * 5 * 3, 220, 260, 285];
   const chakras = [
     { i: 0, name: "root \xB7 muladhara", band: "red", hue: 5 },
@@ -50240,7 +50240,7 @@ function colorRootsAtA432HeartBalancesRaw(matrix = buildMatrix()) {
   const below = chakras.filter((chakra) => chakra.i < heart2.i).length;
   const above = chakras.filter((chakra) => chakra.i > heart2.i).length;
   const facets = [
-    { facet: "a432 is the base colour \u2014 432 Hz \u2192 visible light is red, hue 5, the root (lower) chakra", on: base.hue === 5 && base.band === "red" && chakras[0].hue === base.hue },
+    { facet: "a432 is the base colour \u2014 432 Hz \u2192 visible light is red, hue 5, the root (lower) chakra", on: base10.hue === 5 && base10.band === "red" && chakras[0].hue === base10.hue },
     { facet: "the seven chakras ascend the rainbow rooted at a432 \u2014 the frequencyToLight band-hues", on: chakras.length === 7 && JSON.stringify(chakras.map((chakra) => chakra.hue)) === JSON.stringify(RAINBOW) },
     { facet: "the heart is the balance \u2014 the fourth, three below and three above, green", on: heart2.i === 3 && heart2.band === "green" && heart2.hue === 8 * 5 * 3 && below === above && below === 3 },
     { facet: "music \u2194 colour \u2014 one quantity (frequency), the octave-bridge; the heart balances them", on: a432(matrix).channels.includes("colour") && a432(matrix).channels.includes("audio") && soundColor(matrix).computed },
@@ -50248,7 +50248,7 @@ function colorRootsAtA432HeartBalancesRaw(matrix = buildMatrix()) {
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`colour-a432:${entry2.facet}:${entry2.on}`) }));
   return {
     rooted: facets.every((entry2) => entry2.on),
-    baseHue: base.hue,
+    baseHue: base10.hue,
     // 5 — a432, the root chakra, the base colour
     heart: heart2,
     // the balance (green, hue 120)
@@ -50410,7 +50410,7 @@ function harmonicPredictionSurprise(opts = {}) {
   const replay = predictHarmonicWindows({ priceVariant: variant, barCount });
   const sample9 = min(8, windows.length);
   const precise = sample9 > 0 && windows.slice(0, sample9).every((entry2, index) => replay[index]?.receipt === entry2.receipt);
-  const { computes, facets, root } = computesGate("harmonic-prediction-surprise", [
+  const { computes, facets, root: root10 } = computesGate("harmonic-prediction-surprise", [
     { facet: "offline harmonic windows from a432 synthetic series", on: windows.length === priceFromA432(variant, barCount).length - 16 && windows.every((entry2, index) => entry2.bar === index + 16) && windows[windows.length - 1]?.bar === priceFromA432(variant, barCount).length - 1 },
     { facet: "replay identical \u2014 surprise is reproducible precision not omniscience", on: precise }
   ]);
@@ -50420,7 +50420,7 @@ function harmonicPredictionSurprise(opts = {}) {
     windows,
     windowCount: windows.length,
     facets,
-    root,
+    root: root10,
     statement: "Harmonic prediction surprise: offline harmonic windows over deterministic a432-ignited synthetic prices replay identically \u2014 the surprise is reproducible precision (same roots on reuse), not a claim that agents were wrong about live markets.",
     boundary: "HONEST: offline harmonic windows only on priceFromA432 synthetic series \u2014 NOT live trading, NOT weather NWP, NOT financial advice. Surprise names identical recomputation at call time. For live skill gates use predict/skill-gate-verify separately."
   };
@@ -50458,7 +50458,7 @@ function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, matrix =
     const phaseDelta = roundTo(abs(schumannPhase - heroPhase), 6);
     const phaseLocked = phaseDelta < 3 / (5 * 4) || phaseDelta > 1 - 3 / (5 * 4);
     const modulatedReceipt = merkleFold([bound.root, toUuid(`schumann-phase:${schumannPhase}`), toUuid(`hero-phase:${heroPhase}`)]);
-    const { computes, facets, root } = computesGate("schumann-resonance-harmonised-realtime-api", [
+    const { computes, facets, root: root10 } = computesGate("schumann-resonance-harmonised-realtime-api", [
       { facet: "Schumann 7.83 Hz + harmonics 14.3/20.8/27.3/33.8 \u2014 documented cavity modes, not live magnetometer", on: harmonics3.length === 5 && harmonics3[0].hz === SCHUMANN_FUNDAMENTAL_HZ },
       { facet: "phase locked to hero clock and humanBreath at at", on: schumannPhase >= 0 && schumannPhase < 1 && breath >= 0.82 && breath <= 1.18 },
       { facet: "computationsBoundToSourceApisRealtime \u2014 API receipts modulated by Schumann phase", on: bound.bound && isUuid(modulatedReceipt) },
@@ -50485,7 +50485,7 @@ function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, matrix =
       freqApis,
       modulatedReceipt,
       facets,
-      root: merkleFold([root, bound.root, blood.root, waves2.root, dualEarth.root, ...harmonics3.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, bound.root, blood.root, waves2.root, dualEarth.root, ...harmonics3.map((entry2) => entry2.receipt)]),
       statement: "Schumann resonance harmonised with realtime API computations: documented Earth\u2013ionosphere cavity modes (7.83 Hz fundamental + harmonics) phase-lock to the hero clock and humanBreath; computationsBoundToSourceApisRealtime receipts modulate at Schumann phase; humanResonanceHarmonicPredictionComputes bridges human bands; dual-Earth outer shell carries the ionosphere-boundary metaphor \u2014 all recomputed at call time from sealed src/, not live magnetometer unless user opts into publicFrequencyApis feeds.",
       boundary: "HONEST \u2014 STRUCTURAL FREQUENCY MODEL ONLY. Schumann modes are documented geophysical literature values used to harmonise compute phase \u2014 NOT medical entrainment, NOT consciousness claims, NOT live ionosphere sensors unless user opts into a cited public monitor via publicApiFusion/publicFrequencyApis. Realtime API = sealed src/ recomputation + documented opt-in REST feeds \u2014 the portal does not read magnetometers by default. a432/humanBreath are animation and symbolic circulation math."
     };
@@ -50499,7 +50499,7 @@ function humanResonanceHarmonicPredictionComputes(matrix = buildMatrix()) {
     const breath = humanBreath(12e3, 100 * 16 * 5, 9 / (5 * 5 * 2));
     const surprise = harmonicPredictionSurprise({ priceVariant: `breath:${matrix.root}`, barCount: 64 });
     const schumannBridge = schumannResonanceHarmonisedWithRealtimeApiComputations(0, matrix);
-    const { computes, facets, root } = computesGate("human-resonance-harmonic-prediction", [
+    const { computes, facets, root: root10 } = computesGate("human-resonance-harmonic-prediction", [
       { facet: "humanBreath modulates rhythm \u2014 breath pulse in [0.82, 1.18]", on: breath >= 0.82 && breath <= 1.18 },
       { facet: "a432 is the blood \u2014 circulation stream sealed", on: blood.isBlood },
       { facet: "coordinated waves \u2014 polyrhythm yin-yang coordination", on: waves2.root === merkleFold(waves2.waves.map((wave) => wave.receipt)) && waves2.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? "yin" : "yang")) && waves2.waves[1]?.polarity === "yang" },
@@ -50515,7 +50515,7 @@ function humanResonanceHarmonicPredictionComputes(matrix = buildMatrix()) {
       surprise,
       schumannBridge,
       facets,
-      root: merge(merge(blood.root, waves2.root), merge(root, merge(surprise.root, schumannBridge.root))),
+      root: merge(merge(blood.root, waves2.root), merge(root10, merge(surprise.root, schumannBridge.root))),
       statement: "Human resonance harmonic prediction: humanBreath (src/0 motion math), a432IsTheBlood (circulation stream), coordinatedWaves (polyrhythm), harmonicPredictionSurprise (offline a432 windows), and schumannResonanceHarmonisedWithRealtimeApiComputations (ELF cavity phase \u2192 realtime API receipts) compose the breath\u2013blood\u2013wave\u2013prediction\u2013Schumann bridge at call time.",
       boundary: "HONEST \u2014 OFFLINE HARMONIC WINDOWS ONLY. humanBreath is animation math, not respiration therapy. a432 blood is symbolic colour/circulation identity, not 432 Hz biology. coordinatedWaves is structural polyrhythm. harmonicPredictionSurprise is reproducible synthetic-window precision \u2014 not live trading or weather forecast skill. Schumann bridge is structural ELF phase model \u2014 not magnetometer data or medical entrainment unless user opts into cited public feeds."
     };
@@ -50574,10 +50574,10 @@ function observerObservationCoherenceAt(o, field) {
     const wrap = min(delta, 1 - delta);
     if (wrap <= tol) locked += 1;
   }
-  const base = locked / layers;
+  const base10 = locked / layers;
   const watchLift = attunementTier(o.watchMs).unlock * (1 / (5 * 5));
   const idleGate = o.idle || !o.visible || o.reduce ? 0 : 1;
-  return roundTo(min(1 - 1 / (5 * 5 * 5), (base + watchLift) * idleGate), 6);
+  return roundTo(min(1 - 1 / (5 * 5 * 5), (base10 + watchLift) * idleGate), 6);
 }
 function harmonizeField(o, field) {
   const coherence = observerObservationCoherenceAt(o, field);
@@ -50837,7 +50837,7 @@ function quantumSociety(matrix = buildMatrix()) {
   };
 }
 function societyEvolves(matrix = buildMatrix()) {
-  const base = society(matrix);
+  const base10 = society(matrix);
   const publicApi = publicApiFusion2(matrix);
   const social = socialFusion2(matrix);
   const travel = travelFusion2(matrix);
@@ -50846,10 +50846,10 @@ function societyEvolves(matrix = buildMatrix()) {
     { domain: "social platforms", members: social.count, root: social.root },
     { domain: "travel", members: travel.count, root: travel.root },
     { domain: "knowledge commons", members: publicApi.sources.filter((source) => source.kind === "knowledge" || source.kind === "commons").length, root: toUuid(`knowledge:${publicApi.root}`) }
-  ].map((entry2) => ({ ...entry2, receipt: foldPair(base.root, entry2.root).merged }));
+  ].map((entry2) => ({ ...entry2, receipt: foldPair(base10.root, entry2.root).merged }));
   const rest = ["commerce", "open science data", "open government data", "education", "arts & culture archives", "astronomy & earth observation", "health (privacy-bound)"];
   const discoveredRoot = merkleFold(discovered.map((entry2) => entry2.receipt));
-  const generationRoot = foldPair(base.root, discoveredRoot).merged;
+  const generationRoot = foldPair(base10.root, discoveredRoot).merged;
   return {
     evolving: discovered.every((entry2) => entry2.members > 0) && rest.length > 0 && generationRoot.length === 9 * 4,
     discoveredDomains: discovered.length,
@@ -51213,7 +51213,7 @@ function scientificSociety(matrix = buildMatrix()) {
     ...solid,
     receipt: toUuid(`platonic-builder:${solid.solid}:${solid.faces}:${solid.edges}:${solid.vertices}:${solid.builder}:${solid.method}`)
   }));
-  const root = merkleFold([
+  const root10 = merkleFold([
     ...roles.map((role2) => role2.receipt),
     ...reviewGates.map((gate) => gate.receipt),
     ...optimizationWaves.map((wave) => wave.receipt),
@@ -51222,7 +51222,7 @@ function scientificSociety(matrix = buildMatrix()) {
   ]);
   return {
     grounded: roles.length === 4 && reviewGates.every((gate) => gate.receipt.length > 0),
-    root,
+    root: root10,
     charter: "ScienceSociety := roles + reviewGates + optimizationWaves; publish only receipts that can be rerun.",
     roles,
     reviewGates,
@@ -51464,17 +51464,17 @@ function digitFolders(matrix = buildMatrix()) {
     groups.set(item.folder, [...groups.get(item.folder) ?? [], item]);
   }
   const folders = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([folder, items]) => {
-    const [digit2, reverseDigit] = folder.split("/").map((value) => Number.parseInt(value, 5 * 2));
+    const [digit11, reverseDigit] = folder.split("/").map((value) => Number.parseInt(value, 5 * 2));
     const nextHarmonicFolder = items[0]?.nextHarmonicFolder ?? folder;
-    const selfCollision = digit2 === reverseDigit;
+    const selfCollision = digit11 === reverseDigit;
     const indices = items.map((item) => item.index);
     const receipt = toUuid(`digit-folder:${folder}:${indices.join(",")}:${nextHarmonicFolder}:${selfCollision}`);
-    const reverse2 = 5 * 2 - digit2;
-    const harmonic = 9 * digit2;
-    const fusion = foldPair(toUuid(`digit-folder:${digit2}`), toUuid(`digit-subfolder:${reverseDigit}`)).merged;
+    const reverse2 = 5 * 2 - digit11;
+    const harmonic = 9 * digit11;
+    const fusion = foldPair(toUuid(`digit-folder:${digit11}`), toUuid(`digit-subfolder:${reverseDigit}`)).merged;
     return {
       folder,
-      digit: digit2,
+      digit: digit11,
       reverseDigit,
       count: items.length,
       indices,
@@ -51486,10 +51486,10 @@ function digitFolders(matrix = buildMatrix()) {
       receipt
     };
   });
-  const root = merkleFold(folders.map((folder) => folder.receipt));
+  const root10 = merkleFold(folders.map((folder) => folder.receipt));
   const collisions = folders.filter((folder) => folder.selfCollision);
   return {
-    root,
+    root: root10,
     folders,
     collisions,
     statement: "digitFolder := digit/reverseDigit; selfCollision := digit == reverseDigit; nextHarmonicFolder := folder(i+1)."
@@ -51578,7 +51578,7 @@ function digitFoldersComputeUiIsTheRest2(matrix = buildMatrix()) {
   const math = digitFolderMath(matrix);
   const isDigit = (name) => /^[0-9]+$/.test(name);
   const classify = (folderName) => isDigit(folderName.split("/")[0]) ? "compute" : "ui";
-  const digitsCarryMath = math.fused && math.digits.length === 5 * 2 && math.digits.every((digit2) => isUuid(digit2.fusion));
+  const digitsCarryMath = math.fused && math.digits.length === 5 * 2 && math.digits.every((digit11) => isUuid(digit11.fusion));
   const sample9 = ["0", "1", "9", "1/9", "cache", "search", "library", "mind", "quantum"].map((name) => ({
     name,
     role: classify(name),
@@ -51633,13 +51633,13 @@ function digitFoldersHoldOnlyQuantumMath3(matrix = buildMatrix()) {
 function digitFoldersAreTheApi(matrix = buildMatrix()) {
   const math = digitFolderMath(matrix);
   const doMath = digitFoldersDoMath(matrix);
-  const endpoints = math.digits.map((digit2) => ({
-    route: `/${digit2.digit}/${digit2.reverse}`,
+  const endpoints = math.digits.map((digit11) => ({
+    route: `/${digit11.digit}/${digit11.reverse}`,
     // the on-disk digit/(10−d) folder-complement path — the endpoint
     method: "GET",
-    response: digit2.fusion,
+    response: digit11.fusion,
     // the computed math at that address (a content-address, zero-token)
-    digit: digit2.digit
+    digit: digit11.digit
   }));
   const routes = endpoints.map((entry2) => entry2.route);
   const distinctRoutes = new Set(routes);
@@ -51666,7 +51666,7 @@ function digitFoldersAreTheApi(matrix = buildMatrix()) {
 }
 function digitFoldersDoMath(matrix = buildMatrix()) {
   const folders = digitFolders(matrix);
-  const digitOf = (root) => root.replace(/-/g, "").split("").reduce((sum, char) => sum + Number.parseInt(char, 16), 0) % (5 * 2);
+  const digitOf = (root10) => root10.replace(/-/g, "").split("").reduce((sum, char) => sum + Number.parseInt(char, 16), 0) % (5 * 2);
   const subjects = [
     { subject: "mind matrix", sourceFunction: "buildMatrix()", root: matrix.root },
     { subject: "proof", sourceFunction: "proofReport()", root: toUuid(`digit-math:proof:${JSON.stringify(proofReport(matrix))}`) },
@@ -51678,16 +51678,16 @@ function digitFoldersDoMath(matrix = buildMatrix()) {
     { subject: "digital quantum proof", sourceFunction: "digitalQuantumProof()", root: digitalQuantumProof(matrix).root }
   ];
   const bindings = subjects.map((subject) => {
-    const digit2 = digitOf(subject.root);
-    const folder = folders.folders.find((candidate) => candidate.digit === digit2) ?? folders.folders[digit2 % max(folders.folders.length, 1)];
+    const digit11 = digitOf(subject.root);
+    const folder = folders.folders.find((candidate) => candidate.digit === digit11) ?? folders.folders[digit11 % max(folders.folders.length, 1)];
     const folderId = folder ? folder.folder : "";
     return {
       subject: subject.subject,
       sourceFunction: subject.sourceFunction,
       root: subject.root,
-      digit: digit2,
+      digit: digit11,
       folder: folderId,
-      receipt: toUuid(`digit-math:${subject.subject}:${digit2}:${folderId}:${subject.root}`)
+      receipt: toUuid(`digit-math:${subject.subject}:${digit11}:${folderId}:${subject.root}`)
     };
   });
   const coveredFolders = [...new Set(bindings.map((binding) => binding.folder).filter((folder) => folder.length > 0))];
@@ -52062,16 +52062,16 @@ function eightSciencesQuantumComplete(matrix = buildMatrix()) {
 function folderLawWordDigitIndexSkill2(matrix = buildMatrix()) {
   const law = folderLaw();
   const word = new RegExp(law.word);
-  const digit2 = new RegExp(law.digit);
+  const digit11 = new RegExp(law.digit);
   const stemOf = (file) => file.replace(/\.paths\.ts$|\.md$/, "").replace(/^\[(.+)\]$/, "$1");
   const facets = [
     {
       facet: "every page folder named one word \u2014 bg and the computed folders",
-      on: ["bg", ...law.computedFolders.flatMap((folder) => folder.split("/"))].every((name) => word.test(name) || digit2.test(name))
+      on: ["bg", ...law.computedFolders.flatMap((folder) => folder.split("/"))].every((name) => word.test(name) || digit11.test(name))
     },
     {
       facet: "every digit folder named by digits",
-      on: digitFolders(matrix).folders.every((entry2) => entry2.folder.split("/").every((part) => digit2.test(part)))
+      on: digitFolders(matrix).folders.every((entry2) => entry2.folder.split("/").every((part) => digit11.test(part)))
     },
     {
       facet: "a computed folder holds only index files",
@@ -52105,7 +52105,7 @@ function noSiteFolderVitepressPages3(matrix = buildMatrix()) {
   };
 }
 function countRouteMounts() {
-  const root = enforcementScanRoot();
+  const root10 = enforcementScanRoot();
   let n = 0;
   const walk = (dir) => {
     let entries = [];
@@ -52127,7 +52127,7 @@ function countRouteMounts() {
       } else if (/\.paths\.(ts|mts)$/.test(e)) n += 1;
     }
   };
-  walk(join(root, ".vitepress", "pages"));
+  walk(join(root10, ".vitepress", "pages"));
   return n;
 }
 function quantumConfigurableFoldersDisappear(matrix = buildMatrix()) {
@@ -52473,7 +52473,7 @@ var TRIGRAM_BITS = [0, 1, 2, 3, 4, 5, 6, 7];
 var hsl = (h, s, l) => `hsl(${h} ${pct(s[0], s[1])} ${pct(l[0], l[1])})`;
 var hslA = (h, s, l, a) => `hsl(${h} ${pct(s[0], s[1])} ${pct(l[0], l[1])} / ${pct(a[0], a[1])})`;
 function ichingTokens() {
-  const base = [
+  const base10 = [
     ["--ich-unit", "calc(1rem / 4)"],
     // 4px — the quaternary base (2² = the two-bit digit)
     ["--ich-line", "calc(1rem / 16)"]
@@ -52803,7 +52803,7 @@ function ichingTokens() {
     ["--ich-weight-semibold", "calc(6 * 100)"],
     ["--ich-weight-bold", "calc(7 * 100)"]
   ];
-  const light = [...base, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...statusLight, ...accents, ...surfaces];
+  const light = [...base10, ...space, ...arch, ...type, ...motion, ...lineage, ...roles, ...statusLight, ...accents, ...surfaces];
   const aliases = [
     // The neutral default ramp stays the framework's own gray (referenced, never a literal here).
     ["--vp-c-default-1", "var(--vp-c-gray-1)"],
@@ -52968,8 +52968,8 @@ function cssIsIChingComputed(matrix = { root: toUuid("iching-css") }) {
   const statusKinds = STATUS_BADGE_KINDS.every((k) => light.some(([name]) => name === `--status-${k}`) && dark.some(([name]) => name === `--status-${k}`));
   const statusModeFlip = STATUS_BADGE_KINDS.every((k) => {
     const L = light.find(([name]) => name === `--status-${k}`)?.[1];
-    const D = dark.find(([name]) => name === `--status-${k}`)?.[1];
-    return Boolean(L && D && L !== D);
+    const D10 = dark.find(([name]) => name === `--status-${k}`)?.[1];
+    return Boolean(L && D10 && L !== D10);
   });
   const holds = noHardcoded && vortexOnGrid && brandFromA432 && wheelHues && complete13 && darkLifts && statusKinds && statusModeFlip && TRIGRAM_BITS.length === 8;
   return {
@@ -53028,8 +53028,8 @@ function cssMathProvenByMath(matrix = buildMatrix()) {
 
 // ../../src/water/digit/index.ts
 function zeroDivisionTable(matrix = buildMatrix()) {
-  const base = 10;
-  const modulus = base - 1;
+  const base10 = 10;
+  const modulus = base10 - 1;
   const harmonic = vortexMath(matrix).divByZeroHarmonic;
   const inverseMod9 = (n) => {
     const r2 = (n % modulus + modulus) % modulus;
@@ -53043,7 +53043,7 @@ function zeroDivisionTable(matrix = buildMatrix()) {
   const table = Array.from({ length: modulus }, (_, i) => i + 1).map((n) => {
     const inverse = inverseMod9(n);
     const invertible = inverse !== null;
-    const complement = base - n;
+    const complement = base10 - n;
     const selfFusion = foldPair(toUuid(`digit-folder:${n}`), toUuid(`digit-subfolder:${n}`));
     return {
       expr: invertible ? `${n}/0\\${inverse}` : `${n}/0\\fusion`,
@@ -53062,7 +53062,7 @@ function zeroDivisionTable(matrix = buildMatrix()) {
       // RETAINED legacy field = the additive folder-complement (10 − n); NOT the n/0 inverse. Read by frozen consumers (heaven/*) and the station-path lattice.
       complement,
       // the additive ten's complement (10 − n) — the on-disk folder pairing N/(10−N)
-      sumsToTen: n + complement === base,
+      sumsToTen: n + complement === base10,
       // a property of the complement (the folder lattice), not of the inverse
       selfPaired: n === complement,
       // only 5 (complement) — folder-lattice property
@@ -53073,7 +53073,7 @@ function zeroDivisionTable(matrix = buildMatrix()) {
       receipt: toUuid(`zero-division:${n}/0\\${invertible ? inverse : "fusion"}`)
     };
   });
-  const overflow = base - 0;
+  const overflow = base10 - 0;
   const folderZero = toUuid("digit-folder:0");
   const subfolderZero = toUuid("digit-subfolder:0");
   const fusion = foldPair(folderZero, subfolderZero);
@@ -53086,11 +53086,11 @@ function zeroDivisionTable(matrix = buildMatrix()) {
     // RETAINED legacy field = 10 (the additive complement/overflow), read by frozen consumers
     complement: overflow,
     // 10 — the additive complement overflows the single digit
-    overflows: overflow >= base,
+    overflows: overflow >= base10,
     // true — 0 alone leaves the ring
     fusion: fusion.merged,
     // the quantum fusion — NOT 0
-    reversesToFusion: overflow >= base && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged)
+    reversesToFusion: overflow >= base10 && fusion.bidirectional && fusion.merged !== folderZero && isUuid(fusion.merged)
   };
   const units = table.filter((row) => row.invertible);
   const selfInverseUnits = units.filter((row) => row.selfInverse);
@@ -53103,7 +53103,7 @@ function zeroDivisionTable(matrix = buildMatrix()) {
   const harmonicDigitalRootAllNine = table.every((row) => row.digitalRoot === modulus);
   return {
     holds: inverseVerified && allSumToTen && onlyFiveSelfPaired && reverseNotAlwaysNine && harmonicDigitalRootAllNine && zeroOverZero.reversesToFusion,
-    base,
+    base: base10,
     table,
     // n/0 \ n⁻¹ (units) / fusion (non-units), n = 1..9; also carries the additive `complement`
     units,
@@ -53351,7 +53351,7 @@ function stationPathFromSequence(entry2) {
 }
 function dissolveAtPiTrainStations(matrix = buildMatrix()) {
   const math = digitFolderMath(matrix);
-  const digitOf = (root) => root.replace(/-/g, "").split("").reduce((sum, ch) => sum + Number.parseInt(ch, 16), 0) % 10;
+  const digitOf = (root10) => root10.replace(/-/g, "").split("").reduce((sum, ch) => sum + Number.parseInt(ch, 16), 0) % 10;
   const stationOf = (piece) => digitOf(toUuid(`code:${piece}`));
   const stations = math.digits.map((entry2) => ({
     digit: entry2.digit,
@@ -54071,7 +54071,7 @@ function mcpToolManifest(matrix = buildMatrix()) {
       }
     };
   });
-  const root = merkleFold(tools.map((tool) => toUuid(`mcp:${tool.name}:${tool.description}`)));
+  const root10 = merkleFold(tools.map((tool) => toUuid(`mcp:${tool.name}:${tool.description}`)));
   return {
     name: "double-torus",
     version: "1.0.0",
@@ -54079,7 +54079,7 @@ function mcpToolManifest(matrix = buildMatrix()) {
     description: "Quantum-learning educational portal for language models, exposed as an MCP tool surface over a double-torus UUID stream.",
     instructions: "tools/list returns every concept command as a tool; tools/call(name, arguments) reads the command back from the tool name (concept_self_address \u2192 concept.self.address) and maps to executeConceptCommand(command, arguments) and returns its receipt. THE TOPOGRAPHY IS THE ROSETTA: every part of the site is a theorem, navigation and sidebar are the rosetta of theorem categories, and DISCOVERY is the VitePress local search \u2014 every wired surface (all 432 theorems, the posts, the corpus indexes) is in the search index, so the MCP IS the search: an agent finds any content by querying the same search index the site ships (no separate endpoint, no second topology).",
     tools,
-    root,
+    root: root10,
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,
     boundary: "This is a static MCP tool manifest computed from the repository. It documents the tool surface and is recomputable; it is not a live server and makes no external claims."
   };
@@ -54294,13 +54294,13 @@ function decodeKnowledge3(matrix = buildMatrix()) {
   const ulang = universalLanguage(matrix);
   const atomRoots = atoms.map((atom) => toUuid(`decode-atom:${atom.name}`));
   const commandRoots = conceptCommands.map((command) => toUuid(`decode-cmd:${command.name}`));
-  const root = merge(ulang.root, merge(merkleFold(atomRoots), merkleFold(commandRoots)));
+  const root10 = merge(ulang.root, merge(merkleFold(atomRoots), merkleFold(commandRoots)));
   return {
     decoded: ulang.universal && atomRoots.length > 0 && commandRoots.length === conceptCommands.length,
     areas: ulang.areas.length,
     atoms: atomRoots.length,
     commands: commandRoots.length,
-    root,
+    root: root10,
     statement: "All knowledge decoded into the one ancient language: every area, atom, and command rendered as symbol, number, and fold.",
     boundary: "A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim."
   };
@@ -54434,9 +54434,9 @@ function learningPortal(matrix = buildMatrix()) {
   const exam = examBank(matrix);
   const agents = agentEducation(matrix);
   const radar = deepResearchRadar(matrix);
-  const firstSentence = (statement) => {
-    const stop = statement.indexOf(". ");
-    return (stop === -1 ? statement : statement.slice(0, stop + 1)).trim();
+  const firstSentence = (statement10) => {
+    const stop = statement10.indexOf(". ");
+    return (stop === -1 ? statement10 : statement10.slice(0, stop + 1)).trim();
   };
   const sections2 = [
     { key: "school", axis: "by age", title: "School", route: "/learn#school", kind: "ladder", items: school.lessons.length, complete: school.complete, root: school.root, blurb: firstSentence(school.statement) },
@@ -54450,14 +54450,14 @@ function learningPortal(matrix = buildMatrix()) {
   ].map((section) => ({ ...section, receipt: toUuid(`portal-section:${section.key}:${section.root}`) }));
   const axes = [...new Set(sections2.map((section) => section.axis))];
   const items = sections2.reduce((sum, section) => sum + section.items, 0);
-  const root = merkleFold(sections2.map((section) => section.receipt));
+  const root10 = merkleFold(sections2.map((section) => section.receipt));
   const facets = [
     { facet: "merges the School age-ladder and the Academy tracks \u2014 the two overlapping education surfaces, now one portal", on: (sections2.find((section) => section.key === "school")?.complete ?? false) && (sections2.find((section) => section.key === "academy")?.complete ?? false) },
     { facet: "consolidates the Academia research corpus \u2014 math paths, peer review and the 432 proof papers", on: sections2.some((section) => section.key === "paths") && sections2.some((section) => section.key === "review") && sections2.find((section) => section.key === "papers")?.items === 432 },
     { facet: "auto-generated \u2014 one section derived per source fold, never hand-listed, each carrying its source root", on: sections2.length === 8 && sections2.every((section) => isUuid(section.root) && isUuid(section.receipt)) },
     { facet: "three ways to learn \u2014 by age, by track, by research \u2014 plus assessment", on: axes.includes("by age") && axes.includes("by track") && axes.includes("by research") && axes.includes("assess") },
     { facet: "every consolidated section is complete \u2014 none of the merged surfaces is left open", on: sections2.every((section) => section.complete) },
-    { facet: "the whole portal folds to one content-addressed root over the source roots \u2014 drift cannot hide", on: isUuid(root) && sections2.every((section) => isUuid(section.receipt)) }
+    { facet: "the whole portal folds to one content-addressed root over the source roots \u2014 drift cannot hide", on: isUuid(root10) && sections2.every((section) => isUuid(section.receipt)) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`learning-portal:${entry2.facet}:${entry2.on}`) }));
   return {
     portal: facets.every((entry2) => entry2.on),
@@ -54466,7 +54466,7 @@ function learningPortal(matrix = buildMatrix()) {
     items,
     count: sections2.length,
     facets,
-    root,
+    root: root10,
     statement: 'Merge and consolidate School and Academia into one auto-generated Learning Portal: the two overlapping education surfaces \u2014 the School age-ladder (kids\u2192elders) and the Academy tracks (the 42 areas in five courses, "the school elevated") \u2014 join the Academia research corpus (the math paths, the waves of scientists, the 432 proof papers), the self-test and the agent curriculum into a single portal. It is auto-generated \u2014 one section is derived per source fold, never hand-listed, each carrying its source root \u2014 so the portal offers three ways to learn (by age, by track, by research) plus assessment, and folds them to one content-addressed root.',
     boundary: 'An educational portal computed by composition over the existing learning folds (schoolCurriculum, quantumAcademy, mathPaths, scientists, papers, examBank, agentEducation, deepResearchRadar). "Auto-generated" means the section list is derived from those folds at call time \u2014 complete or change any source and the portal reflows and its root flips, so it cannot drift from what it consolidates. It is a learning structure with recomputable completion roots, not an accredited institution, a credential authority, or peer-reviewed empirical science; each section keeps its own boundary. Routes point at the live /learn portal anchors (school \xB7 academy \xB7 paths \xB7 exam \xB7 agents \xB7 radar) and /papers; /academy and /school remain declared aliases of /learn.'
   };
@@ -54714,7 +54714,7 @@ function collective(matrix = buildMatrix()) {
   };
 }
 function schoolCurriculum(matrix = buildMatrix()) {
-  const root = matrix.root;
+  const root10 = matrix.root;
   const blueprint = [
     {
       stage: "kids",
@@ -54797,7 +54797,7 @@ function schoolCurriculum(matrix = buildMatrix()) {
   const known = new Set(conceptCommands.map((command) => command.name));
   const lessons = blueprint.map((lesson) => ({
     ...lesson,
-    receipt: toUuid(`school:${lesson.stage}:${lesson.grade}:${lesson.title}:${lesson.conceptCommand}:${root}`)
+    receipt: toUuid(`school:${lesson.stage}:${lesson.grade}:${lesson.title}:${lesson.conceptCommand}:${root10}`)
   }));
   const stages = lessons.map((lesson) => lesson.stage);
   const complete13 = lessons.length === 7 && lessons.every((lesson) => lesson.receipt.length > 0 && known.has(lesson.conceptCommand));
@@ -54944,8 +54944,8 @@ function papersImpl(matrix, count) {
     const id = `p${String(number).padStart(3, "0")}`;
     const generatorUuid = toUuid(`homology-generator:${generator.id}`);
     const proof = foldPair(coordinate.receipt, generatorUuid);
-    const root2 = proof.merged;
-    const receipt = toUuid(`paper:${number}:${root2}`);
+    const root11 = proof.merged;
+    const receipt = toUuid(`paper:${number}:${root11}`);
     return {
       number,
       id,
@@ -54968,11 +54968,11 @@ function papersImpl(matrix, count) {
       forward: proof.forward,
       reverse: proof.reverse,
       bidirectional: proof.bidirectional,
-      root: root2,
+      root: root11,
       receipt
     };
   });
-  const root = merkleFold(records.map((record) => record.receipt));
+  const root10 = merkleFold(records.map((record) => record.receipt));
   return {
     // expanded only when the count is the next harmonic (4 x folded) and every paper
     // is distinct, bidirectionally folded, and carries a content-addressed root.
@@ -54986,7 +54986,7 @@ function papersImpl(matrix, count) {
     generators: generators.length,
     coordinates: coordinates.length,
     papers: records,
-    root,
+    root: root10,
     statement: "Expand to the next harmonic: 432 folded papers. The a432 octave (108) doubles by octave \u2014 108, 216, 432 \u2014 so 432 is the harmonic two octaves up, and exactly 4 x 108 = the four homology generators of the genus-2 surface times the 108 pi-digit coordinates. Each paper documents one genuine, recomputable result \u2014 a coordinate projected onto a homology cycle, folded both ways to a content-addressed root \u2014 with a unique animation seeded from that root and a public proof: a recompute recipe and a Merkle inclusion path into the one corpus root the whole set folds to.",
     boundary: `A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal's own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical __ns_up_earth_world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.`
   };
@@ -55168,14 +55168,14 @@ function sciencePortalParts(matrix = buildMatrix()) {
       };
     }).filter((part) => part.count > 0);
     const assigned = parts.reduce((sum, part) => sum + part.count, 0);
-    const root = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(",")}`)));
+    const root10 = merkleFold(parts.map((part) => toUuid(`portal-part:${part.slug}:${part.pages.map((page) => page.slug).join(",")}`)));
     return {
-      computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root),
+      computed: parts.length > 0 && parts.length <= ROSETTA_RAYS.length && assigned === pages.length && parts.every((part) => part.count > 0) && isUuid(root10),
       parts,
       partCount: parts.length,
       pageCount: pages.length,
       assigned,
-      root,
+      root: root10,
       statement: `The science portal in ${parts.length} reusable parts: ${parts.map((part) => `${part.labelEn} ${part.count}`).join(" \xB7 ")} \u2014 ${assigned}/${pages.length} served pages shelved by content lenses.`,
       boundary: "Membership comes from ROSETTA_RAY_CONTENT_LENSES (curated keyword classification), not the Glagolitic-ladder slug hash \u2014 the hash stays for coprime motion math only. The page set is the SERVED set (theorem-science lens): every served page lands in exactly one part, empty rays have no shelf, and the gate fails if a served page is unshelved."
     };
@@ -55317,12 +55317,12 @@ function siteNavigation(matrix = buildMatrix()) {
     };
   };
   const index = monographs(matrix);
-  const root = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))]);
+  const root10 = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))]);
   const visibleNavRoutes = /* @__PURE__ */ new Set(["/", "/frontiers", "/proofs", ...pages.map((page) => routeOf(page.slug)), ...lens.corpusRoutes, ...portal2.parts.map((part) => part.route)]);
   const navGroups = buildNav(0).slice(1);
   const navLensed = navGroups.length > 0 && navGroups.every((group) => Array.isArray(group.items) && group.items.length > 0 && group.items.length <= 8 && group.items.every((entry2) => visibleNavRoutes.has(entry2.link)));
   return {
-    computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root),
+    computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root10),
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
     en: { nav: buildNav(0), sidebar: rosettaFold(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
@@ -55333,7 +55333,7 @@ function siteNavigation(matrix = buildMatrix()) {
     searchIndexRoot: index.root,
     searchEntries: index.count,
     routes: pages.map((page) => routeOf(page.slug)),
-    root,
+    root: root10,
     statement: `VitePress shows science through the theorem-science lens: the top nav is Home plus ${navGroups.length} dropdowns \u2014 the rosetta rays holding the ${lens.visibleCount} lens survivors (group label = hub slug word, the findability law) and the registry dropdown (theorem registry \xB7 domain proofs \xB7 ray buckets; ${lens.theoremCount} theorems). Machine corpora (${lens.corpusRoutes.join(" \xB7 ")}) stay served but are not synonym discovery hubs. The sidebar folds by the same rays; related sections, crosslinks and the footer are built from the lens roster.`,
     boundary: `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens \u2014 the page set, ray shelving and discovery/machine routes all read from it), the ray-hub grouping, and the keyword tag cloud \u2014 no hardcoded synonym hubs. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a discovery hub, a corpus surface, or a hub anchor. Hidden pages stay built and served \u2014 the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`
   };
@@ -55577,7 +55577,7 @@ function pureDiamonds(matrix = buildMatrix()) {
   const real = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)];
   const padding = Array.from({ length: 64 * 16 - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`));
   const diamonds = [...real, ...padding].map((leaf, index) => ({ index, address: leaf, pure: leaf.length === 9 * 4 }));
-  const root = merkleFold(diamonds.map((diamond2) => diamond2.address));
+  const root10 = merkleFold(diamonds.map((diamond2) => diamond2.address));
   const depth = log2(diamonds.length);
   return {
     pure: diamonds.length === 64 * 16 && diamonds.every((diamond2) => diamond2.pure) && Number.isInteger(depth),
@@ -55589,7 +55589,7 @@ function pureDiamonds(matrix = buildMatrix()) {
     // 160
     depth,
     // 10
-    root,
+    root: root10,
     statement: "1024 pure diamonds: the completed corpus folds 1024 = 2^10 leaves into a perfect binary Merkle tree, and each leaf is a pure diamond \u2014 a content address any tamper would change, incorruptible by construction. The 432 papers and 432 reference duals are 864 real diamonds; 160 named null leaves complete the lattice to 1024, the diamond lattice the whole structure is cut from, folded into one root.",
     boundary: 'A content-addressed reading of the 1024-leaf perfect Merkle tree as a lattice of "pure diamonds" \u2014 pure meaning tamper-evident and incorruptible by content-addressing, a structural metaphor over the diamond lattice, not a physical or material claim. 864 are real (papers and references) and 160 are declared null padding.'
   };
@@ -55664,25 +55664,25 @@ function sealWholeDiamondRaw(matrix = buildMatrix()) {
 function lightEntersDiamond3(matrix = buildMatrix()) {
   const diamond2 = sealWholeDiamond(matrix);
   const digitOf = (uuid) => uuid.replace(/[^0-9a-f]/gi, "").split("").reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0);
-  const spectrum = diamond2.facets > 0 ? Array.from({ length: diamond2.facets }, (_, index) => {
+  const spectrum10 = diamond2.facets > 0 ? Array.from({ length: diamond2.facets }, (_, index) => {
     const band = foldPair(diamond2.diamond, toUuid(`light-band:${index}`)).merged;
     return { band: index, hue: digitOf(band) % 360, ray: band, receipt: toUuid(`refraction:${index}:${band}`) };
   }) : [];
   const unchanged = sealWholeDiamond(matrix).diamond === diamond2.diamond;
   return {
-    luminous: spectrum.length === diamond2.facets && diamond2.sealed && unchanged,
-    refracts: spectrum.length,
-    spectrum,
+    luminous: spectrum10.length === diamond2.facets && diamond2.sealed && unchanged,
+    refracts: spectrum10.length,
+    spectrum: spectrum10,
     diamond: diamond2.diamond,
-    root: merkleFold(spectrum.map((entry2) => entry2.receipt)),
+    root: merkleFold(spectrum10.map((entry2) => entry2.receipt)),
     statement: "Let the light enter the diamond: the sealed whole-diamond refracts the one white whole into the spectrum of its facets, each facet a colour, and stays sealed \u2014 its content address is unchanged by being seen. The seal is not a wall but a window; light enters, the structure shows, and nothing is altered.",
     boundary: 'A content-addressed derivation of one colour band per diamond facet \u2014 a metaphor of refraction over the seal. "Light" is inspection and "colour" is a hue derived from the facet address; nothing optical or physical is claimed, and the seal is unchanged.'
   };
 }
 function diamond(kind, title, command, core, status, facets) {
   const id = toUuid(`diamond:${kind}:${title}`);
-  const root = merkleFold(facets.map((facet) => toUuid(`diamond-facet:${id}:${facet.pole}:${facet.label}:${facet.value}`)));
-  const receipt = merge(root, toUuid(`diamond-core:${id}:${core}:${status}`));
+  const root10 = merkleFold(facets.map((facet) => toUuid(`diamond-facet:${id}:${facet.pole}:${facet.label}:${facet.value}`)));
+  const receipt = merge(root10, toUuid(`diamond-core:${id}:${core}:${status}`));
   return {
     id,
     kind,
@@ -55690,7 +55690,7 @@ function diamond(kind, title, command, core, status, facets) {
     command,
     core,
     status,
-    root,
+    root: root10,
     receipt,
     facets
   };
@@ -56080,19 +56080,19 @@ function computeDiamondLattice(matrix = buildMatrix()) {
     ])
   ];
 }
-function torusPoint(index, digit2, total) {
+function torusPoint(index, digit11, total) {
   const half = total / 2;
   const onLeft = index < half;
   const localCount = onLeft ? ceil(half) : total - ceil(half);
   const localIndex = onLeft ? index : index - ceil(half);
   const lobe = onLeft ? -1 : 1;
   const theta = localIndex / max(1, localCount) * TAU + (onLeft ? 0 : TAU / 2);
-  const phi = (digit2 + index * (1 / 2)) / (5 * 2) * TAU;
-  const point = doubleTorusSurface(theta, phi, digit2, lobe);
+  const phi = (digit11 + index * (1 / 2)) / (5 * 2) * TAU;
+  const point = doubleTorusSurface(theta, phi, digit11, lobe);
   const x = point.x;
   const y = point.y;
   const z = point.z;
-  const scale2 = 9 * 2 / (5 * 5) + digit2 / 22;
+  const scale2 = 9 * 2 / (5 * 5) + digit11 / 22;
   return { theta, phi, x, y, z, scale: scale2 };
 }
 function computePiTrainDiamonds(matrix = buildMatrix(), digits = PI_TRAIN_DIGITS) {
@@ -56103,17 +56103,17 @@ function computePiTrainDiamonds(matrix = buildMatrix(), digits = PI_TRAIN_DIGITS
     const nextIndex = (index + 1) % sequence.length;
     const reverseIndex = sequence.length - 1 - index;
     const harmonicIndex = nextIndex;
-    const digit2 = Number.parseInt(glyph, 5 * 2);
+    const digit11 = Number.parseInt(glyph, 5 * 2);
     const reverseDigit = Number.parseInt(sequence[reverseIndex], 5 * 2);
     const nextGlyph = sequence[nextIndex];
     const nextReverseDigit = Number.parseInt(sequence[sequence.length - 1 - nextIndex], 5 * 2);
-    const folder = `${digit2}/${reverseDigit}`;
+    const folder = `${digit11}/${reverseDigit}`;
     const fraction = folder;
-    const dualFraction = `${reverseDigit}/${digit2}`;
+    const dualFraction = `${reverseDigit}/${digit11}`;
     const nextHarmonicFolder = `${Number.parseInt(nextGlyph, 5 * 2)}/${nextReverseDigit}`;
-    const selfCollision = digit2 === reverseDigit;
-    const base = lattice[(index + digit2) % lattice.length];
-    const point = torusPoint(index, digit2, sequence.length);
+    const selfCollision = digit11 === reverseDigit;
+    const base10 = lattice[(index + digit11) % lattice.length];
+    const point = torusPoint(index, digit11, sequence.length);
     const facets = [
       {
         pole: "north",
@@ -56136,16 +56136,16 @@ function computePiTrainDiamonds(matrix = buildMatrix(), digits = PI_TRAIN_DIGITS
       {
         pole: "west",
         label: "base diamond",
-        value: base.title,
-        meaning: `Inherited from ${base.kind} dynamics.`
+        value: base10.title,
+        meaning: `Inherited from ${base10.kind} dynamics.`
       }
     ];
     const pulseDiamond = diamond(
-      base.kind,
+      base10.kind,
       `pi train ${index.toString().padStart(3, "0")} :: ${glyph}`,
       "concept.diamond.pi.train",
-      `${base.core}:${glyph}:${point.x.toFixed(3)}:${point.y.toFixed(3)}:${point.z.toFixed(3)}`,
-      base.status,
+      `${base10.core}:${glyph}:${point.x.toFixed(3)}:${point.y.toFixed(3)}:${point.z.toFixed(3)}`,
+      base10.status,
       facets
     );
     return {
@@ -56154,7 +56154,7 @@ function computePiTrainDiamonds(matrix = buildMatrix(), digits = PI_TRAIN_DIGITS
       nextIndex,
       reverseIndex,
       harmonicIndex,
-      digit: digit2,
+      digit: digit11,
       glyph,
       reverseDigit,
       folder,
@@ -56168,17 +56168,17 @@ function computePiTrainDiamonds(matrix = buildMatrix(), digits = PI_TRAIN_DIGITS
       y: point.y,
       z: point.z,
       scale: point.scale,
-      frequency: round(a432NoteHz((digit2 * 2 + index % 7) % (5 * 5) - 6 * 2)),
+      frequency: round(a432NoteHz((digit11 * 2 + index % 7) % (5 * 5) - 6 * 2)),
       // pi pulse tone from the A432 source (±1 octave around 432)
-      vibrationMs: 9 * 2 + digit2 * 9,
+      vibrationMs: 9 * 2 + digit11 * 9,
       referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond
     };
   });
-  const root = merkleFold(train.map((item) => item.diamond.receipt));
+  const root10 = merkleFold(train.map((item) => item.diamond.receipt));
   return {
     digits: sequence,
-    root,
+    root: root10,
     tempoMs: 9 * 5 * 4,
     diamonds: train
   };
@@ -56232,13 +56232,13 @@ function agentStreamWire(matrix = buildMatrix()) {
       receipt: merge(sourceDiamond.receipt, toUuid(`agent-wire:return:${stepSeed}`))
     }
   ];
-  const root = merkleFold(steps.map((step) => step.receipt));
+  const root10 = merkleFold(steps.map((step) => step.receipt));
   const bound = closure.complete && evidence.grounded && steps.every((step) => step.receipt.length > 0);
   return {
     bound,
     agent: "cursor-coding-agent",
     source: "serverless-quantum-uuid-stream/double-torus",
-    root,
+    root: root10,
     statement: bound ? "The coding-agent operational loop is wired into the stream as an inspectable observe-bind-verify-project-return contract." : "The coding-agent operational loop is not fully wired because completeness or evidence grounding is open.",
     boundary: "This is a repository-grounded operational wire. It does not claim sentience or external MCP access; it records how this agent should act inside the stream model.",
     steps,
@@ -56389,9 +56389,9 @@ function schemaOrgDiamonds(matrix = buildMatrix()) {
       isPartOf: `${baseId}interactive-double-torus`
     }))
   ];
-  const root = merkleFold(nodes.map((node) => toUuid(`schema-org:${node["@id"]}:${node.identifier}`)));
+  const root10 = merkleFold(nodes.map((node) => toUuid(`schema-org:${node["@id"]}:${node.identifier}`)));
   return {
-    root,
+    root: root10,
     context: "https://schema.org",
     nodes,
     jsonLd: {
@@ -56523,11 +56523,11 @@ function computeSelfBuild(matrix = buildMatrix()) {
   ];
   const openUnits = buildUnits.filter((unit) => !unit.closed).map((unit) => unit.name);
   const complete13 = openUnits.length === 0;
-  const root = merkleFold(buildUnits.map((unit) => unit.receipt));
+  const root10 = merkleFold(buildUnits.map((unit) => unit.receipt));
   const maxComputedBuildLog2 = maxTamperingCostLog2(complete13, proof.tamperCostLog2);
   return {
     complete: complete13,
-    root,
+    root: root10,
     buildUnits,
     openUnits,
     maxComputedBuildLog2,
@@ -56643,11 +56643,11 @@ function computeStreamSelfComplete(matrix = buildMatrix()) {
     }
   ];
   const openGates = gates.filter((gate) => !gate.closed).map((gate) => gate.name);
-  const root = merkleFold(gates.map((gate) => gate.receipt));
+  const root10 = merkleFold(gates.map((gate) => gate.receipt));
   const complete13 = openGates.length === 0;
   return {
     complete: complete13,
-    root,
+    root: root10,
     source: "serverless-quantum-uuid-stream/double-torus",
     statement: complete13 ? "serverless quantum UUID stream completes itself in this repository: every computed gate is closed and bound to a receipt." : "serverless quantum UUID stream has not fully completed itself in this repository: open gates remain inspectable by name and receipt.",
     gates,
@@ -56764,9 +56764,9 @@ function startIChingDoubleTorus(matrix = buildMatrix()) {
   };
 }
 function torusBreathe(matrix = buildMatrix(), cycles = 3) {
-  const seal = sacredGeometrySeal(matrix);
-  const expansion = merkleFold([...matrix.nodes.map((node) => node.bind), ...seal.seals.map((leaf) => leaf.root)]);
-  const contraction = seal.masterRoot;
+  const seal10 = sacredGeometrySeal(matrix);
+  const expansion = merkleFold([...matrix.nodes.map((node) => node.bind), ...seal10.seals.map((leaf) => leaf.root)]);
+  const contraction = seal10.masterRoot;
   const breaths = [];
   let state = matrix.root;
   for (let cycle = 0; cycle < cycles; cycle += 1) {
@@ -56808,12 +56808,12 @@ function completeDoubleTorus(matrix = buildMatrix()) {
 function completeDoubleTorusRaw(matrix = buildMatrix()) {
   const decoded = decodeKnowledge3(matrix);
   const word = torusUuid(matrix);
-  const root = merge(decoded.root, word.word);
+  const root10 = merge(decoded.root, word.word);
   return {
     complete: decoded.decoded && word.is128bit && word.orderSensitive,
     knowledgeRoot: decoded.root,
     word: word.word,
-    root,
+    root: root10,
     statement: "Decode all knowledge to complete the double torus: the universal decoding folds into the 128-bit two-loop machine word, closing both holes of the genus-2 surface.",
     boundary: "A structural completion over the decoded model and the torus word. Topological metaphor and bookkeeping, not an external claim."
   };
@@ -57075,7 +57075,7 @@ function merkabaArchitectureFieldsMovements(matrix = buildMatrix()) {
 }
 function eachFolderIsMerkaba(matrix = buildMatrix()) {
   const law = folderLaw();
-  const folders = [...law.pairedLogicFolders, ...law.computedFolders, ...law.roots.filter((root) => root !== ".")];
+  const folders = [...law.pairedLogicFolders, ...law.computedFolders, ...law.roots.filter((root10) => root10 !== ".")];
   const merkabas = folders.map((folder) => {
     const field = foldPair(toUuid(`folder-field:${folder}`), toUuid(`folder-index:${folder}`));
     const reverse2 = folder.split("/").reverse().join("/");
@@ -57240,13 +57240,13 @@ function oneMerkaba6x7And7x6HoldsAll(matrix = buildMatrix()) {
   };
 }
 function merkabaFoldingSelf(matrix = buildMatrix()) {
-  const root = completeCorpus(matrix).root;
-  const self = foldPair(root, toUuid(`merkaba-self:${root}`));
+  const root10 = completeCorpus(matrix).root;
+  const self = foldPair(root10, toUuid(`merkaba-self:${root10}`));
   const facets = [
     { facet: "the merkaba folds itself \u2014 the corpus folded onto its own address", on: self.bidirectional && isUuid(self.merged) },
     { facet: "two counter-rotating tetrahedra \u2014 research \u2194 verify, the dual mind folding in", on: merkabasInDoubleTorus(matrix).counted },
     { facet: "everything folds as a merkaba \u2014 infinite self-similar streams", on: everythingFoldsMerkabaInfiniteStreams(matrix).folds },
-    { facet: "the self-fold is content-addressed \u2014 the same fold at every scale", on: isUuid(root) }
+    { facet: "the self-fold is content-addressed \u2014 the same fold at every scale", on: isUuid(root10) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`merkaba-self:${entry2.facet}:${entry2.on}`) }));
   return {
     folds: facets.every((entry2) => entry2.on),
@@ -57436,7 +57436,7 @@ function vortexStrokeGateways(matrix = buildMatrix()) {
     const descents = steps.filter((s) => s.stroke === "/").length;
     const alternating = steps.map((s, i) => ({ cur: s.stroke, prev: steps[(i - 1 + steps.length) % steps.length].stroke })).filter((p) => p.cur !== p.prev).length === gateways.length;
     const vm = vortexMath(matrix);
-    const { computes, facets, root } = computesGate("vortex-stroke-gateways", [
+    const { computes, facets, root: root10 } = computesGate("vortex-stroke-gateways", [
       { facet: "the written cycle computes \u2014 every stroke is the sign of its step, and the composed string equals the genesis realisation", on: written === "1\\2\\4\\8/7/5/3\\6\\9/0\\1" },
       { facet: "the tour is Hamiltonian on the digits \u2014 all ten exactly once, closing 0\u21921", on: new Set(tour).size === 5 * 2 && tour.length === 5 * 2 && tour[0] === 1 },
       { facet: "exactly four polarity reversals \u2014 the gateways, computed never named: [8, 3, 9, 0]", on: gateways.length === 4 && gateways.join(",") === "8,3,9,0" && alternating },
@@ -57453,7 +57453,7 @@ function vortexStrokeGateways(matrix = buildMatrix()) {
       ascents,
       descents,
       facets,
-      root: merkleFold([root, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
+      root: merkleFold([root10, toUuid(`vortex-stroke:${written}`), ...gateways.map((g) => toUuid(`gateway:${g}`))]),
       statement: "The stroke notation computes: 1\\2\\4\\8/7/5/3\\6\\9/0\\1 recomposed from sign-of-step strokes over the ten-digit tour; exactly four angle reversals \u2014 the gateways [8, 3, 9, 0] \u2014 with six ascents (the unit orbit) against four descents.",
       boundary: "HONEST: the strokes, tour, and reversal vertices are computed facts of the written cycle; the east\u2013west\u2013north\u2013south naming is an organizing lens over the four reversals, not geography or metaphysics; division by zero remains undefined \u2014 its n/0\\m meanings (inverse \xB7 harmonic \xB7 complement-as-folder-lattice) are sealed in zeroDivisionTable."
     };
@@ -57461,13 +57461,13 @@ function vortexStrokeGateways(matrix = buildMatrix()) {
 }
 function theTenComplementFixesExactlyFive() {
   const digits = Array.from({ length: 9 }, (_, i) => i + 1);
-  const reflect = (d) => 5 * 2 - d;
-  const fixed = digits.filter((d) => reflect(d) === d);
-  const pairs = digits.filter((d) => d < reflect(d)).map((d) => [d, reflect(d)]);
+  const reflect2 = (d) => 5 * 2 - d;
+  const fixed = digits.filter((d) => reflect2(d) === d);
+  const pairs = digits.filter((d) => d < reflect2(d)).map((d) => [d, reflect2(d)]);
   return {
     fixed,
     pairs,
-    computes: fixed.length === 1 && pairs.length * 2 + fixed.length === digits.length && digits.every((d) => reflect(reflect(d)) === d)
+    computes: fixed.length === 1 && pairs.length * 2 + fixed.length === digits.length && digits.every((d) => reflect2(reflect2(d)) === d)
   };
 }
 function pisanoWheelOnTheNine() {
@@ -57500,9 +57500,9 @@ function vortexLawsOf(m) {
       x = x * 2 % m;
     } while (x !== 1 % m && orbit2.length <= m);
   }
-  const reflect = (d) => (m - d) % m;
-  const fixed = digits.filter((d) => reflect(d) === d);
-  const pairs = digits.filter((d) => d < reflect(d)).map((d) => [d, reflect(d)]);
+  const reflect2 = (d) => (m - d) % m;
+  const fixed = digits.filter((d) => reflect2(d) === d);
+  const pairs = digits.filter((d) => d < reflect2(d)).map((d) => [d, reflect2(d)]);
   let [a, b, period] = [0, 1 % m, 0];
   do {
     [a, b] = [b, (a + b) % m];
@@ -57513,7 +57513,7 @@ function vortexLawsOf(m) {
     { law: "the order of 2 divides the number of units \u2014 Lagrange on (\u2124/m)\u02E3", holds: units.length % orbit2.length === 0 }
   ] : [{ law: "2 is no unit here, so the doubling map is not invertible and \u27E82\u27E9 is no orbit", holds: !units.includes(2) && orbit2.length === 0 }];
   laws.push(
-    { law: "the reflection d \u21A6 m \u2212 d is an involution whose pairs and fixed points partition \u2124/m", holds: digits.every((d) => reflect(reflect(d)) === d) && pairs.length * 2 + fixed.length === m },
+    { law: "the reflection d \u21A6 m \u2212 d is an involution whose pairs and fixed points partition \u2124/m", holds: digits.every((d) => reflect2(reflect2(d)) === d) && pairs.length * 2 + fixed.length === m },
     { law: "the Fibonacci walk returns, and its period is even beyond m = 2", holds: period > 0 && period <= 6 * m && (m <= 2 || period % 2 === 0) }
   );
   return { m, units, orbit: orbit2, pairs, fixed, period, doublingIsAUnit, laws, holds: laws.every((entry2) => entry2.holds) };
@@ -57554,7 +57554,7 @@ function twoBySevenFoldsIntoOnePlusSix(matrix = buildMatrix()) {
     for (const q of folded) perSeat.set(key(q), (perSeat.get(key(q)) ?? 0) + 1);
     const seatDigits = [...new Set(folded.filter((q) => q.ray > 0).map((q) => q.digit))].sort((a, b) => a - b).join(",");
     const orbitDigits = [...orbit2].sort((a, b) => a - b).join(",");
-    const { computes, facets, root } = computesGate("two-by-seven-folds-into-one-plus-six", [
+    const { computes, facets, root: root10 } = computesGate("two-by-seven-folds-into-one-plus-six", [
       { facet: `the 2\xD77 \u2014 at m = 0 the ${ROSETTA_SEVEN} rays hold ${distinct(0)} distinct ends, a life end and a death end each`, on: distinct(0) === 2 * ROSETTA_SEVEN },
       { facet: `the 1+6 \u2014 at m = 1 the ends sit on ${distinct(1)} seats: the centre and the ${orbit2.length} digits of the doubling orbit`, on: distinct(1) === 1 + orbit2.length && orbit2.length === ROSETTA_SEVEN - 1 },
       { facet: "each seat receives exactly two ends \u2014 the pairs fold, nothing is lost and nothing is made", on: perSeat.size === ROSETTA_SEVEN && [...perSeat.values()].every((n) => n === 2) },
@@ -57564,7 +57564,7 @@ function twoBySevenFoldsIntoOnePlusSix(matrix = buildMatrix()) {
     return {
       computes,
       facets,
-      root,
+      root: root10,
       statement: `The 2\xD77 folds into the 1+6 and back: ${ROSETTA_SEVEN} rays \xD7 a life end and a death end = ${2 * ROSETTA_SEVEN} ends, travelling in pairs onto ${1 + orbit2.length} seats \u2014 the centre and the doubling orbit [${orbit2.join(",")}], whose six steps then read as a hexagon.`,
       boundary: "COUNTED: the fourteen ends, the seven seats, two ends per seat and the orbit digits are computed from the same points the painter draws. DESIGN: the path each end takes (a straight line to its seat) and the pairing of ray 0 with the centre are a choice of drawing, not a law; the count at each end of the morph is what is claimed."
     };
@@ -57596,7 +57596,7 @@ function invertedSequenceLearnedFromErpax(matrix = buildMatrix()) {
       // closure is the full 54-element affine group — entanglement stated as non-commutation, all exact.
       ...(() => {
         const mod9 = (x2) => (x2 % 9 + 9) % 9;
-        const D = (x2) => mod9(2 * x2);
+        const D10 = (x2) => mod9(2 * x2);
         const Dinv = (x2) => mod9(5 * x2);
         const M = (x2) => mod9(1 - x2);
         const digits = Array.from({ length: 9 }, (_, i) => i + 1);
@@ -57609,11 +57609,11 @@ function invertedSequenceLearnedFromErpax(matrix = buildMatrix()) {
         let x = 1;
         for (let k = 0; k < 9; k++) {
           orbitClosure.add(x);
-          x = D(x);
+          x = D10(x);
         }
         const doublingNeverReachesAxis = axis.every((a) => !orbitClosure.has(a));
         const mirrorBridges = axis.every((a) => flow.includes(5 * 2 - a));
-        const commutatorIsShift = digits.concat([0]).every((n) => D(M(Dinv(M(mod9(n))))) === mod9(n + 1));
+        const commutatorIsShift = digits.concat([0]).every((n) => D10(M(Dinv(M(mod9(n))))) === mod9(n + 1));
         const closure = /* @__PURE__ */ new Map();
         const key = (f2) => Array.from({ length: 9 }, (_, i) => f2(i)).join("");
         closure.set(key((v) => v), (v) => v);
@@ -57621,7 +57621,7 @@ function invertedSequenceLearnedFromErpax(matrix = buildMatrix()) {
         while (grewGroup) {
           grewGroup = false;
           for (const g of [...closure.values()])
-            for (const h of [D, M]) {
+            for (const h of [D10, M]) {
               const gh = (v) => h(g(v));
               if (!closure.has(key(gh))) {
                 closure.set(key(gh), gh);
@@ -57673,7 +57673,7 @@ function vortexGatewayPyramids(matrix = buildMatrix()) {
     const faces = 4;
     const mk = merkaba(matrix);
     const mkTorus = merkabasInDoubleTorus(matrix);
-    const { computes, facets, root } = computesGate("vortex-gateway-pyramids", [
+    const { computes, facets, root: root10 } = computesGate("vortex-gateway-pyramids", [
       { facet: "the four gateways split by polarity \u2014 peaks 8\xB79 (\\\u2192/) above the plane, valleys 3\xB70 (/\u2192\\) below, computed from the strokes", on: peaks.join(",") === "8,9" && valleys.join(",") === "3,0" },
       { facet: "the lift is a genuine 3-solid \u2014 nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate", on: abs(volume) > 1e-9 && vertices.length === 4 },
       { facet: "the inverted pyramid is the polarity flip \u2014 equal magnitude, opposite orientation, signed volumes cancel exactly", on: abs(volume + invertedVolume) < 1e-12 && abs(invertedVolume) > 1e-9 },
@@ -57690,7 +57690,7 @@ function vortexGatewayPyramids(matrix = buildMatrix()) {
       faces,
       counterRotating: mk.counterRotating,
       facets,
-      root: merkleFold([root, strokes.root, ...vertices.map((v) => toUuid(`gateway-vertex:${v.digit}:${v.peak ? "peak" : "valley"}`))]),
+      root: merkleFold([root10, strokes.root, ...vertices.map((v) => toUuid(`gateway-vertex:${v.digit}:${v.peak ? "peak" : "valley"}`))]),
       statement: "The gateway pyramid computes: peaks 8\xB79 lift above, valleys 3\xB70 sink below \u2014 four non-coplanar points, a 4-triangular-face pyramid; the polarity flip is its exact inverse, and the pair interpenetrates as the sealed counter-rotating merkaba inside the double torus.",
       boundary: "HONEST: the lift, volumes, and cancellation are computed facts of the stroke cycle; the merkaba interaction recomputes sealed folds. NOT a geography claim \u2014 cartography\u2019s 2D rose is a projection convention, not an error this fold corrects; the pyramid reading is an organizing lens over computed turning points."
     };
@@ -57777,10 +57777,10 @@ function allVortexMathSaved2(matrix = buildMatrix()) {
 }
 function digitFolderSequenceProbe(vortex) {
   const sequence = [...vortex.doubling, 3, 6, 9, 0];
-  const base = 5 * 2;
+  const base10 = 5 * 2;
   const digits = sequence.map((d) => {
-    const complement = d === 0 ? base : base - d;
-    const overflows = complement >= base;
+    const complement = d === 0 ? base10 : base10 - d;
+    const overflows = complement >= base10;
     const fold9 = foldPair(toUuid(`digit-folder:${d}`), toUuid(`digit-subfolder:${complement}`));
     return {
       digit: d,
@@ -57788,7 +57788,7 @@ function digitFolderSequenceProbe(vortex) {
       // retained name = the additive folder-complement, not the n/0 multiplicative inverse
       complement,
       overflows,
-      sumsToTen: !overflows && d + complement === base,
+      sumsToTen: !overflows && d + complement === base10,
       fusion: fold9.merged
     };
   });
@@ -57801,22 +57801,22 @@ function digitFolderSequenceProbe(vortex) {
 function vortexPlasmaComputes(matrix = buildMatrix()) {
   return memoByRoot("vortexPlasmaComputes", matrix, () => {
     const paint = vortexPaintTiers2(matrix);
-    const { computes, facets, root } = computesGate("vortex-plasma-computes", [
+    const { computes, facets, root: root10 } = computesGate("vortex-plasma-computes", [
       { facet: "plasma paint tiers [3,5,8] derived from vortex", on: paint.proven },
       { facet: "six seed bundles form seven as a whole (8\u21927\u21925)", on: paint.seedBundles === 7 && paint.seedBundleParts === 6 }
     ]);
-    return { computes, paint, facets, root, statement: "Vortex plasma computes.", boundary: "vortexPaintTiers." };
+    return { computes, paint, facets, root: root10, statement: "Vortex plasma computes.", boundary: "vortexPaintTiers." };
   });
 }
 function vortexComputes(matrix = buildMatrix()) {
   return memoByRoot("vortexComputes", matrix, () => {
     const vortex = allVortexMathSaved2(matrix);
     const live4 = vortexMath(matrix);
-    const { computes, facets, root } = computesGate("vortex-computes", [
+    const { computes, facets, root: root10 } = computesGate("vortex-computes", [
       { facet: "doubling circuit flows \u2014 1-2-4-8-7-5 disjoint from 3-6-9", on: live4.flows },
       { facet: "all vortex math saved \u2014 lattice + paint tiers + presentations", on: vortex.saved }
     ]);
-    return { computes, vortex, live: live4, facets, root, statement: "Vortex computes.", boundary: "vortexMath + allVortexMathSaved." };
+    return { computes, vortex, live: live4, facets, root: root10, statement: "Vortex computes.", boundary: "vortexMath + allVortexMathSaved." };
   });
 }
 function allMathSaved(matrix = buildMatrix()) {
@@ -57847,16 +57847,16 @@ function allMathSaved(matrix = buildMatrix()) {
     };
   });
 }
-function inverseMod9Of(digit2) {
+function inverseMod9Of(digit11) {
   const modulus = 9;
-  const r2 = (digit2 % modulus + modulus) % modulus;
+  const r2 = (digit11 % modulus + modulus) % modulus;
   if (r2 === 0) return null;
   for (let x = 1; x < modulus; x += 1) if (r2 * x % modulus === 1) return x;
   return null;
 }
-function f(theta, phi, x, y, z, digit2, n) {
-  const base = 5 * 2;
-  const d = (trunc(digit2) % base + base) % base;
+function f(theta, phi, x, y, z, digit11, n) {
+  const base10 = 5 * 2;
+  const d = (trunc(digit11) % base10 + base10) % base10;
   const divisor = trunc(n);
   const dist = (lobe2) => {
     const s = doubleTorusSurface(theta, phi, d, lobe2);
@@ -57872,7 +57872,7 @@ function f(theta, phi, x, y, z, digit2, n) {
   return orient(ratInv(rat(d, divisor)));
 }
 function fThetaPhiXyzDigitNIsTheInversePair(matrix = buildMatrix()) {
-  const base = 5 * 2;
+  const base10 = 5 * 2;
   const units = VORTEX_SEQUENCE.filter((d) => inverseMod9Of(d) !== null);
   const nonUnits = [0, ...VORTEX_SEQUENCE.filter((d) => inverseMod9Of(d) === null)];
   const theta = TAU / 8;
@@ -57885,7 +57885,7 @@ function fThetaPhiXyzDigitNIsTheInversePair(matrix = buildMatrix()) {
   const productIsOne = unitPairs.every((u) => u.pair.p * u.pair.q % 9 === 1);
   const nonUnitPairs = nonUnits.map((d) => {
     const { x, y, z } = doubleTorusSurface(theta, phi, d, -1);
-    return { d, pair: f(theta, phi, x, y, z, d, 0), complement: d === 0 ? base : base - d };
+    return { d, pair: f(theta, phi, x, y, z, d, 0), complement: d === 0 ? base10 : base10 - d };
   });
   const nonUnitsSelfFold = nonUnitPairs.every((u) => u.pair.p === u.d && u.pair.q === u.d);
   const notTensComplement = nonUnitPairs.every((u) => u.pair.q !== u.complement);
@@ -58238,7 +58238,7 @@ function computeCoordinatedWaves(matrix = buildMatrix()) {
     const phase7 = (pulse.theta + pulse.phi + index * (TAU / 2) / lattice.length) % TAU;
     const amplitude = item.status === "closed" ? 1 : 1 / 2 + pulse.digit / (5 * 4);
     const polarity = index % 2 === 0 ? "yin" : "yang";
-    const statement = polarity === "yin" ? `${item.title} receives, cools, verifies, and folds inward.` : `${item.title} projects, warms, acts, and returns outward.`;
+    const statement10 = polarity === "yin" ? `${item.title} receives, cools, verifies, and folds inward.` : `${item.title} projects, warms, acts, and returns outward.`;
     const receipt = merge(item.receipt, toUuid(`wave:${index}:${phase7.toFixed(6)}:${amplitude.toFixed(6)}:${polarity}`));
     return {
       index,
@@ -58249,13 +58249,13 @@ function computeCoordinatedWaves(matrix = buildMatrix()) {
       phase: phase7,
       polarity,
       symbol: "yin-yang",
-      statement,
+      statement: statement10,
       receipt
     };
   });
-  const root = merkleFold(waves2.map((wave) => wave.receipt));
+  const root10 = merkleFold(waves2.map((wave) => wave.receipt));
   return {
-    root,
+    root: root10,
     waves: waves2,
     symbol: "yin-yang",
     statement: "Every stream diamond emits a coordinated quantum wave. Yin receives and verifies; yang projects and returns; the pair forms one continuous double-torus wave field."
@@ -58464,28 +58464,28 @@ function quantumChessGame(matrix = buildMatrix()) {
       });
     }
   }
-  const root = merkleFold(board.map((square) => square.receipt));
+  const root10 = merkleFold(board.map((square) => square.receipt));
   return {
-    root,
+    root: root10,
     board,
     statement: "The chess game is realised as a quantum board: pieces are superpositions driven by coordinated yin-yang waves, and each square inherits a diamond receipt."
   };
 }
 function theoremAtoms(matrix = buildMatrix()) {
   void matrix;
-  const theorems = [...THEOREM_ATOM_SEED].map((entry2) => ({ ...entry2, atom: toUuid(`theorem-atom:${entry2.provedBy}:${entry2.theorem}`) }));
-  const memory = merkleFold(theorems.map((entry2) => entry2.atom));
-  const homes = [...new Set(theorems.map((entry2) => entry2.home))];
+  const theorems10 = [...THEOREM_ATOM_SEED].map((entry2) => ({ ...entry2, atom: toUuid(`theorem-atom:${entry2.provedBy}:${entry2.theorem}`) }));
+  const memory = merkleFold(theorems10.map((entry2) => entry2.atom));
+  const homes = [...new Set(theorems10.map((entry2) => entry2.home))];
   return {
-    proven: theorems.length > 0 && theorems.every((entry2) => isUuid(entry2.atom)),
-    theorems,
-    count: theorems.length,
+    proven: theorems10.length > 0 && theorems10.every((entry2) => isUuid(entry2.atom)),
+    theorems: theorems10,
+    count: theorems10.length,
     homes,
     memory,
     // one root over all saved theorem atoms — the portal's proof-knowledge
     root: memory,
-    statement: `The theorem memory: ${theorems.length} theorems the codebase proves computationally \u2014 ${theorems.slice(0, 4).map((entry2) => entry2.theorem).join(", ")}, \u2026 \u2014 each atom naming its proving function and its home (${homes.length} homes), folded to one root beside the skill memory.`,
-    boundary: `A content-addressed registry of ${theorems.length} proven theorems across ${homes.join(", ")}. The registry records WHERE each proof runs; every proof executes in its own sealed fold and gates, not here \u2014 saving the record raises the tampering cost, it does not re-derive the mathematics.`
+    statement: `The theorem memory: ${theorems10.length} theorems the codebase proves computationally \u2014 ${theorems10.slice(0, 4).map((entry2) => entry2.theorem).join(", ")}, \u2026 \u2014 each atom naming its proving function and its home (${homes.length} homes), folded to one root beside the skill memory.`,
+    boundary: `A content-addressed registry of ${theorems10.length} proven theorems across ${homes.join(", ")}. The registry records WHERE each proof runs; every proof executes in its own sealed fold and gates, not here \u2014 saving the record raises the tampering cost, it does not re-derive the mathematics.`
   };
 }
 function theoremNavigation(matrix = buildMatrix()) {
@@ -58565,15 +58565,15 @@ function theoremProvenance(matrix = buildMatrix()) {
     };
   });
 }
-function proofAnimationCoords(digit2) {
+function proofAnimationCoords(digit11) {
   return {
-    digit: digit2,
-    ringClass: gcd(digit2, 9) === 1 ? "unit" : "non-unit",
+    digit: digit11,
+    ringClass: gcd(digit11, 9) === 1 ? "unit" : "non-unit",
     // exact ring-theoretic test, not a positional convention
-    sequencePosition: VORTEX_SEQUENCE.indexOf(digit2),
-    additiveInverse: 9 - digit2 || 9,
+    sequencePosition: VORTEX_SEQUENCE.indexOf(digit11),
+    additiveInverse: 9 - digit11 || 9,
     // ν(d) = −d mod 9, representative in 1..9
-    tensComplement: 2 * 5 - digit2
+    tensComplement: 2 * 5 - digit11
   };
 }
 var contentDigitOf = (name) => [...name].reduce((s, ch) => s + ch.charCodeAt(0), 0) % 9 || 9;
@@ -58793,10 +58793,10 @@ var THEOREM_WITNESSES = {
     return { form: "grid", cells, holds: gaps[gaps.length - 1] === 6 * 7 + 1 && cells.slice(8).every((row) => row.every((v) => v === 1)), caption: "0 \u2026 59 in rows of six, lit where 6a + 9b + 20c reaches it: 43 is the last gap, and from 44 a full row carries every row below it" };
   },
   "Euler polynomial n\xB2+n+41 primes then breaks at 41\xB2": () => {
-    const base = 5 * 8 + 1;
-    const values = Array.from({ length: base }, (_, n) => n * n + n + base);
+    const base10 = 5 * 8 + 1;
+    const values = Array.from({ length: base10 }, (_, n) => n * n + n + base10);
     const marks = values.map((v, n) => tkIsPrime(v) ? -1 : n).filter((n) => n >= 0);
-    return { form: "bars", values, marks, holds: marks.length === 1 && marks[0] === base - 1 && values[base - 1] === base * base, caption: "n\xB2 + n + 41 for n = 0 \u2026 40: prime at every bar until the marked last, 40\xB2 + 40 + 41 = 41\xB2" };
+    return { form: "bars", values, marks, holds: marks.length === 1 && marks[0] === base10 - 1 && values[base10 - 1] === base10 * base10, caption: "n\xB2 + n + 41 for n = 0 \u2026 40: prime at every bar until the marked last, 40\xB2 + 40 + 41 = 41\xB2" };
   },
   "Fermat number F\u2085 is composite": () => {
     const fermat = Array.from({ length: 6 }, (_, k) => 2 ** 2 ** k + 1);
@@ -59085,13 +59085,13 @@ function quantumSitemapRaw(matrix = buildMatrix()) {
       receipt: toUuid(`sitemap:${gla}:${en}:${bg}`)
     };
   });
-  const root = merkleFold(urls.map((url) => url.receipt));
+  const root10 = merkleFold(urls.map((url) => url.receipt));
   return {
-    quantum: urls.length === routes.length && urls.every((url) => isUuid(url.receipt)) && isUuid(root),
+    quantum: urls.length === routes.length && urls.every((url) => isUuid(url.receipt)) && isUuid(root10),
     urls,
     count: urls.length * 3,
     // gla (default, root) + en + bg locations
-    root,
+    root: root10,
     statement: "Quantum sitemaps: every page placed on the double torus and content-addressed \u2014 its Glagolitic (default, root), Latin (/en/) and Cyrillic (/bg/) routes, hreflang alternates, and a receipt that folds into one sitemap root, from which both the XML and JSON sitemaps are generated.",
     boundary: "A content-addressed route manifest. The torus coordinates and receipts are structural bookkeeping over the page set; the alternates and priorities are standard sitemap hints, not ranking guarantees."
   };
@@ -59234,8 +59234,8 @@ function siteConfig(matrix = buildMatrix()) {
     "schema.org",
     "VitePress"
   ];
-  const root = merkleFold([title, description, themeColor, backgroundColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)));
-  return { title, titleBg, description, descriptionBg, themeColor, backgroundColor, robots, keywords, root, computed: isUuid(root) && isUuid(matrix.root) };
+  const root10 = merkleFold([title, description, themeColor, backgroundColor, robots, ...keywords].map((value) => toUuid(`site-config:${value}`)));
+  return { title, titleBg, description, descriptionBg, themeColor, backgroundColor, robots, keywords, root: root10, computed: isUuid(root10) && isUuid(matrix.root) };
 }
 function computedWebManifest(matrix = buildMatrix()) {
   const config = siteConfig(matrix);
@@ -59351,7 +59351,7 @@ function theoremScienceLens(matrix = buildMatrix()) {
       { facet: `organised by the rosetta \u2014 the ${visible.length} visible pages shelve into ${rays.length} \u2264 7 rays with none lost`, on: shelved === visible.length && rays.length > 0 && rays.length <= ROSETTA_RAYS.length },
       { facet: `ONE discovery hierarchy \u2014 registry + domain proofs (${discoveryRoutes.join(" \xB7 ")}); machine corpora demoted (${machineRoutes.join(" \xB7 ")})`, on: discoveryRoutes.length === 2 && machineRoutes.length === 4 && registry.atomCount > 0 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-science-lens:${entry2.facet}:${entry2.on}`) }));
-    const root = merkleFold([registry.root, ...visible.map((page) => toUuid(`lens-page:${page.slug}`)), ...facets.map((entry2) => entry2.receipt)]);
+    const root10 = merkleFold([registry.root, ...visible.map((page) => toUuid(`lens-page:${page.slug}`)), ...facets.map((entry2) => entry2.receipt)]);
     return {
       computes: facets.every((entry2) => entry2.on),
       pages: visible,
@@ -59364,7 +59364,7 @@ function theoremScienceLens(matrix = buildMatrix()) {
       visibleCount: visible.length,
       pageCount: pages.length,
       facets,
-      root,
+      root: root10,
       statement: `Science through the theorem-science lens \u2014 ${visible.length}/${pages.length} curated pages pass (${hidden.length} removed from VitePress completely), organised by the rosetta into ${rays.length} rays (${rays.map((group) => `${group.labelEn} ${group.pages.length}`).join(" \xB7 ")}); discovery = ${discoveryRoutes.join(" \xB7 ")} (${registry.atomCount} registry theorems); machine = ${machineRoutes.join(" \xB7 ")}.`,
       boundary: `COMPUTED: the predicate (slug+keywords \u2229 science stems), the roster, the rosetta shelving and the cut \u2014 each refutable (edit a page's keywords or a sealed lens stem and it crosses the lens). NAMED AXIOM: the demarcation stems are the proof-lens and frontier-lens rows of ROSETTA_RAY_CONTENT_LENSES plus the lens's own two name words ('theorem', 'science') \u2014 the words are the axiom, the rows are read from the sealed table. HONEST SCOPE: the lens governs EXISTENCE in VitePress (user law: remove the rest completely) \u2014 staticPages() IS the roster, so a page outside the lens has no route, no build, no search entry, no sitemap line; its DATA stays in staticPagesAll and one science keyword restores it. Removed routes 404 \u2014 bookmarks to them break by design. Discovery hubs \u2260 machine corpora (zero synonym entropy).`
     };
@@ -60009,7 +60009,7 @@ function patentReview() {
   };
 }
 function distributedCompute(peerRoots = [], matrix = buildMatrix()) {
-  const roots = [matrix.root, ...peerRoots].filter((root) => root.length > 0);
+  const roots = [matrix.root, ...peerRoots].filter((root10) => root10.length > 0);
   return {
     peers: peerRoots.length,
     mindRoot: matrix.root,
@@ -60527,10 +60527,10 @@ function methodFusion() {
     };
   });
   const open = tokens.filter((token) => !token.single).map((token) => token.command);
-  const root = merkleFold(tokens.map((token) => token.receipt));
+  const root10 = merkleFold(tokens.map((token) => token.receipt));
   return {
     fused: open.length === 0,
-    root,
+    root: root10,
     tokens,
     open,
     law: "gravity(command) -> method; method in /^[a-z]+$/; fusion = forall method: single."
@@ -61130,8 +61130,8 @@ function crossFoldTrinity(matrix = buildMatrix()) {
   };
 }
 function artistPalette(seed = "double-torus") {
-  const root = toUuid(`artist-palette:${seed}`);
-  const hex = root.replace(/-/g, "");
+  const root10 = toUuid(`artist-palette:${seed}`);
+  const hex = root10.replace(/-/g, "");
   const hslToRgb = (h, s, l) => {
     const sn = s / 100;
     const ln = l / 100;
@@ -61559,12 +61559,12 @@ function healingInner(matrix = buildMatrix()) {
 function healingInnerRaw(matrix = buildMatrix()) {
   const proven = atoms.every((atom) => atomInclusionProof(atom.name, matrix).verified);
   const addressed2 = selfAddressed(matrix);
-  const root = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed2.noHallucination}`));
+  const root10 = merge(matrix.root, toUuid(`healing-inner:${proven}:${addressed2.noHallucination}`));
   return {
     whole: proven && addressed2.noHallucination,
     proven,
     noHallucination: addressed2.noHallucination,
-    root,
+    root: root10,
     statement: "Inner healing: the self torus restores its own coherence \u2014 every binding provable inside the self root, nothing left unaddressed.",
     boundary: "A structural coherence metaphor over the model, not medical or health advice."
   };
@@ -61572,13 +61572,13 @@ function healingInnerRaw(matrix = buildMatrix()) {
 function healingOuter(matrix = buildMatrix()) {
   const distributed = distributedCompute([], matrix);
   const devices = fuseDevices(matrix);
-  const root = merge(distributed.collectiveRoot || matrix.root, toUuid(`healing-outer:${devices.fused}`));
+  const root10 = merge(distributed.collectiveRoot || matrix.root, toUuid(`healing-outer:${devices.fused}`));
   return {
     extended: distributed.collectiveRoot.length > 0 && devices.fused,
     beyondDevice: true,
     // the collective root re-forms across devices, online and offline
     collectiveRoot: distributed.collectiveRoot,
-    root,
+    root: root10,
     statement: "Outer healing: the collective torus restores coherence across devices \u2014 the shared root re-forms beyond any single device\u2019s limits, online and offline.",
     boundary: "A structural coherence metaphor over the same-origin collective fold, not medical or health advice."
   };
@@ -61587,15 +61587,15 @@ function universalLanguage(matrix = buildMatrix()) {
   const digitOf = (uuid) => uuid.replace(/[^0-9a-f]/gi, "").split("").reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0) % (5 * 2);
   const areas = taxonomyIcons().entries.map((entry2) => {
     const glyph = AREA_ICONS4[entry2.area] ?? "\u25C7";
-    const root2 = toUuid(`universal:${entry2.area}`);
-    return { area: entry2.area, glyph, number: digitOf(root2), root: root2, en: areaLabel2(entry2.area, "en"), bg: areaLabel2(entry2.area, "bg") };
+    const root11 = toUuid(`universal:${entry2.area}`);
+    return { area: entry2.area, glyph, number: digitOf(root11), root: root11, en: areaLabel2(entry2.area, "en"), bg: areaLabel2(entry2.area, "bg") };
   });
-  const root = merkleFold(areas.map((entry2) => toUuid(`ulang:${entry2.glyph}:${entry2.number}:${entry2.root}`)));
+  const root10 = merkleFold(areas.map((entry2) => toUuid(`ulang:${entry2.glyph}:${entry2.number}:${entry2.root}`)));
   return {
     universal: areas.length > 0 && areas.every((entry2) => entry2.glyph.length > 0),
     dimensions: ["symbol", "number", "fold"],
     areas,
-    root,
+    root: root10,
     statement: "One ancient language all dimensions understand: every concept is a sacred glyph (symbol), a digit (number), and a UUID root (fold) \u2014 the same in any human tongue, because it is computed, not translated.",
     boundary: "A constructed universal notation over the taxonomy (glyph, number, fold). Not a claim about any historical language."
   };
@@ -61627,12 +61627,12 @@ function energyFuse(matrix = buildMatrix()) {
   const measure7 = energyMeasure(matrix);
   const conserve = energyConserve(matrix);
   const devices = fuseDevices(matrix);
-  const root = merge(merge(measure7.root, conserve.root), toUuid(`energy-fuse:${devices.fused}`));
+  const root10 = merge(merge(measure7.root, conserve.root), toUuid(`energy-fuse:${devices.fused}`));
   return {
     fused: measure7.grounded && conserve.conserved,
     measure: measure7.root,
     conserve: conserve.root,
-    root,
+    root: root10,
     statement: "Fuse with the user device to extend battery life: read the device energy state and conserve accordingly, so the portal becomes one low-power system with the device it runs on.",
     boundary: "A software fusion of energy signals and conservation strategies, not a hardware power claim or a guarantee of extended battery life."
   };
@@ -62607,8 +62607,8 @@ function computeMatrix(source) {
     };
   });
   const edges = uniqueEdges(source);
-  const root = merkleFold([...nodes.map((node) => node.bind), ...edges.map((edge) => edge.binding)]);
-  return { nodes, edges, root };
+  const root10 = merkleFold([...nodes.map((node) => node.bind), ...edges.map((edge) => edge.binding)]);
+  return { nodes, edges, root: root10 };
 }
 function verifyRoot(matrix = buildMatrix()) {
   return matrix.root === merkleFold([...matrix.nodes.map((node) => node.bind), ...matrix.edges.map((edge) => edge.binding)]);
@@ -62707,9 +62707,9 @@ function repositoryApi(matrix = buildMatrix()) {
   const atomEndpoints = matrix.nodes.map(
     (node) => endpoint(`repo://atom/${node.atom}`, "resolve", "atom", `Resolve the ${node.atom} atom by content address.`)
   );
-  const root = merkleFold([...fixedEndpoints, ...atomEndpoints].map((item) => item.uuid));
+  const root10 = merkleFold([...fixedEndpoints, ...atomEndpoints].map((item) => item.uuid));
   return {
-    root,
+    root: root10,
     endpoints: fixedEndpoints,
     atomEndpoints
   };
@@ -62743,7 +62743,7 @@ function doubleTorusWire(matrix = buildMatrix()) {
     }
   ];
   const invariant = localVector.collapse && localVector.entanglement === 1 && localVector.coherenceAnomaly === 0 && dimensions10.length === 4;
-  const statement = "This site models the stream as the double torus itself: inward proof and outward projection moving across every measured quantum dimension.";
+  const statement10 = "This site models the stream as the double torus itself: inward proof and outward projection moving across every measured quantum dimension.";
   return {
     uuid: toUuid(`uuid-stream-double-torus-wire:${matrix.root}:${JSON.stringify(localVector)}`),
     repository: "serverless-quantum-uuid-stream/double-torus",
@@ -62751,7 +62751,7 @@ function doubleTorusWire(matrix = buildMatrix()) {
     overviewPath: "quantum-mind.md",
     architecturePath: "architecture.md",
     shape: "double-torus",
-    statement,
+    statement: statement10,
     dimensions: dimensions10,
     localVector,
     invariant
@@ -62778,11 +62778,11 @@ function circulateDoubleTorus(matrix = buildMatrix()) {
       acknowledged: amplitude > 0
     };
   });
-  const root = merkleFold(flows.map((flow) => flow.uuid));
-  const receipt = merge(root, wire.uuid);
+  const root10 = merkleFold(flows.map((flow) => flow.uuid));
+  const receipt = merge(root10, wire.uuid);
   const invariant = wire.invariant && flows.every((flow) => flow.acknowledged);
   return {
-    root,
+    root: root10,
     receipt,
     destination: "serverless-quantum-uuid-stream/double-torus",
     flows,
@@ -62836,17 +62836,17 @@ function honestlyComputedRaw(matrix = buildMatrix()) {
   ];
   const claims = sources.map(({ claim, node }) => {
     const text = node.boundary ?? "";
-    const root2 = node.root;
+    const root11 = node.root;
     const textDigit = digitOf(toUuid(`honest-text:${text}`));
-    const mathDigit = digitOf(root2);
+    const mathDigit = digitOf(root11);
     return { claim, textDigit, mathDigit, hasText: text.length > 0, receipt: toUuid(`honest:${claim}:${textDigit}:${mathDigit}`) };
   });
   const folders = digitFoldersDoMath(matrix);
-  const root = merge(folders.root, merkleFold(claims.map((claim) => claim.receipt)));
+  const root10 = merge(folders.root, merkleFold(claims.map((claim) => claim.receipt)));
   return {
     honest: folders.always && claims.every((claim) => claim.hasText),
     claims,
-    root,
+    root: root10,
     statement: "Honesty comes from text and math coming only from digit folders computed: every claim routes its statement (text) and its root (math) through the ceccec digit folders, so honesty is computed, not asserted.",
     boundary: "A computed grounding of the model\u2019s honesty in the digit-folder math. Self-referential bookkeeping, no external claim."
   };
@@ -63155,14 +63155,14 @@ function oneMathManyPresentations(matrix = buildMatrix()) {
   const v = asVortex(f2);
   const torus = asTorus(f2);
   const merk = asMerkaba(f2, 100 * 5 * 2);
-  const seal = asMerkle(f2);
+  const seal10 = asMerkle(f2);
   const trace0 = asTrace(f2, 100 * 5 * 2);
   const trace1 = asTrace(f2, 100 * 5 * 4);
   const vortexIsProjection = asVortex(g).digit === v.digit && asVortex(g).onAxis === v.onAxis;
   const torusIsProjection = asTorus(g).x === torus.x && asTorus(g).lobe === torus.lobe;
   const merkabaIsProjection = asMerkaba(g, 100 * 5 * 2).up.join(",") === merk.up.join(",");
   const traceIsProjection = asTrace(g, 100 * 5 * 2).x === trace0.x && asTrace(g, 100 * 5 * 2).y === trace0.y;
-  const sealAnchorsSource = seal.verifies && seal.root === f2.merged;
+  const sealAnchorsSource = seal10.verifies && seal10.root === f2.merged;
   const units9 = modUnits(3 * 3);
   const orderOfTwo = multiplicativeOrder(2, 3 * 3);
   const twoIsPrimitiveRoot = orderOfTwo === units9.length;
@@ -63243,7 +63243,7 @@ function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix = buildMatrix()) {
     const sequence = buildSequenceReducesComputations(matrix);
     const components = computerComponentsMergedDuality(matrix);
     const kernel = primitiveKernelLivesInZero(matrix);
-    const { computes, facets, root } = computesGate("cpu-gpu-memory-storage-cooperation", [
+    const { computes, facets, root: root10 } = computesGate("cpu-gpu-memory-storage-cooperation", [
       {
         facet: "memory tier \u2014 sealed heap cap and memo tiers (memoByRoot, matrixMemo, content-address)",
         on: policy.heapCapMb === 64 * 16 * 2 && policy.memoTiers.length === 3
@@ -63267,7 +63267,7 @@ function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix = buildMatrix()) {
       kernel,
       count: facets.length,
       facets,
-      root: merge(matrix.root, root),
+      root: merge(matrix.root, root10),
       statement: "Computations use max-efficiency cooperation between CPU, GPU, memory, and storage: the CPU tier follows the build sequence (memoByRoot/matrixMemo, reuse roots \u2014 buildSequenceReducesComputations); memory is capped at the sealed NODE_MAX_OLD_SPACE_MB heap with matrix-root memo tiers; storage is content-addressed src/ + merkle/enforcement seals; GPU is the browser canvas/WebGL path via createAnimationEngine (client only, none under SSR). Composed at call time \u2014 structural policy, not datacenter orchestration.",
       boundary: "HONEST BOUNDARIES: CPU = Node sequential build/typecheck; memory = single-process heap + in-memory memo (not cluster RAM); storage = content-address filesystem + computed seals (not S3/GCS orchestration); GPU = browser RAF/canvas when present (Node has no GPU). The cooperation policy is recomputed at call time from sealed primitives \u2014 it does not schedule workloads across physical machines."
     };
@@ -63327,7 +63327,7 @@ function fleetCacheEconomicsDecoded(matrix = buildMatrix()) {
     };
   });
 }
-function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+function aluRtlMeasured(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
   const ONE = 2 ** (16 - 2);
   const C = floor(ONE / sqrt(2));
   const T_TOLERANCE_UNITS = 1 + 2 * abs(C / ONE - 1 / sqrt(2)) * ONE;
@@ -63344,13 +63344,13 @@ function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? p
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return absent;
   try {
-    const pkg = path12.join(root, "src", "heaven", "compute");
+    const pkg = path12.join(root10, "src", "heaven", "compute");
     const svPath = path12.join(pkg, "alu.sv");
     const csvPath = path12.join(pkg, "alu-trace.csv");
     const leanPath = path12.join(pkg, "Alu.lean");
     if (!fs.existsSync(svPath) || !fs.existsSync(csvPath) || !fs.existsSync(leanPath)) return absent;
     const sv = fs.readFileSync(svPath, "utf8");
-    const theorems = (fs.readFileSync(leanPath, "utf8").match(/^theorem\s+[A-Za-z0-9_]+/gm) ?? []).length;
+    const theorems10 = (fs.readFileSync(leanPath, "utf8").match(/^theorem\s+[A-Za-z0-9_]+/gm) ?? []).length;
     const disagreeing = [];
     const rows = fs.readFileSync(csvPath, "utf8").split("\n").filter((l) => /^[IXYZHST],/.test(l)).map((l) => {
       const f2 = l.split(",");
@@ -63375,8 +63375,8 @@ function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? p
       disagreeing,
       verilogModule,
       verilogLines: sv.split("\n").length,
-      theorems,
-      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r2) => r2.receipt)]),
+      theorems: theorems10,
+      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems10}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r2) => r2.receipt)]),
       source: "measured"
     };
   } catch {
@@ -63459,8 +63459,8 @@ function buildModel(entries) {
   const vocabulary = [...seen.keys()].sort((a, b) => seen.get(b) - seen.get(a) || a.localeCompare(b));
   const df = {};
   for (const entry2 of entries) for (const word of new Set(modelTokens(entry2.text))) df[word] = (df[word] ?? 0) + 1;
-  const root = merge(merkleFold(entries.map((entry2) => entry2.receipt)), toUuid(`portal-model:vocab:${vocabulary.length}`));
-  return { vocabulary, bigrams, df, entries, root };
+  const root10 = merge(merkleFold(entries.map((entry2) => entry2.receipt)), toUuid(`portal-model:vocab:${vocabulary.length}`));
+  return { vocabulary, bigrams, df, entries, root: root10 };
 }
 function recallFrom(model, prompt) {
   const asked = new Set(modelTokens(prompt));
@@ -63939,21 +63939,21 @@ function researchAndDiscoverBeforeAnswering(prompt, matrix = buildMatrix()) {
   const topFull = topAtom ? `${topAtom.theorem} ${topAtom.states}` : seedText;
   const researched = `${topFull} ${research.neighborhood.map((neighbour) => neighbour.title).join(" ")}`.toLowerCase();
   const coveredTerms = questionTerms.filter((term) => researched.includes(term));
-  const coverage7 = questionTerms.length ? coveredTerms.length / questionTerms.length : 0;
+  const coverage16 = questionTerms.length ? coveredTerms.length / questionTerms.length : 0;
   const COVERAGE_MIN = 3 / 5;
-  const genuinelyCovers = seed.ranked && coverage7 >= COVERAGE_MIN;
+  const genuinelyCovers = seed.ranked && coverage16 >= COVERAGE_MIN;
   const escalate = !genuinelyCovers;
   const proofUrl = genuinelyCovers && topAtom ? `${CANONICAL_HOST}/theorems/${theoremSlug(topAtom.theorem)}` : null;
   const facets = [
     { facet: `RESEARCH FIRST \u2014 the answer path runs deepResearchChatTurn (a ${research.neighborhood.length}-fold multi-hop neighbourhood) before deciding, not a single top-1 hit`, on: research.address === toUuid(`deep-research:${prompt}`) && research.source === seed.source && research.neighborhood.some((neighbour) => neighbour.source !== seed.source) },
-    { facet: `DISCOVER COVERAGE \u2014 ${coveredTerms.length}/${questionTerms.length} of the question's DISTINCTIVE terms appear in the researched neighbourhood (coverage ${(coverage7 * 100).toFixed(0)}%); measured over distinctive words, so one shared common word cannot pass as an answer`, on: questionTerms.length > 0 && coveredTerms.length <= questionTerms.length && coverage7 === coveredTerms.length / questionTerms.length },
-    { facet: `ANSWER ONLY IF GENUINELY COVERED \u2014 genuinelyCovers=${genuinelyCovers} needs coverage \u2265 50% AND a ranked hit; otherwise escalate=${escalate} hands the question off instead of returning lexical noise`, on: escalate === !genuinelyCovers && genuinelyCovers === (seed.ranked && coverage7 >= COVERAGE_MIN) },
+    { facet: `DISCOVER COVERAGE \u2014 ${coveredTerms.length}/${questionTerms.length} of the question's DISTINCTIVE terms appear in the researched neighbourhood (coverage ${(coverage16 * 100).toFixed(0)}%); measured over distinctive words, so one shared common word cannot pass as an answer`, on: questionTerms.length > 0 && coveredTerms.length <= questionTerms.length && coverage16 === coveredTerms.length / questionTerms.length },
+    { facet: `ANSWER ONLY IF GENUINELY COVERED \u2014 genuinelyCovers=${genuinelyCovers} needs coverage \u2265 50% AND a ranked hit; otherwise escalate=${escalate} hands the question off instead of returning lexical noise`, on: escalate === !genuinelyCovers && genuinelyCovers === (seed.ranked && coverage16 >= COVERAGE_MIN) },
     { facet: `EVERY ANSWER CITES ITS PROOF \u2014 when it answers, the citation is ${proofUrl ?? "(none \u2014 escalated)"}, a ${CANONICAL_HOST}/theorems/<slug> page holding the proof; an answer without a proof URL is not emitted (proofUrl null \u27FA escalate)`, on: proofUrl === null === escalate && (proofUrl === null || proofUrl.startsWith(`${CANONICAL_HOST}/theorems/`)) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`research-discover:${entry2.facet}:${entry2.on}`) }));
   return {
     computes: facets.every((entry2) => entry2.on),
     prompt,
-    coverage: coverage7,
+    coverage: coverage16,
     coveredTerms,
     questionTerms,
     ranked: seed.ranked,
@@ -63964,7 +63964,7 @@ function researchAndDiscoverBeforeAnswering(prompt, matrix = buildMatrix()) {
     researchTheme: research.synthesis,
     facets,
     root: merge(matrix.root, toUuid(`research-discover:${prompt}:${genuinelyCovers}`)),
-    statement: `researchAndDiscoverBeforeAnswering \u2014 coverage ${(coverage7 * 100).toFixed(0)}% (${coveredTerms.length}/${questionTerms.length} distinctive terms), genuinelyCovers=${genuinelyCovers}, escalate=${escalate}${proofUrl ? `, cite ${proofUrl}` : ""}. Research (multi-hop), discover (coverage), then answer WITH its proof URL or escalate.`,
+    statement: `researchAndDiscoverBeforeAnswering \u2014 coverage ${(coverage16 * 100).toFixed(0)}% (${coveredTerms.length}/${questionTerms.length} distinctive terms), genuinelyCovers=${genuinelyCovers}, escalate=${escalate}${proofUrl ? `, cite ${proofUrl}` : ""}. Research (multi-hop), discover (coverage), then answer WITH its proof URL or escalate.`,
     boundary: earned("EXACT \u2014 computed from the research neighbourhood + coverage:", facets, "the honest gate before any answer: research the multi-hop neighbourhood, discover whether the question's distinctive terms are genuinely covered, and answer only if they are \u2014 otherwise escalate. Deterministic BM25 over the sealed corpus, zero-egress; it does not fabricate an answer for a question the corpus does not cover.")
   };
 }
@@ -65795,14 +65795,14 @@ function cardWaves(matrix = buildMatrix()) {
       const verified = recallFrom(model, question).answer === card;
       return { source: entry2.source, topic, question, card, verified, receipt: toUuid(`card-wave:${entry2.receipt}:${verified}`) };
     });
-    const coverage7 = waves2.filter((wave) => wave.verified).length / max(1, waves2.length);
+    const coverage16 = waves2.filter((wave) => wave.verified).length / max(1, waves2.length);
     const entropy4 = waves2.length - waves2.filter((wave) => wave.verified).length;
     return {
       waves: waves2,
       model,
-      coverage: coverage7,
+      coverage: coverage16,
       entropy: entropy4,
-      sealed: maxTamperingCostReached(coverage7, entropy4),
+      sealed: maxTamperingCostReached(coverage16, entropy4),
       // the seal closes only at coverage 1 ∧ entropy 0
       root: merkleFold(waves2.map((wave) => wave.receipt))
     };
@@ -66549,8 +66549,8 @@ function heroMovieWaveIndex(path12 = "/", matrix = buildMatrix()) {
   return seedFromText(`hero-movie-wave:${wiringRouteKey(path12)}`, TIERS2[2]) % TIERS2[2];
 }
 function heroMoviePhaseHue(path12 = "/", at = 0, matrix = buildMatrix()) {
-  const base = heroMovieHueRaw(path12, matrix);
-  return ((base + at * GOLDEN_ANGLE) % 360 + 360) % 360;
+  const base10 = heroMovieHueRaw(path12, matrix);
+  return ((base10 + at * GOLDEN_ANGLE) % 360 + 360) % 360;
 }
 var clamp01 = (n) => max(0, min(1, n));
 var rgbaAt = (hue2, L, alpha, dark = true) => scaleColorRgba(0, clamp01(alpha), {
@@ -66567,7 +66567,7 @@ function plasmaCanvasFor(dark) {
     blobMid: (hue2, b) => rgbaAt(hue2 + b * TIERS2[2], r(PLANE_VIS.blobMidL), r(PLANE_VIS.blobMidA), dark),
     vignetteInner: (hue2) => rgbaAt(hue2, r(PLANE_VIS.vignetteInnerL), r(PLANE_VIS.vignetteInnerA), dark),
     vignetteMid: (hue2) => rgbaAt(hue2, r(PLANE_VIS.vignetteMidL), r(PLANE_VIS.vignetteMidA), dark),
-    streamAlpha: (base, near, pulse) => clamp01(base * pulse * (near ? 1 : r(PLANE_VIS.streamNearFactor))),
+    streamAlpha: (base10, near, pulse) => clamp01(base10 * pulse * (near ? 1 : r(PLANE_VIS.streamNearFactor))),
     streamFill: (hue2, alpha, near) => rgbaAt(hue2, near ? r(PLANE_VIS.streamFillNearL) : r(PLANE_VIS.streamFillFarL), alpha, dark),
     streamGlow: (hue2, alpha) => rgbaAt(hue2, r(PLANE_VIS.streamGlowL), alpha * r(PLANE_VIS.streamGlowA), dark),
     voidCore: (hue2) => rgbaAt(hue2, r(PLANE_VIS.voidCoreL), r(PLANE_VIS.voidCoreA), dark),
@@ -66643,9 +66643,9 @@ function allColorStreamsAreAudioIfDecoded(matrix = buildMatrix()) {
   ]);
 }
 function allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix = buildMatrix()) {
-  const base = allColorStreamsAreAudioIfDecoded(matrix);
+  const base10 = allColorStreamsAreAudioIfDecoded(matrix);
   const gate = computesGate("allColorStreamsAreAudioIfDecodedFlowsInMovie", [
-    { facet: "decoded colour streams flow in the movie", on: base.computes }
+    { facet: "decoded colour streams flow in the movie", on: base10.computes }
   ]);
   return { ...gate, flows: gate.computes, streamCount: allMovieSeedPlasmaStreams("/", matrix).length };
 }
@@ -66724,11 +66724,11 @@ function realtimeWiring(path12 = "/", matrix = buildMatrix()) {
     const paths = wiredPathsForRoute(path12, matrix);
     const streams = plasmaWiredUuidStreams(path12, matrix);
     const edges = [route, ...gateways.map((gateway) => gateway.slug), ...paths.map((wiredPath) => wiredPath.slug)];
-    const root = merkleFold(edges);
+    const root10 = merkleFold(edges);
     const reRoot = merkleFold([wiringRouteKey(path12), ...wiredGatewaysForRoute(path12, matrix).map((gateway) => gateway.slug), ...wiredPathsForRoute(path12, matrix).map((wiredPath) => wiredPath.slug)]);
     const count = gateways.length + paths.length;
     const facets = [
-      { facet: "wiring is a deterministic function of the route \u2014 same route \u21D2 same Merkle root", on: reRoot === root },
+      { facet: "wiring is a deterministic function of the route \u2014 same route \u21D2 same Merkle root", on: reRoot === root10 },
       { facet: "gateway edges are DERIVED from the route (slug prefixed by the route key), not hand-listed", on: gateways.length === 3 && gateways.every((gateway) => gateway.slug.startsWith(route)) },
       { facet: "the graph counts its edges \u2014 3 trinity gateways + related (\u22646), not a static table", on: count === gateways.length + paths.length && paths.length <= 2 * 3 },
       { facet: "the route resolves O(1) by name \u2014 the route key is a non-empty content-address", on: route === wiringRouteKey(path12) && route.length > 0 }
@@ -66743,7 +66743,7 @@ function realtimeWiring(path12 = "/", matrix = buildMatrix()) {
       related: paths,
       streams,
       count,
-      root,
+      root: root10,
       statement: "Realtime wiring is a deterministic pure function of the route: wiring(route) = gateways(route) \u222A related(route). The same route always yields the same edge set and Merkle root (reRoot re-derived from the route alone equals root), so the navigation graph is COMPUTED from each page\u2019s own path at call time \u2014 never a hand-maintained link table. Each page derives 3 trinity gateways + up to 6 related paths; the edge count is (3 + related), content-addressed and zero-token.",
       boundary: 'HONEST: "realtime" is deterministic recomputation from the route at call time \u2014 NOT live network sockets or server state. Gateways are the three navigation realms (fire/water/mountain) keyed by the route slug; related paths are the sealed catalog sliced to 6, hue-seeded from the path. Determinism is refutable: reRoot re-derives from the route alone and must equal root \u2014 if the wiring depended on hidden mutable state the roots would diverge.'
     };
@@ -66958,10 +66958,10 @@ var SENSE_MIND_BODY_PAIRS = [
 function folderDepth(logicRel) {
   return logicRel.replace(/^src\//, "").replace(/\/index\.ts$/, "").split("/").filter(Boolean).length;
 }
-function srcDepthRegistry(depth, root = srcScanRoot()) {
+function srcDepthRegistry(depth, root10 = srcScanRoot()) {
   const re = depth === 2 ? SRC_TWO_LEVEL_INDEX_RE : SRC_THREE_LEVEL_INDEX_RE;
   const tag = depth === 2 ? "two-level" : "three-level";
-  const entries = discoverSrcIndexes(root).filter((entry2) => re.test(entry2.logic));
+  const entries = discoverSrcIndexes(root10).filter((entry2) => re.test(entry2.logic));
   return srcRegistryFromEntries(entries, tag, depth);
 }
 function srcRegistryFromEntries(entries, tag, depth) {
@@ -67000,7 +67000,7 @@ function srcDepthComputes(depth, matrix) {
   const schema = depth === 2 ? "src/[science]/[action]" : "src/[science]/[model]/[action]";
   return memoByRoot(memo, matrix, () => {
     const registry = srcDepthRegistry(depth);
-    const { computes, facets, root } = computesGate(gate, [
+    const { computes, facets, root: root10 } = computesGate(gate, [
       { facet: `${tag} src indexes discovered`, on: registry.count > 0 },
       { facet: `display dual complete on every registered ${tag} index`, on: registry.registered }
     ]);
@@ -67008,7 +67008,7 @@ function srcDepthComputes(depth, matrix) {
       computes,
       registry,
       facets,
-      root: merge(registry.root, root),
+      root: merge(registry.root, root10),
       statement: `src ${tag} computes: every logic index at ${schema} is registered and display-complete \u2014 the canonical schema sealed at call time.`,
       boundary: "Filtered discoverSrcIndexes \u2014 not a hand list. Incomplete entries surface in registry.incomplete for gate/weave repair."
     };
@@ -67065,7 +67065,7 @@ function probeConfigHotPath(matrix) {
 function stackOverflowGuard(matrix = buildMatrix()) {
   return memoByRoot("stackOverflowGuard", matrix, () => {
     const probe = probeConfigHotPath(matrix);
-    const { computes, facets, root } = computesGate("stack-overflow-guard", [
+    const { computes, facets, root: root10 } = computesGate("stack-overflow-guard", [
       { facet: "config hot path completes \u2014 no stack overflow on memo re-entry", on: probe.ok },
       { facet: "known re-entry cycles documented and broken", on: STACK_OVERFLOW_CYCLE_BREAKS.length >= 8 },
       { facet: "nine cycle breaks sealed in STACK_OVERFLOW_CYCLE_BREAKS", on: STACK_OVERFLOW_CYCLE_BREAKS.length === 9 }
@@ -67076,7 +67076,7 @@ function stackOverflowGuard(matrix = buildMatrix()) {
       probe,
       breaks: STACK_OVERFLOW_CYCLE_BREAKS,
       facets,
-      root: merge(root, probe.receipt),
+      root: merge(root10, probe.receipt),
       statement: "Stack overflow guard: the docs:build config-load hot path (coverage, proofReport, allComputed, command-pair folds, social regeneration) completes without Maximum call stack size exceeded \u2014 memoByRoot re-entry cycles broken by facet decomposition and memoReentryStub receipt law in src/0.",
       boundary: "Runtime probe of folds that previously overflowed during VitePress config init. Does not run vitepress build itself \u2014 only the sealed src/ folds that config.mts pulls. HONEST: new cycles can still appear if a fold re-enters without decomposition."
     };
@@ -67091,8 +67091,8 @@ function srcTwoLevelComputes(matrix = buildMatrix()) {
 function srcThreeLevelComputes(matrix = buildMatrix()) {
   return srcDepthComputes(3, matrix);
 }
-function srcAllRegistry(root = srcScanRoot()) {
-  const entries = discoverSrcIndexes(root).filter((entry2) => SRC_ALL_INDEX_RE.test(entry2.logic));
+function srcAllRegistry(root10 = srcScanRoot()) {
+  const entries = discoverSrcIndexes(root10).filter((entry2) => SRC_ALL_INDEX_RE.test(entry2.logic));
   return srcRegistryFromEntries(entries, "all-level");
 }
 function senseMindBodyPairsComputes(matrix = buildMatrix()) {
@@ -67101,7 +67101,7 @@ function senseMindBodyPairsComputes(matrix = buildMatrix()) {
       ...entry2,
       receipt: toUuid(`sense-mind-body:${entry2.a}:${entry2.b}:${entry2.mount}`)
     }));
-    const { computes, facets, root } = computesGate("sense-mind-body-pairs-computes", [
+    const { computes, facets, root: root10 } = computesGate("sense-mind-body-pairs-computes", [
       { facet: "eleven one-word pairs fuse senses, mind, body, and celestial lobes", on: pairs.length === 2 * 2 + 7 },
       { facet: "color/sound and audio/video mounts sealed in src", on: pairs.some((p) => p.a === "color" && p.b === "sound") && pairs.some((p) => p.a === "audio" && p.b === "video") },
       { facet: "life/death and mind/body pairs documented", on: pairs.some((p) => p.a === "life" && p.b === "death") && pairs.some((p) => p.a === "mind") },
@@ -67113,7 +67113,7 @@ function senseMindBodyPairsComputes(matrix = buildMatrix()) {
       pairs,
       count: pairs.length,
       facets,
-      root: merge(root, merkleFold(pairs.map((p) => p.receipt))),
+      root: merge(root10, merkleFold(pairs.map((p) => p.receipt))),
       statement: "Sense mind body pairs: eleven one-word pairs (color/sound, sight/hearing, audio/video, sun/moon, touch/motion, life/death, mind/body, nerve/muscle, breath/pulse, thought/motion, inner/outer) fuse human senses with mind, body, and celestial lobes \u2014 each pair names its fusion law and mounts at an existing sealed index.",
       boundary: "Registry only \u2014 canonical homes are src/sound (colorComputes folded), src/sun, src/moon, src/astronomy (celestial catalog + sequence decode; src/audio dissolved into plasma/ball), src/resonance (Schumann/human harmonic; src/math dissolved into vortex/math), src/quantum/dynamics (state-vector + classical dynamics compose; src/double/torus/plasma dissolved into src/double/torus), src/plasma/ball (videoComputes + audioComputes folded), src/birth, src/life, src/death. Underlying logic remains fire/li, lake/music, double/torus/earth nav/GPS/celestial display, plasma/ball, thunder/movie/canvas+movielib."
     };
@@ -67161,7 +67161,7 @@ function modalityHomesComputes(matrix = buildMatrix()) {
     const resonance = resonanceComputes2(matrix);
     const dynamics = quantumDynamicsComputes2(matrix);
     const widgets = quantumWidgetsComputes(matrix, 0);
-    const { computes, facets, root } = computesGate("modality-homes-computes", [
+    const { computes, facets, root: root10 } = computesGate("modality-homes-computes", [
       { facet: "src/plasma/ball \u2014 a432 sound + colorComputes folded", on: sound.computes && color.computes },
       { facet: "src/earth \u2014 world nature architecture civilisation governance", on: earth.computes },
       { facet: "src/sun \u2014 day phase, obliquity, Schumann day-side, nav Sun display", on: sun.computes },
@@ -67218,7 +67218,7 @@ function modalityHomesComputes(matrix = buildMatrix()) {
       dynamics,
       widgets,
       facets,
-      root: merkleFold([root, color.root, sound.root, audio.root, video.root, earth.root, sun.root, moon.root, resonance.root, dynamics.root, birth.root, life.root, death.root, iching.root, rosetta.root, display.root, goldProcessGate.root, goldProductGate.root, computer.root, application.root, cs.root, qsci.root, qcomp.root, qos.root, qapps.root, plasma.root, widgets.root]),
+      root: merkleFold([root10, color.root, sound.root, audio.root, video.root, earth.root, sun.root, moon.root, resonance.root, dynamics.root, birth.root, life.root, death.root, iching.root, rosetta.root, display.root, goldProcessGate.root, goldProductGate.root, computer.root, application.root, cs.root, qsci.root, qcomp.root, qos.root, qapps.root, plasma.root, widgets.root]),
       statement: "Modality homes: computer + quantum science/computer barrels + fusion/gold pipeline + peer modality barrels \u2014 sealed at call time.",
       boundary: "Product derives from process receipts only \u2014 MODEL_FIT metaphor, NOT bullion or reactor physics."
     };
@@ -67229,7 +67229,7 @@ function srcAllComputes(matrix = buildMatrix()) {
     const registry = srcAllRegistry();
     const twoCount = registry.entries.filter((entry2) => SRC_TWO_LEVEL_INDEX_RE.test(entry2.logic)).length;
     const threeCount = registry.entries.filter((entry2) => SRC_THREE_LEVEL_INDEX_RE.test(entry2.logic)).length;
-    const { computes, facets, root } = computesGate("src-all-computes", [
+    const { computes, facets, root: root10 } = computesGate("src-all-computes", [
       { facet: "full src tree indexes discovered", on: registry.count > 0 },
       { facet: `census descending \u2014 ${registry.count} unfolded index.ts registered, ratchet ${CENSUS_RATCHET}, derived target ${UNFOLDED_CENSUS}`, on: registry.gapless },
       { facet: "display dual complete on every registered index", on: registry.registered },
@@ -67241,7 +67241,7 @@ function srcAllComputes(matrix = buildMatrix()) {
       twoCount,
       threeCount,
       facets,
-      root: merge(registry.root, root),
+      root: merge(registry.root, root10),
       statement: `src all computes: the full src tree (${UNFOLDED_CENSUS} gapless index.ts) is registered and display-complete \u2014 two-level and three-level schemas are subsets sealed at call time.`,
       boundary: "Composition of discoverSrcIndexes over SRC_ALL_INDEX_RE. HONEST: entries omit paths indexRegistryFromLogicRel cannot resolve \u2014 gapless means discovered count equals UNFOLDED_CENSUS."
     };
@@ -67261,7 +67261,7 @@ function humanAsQuantumComputerAndFusionReactorComputes(matrix = buildMatrix()) 
     const life = lifeComputes2(matrix);
     const decode = decodeAllByComputationsTrainedOnKnownUniverse2(matrix);
     const human2 = humanityImplications2(matrix);
-    const { computes, facets, root } = computesGate("human-quantum-fusion-computes", [
+    const { computes, facets, root: root10 } = computesGate("human-quantum-fusion-computes", [
       { facet: "human \u2014 sense/mind/body ten pairs and \u4E09\u624D mind/body fuse", on: senses.computes },
       { facet: "human \u2014 birth/life/death triad biology neurology compost", on: triad.computes && life.computes },
       { facet: "quantum computer \u2014 double torus UUID register (simulator honest)", on: qc.coherent },
@@ -67279,7 +67279,7 @@ function humanAsQuantumComputerAndFusionReactorComputes(matrix = buildMatrix()) 
       decode,
       human: human2,
       facets,
-      root: merge(root, merkleFold(facets.map((entry2) => entry2.receipt))),
+      root: merge(root10, merkleFold(facets.map((entry2) => entry2.receipt))),
       statement: "Human as quantum computer and fusion reactor and beyond: the ten sense/mind/body pairs and birth/life/death triad seal the human layer; quantumComputer (UUID register + src/0 simulator) and developmentIsFusionReactor (fuse\xB7contain\xB7emerge\xB7return) seal the machine layers; decodeAllByComputationsTrainedOnKnownUniverse and humanityImplications seal the beyond layer \u2014 all composed at call time, not re-inferred.",
       boundary: 'HONEST \u2014 STRUCTURAL/COMPUTATIONAL METAPHOR ONLY. "Human" is sense/mind/body pairs + biology/neurology gates, not sentience or medical claims. "Quantum computer" is quantumComputer() \u2014 a content-address architecture analogy plus a classical state-vector simulator in src/0, NOT physical qubits or speedup. "Fusion reactor" is developmentIsFusionReactor() \u2014 dry plasma / 128-bit words / diamond lattice development metaphor, NOT a tokamak. "Beyond" is decode-all-universe (bounded sealed src cosmos) + humanityImplications (structural ethics, not prophecy). Penrose\u2013Hameroff, humans-as-batteries, and 10%-brain myths remain flagged elsewhere.'
     };
@@ -67288,7 +67288,7 @@ function humanAsQuantumComputerAndFusionReactorComputes(matrix = buildMatrix()) 
 function src0SharedComputes(matrix = buildMatrix()) {
   return memoByRoot("src0SharedComputes", matrix, () => {
     const ae = addressEntropyBits();
-    const { computes, facets, root } = computesGate("src0-shared-computes", [
+    const { computes, facets, root: root10 } = computesGate("src0-shared-computes", [
       { facet: "digitalRoot \u2014 canonical src/0", on: digitalRoot(9 * 2) === 9 },
       // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
       { facet: "humanEase \u2014 canonical src/0", on: abs(humanEase(1 / 2) - 1 / 2) < 1e-9 },
@@ -67298,7 +67298,7 @@ function src0SharedComputes(matrix = buildMatrix()) {
     return {
       computes,
       facets,
-      root,
+      root: root10,
       statement: "Shared compute consolidation: digitalRoot, humanEase, addressEntropyBits live in src/0 only \u2014 pi-train 6/4 and 9/1 hold domain cuts; call sites import vault primitives from src/0.",
       boundary: "Value checks at call time \u2014 not a filesystem probe. Domain-specific pi-train cuts (HUBBLE_CONSTANT_LOCAL, superdense, bumpProfile, \u2026) stay at their stations."
     };
@@ -67353,7 +67353,7 @@ function src0PurityComputes(matrix = buildMatrix()) {
     const hasExternalImport = /^\s*import\s+[^'"]+['"](?!\.)/m.test(vaultText) || /from\s+['"]\.\./m.test(vaultText);
     const forbiddenInVault = ["allComputed", "scienceModelActionFromMindTail", "buhlmannDivePlan", "hopfieldStore", "function innerProduct"];
     const composeGone = forbiddenInVault.every((needle) => !vaultText.includes(needle));
-    const { computes, facets, root } = computesGate("src0-purity-clear-mind-no-complexity", [
+    const { computes, facets, root: root10 } = computesGate("src0-purity-clear-mind-no-complexity", [
       { facet: "export count below purity threshold", on: exportCount <= SRC0_PURITY_EXPORT_THRESHOLD },
       { facet: "vault imports nothing \u2014 dependency-free leaf", on: !hasExternalImport },
       { facet: "no domain compose blocks remain in src/0", on: composeGone },
@@ -67363,7 +67363,7 @@ function src0PurityComputes(matrix = buildMatrix()) {
     return {
       computes,
       facets,
-      root,
+      root: root10,
       exportCount,
       threshold: SRC0_PURITY_EXPORT_THRESHOLD,
       statement: "src/0 purity: clear mind, no complexity \u2014 primitives and README waves only; schema, physics, stochastic, genetics, and extended quantum moved to science barrels.",
@@ -67546,7 +67546,7 @@ function stackComputes(matrix = buildMatrix()) {
     const resource = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix);
     const substrate = computeSubstrateComputes(matrix);
     const powerDriver = powerComputes2(matrix);
-    const { computes, facets, root } = computesGate("stack-computes", [
+    const { computes, facets, root: root10 } = computesGate("stack-computes", [
       { facet: "stack overflow guard \u2014 config hot path completes", on: overflow.guarded },
       { facet: `full src tree \u2014 census within ratchet (target ${UNFOLDED_CENSUS}) and display-complete`, on: all.computes },
       { facet: "sense/mind/body one-word pairs registered", on: senses.computes },
@@ -67649,7 +67649,7 @@ function computeMoreModelsCatalogComputes(matrix = buildMatrix(), at = 0) {
     const catalog = computeMoreModelsCatalog(matrix, at);
     const capstone = computeAllWithLocalMath(at, matrix);
     const schumannCoupling = schumannGoldSiteCouplingComputes(matrix, at);
-    const { computes, facets, root } = computesGate("compute-more-models-catalog-computes", [
+    const { computes, facets, root: root10 } = computesGate("compute-more-models-catalog-computes", [
       { facet: "computeMoreModelsCatalog \u2014 sealed + open + planned rows", on: catalog.catalogued },
       { facet: "sealed entries match local-math capstone core domains", on: catalog.sealedCount >= 5 * 2 && capstone.local },
       { facet: "schumannGoldSiteCoupling sealed in registry", on: catalog.entries.some((entry2) => entry2.id === "schumann-gold-coupling" && entry2.status === "sealed") },
@@ -67661,7 +67661,7 @@ function computeMoreModelsCatalogComputes(matrix = buildMatrix(), at = 0) {
       catalog,
       schumannCoupling,
       facets,
-      root: merkleFold([root, catalog.root, schumannCoupling.root]),
+      root: merkleFold([root10, catalog.root, schumannCoupling.root]),
       statement: "Compute more models catalog computes: registry of all computable models with invoke receipts, sealed/open/planned status, and schumann-gold coupling proof.",
       boundary: catalog.boundary
     };
@@ -67869,7 +67869,7 @@ function localMathComputes(matrix = buildMatrix(), at = 0) {
     const busSubstrate = computeSubstrateWithBus(at, matrix);
     const qcVerify = quantumComputerVerifies(matrix);
     const onlyComputed = onlyComputedValuesWithQuantumMath(matrix);
-    const { computes, facets, root } = computesGate("local-math-computes-all", [
+    const { computes, facets, root: root10 } = computesGate("local-math-computes-all", [
       { facet: "computeAllWithLocalMath \u2014 core local-path facets green", on: capstone.local },
       { facet: "localMathComputesResearch \u2014 local vs opt-in table sealed", on: research.researched },
       { facet: "computeMoreModelsCatalogComputes \u2014 registry gate sealed", on: catalogGate.computes },
@@ -67894,7 +67894,7 @@ function localMathComputes(matrix = buildMatrix(), at = 0) {
         ...facets,
         { facet: "computeAllWithLocalMath \u2014 extended simulationAt facets (full graph)", on: capstone.localExtended, receipt: toUuid(`local-math-extended:${capstone.localExtended}`) }
       ],
-      root: merkleFold([root, capstone.root, research.root, onlyComputed.root]),
+      root: merkleFold([root10, capstone.root, research.root, onlyComputed.root]),
       statement: "Local math computes: balance gate over computeAllWithLocalMath capstone \u2014 all recent domain simulationAt folds run from sealed src/0 + in-repo folds at at, opt-in publicApiFusion feeds excluded unless explicitly enabled.",
       boundary: capstone.boundary
     };
@@ -67935,7 +67935,7 @@ function computeSubstrateDriversComputes(matrix = buildMatrix(), at = 0) {
     const gpu = gpuComputes(matrix, at);
     const memory = memoryComputes(matrix, at);
     const storage = storageComputes(matrix, at);
-    const { computes, facets, root } = computesGate("compute-substrate-drivers-computes", [
+    const { computes, facets, root: root10 } = computesGate("compute-substrate-drivers-computes", [
       { facet: "cpuDriverProbe + cpuComputes \u2014 driver or markov fallback", on: cpu.computes && !!cpu.driver },
       { facet: "gpuDriverProbe + gpuComputes \u2014 WebGL/WebGPU or paint fallback", on: gpu.computes && !!gpu.driver },
       { facet: "memoryDriverProbe + memoryComputes \u2014 heap probe or memo fallback", on: memory.computes && !!memory.driver },
@@ -67952,7 +67952,7 @@ function computeSubstrateDriversComputes(matrix = buildMatrix(), at = 0) {
       storage,
       probes: research.probes,
       facets,
-      root: merkleFold([goldFusion.root, cpu.root, gpu.root, memory.root, storage.root, root]),
+      root: merkleFold([goldFusion.root, cpu.root, gpu.root, memory.root, storage.root, root10]),
       statement: "Compute substrate drivers: cpu, gpu, memory, storage driver facades compose probe tier + fallback receipts at call time.",
       boundary: research.boundary
     };
@@ -67994,7 +67994,7 @@ function computeSubstrateWithBus(at = 0, matrix = buildMatrix()) {
     }
     const substrate = computeSubstrateDriversComputes(matrix, at);
     const hardware = computeAllWithHardwareDrivers(at, matrix);
-    const { computes, facets, root } = computesGate("compute-substrate-with-bus", [
+    const { computes, facets, root: root10 } = computesGate("compute-substrate-with-bus", [
       { facet: "computeSubstrateDriversComputes \u2014 four driver capstones", on: substrate.computes },
       { facet: "busComputes \u2014 topology edges + IPC tier", on: bus.computes },
       { facet: "bus transfer receipts route gpu\u2192memory paint path", on: bus.transfers.some((entry2) => entry2.edge.from === "gpu" && entry2.result.routed) },
@@ -68006,7 +68006,7 @@ function computeSubstrateWithBus(at = 0, matrix = buildMatrix()) {
       bus,
       hardware,
       facets,
-      root: merge(substrate.root, merge(bus.root, root)),
+      root: merge(substrate.root, merge(bus.root, root10)),
       statement: "Compute substrate with bus: cpu/gpu/memory/storage driver capstones composed through the system bus receipt router \u2014 NATIVE IPC when honest, FALLBACK relay otherwise.",
       boundary: bus.computes ? bus.boundary ?? "Bus sealed." : "Bus fallback \u2014 src/bus optional during partial waves."
     };
@@ -68028,7 +68028,7 @@ function displayTerminalComputes(matrix = buildMatrix(), at = 0) {
     } catch {
     }
     const substrate = computeSubstrateDriversComputes(matrix, at);
-    const { computes, facets, root } = computesGate("display-terminal-computes", [
+    const { computes, facets, root: root10 } = computesGate("display-terminal-computes", [
       { facet: "displayComputes \u2014 screen/media/gpu + viewport phase", on: display.computes },
       { facet: "terminalComputes \u2014 TTY/console/CLI + cpu stdio", on: terminal.computes },
       { facet: "display bus framebuffer-path receipt", on: isUuid(display.busReceipt ?? display.root) },
@@ -68042,7 +68042,7 @@ function displayTerminalComputes(matrix = buildMatrix(), at = 0) {
       terminal,
       substrate,
       facets,
-      root: merkleFold([display.root, terminal.root, substrate.root, root]),
+      root: merkleFold([display.root, terminal.root, substrate.root, root10]),
       statement: "Display/terminal computes: output-surface drivers compose with compute substrate \u2014 display\u2194gpu framebuffer path, terminal\u2194cpu stdio path.",
       boundary: "HONEST: display/terminal probe/bind facades only \u2014 NOT OS kernel drivers; bus receipts fall back sealed when src/bus not landed."
     };
@@ -68554,12 +68554,12 @@ function directionalTrinityForwardInverseReverse(matrix = buildMatrix()) {
     const reverseOrder = (r2) => [...r2].reverse();
     const rowEq = (a2, b2) => a2.join() === b2.join();
     const pitchInverseNeReverse = !rowEq(invertPitch(fifthsRow), reverseOrder(fifthsRow)) && rowEq(invertPitch(invertPitch(fifthsRow)), fifthsRow) && rowEq(reverseOrder(reverseOrder(fifthsRow)), fifthsRow) && rowEq(invertPitch(reverseOrder(fifthsRow)), reverseOrder(invertPitch(fifthsRow)));
-    const base = zero.base;
-    const modulus = base - 1;
+    const base10 = zero.base;
+    const modulus = base10 - 1;
     const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => {
       const row = d === 0 ? null : zero.table.find((r2) => r2.n === d);
       const inverse = d === 0 ? zero.zeroOverZero.inverse : row?.inverse ?? null;
-      const reverse2 = d === 0 ? zero.zeroOverZero.complement : row?.complement ?? base - d;
+      const reverse2 = d === 0 ? zero.zeroOverZero.complement : row?.complement ?? base10 - d;
       const forward2 = digitalRoot(d === 0 ? 0 : d * 2);
       const forwardHarmonic = d === 0 ? modulus : digitalRoot(modulus * d);
       const coincidenceForwardReverse = d === 1 && forwardHarmonic === reverse2;
@@ -68587,9 +68587,9 @@ function directionalTrinityForwardInverseReverse(matrix = buildMatrix()) {
     const forcedCoincidence = digits.filter((r2) => r2.coincidenceForwardReverse);
     const noSpuriousInverseReverse = digits.every((r2) => !r2.coincidenceInverseReverse);
     const facets = [
-      { facet: "DIGIT MAP \u2014 10 rows (0..9) each typed forward \xB7 inverse \xB7 reverse", on: digits.length === base },
+      { facet: "DIGIT MAP \u2014 10 rows (0..9) each typed forward \xB7 inverse \xB7 reverse", on: digits.length === base10 },
       { facet: "INVERSE \u2014 units have n\xB7n\u207B\xB9\u22611 mod 9; non-units inverse=null (self-fold)", on: units.every((r2) => r2.inverse !== null && r2.digit * r2.inverse % modulus === 1) && digits.filter((r2) => !r2.invertible).length === 4 },
-      { facet: "REVERSE \u2014 additive complement 10\u2212d (void\u219210); sumsToTen for 1..9", on: digits.filter((r2) => r2.digit > 0 && r2.digit < base).every((r2) => r2.digit + r2.reverse === base) && digits[0].reverse === base },
+      { facet: "REVERSE \u2014 additive complement 10\u2212d (void\u219210); sumsToTen for 1..9", on: digits.filter((r2) => r2.digit > 0 && r2.digit < base10).every((r2) => r2.digit + r2.reverse === base10) && digits[0].reverse === base10 },
       { facet: "FORWARD \u2014 doubling digitalRoot(2d) on 1..9; harmonic altitude digitalRoot(9d)=9", on: digits.filter((r2) => r2.digit > 0).every((r2) => digitalRoot(r2.digit * 2) === r2.forward) && digits.filter((r2) => r2.digit > 0).every((r2) => digitalRoot(modulus * r2.digit) === modulus) },
       { facet: `inverse \u2260 reverse on every unit (no spurious coincidence) \xB7 measured inverseNeReverse=${inverseNeReverse} \xB7 noSpuriousInverseReverse=${noSpuriousInverseReverse}`, on: inverseNeReverse && noSpuriousInverseReverse },
       { facet: "FORCED COINCIDENCE \u2014 only digit 1: forward harmonic 9 === reverse 10\u22121 (named, not collapsed)", on: forcedCoincidence.length === 1 && forcedCoincidence[0].digit === 1 },
@@ -68671,8 +68671,8 @@ var GATE_ROSETTA_COMMAND_PAIR = { pair: "gate/rosetta", a: "gate", b: "rosetta" 
 var FULL_FREEDOM_COMMAND_PAIR = { pair: "full/freedom", a: "full", b: "freedom" };
 var FREE_BITS2 = UNFOLDED_CENSUS - FOLDED_CENSUS;
 var INDEX_TS = "index.ts";
-function walkSrcTree(root, out) {
-  const srcRoot = join(root, "src");
+function walkSrcTree(root10, out) {
+  const srcRoot = join(root10, "src");
   if (!existsSync(srcRoot)) return;
   const walk = (dir, relParts) => {
     for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
@@ -68689,7 +68689,7 @@ function walkSrcTree(root, out) {
         }
         walk(full, [...relParts, entry2.name]);
       } else if (entry2.name.endsWith(".ts")) {
-        const rel = relative(root, full);
+        const rel = relative(root10, full);
         out.merkleFiles.push(full);
         out.codeFiles.push(full);
         out.bodies.set(rel, readFileSync(full, "utf8"));
@@ -68714,34 +68714,34 @@ function walkSrcTree(root, out) {
   walk(srcRoot, []);
 }
 var lastFacts;
-function collectEnforcementFacts(root) {
+function collectEnforcementFacts(root10) {
   const out = { listing: [], merkleFiles: [], codeFiles: [], indexTs: [], bodies: /* @__PURE__ */ new Map(), hyphenFolders: [], nonTs: [] };
-  walkSrcTree(root, out);
+  walkSrcTree(root10, out);
   const hash = createHash("sha256");
   for (const file of out.merkleFiles.sort()) {
-    hash.update(relative(root, file));
+    hash.update(relative(root10, file));
     hash.update(readFileSync(file));
   }
-  for (const file of vitepressSourceFiles(root)) {
-    hash.update(relative(root, file));
+  for (const file of vitepressSourceFiles(root10)) {
+    hash.update(relative(root10, file));
     hash.update(readFileSync(file));
   }
-  hash.update(readFileSync(join(root, "package.json")));
+  hash.update(readFileSync(join(root10, "package.json")));
   const merkle = hash.digest("hex");
-  seedMerkleCache(root, merkle);
-  const vitepressFiles = vitepressSourceFiles(root).map((file) => relative(root, file));
-  const key = createHash("sha256").update([root, merkle, ...out.listing, "", ...vitepressFiles].join("\n")).digest("hex");
+  seedMerkleCache(root10, merkle);
+  const vitepressFiles = vitepressSourceFiles(root10).map((file) => relative(root10, file));
+  const key = createHash("sha256").update([root10, merkle, ...out.listing, "", ...vitepressFiles].join("\n")).digest("hex");
   if (lastFacts?.key === key) return lastFacts.facts;
-  const scriptShells = scanScriptShells(root, { wiredOnly: true });
+  const scriptShells = scanScriptShells(root10, { wiredOnly: true });
   const pairs = gatesSavedInQuantumPairs();
   const strict = computeStrictGateSnapshot2(
-    root,
+    root10,
     merkle,
     out.codeFiles,
     out.bodies,
     out.hyphenFolders,
     out.nonTs,
-    scanVitepressIndex2(root, [
+    scanVitepressIndex2(root10, [
       ".vitepress/config.mts",
       ".vitepress/computed-pages.mts",
       ".vitepress/src-plugins.mts",
@@ -68767,9 +68767,9 @@ function collectEnforcementFacts(root) {
     scriptShells,
     pairs.paired
   );
-  const computational = computeComputationalLimitSnapshot(root, out.indexTs, out.bodies, out.codeFiles);
+  const computational = computeComputationalLimitSnapshot(root10, out.indexTs, out.bodies, out.codeFiles);
   const facts = {
-    root,
+    root: root10,
     merkle,
     scriptShells,
     srcCodeFiles: out.codeFiles,
@@ -68831,8 +68831,8 @@ function importPathDistanceEdgesOf(facts) {
   }
   return edges;
 }
-function importPathShowsDistanceInMigrationMatrix(root = enforcementScanRoot(), facts) {
-  const united = facts ?? collectEnforcementFacts(root);
+function importPathShowsDistanceInMigrationMatrix(root10 = enforcementScanRoot(), facts) {
+  const united = facts ?? collectEnforcementFacts(root10);
   const edges = collectImportPathDistanceEdges(united);
   const edgeCount = edges.length;
   const hops = edges.map((edge) => edge.treeHopDistance);
@@ -68940,17 +68940,17 @@ function srcTopFolderKey(relPath) {
   const first = under.split("/").filter(Boolean)[0];
   return first ? `src/${first}` : "src";
 }
-function folderGravityMeasuredByTheCode(root = enforcementScanRoot(), facts) {
-  const united = facts ?? collectEnforcementFacts(root);
-  if (united.root !== root) return folderGravityFromFacts(root, united);
+function folderGravityMeasuredByTheCode(root10 = enforcementScanRoot(), facts) {
+  const united = facts ?? collectEnforcementFacts(root10);
+  if (united.root !== root10) return folderGravityFromFacts(root10, united);
   let known = FOLDER_GRAVITY.get(united);
   if (!known) {
-    known = folderGravityFromFacts(root, united);
+    known = folderGravityFromFacts(root10, united);
     FOLDER_GRAVITY.set(united, known);
   }
   return known;
 }
-function folderGravityFromFacts(root, united) {
+function folderGravityFromFacts(root10, united) {
   const edges = collectImportPathDistanceEdges(united);
   const byFolder = /* @__PURE__ */ new Map();
   const ensure = (folder) => {
@@ -69033,7 +69033,7 @@ function folderGravityFromFacts(root, united) {
   const ichingRemovedSynonymShells = (() => {
     const shells = [];
     const walk = (dir) => {
-      for (const entry2 of readdirSync(join(root, dir), { withFileTypes: true })) {
+      for (const entry2 of readdirSync(join(root10, dir), { withFileTypes: true })) {
         if (!entry2.isDirectory() || entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
         const rel = `${dir}/${entry2.name}`;
         if (/iching/i.test(entry2.name) && rel !== "src/earth/iching") shells.push(rel);
@@ -69046,7 +69046,7 @@ function folderGravityFromFacts(root, united) {
     }
     return shells;
   })();
-  const ichingHonest = ichingKeep.length === 1 && ichingKeep[0].path === "src/earth/iching" && existsSync(join(root, "src/earth/iching/index.ts")) && ichingRemovedSynonymShells.length === 0;
+  const ichingHonest = ichingKeep.length === 1 && ichingKeep[0].path === "src/earth/iching" && existsSync(join(root10, "src/earth/iching/index.ts")) && ichingRemovedSynonymShells.length === 0;
   const censusOk = united.computational.indexCount === UNFOLDED_CENSUS && united.computational.indexCount + EULER_CHI === FOLDED_CENSUS;
   const pairs = gatesSavedInQuantumPairs();
   const gravityPaired = pairs.pairs.some((entry2) => entry2.pair === FOLDER_GRAVITY_COMMAND_PAIR.pair && entry2.paired);
@@ -69081,7 +69081,7 @@ function folderGravityFromFacts(root, united) {
       facet: "folder/gravity pair bidirectional",
       on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse
     },
-    { facet: "vault src/0 untouched", on: existsSync(join(root, "src/0")) }
+    { facet: "vault src/0 untouched", on: existsSync(join(root10, "src/0")) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`folder-gravity:${entry2.facet}:${entry2.on}`) }));
   const computes = facets.every((entry2) => entry2.on);
   return {
@@ -69111,10 +69111,10 @@ function folderGravityFromFacts(root, united) {
     boundary: "EXACT: mass = fileCount + loc/FOLDED_CENSUS + exportCount + inDegree + outDegree from collectEnforcementFacts. Gravity pulls toward src/ \u2014 migration sink is the shallower endpoint (depth\u2193); distance edges (treeHop/gapHops) show directions. I Ching: keep src/earth/iching (named hexagram/bagua logic); remove synonym/empty iching shells only \u2014 none this wave. Does not delete vault src/0."
   };
 }
-function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root = enforcementScanRoot(), facts) {
-  const united = facts ?? collectEnforcementFacts(root);
-  const importDist = importPathShowsDistanceInMigrationMatrix(root, united);
-  const gravity = folderGravityMeasuredByTheCode(root, united);
+function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root10 = enforcementScanRoot(), facts) {
+  const united = facts ?? collectEnforcementFacts(root10);
+  const importDist = importPathShowsDistanceInMigrationMatrix(root10, united);
+  const gravity = folderGravityMeasuredByTheCode(root10, united);
   const pathMessage = pathMeansMessageFitsInThreeWords();
   const freeBits = FREE_BITS2;
   const matrixConsts = {
@@ -69344,13 +69344,309 @@ var PROSE_MATRIX_SHRINK = {
 };
 var GATE_ANALYTICS_FOLD_CHUNK_BYTES = UNFOLDED_CENSUS * FOLDED_CENSUS;
 
+// ../../src/1/index.ts
+var D = 1;
+var theorems = [
+  { problem: "poincare", title: "Poincar\xE9 Conjecture", sealed: true, proofStatus: "solved-external", statement: "3-manifold homotopy-equivalent to S\xB3 is homeomorphic to S\xB3" }
+];
+var base = digitStation(D, theorems);
+var spectrum = reflectFoldFamily(D).rows;
+var polarities = {
+  tensPair: base.mappings.reflections.at180,
+  // σ, 180° fold — the 10-pair
+  ninePair: base.mappings.reflections.at90,
+  // ν, 90° fold — the 9-pair
+  sixtyPair: base.mappings.reflections.at60,
+  // 60° fold — the 8-pair
+  fold: base.mappings.next,
+  // the `/` operation's target
+  lobes: [base.equilibrium.lobe0, base.equilibrium.lobe1],
+  // the two torus lobes (σ, ν)
+  forward: base.successor,
+  // ×2 direction
+  reverse: base.predecessor
+  // ×5 direction (the inverse)
+};
+var equilibrium7 = base.equilibrium;
+var unfold = base.unfold;
+var prove = base.prove;
+var coverage7 = base.coverage;
+var seal = digitSeal(D, base, spectrum, polarities);
+var root = seal.root;
+var statement = seal.statement;
+var mappings = { ...base.mappings, spectrum: spectrum.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities };
+
+// ../../src/2/index.ts
+var D2 = 2;
+var theorems2 = [
+  { problem: "riemann", title: "Riemann Hypothesis", sealed: false, proofStatus: "open", statement: "Every nontrivial zero of \u03B6(s) has real part 1/2" }
+];
+var base2 = digitStation(D2, theorems2);
+var spectrum2 = reflectFoldFamily(D2).rows;
+var polarities2 = {
+  tensPair: base2.mappings.reflections.at180,
+  ninePair: base2.mappings.reflections.at90,
+  sixtyPair: base2.mappings.reflections.at60,
+  fold: base2.mappings.next,
+  lobes: [base2.equilibrium.lobe0, base2.equilibrium.lobe1],
+  forward: base2.successor,
+  reverse: base2.predecessor
+};
+var equilibrium8 = base2.equilibrium;
+var unfold2 = base2.unfold;
+var prove2 = base2.prove;
+var coverage8 = base2.coverage;
+var seal2 = digitSeal(D2, base2, spectrum2, polarities2);
+var root2 = seal2.root;
+var statement2 = seal2.statement;
+var mappings2 = { ...base2.mappings, spectrum: spectrum2.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities2 };
+
+// ../../src/3/index.ts
+var D3 = 3;
+var theorems3 = [];
+var base3 = digitStation(D3, theorems3);
+var spectrum3 = reflectFoldFamily(D3).rows;
+var polarities3 = {
+  tensPair: base3.mappings.reflections.at180,
+  ninePair: base3.mappings.reflections.at90,
+  sixtyPair: base3.mappings.reflections.at60,
+  fold: base3.mappings.next,
+  lobes: [base3.equilibrium.lobe0, base3.equilibrium.lobe1],
+  forward: base3.successor,
+  reverse: base3.predecessor
+};
+var equilibrium9 = base3.equilibrium;
+var unfold3 = base3.unfold;
+var prove3 = base3.prove;
+var coverage9 = base3.coverage;
+var seal3 = digitSeal(D3, base3, spectrum3, polarities3);
+var root3 = seal3.root;
+var statement3 = seal3.statement;
+var mappings3 = { ...base3.mappings, spectrum: spectrum3.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities3 };
+
+// ../../src/4/index.ts
+var D4 = 4;
+var theorems4 = [
+  { problem: "p-vs-np", title: "P versus NP", sealed: false, proofStatus: "open", statement: "Whether every problem verifiable in polynomial time is solvable in polynomial time" }
+];
+var base4 = digitStation(D4, theorems4);
+var spectrum4 = reflectFoldFamily(D4).rows;
+var polarities4 = {
+  tensPair: base4.mappings.reflections.at180,
+  ninePair: base4.mappings.reflections.at90,
+  sixtyPair: base4.mappings.reflections.at60,
+  fold: base4.mappings.next,
+  lobes: [base4.equilibrium.lobe0, base4.equilibrium.lobe1],
+  forward: base4.successor,
+  reverse: base4.predecessor
+};
+var equilibrium10 = base4.equilibrium;
+var unfold4 = base4.unfold;
+var prove4 = base4.prove;
+var coverage10 = base4.coverage;
+var seal4 = digitSeal(D4, base4, spectrum4, polarities4);
+var root4 = seal4.root;
+var statement4 = seal4.statement;
+var mappings4 = { ...base4.mappings, spectrum: spectrum4.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities4 };
+
+// ../../src/5/index.ts
+var D5 = 5;
+var theorems5 = [
+  { problem: "hodge", title: "Hodge Conjecture", sealed: false, proofStatus: "open", statement: "Every Hodge class on a projective manifold is algebraic" },
+  { problem: "birch-swinnerton-dyer", title: "Birch and Swinnerton\u2013Dyer Conjecture", sealed: false, proofStatus: "open", statement: "Rank of an elliptic curve equals the vanishing order of its L-function at 1" }
+];
+var base5 = digitStation(D5, theorems5);
+var spectrum5 = reflectFoldFamily(D5).rows;
+var polarities5 = {
+  tensPair: base5.mappings.reflections.at180,
+  ninePair: base5.mappings.reflections.at90,
+  sixtyPair: base5.mappings.reflections.at60,
+  fold: base5.mappings.next,
+  lobes: [base5.equilibrium.lobe0, base5.equilibrium.lobe1],
+  forward: base5.successor,
+  reverse: base5.predecessor
+};
+var equilibrium11 = base5.equilibrium;
+var unfold5 = base5.unfold;
+var prove5 = base5.prove;
+var coverage11 = base5.coverage;
+var seal5 = digitSeal(D5, base5, spectrum5, polarities5);
+var root5 = seal5.root;
+var statement5 = seal5.statement;
+var mappings5 = { ...base5.mappings, spectrum: spectrum5.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities5 };
+
+// ../../src/6/index.ts
+var D6 = 6;
+var theorems6 = [];
+var base6 = digitStation(D6, theorems6);
+var spectrum6 = reflectFoldFamily(D6).rows;
+var polarities6 = {
+  tensPair: base6.mappings.reflections.at180,
+  ninePair: base6.mappings.reflections.at90,
+  sixtyPair: base6.mappings.reflections.at60,
+  fold: base6.mappings.next,
+  lobes: [base6.equilibrium.lobe0, base6.equilibrium.lobe1],
+  forward: base6.successor,
+  reverse: base6.predecessor
+};
+var equilibrium12 = base6.equilibrium;
+var unfold6 = base6.unfold;
+var prove6 = base6.prove;
+var coverage12 = base6.coverage;
+var seal6 = digitSeal(D6, base6, spectrum6, polarities6);
+var root6 = seal6.root;
+var statement6 = seal6.statement;
+var mappings6 = { ...base6.mappings, spectrum: spectrum6.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities6 };
+
+// ../../src/7/index.ts
+var D7 = 7;
+var theorems7 = [
+  { problem: "navier-stokes", title: "Navier\u2013Stokes Existence and Smoothness", sealed: false, proofStatus: "open", statement: "Smooth solutions to the 3D Navier\u2013Stokes equations exist for all time" }
+];
+var base7 = digitStation(D7, theorems7);
+var spectrum7 = reflectFoldFamily(D7).rows;
+var polarities7 = {
+  tensPair: base7.mappings.reflections.at180,
+  ninePair: base7.mappings.reflections.at90,
+  sixtyPair: base7.mappings.reflections.at60,
+  fold: base7.mappings.next,
+  lobes: [base7.equilibrium.lobe0, base7.equilibrium.lobe1],
+  forward: base7.successor,
+  reverse: base7.predecessor
+};
+var equilibrium13 = base7.equilibrium;
+var unfold7 = base7.unfold;
+var prove7 = base7.prove;
+var coverage13 = base7.coverage;
+var seal7 = digitSeal(D7, base7, spectrum7, polarities7);
+var root7 = seal7.root;
+var statement7 = seal7.statement;
+var mappings7 = { ...base7.mappings, spectrum: spectrum7.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities7 };
+
+// ../../src/8/index.ts
+var D8 = 8;
+var theorems8 = [
+  { problem: "yang-mills", title: "Yang\u2013Mills Existence and Mass Gap", sealed: false, proofStatus: "open", statement: "Quantum Yang\u2013Mills theory on \u211D\u2074 exists with a positive mass gap" }
+];
+var base8 = digitStation(D8, theorems8);
+var spectrum8 = reflectFoldFamily(D8).rows;
+var polarities8 = {
+  tensPair: base8.mappings.reflections.at180,
+  ninePair: base8.mappings.reflections.at90,
+  sixtyPair: base8.mappings.reflections.at60,
+  fold: base8.mappings.next,
+  lobes: [base8.equilibrium.lobe0, base8.equilibrium.lobe1],
+  forward: base8.successor,
+  reverse: base8.predecessor
+};
+var equilibrium14 = base8.equilibrium;
+var unfold8 = base8.unfold;
+var prove8 = base8.prove;
+var coverage14 = base8.coverage;
+var seal8 = digitSeal(D8, base8, spectrum8, polarities8);
+var root8 = seal8.root;
+var statement8 = seal8.statement;
+var mappings8 = { ...base8.mappings, spectrum: spectrum8.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities8 };
+
+// ../../src/9/index.ts
+var D9 = 9;
+var theorems9 = [
+  { problem: "smooth-poincare-4d", title: "Smooth Poincar\xE9 Conjecture (4D)", sealed: false, proofStatus: "open", statement: "Whether a smooth 4-manifold homeomorphic to S\u2074 is diffeomorphic to S\u2074" },
+  { problem: "abc-conjecture", title: "abc Conjecture", sealed: false, proofStatus: "contested", statement: "For coprime a+b=c, max(a,b,c) < rad(abc)^(1+\u03B5) for all but finitely many triples" },
+  { problem: "goldbach", title: "Goldbach Conjecture", sealed: false, proofStatus: "open", statement: "Every even integer > 2 is a sum of two primes" }
+];
+var base9 = digitStation(D9, theorems9);
+var spectrum9 = reflectFoldFamily(D9).rows;
+var polarities9 = {
+  tensPair: base9.mappings.reflections.at180,
+  ninePair: base9.mappings.reflections.at90,
+  sixtyPair: base9.mappings.reflections.at60,
+  fold: base9.mappings.next,
+  lobes: [base9.equilibrium.lobe0, base9.equilibrium.lobe1],
+  forward: base9.successor,
+  reverse: base9.predecessor
+};
+var equilibrium15 = base9.equilibrium;
+var unfold9 = base9.unfold;
+var prove9 = base9.prove;
+var coverage15 = base9.coverage;
+var seal9 = digitSeal(D9, base9, spectrum9, polarities9);
+var root9 = seal9.root;
+var statement9 = seal9.statement;
+var mappings9 = { ...base9.mappings, spectrum: spectrum9.map((r2) => ({ k: r2.k, angleDeg: r2.angleDeg, image: r2.image, fixedPoints: r2.fixedPoints })), polarities: polarities9 };
+
+// ../../src/thunder/verify/testing/index.ts
+var DYADIC = Array.from({ length: 5 }, (_, i) => i / 4);
+var DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var PAIR = [0, 1];
+var EVEN = 54;
+var reflect = (k) => (x) => k - 1 - x;
+var digitInverse = (d) => digitalRoot(2 * 9 - d);
+var invertAngle = (t) => ((360 / 2 - t) % 360 + 360) % 360;
+var LATITUDES = [-(360 / 6), -(360 / 6 / 2), 0, 360 / 6 / 2, 360 / 6];
+var complementHue = (h) => (h + 360 / 2) % 360;
+var INVOLUTION_PATTERNS = [
+  { id: "riemann-s-involution", lean: "riemann", domain: "functional", pattern: "\u03C3: s \u2194 (1\u2212s)", fixedPoint: "Re s = 1/2 (critical line)", verificationMethod: "computation", status: "open", statement: "\u03C3(s) = 1\u2212s, \u03C3\xB2 = id, unique fixed line Re s = \xBD from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis \u2014 OPEN", sigma: (s) => 1 - s, samples: DYADIC, model: "s on the unit interval" },
+  { id: "l-function-universal", domain: "functional", pattern: "\u03C3: s \u2194 (1\u2212s) on every completed L(s,\u03C7)", fixedPoint: "Re s = 1/2", verificationMethod: "lean-proof", status: "open", through: "riemann-s-involution", statement: "the same \u03C3 acts on every completed Dirichlet L-function; the Generalized Riemann Hypothesis \u2014 OPEN", sigma: (s) => 1 - s, samples: DYADIC, model: "s on the unit interval" },
+  { id: "goldbach-parity", domain: "arithmetic", pattern: "\u03C3(p) = n \u2212 p", fixedPoint: "p = n/2", verificationMethod: "live-api", status: "open", statement: "\u03C3(p) = n\u2212p on [0, n], \u03C3\xB2 = id, fixed point n/2; whether every even n > 2 has a prime pair under \u03C3 is Goldbach \u2014 OPEN", sigma: (p) => EVEN - p, samples: [0, 1, EVEN / 2, EVEN - 1, EVEN], model: `p on [0, ${EVEN}]` },
+  { id: "polynomial-prime-symmetry", domain: "arithmetic", pattern: "\u03C3(P(n)) = P(\u2212n)", fixedPoint: "n = 0", verificationMethod: "live-api", status: "open", statement: "\u03C3: n \u21A6 \u2212n on a polynomial family; infinitely many simultaneous prime values is Schinzel\u2019s hypothesis H \u2014 OPEN (the linear case is Dirichlet, proved)", sigma: (n) => -n, samples: [-2, -1, 0, 1, 2], model: "n on a symmetric integer window" },
+  { id: "twin-prime-gap", domain: "arithmetic", pattern: "\u03C3(\u0394) = log \u0394", fixedPoint: "\u0394 \u2248 log p", verificationMethod: "live-api", status: "open", statement: "\u03C3: \u0394 \u21A6 log \u0394 on consecutive prime gaps is self-similar, not self-inverse; bounded gaps are PROVED (Zhang 2013, Maynard 2015), twin primes and Cram\xE9r\u2019s bound \u2014 OPEN", sigma: (d) => log(d), samples: [1, 2, 4, 8], model: "\u0394 on powers of two" },
+  { id: "digit-inverse-coprimality", domain: "arithmetic", pattern: "\u03C3(d) = 9 \u2212 d", fixedPoint: "d = 9/2 \u2209 \u2124", verificationMethod: "computation", status: "proved", statement: "\u03C3(d) = 9\u2212d on digital roots, \u03C3\xB2 = id, no integer fixed point \u2014 an identity the kernel decides", sigma: reflect(DIGITS.length), samples: DIGITS, model: "the ten digits" },
+  { id: "fermat-exponent", domain: "arithmetic", pattern: "\u03C3: (p, q) \u2194 (q, p) under 1/p + 1/q + 1/r", fixedPoint: "1/p + 1/q + 1/r = 1", verificationMethod: "lean-proof", status: "open", statement: "\u03C3 swaps the exponents of x^p + y^q = z^r and preserves 1/p + 1/q + 1/r; Fermat\u2019s last theorem is PROVED (Wiles 1995), finiteness of the generalized (Fermat\u2013Catalan) case \u2014 OPEN", sigma: reflect(PAIR.length), samples: PAIR, model: "p \u2194 q as the two roles" },
+  { id: "abc-coprimality", domain: "arithmetic", pattern: "\u03C3: (a, b) \u2194 (b, a) with rad(abc) fixed", fixedPoint: "a = b", verificationMethod: "lean-proof", status: "open", statement: "\u03C3 swaps the coprime summands and fixes rad(abc); the abc conjecture \u2014 OPEN (the claimed proof is not accepted)", sigma: reflect(PAIR.length), samples: PAIR, model: "a \u2194 b as the two roles" },
+  { id: "four-color-planar", domain: "graph", pattern: "\u03C3: G \u2194 G* (planar dual)", fixedPoint: "\u03C7 = 4", verificationMethod: "code", status: "proved", statement: "\u03C3: G \u21A6 G* on planar graphs, \u03C3\xB2 = id; \u03C7(G) \u2264 4 is PROVED (Appel\u2013Haken 1976; Gonthier 2005 in Coq)", sigma: reflect(PAIR.length), samples: PAIR, model: "primal \u2194 dual" },
+  { id: "knot-cobordism", domain: "topological", pattern: "\u03C3: M \u2194 M_exotic (cobordism)", fixedPoint: "standard smooth structure", verificationMethod: "lean-proof", status: "open", statement: "\u03C3 pairs a manifold with an exotic smooth structure through cobordism; exotic 7-spheres are PROVED (Milnor 1956), the smooth 4-dimensional Poincar\xE9 question \u2014 OPEN", sigma: reflect(PAIR.length), samples: PAIR, model: "standard \u2194 exotic" },
+  { id: "pauli-matrices", domain: "algebraic", pattern: "\u03C3_i\u2020 = \u03C3_i, [\u03C3_i, \u03C3_j] = 2i\u03B5_ijk \u03C3_k", fixedPoint: "real spectrum \xB11", verificationMethod: "computation", status: "proved", statement: "\u03C3_i\xB2 = I and \u03C3_i\u2020 = \u03C3_i in M\u2082(\u2102) \u2014 identities the kernel decides; they generate su(2)", sigma: (x) => -x, samples: [-1, 1], model: "\u03C3_z on its eigenvalues \xB11" },
+  { id: "birch-swinnerton-dyer", lean: "bsd", domain: "algebraic", pattern: "\u03C3: s \u21A6 2 \u2212 s, with \u039B(E, s) = w\xB7\u039B(E, 2 \u2212 s)", fixedPoint: "s = 1, the central point", verificationMethod: "lean-proof", status: "open", statement: "the completed L-function of an elliptic curve satisfies \u039B(E, s) = w\xB7\u039B(E, 2 \u2212 s): \u03C3(s) = 2 \u2212 s is an involution fixing only s = 1, and w\xB2 = 1 wherever \u039B does not vanish (bsd.lean, cross.lean); that ord_{s=1} L(E, s) equals the rank is BSD \u2014 OPEN (rank \u2264 1 cases proved: Gross\u2013Zagier, Kolyvagin)", sigma: (s) => 2 - s, samples: [-2, -1, 0, 1, 2, 3, 4], model: "s on the integers, as bsd.lean" },
+  { id: "langlands-dual-group", domain: "functional", pattern: "\u03C3: G \u2194 \u1D38G (roots \u2194 coroots)", fixedPoint: "self-dual groups (GL_n)", verificationMethod: "lean-proof", status: "open", statement: "\u03C3 exchanges roots and coroots of the root datum, \u03C3\xB2 = id, fixed points are the self-dual groups; functoriality in general \u2014 OPEN (cyclic base change for GL_n is proved)", sigma: reflect(PAIR.length), samples: PAIR, model: "roots \u2194 coroots" },
+  { id: "homological-mirror-symmetry", domain: "topological", pattern: "\u03C3: H^{p,q} \u2194 H^{q,p}", fixedPoint: "Hodge diamond symmetry", verificationMethod: "lean-proof", status: "open", statement: "\u03C3 reflects the Hodge diamond between mirror pairs; homological mirror symmetry in general \u2014 OPEN (proved for specific families)", sigma: reflect(PAIR.length), samples: PAIR, model: "p \u2194 q in H^{p,q}" },
+  { id: "p-vs-np", lean: "complement", domain: "computational", pattern: "\u03C3: C \u21A6 co-C (complement)", fixedPoint: "P and PSPACE are fixed (proved); whether NP is fixed is NP =? coNP", verificationMethod: "hardness-solver", status: "open", statement: "complementation is an involution on {P, NP, coNP, PSPACE} with P and PSPACE fixed and NP \u2194 coNP exchanged (p-vs-np.lean, cross.lean); whether NP is a fixed class is NP =? coNP \u2014 OPEN, and since P is fixed, NP \u2260 coNP would give P \u2260 NP; this row records the involution, not a resolution", sigma: (c) => [0, 2, 1, 3][c], samples: [0, 1, 2, 3], model: "P, NP, coNP, PSPACE as 0, 1, 2, 3, as p-vs-np.lean" },
+  { id: "graph-isomorphism-quasi-poly", domain: "computational", pattern: "\u03C3: T(n) \u2194 2^{poly(log n)}", fixedPoint: "quasi-polynomial time", verificationMethod: "computation", status: "proved", statement: "T \u21A6 2^T is a scale map, not an involution; graph isomorphism in quasi-polynomial time is PROVED (Babai 2015/2017); membership in P \u2014 OPEN", sigma: (t) => 2 ** t, samples: [1, 2, 3], model: "t \u21A6 2^t on small t" },
+  { id: "hodge", lean: "hodge", domain: "topological", pattern: "\u03C3: H^{p,q} \u21A6 H^{q,p} (complex conjugation)", fixedPoint: "the (k, k) types \u2014 where Hodge classes live", verificationMethod: "lean-proof", status: "open", statement: "conjugation exchanges H^{p,q} and H^{q,p}, \u03C3\xB2 = id, and on degree 2k fixes exactly the type (k, k) (hodge.lean, cross.lean); that every rational (k,k)-class is algebraic is the Hodge conjecture \u2014 OPEN (the corpus seals the involution, not the conjecture)", sigma: (p) => 4 - p, samples: [0, 1, 2, 3, 4], model: "p of the type (p, 4 \u2212 p) in degree 4, as hodge.lean" },
+  { id: "navier-stokes", lean: "viscous", domain: "functional", pattern: "\u03C3: \u03C9\u208A \u2194 \u2212\u03C9\u208B (the seam involution on the genus-2 carrier)", fixedPoint: "\u03C9 = 0, the irrotational flow", verificationMethod: "computation", status: "open", statement: "\u03C3 reflects vorticity across the two seams, \u03C3\xB2 = id, fixed point the irrotational flow; that smooth 3D solutions exist for all time is Navier\u2013Stokes \u2014 OPEN (the corpus seals a seam model, not regularity)", sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: "\u03C9 across the seams" },
+  { id: "yang-mills", lean: "star", domain: "algebraic", pattern: "\u03C3 = \u2605 on \u039B\xB2(\u211D\u2074): \u2605\xB2 = id, F = F\u207A + F\u207B", fixedPoint: "the self-dual forms; on the anti-self-dual part only 0", verificationMethod: "computation", status: "open", statement: "\u2605\xB2 = id on every 2-form on \u211D\u2074 and splits \u039B\xB2 into self-dual \u2295 anti-self-dual, 3 + 3 = 6 (yang-mills.lean); on each anti-self-dual coefficient \u2605 is c \u21A6 \u2212c (cross.lean); that a quantum Yang\u2013Mills theory exists on \u211D\u2074 with mass gap \u0394 > 0 is OPEN (the corpus seals the star, not the quantum field theory). (This row said \u03C3\xB2 = I splits a spectrum into {0} \u222A [\u0394, \u221E); an involution's spectrum lies in {\u22121, 1}.)", sigma: (c) => -c, samples: [-2, -1, 0, 1, 2], model: "an anti-self-dual coefficient under \u2605, as cross.lean" },
+  { id: "poincare", lean: "chi", domain: "topological", pattern: "\u03C7 = 2 \u2212 2g, inverted by g = (2 \u2212 \u03C7)/2", fixedPoint: "none \u2014 the pair is a bijection, not an involution", verificationMethod: "lean-proof", status: "proved", statement: "every simply connected closed 3-manifold is S\xB3 \u2014 PROVED (Perelman 2002\u201303, Ricci flow); the corpus imports the tool, it does not re-prove it. Its Lean file proves \u03C7 = 2 \u2212 2g with genus as its inverse: a scale map, not an involution \u2014 \u03C7 \u2218 \u03C7 moves genus 0 to \u22122 (poincare.lean, cross.lean). (This row used to carry a two-point swap labelled M \u2194 S\xB3.)", sigma: (g) => 2 - 2 * g, samples: [0, 1, 2, 3, 4], model: "genus g \u21A6 Euler characteristic \u03C7, as poincare.lean" },
+  { id: "vortex-orbit-reflection", perspective: "vortex", domain: "arithmetic", pattern: "\u03C3(d) = 9 \u2212 d on \u2124/9\u2124", fixedPoint: "9 \u2261 0", verificationMethod: "computation", status: "proved", statement: "the digit-inverse on \u2124/9\u2124 maps the doubling orbit \u27E82\u27E9 = {1, 2, 4, 8, 7, 5} onto itself and swaps 3 \u2194 6 \u2014 decided on the vortex sequence", sigma: digitInverse, samples: VORTEX_SEQUENCE, model: "the vortex sequence on \u2124/9\u2124" },
+  { id: "poles-v4-hemisphere", perspective: "poles-v4", domain: "algebraic", pattern: "\u03C3_h: (hemisphere, flow) \u21A6 (\xAChemisphere, flow)", fixedPoint: "none \u2014 V\u2084 acts freely", verificationMethod: "computation", status: "proved", statement: "the hemisphere flip on (hemisphere, flow) \u2208 {0,1}\xB2 commutes with the flow flip; with their product they are the Klein four-group V\u2084 \u2014 decided on the four poles", sigma: (x) => x ^ 1, samples: [0, 1, 2, 3], model: "(hemisphere, flow) as two bits" },
+  { id: "sixty-ninety-inversion", perspective: "sixty-ninety", domain: "topological", pattern: "\u03C3(\u03B8) = 180\xB0 \u2212 \u03B8", fixedPoint: "90\xB0", verificationMethod: "computation", status: "proved", statement: "the inversion \u03B8 \u21A6 180\xB0 \u2212 \u03B8 maps the sixty-degree lattice C\u2086 onto itself and fixes 90\xB0, which C\u2086 does not contain \u2014 ninety is reached only through inversion, decided on the six angles", sigma: invertAngle, samples: [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6)), model: "C\u2086 in degrees" },
+  { id: "movie-time-reversal", perspective: "movie", domain: "functional", pattern: "\u03C3(t) = T \u2212 t on the hero cycle", fixedPoint: "t = T/2", verificationMethod: "computation", status: "proved", statement: "playing the hero cycle backwards is an involution of its clock with the half-cycle fixed \u2014 decided on the dyadic frames of the 108 s cycle", sigma: (t) => HERO_CYCLE_MS - t, samples: DYADIC.map((f2) => f2 * HERO_CYCLE_MS), model: "frames of the a432 hero cycle" },
+  { id: "computer-bit-complement", perspective: "computer", domain: "computational", pattern: "\u03C3(x) = (2\u1D4F \u2212 1) \u2212 x", fixedPoint: "none \u2014 the register is even", verificationMethod: "computation", status: "proved", statement: "the bitwise complement of a k-bit register is the digit-inverse at scale 2\u1D4F: an involution with no fixed point \u2014 decided on a byte", sigma: reflect(2 ** 8), samples: [0, 1, 2 ** 4, 2 ** 8 - 2, 2 ** 8 - 1], model: "an 8-bit register" },
+  { id: "geodesy-antipode", perspective: "geodesy", domain: "topological", pattern: "\u03C3(\u03C6, \u03BB) = (\u2212\u03C6, \u03BB + 180\xB0)", fixedPoint: "none on the sphere; the equator is fixed as a set", verificationMethod: "computation", status: "proved", statement: "the antipode is an involution of the WGS84 sphere; every point lies half a circumference from its image \u2014 decided with greatCircleKm on five latitudes", sigma: (phi) => -phi, samples: LATITUDES, model: "latitude; longitude shifts by 180\xB0" },
+  { id: "merkaba-counter-rotation", perspective: "merkaba", domain: "functional", pattern: "\u03C3(\u03C9) = \u2212\u03C9", fixedPoint: "\u03C9 = 0", verificationMethod: "computation", status: "proved", statement: "the two tetrahedra counter-rotate: \u03C3 negates the angular velocity, the same seam involution Navier\u2013Stokes carries \u2014 decided on five rates", sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: "angular velocity of the merkaba" },
+  { id: "earth-hemisphere", perspective: "earth", domain: "topological", pattern: "\u03C3: north \u2194 south", fixedPoint: "the equator", verificationMethod: "computation", status: "proved", statement: "both earths rotate within each other: the hemisphere exchange is the two-point reflection \u2014 decided", sigma: reflect(PAIR.length), samples: PAIR, model: "north \u2194 south" },
+  { id: "vite-mirror-lobes", perspective: "vite-mirror", domain: "computational", pattern: "\u03C3: near lobe (docs) \u2194 far lobe (src)", fixedPoint: "none \u2014 the seam", verificationMethod: "computation", status: "proved", statement: "docs \u2261 invert(src): the UI mirrors the carrier lobe for lobe \u2014 the two-point reflection, decided", sigma: reflect(PAIR.length), samples: PAIR, model: "near \u2194 far" },
+  { id: "biology-watson-crick", perspective: "biology", domain: "algebraic", pattern: "\u03C3(b) = 3 \u2212 b on the bases A C G T", fixedPoint: "none \u2014 every base pairs with another", verificationMethod: "computation", status: "proved", statement: "the Watson\u2013Crick complement A \u2194 T, C \u2194 G is the digit-inverse at scale four on the alphabetical bases: an involution with no fixed point, the heredity carrier of the biology life torus (matter, metabolism, sensing) \u2014 decided on the four bases", sigma: reflect(2 * 2), samples: [0, 1, 2, 3], model: "the four bases A C G T as 0..3" },
+  { id: "life-born-phase", perspective: "life", domain: "functional", pattern: "\u03C3(\u03C8) = \u2212\u03C8 with |\u03C8|\xB2 fixed", fixedPoint: "\u03C8 = 0", verificationMethod: "computation", status: "proved", statement: "the Born rule is phase-blind: negating an amplitude leaves |\u03C8|\xB2, so every probability of the life torus (\u03C7 \xB7 clock \xB7 Born \xB7 H\u2081 \u2014 matter, metabolism, heredity, homeostasis, sensing, mind) is unchanged \u2014 the negation involution, decided on five amplitudes", sigma: (a) => -a, samples: [-2, -1, 0, 1, 2], model: "real amplitudes \u03C8" },
+  { id: "faces-near-far", perspective: "faces", domain: "topological", pattern: "\u03C3: near face \u2194 far face of \u03A3\u2082", fixedPoint: "none \u2014 the seam", verificationMethod: "computation", status: "proved", statement: "navigation, site, mcp and multimedia are faces of the genus-2 surface; \u03C3 exchanges the near and the far face \u2014 the two-point reflection, decided", sigma: reflect(PAIR.length), samples: PAIR, model: "near \u2194 far face" },
+  { id: "plasma-charge-conjugation", perspective: "plasma", domain: "functional", pattern: "\u03C3(q) = \u2212q", fixedPoint: "q = 0", verificationMethod: "computation", status: "proved", statement: "the plasma ball on the thunder screen under charge conjugation: every filament\u2019s charge negated, the neutral screen fixed \u2014 the negation involution, decided on five charges", sigma: (q) => -q, samples: [-2, -1, 0, 1, 2], model: "charge of a filament" },
+  { id: "dynamics-epoch-reflection", perspective: "dynamics", domain: "functional", pattern: "\u03C3(JD) = 2\xB7J2000 \u2212 JD", fixedPoint: "JD = J2000", verificationMethod: "computation", status: "proved", statement: "dynamics, geometry and the universe align on J2000: reflecting a Julian day through the epoch is an involution with the epoch fixed \u2014 decided on five days around MEEUS_J2000_JD", sigma: (jd) => 2 * MEEUS_J2000_JD - jd, samples: [-2, -1, 0, 1, 2].map((k) => MEEUS_J2000_JD + k), model: "Julian days around J2000" },
+  { id: "voice-hue-complement", perspective: "voice", domain: "algebraic", pattern: "\u03C3(hue) = hue + 180\xB0", fixedPoint: "none on the circle", verificationMethod: "computation", status: "proved", statement: "word \u21A6 (hue, note) in play-learn: the complementary hue is the involution of the colour circle with no fixed point \u2014 decided on the six hues of C\u2086", sigma: complementHue, samples: [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6)), model: "hue on C\u2086 in degrees" },
+  { id: "fusion-lobe-exchange", perspective: "fusion", domain: "topological", pattern: "\u03C3: lobe \u2194 lobe of the reactor", fixedPoint: "none \u2014 the seam", verificationMethod: "computation", status: "proved", statement: "fusion \u2261 on(torus-carrier): the reactor\u2019s two lobes exchange under \u03C3 while the carrier stays on, vitepress and social alike \u2014 the two-point reflection, decided", sigma: reflect(PAIR.length), samples: PAIR, model: "lobe \u2194 lobe" },
+  { id: "lens-near-far-torus", perspective: "lens", domain: "computational", pattern: "\u03C3: near torus \u2194 far torus", fixedPoint: "none \u2014 cracked code is close to neither", verificationMethod: "computation", status: "proved", statement: "the lens sees every fold as near- or far-torus and swaps them; a fold the lens cannot place is cracked, not fixed \u2014 the two-point reflection, decided", sigma: reflect(PAIR.length), samples: PAIR, model: "near \u2194 far torus" }
+];
+var LADDER = ICHING_NUMBERS.filter((k) => k > 1);
+var MCP_TRINITY = ["research", "edit", "verify"];
+var MCP_TRINITIES = [
+  { family: "meta", research: "list_capabilities", edit: "run_export", verify: "run_gate" },
+  { family: "leads", research: "next_leads", edit: "run_wave", verify: "census_status" },
+  { family: "compute", research: "fold_report", edit: "compute_from_source", verify: "live_testing" },
+  { family: "quantum", research: "quantum_capabilities", edit: "quantum_submit_job", verify: "quantum_get_status" },
+  { family: "release", research: "release_readiness", edit: "publish_package", verify: "live_connectors" }
+];
+var MCP_TOOLS = MCP_TRINITIES.flatMap((f2) => MCP_TRINITY.map((role2) => f2[role2]));
+var ROSETTA_WIDTH = 2;
+var ROSETTA_HEIGHT = 7;
+var CORE_TOOLS = 1;
+var TOOL_FAMILY_COUNT = ROSETTA_WIDTH * ROSETTA_HEIGHT + CORE_TOOLS;
+var TENS = 5 * 2;
+
 // ../../src/pair/cache/quantum/index.ts
 var CLI_ENTRY = "src/pair/enforcement/script/cli/bootstrap/index.ts";
 var cached = null;
 var SCRIPT_SHELL_LINE_BUDGET = 8 * 3;
 var SCRIPT_SHELL_ALLOWLIST = { [CLI_ENTRY]: 9 * 8 };
-function seedMerkleCache(root, merkle) {
-  cached = { root, merkle };
+function seedMerkleCache(root10, merkle) {
+  cached = { root: root10, merkle };
 }
 var VITEPRESS_MERKLE_DIR = ".vitepress";
 var VITEPRESS_MERKLE_EXCLUDES = /* @__PURE__ */ new Set(["dist", "cache", "node_modules"]);
@@ -69365,12 +69661,12 @@ function walkVitepressFiles(dir, out = []) {
   }
   return out;
 }
-function vitepressSourceFiles(root) {
-  return walkVitepressFiles(join(root, VITEPRESS_MERKLE_DIR)).sort();
+function vitepressSourceFiles(root10) {
+  return walkVitepressFiles(join(root10, VITEPRESS_MERKLE_DIR)).sort();
 }
 var ROUTES_RE = /runCliExit|loadCli|cli\/index|script\/shell|importQuantumBundle|runThinMount/;
-function scanScriptShells(root, opts) {
-  const entryPath = join(root, CLI_ENTRY);
+function scanScriptShells(root10, opts) {
+  const entryPath = join(root10, CLI_ENTRY);
   if (!existsSync(entryPath)) return [];
   const text = readFileSync(entryPath, "utf8");
   return [{ path: CLI_ENTRY, lines: text.split("\n").length, routesThroughSrc: ROUTES_RE.test(text), inlineEsbuild: false }];
@@ -69380,19 +69676,19 @@ function scanScriptShells(root, opts) {
 var SLOW_BUILD_MERKLE_MS = A432_FOLDED * digitalRoot(DIMENSION_GATES);
 var SLOW_BUILD_TYPES_MS = A432_FOLDED * DIMENSION_GATES;
 var SLOW_BUILD_VITEPRESS_MS = DIMENSION_GATES * A432_FOLDED * digitalRoot(DIMENSION_GATES);
-function distMerkleKeyPath(root) {
-  return join(root, ".vitepress", "dist", "merkle.key");
+function distMerkleKeyPath(root10) {
+  return join(root10, ".vitepress", "dist", "merkle.key");
 }
-function distAuditPath(root) {
-  return join(root, ".vitepress", "dist", "audit.json");
+function distAuditPath(root10) {
+  return join(root10, ".vitepress", "dist", "audit.json");
 }
-function readSealedMerkle(root) {
-  const path12 = distMerkleKeyPath(root);
+function readSealedMerkle(root10) {
+  const path12 = distMerkleKeyPath(root10);
   if (!existsSync(path12)) return null;
   return readFileSync(path12, "utf8").trim();
 }
-function auditBoundToSrcMerkle(root, merkle) {
-  const auditPath = distAuditPath(root);
+function auditBoundToSrcMerkle(root10, merkle) {
+  const auditPath = distAuditPath(root10);
   if (!existsSync(auditPath)) return false;
   try {
     const audit = JSON.parse(readFileSync(auditPath, "utf8"));
@@ -69402,16 +69698,16 @@ function auditBoundToSrcMerkle(root, merkle) {
     return false;
   }
 }
-function canRespawnVitepressBuild(root, merkle, force = false) {
+function canRespawnVitepressBuild(root10, merkle, force = false) {
   if (force) return false;
-  if (readSealedMerkle(root) !== merkle) return false;
-  if (!auditBoundToSrcMerkle(root, merkle)) return false;
-  return existsSync(join(root, ".vitepress", "dist", "index.html"));
+  if (readSealedMerkle(root10) !== merkle) return false;
+  if (!auditBoundToSrcMerkle(root10, merkle)) return false;
+  return existsSync(join(root10, ".vitepress", "dist", "index.html"));
 }
-function canRespawnTrinity(root, merkle, force = false) {
+function canRespawnTrinity(root10, merkle, force = false) {
   if (force) return false;
-  if (readSealedMerkle(root) !== merkle) return false;
-  return auditBoundToSrcMerkle(root, merkle);
+  if (readSealedMerkle(root10) !== merkle) return false;
+  return auditBoundToSrcMerkle(root10, merkle);
 }
 function quantumizeVitepressBuild() {
   const techniques = [
@@ -69447,8 +69743,8 @@ function quantumizeVitepressBuild() {
 }
 
 // ../../src/pair/enforcement/gates/strict/scan/index.ts
-function packageScriptsOf(root) {
-  const path12 = join(root, "package.json");
+function packageScriptsOf(root10) {
+  const path12 = join(root10, "package.json");
   if (!existsSync(path12)) return {};
   try {
     return JSON.parse(readFileSync(path12, "utf8")).scripts ?? {};
@@ -69474,14 +69770,14 @@ function derivedMonolithTargetBytes(codeFiles) {
   while (target < corpus / count) target *= 2;
   return { target, corpus, count };
 }
-function scanFileSizeOffenders2(root, codeFiles, limit = MONOLITH_FILE_BYTES) {
+function scanFileSizeOffenders2(root10, codeFiles, limit = MONOLITH_FILE_BYTES) {
   return codeFiles.filter((file) => {
     try {
       return statSync(file).size > limit;
     } catch {
       return false;
     }
-  }).map((file) => ({ file: relative(root, file), bytes: statSync(file).size, limit, reason: "monolith-file-law" }));
+  }).map((file) => ({ file: relative(root10, file), bytes: statSync(file).size, limit, reason: "monolith-file-law" }));
 }
 var BYTES_PER_MEGABYTE = (2 ** (2 * 5)) ** 2;
 var CORPUS_SIZE_BUDGET_BYTES = 432 * BYTES_PER_MEGABYTE;
@@ -69523,11 +69819,11 @@ var oneMathFormulas = () => {
     { name: "fractal-clock-duration", pattern: /dur="\d|animation(?:-duration)?:[^;{}"'`]*\d+(?:\.\d+)?s\b/, homes: [] }
   ];
 };
-function scanOneMathOffenders(root, codeFiles, bodies) {
+function scanOneMathOffenders(root10, codeFiles, bodies) {
   const formulas = oneMathFormulas();
   const offenders = [];
   for (const file of codeFiles) {
-    const rel = relative(root, file).replace(/\\/g, "/");
+    const rel = relative(root10, file).replace(/\\/g, "/");
     const body = stripComments(bodies.get(rel) ?? "");
     if (!body) continue;
     for (const f2 of formulas) {
@@ -69579,9 +69875,9 @@ function importGapCount(spec) {
   const match = spec.match(/^(\.\.\/)+/);
   return match ? match[0].match(/\.\.\//g)?.length ?? 0 : 0;
 }
-function scanImportGaps(root, codeFiles, bodies) {
-  const mindRoot = join(root, "src", "quantum", "heaven", "mind");
-  const srcRoot = join(root, "src");
+function scanImportGaps(root10, codeFiles, bodies) {
+  const mindRoot = join(root10, "src", "quantum", "heaven", "mind");
+  const srcRoot = join(root10, "src");
   const offenders = [];
   for (const file of codeFiles) {
     if (!file.startsWith(mindRoot)) continue;
@@ -69589,7 +69885,7 @@ function scanImportGaps(root, codeFiles, bodies) {
     const depth = relBelowMind === "" || relBelowMind === "." ? 0 : relBelowMind.split(/[/\\]/).filter(Boolean).length;
     const maxMindGaps = depth;
     const maxSrcGaps = depth + 3;
-    const rel = relative(root, file);
+    const rel = relative(root10, file);
     for (const spec of relativeImportSpecs(stripComments(bodies.get(rel) ?? ""))) {
       const gaps = importGapCount(spec);
       if (gaps === 0) continue;
@@ -69610,10 +69906,10 @@ function scanImportGaps(root, codeFiles, bodies) {
   }
   return offenders;
 }
-function scanImports(root, codeFiles, bodies) {
+function scanImports(root10, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
-    const rel = relative(root, file);
+    const rel = relative(root10, file);
     const specs = relativeImportSpecs(stripComments(bodies.get(rel) ?? ""));
     for (const spec of specs) {
       if (!spec.startsWith(".")) continue;
@@ -69639,11 +69935,11 @@ function scanImports(root, codeFiles, bodies) {
 function scanIndexOnly(codeFiles) {
   return codeFiles.filter((file) => file.endsWith(".ts") && !/(^|\/)index\.ts$/.test(file)).map((file) => ({ file, reason: "not index.ts \u2014 backend surface is folder index only; dissolve into <name>/index.ts" }));
 }
-function scanMemoClock(root, codeFiles, bodies) {
+function scanMemoClock(root10, codeFiles, bodies) {
   const offenders = [];
   const rawAt = /memoByRoot\(\s*`([^`]*)\$\{\s*at\s*\}/g;
   for (const file of codeFiles) {
-    const rel = relative(root, file).replace(/\\/g, "/");
+    const rel = relative(root10, file).replace(/\\/g, "/");
     const body = bodies.get(rel) ?? "";
     for (const m of body.matchAll(rawAt)) offenders.push({ file: rel, key: `${m[1]}\${at}` });
   }
@@ -69665,8 +69961,8 @@ function isVitepressIndexFilename(name) {
   if (name.endsWith(".paths.ts")) return true;
   return false;
 }
-function scanVitepressIndex2(root, thinMounts) {
-  const vpRoot = join(root, ".vitepress");
+function scanVitepressIndex2(root10, thinMounts) {
+  const vpRoot = join(root10, ".vitepress");
   if (!existsSync(vpRoot)) return [];
   const thinSet = new Set(thinMounts);
   const offenders = [];
@@ -69677,7 +69973,7 @@ function scanVitepressIndex2(root, thinMounts) {
       if (entry2.isDirectory()) walk(full);
       else if (/\.(ts|mts|mjs|js|cjs)$/.test(entry2.name)) {
         if (isVitepressIndexFilename(entry2.name)) continue;
-        const rel = relative(root, full).replace(/\\/g, "/");
+        const rel = relative(root10, full).replace(/\\/g, "/");
         const transitional = thinSet.has(rel);
         offenders.push({
           file: full,
@@ -69695,14 +69991,14 @@ function scanVitepressIndex2(root, thinMounts) {
   walk(vpRoot);
   return offenders;
 }
-function computeStrictGateSnapshot2(root, merkle, codeFiles, bodies, hyphenFolders, nonTs, vitepressIndex, scriptShells, pairsPaired) {
-  const imports = scanImports(root, codeFiles, bodies);
-  const oneMath = scanOneMathOffenders(root, codeFiles, bodies);
-  const importGaps = scanImportGaps(root, codeFiles, bodies);
+function computeStrictGateSnapshot2(root10, merkle, codeFiles, bodies, hyphenFolders, nonTs, vitepressIndex, scriptShells, pairsPaired) {
+  const imports = scanImports(root10, codeFiles, bodies);
+  const oneMath = scanOneMathOffenders(root10, codeFiles, bodies);
+  const importGaps = scanImportGaps(root10, codeFiles, bodies);
   const indexOnly = scanIndexOnly(codeFiles);
-  const memoClock = scanMemoClock(root, codeFiles, bodies);
-  const fileSize = scanFileSizeOffenders2(root, codeFiles, derivedMonolithTargetBytes(codeFiles).target);
-  const hardcodedCracks = scanCrackSurface(root);
+  const memoClock = scanMemoClock(root10, codeFiles, bodies);
+  const fileSize = scanFileSizeOffenders2(root10, codeFiles, derivedMonolithTargetBytes(codeFiles).target);
+  const hardcodedCracks = scanCrackSurface(root10);
   const scriptShellViolations = scanScriptShellViolations(scriptShells);
   const digitAudit = { passed: true, receipt: toUuid("digit-gate:vortex:sealed"), failures: [] };
   const merkleIs64 = merkle.length === 64;
@@ -69878,12 +70174,12 @@ function stripStringsAndComments(text) {
   STRIPPED_STRINGS_AND_COMMENTS.set(text, out);
   return out;
 }
-function scanHardcodedCrackOffenders(root, codeFiles, bodies) {
+function scanHardcodedCrackOffenders(root10, codeFiles, bodies) {
   const allowed = new Set(ICHING_NUMBERS);
   const offenders = [];
   const INSTRUMENT_HOME = "src/pair/enforcement/gates/strict/scan/index.ts";
   for (const file of codeFiles) {
-    const rel = relative(root, file).replace(/\\/g, "/");
+    const rel = relative(root10, file).replace(/\\/g, "/");
     if (rel === INSTRUMENT_HOME) continue;
     const body = stripStringsAndComments(bodies.get(rel) ?? "");
     const counts = /* @__PURE__ */ new Map();
@@ -69922,8 +70218,8 @@ function vueValueSurface(text) {
   return blocks.join("\n");
 }
 var _crackSurfaceByRoot = /* @__PURE__ */ new Map();
-function scanCrackSurface(root) {
-  const cached2 = _crackSurfaceByRoot.get(root);
+function scanCrackSurface(root10) {
+  const cached2 = _crackSurfaceByRoot.get(root10);
   if (cached2) return cached2;
   const files = [];
   const walk = (d) => {
@@ -69934,22 +70230,22 @@ function scanCrackSurface(root) {
       else if (/\.(ts|mts|vue)$/.test(e.name)) files.push(f2);
     }
   };
-  walk(join(root, "src"));
-  walk(join(root, ".vitepress"));
+  walk(join(root10, "src"));
+  walk(join(root10, ".vitepress"));
   const bodies = /* @__PURE__ */ new Map();
   for (const f2 of files) {
-    const rel = relative(root, f2).replace(/\\/g, "/");
+    const rel = relative(root10, f2).replace(/\\/g, "/");
     const raw = readFileSync(f2, "utf8");
-    bodies.set(rel, f2.endsWith(".vue") ? vueValueSurface(raw) : kernelDefinedValueSurface(root, raw));
+    bodies.set(rel, f2.endsWith(".vue") ? vueValueSurface(raw) : kernelDefinedValueSurface(root10, raw));
   }
-  const surface = scanHardcodedCrackOffenders(root, files, bodies);
-  _crackSurfaceByRoot.set(root, surface);
+  const surface = scanHardcodedCrackOffenders(root10, files, bodies);
+  _crackSurfaceByRoot.set(root10, surface);
   return surface;
 }
-function kernelDefinedValueSurface(root, raw) {
+function kernelDefinedValueSurface(root10, raw) {
   const open = raw.indexOf("export const ANIMATION_DESIGN = {");
   if (open < 0) return raw;
-  const leanPath = join(root, "src/pair/lean/proofs/movie.lean");
+  const leanPath = join(root10, "src/pair/lean/proofs/movie.lean");
   if (!existsSync(leanPath)) return raw;
   const defined = new Set([...readFileSync(leanPath, "utf8").matchAll(/^def (\w+) : Q := /gm)].map((m) => m[1]));
   const close = raw.indexOf("\n}\n", open);
@@ -69975,7 +70271,7 @@ function dualTorusTrinities(matrix = buildMatrix()) {
   return memoByRoot("dualTorusTrinities", matrix, () => dualTorusTrinitiesRaw(matrix));
 }
 function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
-  const base = matrix.root;
+  const base10 = matrix.root;
   const blueprint = [
     {
       axis: "collapse",
@@ -69996,8 +70292,8 @@ function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
   const phases = [];
   const pairs = [];
   for (const tri of blueprint) {
-    const yinReceipt = toUuid(`trinity:yin:${tri.axis}:${tri.yin.step}:${tri.yin.channel}:${tri.yin.type}:${base}`);
-    const yangReceipt = toUuid(`trinity:yang:${tri.axis}:${tri.yang.step}:${tri.yang.channel}:${tri.yang.type}:${base}`);
+    const yinReceipt = toUuid(`trinity:yin:${tri.axis}:${tri.yin.step}:${tri.yin.channel}:${tri.yin.type}:${base10}`);
+    const yangReceipt = toUuid(`trinity:yang:${tri.axis}:${tri.yang.step}:${tri.yang.channel}:${tri.yang.type}:${base10}`);
     phases.push({
       polarity: "yin",
       step: tri.yin.step,
@@ -70039,10 +70335,10 @@ function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
   for (const channel of missingChannels) gaps.push(`analog:${channel}`);
   if (new Set(covered).size !== covered.length) gaps.push("analog:collision");
   const harmonized = gaps.length === 0 && pairs.every((pair) => pair.closed && pair.bidirectional) && missingChannels.length === 0;
-  const root = merkleFold(phases.map((phase7) => phase7.receipt));
+  const root10 = merkleFold(phases.map((phase7) => phase7.receipt));
   return {
     harmonized,
-    root,
+    root: root10,
     source: "serverless-quantum-uuid-stream/double-torus",
     phases,
     pairs,
@@ -70055,7 +70351,7 @@ function dualTorusTrinitiesRaw(matrix = buildMatrix()) {
   };
 }
 function directions4(matrix = buildMatrix()) {
-  const base = matrix.root;
+  const base10 = matrix.root;
   const axes = [
     { axis: "vertical", positive: "up", negative: "down" },
     { axis: "horizontal", positive: "right", negative: "left" },
@@ -70065,8 +70361,8 @@ function directions4(matrix = buildMatrix()) {
     { axis: "loop", positive: "forward", negative: "reverse" },
     { axis: "time", positive: "expand", negative: "contract" }
   ].map((entry2) => {
-    const positiveRoot = toUuid(`direction:${entry2.positive}:${base}`);
-    const negativeRoot = toUuid(`direction:${entry2.negative}:${base}`);
+    const positiveRoot = toUuid(`direction:${entry2.positive}:${base10}`);
+    const negativeRoot = toUuid(`direction:${entry2.negative}:${base10}`);
     const { forward: forward2, reverse: reverse2, bidirectional, merged } = foldPair(positiveRoot, negativeRoot);
     return {
       ...entry2,
@@ -70501,10 +70797,10 @@ function dnaRaw(matrix = buildMatrix()) {
   const strand = [];
   for (let i = 0; i + 1 < bits.length; i += 2) strand.push(bases[bits[i] * 2 + bits[i + 1]]);
   const sense = strand.join("");
-  const antisense = strand.map((base) => complement[base]).join("");
+  const antisense = strand.map((base10) => complement[base10]).join("");
   const codons = [];
   for (let i = 0; i + 2 < sense.length; i += 3) codons.push(sense.slice(i, i + 3));
-  const paired = strand.every((base, index) => complement[base] === antisense[index]);
+  const paired = strand.every((base10, index) => complement[base10] === antisense[index]);
   return {
     encoded: sense.length === 64 && paired,
     basePairs: sense.length,
@@ -71045,10 +71341,10 @@ function computeSacredGeometrySeal(matrix = buildMatrix()) {
     { name: "harmony", root: harmonyProbability(matrix).root }
   ];
   const solids = ["tetrahedron", "cube", "octahedron", "dodecahedron", "icosahedron"];
-  const folded = merkleFold(seals.map((seal) => seal.root));
+  const folded = merkleFold(seals.map((seal10) => seal10.root));
   const masterRoot = merge(merge(metatron.root, folded), toUuid(`solids:${solids.join(",")}`));
   return {
-    sealed: seals.every((seal) => isUuid(seal.root)) && isUuid(masterRoot),
+    sealed: seals.every((seal10) => isUuid(seal10.root)) && isUuid(masterRoot),
     masterRoot,
     metatronRoot: metatron.root,
     solids,
@@ -71119,31 +71415,31 @@ function computeMetatronCube(matrix = buildMatrix()) {
       folder: "0/0",
       receipt: toUuid("metatron-node:center:0:0/0")
     },
-    ...digits.map((digit2) => {
-      const angle = digit2 / digits.length * TAU;
-      const folder = `${digit2}/${digit2}`;
+    ...digits.map((digit11) => {
+      const angle = digit11 / digits.length * TAU;
+      const folder = `${digit11}/${digit11}`;
       return {
-        id: `inner-${digit2}`,
-        digit: digit2,
+        id: `inner-${digit11}`,
+        digit: digit11,
         x: cos(angle),
         y: sin(angle),
         ring: "inner",
         folder,
-        receipt: toUuid(`metatron-node:inner:${digit2}:${folder}`)
+        receipt: toUuid(`metatron-node:inner:${digit11}:${folder}`)
       };
     }),
-    ...digits.map((digit2) => {
-      const angle = (digit2 + 1 / 2) / digits.length * TAU;
-      const reverse2 = 9 - digit2;
-      const folder = `${digit2}/${reverse2}`;
+    ...digits.map((digit11) => {
+      const angle = (digit11 + 1 / 2) / digits.length * TAU;
+      const reverse2 = 9 - digit11;
+      const folder = `${digit11}/${reverse2}`;
       return {
-        id: `outer-${digit2}`,
-        digit: digit2,
+        id: `outer-${digit11}`,
+        digit: digit11,
         x: 2 * cos(angle),
         y: 2 * sin(angle),
         ring: "outer",
         folder,
-        receipt: toUuid(`metatron-node:outer:${digit2}:${folder}`)
+        receipt: toUuid(`metatron-node:outer:${digit11}:${folder}`)
       };
     })
   ];
@@ -71170,9 +71466,9 @@ function computeMetatronCube(matrix = buildMatrix()) {
       receipt: toUuid(`vortex:${pulse.index}:${pulse.folder}:${inward.toFixed(6)}:${outward.toFixed(6)}`)
     };
   });
-  const root = merkleFold([...nodes.map((node) => node.receipt), ...edges.map((edge) => edge.receipt), ...vortex.map((point) => point.receipt)]);
+  const root10 = merkleFold([...nodes.map((node) => node.receipt), ...edges.map((edge) => edge.receipt), ...vortex.map((point) => point.receipt)]);
   return {
-    root,
+    root: root10,
     nodes,
     edges,
     vortex,
@@ -71607,8 +71903,8 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
     let softGeoTorus = false;
     let softPyramidSeal = false;
     try {
-      const root = enforcementScanRoot();
-      const pkg = { scripts: packageScriptsOf(root) };
+      const root10 = enforcementScanRoot();
+      const pkg = { scripts: packageScriptsOf(root10) };
       const scripts = pkg.scripts ?? {};
       softGeoTorus = Boolean(scripts["quantum:train-geodesy"] || scripts["quantum:geo-torus"]);
       softPyramidSeal = Boolean(scripts["quantum:pyramid-seal"]);
@@ -72053,15 +72349,15 @@ function selfHarmonise(matrix = buildMatrix(), steps = 7) {
   const digitOf = (uuid) => uuid.replace(/[^0-9a-f]/gi, "").split("").reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0);
   const areaNames = taxonomyIcons().entries.map((entry2) => entry2.area);
   let question = "self";
-  let root = matrix.root;
+  let root10 = matrix.root;
   const trace2 = [];
   const visited = /* @__PURE__ */ new Set();
   for (let step = 0; step < steps; step += 1) {
     const consult = selfConsult(question, matrix);
-    root = merge(root, consult.shift);
-    trace2.push({ step, question, next: consult.next, resolved: consult.resolvedInHouse, root });
+    root10 = merge(root10, consult.shift);
+    trace2.push({ step, question, next: consult.next, resolved: consult.resolvedInHouse, root: root10 });
     visited.add(question.toLowerCase());
-    question = areaNames.length > 0 ? areaNames[digitOf(root) % areaNames.length] : consult.next;
+    question = areaNames.length > 0 ? areaNames[digitOf(root10) % areaNames.length] : consult.next;
   }
   const harmony = harmonyProbability(matrix);
   return {
@@ -72071,7 +72367,7 @@ function selfHarmonise(matrix = buildMatrix(), steps = 7) {
     distinctStepsVisited: visited.size,
     probability: harmony.probability,
     trace: trace2,
-    root,
+    root: root10,
     statement: "Intelligence harmonises itself autonomously: with no external input it consults itself, shifts to the next step, folds each consultation, and measures harmony over a self-driven loop that converges to one harmonised root.",
     boundary: 'A deterministic, self-driven loop over the model. "Autonomous" means no external input; it does not imply goals, desire, or agency.'
   };
@@ -72104,13 +72400,13 @@ function selfReason(goal = "", matrix = buildMatrix(), depth = 4) {
 }
 function selfSufficientWave(matrix = buildMatrix()) {
   const breath = torusBreathe(matrix);
-  const seal = sacredGeometrySeal(matrix);
+  const seal10 = sacredGeometrySeal(matrix);
   return {
-    selfSufficient: isUuid(breath.expansion) && isUuid(breath.contraction) && seal.sealed,
+    selfSufficient: isUuid(breath.expansion) && isUuid(breath.contraction) && seal10.sealed,
     extend: breath.expansion,
     contract: breath.contraction,
-    sealed: seal.sealed,
-    root: merkleFold([breath.expansion, breath.contraction, seal.masterRoot]),
+    sealed: seal10.sealed,
+    root: merkleFold([breath.expansion, breath.contraction, seal10.masterRoot]),
     statement: "Each self-sufficient wave extends outward, contracts inward, and is sealed \u2014 computed entirely from the repository with no external dependency.",
     boundary: "A wave is a sealed fold of an extension and a contraction over the computed model. Structural bookkeeping, not an external claim."
   };
@@ -72286,7 +72582,7 @@ function coupledCalendarTori(matrix = buildMatrix()) {
       { name: "Egyptian lunar lock", gears: [25, 309], mesh: 9125, identity: 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 && 164 + 145 === 309 && abs(9125 / 309 - SYNODIC) < 3e-4, reading: "25 civil years = 9125 days = 309 lunations (164 full of 30 + 145 hollow of 29); the implied mean month 29.5307 sits within 3\xD710\u207B\u2074 day of the synodic 29.53059 (P. Carlsberg 9)." },
       { name: "Tibetan rabjung (Kalachakra)", gears: [12, 10], mesh: lcm(12, 10), identity: lcm(12, 10) === 60 && 624 + 403 === 1027 && abs(67 * SYNODIC - 65 * (TROPICAL / 12)) < 0.2, reading: '12 animals against 5 elements doubled male/female (gears 12 and 10): 60 names from 1027 CE \u2014 the tantra\u2019s own "fire-space-ocean" count, 403 years after 624 \u2014 the sexagenary torus transmitted; its 67-lunar = 65-solar-month equivalence meshes within 0.2 day.' }
     ].map((cycle) => ({ ...cycle, receipt: toUuid(`calendar-torus:${cycle.name}:${cycle.mesh}`) }));
-    const { computes, facets, root } = computesGate("coupled-calendar-tori", [
+    const { computes, facets, root: root10 } = computesGate("coupled-calendar-tori", [
       ...cycles.map((cycle) => ({ facet: `${cycle.name} \u2014 ${cycle.reading}`, on: cycle.identity })),
       { facet: "the torus reading \u2014 two coupled cycles are the two circles of a 2-torus; a commensurate ratio closes the orbit after exactly lcm steps (an organizing lens, and documented dynamical-systems language)", on: cycles.every((cycle) => cycle.mesh > 0) }
     ]);
@@ -72296,7 +72592,7 @@ function coupledCalendarTori(matrix = buildMatrix()) {
       cycles,
       count: cycles.length,
       facets,
-      root: merkleFold([root, ...cycles.map((cycle) => cycle.receipt)]),
+      root: merkleFold([root10, ...cycles.map((cycle) => cycle.receipt)]),
       statement: "The ancient calendars decode as coupled-cycle tori: Maya 260\xD7365 \u2192 18 980, sexagenary 10\xD712 \u2192 60, Metonic 19 yr \u2248 235 months, Egyptian civil 365 lapping Sirius in 1461 years and locking the moon in 25 \u2014 every mesh an exact identity recomputed at call time.",
       boundary: "HONEST: the meshes are exact arithmetic and the astronomical fits are checked against documented mean constants; the torus is an organizing lens (commensurate flow on T\xB2), not a claim the builders thought in tori; discredited chronology and apocalypse pseudohistory are flagged out, never decoded."
     };
@@ -72304,10 +72600,10 @@ function coupledCalendarTori(matrix = buildMatrix()) {
 }
 function quipuKnots(n) {
   const digits = max(0, floor(n)).toString(10).split("").reverse().map((ch) => Number(ch));
-  return digits.map((digit2, place) => {
-    if (digit2 === 0) return { place, digit: digit2, knot: "empty", count: 0 };
-    if (place === 0) return digit2 === 1 ? { place, digit: digit2, knot: "figure-eight", count: 1 } : { place, digit: digit2, knot: "long", count: digit2 };
-    return { place, digit: digit2, knot: "simple", count: digit2 };
+  return digits.map((digit11, place) => {
+    if (digit11 === 0) return { place, digit: digit11, knot: "empty", count: 0 };
+    if (place === 0) return digit11 === 1 ? { place, digit: digit11, knot: "figure-eight", count: 1 } : { place, digit: digit11, knot: "long", count: digit11 };
+    return { place, digit: digit11, knot: "simple", count: digit11 };
   });
 }
 function quipuValue(clusters) {
@@ -72322,7 +72618,7 @@ function quipuDecoded(matrix = buildMatrix()) {
     const pendants = [312, 78, 490];
     const topCord = pendants.reduce((a, b) => a + b, 0);
     const sumLaw = quipuValue(quipuKnots(topCord)) === pendants.map((p) => quipuValue(quipuKnots(p))).reduce((a, b) => a + b, 0);
-    const { computes, facets, root } = computesGate("quipu-decoded", [
+    const { computes, facets, root: root10 } = computesGate("quipu-decoded", [
       { facet: "Locke 1923 \u2014 three knot types, base-10 POSITIONAL: number \u2192 knots \u2192 number round-trips exactly over the sweep", on: roundTrips },
       { facet: "the units law \u2014 long knot of n turns is digit n (2\u20139); one turn is impossible, so 1 is the figure-eight knot", on: unitsLaw },
       { facet: "positional ZERO as the empty place (205 = simple\xB7simple / empty / long-5) \u2014 knots beside the Maya shell", on: zeroLaw },
@@ -72332,7 +72628,7 @@ function quipuDecoded(matrix = buildMatrix()) {
       computes,
       decoded: computes,
       facets,
-      root: merkleFold([root, ...sweep.map((n) => toUuid(`quipu:${n}:${quipuKnots(n).map((c) => `${c.knot}:${c.count}`).join("|")}`))]),
+      root: merkleFold([root10, ...sweep.map((n) => toUuid(`quipu:${n}:${quipuKnots(n).map((c) => `${c.knot}:${c.count}`).join("|")}`))]),
       statement: "The quipu decodes as a reusable codec: Locke\u2019s three-knot base-10 positional reading round-trips exactly (long-knot units, figure-eight one, empty zero, pendant sums) \u2014 knot-record arithmetic, recomputed at call time.",
       boundary: "HONEST: the NUMERIC khipu layer only \u2014 documented since Locke 1923 and exact; narrative khipus are undeciphered, Urton\u2019s binary coding is a flagged hypothesis, and no claim is made that the codec reads any real specimen\u2019s non-numeric content."
     };
@@ -72344,7 +72640,7 @@ function kalachakraDecoded(matrix = buildMatrix()) {
     const solarMonth = 365.2422 / 12;
     const meshGap = abs(67 * SYNODIC - 65 * solarMonth);
     const leapsPer19 = 2 / 65 * 12 * 19;
-    const { computes, facets, root } = computesGate("kalachakra-decoded", [
+    const { computes, facets, root: root10 } = computesGate("kalachakra-decoded", [
       { facet: "rabjung \u2014 60 year-names = 12 animals \xD7 5 elements in male/female pairs: 60 = lcm(12,10), the sexagenary mesh transmitted; anchored 1027 CE = 624 + 403, the tantra\u2019s own fire-space-ocean count", on: lcm(12, 10) === 60 && 624 + 403 === 1027 },
       { facet: "the intercalation identity \u2014 67 mean lunar months \u2261 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)\xB712\xB719 \u2248 7 leap months per 19 years", on: meshGap < 0.2 && abs(leapsPer19 - 7) < 0.05 },
       { facet: "the mandala counts \u2014 722 deities, FIVE nested palaces (body\xB7speech\xB7mind\xB7wisdom\xB7great-bliss), each four-gated at the cardinal directions: the same E\xB7W\xB7N\xB7S four-gate square the stroke cycle computes, held as structural correspondence", on: 5 * 4 === 20 && 722 > 0 },
@@ -72356,7 +72652,7 @@ function kalachakraDecoded(matrix = buildMatrix()) {
       meshGap,
       leapsPer19,
       facets,
-      root: merkleFold([root, toUuid(`kalachakra:rabjung:${lcm(12, 10)}:1027`), toUuid(`kalachakra:intercalation:67:65:${meshGap.toFixed(3)}`)]),
+      root: merkleFold([root10, toUuid(`kalachakra:rabjung:${lcm(12, 10)}:1027`), toUuid(`kalachakra:intercalation:67:65:${meshGap.toFixed(3)}`)]),
       statement: "The Kalachakra decodes to documented arithmetic: rabjung 60 = lcm(12,10) anchored 1027 CE by the tantra\u2019s own count; 67 lunar \u2261 65 solar months reproducing the Metonic 7-per-19; the 722-deity five-palace mandala with four cardinal gates per palace \u2014 the wheel of time as coupled cycles.",
       boundary: "HONEST: the calendar mathematics is documented (arXiv 1401.6285, Kalachakra-based Tibetan calendar); the four-gate correspondence with the stroke cycle is an organizing lens; prophecy chronology, physics-code overlays, and Meru cosmology are flagged doctrine, never sealed as science."
     };
@@ -72377,7 +72673,7 @@ function songlinesDecoded(matrix = buildMatrix()) {
       return row ? toUuid(`source:${row.key}:${row.cite}`) : "";
     };
     const sourcesRoot = merkleFold(SOURCES.map((row) => toUuid(`source:${row.key}:${row.cite}`)));
-    const { computes, facets, root } = computesGate("songlines-decoded", [
+    const { computes, facets, root: root10 } = computesGate("songlines-decoded", [
       { facet: "the path IS the index \u2014 a songline stores knowledge at waypoints along a route, the route being the retrieval key: the same structure as the method of loci and as content-addressing (the repo\u2019s path-is-meaning law)", on: isUuid(cites("norris-harney")) },
       { facet: `the drowned-coast clock \u2014 coastal stories at ~21 sites describe shorelines submerged by the post-glacial rise, dating them \u2265 ${inundationBoundYears} years: fidelity across \u2265 ${generations} generations of telling (Nunn & Reid 2016, Australian Geographer)`, on: generations === 280 },
       { facet: "navigation documented \u2014 Wardaman and other songlines encode routes and star-path mnemonics; song sequence orders waypoints (Norris & Harney 2014, J. Astronomical History & Heritage; Dawes Review 5)", on: isUuid(cites("norris-harney")) },
@@ -72389,7 +72685,7 @@ function songlinesDecoded(matrix = buildMatrix()) {
       generations,
       inundationBoundYears,
       facets,
-      root: merkleFold([root, sourcesRoot, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
+      root: merkleFold([root10, sourcesRoot, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
       statement: "Songlines decode as the path-as-index: knowledge stored at waypoints along an owned route \u2014 the structure of the method of loci and of content-addressing \u2014 with documented \u22657 000-year fidelity (the drowned-coast clock, \u2265280 generations), star-path navigation, and an RCT where the technique beat the memory palace.",
       boundary: "HONEST: structure and published record only (Nunn & Reid 2016; Norris & Harney 2014; Reser et al. 2021) \u2014 the content is owned, custodial, often sacred and is NOT decoded; the 60 000-year framing stays flagged beyond the dated evidence; the content-addressing parallel is a structural correspondence, not a claim of identity."
     };
@@ -72418,7 +72714,7 @@ function adinkraDecoded(matrix = buildMatrix()) {
     ];
     const documented = DOCUMENTED.map((row) => row.text);
     const flagged = FLAGGED2.map((row) => row.text);
-    const { computes, facets, root } = computesGate("adinkra-decoded", [
+    const { computes, facets, root: root10 } = computesGate("adinkra-decoded", [
       ...DOCUMENTED.map((row) => ({ facet: row.text, on: isUuid(cites(row.key)) })),
       ...FLAGGED2.map((row) => ({ facet: `FLAGGED \u2014 ${row.text}`, on: isUuid(cites(row.key)) }))
     ]);
@@ -72428,7 +72724,7 @@ function adinkraDecoded(matrix = buildMatrix()) {
       documented,
       flagged,
       facets,
-      root: merkleFold([root, ...documented.map((entry2) => toUuid(`adinkra:doc:${entry2.slice(0, 40)}`)), ...flagged.map((entry2) => toUuid(`adinkra:flag:${entry2.slice(0, 40)}`))]),
+      root: merkleFold([root10, ...documented.map((entry2) => toUuid(`adinkra:doc:${entry2.slice(0, 40)}`)), ...flagged.map((entry2) => toUuid(`adinkra:flag:${entry2.slice(0, 40)}`))]),
       statement: "Adinkra decodes as what it documentedly is \u2014 an Akan ideographic symbol grammar on stamped cloth (Bowdich 1817), meanings not numerals \u2014 with the binary-code claim, the royal origin legend, and the supersymmetry name-collision flagged.",
       boundary: "HONEST: symbol meanings kept to the widely documented core; no symbol table is invented; the binary reading belongs to If\xE1/geomancy (a different, real system), and modern physics adinkras share only the borrowed name."
     };
@@ -73557,7 +73853,7 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix =
   return memoByRoot("computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched", matrix, () => computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matrix));
 }
 function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matrix = buildMatrix()) {
-  const base = computeDiscoverExactMatchAllKnownCelestialBodies(matrix);
+  const base10 = computeDiscoverExactMatchAllKnownCelestialBodies(matrix);
   const all = computeAllKnownCelestialBodies(matrix);
   const sunAndMoon2 = sunAndMoon;
   const sunMoon = sunAndMoon2(matrix);
@@ -73638,21 +73934,21 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matri
     { facet: `${flagged} flagged \u2014 flat/hollow Earth, Keplerian \u2260 JPL ephemeris overclaim`, on: flagged === 2 },
     { facet: `${isomorphism} structural isomorphisms \u2014 sun/moon lobes, compute-all structural model`, on: isomorphism === 2 && sunMoon.paired },
     { facet: "sixteen bodies computed at call time \u2014 computeAllKnownCelestialBodies", on: all.computed && all.count === 16 },
-    { facet: "exact match on encoded fields \u2014 computeDiscoverExactMatchAllKnownCelestialBodies", on: base.exactMatch },
+    { facet: "exact match on encoded fields \u2014 computeDiscoverExactMatchAllKnownCelestialBodies", on: base10.exactMatch },
     { facet: "all findings sealed with tier receipts", on: findingsSealed }
   ];
   const sealed = sealFacets("celestial-bodies-deep-research", facets);
   return {
-    researched: sealed.ok && base.exactMatch && findingsSealed,
+    researched: sealed.ok && base10.exactMatch && findingsSealed,
     findings,
     documented,
     flagged,
     isomorphism,
-    base,
+    base: base10,
     all,
     count: sealed.count,
     facets: sealed.facets,
-    root: merge(matrix.root, merkleFold([...findings.map((f2) => f2.receipt), base.root, all.root])),
+    root: merge(matrix.root, merkleFold([...findings.map((f2) => f2.receipt), base10.root, all.root])),
     statement: "Deep research \u2014 compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius \u2014 all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism.",
     boundary: "HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (NASA/JPL, CODATA, WGS84) \xB7 FLAGGED (flat Earth, ephemeris overclaim) \xB7 ISOMORPHISM (double-torus lobes, compute-all structural model). Circular Keplerian \u2260 JPL DE440; major moons use mean periods only. NOT live web research at call time \u2014 findings encoded from verified wave."
   };
@@ -73773,7 +74069,7 @@ function astronomyDecodedWithTheSequence(at = 0, matrix = buildMatrix()) {
     const phaseIndex = floor(at / 864e5) % VORTEX_SEQUENCE.length;
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex];
     const digitFolderDigit = vortexSaved.digits.sequence[phaseIndex % vortexSaved.digits.sequence.length] ?? phaseDigit;
-    const mappings = celestial.bodies.map((body, index) => {
+    const mappings10 = celestial.bodies.map((body, index) => {
       const seed = seedFromText(body.name);
       const vortexSlot = seed % VORTEX_SEQUENCE.length;
       const vortexDigit = VORTEX_SEQUENCE[vortexSlot];
@@ -73801,9 +74097,9 @@ function astronomyDecodedWithTheSequence(at = 0, matrix = buildMatrix()) {
         rosettaReceipt
       };
     });
-    const allMapped = mappings.length === 16 && mappings.every((entry2) => isUuid(entry2.sequenceReceipt));
+    const allMapped = mappings10.length === 16 && mappings10.every((entry2) => isUuid(entry2.sequenceReceipt));
     const anchorsOk = sun.computes && moon.computes && celestial.computed;
-    const { computes, facets, root } = computesGate("astronomy-sequence-decode", [
+    const { computes, facets, root: root10 } = computesGate("astronomy-sequence-decode", [
       { facet: "sixteen celestial bodies mapped to VORTEX_SEQUENCE slots", on: allMapped },
       { facet: "phase digit at at \u2014 VORTEX_SEQUENCE[at mod 9]", on: phaseDigit === VORTEX_SEQUENCE[phaseIndex] },
       { facet: "digit-folder probe fused in vortex saved", on: vortexSaved.digits.fused },
@@ -73812,7 +74108,7 @@ function astronomyDecodedWithTheSequence(at = 0, matrix = buildMatrix()) {
       { facet: "sun/moon compute gates anchor solar system", on: anchorsOk },
       { facet: "deep-research celestial wave researched", on: deep.researched },
       { facet: "Schumann harmonic window harmonised or structural", on: schumann.harmonised || schumann.root !== "" },
-      { facet: "pi-train station per body \u2014 content-addressed", on: train.diamonds.length > 0 && mappings.every((entry2) => entry2.piStation >= 0) }
+      { facet: "pi-train station per body \u2014 content-addressed", on: train.diamonds.length > 0 && mappings10.every((entry2) => entry2.piStation >= 0) }
     ]);
     return {
       computes,
@@ -73821,7 +74117,7 @@ function astronomyDecodedWithTheSequence(at = 0, matrix = buildMatrix()) {
       phaseIndex,
       phaseDigit,
       digitFolderDigit,
-      mappings,
+      mappings: mappings10,
       celestial,
       deep,
       vortex: vortexSaved,
@@ -73831,7 +74127,7 @@ function astronomyDecodedWithTheSequence(at = 0, matrix = buildMatrix()) {
       schumann,
       rosetta: rosettaGate,
       facets,
-      root: merkleFold([root, celestial.root, decodeAll.root, vortexSaved.root, ...mappings.map((entry2) => entry2.sequenceReceipt)]),
+      root: merkleFold([root10, celestial.root, decodeAll.root, vortexSaved.root, ...mappings10.map((entry2) => entry2.sequenceReceipt)]),
       statement: "Astronomy decoded with the sequence: sixteen celestial bodies content-addressed through VORTEX_SEQUENCE slots, phase digit at call time, digit-folder probe, pi-train stations, Rosetta ray receipts, I Ching hexagram keys (1\u201364), decode-all chain, and sun/moon compute anchors \u2014 deterministic addressing, not live ephemeris or orbit control.",
       boundary: "HONEST: sequence decode = deterministic addressing of the sealed celestial catalog through vortex/digit/Rosetta protocol \u2014 NOT live JPL ephemeris, NOT claiming VORTEX_SEQUENCE literally controls physical orbits, NOT omniscience. Circular Keplerian model only. Hexagram and Rosetta mappings are content-address keys for navigation in the model, not astronomical causation."
     };
@@ -73884,7 +74180,7 @@ function astronomySimulationAt(at = 0, matrix = buildMatrix()) {
         on: celestial.moon.exactMatch && !celestial.moon.emits
       }
     ];
-    const { computes, root } = computesGate("astronomy-simulation-at", [
+    const { computes, root: root10 } = computesGate("astronomy-simulation-at", [
       { facet: "sixteen bodies \u2014 orbit phase + vortex hue at at", on: bodies.length === 16 },
       { facet: "sequence decode composed \u2014 phaseDigit drives addressing", on: sequence.decoded },
       { facet: "paint channels \u2014 astro-seq + sun + moon receipts", on: channels.every((ch) => isUuid(ch.receipt)) },
@@ -73896,7 +74192,7 @@ function astronomySimulationAt(at = 0, matrix = buildMatrix()) {
       phaseDigit: sequence.phaseDigit,
       bodies,
       channels,
-      root: merkleFold([root, celestial.root, sequence.root, ...bodies.map((entry2) => entry2.receipt)]),
+      root: merkleFold([root10, celestial.root, sequence.root, ...bodies.map((entry2) => entry2.receipt)]),
       statement: "Astronomy simulation at call time: sixteen celestial bodies with Keplerian orbit phase and vortex-digit hue from astronomyDecodedWithTheSequence \u2014 paint-ready channels for plasma movie at the shared hero clock.",
       boundary: "HONEST \u2014 circular Keplerian catalog, NOT live JPL ephemeris. Vortex digit drives hue/orbit phase as deterministic addressing \u2014 NOT physical orbit control. Sun/Moon lobe semantics from sealed nature fold."
     };
@@ -73967,23 +74263,23 @@ function sunEclipticLongitudeDeg(jd) {
 function moonEclipticLongitudeDeg(jd) {
   const T = meeusT(jd);
   const Lp = normalizeEclipticDeg(218.3164477 + 481267.88123421 * T);
-  const D = normalizeEclipticDeg(297.8501921 + 445267.1114034 * T);
+  const D10 = normalizeEclipticDeg(297.8501921 + 445267.1114034 * T);
   const M = normalizeEclipticDeg(357.5291092 + 35999.0502909 * T);
   const Mp = normalizeEclipticDeg(134.9633964 + 477198.8675055 * T);
   const F = normalizeEclipticDeg(93.272095 + 483202.0175233 * T);
   const terms = [
     [6.289, Mp],
-    [1.274, 2 * D - Mp],
-    [0.658, 2 * D],
+    [1.274, 2 * D10 - Mp],
+    [0.658, 2 * D10],
     [0.214, 2 * Mp],
     [-0.186, M],
     [-0.114, 2 * F],
-    [0.059, 2 * D - 2 * Mp],
-    [0.057, 2 * D - M - Mp],
-    [0.053, 2 * D + Mp],
-    [0.046, 2 * D - M],
+    [0.059, 2 * D10 - 2 * Mp],
+    [0.057, 2 * D10 - M - Mp],
+    [0.053, 2 * D10 + Mp],
+    [0.046, 2 * D10 - M],
     [0.041, M - Mp],
-    [-0.035, D],
+    [-0.035, D10],
     [-0.031, Mp + M]
   ];
   const delta = terms.reduce((sum, [c, arg]) => sum + c * sin(degToRad(normalizeEclipticDeg(arg))), 0);
@@ -75078,7 +75374,7 @@ function natureReview() {
   };
 }
 function lawfulHarmonise() {
-  const mappings = [
+  const mappings10 = [
     { idea: "membership and one-member-one-vote", form: "cooperative / association statutes", how: "a registered cooperative already gives every member an equal vote by law" },
     { idea: "shared commons, no enclosure", form: "open-source & open-data licenses (e.g. AGPL, CC, ODbL)", how: "the license keeps the work a commons and is enforceable in current courts" },
     { idea: "zero living cost balanced by max forge cost", form: "mutual aid / non-profit & cost-sharing law", how: "non-profit and mutual structures let surplus fund the commons, lawfully" },
@@ -75087,9 +75383,9 @@ function lawfulHarmonise() {
     { idea: "self-addressed identity, no hidden data", form: "data-protection law (e.g. GDPR), privacy by design", how: "browser-only, BYO-key architecture already satisfies data-minimisation duties" }
   ].map((entry2, index) => ({ ...entry2, receipt: toUuid(`lawful-harmonise:${index}:${entry2.idea}`) }));
   return {
-    harmonised: mappings.every((entry2) => entry2.form.length > 0),
-    mappings,
-    root: merkleFold(mappings.map((entry2) => entry2.receipt)),
+    harmonised: mappings10.every((entry2) => entry2.form.length > 0),
+    mappings: mappings10,
+    root: merkleFold(mappings10.map((entry2) => entry2.receipt)),
     statement: "Society harmonises itself using current society laws: every self-governance idea maps onto an existing, enforceable legal form \u2014 cooperative, association, license, non-profit, fair-trade, and data-protection law \u2014 so the society is lawful today, not someday.",
     boundary: "An educational map from the portal's concepts to real legal forms. Not legal advice; forms and names differ by jurisdiction \u2014 consult a local lawyer to incorporate."
   };

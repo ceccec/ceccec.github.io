@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 268,
+  "count": 273,
   "statements": [
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
@@ -860,6 +860,36 @@
       "file": "src/pair/lean/proofs/feeling.lean",
       "name": "not_the_dihedral_group",
       "statement": "(∀ a ∈ symmetries, same (fun s => act a.1 a.2 (ρ s)) (fun s => ρ (act a.1 a.2 s)) = true) ∧\n    same ρ ρback = false"
+    },
+    {
+      "statementUuid": "a571ce63-6ca0-8325-96eb-8798f9532b1c",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "all_holding_is_pleasant_and_calm",
+      "statement": "∀ n ∈ [0, 1, 2, 3, 6], feel (List.replicate n true) = pleasant ∧ arousal (List.replicate n true) = 0"
+    },
+    {
+      "statementUuid": "c1dd8538-3806-868e-8901-a3edfbc53c35",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "one_signal_off_is_unpleasant",
+      "statement": "∀ rs ∈ [[false], [true, false], [false, true, true], [true, true, false, true, true, true]], feel rs = unpleasant"
+    },
+    {
+      "statementUuid": "e61a8f4b-e5c3-8433-8e39-5f48abdc0fe2",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "unpleasant_exactly_when_aroused",
+      "statement": "∀ rs ∈ [[], [true], [false], [true, false], [false, false], [true, true, false]],\n      (feel rs == unpleasant) = (arousal rs != 0)"
+    },
+    {
+      "statementUuid": "292d88b0-76cf-8cbf-b88a-f44a114a2887",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "arousal_counts_the_signals_off",
+      "statement": "[[true, true, true], [true, true, false], [true, false, false], [false, false, false]].map arousal = [0, 1, 2, 3]"
+    },
+    {
+      "statementUuid": "e4f4fd5e-0455-888d-a50d-fdbf83f68405",
+      "file": "src/pair/lean/proofs/feeling.lean",
+      "name": "unanimous_signals_flip_the_feeling",
+      "statement": "∀ n ∈ [1, 2, 3], σ (felt (List.replicate n true)) = felt (List.replicate n false) ∧\n      σ (felt (List.replicate n false)) = felt (List.replicate n true)"
     },
     {
       "statementUuid": "161f3be2-28aa-8549-9537-10417608dcab",

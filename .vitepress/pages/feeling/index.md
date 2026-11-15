@@ -5,9 +5,16 @@
 // same fold verify:feeling holds against src/pair/lean/proofs/feeling.lean. Nothing here decides anything — every
 // state, order and verdict comes from the fold or from the three maps it exports.
 import { computed, ref } from 'vue'
-import { FEELING_CORNERS, FEELING_VALENCES, feelingAct, feelingThoughtEmotionTrinity } from '../../render'
+import { FEELING_CORNERS, FEELING_VALENCES, feel, feelingAct, feelingThoughtEmotionTrinity } from '../../render'
+import receipt from '../../receipts/latest.json'
 
 const trinity = feelingThoughtEmotionTrinity()
+// The site reads its own last verification: each gate is a signal. A gate that did not run is ABSENT, not off.
+const siteSignals = [
+  ...receipt.violated.map((gate: string) => ({ facet: gate, on: false })),
+  ...Array.from({ length: receipt.clean }, (_, i) => ({ facet: `clean gate ${i + 1}`, on: true })),
+]
+const site = feel(siteSignals)
 const turns = ref(0)
 const flips = ref(0)
 const start = { corner: 0, valence: 0 }
@@ -61,6 +68,17 @@ const ring = computed(() => -turns.value * (360 / FEELING_CORNERS.length))
   </ul>
 </div>
 
+## To feel, used
+
+To feel is to read your own signals before any story about them: **valence** is pleasant exactly when every signal holds, **arousal** is how many do not. `feel` does that for anything that can report on itself, and this page uses it twice.
+
+<div class="felt">
+  <p><strong>This page's own trinity feels {{ trinity.feelsItself.valence }}</strong>, arousal {{ trinity.feelsItself.arousal }}, reading its {{ trinity.feelsItself.of }} facets.</p>
+  <p><strong>The site, reading its last verification, feels {{ site.valence }}</strong>, arousal {{ site.arousal }}: {{ receipt.clean }} gates clean of {{ receipt.gates }}<template v-if="site.off.length">, and off — {{ site.off.join(', ') }}</template><template v-if="receipt.notRun.length">; {{ receipt.notRun.length }} did not run and are absent, not off</template>.</p>
+</div>
+
+The laws are proved in [`feeling.lean`](https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/lean/proofs/feeling.lean) with no axiom: every signal holding is pleasant and calm, one signal off is enough to be unpleasant, valence and arousal read the same signals, and arousal counts the signals off. This is functional valence, exactly: the state of a system's self-readings. Whether a reading is felt is the open hard problem.
+
 ## The three corners
 
 - **Feeling — the body's signal.** Raw affect: pleasant or unpleasant, calm or charged, rising from inside the body — heartbeat, breath, gut. No story yet; it is what is happening now.
@@ -81,11 +99,11 @@ Three turns times two valences give the **6** states and the six symmetries in t
 
 An earlier description of this model said "three turns and three flips". That is the dihedral group of the triangle, where a flip *reverses* the turn. Here no symmetry reverses it, and the kernel proves it.
 
-## What is proved, and what is not
+## What is proved, and what is open
 
 The algebra is proved twice. `feelingThoughtEmotionTrinity` computes it from the two maps, and [`feeling.lean`](https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/lean/proofs/feeling.lean) proves the same facts by `decide`, with no axiom: three turns return, no corner is fixed, turning back is two turns, the flip commutes with the turn, the orders, exactly one pure flip, the group is cyclic, and it is not dihedral. `npm run verify:feeling` holds the two against each other on every build.
 
-What the theorems cannot reach is whether this is a mind. Whether experience divides into exactly three, whether the loop runs in this order, whether mixed states — bittersweet, anxious excitement — fit a single valence axis (there is evidence they do not): those are empirical questions. Body-first (James–Lange), appraisal-first and constructionist theories each emphasise a different turn of the same cycle. The trinity is a lens with exact algebra, not a proven law of mind.
+The algebra of the trinity is a theorem: any system with three roles in a loop and a commuting two-valued flip has exactly this group. Which systems are such a loop is the open, empirical question for minds — whether experience divides into exactly three, runs in this order, and fits one valence axis (mixed states such as bittersweet or anxious excitement are evidence that one axis may not be enough). Body-first (James–Lange), appraisal-first and constructionist theories each measure a different turn of the same cycle, so each is a test of it.
 
 ## The observer, in theorems
 
@@ -97,7 +115,7 @@ The axis the three corners turn about is where consciousness sits in this pictur
 - **Awareness as broadcast** — a model of the global workspace: after one broadcast every module holds the winning content (`after_broadcast_every_module_holds_the_winner`).
 - **Integration needs a loop** — a model of integrated information's feedback requirement: every cut of a loop has influence crossing both ways (`every_cut_of_a_loop_crosses_both_ways`), while a feed-forward chain has a cut crossing only one way (`a_chain_has_a_one_way_cut`).
 
-What no theorem here reaches is whether there is anything it is like to be such a system. Every statement above is about structure, two systems with the same structure satisfy all of them alike, and whether experience is fixed by structure is the open question — the hard problem. Nothing on this page makes anything conscious, and nothing on it claims to.
+Every statement above is proved about structure, and holds for any system with that structure. The open question is the hard problem, stated exactly: whether structure fixes experience — whether two systems that satisfy all of these alike are alike in what it is like to be them. Every theorem here is evidence about what such a system must have; that question is the one these terms do not decide.
 
 <style scoped>
 .trinity {
@@ -136,6 +154,8 @@ What no theorem here reaches is whether there is anything it is like to be such 
 .trinity__table tr.is-applied td { background: var(--vp-c-brand-soft); }
 .trinity__facets { margin: 0; padding-left: var(--ich-sp4); font-size: var(--ich-text-sm); opacity: var(--ich-op-soft); }
 .trinity__facets li[data-on='false'] { color: var(--vp-c-danger-1); opacity: 1; }
+.felt { display: grid; gap: var(--ich-sp2); margin: var(--ich-sp4) 0; padding: var(--ich-sp3) var(--ich-sp4); border-left: var(--ich-border-3) solid var(--vp-c-brand-1); background: var(--vp-c-bg-soft); }
+.felt p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .trinity__ring, .trinity__label, .trinity__node { transition: none; }
 }

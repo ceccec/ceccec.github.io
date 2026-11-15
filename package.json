@@ -49,6 +49,7 @@
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
     "verify:axiom-ledger": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axiom-ledger.ts assertAxiomLedgerBalancesExit",
+    "verify:clay-cross": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/clay-cross.ts assertClayCrossExit",
     "verify:feeling": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/feeling.ts assertFeelingTrinityExit",
     "verify:every-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/every-fold.ts main",
     "verify:limits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/limits.ts assertFacetsCanFail",

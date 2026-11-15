@@ -1,8 +1,8 @@
 {
-  "tree": "f287dd36df0ef362",
-  "address": "5671a2acefddaec4",
-  "gates": 67,
-  "clean": 64,
+  "tree": "0a445878b73c68e3",
+  "address": "51a55d9fa3aae57d",
+  "gates": 68,
+  "clean": 65,
   "violated": [
     "verify:deposit-counts",
     "verify:deposit-metadata",

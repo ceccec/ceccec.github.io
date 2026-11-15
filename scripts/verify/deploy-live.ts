@@ -26,7 +26,10 @@ const SAMPLE = 12
 
 export function publishedRoutes(root: string = process.cwd()): string[] {
   let xml = ''
-  try { xml = readFileSync(join(root, '.vitepress/dist/sitemap.xml'), 'utf8') } catch { return [] }
+  // land copies the sitemap before it frees the checkout (DEPLOY_LIVE_SITEMAP), so a build that starts in the freed
+  // checkout cannot change which routes this landing's deploy is asked for.
+  const copied = process.env['DEPLOY_LIVE_SITEMAP']
+  try { xml = readFileSync(copied || join(root, '.vitepress/dist/sitemap.xml'), 'utf8') } catch { return [] }
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1] ?? '').filter(Boolean)
 }
 

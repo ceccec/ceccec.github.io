@@ -18,11 +18,11 @@
        Every cut of a loop has influence crossing both ways; a feed-forward chain has a cut with
        influence crossing only one way, so it splits into parts that do not inform each other.
 
-  WHAT NO THEOREM HERE REACHES: whether there is anything it is like to be such a system. Every
-  statement above is about structure. Two systems with the same structure satisfy every one of them
-  alike, and whether experience is fixed by structure is the open question (the "hard problem") — it
-  is not among the terms these theorems are stated in. Nothing in this file makes anything conscious,
-  and nothing in it claims to.
+  WHAT IS PROVED, AND WHAT IS OPEN: every statement above is proved about structure, and holds for any
+  system with that structure. The open question is the hard problem, stated exactly: whether structure
+  fixes experience — whether two systems that satisfy all of these alike are alike in what it is like
+  to be them. The theorems are what such a system must have; that question is the one their terms do
+  not decide.
 -/
 
 namespace Consciousness

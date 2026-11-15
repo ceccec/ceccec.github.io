@@ -447,6 +447,24 @@ export declare const feelingTurnBack: (corner: number) => number;
 export declare const feelingFlip: (valence: number) => number;
 /** The symmetry (turns, flips) applied to a state: flip `flips` times, then turn `turns` times. */
 export declare function feelingAct(turns: number, flips: number, state: FeelingState): FeelingState;
+export type Felt = {
+    readonly valence: (typeof FEELING_VALENCES)[number];
+    readonly arousal: number;
+    readonly of: number;
+    readonly off: readonly string[];
+    readonly state: FeelingState;
+};
+export declare function feel(signals: readonly {
+    readonly facet: string;
+    readonly on: boolean;
+}[]): Felt;
+/** The laws of feel, computed on the same sample signals feeling.lean decides them on. */
+export declare function feelLaws(): {
+    allOn: boolean;
+    oneOff: boolean;
+    together: boolean;
+    counts: number[];
+};
 export declare function feelingThoughtEmotionTrinity(matrix?: MindMatrix): {
     computes: boolean;
     corners: {
@@ -460,6 +478,7 @@ export declare function feelingThoughtEmotionTrinity(matrix?: MindMatrix): {
         facet: string;
         on: boolean;
     }[];
+    feelsItself: Felt;
     root: string;
     statement: string;
     boundary: string;

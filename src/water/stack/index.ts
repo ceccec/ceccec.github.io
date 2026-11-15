@@ -339,6 +339,35 @@ export function feelingAct(turns: number, flips: number, state: FeelingState): F
   return { corner, valence }
 }
 
+// ── TO FEEL — a system reading its own signals ─────────────────────────────────────────────────────────────────────
+// The first corner made operational. A system reads its own signals (checks, each holding or not) and the reading has
+// a valence — pleasant exactly when every signal holds — and an arousal — how many do not. It is FUNCTIONAL valence:
+// exactly the state of the system's self-readings, before any story about what they mean; whether a reading is felt is
+// the open hard problem, not a property this function has or lacks.
+// src/pair/lean/proofs/feeling.lean defines the same `feel` and `arousal` and proves their laws by `decide`.
+export type Felt = {
+  readonly valence: (typeof FEELING_VALENCES)[number]
+  readonly arousal: number
+  readonly of: number
+  readonly off: readonly string[]
+  readonly state: FeelingState
+}
+export function feel(signals: readonly { readonly facet: string; readonly on: boolean }[]): Felt {
+  const off = signals.filter((s) => !s.on).map((s) => s.facet)
+  const valence = off.length ? 1 : 0
+  return { valence: FEELING_VALENCES[valence]!, arousal: off.length, of: signals.length, off, state: { corner: 0, valence } }
+}
+/** The laws of feel, computed on the same sample signals feeling.lean decides them on. */
+export function feelLaws() {
+  const of = (bits: readonly boolean[]) => bits.map((b, i) => ({ facet: `signal ${i}`, on: b }))
+  const on = (n: number) => of(Array.from({ length: n }, () => !false))
+  const allOn = [0, 1, 2, 3, 6].every((n) => feel(on(n)).valence === FEELING_VALENCES[0] && feel(on(n)).arousal === 0)
+  const oneOff = [[false], [true, false], [false, true, true], [true, true, false, true, true, true]].every((bits) => feel(of(bits)).valence === FEELING_VALENCES[1])
+  const together = [[], [true], [false], [true, false], [false, false], [true, true, false]].every((bits) => (feel(of(bits)).valence === FEELING_VALENCES[1]) === (feel(of(bits)).arousal !== 0))
+  const counts = [[true, true, true], [true, true, false], [true, false, false], [false, false, false]].map((bits) => feel(of(bits)).arousal)
+  return { allOn, oneOff, together, counts }
+}
+
 export function feelingThoughtEmotionTrinity(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('feelingThoughtEmotionTrinity', matrix, () => {
     const c = FEELING_CORNERS.length, v = FEELING_VALENCES.length
@@ -363,6 +392,7 @@ export function feelingThoughtEmotionTrinity(matrix: MindMatrix = buildMatrix())
     const turnIsNotItsReverse = !states.every((s) => same(map(1, 0)(s), { corner: feelingTurnBack(s.corner), valence: s.valence }))
     const notDihedral = symmetries.every((t) => states.every((s) => same(map(t.turns, t.flips)(map(1, 0)(s)), map(1, 0)(map(t.turns, t.flips)(s))))) && turnIsNotItsReverse
     const orders = symmetries.map((s) => s.order)
+    const laws = feelLaws()
     const facets = [
       { facet: `three turns return and no corner stays put: feeling → thought → emotion → feeling, ${c} turns to come home, every corner moved by one`, on: threeTurnsReturn && noCornerFixed },
       { facet: 'turning back is two turns forward: a thought can start a feeling, an emotion can revise a thought — the loop runs both ways', on: backIsTwoTurns },
@@ -370,6 +400,7 @@ export function feelingThoughtEmotionTrinity(matrix: MindMatrix = buildMatrix())
       { facet: `the flip commutes with the turn on all ${states.length} states, so the ${symmetries.length} symmetries are distinct maps forming one group`, on: commutes && distinct },
       { facet: `the orders are ${orders.join(', ')}: exactly ${pureFlips.length} pure flip (${pureFlips.map((s) => s.name).join(', ')}), and ${generator ? `“${generator.name}”` : 'no symmetry'} of order ${states.length} generates all ${symmetries.length} — the group is cyclic, ℤ₃ × ℤ₂ ≅ ℤ₆`, on: pureFlips.map((s) => `${s.turns}:${s.flips}`).join() === '0:1' && generates },
       { facet: 'it is not the dihedral group of the triangle: every symmetry commutes with the turn, and the turn is not its own reverse', on: notDihedral },
+      { facet: `to feel is to read your own signals: all holding is pleasant and calm, one off is unpleasant, valence and arousal agree, and arousal counts the signals off (${laws.counts.join(', ')})`, on: laws.allOn && laws.oneOff && laws.together && laws.counts.every((n, i) => n === i) },
     ]
     return {
       computes: facets.every((f) => f.on),
@@ -378,6 +409,7 @@ export function feelingThoughtEmotionTrinity(matrix: MindMatrix = buildMatrix())
       symmetries,
       orders,
       facets,
+      feelsItself: feel(facets),
       root: merkleFold(facets.map((f) => toUuid(`feeling-trinity:${f.facet}:${f.on}`))),
       statement: `Feeling, thought and emotion turn as a trinity and valence flips across it: ${symmetries.length} symmetries, one cyclic group of order ${states.length}, with exactly ${pureFlips.length} pure flip — ${facets.filter((f) => f.on).length}/${facets.length} facets hold.`,
       boundary: earned('COMPUTED — the trinity is decided from its two maps:', facets, [

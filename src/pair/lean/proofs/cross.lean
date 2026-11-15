@@ -21,10 +21,10 @@
     none         Poincaré χ = 2 − 2g and g = (2 − χ)/2 are mutually inverse — a bijection between
                  two sets, NOT an involution of either; χ ∘ χ moves 0 to −2, proved below.
 
-  WHAT THIS DOES NOT PROVE: any of the seven problems. It proves the symmetries and their fixed sets.
-  Where the problem is open, the open part is a statement about a fixed set (are all nontrivial zeros
-  on Re s = 1/2? is NP among the fixed classes?) and it stays open; nothing here asserts it. Poincaré
-  is Perelman's theorem. The definitions are restated from their files because each .lean file in
+  WHAT IS PROVED, AND WHAT IS OPEN: the symmetry each of the seven is stated over, and its exact fixed
+  set. Each open problem is a question about that fixed set — are all nontrivial zeros on Re s = 1/2?
+  is NP among the fixed classes? — and stays open, stated in the terms proved here. Poincaré is
+  Perelman's theorem. The definitions are restated from their files because each .lean file in
   this corpus compiles alone (bare `lean`, no imports); `riemann_and_bsd_are_one_reflection` and the
   cluster theorems are the cross the separate files could not state.
 -/

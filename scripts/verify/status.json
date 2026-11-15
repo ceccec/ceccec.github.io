@@ -12,7 +12,7 @@
   "guards.no-filesystem-empty": 2,
   "imports.unresolved": 6,
   "independence.cross-checked": -473,
-  "independence.gate-exercised": -29,
+  "independence.gate-exercised": -31,
   "lean.registry-sealed": -49,
   "limits.weakest-bar": 4,
   "mcp.browser-claim-unverified": 19,

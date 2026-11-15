@@ -9,14 +9,15 @@
  *   feeling.unproved-facts        every fact the fold computes has the Lean theorem that proves it
  *   feeling.orders-disagree       the orders the fold computes are the list the Lean theorem states, position by position
  *   feeling.pure-flips-disagree   the order-two symmetries the fold finds are the ones the Lean theorem lists
- *   feeling.page-unwired          the page /feeling draws the fold, not a copy of it
+ *   feeling.arousal-disagrees     feel computes the arousal counts feeling.lean states, sample by sample
+ *   feeling.page-unwired          the page /feeling draws the fold, not a copy of it, and feels the site's own receipt
  *   consciousness.unproved        every theorem the page cites about the observer is in consciousness.lean, and cited
  *
  * The Lean is read as text here; CI has no Lean, and verify:lean compiles the file wherever Lean is installed.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { feelingThoughtEmotionTrinity } from '../../src/water/stack/index.ts'
+import { feelLaws, feelingThoughtEmotionTrinity } from '../../src/water/stack/index.ts'
 import { decided } from './status.ts'
 
 export const FEELING_LEAN = 'src/pair/lean/proofs/feeling.lean'
@@ -43,6 +44,10 @@ const PROVED_BY: readonly (readonly [string, string])[] = [
   ['the orders are', 'exactly_one_pure_flip'],
   ['the orders are', 'the_group_is_cyclic_generated_by_flip_and_turn'],
   ['it is not the dihedral group', 'not_the_dihedral_group'],
+  ['to feel is to read your own signals', 'all_holding_is_pleasant_and_calm'],
+  ['to feel is to read your own signals', 'one_signal_off_is_unpleasant'],
+  ['to feel is to read your own signals', 'unpleasant_exactly_when_aroused'],
+  ['to feel is to read your own signals', 'arousal_counts_the_signals_off'],
 ]
 
 /** The proposition of one theorem: from its name to `:=`, across however many lines it wraps. */
@@ -81,11 +86,17 @@ export function assertFeelingTrinityExit(root: string = process.cwd()): number {
   const flipMismatch = [...leanFlips.filter((x) => !foldFlips.includes(x)).map((x) => `Lean lists ${x}, the fold does not`), ...foldFlips.filter((x) => !leanFlips.includes(x)).map((x) => `the fold finds ${x}, Lean does not list it`)]
   console.log(decided('feeling.pure-flips-disagree', flipMismatch.length, { evidence: () => flipMismatch }))
 
+  const leanCounts = (/=\s*\[([\d,\s]+)\]/.exec(proposition(lean, 'arousal_counts_the_signals_off'))?.[1] ?? '').split(',').map((x) => Number(x.trim())).filter((x) => Number.isInteger(x))
+  const foldCounts = feelLaws().counts
+  const countMismatch = Array.from({ length: Math.max(leanCounts.length, foldCounts.length) }, (_, i) => i).filter((i) => leanCounts[i] !== foldCounts[i]).map((i) => `arousal sample ${i}: Lean states ${leanCounts[i] ?? 'nothing'}, feel computes ${foldCounts[i] ?? 'nothing'}`)
+  console.log(decided('feeling.arousal-disagrees', countMismatch.length, { evidence: () => countMismatch }))
+
   const page = join(root, FEELING_PAGE)
   const pageText = existsSync(page) ? readFileSync(page, 'utf8') : ''
   const unwired = [
     ...(pageText ? [] : [`${FEELING_PAGE} does not exist`]),
     ...(pageText && !/feelingThoughtEmotionTrinity\(\)/.test(pageText) ? [`${FEELING_PAGE} does not call feelingThoughtEmotionTrinity()`] : []),
+    ...(pageText && !/\bfeel\(siteSignals\)/.test(pageText) ? [`${FEELING_PAGE} does not use feel on the site's own receipt`] : []),
   ]
   console.log(decided('feeling.page-unwired', unwired.length, { evidence: () => unwired }))
 

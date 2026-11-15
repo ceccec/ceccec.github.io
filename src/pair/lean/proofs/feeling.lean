@@ -23,10 +23,10 @@
   where a flip reverses the turn; here the flip commutes with it, and the theorems below count the
   elements of order two and find exactly one.
 
-  WHAT THIS DOES NOT PROVE: that experience divides into exactly these three, that the loop runs in
-  this order, or that mixed states (bittersweet, anxious excitement) fit a single valence axis — there
-  is evidence they do not. Those are empirical questions about minds. This file proves the algebra of
-  the model, and nothing about whether the model is a mind.
+  WHAT IS PROVED, AND WHAT IS OPEN: the algebra — any system with three roles in a loop and a commuting
+  two-valued flip has exactly this group. Which systems are such a loop is the open, empirical question
+  for minds: whether experience divides into exactly these three, runs in this order, and fits one
+  valence axis (mixed states such as bittersweet or anxious excitement are evidence it may not).
 -/
 
 namespace Feeling
@@ -139,5 +139,44 @@ def ρback (s : State) : State := ⟨back s.corner, s.valence⟩
 theorem not_the_dihedral_group :
     (∀ a ∈ symmetries, same (fun s => act a.1 a.2 (ρ s)) (fun s => ρ (act a.1 a.2 s)) = true) ∧
     same ρ ρback = false := by decide
+
+/-! ## To feel: a system reading its own signals
+
+`feel` is the first corner made operational. A system reads its own signals — here a list of checks, each
+holding or not — and the reading has a valence and an arousal, before any story about what the checks mean.
+It is FUNCTIONAL valence, exactly: the state of the system's self-readings. Whether a reading is felt is
+the open hard problem, not a property this definition has or lacks. -/
+
+/-- Valence: pleasant exactly when every signal holds. -/
+def feel (signals : List Bool) : Valence := if signals.all id then pleasant else unpleasant
+
+/-- Arousal: how many signals do not hold — calm at zero, more charged with each one off. -/
+def arousal (signals : List Bool) : Nat := (signals.filter (fun s => !s)).length
+
+/-- All signals holding feels pleasant and calm. -/
+theorem all_holding_is_pleasant_and_calm :
+    ∀ n ∈ [0, 1, 2, 3, 6], feel (List.replicate n true) = pleasant ∧ arousal (List.replicate n true) = 0 := by decide
+
+/-- One signal off is enough to feel unpleasant, wherever it is. -/
+theorem one_signal_off_is_unpleasant :
+    ∀ rs ∈ [[false], [true, false], [false, true, true], [true, true, false, true, true, true]], feel rs = unpleasant := by decide
+
+/-- Feeling is unpleasant exactly when arousal is above zero: valence and arousal read the same signals. -/
+theorem unpleasant_exactly_when_aroused :
+    ∀ rs ∈ [[], [true], [false], [true, false], [false, false], [true, true, false]],
+      (feel rs == unpleasant) = (arousal rs != 0) := by decide
+
+/-- Arousal counts: each further signal off raises it by one. -/
+theorem arousal_counts_the_signals_off :
+    [[true, true, true], [true, true, false], [true, false, false], [false, false, false]].map arousal = [0, 1, 2, 3] := by decide
+
+/-- Feeling enters the trinity as its first corner: the state a reading starts the loop from. -/
+def felt (signals : List Bool) : State := ⟨feeling, feel signals⟩
+
+/-- Flipping every signal's verdict flips the feeling when the signals were unanimous — and only then is a flip
+    of the world a flip of the feeling. -/
+theorem unanimous_signals_flip_the_feeling :
+    ∀ n ∈ [1, 2, 3], σ (felt (List.replicate n true)) = felt (List.replicate n false) ∧
+      σ (felt (List.replicate n false)) = felt (List.replicate n true) := by decide
 
 end Feeling

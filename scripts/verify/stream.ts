@@ -33,6 +33,8 @@ import { treeDigest } from './every-fold.ts'
 import { universeGates } from './status.ts'
 
 const ROOT = process.cwd()
+/** Where each gate's read trace is written while it runs — under the build cache, which no gate walks. */
+const TRACES = join(ROOT, '.vitepress', 'cache', 'stream-traces')
 
 /** clean = ran and passed. violated = ran and refused. NOT RUN = never asked, or could not answer. */
 type Verdict = 'clean' | 'violated' | 'NOT RUN'
@@ -228,6 +230,7 @@ function sealOf(gate: string): Seal | null {
 const pendingSeals = new Map<string, { inputDigest: string; reads: string[] }>()
 
 async function runPool(gates: readonly string[], dir: string, width: number, transcriptFile: string): Promise<Result[]> {
+  mkdirSync(TRACES, { recursive: true })
   const surfaceOf = new Map(universeGates(ROOT).map((g) => [g.gate, g.surface] as const))
   const results = new Array<Result>(gates.length)
   let next = 0
@@ -265,7 +268,9 @@ async function runPool(gates: readonly string[], dir: string, width: number, tra
         console.log(`  ≡ ${gate.padEnd(30)} ${'sealed'.padEnd(9)} ${'0'.padStart(4)}s ${seal.reads.length} inputs unchanged (${seal.inputDigest})`)
         continue
       }
-      const trace = join(dir, `reads-${gate.replace(/[^\w.-]/g, '_')}-${process.pid}.log`)
+      // GAP 3 — A TRACE IS WRITTEN WHERE NO GATE WALKS. It was written into scripts/verify/receipts, which verify:referrers
+      // walked: a parallel gate listed a trace, the stream deleted it, and the stat died on ENOENT (2026-11-15).
+      const trace = join(TRACES, `reads-${gate.replace(/[^\w.-]/g, '_')}-${process.pid}.log`)
       const out = await new Promise<{ status: number | null; text: string; err?: string }>((resolve) => {
         const child = spawn('npm', ['run', gate], { cwd: ROOT, env: { ...process.env, VERIFY_READS: trace, NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''} --experimental-strip-types --import file://${READS_HOOK}`.trim() } })
         let text = ''
