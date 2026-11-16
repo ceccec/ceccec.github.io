@@ -963,6 +963,13 @@
   "z_reflection_is_an_involution_and_partitions": [],
   "z_two_is_no_unit_on_even_moduli": []
  },
+ "src/pair/lean/proofs/roots.lean": {
+  "the_cube_root_is_the_floor_and_not_one_short": [],
+  "the_first_sixty_four_primes_are_generated": [],
+  "the_initial_hash_is_the_square_root_fractions": [],
+  "the_round_constants_are_the_cube_root_fractions": [],
+  "the_square_root_is_the_floor_and_not_one_short": []
+ },
  "src/pair/lean/proofs/thousand.lean": {
   "a_wrong_witness_decodes_nothing_because_a_semiprime_has_one_split": [],
   "an_impossible_integer_with_twin_primes_is_opened_blind_in_one_reflection": [],

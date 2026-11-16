@@ -1,19 +1,21 @@
 {
-  "tree": "48efc503a09820be",
-  "address": "d454331eda943b6c",
-  "gates": 70,
+  "tree": "06ebbf693985e39c",
+  "address": "153f2aae4753bb97",
+  "gates": 71,
   "clean": 66,
   "violated": [
     "verify:clay-datasets",
     "verify:deposit-counts",
     "verify:deposit-metadata",
-    "verify:release-live"
+    "verify:release-live",
+    "verify:theorem-sources"
   ],
   "violatedLive": [
     "verify:clay-datasets",
     "verify:deposit-counts",
     "verify:deposit-metadata",
-    "verify:release-live"
+    "verify:release-live",
+    "verify:theorem-sources"
   ],
   "notRun": [],
   "live": 10

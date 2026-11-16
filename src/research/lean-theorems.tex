@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 348 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 353 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -1437,7 +1437,7 @@ by\\
 \ \ \ \ (\allowbreak{}simp only [\allowbreak{}star,\allowbreak{} add,\allowbreak{} sub,\allowbreak{} neg,\allowbreak{} Form2.\allowbreak{}mk.\allowbreak{}injEq]; refine ⟨\allowbreak{}?\_\allowbreak{},\allowbreak{} ?\_\allowbreak{},\allowbreak{} ?\_\allowbreak{},\allowbreak{} ?\_\allowbreak{},\allowbreak{} ?\_\allowbreak{},\allowbreak{} ?\_\allowbreak{}⟩ <;> omega)\end{lean}
 It rests on: debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 247 theorems in 11 files of \texttt{src/pair/lean/proofs}.
+\noindent 252 theorems in 12 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{consciousness.lean}}
 \begin{theorem}[The turn returns in three]
 \begin{lean}∀ p ∈ points, turn (turn (turn p)) = p\end{lean}
@@ -7033,6 +7033,99 @@ The circle of fifths does not close: twelve perfect fifths overshoot seven octav
 \end{theorem}
 \begin{proof}\raggedright
 The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem circle\_\allowbreak{}of\_\allowbreak{}fifths\_\allowbreak{}does\_\allowbreak{}not\_\allowbreak{}close : 3 \textasciicircum{} 1\allowbreak{}2 = 5\allowbreak{}3\allowbreak{}1\allowbreak{}4\allowbreak{}4\allowbreak{}1 ∧ 2 \textasciicircum{} 1\allowbreak{}9 = 5\allowbreak{}2\allowbreak{}4\allowbreak{}2\allowbreak{}8\allowbreak{}8 ∧ 2 \textasciicircum{} 1\allowbreak{}9 < 3 \textasciicircum{} 1\allowbreak{}2 ∧ 3 \textasciicircum{} 1\allowbreak{}2 < 2 \textasciicircum{} 2\allowbreak{}0 := by decide +kernel\end{lean}
+It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\subsection{\texttt{roots.lean}}
+\begin{theorem}[The first sixty four primes are generated]
+The prime generator yields the first sixty-four primes, in order, every one prime.
+\begin{lean}(firstPrimes 320 64).length = 64 ∧ (firstPrimes 320 64).all isPrime ∧ (firstPrimes 320 64).take 8 = [2, 3, 5, 7, 11, 13, 17, 19]\end{lean}
+\end{theorem}
+\begin{proof}\raggedright
+Definitions it unfolds, from \texttt{roots.lean}:\begin{lean}def isPrime (\allowbreak{}n : Nat) : Bool := n >= 2 \&\& (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 (\allowbreak{}n - 2)).\allowbreak{}all (\allowbreak{}fun d => d * d > n || n \% d != 0))\\
+\mbox{}\\
+def firstPrimes (\allowbreak{}bound count : Nat) : List Nat := (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 bound).\allowbreak{}filter isPrime).\allowbreak{}take count\end{lean}
+The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem the\_\allowbreak{}first\_\allowbreak{}sixty\_\allowbreak{}four\_\allowbreak{}primes\_\allowbreak{}are\_\allowbreak{}generated : (\allowbreak{}firstPrimes 3\allowbreak{}2\allowbreak{}0 6\allowbreak{}4).\allowbreak{}length = 6\allowbreak{}4 ∧ (\allowbreak{}firstPrimes 3\allowbreak{}2\allowbreak{}0 6\allowbreak{}4).\allowbreak{}all isPrime ∧ (\allowbreak{}firstPrimes 3\allowbreak{}2\allowbreak{}0 6\allowbreak{}4).\allowbreak{}take 8 = [\allowbreak{}2,\allowbreak{} 3,\allowbreak{} 5,\allowbreak{} 7,\allowbreak{} 1\allowbreak{}1,\allowbreak{} 1\allowbreak{}3,\allowbreak{} 1\allowbreak{}7,\allowbreak{} 1\allowbreak{}9] :=\\
+by\\
+\ \ decide\end{lean}
+It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The square root is the floor and not one short]
+THE ROOT IS THE FLOOR, NOT ONE SHORT: the square root behind H(0)'s first word lands exactly on ⌊√(2·2⁶⁴)⌋.
+\begin{lean}iroot 2 (2 * 2 \textasciicircum{} 64) \textasciicircum{} 2 ≤ 2 * 2 \textasciicircum{} 64 ∧ 2 * 2 \textasciicircum{} 64 < (iroot 2 (2 * 2 \textasciicircum{} 64) + 1) \textasciicircum{} 2\end{lean}
+\end{theorem}
+\begin{proof}\raggedright
+Definitions it unfolds, from \texttt{roots.lean}:\begin{lean}def step : Nat → Nat → Nat → Nat → Nat\\
+\ \ | 0,\allowbreak{} \_\allowbreak{},\allowbreak{} \_\allowbreak{},\allowbreak{} x => x\\
+\ \ | Nat.\allowbreak{}succ g,\allowbreak{} k,\allowbreak{} n,\allowbreak{} x =>\\
+\ \ \ \ let y := (\allowbreak{}(\allowbreak{}k - 1) * x + n / x \textasciicircum{} (\allowbreak{}k - 1)) / k\\
+\ \ \ \ if y >= x then x else step g k n y\\
+\mbox{}\\
+def iroot (\allowbreak{}k n : Nat) : Nat := if n < 2 then n else step 4\allowbreak{}0\allowbreak{}0 k n n\end{lean}
+The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem the\_\allowbreak{}square\_\allowbreak{}root\_\allowbreak{}is\_\allowbreak{}the\_\allowbreak{}floor\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}one\_\allowbreak{}short : iroot 2 (\allowbreak{}2 * 2 \textasciicircum{} 6\allowbreak{}4) \textasciicircum{} 2 ≤ 2 * 2 \textasciicircum{} 6\allowbreak{}4 ∧ 2 * 2 \textasciicircum{} 6\allowbreak{}4 < (\allowbreak{}iroot 2 (\allowbreak{}2 * 2 \textasciicircum{} 6\allowbreak{}4) + 1) \textasciicircum{} 2 := by decide\end{lean}
+It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The cube root is the floor and not one short]
+And the cube root behind K's first word lands exactly on ⌊∛(2·2⁹⁶)⌋.
+\begin{lean}iroot 3 (2 * 2 \textasciicircum{} 96) \textasciicircum{} 3 ≤ 2 * 2 \textasciicircum{} 96 ∧ 2 * 2 \textasciicircum{} 96 < (iroot 3 (2 * 2 \textasciicircum{} 96) + 1) \textasciicircum{} 3\end{lean}
+\end{theorem}
+\begin{proof}\raggedright
+Definitions it unfolds, from \texttt{roots.lean}:\begin{lean}def step : Nat → Nat → Nat → Nat → Nat\\
+\ \ | 0,\allowbreak{} \_\allowbreak{},\allowbreak{} \_\allowbreak{},\allowbreak{} x => x\\
+\ \ | Nat.\allowbreak{}succ g,\allowbreak{} k,\allowbreak{} n,\allowbreak{} x =>\\
+\ \ \ \ let y := (\allowbreak{}(\allowbreak{}k - 1) * x + n / x \textasciicircum{} (\allowbreak{}k - 1)) / k\\
+\ \ \ \ if y >= x then x else step g k n y\\
+\mbox{}\\
+def iroot (\allowbreak{}k n : Nat) : Nat := if n < 2 then n else step 4\allowbreak{}0\allowbreak{}0 k n n\end{lean}
+The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem the\_\allowbreak{}cube\_\allowbreak{}root\_\allowbreak{}is\_\allowbreak{}the\_\allowbreak{}floor\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}one\_\allowbreak{}short : iroot 3 (\allowbreak{}2 * 2 \textasciicircum{} 9\allowbreak{}6) \textasciicircum{} 3 ≤ 2 * 2 \textasciicircum{} 9\allowbreak{}6 ∧ 2 * 2 \textasciicircum{} 9\allowbreak{}6 < (\allowbreak{}iroot 3 (\allowbreak{}2 * 2 \textasciicircum{} 9\allowbreak{}6) + 1) \textasciicircum{} 3 := by decide\end{lean}
+It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The initial hash is the square root fractions]
+H(0) IS THE SQUARE-ROOT FRACTIONS of the first eight primes — all eight words, derived, equal to the published table.
+\begin{lean}(firstPrimes 320 8).map (frac32 2) = published\_H\end{lean}
+\end{theorem}
+\begin{proof}\raggedright
+Definitions it unfolds, from \texttt{roots.lean}:\begin{lean}def step : Nat → Nat → Nat → Nat → Nat\\
+\ \ | 0,\allowbreak{} \_\allowbreak{},\allowbreak{} \_\allowbreak{},\allowbreak{} x => x\\
+\ \ | Nat.\allowbreak{}succ g,\allowbreak{} k,\allowbreak{} n,\allowbreak{} x =>\\
+\ \ \ \ let y := (\allowbreak{}(\allowbreak{}k - 1) * x + n / x \textasciicircum{} (\allowbreak{}k - 1)) / k\\
+\ \ \ \ if y >= x then x else step g k n y\\
+\mbox{}\\
+def iroot (\allowbreak{}k n : Nat) : Nat := if n < 2 then n else step 4\allowbreak{}0\allowbreak{}0 k n n\\
+\mbox{}\\
+def frac3\allowbreak{}2 (\allowbreak{}k p : Nat) : Nat := iroot k (\allowbreak{}p * 2 \textasciicircum{} (\allowbreak{}3\allowbreak{}2 * k)) \% 2 \textasciicircum{} 3\allowbreak{}2\\
+\mbox{}\\
+def isPrime (\allowbreak{}n : Nat) : Bool := n >= 2 \&\& (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 (\allowbreak{}n - 2)).\allowbreak{}all (\allowbreak{}fun d => d * d > n || n \% d != 0))\\
+\mbox{}\\
+def firstPrimes (\allowbreak{}bound count : Nat) : List Nat := (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 bound).\allowbreak{}filter isPrime).\allowbreak{}take count\\
+\mbox{}\\
+def published\_\allowbreak{}H : List Nat := [\allowbreak{}0x6a0\allowbreak{}9e6\allowbreak{}6\allowbreak{}7,\allowbreak{} 0xbb6\allowbreak{}7ae8\allowbreak{}5,\allowbreak{} 0x3c6ef3\allowbreak{}7\allowbreak{}2,\allowbreak{} 0xa5\allowbreak{}4ff5\allowbreak{}3a,\allowbreak{} 0x5\allowbreak{}1\allowbreak{}0e5\allowbreak{}2\allowbreak{}7f,\allowbreak{} 0x9b0\allowbreak{}5\allowbreak{}6\allowbreak{}8\allowbreak{}8c,\allowbreak{} 0x1f8\allowbreak{}3d9ab,\allowbreak{} 0x5be0cd1\allowbreak{}9]\end{lean}
+The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem the\_\allowbreak{}initial\_\allowbreak{}hash\_\allowbreak{}is\_\allowbreak{}the\_\allowbreak{}square\_\allowbreak{}root\_\allowbreak{}fractions : (\allowbreak{}firstPrimes 3\allowbreak{}2\allowbreak{}0 8).\allowbreak{}map (\allowbreak{}frac3\allowbreak{}2 2) = published\_\allowbreak{}H := by decide\end{lean}
+It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[The round constants are the cube root fractions]
+K IS THE CUBE-ROOT FRACTIONS of the first sixty-four primes — all sixty-four words, derived, equal to the published table.
+\begin{lean}(firstPrimes 320 64).map (frac32 3) = published\_K\end{lean}
+\end{theorem}
+\begin{proof}\raggedright
+Definitions it unfolds, from \texttt{roots.lean}:\begin{lean}def step : Nat → Nat → Nat → Nat → Nat\\
+\ \ | 0,\allowbreak{} \_\allowbreak{},\allowbreak{} \_\allowbreak{},\allowbreak{} x => x\\
+\ \ | Nat.\allowbreak{}succ g,\allowbreak{} k,\allowbreak{} n,\allowbreak{} x =>\\
+\ \ \ \ let y := (\allowbreak{}(\allowbreak{}k - 1) * x + n / x \textasciicircum{} (\allowbreak{}k - 1)) / k\\
+\ \ \ \ if y >= x then x else step g k n y\\
+\mbox{}\\
+def iroot (\allowbreak{}k n : Nat) : Nat := if n < 2 then n else step 4\allowbreak{}0\allowbreak{}0 k n n\\
+\mbox{}\\
+def frac3\allowbreak{}2 (\allowbreak{}k p : Nat) : Nat := iroot k (\allowbreak{}p * 2 \textasciicircum{} (\allowbreak{}3\allowbreak{}2 * k)) \% 2 \textasciicircum{} 3\allowbreak{}2\\
+\mbox{}\\
+def isPrime (\allowbreak{}n : Nat) : Bool := n >= 2 \&\& (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 (\allowbreak{}n - 2)).\allowbreak{}all (\allowbreak{}fun d => d * d > n || n \% d != 0))\\
+\mbox{}\\
+def firstPrimes (\allowbreak{}bound count : Nat) : List Nat := (\allowbreak{}(\allowbreak{}List.\allowbreak{}range' 2 bound).\allowbreak{}filter isPrime).\allowbreak{}take count\\
+\mbox{}\\
+def published\_\allowbreak{}K : List Nat := [\allowbreak{}\\
+\ \ 0x4\allowbreak{}2\allowbreak{}8a2f9\allowbreak{}8,\allowbreak{} 0x7\allowbreak{}1\allowbreak{}3\allowbreak{}7\allowbreak{}4\allowbreak{}4\allowbreak{}9\allowbreak{}1,\allowbreak{} 0xb5c0fbcf,\allowbreak{} 0xe9b5dba5,\allowbreak{} 0x3\allowbreak{}9\allowbreak{}5\allowbreak{}6c2\allowbreak{}5b,\allowbreak{} 0x5\allowbreak{}9f1\allowbreak{}1\allowbreak{}1f1,\allowbreak{} 0x9\allowbreak{}2\allowbreak{}3f8\allowbreak{}2a4,\allowbreak{} 0xab1c5ed5,\allowbreak{}\\
+\ \ 0xd8\allowbreak{}0\allowbreak{}7aa9\allowbreak{}8,\allowbreak{} 0x1\allowbreak{}2\allowbreak{}8\allowbreak{}3\allowbreak{}5b0\allowbreak{}1,\allowbreak{} 0x2\allowbreak{}4\allowbreak{}3\allowbreak{}1\allowbreak{}8\allowbreak{}5be,\allowbreak{} 0x5\allowbreak{}5\allowbreak{}0c7dc3,\allowbreak{} 0x7\allowbreak{}2be5d7\allowbreak{}4,\allowbreak{} 0x8\allowbreak{}0deb1fe,\allowbreak{} 0x9bdc0\allowbreak{}6a7,\allowbreak{} 0xc1\allowbreak{}9bf1\allowbreak{}7\allowbreak{}4,\allowbreak{}\\
+\ \ 0xe4\allowbreak{}9b6\allowbreak{}9c1,\allowbreak{} 0xefbe4\allowbreak{}7\allowbreak{}8\allowbreak{}6,\allowbreak{} 0x0fc1\allowbreak{}9dc6,\allowbreak{} 0x2\allowbreak{}4\allowbreak{}0ca1cc,\allowbreak{} 0x2de9\allowbreak{}2c6f,\allowbreak{} 0x4a7\allowbreak{}4\allowbreak{}8\allowbreak{}4aa,\allowbreak{} 0x5cb0a9dc,\allowbreak{} 0x7\allowbreak{}6f9\allowbreak{}8\allowbreak{}8da,\allowbreak{}\\
+\ \ 0x9\allowbreak{}8\allowbreak{}3e5\allowbreak{}1\allowbreak{}5\allowbreak{}2,\allowbreak{} 0xa8\allowbreak{}3\allowbreak{}1c6\allowbreak{}6d,\allowbreak{} 0xb0\allowbreak{}0\allowbreak{}3\allowbreak{}2\allowbreak{}7c8,\allowbreak{} 0xbf5\allowbreak{}9\allowbreak{}7fc7,\allowbreak{} 0xc6e0\allowbreak{}0bf3,\allowbreak{} 0xd5a7\allowbreak{}9\allowbreak{}1\allowbreak{}4\allowbreak{}7,\allowbreak{} 0x0\allowbreak{}6ca6\allowbreak{}3\allowbreak{}5\allowbreak{}1,\allowbreak{} 0x1\allowbreak{}4\allowbreak{}2\allowbreak{}9\allowbreak{}2\allowbreak{}9\allowbreak{}6\allowbreak{}7,\allowbreak{}\\
+\ \ 0x2\allowbreak{}7b7\allowbreak{}0a8\allowbreak{}5,\allowbreak{} 0x2e1b2\allowbreak{}1\allowbreak{}3\allowbreak{}8,\allowbreak{} 0x4d2c6dfc,\allowbreak{} 0x5\allowbreak{}3\allowbreak{}3\allowbreak{}8\allowbreak{}0d1\allowbreak{}3,\allowbreak{} 0x6\allowbreak{}5\allowbreak{}0a7\allowbreak{}3\allowbreak{}5\allowbreak{}4,\allowbreak{} 0x7\allowbreak{}6\allowbreak{}6a0abb,\allowbreak{} 0x8\allowbreak{}1c2c9\allowbreak{}2e,\allowbreak{} 0x9\allowbreak{}2\allowbreak{}7\allowbreak{}2\allowbreak{}2c8\allowbreak{}5,\allowbreak{}\\
+\ \ 0xa2bfe8a1,\allowbreak{} 0xa8\allowbreak{}1a6\allowbreak{}6\allowbreak{}4b,\allowbreak{} 0xc2\allowbreak{}4b8b7\allowbreak{}0,\allowbreak{} 0xc7\allowbreak{}6c5\allowbreak{}1a3,\allowbreak{} 0xd1\allowbreak{}9\allowbreak{}2e8\allowbreak{}1\allowbreak{}9,\allowbreak{} 0xd6\allowbreak{}9\allowbreak{}9\allowbreak{}0\allowbreak{}6\allowbreak{}2\allowbreak{}4,\allowbreak{} 0xf4\allowbreak{}0e3\allowbreak{}5\allowbreak{}8\allowbreak{}5,\allowbreak{} 0x1\allowbreak{}0\allowbreak{}6aa0\allowbreak{}7\allowbreak{}0,\allowbreak{}\\
+\ \ 0x1\allowbreak{}9a4c1\allowbreak{}1\allowbreak{}6,\allowbreak{} 0x1e3\allowbreak{}7\allowbreak{}6c0\allowbreak{}8,\allowbreak{} 0x2\allowbreak{}7\allowbreak{}4\allowbreak{}8\allowbreak{}7\allowbreak{}7\allowbreak{}4c,\allowbreak{} 0x3\allowbreak{}4b0bcb5,\allowbreak{} 0x3\allowbreak{}9\allowbreak{}1c0cb3,\allowbreak{} 0x4ed8aa4a,\allowbreak{} 0x5b9cca4f,\allowbreak{} 0x6\allowbreak{}8\allowbreak{}2e6ff3,\allowbreak{}\\
+\ \ 0x7\allowbreak{}4\allowbreak{}8f8\allowbreak{}2ee,\allowbreak{} 0x7\allowbreak{}8a5\allowbreak{}6\allowbreak{}3\allowbreak{}6f,\allowbreak{} 0x8\allowbreak{}4c8\allowbreak{}7\allowbreak{}8\allowbreak{}1\allowbreak{}4,\allowbreak{} 0x8cc7\allowbreak{}0\allowbreak{}2\allowbreak{}0\allowbreak{}8,\allowbreak{} 0x9\allowbreak{}0befffa,\allowbreak{} 0xa4\allowbreak{}5\allowbreak{}0\allowbreak{}6ceb,\allowbreak{} 0xbef9a3f7,\allowbreak{} 0xc6\allowbreak{}7\allowbreak{}1\allowbreak{}7\allowbreak{}8f2]\end{lean}
+The proof, verbatim as the Lean kernel checked it:\begin{lean}theorem the\_\allowbreak{}round\_\allowbreak{}constants\_\allowbreak{}are\_\allowbreak{}the\_\allowbreak{}cube\_\allowbreak{}root\_\allowbreak{}fractions : (\allowbreak{}firstPrimes 3\allowbreak{}2\allowbreak{}0 6\allowbreak{}4).\allowbreak{}map (\allowbreak{}frac3\allowbreak{}2 3) = published\_\allowbreak{}K := by decide\end{lean}
 It rests on: debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \subsection{\texttt{thousand.lean}}
 \begin{theorem}[The thousand bit case is one hundred twenty five octaves]
