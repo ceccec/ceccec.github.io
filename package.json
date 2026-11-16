@@ -58,6 +58,7 @@
     "verify:theorems": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/theorems.ts assertTheoremsResolve",
     "quantum:automation-continuous": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/waves/index.ts runContinuousAutomationExit",
     "lean:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean.ts runLeanCheckExit",
+    "verify:stabilizer": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/stabilizer.ts assertStabilizerFormulas",
     "verify:sha-roots": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/sha-roots.ts assertShaConstantsAreLeanDerived",
     "verify:lean": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean.ts assertLeanCompiles",
     "verify:sparkle": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/sparkle.ts assertAluIsMeasured",

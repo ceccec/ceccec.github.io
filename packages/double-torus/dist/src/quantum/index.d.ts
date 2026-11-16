@@ -1786,7 +1786,70 @@ export type ExecutionResult = {
 export declare function ibmQuantumAdapter(): ProviderAdapter;
 /** IonQ adapter. */
 export declare function ionqAdapter(): ProviderAdapter;
-/** Local quantum simulator. */
+/**
+ * THE STATE-VECTOR MEMORY FORMULA — REPORTED, NEVER ENFORCED (owner, 2026-11-16: "use the full quantum capacity uncapped by any
+ * textbooks demos or examples"). An n-qubit state vector holds 2ⁿ complex amplitudes; a pure gate keeps input and output
+ * alive at once, so a gate needs 2ⁿ × BYTES_PER_AMPLITUDE_IN_FLIGHT bytes of heap. The ceiling is the largest n the running
+ * process's free heap admits. It replaces a typed maxQubits: 20 — a demo size nothing measured. Measured on the build
+ * machine (2026-11-16): 27 under a 4 GiB heap; a 28-qubit register also exceeds V8's array limit, which this cannot see
+ * and the run reports. A runtime with no heap statistics (a browser) is NOT MEASURED: null, never a guessed number.
+ */
+export declare function simulatorQubitCeiling(): {
+    readonly qubits: number | null;
+    readonly heapFreeBytes: number | null;
+    readonly reason: string;
+};
+/** A circuit the local simulator runs: a register width and gates in order. Rotations take an angle in radians. */
+export type SimulatorCircuit = {
+    readonly qubits: number;
+    readonly gates: readonly ({
+        readonly gate: 'H' | 'X' | 'Y' | 'Z' | 'S' | 'T';
+        readonly target: number;
+    } | {
+        readonly gate: 'CNOT';
+        readonly control: number;
+        readonly target: number;
+    } | {
+        readonly gate: 'RX' | 'RY' | 'RZ';
+        readonly target: number;
+        readonly theta: number;
+    })[];
+};
+/** Run a circuit: a Clifford circuit as its stabilizer formulas at any width; any other on the src/0 state vector. Nothing is
+ *  capped or refused — the state-vector memory formula is reported with the run, and the runtime is what says no. */
+export declare function runSimulatorCircuit(circuit: SimulatorCircuit): {
+    stateVectorFormula: {
+        readonly qubits: number | null;
+        readonly heapFreeBytes: number | null;
+        readonly reason: string;
+    };
+    method: "stabilizer formulas";
+    randomQubits: number;
+    outcomes: string;
+    probabilityEach: string;
+    generatorBits: number;
+    qubits: number;
+    gates: number;
+    amplitudes?: undefined;
+    norm?: undefined;
+    top?: undefined;
+} | {
+    qubits: number;
+    gates: number;
+    method: "state vector";
+    amplitudes: number;
+    norm: number;
+    top: {
+        index: number;
+        p: number;
+    }[];
+    stateVectorFormula: {
+        readonly qubits: number | null;
+        readonly heapFreeBytes: number | null;
+        readonly reason: string;
+    };
+};
+/** Local quantum simulator — stabilizer formulas for Clifford circuits at any width, the src/0 state vector otherwise. */
 export declare function localSimulator(): ProviderAdapter;
 /** Execute circuit on quantum hardware/simulator. */
 export declare function quantumHardwareIntegration(circuit: unknown, provider?: QuantumHardwareProvider): Promise<ExecutionResult>;

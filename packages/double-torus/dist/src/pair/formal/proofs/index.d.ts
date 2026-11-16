@@ -719,6 +719,10 @@ export type LeanPageRow = {
     readonly tags: readonly string[];
     /** The Clay cases this theorem is bonded to (clayCasesOf) — empty for a theorem whose subject is not a Clay case. */
     readonly cases: readonly ClayCase[];
+    /** THE PROGRAM'S ADDRESS: a uuid over the source path, the name, the statement and the whole proof — what the post IS,
+     *  not what it is called. Its animation and colour are drawn from this hex (owner, 2026-11-16: "the live representation
+     *  of the uuid program hex meaning not name"). Change one character of the proof and the post animates differently. */
+    readonly program: string;
 };
 /**
  * THE CLAY COORDINATES OF A THEOREM — measured by shared definitions, never assigned (owner, 2026-11-15: "each lean has
@@ -797,6 +801,8 @@ export declare function theoremSourceVerdicts(fetched: Readonly<Record<string, s
     withSource: number;
     kernelOnly: number;
 };
+/** The address of a set of posts — a monograph, or the whole feed — as the merkle root of their programs, in slug order. */
+export declare function leanProgramRoot(slugs?: readonly string[], root?: string): string;
 export declare function leanPageSlug(file: string, name: string): string;
 /**
  * THE MONOGRAPHS — one study per subject, its sections the Lean posts bonded to it (owner, 2026-11-15: "everything may be

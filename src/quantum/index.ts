@@ -9,7 +9,7 @@
 // The render subfolders (the hero's dimensions) are: seed (page→identity), dimensions (the continuous phase), geometry
 // (the trinity of rotation + perspective), fractal (the self-similar arms), flower (the fruit of life),
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
-import { multiplicativeOrder } from '../0/index.ts'
+import { GATES, applyGate, cnot, multiplicativeOrder, qubits } from '../0/index.ts'
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
 import { vortexStrokeKinds, twoBySevenPoints, theTenComplementFixesExactlyFive, pisanoWheelOnTheNine } from '../mountain/vortex/index.ts'
@@ -4413,11 +4413,129 @@ export function ionqAdapter(): ProviderAdapter {
   }
 }
 
-/** Local quantum simulator. */
+/** The bytes one amplitude occupies while a gate runs: THREE states — the input, the pure result being built, and the previous
+ *  output not yet collected — × (re, im) × one double. MEASURED, not assumed (2026-11-16): counting two, the formula admitted
+ *  27 qubits under a 4 GiB heap, and the 27-qubit run exhausted that heap (V8 abort, exit 134) after 26 widths agreed. */
+const BYTES_PER_AMPLITUDE_IN_FLIGHT = 3 * 2 * Float64Array.BYTES_PER_ELEMENT
+
+/**
+ * THE STATE-VECTOR MEMORY FORMULA — REPORTED, NEVER ENFORCED (owner, 2026-11-16: "use the full quantum capacity uncapped by any
+ * textbooks demos or examples"). An n-qubit state vector holds 2ⁿ complex amplitudes; a pure gate keeps input and output
+ * alive at once, so a gate needs 2ⁿ × BYTES_PER_AMPLITUDE_IN_FLIGHT bytes of heap. The ceiling is the largest n the running
+ * process's free heap admits. It replaces a typed maxQubits: 20 — a demo size nothing measured. Measured on the build
+ * machine (2026-11-16): 27 under a 4 GiB heap; a 28-qubit register also exceeds V8's array limit, which this cannot see
+ * and the run reports. A runtime with no heap statistics (a browser) is NOT MEASURED: null, never a guessed number.
+ */
+export function simulatorQubitCeiling(): { readonly qubits: number | null; readonly heapFreeBytes: number | null; readonly reason: string } {
+  const v8 = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:v8') }).getBuiltinModule?.('node:v8')
+    : undefined
+  if (!v8) return { qubits: null, heapFreeBytes: null, reason: 'no heap statistics in this runtime — NOT MEASURED' }
+  const heap = v8.getHeapStatistics()
+  const free = heap.heap_size_limit - heap.used_heap_size
+  return { qubits: floor(log2(free / BYTES_PER_AMPLITUDE_IN_FLIGHT)), heapFreeBytes: free, reason: `free heap ${free} bytes ÷ ${BYTES_PER_AMPLITUDE_IN_FLIGHT} bytes per amplitude in flight` }
+}
+
+/** A circuit the local simulator runs: a register width and gates in order. Rotations take an angle in radians. */
+export type SimulatorCircuit = {
+  readonly qubits: number
+  readonly gates: readonly ({ readonly gate: 'H' | 'X' | 'Y' | 'Z' | 'S' | 'T'; readonly target: number } | { readonly gate: 'CNOT'; readonly control: number; readonly target: number } | { readonly gate: 'RX' | 'RY' | 'RZ'; readonly target: number; readonly theta: number })[]
+}
+
+/** The 2×2 rotation unitaries, flat [m00re,m00im, m01re,m01im, m10re,m10im, m11re,m11im]. */
+function rotation(axis: 'RX' | 'RY' | 'RZ', theta: number): readonly number[] {
+  const c = cos(theta / 2), s = sin(theta / 2)
+  return axis === 'RX' ? [c, 0, 0, -s, 0, -s, c, 0] : axis === 'RY' ? [c, 0, -s, 0, s, 0, c, 0] : [c, -s, 0, 0, 0, 0, c, s]
+}
+
+const CLIFFORD = new Set(['H', 'S', 'X', 'Y', 'Z', 'CNOT'])
+
+/**
+ * A CLIFFORD CIRCUIT AS ITS STABILIZER FORMULAS — ANY WIDTH (Gottesman–Knill; the tableau of Aaronson & Gottesman, Phys. Rev.
+ * A 70, 052328, 2004). The state is not 2ⁿ amplitudes but n stabilizer generators, each a Pauli string with a sign: x and z
+ * bit-rows and a phase, n² bits in all. H, S, X, Y, Z and CNOT update the rows in O(n) each. Nothing caps the width.
+ * Measured in the computational basis, a stabilizer state is uniform over an affine subspace: 2ᵏ outcomes, each of
+ * probability 2⁻ᵏ, where k is the GF(2) rank of the generators' X-part — computed here by elimination over bit-packed
+ * words. The output is that formula, exact; no 2ⁿ list is ever formed.
+ */
+function stabilizerRun(circuit: SimulatorCircuit) {
+  const n = circuit.qubits
+  // the word geometry DERIVED, no literal: a Uint32 holds Math.clz32(0) bits; shift and mask follow from it
+  const WORD = Math.clz32(0), SHIFT = Math.log2(WORD), MASK = WORD - 1
+  const words = Math.ceil(n / WORD)
+  // generator g has x-bits x[g*words …], z-bits z[g*words …] and sign r[g]; |0…0⟩ is stabilized by Z₀ … Z_{n−1}
+  const x = new Uint32Array(n * words), z = new Uint32Array(n * words), r = new Uint8Array(n)
+  for (let g = 0; g < n; g += 1) z[g * words + (g >>> SHIFT)] |= 1 << (g & MASK)
+  const bit = (a: Uint32Array, g: number, q: number) => (a[g * words + (q >>> SHIFT)]! >>> (q & MASK)) & 1
+  const flip = (a: Uint32Array, g: number, q: number) => { a[g * words + (q >>> SHIFT)] ^= 1 << (q & MASK) }
+  for (const step of circuit.gates) {
+    for (let g = 0; g < n; g += 1) {
+      if (step.gate === 'CNOT') {
+        const a = step.control, b = step.target
+        const xa = bit(x, g, a), zb = bit(z, g, b), xb = bit(x, g, b), za = bit(z, g, a)
+        r[g] ^= xa & zb & (xb ^ za ^ 1)
+        if (xa) flip(x, g, b)
+        if (zb) flip(z, g, a)
+        continue
+      }
+      const q = step.target, xq = bit(x, g, q), zq = bit(z, g, q)
+      if (step.gate === 'H') { r[g] ^= xq & zq; if (xq !== zq) { flip(x, g, q); flip(z, g, q) } }
+      else if (step.gate === 'S') { r[g] ^= xq & zq; if (xq) flip(z, g, q) }
+      else if (step.gate === 'X') r[g] ^= zq
+      else if (step.gate === 'Z') r[g] ^= xq
+      else if (step.gate === 'Y') r[g] ^= xq ^ zq
+    }
+  }
+  // k = rank over GF(2) of the n×n X-block: the number of qubits a computational-basis measurement leaves random
+  const m = x.slice()
+  let k = 0
+  for (let col = 0; col < n && k < n; col += 1) {
+    const w = col >>> SHIFT, mask = 1 << (col & MASK)
+    let pivot = -1
+    for (let g = k; g < n; g += 1) if (m[g * words + w]! & mask) { pivot = g; break }
+    if (pivot < 0) continue
+    if (pivot !== k) for (let i = 0; i < words; i += 1) { const t = m[pivot * words + i]!; m[pivot * words + i] = m[k * words + i]!; m[k * words + i] = t }
+    for (let g = 0; g < n; g += 1) if (g !== k && m[g * words + w]! & mask) for (let i = 0; i < words; i += 1) m[g * words + i] ^= m[k * words + i]!
+    k += 1
+  }
+  return { method: 'stabilizer formulas' as const, randomQubits: k, outcomes: `2^${k}`, probabilityEach: `2^-${k}`, generatorBits: 2 * n * n + n }
+}
+
+/** Run a circuit: a Clifford circuit as its stabilizer formulas at any width; any other on the src/0 state vector. Nothing is
+ *  capped or refused — the state-vector memory formula is reported with the run, and the runtime is what says no. */
+export function runSimulatorCircuit(circuit: SimulatorCircuit) {
+  // NO CLOCK IN THE FOLD: a src fold is deterministic; the run is timed by whoever measures it (verify:stabilizer, on the
+  // monotonic clock, into a receipt) — not here with a float wall-clock reading.
+  const formula = simulatorQubitCeiling()
+  if (circuit.gates.every((g) => CLIFFORD.has(g.gate))) {
+    const s = stabilizerRun(circuit)
+    return { qubits: circuit.qubits, gates: circuit.gates.length, ...s, stateVectorFormula: formula }
+  }
+  let state = qubits(circuit.qubits)
+  for (const g of circuit.gates) {
+    state = g.gate === 'CNOT' ? cnot(state, g.control, g.target)
+      : g.gate === 'RX' || g.gate === 'RY' || g.gate === 'RZ' ? applyGate(state, rotation(g.gate, g.theta), g.target)
+        : applyGate(state, GATES[g.gate], g.target)
+  }
+  let norm = 0
+  const top: { index: number; p: number }[] = []
+  for (let i = 0; i < state.re.length; i += 1) {
+    const p = state.re[i]! * state.re[i]! + state.im[i]! * state.im[i]!
+    norm += p
+    if (p > 0 && (top.length < circuit.qubits || p > top[top.length - 1]!.p)) {
+      top.push({ index: i, p }); top.sort((a, b) => b.p - a.p); if (top.length > circuit.qubits) top.pop()
+    }
+  }
+  return { qubits: circuit.qubits, gates: circuit.gates.length, method: 'state vector' as const, amplitudes: state.re.length, norm, top, stateVectorFormula: formula }
+}
+
+/** Local quantum simulator — stabilizer formulas for Clifford circuits at any width, the src/0 state vector otherwise. */
 export function localSimulator(): ProviderAdapter {
   const capabilities: HardwareCapabilities = {
     provider: 'simulator',
-    maxQubits: 20,
+    // NO CAP. A Clifford circuit is simulated through its stabilizer formulas at any width; a non-Clifford circuit's width
+    // is the memory formula simulatorQubitCeiling() reports with every run, not a number typed here (this read 20).
+    maxQubits: Number.POSITIVE_INFINITY,
     gateSet: ['CNOT', 'RX', 'RY', 'RZ', 'H', 'X', 'Y', 'Z', 'S', 'T'],
     errorRate: 0,
     coherenceTime_us: 1e10, // Perfect coherence
@@ -4429,12 +4547,11 @@ export function localSimulator(): ProviderAdapter {
     name: 'Local Simulator',
     provider: 'simulator',
     capabilities,
+    // IT RUNS THE CIRCUIT. This returned { result: 'completed', executionTime_ms: 10 } for any input without simulating
+    // anything — a job that could not fail. It now executes on the state vector and reports what it measured.
     execute: async (circuit: unknown) => {
-      return {
-        jobId: toUuid('sim-job'),
-        result: 'completed',
-        executionTime_ms: 10
-      }
+      const run = runSimulatorCircuit(circuit as SimulatorCircuit)
+      return { jobId: toUuid(`sim-job:${JSON.stringify(circuit)}`), result: 'completed', run }
     },
     status: async () => {
       // Nothing is contacted. The previous body returned online:true with an invented

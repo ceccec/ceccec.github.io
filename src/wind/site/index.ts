@@ -33,7 +33,7 @@ import { TAU } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
 import { toGlagolitic } from '../../quantum/heaven/library/index.ts'
-import { clayCaseOfSlug, leanMonographs, leanPagePaths } from '../../pair/formal/proofs/index.ts'
+import { clayCaseOfSlug, leanMonographs, leanPagePaths, leanProgramRoot } from '../../pair/formal/proofs/index.ts'
 import { domainProofPageRows } from '../../research/index.ts'
 
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
@@ -70,14 +70,14 @@ export function localizedLeanPagePaths(locale: LocaleName): { params: { slug: st
 
 /** Each monograph's page params: its title, its posts, and — for a Clay case — the problem as officially stated (the
  *  domain-proof catalogue's officialStatement, matched by the case's own name). The page says the problem is open. */
-export function leanMonographPaths(): { params: { monograph: string; title: string; description: string; kind: 'clay' | 'subject'; posts: readonly string[]; statement: string } }[] {
+export function leanMonographPaths(): { params: { monograph: string; title: string; description: string; kind: 'clay' | 'subject'; posts: readonly string[]; statement: string; uuid: string } }[] {
   const statements = new Map(domainProofPageRows().map((row) => [row.slug, row.officialStatement]))
   return leanMonographs().map((m) => {
     const statement = m.kind === 'clay' ? ([...statements.entries()].find(([slug]) => clayCaseOfSlug(slug) === m.slug)?.[1] ?? '') : ''
     const description = m.kind === 'clay'
       ? `${m.title} — open. ${m.posts.length} kernel-checked theorems bear on it, from every file that formalises one of its symmetries.`
       : `${m.title} — ${m.posts.length} kernel-checked theorems.`
-    return { params: { monograph: m.slug, title: m.title, description, kind: m.kind, posts: m.posts, statement } }
+    return { params: { monograph: m.slug, title: m.title, description, kind: m.kind, posts: m.posts, statement, uuid: leanProgramRoot(m.posts) } }
   })
 }
 

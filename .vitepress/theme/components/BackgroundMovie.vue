@@ -26,7 +26,10 @@ const { route, copy } = useHeroCopy()
 // The resolved light/dark mode VitePress maintains from the html.dark class — the polarity bit threaded
 // into the one animation field. Dark (1) paints the sealed positive; light (0) recomputes every colour
 // through the negative law (L′ = 1 − L, hue + half-turn, density unchanged). Same geometry, same path.
-const { isDark } = useData()
+const { isDark, frontmatter } = useData()
+// THE MOVIE IS THE PAGE'S PROGRAM, NOT ITS NAME: seeded by the uuid of what the page is (a Lean post's program, a monograph's
+// merkle root, the feed's root — frontmatter.uuid). The route remains only where the movie needs an address to link to.
+const program = computed(() => (typeof frontmatter.value.uuid === 'string' ? frontmatter.value.uuid : route.path))
 const reduce = prefersReducedMotion()
 const at = ref(0)
 // H2/H3 — coherent watch-time on the ONE hero clock (no second rAF). Progressive disclosure only.
@@ -35,12 +38,12 @@ const { watchMs, idle, visible, onHeroTick } = useCoherentWatchTime()
 // The movie is the agent-facing window into the working modeled quantum computer: a machine- and human-readable
 // caption of the live, content-addressed state (4-UUID/3+1 qubit register · hex→digit→double-torus · plasma · root),
 // recomputable deterministically with quantumModelSnapshot(route, at). Recomputed on route change (phase 0 anchor).
-const quantumCaption = computed(() => quantumModelSnapshot(route.path, 0).caption)
+const quantumCaption = computed(() => quantumModelSnapshot(program.value, 0).caption)
 
 // KEYSTONE mount: proveAllDeterministicCore is the OG parent every proving animation folds into. Its root is
 // surfaced as machine-readable microdata on the hero surface, and its three-beat (recompute→green / tamper→red /
 // reuse→instant) is driven by the SAME shared phase clock the movie already runs on — no new clock.
-const keystone = computed(() => proveAllDeterministicCore(undefined, route.path, 0))
+const keystone = computed(() => proveAllDeterministicCore(undefined, program.value, 0))
 const keystoneBeat = computed(() => proveAllDeterministicCoreBeatAt(at.value / HERO_CYCLE_MS).beat) // the ONE hero clock (was a stale hand-typed 120 s)
 const keystoneTag = computed(() => `prove-all · ${keystone.value.proven ? 'proven' : 'unproven'} · beat:${keystoneBeat.value} · root:${keystone.value.root.slice(0, 8)}`)
 
@@ -66,7 +69,7 @@ const { repaint } = useVisibleMovieCanvas({
     // The page field centre is FIXED (scroll 0 ⇒ h/2): the background movie does not scroll. The
     // CARD movies pan their mini-fields (cardFieldScroll) to MEET this centre as they cross — the
     // meet is the fusion; the one algebra, two frames of reference.
-    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value, 0, undefined, kernelTheorems)
+    const shared = sharedHeroAt(program.value, copy.value, atMs, w, reduce, isDark.value, 0, undefined, kernelTheorems)
     const observer: ObserverContext = {
       route: route.path,
       at: atMs,
@@ -85,7 +88,7 @@ const { repaint } = useVisibleMovieCanvas({
   },
 })
 
-watch(() => route.path, () => nextTick(repaint))
+watch(() => program.value, () => nextTick(repaint))
 watch(copy, () => repaint(), { deep: true })
 // Repaint immediately on theme toggle so the still frame (reduced motion) also recomputes its colours,
 // and resync the ink DIRECTLY — a hidden tab pauses the paint tick, but the pole flip must not wait.

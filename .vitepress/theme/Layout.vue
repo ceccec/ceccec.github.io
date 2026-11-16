@@ -43,7 +43,11 @@ const showHomeHero = computed(() => Boolean(frontmatter.value.hero))
 // Six bits of the route's own address are exactly a hue on the oklch wheel, and the pair is the
 // reflection 64−1−h — a page and its involution opposite each other. One binding here; every
 // component below inherits a colour it did not pick and cannot drift from.
+// FROM THE PROGRAM, NOT THE NAME (owner, 2026-11-16): the hexagram is the top six bits of the page's program uuid — the
+// address of what the page computes (frontmatter.uuid). A page with no program (the 404) keeps the slug's placement.
 const ichHex = computed(() => {
+  const uuid = typeof frontmatter.value.uuid === 'string' ? frontmatter.value.uuid.replace(/-/g, '') : ''
+  if (/^[0-9a-f]{2}/i.test(uuid)) return Number.parseInt(uuid.slice(0, 2), 16) >> 2
   const slug = route.path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\//, '').split('/').filter(Boolean).pop() || 'home'
   return ((seedFromText(slug) % 64) + 64) % 64
 })

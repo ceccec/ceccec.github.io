@@ -271,7 +271,7 @@ export type GateSurface = 'tree' | 'live'
  *  which the land settles. Neither is typed in a table — the source says which it is. */
 export function universeGates(root: string = process.cwd()): readonly { gate: string; surface: GateSurface; file: string | null }[] {
   const pkg = JSON.parse(nodeFs.readFileSync(nodePath.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
-  const live = /\bfetch\(|from 'node:(https?|dns|net)'/
+  const live = /\bfetch\(|from 'node:(https?|dns|net|dgram)'/
   return gateUniverse(root).map((gate) => {
     const body = pkg.scripts?.[gate] ?? ''
     const file = /scripts\/verify\/[\w-]+\.ts/.exec(body)?.[0] ?? /src\/(?!pair\/enforcement\/script\/cli\/bootstrap)[\w/-]+\/index\.ts/.exec(body)?.[0] ?? null

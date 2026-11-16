@@ -87,6 +87,7 @@ export declare function leanMonographPaths(): {
         kind: 'clay' | 'subject';
         posts: readonly string[];
         statement: string;
+        uuid: string;
     };
 }[];
 /** THE BLOG'S NAVIGATION, COMPUTED FROM THE MONOGRAPHS: the feed, the Clay cases, the subjects — the same three groups in nav,

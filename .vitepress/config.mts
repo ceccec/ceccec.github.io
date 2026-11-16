@@ -8,6 +8,9 @@ import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
+import { leanProgramRoot } from '../src/pair/formal/proofs/index.ts'
+/** The feed's program root, computed once per build. */
+let feedProgram: string | undefined
 import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin, measuredOncePlugin, lostInJson } from './plugins/index.mts'
 import { vitepressConfigComputesAll, collectiveContentAddressedMeshComputes } from './render'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, leanBlogNavigation, computedPageDescription, pageCitation, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
@@ -462,6 +465,13 @@ export default defineConfig({
       if (!frontmatter.description) frontmatter.description = params.description
     }
     if (params?.keywords && !frontmatter.keywords) frontmatter.keywords = params.keywords
+    // THE PAGE'S PROGRAM ADDRESS — what the page IS, not what it is called: a Lean post's program uuid, a monograph's merkle
+    // root over its posts, a feed's root over every post. The layout draws colour, hexagram and movie from this hex.
+    {
+      const p = (pageData.params ?? {}) as { row?: { program?: string }; uuid?: string }
+      const uuid = p.row?.program ?? p.uuid ?? (/^((bg|gla)\/)?index\.md$/.test(pageData.relativePath) ? (feedProgram ??= leanProgramRoot()) : undefined)
+      if (uuid) frontmatter.uuid = uuid
+    }
 
     const relative = pageData.relativePath
     const siteLocale = siteLocaleForRelative(relative)

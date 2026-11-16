@@ -2,7 +2,7 @@
 // involution, zero-crossing emergence — merged flat to satisfy the src index census.
 
 import harmonic from '../../../ui/harmonic/index.ts'
-import { sha256Sync } from '../../../0/index.ts'
+import { merkleFold, sha256Sync, toUuid } from '../../../0/index.ts'
 
 // ───── module: growthRateImpossibilityUnified ─────
 // Wave 28: Unified Growth-Rate Impossibility Framework
@@ -1717,6 +1717,10 @@ export type LeanPageRow = {
   readonly tags: readonly string[]
   /** The Clay cases this theorem is bonded to (clayCasesOf) — empty for a theorem whose subject is not a Clay case. */
   readonly cases: readonly ClayCase[]
+  /** THE PROGRAM'S ADDRESS: a uuid over the source path, the name, the statement and the whole proof — what the post IS,
+   *  not what it is called. Its animation and colour are drawn from this hex (owner, 2026-11-16: "the live representation
+   *  of the uuid program hex meaning not name"). Change one character of the proof and the post animates differently. */
+  readonly program: string
 }
 
 /**
@@ -1878,6 +1882,13 @@ export function theoremSourceVerdicts(fetched: Readonly<Record<string, string | 
   return { judged, theorems, withSource: theorems.filter((t) => t.source !== null).length, kernelOnly: theorems.filter((t) => t.source === null).length }
 }
 
+/** The address of a set of posts — a monograph, or the whole feed — as the merkle root of their programs, in slug order. */
+export function leanProgramRoot(slugs?: readonly string[], root?: string): string {
+  const rows = leanPageRows(root)
+  const chosen = slugs ? rows.filter((r) => slugs.includes(r.slug)) : rows
+  return merkleFold([...chosen].sort((a, b) => a.slug.localeCompare(b.slug)).map((r) => r.program))
+}
+
 export function leanPageSlug(file: string, name: string): string {
   return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
 }
@@ -1967,6 +1978,7 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
     axioms: t.axioms,
     depositId: isInvolutionFile(t.dir, t.file) ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
     cases: clayCasesOf(`${t.dir}/${t.file}`, t.proposition),
+    program: toUuid(`lean-program:${t.dir}/${t.file}:${t.name}:${t.proposition}:${t.proof}`),
     seals: LEAN_SEALED_REGISTRY.filter((row) => row.leanFile === `${t.dir}/${t.file}` && row.theorems.includes(t.name)).map((row) => row.theorem),
     tags: [
       t.file.replace(/\.lean$/, ''),
