@@ -29,10 +29,10 @@
  * that touched the tree — a fact already in the repository, not a reading of the clock — so two runs
  * on the same commit produce identical bytes, which is what makes the drift check below meaningful.
  */
-import { execFileSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { publicationAbstract } from '../../src/quantum/dist/readme/index.ts'
+import { CITATION_RECORD, publicationAbstract } from '../../src/quantum/dist/readme/index.ts'
+import { citationTreeFacts } from '../../src/pair/enforcement/ops/index.ts'
 import { PUBLICATION_CREDIT } from '../../src/research/index.ts'
 import { decided } from './status.ts'
 
@@ -49,18 +49,11 @@ import { decided } from './status.ts'
 const OUT = '.zenodo.json'
 const WORK_TITLE = 'Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification'
 
-/** The last commit date, YYYY-MM-DD — a fact in the repository, not a clock reading. */
-export function lastCommitDate(root: string = process.cwd()): string {
-  try {
-    return execFileSync('git', ['-C', root, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).trim()
-  } catch {
-    return ''
-  }
-}
-
 export function zenodoDepositMetadata(root: string = process.cwd()): Record<string, unknown> {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }
-  const date = lastCommitDate(root)
+  // THE VERSION-CUT DATE, NOT THE LAST COMMIT'S: the last commit moves when this file is committed, so the deposit drifted
+  // across midnight exactly as CITATION.cff did (2026-11-16). citationTreeFacts is the one reader both use.
+  const date = citationTreeFacts(root).date
   // publicationAbstract is read only to PROVE it is reachable and non-empty — the description itself is
   // editorial and carried forward. A generator that imports a source it does not use would be lying too.
   const abstractIsLive = publicationAbstract().text.length > 0
@@ -75,6 +68,10 @@ export function zenodoDepositMetadata(root: string = process.cwd()): Record<stri
     title: `${WORK_TITLE} v${pkg.version}`,
     version: pkg.version,
     publication_date: date,
+    related_identifiers: [
+      ...((committed.related_identifiers as { identifier: string }[] | undefined) ?? []).filter((r) => !CITATION_RECORD.priorPublications.some((p) => r.identifier.endsWith(p.doi))),
+      ...CITATION_RECORD.priorPublications.map((p) => ({ identifier: `https://doi.org/${p.doi}`, relation: 'references', resource_type: 'publication' })),
+    ],
     creators: [{
       name: PUBLICATION_CREDIT.author.split(' ').reverse().join(', '),
       affiliation: 'Independent Research, Sofia, Bulgaria',

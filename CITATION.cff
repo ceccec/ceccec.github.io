@@ -44,6 +44,13 @@ identifiers:
       (10.5281/zenodo.21787143) is shared with two unrelated works and now
       resolves to the uuidna record, so cite this VERSION DOI and never that
       concept.
+  - type: doi
+    value: "10.5281/zenodo.21781603"
+    description: >-
+      The author's initial publication of 2026-08-04: "All Seven Clay
+      Millennium Problems Sealed via Universal σ-Involution" (Tsvetan
+      Rouschev, ORCID 0009-0000-7312-9778). Concept DOI
+      10.5281/zenodo.21781602, which resolves to the newest version.
 version: 1.6.2
 repository-code: "https://github.com/ceccec/ceccec.github.io"
 url: "https://ceccec.psg.bg"

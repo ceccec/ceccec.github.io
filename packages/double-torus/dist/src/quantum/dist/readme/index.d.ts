@@ -106,6 +106,17 @@ export declare const CITATION_RECORD: {
     readonly softwareConceptDoi: "10.5281/zenodo.22352566";
     readonly softwareDoiNote: "CITE THIS FOR THE SOFTWARE. The concept DOI of the release archive: it resolves to the newest archived release and follows every future one. A citation of this DOI reaches the software as released, which the priority record below does not.";
     readonly priorityDoiNote: "THE FIRST DEPOSIT — 2026-08-04, Tsvetan Rouschev — and the priority record kept as such: the earliest dated, authored statement of the ℤ/9 involution approach to the Clay Millennium problems, published before any later work on the same ground. It is retained precisely so the date and the authorship stand on the public record, independently recomputable from the deposit. Its title, \"Quantum Proofs of the Clay Millennium Problems v1.0\", carries claims the author's own 2026-08-20 audit withdrew — this repository asserts no Clay problem is solved by it; see the abstract above and HONESTY.md. Cited for PRIORITY and attribution, not as proof, and not for its title. NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated works and now resolves to the uuidna record, so cite this VERSION DOI and never that concept.";
+    readonly priorPublications: readonly [{
+        readonly doi: "10.5281/zenodo.21781603";
+        readonly conceptDoi: "10.5281/zenodo.21781602";
+        readonly date: "2026-08-04";
+        readonly title: "All Seven Clay Millennium Problems Sealed via Universal σ-Involution";
+    }, {
+        readonly doi: "10.5281/zenodo.21787144";
+        readonly conceptDoi: "10.5281/zenodo.21787143";
+        readonly date: "2026-08-04";
+        readonly title: "Quantum Proofs of the Clay Millennium Problems v1.0";
+    }];
     readonly repository: "https://github.com/ceccec/ceccec.github.io";
     readonly url: "https://ceccec.psg.bg";
     readonly contactEmail: "ceci@psg.bg";

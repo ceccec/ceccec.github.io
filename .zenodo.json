@@ -19,6 +19,16 @@
       "identifier": "https://ceccec.psg.bg",
       "relation": "isDocumentedBy",
       "resource_type": "website"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.21781603",
+      "relation": "references",
+      "resource_type": "publication"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.21787144",
+      "relation": "references",
+      "resource_type": "publication"
     }
   ],
   "keywords": [

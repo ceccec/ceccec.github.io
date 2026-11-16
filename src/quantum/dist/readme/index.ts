@@ -584,7 +584,7 @@ export function clayChallengesComputableMarkdownSection(
             '',
           ]
         })(),
-        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
+        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** The author's initial publications, ${CITATION_RECORD.priorPublications.map((p) => `${p.date}: [${p.title}](https://doi.org/${p.doi}) (DOI ${p.doi}; concept [${p.conceptDoi}](https://doi.org/${p.conceptDoi}))`).join(' · ')} · ORCID [${PUBLICATION_CREDIT.orcid}](${PUBLICATION_CREDIT.orcidUrl}) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
         '',
       ]
     })(),
@@ -1006,6 +1006,14 @@ export const CITATION_RECORD = {
   softwareConceptDoi: '10.5281/zenodo.22352566',
   softwareDoiNote: 'CITE THIS FOR THE SOFTWARE. The concept DOI of the release archive: it resolves to the newest archived release and follows every future one. A citation of this DOI reaches the software as released, which the priority record below does not.',
   priorityDoiNote: 'THE FIRST DEPOSIT — 2026-08-04, Tsvetan Rouschev — and the priority record kept as such: the earliest dated, authored statement of the ℤ/9 involution approach to the Clay Millennium problems, published before any later work on the same ground. It is retained precisely so the date and the authorship stand on the public record, independently recomputable from the deposit. Its title, "Quantum Proofs of the Clay Millennium Problems v1.0", carries claims the author\'s own 2026-08-20 audit withdrew — this repository asserts no Clay problem is solved by it; see the abstract above and HONESTY.md. Cited for PRIORITY and attribution, not as proof, and not for its title. NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated works and now resolves to the uuidna record, so cite this VERSION DOI and never that concept.',
+  // THE AUTHOR'S INITIAL PUBLICATIONS, AS ZENODO HOLDS THEM (owner, 2026-11-16: cite them in .zenodo.json and the README with
+  // the ORCID). Each row is the record's own DOI, publication date and title, read from the public Zenodo API; a concept DOI
+  // resolves to the newest version of that record. The first version of each carried no ORCID; the author's ORCID
+  // (PUBLICATION_CREDIT.orcid) is on every version from 10.5281/zenodo.22895141 (2026-09-22) on.
+  priorPublications: [
+    { doi: '10.5281/zenodo.21781603', conceptDoi: '10.5281/zenodo.21781602', date: '2026-08-04', title: 'All Seven Clay Millennium Problems Sealed via Universal σ-Involution' },
+    { doi: '10.5281/zenodo.21787144', conceptDoi: '10.5281/zenodo.21787143', date: '2026-08-04', title: 'Quantum Proofs of the Clay Millennium Problems v1.0' },
+  ],
   repository: 'https://github.com/ceccec/ceccec.github.io',
   url: 'https://ceccec.psg.bg',
   contactEmail: 'ceci@psg.bg',
@@ -1083,6 +1091,12 @@ export function citationCff(tree: { readonly version: string; readonly date: str
     `    value: "${PUBLICATION_CREDIT.repositoryDoi}"`,
     '    description: >-',
     fold(r.priorityDoiNote, '      '),
+    ...r.priorPublications.filter((p) => p.doi !== PUBLICATION_CREDIT.repositoryDoi).flatMap((p) => [
+      '  - type: doi',
+      `    value: "${p.doi}"`,
+      '    description: >-',
+      fold(`The author's initial publication of ${p.date}: "${p.title}" (${PUBLICATION_CREDIT.author}, ORCID ${PUBLICATION_CREDIT.orcid}). Concept DOI ${p.conceptDoi}, which resolves to the newest version.`, '      '),
+    ]),
     `version: ${tree.version}`,
     `repository-code: "${r.repository}"`,
     `url: "${r.url}"`,
