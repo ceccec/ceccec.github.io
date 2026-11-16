@@ -2057,9 +2057,9 @@ export type IsoNistStandardRow = {
 export function isoNistPqcStandardsCatalog(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('isoNistPqcStandardsCatalog', matrix, () => {
     const seed: readonly Omit<IsoNistStandardRow, 'receipt'>[] = [
-      { id: 'FIPS 203', body: 'NIST', title: 'Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)', domain: 'PQC KEM', statusAsOf2026_07: 'Final (effective 2024-08-14) — de-facto global deploy target', toolOrTheorem: 'pqcAlgorithmFamilySelector · postQuantumMigrationChecklist', mapsTo: 'replaces RSA/ECDH key exchange (classical PKI)' },
-      { id: 'FIPS 204', body: 'NIST', title: 'Module-Lattice-Based Digital Signature Algorithm (ML-DSA)', domain: 'PQC signatures', statusAsOf2026_07: 'Final (effective 2024-08-14)', toolOrTheorem: 'pqcAlgorithmFamilySelector · pqcNecessityFromShorCompose', mapsTo: 'replaces RSA/ECDSA signatures (primary)' },
-      { id: 'FIPS 205', body: 'NIST', title: 'Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)', domain: 'PQC signatures (hash)', statusAsOf2026_07: 'Final (effective 2024-08-14) — conservative backup', toolOrTheorem: 'isoAlignedHashSignatureTaxonomy · shorBreaksWhichPublicKey', mapsTo: 'hash-based signatures; SPHINCS+ lineage' },
+      { id: 'FIPS 203', body: 'NIST', title: pqcFamily('ml-kem').title, domain: 'PQC KEM', statusAsOf2026_07: 'Final (effective 2024-08-14) — de-facto global deploy target', toolOrTheorem: 'pqcAlgorithmFamilySelector · postQuantumMigrationChecklist', mapsTo: 'replaces RSA/ECDH key exchange (classical PKI)' },
+      { id: 'FIPS 204', body: 'NIST', title: pqcFamily('ml-dsa').title, domain: 'PQC signatures', statusAsOf2026_07: 'Final (effective 2024-08-14)', toolOrTheorem: 'pqcAlgorithmFamilySelector · pqcNecessityFromShorCompose', mapsTo: 'replaces RSA/ECDSA signatures (primary)' },
+      { id: 'FIPS 205', body: 'NIST', title: pqcFamily('slh-dsa').title, domain: 'PQC signatures (hash)', statusAsOf2026_07: 'Final (effective 2024-08-14) — conservative backup', toolOrTheorem: 'isoAlignedHashSignatureTaxonomy · shorBreaksWhichPublicKey', mapsTo: 'hash-based signatures; SPHINCS+ lineage' },
       { id: 'NIST IR 8547', body: 'NIST', title: 'Transition to Post-Quantum Cryptography Standards', domain: 'PQC migration timeline', statusAsOf2026_07: 'Transition guidance — classical PKC deprecated ~2030, disallowed ~2035 (federal systems)', toolOrTheorem: 'postQuantumMigrationChecklist', mapsTo: 'harvest-now-decrypt-later planning' },
       { id: 'SP 800-208', body: 'NIST', title: 'Recommendation for Stateful Hash-Based Signature Schemes', domain: 'stateful hash signatures', statusAsOf2026_07: 'Final — LMS/XMSS firmware/software signing', toolOrTheorem: 'isoAlignedHashSignatureTaxonomy', mapsTo: 'aligns with ISO/IEC 14888-4:2024' },
       { id: 'ISO/IEC 18033-2:2006/Amd 2:2026', body: 'ISO/IEC', title: 'Encryption algorithms — Part 2: Asymmetric ciphers — Amendment 2 (PQC KEMs)', domain: 'PQC KEM (ISO)', statusAsOf2026_07: 'Published 2026-06 (stage 60.60) — ML-KEM · Classic McEliece · FrodoKEM', toolOrTheorem: 'pqcAlgorithmFamilySelector · isoNistPqcStandardsCatalog', mapsTo: 'ISO diversity beyond lattice-only (code-based + unstructured LWE)' },
@@ -2104,13 +2104,13 @@ export function isoNistPqcStandardsCatalog(matrix: MindMatrix = buildMatrix()) {
 export function shorBreaksWhichPublicKey(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('shorBreaksWhichPublicKey', matrix, () => {
     const families = [
-      { family: 'RSA (factoring)', shor: 'breaks', grover: 'n/a (asym)', pqcReplace: 'ML-KEM / ML-DSA / SLH-DSA', iso: 'ISO/IEC 18033 classical → Amd 2:2026 PQC KEMs' },
-      { family: 'Finite-field DH / DSA', shor: 'breaks', grover: 'n/a', pqcReplace: 'ML-KEM / ML-DSA', iso: 'ISO/IEC 11770 migrate' },
-      { family: 'ECC (ECDSA/ECDH, ISO/IEC 15946)', shor: 'breaks', grover: 'n/a', pqcReplace: 'ML-DSA / ML-KEM', iso: 'ISO/IEC 15946 → PQC signatures/KEMs' },
+      { family: 'RSA (factoring)', shor: 'breaks', grover: 'n/a (asym)', pqcReplace: pqcFipsFamilies().map((f) => f.name).join(' / '), iso: 'ISO/IEC 18033 classical → Amd 2:2026 PQC KEMs' },
+      { family: 'Finite-field DH / DSA', shor: 'breaks', grover: 'n/a', pqcReplace: `${pqcFamily('ml-kem').name} / ${pqcFamily('ml-dsa').name}`, iso: 'ISO/IEC 11770 migrate' },
+      { family: 'ECC (ECDSA/ECDH, ISO/IEC 15946)', shor: 'breaks', grover: 'n/a', pqcReplace: `${pqcFamily('ml-dsa').name} / ${pqcFamily('ml-kem').name}`, iso: 'ISO/IEC 15946 → PQC signatures/KEMs' },
       { family: 'AES-256 (symmetric)', shor: 'safe', grover: 'weakens (~128-bit)', pqcReplace: 'keep AES-256 (CNSA)', iso: 'ISO/IEC 18033 symmetric parts' },
       { family: 'SHA-2/3 hashes (ISO/IEC 10118)', shor: 'safe', grover: 'weakens (halves preimage)', pqcReplace: 'SHA-384/512 or larger', iso: 'ISO/IEC 10118' },
       { family: 'Content-address UUID / merkle (this repo)', shor: 'safe', grover: 'weakens (hash)', pqcReplace: 'hash size / SHA cutover — no period to Shor', iso: 'integrity ≠ authenticity' },
-      { family: 'Ed25519 / planned classical signatures', shor: 'breaks', grover: 'n/a', pqcReplace: 'ML-DSA or SLH-DSA', iso: 'FIPS 204/205; ISO 14888 PQC uptake' },
+      { family: 'Ed25519 / planned classical signatures', shor: 'breaks', grover: 'n/a', pqcReplace: `${pqcFamily('ml-dsa').name} or ${pqcFamily('slh-dsa').name}`, iso: 'FIPS 204/205; ISO 14888 PQC uptake' },
     ].map((row) => ({ ...row, receipt: toUuid(`shor-breaks:${row.family}:${row.shor}`) }))
     const broken = families.filter((f) => f.shor === 'breaks')
     const safe = families.filter((f) => f.shor === 'safe')
@@ -2142,10 +2142,10 @@ export function postQuantumMigrationChecklist(matrix: MindMatrix = buildMatrix()
     const steps = [
       { id: 'inventory', title: 'Inventory classical PKC (TLS, code-sign, tokens, long-lived ciphertext)', done: true, note: 'MODELED checklist item' },
       { id: 'hn-dl', title: 'Treat harvest-now-decrypt-later for long confidentiality lifetimes', done: true, note: 'Guidance facet' },
-      { id: 'kem', title: 'Plan ML-KEM (FIPS 203 / ISO 18033-2 Amd 2) for key establishment', done: false, note: 'Web Crypto PQC not yet universal — OPEN' },
-      { id: 'sig-primary', title: 'Plan ML-DSA (FIPS 204) as primary signature migrate', done: false, note: 'OPEN — Ed25519 roadmap is classical' },
-      { id: 'sig-backup', title: 'Keep SLH-DSA (FIPS 205) / hash-based as conservative backup', done: false, note: 'OPEN backup path' },
-      { id: 'iso-diversity', title: 'Note ISO KEM diversity (Classic McEliece · FrodoKEM) for agility', done: true, note: 'Catalog awareness — not product support' },
+      { id: 'kem', title: `Plan ${pqcFamily('ml-kem').name} (${pqcFamily('ml-kem').fips} / ISO 18033-2 Amd 2) for key establishment`, done: false, note: 'Web Crypto PQC not yet universal — OPEN' },
+      { id: 'sig-primary', title: `Plan ${pqcFamily('ml-dsa').name} (${pqcFamily('ml-dsa').fips}) as primary signature migrate`, done: false, note: 'OPEN — Ed25519 roadmap is classical' },
+      { id: 'sig-backup', title: `Keep ${pqcFamily('slh-dsa').name} (${pqcFamily('slh-dsa').fips}) / hash-based as conservative backup`, done: false, note: 'OPEN backup path' },
+      { id: 'iso-diversity', title: `Note ISO KEM diversity (${pqcFamily('classic-mceliece').name} · ${pqcFamily('frodo-kem').name}) for agility`, done: true, note: 'Catalog awareness — not product support' },
       { id: 'hash', title: 'Keep / enlarge hashes (SHA-384/512) against Grover; merkle stays hash-based', done: true, note: 'Integrity layer Shor-safe' },
       { id: 'timeline', title: 'Track ~2030 deprecate / ~2035 disallow (NIST IR 8547 federal timeline)', done: true, note: 'Timeline reference — jurisdiction-dependent' },
       { id: 'honesty', title: 'Do NOT claim ISO certified / FIPS validated until an accredited lab says so', done: true, note: 'Hard honesty gate' },
@@ -2172,51 +2172,76 @@ export function postQuantumMigrationChecklist(matrix: MindMatrix = buildMatrix()
 }
 
 /** PQC algorithm family selector — DEMO parameter labels only (no production keygen). */
+/** A standardized parameter set: public-key and ciphertext/signature size in bytes and the NIST security category, as the
+ *  standard fixes them (FIPS 203/204/205; ISO/IEC 18033-2 Amd 2 for Classic McEliece round 4 and FrodoKEM). */
+export type PqcParamSet = { readonly paramSet: string; readonly nistCategory: number; readonly publicKeyBytes: number; readonly outputBytes: number; readonly outputKind: 'ciphertext' | 'signature'; readonly source: string }
+
+/**
+ * THE POST-QUANTUM STANDARDS, STATED ONCE. Every fold that names a PQC family reads it here — the selector, the ISO/NIST
+ * catalog's FIPS titles, the migration checklist, the hash/signature taxonomy, the Shor map, quantumThreat (fire/features)
+ * and the hash-doubling fold (quantum/water/cache). They restated these facts by hand, in four files, and a correction to
+ * one would have left the others behind. Sizes and categories are SOURCED from the documents, never derived or keygen'd:
+ * Web Crypto has no PQC primitive, and hand-rolled lattice crypto is unsafe, so this repo generates no PQC keys.
+ */
+export const PQC_STANDARD_FAMILIES = [
+  { id: 'ml-kem', family: 'lattice-KEM', name: 'ML-KEM', lineage: 'CRYSTALS-Kyber', fips: 'FIPS 203', title: 'Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)', kind: 'lattice key-encapsulation', replaces: 'RSA/ECDH key exchange', iso: 'ISO/IEC 18033-2 Amd 2:2026',
+    standards: ['FIPS 203', 'ISO/IEC 18033-2 Amd 2:2026'], role: 'key encapsulation', note: 'Primary KEM — Kyber lineage; shared secret 32 B',
+    params: [
+      { paramSet: 'ML-KEM-512', nistCategory: 1, publicKeyBytes: 800, outputBytes: 768, outputKind: 'ciphertext', source: 'FIPS 203' },
+      { paramSet: 'ML-KEM-768', nistCategory: 3, publicKeyBytes: 1184, outputBytes: 1088, outputKind: 'ciphertext', source: 'FIPS 203' },
+      { paramSet: 'ML-KEM-1024', nistCategory: 5, publicKeyBytes: 1568, outputBytes: 1568, outputKind: 'ciphertext', source: 'FIPS 203' },
+    ] as PqcParamSet[] },
+  { id: 'ml-dsa', family: 'lattice-sig', name: 'ML-DSA', lineage: 'CRYSTALS-Dilithium', fips: 'FIPS 204', title: 'Module-Lattice-Based Digital Signature Algorithm (ML-DSA)', kind: 'lattice signatures', replaces: 'RSA/ECDSA signatures (primary)', iso: 'ISO/IEC 14888 PQC uptake',
+    standards: ['FIPS 204'], role: 'digital signatures', note: 'Primary signature — Dilithium lineage',
+    params: [
+      { paramSet: 'ML-DSA-44', nistCategory: 2, publicKeyBytes: 1312, outputBytes: 2420, outputKind: 'signature', source: 'FIPS 204' },
+      { paramSet: 'ML-DSA-65', nistCategory: 3, publicKeyBytes: 1952, outputBytes: 3309, outputKind: 'signature', source: 'FIPS 204' },
+      { paramSet: 'ML-DSA-87', nistCategory: 5, publicKeyBytes: 2592, outputBytes: 4627, outputKind: 'signature', source: 'FIPS 204' },
+    ] as PqcParamSet[] },
+  { id: 'slh-dsa', family: 'hash-sig', name: 'SLH-DSA', lineage: 'SPHINCS+', fips: 'FIPS 205', title: 'Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)', kind: 'hash-based signatures', replaces: 'signatures (conservative backup)', iso: 'ISO/IEC 14888-4:2024 sibling',
+    standards: ['FIPS 205'], role: 'digital signatures (stateless hash)', note: 'Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants',
+    params: [
+      { paramSet: 'SLH-DSA-SHA2-128s', nistCategory: 1, publicKeyBytes: 32, outputBytes: 7856, outputKind: 'signature', source: 'FIPS 205' },
+      { paramSet: 'SLH-DSA-SHA2-192s', nistCategory: 3, publicKeyBytes: 48, outputBytes: 16224, outputKind: 'signature', source: 'FIPS 205' },
+      { paramSet: 'SLH-DSA-SHA2-256s', nistCategory: 5, publicKeyBytes: 64, outputBytes: 29792, outputKind: 'signature', source: 'FIPS 205' },
+    ] as PqcParamSet[] },
+  // ISO diversity (published Classic McEliece round-4 / FrodoKEM sizes). Code-based McEliece: TINY ciphertext, HUGE public
+  // key (~0.5–1.4 MB) — its defining tradeoff; FrodoKEM: unstructured-LWE, pk≈ct in the 9–22 KB range.
+  { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', lineage: 'McEliece (1978)', fips: null, title: 'Classic McEliece', kind: 'code-based key-encapsulation', replaces: 'RSA/ECDH key exchange (agility)', iso: 'ISO/IEC 18033-2 Amd 2:2026',
+    standards: ['ISO/IEC 18033-2 Amd 2:2026'], role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)',
+    params: [
+      { paramSet: 'mceliece460896', nistCategory: 3, publicKeyBytes: 524160, outputBytes: 156, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+      { paramSet: 'mceliece6688128', nistCategory: 5, publicKeyBytes: 1044992, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+      { paramSet: 'mceliece6960119', nistCategory: 5, publicKeyBytes: 1047319, outputBytes: 194, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+      { paramSet: 'mceliece8192128', nistCategory: 5, publicKeyBytes: 1357824, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
+    ] as PqcParamSet[] },
+  { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', lineage: 'Frodo (unstructured LWE)', fips: null, title: 'FrodoKEM', kind: 'unstructured-lattice key-encapsulation', replaces: 'RSA/ECDH key exchange (hedge)', iso: 'ISO/IEC 18033-2 Amd 2:2026',
+    standards: ['ISO/IEC 18033-2 Amd 2:2026'], role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM',
+    params: [
+      { paramSet: 'FrodoKEM-640', nistCategory: 1, publicKeyBytes: 9616, outputBytes: 9720, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
+      { paramSet: 'FrodoKEM-976', nistCategory: 3, publicKeyBytes: 15632, outputBytes: 15744, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
+      { paramSet: 'FrodoKEM-1344', nistCategory: 5, publicKeyBytes: 21520, outputBytes: 21632, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
+    ] as PqcParamSet[] },
+] as const
+
+/** One PQC family by id — the only door to PQC_STANDARD_FAMILIES; an unknown id throws rather than reading as absent. */
+export function pqcFamily(id: (typeof PQC_STANDARD_FAMILIES)[number]['id']) {
+  const row = PQC_STANDARD_FAMILIES.find((f) => f.id === id)
+  if (!row) throw new Error(`pqcFamily: no family ${id}`)
+  return row
+}
+
+/** The NIST-standardized families (FIPS 203/204/205), in FIPS order. */
+export function pqcFipsFamilies() {
+  return PQC_STANDARD_FAMILIES.filter((f) => f.fips !== null)
+}
+
 export function pqcAlgorithmFamilySelector(
   matrix: MindMatrix = buildMatrix(),
   prefer: 'lattice' | 'hash' | 'code' | 'auto' = 'auto',
 ) {
   return memoByRoot(`pqcAlgorithmFamilySelector:${prefer}`, matrix, () => {
-    // Standardized parameter sets — the deployment-decision data (public-key + output sizes in bytes, NIST security
-    // category), SOURCED from the FIPS documents (203/204/205), not derived or keygen'd: sizes are fixed by the
-    // standard. This completes the "labels only" gap with the real numbers a migration needs; it still does NOT
-    // generate keys (Web Crypto has no PQC primitive, and hand-rolled lattice crypto is unsafe — out of scope).
-    const paramSets: Record<string, { paramSet: string; nistCategory: number; publicKeyBytes: number; outputBytes: number; outputKind: 'ciphertext' | 'signature'; source: string }[]> = {
-      'ml-kem': [
-        { paramSet: 'ML-KEM-512', nistCategory: 1, publicKeyBytes: 800, outputBytes: 768, outputKind: 'ciphertext', source: 'FIPS 203' },
-        { paramSet: 'ML-KEM-768', nistCategory: 3, publicKeyBytes: 1184, outputBytes: 1088, outputKind: 'ciphertext', source: 'FIPS 203' },
-        { paramSet: 'ML-KEM-1024', nistCategory: 5, publicKeyBytes: 1568, outputBytes: 1568, outputKind: 'ciphertext', source: 'FIPS 203' },
-      ],
-      'ml-dsa': [
-        { paramSet: 'ML-DSA-44', nistCategory: 2, publicKeyBytes: 1312, outputBytes: 2420, outputKind: 'signature', source: 'FIPS 204' },
-        { paramSet: 'ML-DSA-65', nistCategory: 3, publicKeyBytes: 1952, outputBytes: 3309, outputKind: 'signature', source: 'FIPS 204' },
-        { paramSet: 'ML-DSA-87', nistCategory: 5, publicKeyBytes: 2592, outputBytes: 4627, outputKind: 'signature', source: 'FIPS 204' },
-      ],
-      'slh-dsa': [
-        { paramSet: 'SLH-DSA-SHA2-128s', nistCategory: 1, publicKeyBytes: 32, outputBytes: 7856, outputKind: 'signature', source: 'FIPS 205' },
-        { paramSet: 'SLH-DSA-SHA2-192s', nistCategory: 3, publicKeyBytes: 48, outputBytes: 16224, outputKind: 'signature', source: 'FIPS 205' },
-        { paramSet: 'SLH-DSA-SHA2-256s', nistCategory: 5, publicKeyBytes: 64, outputBytes: 29792, outputKind: 'signature', source: 'FIPS 205' },
-      ],
-      // ISO diversity (published Classic McEliece round-4 / FrodoKEM sizes). Code-based McEliece: TINY ciphertext,
-      // HUGE public key (~0.5–1.4 MB) — its defining tradeoff; FrodoKEM: unstructured-LWE, pk≈ct in the 9–22 KB range.
-      'classic-mceliece': [
-        { paramSet: 'mceliece460896', nistCategory: 3, publicKeyBytes: 524160, outputBytes: 156, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
-        { paramSet: 'mceliece6688128', nistCategory: 5, publicKeyBytes: 1044992, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
-        { paramSet: 'mceliece6960119', nistCategory: 5, publicKeyBytes: 1047319, outputBytes: 194, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
-        { paramSet: 'mceliece8192128', nistCategory: 5, publicKeyBytes: 1357824, outputBytes: 208, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / NIST r4' },
-      ],
-      'frodo-kem': [
-        { paramSet: 'FrodoKEM-640', nistCategory: 1, publicKeyBytes: 9616, outputBytes: 9720, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
-        { paramSet: 'FrodoKEM-976', nistCategory: 3, publicKeyBytes: 15632, outputBytes: 15744, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
-        { paramSet: 'FrodoKEM-1344', nistCategory: 5, publicKeyBytes: 21520, outputBytes: 21632, outputKind: 'ciphertext', source: 'ISO/IEC 18033-2 Amd 2 / FrodoKEM' },
-      ] }
-    const families = [
-      { id: 'ml-kem', family: 'lattice-KEM', name: 'ML-KEM', standards: ['FIPS 203', 'ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['ml-kem']!, role: 'key encapsulation', note: 'Primary KEM — Kyber lineage; shared secret 32 B' },
-      { id: 'ml-dsa', family: 'lattice-sig', name: 'ML-DSA', standards: ['FIPS 204'], params: paramSets['ml-dsa']!, role: 'digital signatures', note: 'Primary signature — Dilithium lineage' },
-      { id: 'slh-dsa', family: 'hash-sig', name: 'SLH-DSA', standards: ['FIPS 205'], params: paramSets['slh-dsa']!, role: 'digital signatures (stateless hash)', note: 'Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants' },
-      { id: 'classic-mceliece', family: 'code-KEM', name: 'Classic McEliece', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['classic-mceliece']!, role: 'key encapsulation (code-based)', note: 'ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)' },
-      { id: 'frodo-kem', family: 'lattice-KEM-unstructured', name: 'FrodoKEM', standards: ['ISO/IEC 18033-2 Amd 2:2026'], params: paramSets['frodo-kem']!, role: 'key encapsulation (unstructured LWE)', note: 'ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM' },
-    ].map((row) => ({ ...row, receipt: toUuid(`pqc-family:${row.id}:${row.params.map((p) => p.paramSet).join('/') || row.name}`) }))
+    const families = PQC_STANDARD_FAMILIES.map((row) => ({ ...row, receipt: toUuid(`pqc-family:${row.id}:${row.params.map((p) => p.paramSet).join('/') || row.name}`) }))
     const selected =
       prefer === 'hash' ? families.find((f) => f.id === 'slh-dsa')!
         : prefer === 'code' ? families.find((f) => f.id === 'classic-mceliece')!
@@ -2258,8 +2283,8 @@ export function isoAlignedHashSignatureTaxonomy(matrix: MindMatrix = buildMatrix
     const rows = [
       { layer: 'hash / content-address', iso: 'ISO/IEC 10118', nist: 'FIPS 180/202 (SHA)', repo: 'toUuid · merkleFold', shor: 'safe', role: 'integrity' },
       { layer: 'stateful hash signatures', iso: 'ISO/IEC 14888-4:2024', nist: 'SP 800-208', repo: 'not implemented (honest gap)', shor: 'safe', role: 'authenticity' },
-      { layer: 'stateless hash signatures', iso: 'ISO 14888 PQC uptake', nist: 'FIPS 205 SLH-DSA', repo: 'named backup path only', shor: 'safe', role: 'authenticity' },
-      { layer: 'lattice signatures', iso: 'ISO 14888 PQC uptake', nist: 'FIPS 204 ML-DSA', repo: 'named primary migrate', shor: 'safe*', role: 'authenticity' },
+      { layer: 'stateless hash signatures', iso: 'ISO 14888 PQC uptake', nist: `${pqcFamily('slh-dsa').fips} ${pqcFamily('slh-dsa').name}`, repo: 'named backup path only', shor: 'safe', role: 'authenticity' },
+      { layer: 'lattice signatures', iso: 'ISO 14888 PQC uptake', nist: `${pqcFamily('ml-dsa').fips} ${pqcFamily('ml-dsa').name}`, repo: 'named primary migrate', shor: 'safe*', role: 'authenticity' },
       { layer: 'classical ECC signatures', iso: 'ISO/IEC 15946 / 14888', nist: 'FIPS 186-5', repo: 'Ed25519 roadmap (classical)', shor: 'breaks', role: 'authenticity' },
       { layer: 'structural fold signature', iso: '— (not a crypto standard)', nist: '—', repo: 'foldPair(key,msg).merged', shor: 'n/a structural', role: 'recompute model' },
     ].map((row) => ({ ...row, receipt: toUuid(`iso-tax:${row.layer}:${row.shor}`) }))

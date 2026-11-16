@@ -733,7 +733,7 @@ export declare function gatesSavedInQuantumPairs(): {
     paired: boolean;
     pairCount: number;
     pairs: {
-        pair: "agent/submission" | "gate/compliance" | "check/types" | "limits/verify" | "limits/seal" | "verify/structure" | "rosetta/batch" | "rosetta/structure" | "dissolve/flat" | "gate/unite" | "build/seal" | "mission/gate" | "types/seal" | "rosetta/reuse" | "dry/clean" | "vote/build" | "trinity/speedup" | "scan/fold" | "digit/gate" | "import/distance" | "folder/gravity" | "gravity/dry" | "src/index" | "folder/index" | "size/free" | "gravity/gate" | "gate/rosetta" | "full/freedom" | "compact/matrix" | "cmd/place" | "place/audit" | "dry/full" | "manual/quantum" | "work/wave" | "dry/quantumize" | "prose/matrix" | "fold/merge" | "name/shrink" | "place/merge" | "plan/trinity" | "trinity/plan" | "plan/cross" | "gates/chat";
+        pair: "agent/submission" | "gate/compliance" | "check/types" | "limits/verify" | "limits/seal" | "verify/structure" | "rosetta/batch" | "rosetta/structure" | "dissolve/flat" | "gate/unite" | "build/seal" | "mission/gate" | "types/seal" | "rosetta/reuse" | "vote/build" | "trinity/speedup" | "scan/fold" | "digit/gate" | "import/distance" | "folder/gravity" | "gravity/dry" | "dry/clean" | "src/index" | "folder/index" | "size/free" | "gravity/gate" | "gate/rosetta" | "full/freedom" | "compact/matrix" | "cmd/place" | "place/audit" | "dry/full" | "manual/quantum" | "work/wave" | "dry/quantumize" | "prose/matrix" | "fold/merge" | "name/shrink" | "place/merge" | "plan/trinity" | "trinity/plan" | "plan/cross" | "gates/chat";
         a: string;
         b: string;
         paired: boolean;

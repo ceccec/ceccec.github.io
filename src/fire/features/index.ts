@@ -1,4 +1,5 @@
 // ☲ Lí · Fire — quantum features: the quantum society/siege/access/clock, the quantum UI use-cases, quantum PWA evidence. Barrel-routed; folds.ts back-imports the gate folds.
+import * as __ns_water_encryption from '../../water/encryption/index.ts'
 import { phase } from '../../6/4/index.ts'
 import { noCloningWitness, teleportQubit } from '../../9/1/index.ts'
 import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../../types/index.ts'
@@ -607,11 +608,8 @@ export function quantumThreat(matrix: MindMatrix = buildMatrix()) {
     { what: 'ECDSA signatures', effect: 'Shor-vulnerable (BREAK)', detail: 'a revealed public key → forged private key → stolen funds; ~6.7M BTC (~34% of supply) sit in addresses with exposed pubkeys (~1.7M BTC in legacy P2PK alone, plus reused addresses)' },
     { what: 'Proof-of-Work hashing', effect: 'Grover-weakened (NOT broken)', detail: 'at most a quadratic mining edge; ASIC speed + Grover\'s poor parallelism keep it minor' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`q-chain:${entry.what}`) }))
-  const postQuantum = [
-    { fips: 'FIPS 203', name: 'ML-KEM', from: 'CRYSTALS-Kyber', kind: 'lattice key-encapsulation', replaces: 'RSA/ECDH key exchange', iso: 'ISO/IEC 18033-2 Amd 2:2026' },
-    { fips: 'FIPS 204', name: 'ML-DSA', from: 'CRYSTALS-Dilithium', kind: 'lattice signatures', replaces: 'RSA/ECDSA signatures (primary)', iso: 'ISO/IEC 14888 PQC uptake' },
-    { fips: 'FIPS 205', name: 'SLH-DSA', from: 'SPHINCS+', kind: 'hash-based signatures', replaces: 'signatures (conservative backup)', iso: 'ISO/IEC 14888-4:2024 sibling' },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`pqc:${entry.fips}`) }))
+  // the post-quantum answer, read from the one statement of the standards (PQC_STANDARD_FAMILIES, src/water/encryption)
+  const postQuantum = __ns_water_encryption.pqcFipsFamilies().map((f) => ({ fips: f.fips!, name: f.name, from: f.lineage, kind: f.kind, replaces: f.replaces, iso: f.iso })).map((entry) => ({ ...entry, receipt: toUuid(`pqc:${entry.fips}`) }))
   const hardware = {
     today: 'NISQ — hundreds of noisy physical qubits, no large-scale error correction',
     rsa2048_2019: '~20 million noisy qubits / 8 hours (Gidney–Ekerå, Quantum 2021)',

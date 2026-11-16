@@ -70659,7 +70659,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         storage: __ns_up_stack_overflow.DriverProbeReceipt;
                     };
                     table: {
-                        id: "memory" | "gpu" | "storage" | "cpu";
+                        id: "memory" | "cpu" | "storage" | "gpu";
                         tier: __ns_up_stack_overflow.HardwareDriverTier;
                         runtime: __ns_up_stack_overflow.DriverRuntime;
                         surface: string;
@@ -70851,7 +70851,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             storage: __ns_up_stack_overflow.DriverProbeReceipt;
                         };
                         table: {
-                            id: "memory" | "gpu" | "storage" | "cpu";
+                            id: "memory" | "cpu" | "storage" | "gpu";
                             tier: __ns_up_stack_overflow.HardwareDriverTier;
                             runtime: __ns_up_stack_overflow.DriverRuntime;
                             surface: string;
@@ -71020,7 +71020,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                 };
                 localMath: boolean;
                 rows: {
-                    id: "memory" | "gpu" | "storage" | "cpu";
+                    id: "memory" | "cpu" | "storage" | "gpu";
                     tier: __ns_up_stack_overflow.HardwareDriverTier;
                     runtime: __ns_up_stack_overflow.DriverRuntime;
                     fallbackActive: boolean;

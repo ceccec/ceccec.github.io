@@ -1232,12 +1232,12 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         }[];
         postQuantum: {
             receipt: string;
-            fips: string;
-            name: string;
-            from: string;
-            kind: string;
-            replaces: string;
-            iso: string;
+            fips: any;
+            name: "ML-KEM" | "ML-DSA" | "SLH-DSA" | "Classic McEliece" | "FrodoKEM";
+            from: "CRYSTALS-Kyber" | "CRYSTALS-Dilithium" | "SPHINCS+" | "McEliece (1978)" | "Frodo (unstructured LWE)";
+            kind: "lattice key-encapsulation" | "lattice signatures" | "hash-based signatures" | "code-based key-encapsulation" | "unstructured-lattice key-encapsulation";
+            replaces: "RSA/ECDH key exchange" | "RSA/ECDSA signatures (primary)" | "signatures (conservative backup)" | "RSA/ECDH key exchange (agility)" | "RSA/ECDH key exchange (hedge)";
+            iso: "ISO/IEC 18033-2 Amd 2:2026" | "ISO/IEC 14888 PQC uptake" | "ISO/IEC 14888-4:2024 sibling";
         }[];
         hardware: {
             today: string;

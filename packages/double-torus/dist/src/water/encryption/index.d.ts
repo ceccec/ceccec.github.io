@@ -2739,30 +2739,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        mlDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        slhDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
+        mlKemParams: PqcParamSet[];
+        mlDsaParams: PqcParamSet[];
+        slhDsaParams: PqcParamSet[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -2785,36 +2764,88 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             computes: boolean;
             prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
-                id: string;
-                name: string;
-                family: string;
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                standards: string[];
+                id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                params: PqcParamSet[];
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
             };
-            families: {
+            families: ({
                 receipt: string;
-                id: string;
-                family: string;
-                name: string;
-                standards: string[];
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                role: string;
-                note: string;
-            }[];
+                id: "ml-kem";
+                family: "lattice-KEM";
+                name: "ML-KEM";
+                lineage: "CRYSTALS-Kyber";
+                fips: "FIPS 203";
+                title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                kind: "lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation";
+                note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "ml-dsa";
+                family: "lattice-sig";
+                name: "ML-DSA";
+                lineage: "CRYSTALS-Dilithium";
+                fips: "FIPS 204";
+                title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                kind: "lattice signatures";
+                replaces: "RSA/ECDSA signatures (primary)";
+                iso: "ISO/IEC 14888 PQC uptake";
+                standards: readonly ["FIPS 204"];
+                role: "digital signatures";
+                note: "Primary signature — Dilithium lineage";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "slh-dsa";
+                family: "hash-sig";
+                name: "SLH-DSA";
+                lineage: "SPHINCS+";
+                fips: "FIPS 205";
+                title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                kind: "hash-based signatures";
+                replaces: "signatures (conservative backup)";
+                iso: "ISO/IEC 14888-4:2024 sibling";
+                standards: readonly ["FIPS 205"];
+                role: "digital signatures (stateless hash)";
+                note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "classic-mceliece";
+                family: "code-KEM";
+                name: "Classic McEliece";
+                lineage: "McEliece (1978)";
+                fips: any;
+                title: "Classic McEliece";
+                kind: "code-based key-encapsulation";
+                replaces: "RSA/ECDH key exchange (agility)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (code-based)";
+                note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "frodo-kem";
+                family: "lattice-KEM-unstructured";
+                name: "FrodoKEM";
+                lineage: "Frodo (unstructured LWE)";
+                fips: any;
+                title: "FrodoKEM";
+                kind: "unstructured-lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange (hedge)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (unstructured LWE)";
+                note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                params: PqcParamSet[];
+            })[];
             pkMonotone: boolean;
             everyParamSourced: boolean;
             facets: ({
@@ -3353,30 +3384,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             thresholdMs: number;
             anySlow: boolean;
             fipsCount: number;
-            mlKemParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            mlDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            slhDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
+            mlKemParams: PqcParamSet[];
+            mlDsaParams: PqcParamSet[];
+            slhDsaParams: PqcParamSet[];
             eccShorBreaks: boolean;
             eccFamily: string;
             catalog: {
@@ -3399,36 +3409,88 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
-                    id: string;
-                    name: string;
-                    family: string;
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    standards: string[];
+                    id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                    name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                    family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                    params: PqcParamSet[];
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
                 };
-                families: {
+                families: ({
                     receipt: string;
-                    id: string;
-                    family: string;
-                    name: string;
-                    standards: string[];
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    role: string;
-                    note: string;
-                }[];
+                    id: "ml-kem";
+                    family: "lattice-KEM";
+                    name: "ML-KEM";
+                    lineage: "CRYSTALS-Kyber";
+                    fips: "FIPS 203";
+                    title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                    kind: "lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation";
+                    note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "ml-dsa";
+                    family: "lattice-sig";
+                    name: "ML-DSA";
+                    lineage: "CRYSTALS-Dilithium";
+                    fips: "FIPS 204";
+                    title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                    kind: "lattice signatures";
+                    replaces: "RSA/ECDSA signatures (primary)";
+                    iso: "ISO/IEC 14888 PQC uptake";
+                    standards: readonly ["FIPS 204"];
+                    role: "digital signatures";
+                    note: "Primary signature — Dilithium lineage";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "slh-dsa";
+                    family: "hash-sig";
+                    name: "SLH-DSA";
+                    lineage: "SPHINCS+";
+                    fips: "FIPS 205";
+                    title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                    kind: "hash-based signatures";
+                    replaces: "signatures (conservative backup)";
+                    iso: "ISO/IEC 14888-4:2024 sibling";
+                    standards: readonly ["FIPS 205"];
+                    role: "digital signatures (stateless hash)";
+                    note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "classic-mceliece";
+                    family: "code-KEM";
+                    name: "Classic McEliece";
+                    lineage: "McEliece (1978)";
+                    fips: any;
+                    title: "Classic McEliece";
+                    kind: "code-based key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (agility)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (code-based)";
+                    note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "frodo-kem";
+                    family: "lattice-KEM-unstructured";
+                    name: "FrodoKEM";
+                    lineage: "Frodo (unstructured LWE)";
+                    fips: any;
+                    title: "FrodoKEM";
+                    kind: "unstructured-lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (hedge)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (unstructured LWE)";
+                    note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                    params: PqcParamSet[];
+                })[];
                 pkMonotone: boolean;
                 everyParamSourced: boolean;
                 facets: ({
@@ -5934,30 +5996,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             thresholdMs: number;
             anySlow: boolean;
             fipsCount: number;
-            mlKemParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            mlDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            slhDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
+            mlKemParams: PqcParamSet[];
+            mlDsaParams: PqcParamSet[];
+            slhDsaParams: PqcParamSet[];
             eccShorBreaks: boolean;
             eccFamily: string;
             catalog: {
@@ -5980,36 +6021,88 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
-                    id: string;
-                    name: string;
-                    family: string;
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    standards: string[];
+                    id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                    name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                    family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                    params: PqcParamSet[];
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
                 };
-                families: {
+                families: ({
                     receipt: string;
-                    id: string;
-                    family: string;
-                    name: string;
-                    standards: string[];
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    role: string;
-                    note: string;
-                }[];
+                    id: "ml-kem";
+                    family: "lattice-KEM";
+                    name: "ML-KEM";
+                    lineage: "CRYSTALS-Kyber";
+                    fips: "FIPS 203";
+                    title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                    kind: "lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation";
+                    note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "ml-dsa";
+                    family: "lattice-sig";
+                    name: "ML-DSA";
+                    lineage: "CRYSTALS-Dilithium";
+                    fips: "FIPS 204";
+                    title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                    kind: "lattice signatures";
+                    replaces: "RSA/ECDSA signatures (primary)";
+                    iso: "ISO/IEC 14888 PQC uptake";
+                    standards: readonly ["FIPS 204"];
+                    role: "digital signatures";
+                    note: "Primary signature — Dilithium lineage";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "slh-dsa";
+                    family: "hash-sig";
+                    name: "SLH-DSA";
+                    lineage: "SPHINCS+";
+                    fips: "FIPS 205";
+                    title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                    kind: "hash-based signatures";
+                    replaces: "signatures (conservative backup)";
+                    iso: "ISO/IEC 14888-4:2024 sibling";
+                    standards: readonly ["FIPS 205"];
+                    role: "digital signatures (stateless hash)";
+                    note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "classic-mceliece";
+                    family: "code-KEM";
+                    name: "Classic McEliece";
+                    lineage: "McEliece (1978)";
+                    fips: any;
+                    title: "Classic McEliece";
+                    kind: "code-based key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (agility)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (code-based)";
+                    note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "frodo-kem";
+                    family: "lattice-KEM-unstructured";
+                    name: "FrodoKEM";
+                    lineage: "Frodo (unstructured LWE)";
+                    fips: any;
+                    title: "FrodoKEM";
+                    kind: "unstructured-lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (hedge)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (unstructured LWE)";
+                    note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                    params: PqcParamSet[];
+                })[];
                 pkMonotone: boolean;
                 everyParamSourced: boolean;
                 facets: ({
@@ -6556,30 +6649,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 thresholdMs: number;
                 anySlow: boolean;
                 fipsCount: number;
-                mlKemParams: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                mlDsaParams: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                slhDsaParams: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
+                mlKemParams: PqcParamSet[];
+                mlDsaParams: PqcParamSet[];
+                slhDsaParams: PqcParamSet[];
                 eccShorBreaks: boolean;
                 eccFamily: string;
                 catalog: {
@@ -6602,36 +6674,88 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     prefer: "lattice" | "hash" | "auto" | "code";
                     selected: {
-                        id: string;
-                        name: string;
-                        family: string;
-                        params: {
-                            paramSet: string;
-                            nistCategory: number;
-                            publicKeyBytes: number;
-                            outputBytes: number;
-                            outputKind: "ciphertext" | "signature";
-                            source: string;
-                        }[];
-                        standards: string[];
+                        id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                        name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                        family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                        params: PqcParamSet[];
+                        standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
                     };
-                    families: {
+                    families: ({
                         receipt: string;
-                        id: string;
-                        family: string;
-                        name: string;
-                        standards: string[];
-                        params: {
-                            paramSet: string;
-                            nistCategory: number;
-                            publicKeyBytes: number;
-                            outputBytes: number;
-                            outputKind: "ciphertext" | "signature";
-                            source: string;
-                        }[];
-                        role: string;
-                        note: string;
-                    }[];
+                        id: "ml-kem";
+                        family: "lattice-KEM";
+                        name: "ML-KEM";
+                        lineage: "CRYSTALS-Kyber";
+                        fips: "FIPS 203";
+                        title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                        kind: "lattice key-encapsulation";
+                        replaces: "RSA/ECDH key exchange";
+                        iso: "ISO/IEC 18033-2 Amd 2:2026";
+                        standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                        role: "key encapsulation";
+                        note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                        params: PqcParamSet[];
+                    } | {
+                        receipt: string;
+                        id: "ml-dsa";
+                        family: "lattice-sig";
+                        name: "ML-DSA";
+                        lineage: "CRYSTALS-Dilithium";
+                        fips: "FIPS 204";
+                        title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                        kind: "lattice signatures";
+                        replaces: "RSA/ECDSA signatures (primary)";
+                        iso: "ISO/IEC 14888 PQC uptake";
+                        standards: readonly ["FIPS 204"];
+                        role: "digital signatures";
+                        note: "Primary signature — Dilithium lineage";
+                        params: PqcParamSet[];
+                    } | {
+                        receipt: string;
+                        id: "slh-dsa";
+                        family: "hash-sig";
+                        name: "SLH-DSA";
+                        lineage: "SPHINCS+";
+                        fips: "FIPS 205";
+                        title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                        kind: "hash-based signatures";
+                        replaces: "signatures (conservative backup)";
+                        iso: "ISO/IEC 14888-4:2024 sibling";
+                        standards: readonly ["FIPS 205"];
+                        role: "digital signatures (stateless hash)";
+                        note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                        params: PqcParamSet[];
+                    } | {
+                        receipt: string;
+                        id: "classic-mceliece";
+                        family: "code-KEM";
+                        name: "Classic McEliece";
+                        lineage: "McEliece (1978)";
+                        fips: any;
+                        title: "Classic McEliece";
+                        kind: "code-based key-encapsulation";
+                        replaces: "RSA/ECDH key exchange (agility)";
+                        iso: "ISO/IEC 18033-2 Amd 2:2026";
+                        standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                        role: "key encapsulation (code-based)";
+                        note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                        params: PqcParamSet[];
+                    } | {
+                        receipt: string;
+                        id: "frodo-kem";
+                        family: "lattice-KEM-unstructured";
+                        name: "FrodoKEM";
+                        lineage: "Frodo (unstructured LWE)";
+                        fips: any;
+                        title: "FrodoKEM";
+                        kind: "unstructured-lattice key-encapsulation";
+                        replaces: "RSA/ECDH key exchange (hedge)";
+                        iso: "ISO/IEC 18033-2 Amd 2:2026";
+                        standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                        role: "key encapsulation (unstructured LWE)";
+                        note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                        params: PqcParamSet[];
+                    })[];
                     pkMonotone: boolean;
                     everyParamSourced: boolean;
                     facets: ({
@@ -7231,30 +7355,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         rsaGenerateMs: number;
         rsaReverseMs: number;
     };
-    mlKemParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
-    mlDsaParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
-    slhDsaParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
+    mlKemParams: PqcParamSet[];
+    mlDsaParams: PqcParamSet[];
+    slhDsaParams: PqcParamSet[];
     eccShorBreaks: boolean;
     sealedCatalogModuli: number[];
     /** @deprecated Prefer sealedCatalogModuli — do not label tools “demo” in UI */
@@ -11999,40 +12102,324 @@ export declare function postQuantumMigrationChecklist(matrix?: MindMatrix): {
     boundary: string;
 };
 /** PQC algorithm family selector — DEMO parameter labels only (no production keygen). */
+/** A standardized parameter set: public-key and ciphertext/signature size in bytes and the NIST security category, as the
+ *  standard fixes them (FIPS 203/204/205; ISO/IEC 18033-2 Amd 2 for Classic McEliece round 4 and FrodoKEM). */
+export type PqcParamSet = {
+    readonly paramSet: string;
+    readonly nistCategory: number;
+    readonly publicKeyBytes: number;
+    readonly outputBytes: number;
+    readonly outputKind: 'ciphertext' | 'signature';
+    readonly source: string;
+};
+/**
+ * THE POST-QUANTUM STANDARDS, STATED ONCE. Every fold that names a PQC family reads it here — the selector, the ISO/NIST
+ * catalog's FIPS titles, the migration checklist, the hash/signature taxonomy, the Shor map, quantumThreat (fire/features)
+ * and the hash-doubling fold (quantum/water/cache). They restated these facts by hand, in four files, and a correction to
+ * one would have left the others behind. Sizes and categories are SOURCED from the documents, never derived or keygen'd:
+ * Web Crypto has no PQC primitive, and hand-rolled lattice crypto is unsafe, so this repo generates no PQC keys.
+ */
+export declare const PQC_STANDARD_FAMILIES: readonly [{
+    readonly id: "ml-kem";
+    readonly family: "lattice-KEM";
+    readonly name: "ML-KEM";
+    readonly lineage: "CRYSTALS-Kyber";
+    readonly fips: "FIPS 203";
+    readonly title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+    readonly kind: "lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation";
+    readonly note: "Primary KEM — Kyber lineage; shared secret 32 B";
+    readonly params: PqcParamSet[];
+}, {
+    readonly id: "ml-dsa";
+    readonly family: "lattice-sig";
+    readonly name: "ML-DSA";
+    readonly lineage: "CRYSTALS-Dilithium";
+    readonly fips: "FIPS 204";
+    readonly title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+    readonly kind: "lattice signatures";
+    readonly replaces: "RSA/ECDSA signatures (primary)";
+    readonly iso: "ISO/IEC 14888 PQC uptake";
+    readonly standards: readonly ["FIPS 204"];
+    readonly role: "digital signatures";
+    readonly note: "Primary signature — Dilithium lineage";
+    readonly params: PqcParamSet[];
+}, {
+    readonly id: "slh-dsa";
+    readonly family: "hash-sig";
+    readonly name: "SLH-DSA";
+    readonly lineage: "SPHINCS+";
+    readonly fips: "FIPS 205";
+    readonly title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+    readonly kind: "hash-based signatures";
+    readonly replaces: "signatures (conservative backup)";
+    readonly iso: "ISO/IEC 14888-4:2024 sibling";
+    readonly standards: readonly ["FIPS 205"];
+    readonly role: "digital signatures (stateless hash)";
+    readonly note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+    readonly params: PqcParamSet[];
+}, {
+    readonly id: "classic-mceliece";
+    readonly family: "code-KEM";
+    readonly name: "Classic McEliece";
+    readonly lineage: "McEliece (1978)";
+    readonly fips: any;
+    readonly title: "Classic McEliece";
+    readonly kind: "code-based key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (agility)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (code-based)";
+    readonly note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+    readonly params: PqcParamSet[];
+}, {
+    readonly id: "frodo-kem";
+    readonly family: "lattice-KEM-unstructured";
+    readonly name: "FrodoKEM";
+    readonly lineage: "Frodo (unstructured LWE)";
+    readonly fips: any;
+    readonly title: "FrodoKEM";
+    readonly kind: "unstructured-lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (hedge)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (unstructured LWE)";
+    readonly note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+    readonly params: PqcParamSet[];
+}];
+/** One PQC family by id — the only door to PQC_STANDARD_FAMILIES; an unknown id throws rather than reading as absent. */
+export declare function pqcFamily(id: (typeof PQC_STANDARD_FAMILIES)[number]['id']): {
+    readonly id: "ml-kem";
+    readonly family: "lattice-KEM";
+    readonly name: "ML-KEM";
+    readonly lineage: "CRYSTALS-Kyber";
+    readonly fips: "FIPS 203";
+    readonly title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+    readonly kind: "lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation";
+    readonly note: "Primary KEM — Kyber lineage; shared secret 32 B";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "ml-dsa";
+    readonly family: "lattice-sig";
+    readonly name: "ML-DSA";
+    readonly lineage: "CRYSTALS-Dilithium";
+    readonly fips: "FIPS 204";
+    readonly title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+    readonly kind: "lattice signatures";
+    readonly replaces: "RSA/ECDSA signatures (primary)";
+    readonly iso: "ISO/IEC 14888 PQC uptake";
+    readonly standards: readonly ["FIPS 204"];
+    readonly role: "digital signatures";
+    readonly note: "Primary signature — Dilithium lineage";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "slh-dsa";
+    readonly family: "hash-sig";
+    readonly name: "SLH-DSA";
+    readonly lineage: "SPHINCS+";
+    readonly fips: "FIPS 205";
+    readonly title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+    readonly kind: "hash-based signatures";
+    readonly replaces: "signatures (conservative backup)";
+    readonly iso: "ISO/IEC 14888-4:2024 sibling";
+    readonly standards: readonly ["FIPS 205"];
+    readonly role: "digital signatures (stateless hash)";
+    readonly note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "classic-mceliece";
+    readonly family: "code-KEM";
+    readonly name: "Classic McEliece";
+    readonly lineage: "McEliece (1978)";
+    readonly fips: any;
+    readonly title: "Classic McEliece";
+    readonly kind: "code-based key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (agility)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (code-based)";
+    readonly note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "frodo-kem";
+    readonly family: "lattice-KEM-unstructured";
+    readonly name: "FrodoKEM";
+    readonly lineage: "Frodo (unstructured LWE)";
+    readonly fips: any;
+    readonly title: "FrodoKEM";
+    readonly kind: "unstructured-lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (hedge)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (unstructured LWE)";
+    readonly note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+    readonly params: PqcParamSet[];
+};
+/** The NIST-standardized families (FIPS 203/204/205), in FIPS order. */
+export declare function pqcFipsFamilies(): ({
+    readonly id: "ml-kem";
+    readonly family: "lattice-KEM";
+    readonly name: "ML-KEM";
+    readonly lineage: "CRYSTALS-Kyber";
+    readonly fips: "FIPS 203";
+    readonly title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+    readonly kind: "lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation";
+    readonly note: "Primary KEM — Kyber lineage; shared secret 32 B";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "ml-dsa";
+    readonly family: "lattice-sig";
+    readonly name: "ML-DSA";
+    readonly lineage: "CRYSTALS-Dilithium";
+    readonly fips: "FIPS 204";
+    readonly title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+    readonly kind: "lattice signatures";
+    readonly replaces: "RSA/ECDSA signatures (primary)";
+    readonly iso: "ISO/IEC 14888 PQC uptake";
+    readonly standards: readonly ["FIPS 204"];
+    readonly role: "digital signatures";
+    readonly note: "Primary signature — Dilithium lineage";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "slh-dsa";
+    readonly family: "hash-sig";
+    readonly name: "SLH-DSA";
+    readonly lineage: "SPHINCS+";
+    readonly fips: "FIPS 205";
+    readonly title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+    readonly kind: "hash-based signatures";
+    readonly replaces: "signatures (conservative backup)";
+    readonly iso: "ISO/IEC 14888-4:2024 sibling";
+    readonly standards: readonly ["FIPS 205"];
+    readonly role: "digital signatures (stateless hash)";
+    readonly note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "classic-mceliece";
+    readonly family: "code-KEM";
+    readonly name: "Classic McEliece";
+    readonly lineage: "McEliece (1978)";
+    readonly fips: any;
+    readonly title: "Classic McEliece";
+    readonly kind: "code-based key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (agility)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (code-based)";
+    readonly note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+    readonly params: PqcParamSet[];
+} | {
+    readonly id: "frodo-kem";
+    readonly family: "lattice-KEM-unstructured";
+    readonly name: "FrodoKEM";
+    readonly lineage: "Frodo (unstructured LWE)";
+    readonly fips: any;
+    readonly title: "FrodoKEM";
+    readonly kind: "unstructured-lattice key-encapsulation";
+    readonly replaces: "RSA/ECDH key exchange (hedge)";
+    readonly iso: "ISO/IEC 18033-2 Amd 2:2026";
+    readonly standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+    readonly role: "key encapsulation (unstructured LWE)";
+    readonly note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+    readonly params: PqcParamSet[];
+})[];
 export declare function pqcAlgorithmFamilySelector(matrix?: MindMatrix, prefer?: 'lattice' | 'hash' | 'code' | 'auto'): {
     computes: boolean;
     prefer: "lattice" | "hash" | "auto" | "code";
     selected: {
-        id: string;
-        name: string;
-        family: string;
-        params: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        standards: string[];
+        id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+        name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+        family: "lattice-KEM" | "hash-sig" | "code-KEM";
+        params: PqcParamSet[];
+        standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
     };
-    families: {
+    families: ({
         receipt: string;
-        id: string;
-        family: string;
-        name: string;
-        standards: string[];
-        params: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        role: string;
-        note: string;
-    }[];
+        id: "ml-kem";
+        family: "lattice-KEM";
+        name: "ML-KEM";
+        lineage: "CRYSTALS-Kyber";
+        fips: "FIPS 203";
+        title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+        kind: "lattice key-encapsulation";
+        replaces: "RSA/ECDH key exchange";
+        iso: "ISO/IEC 18033-2 Amd 2:2026";
+        standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+        role: "key encapsulation";
+        note: "Primary KEM — Kyber lineage; shared secret 32 B";
+        params: PqcParamSet[];
+    } | {
+        receipt: string;
+        id: "ml-dsa";
+        family: "lattice-sig";
+        name: "ML-DSA";
+        lineage: "CRYSTALS-Dilithium";
+        fips: "FIPS 204";
+        title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+        kind: "lattice signatures";
+        replaces: "RSA/ECDSA signatures (primary)";
+        iso: "ISO/IEC 14888 PQC uptake";
+        standards: readonly ["FIPS 204"];
+        role: "digital signatures";
+        note: "Primary signature — Dilithium lineage";
+        params: PqcParamSet[];
+    } | {
+        receipt: string;
+        id: "slh-dsa";
+        family: "hash-sig";
+        name: "SLH-DSA";
+        lineage: "SPHINCS+";
+        fips: "FIPS 205";
+        title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+        kind: "hash-based signatures";
+        replaces: "signatures (conservative backup)";
+        iso: "ISO/IEC 14888-4:2024 sibling";
+        standards: readonly ["FIPS 205"];
+        role: "digital signatures (stateless hash)";
+        note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+        params: PqcParamSet[];
+    } | {
+        receipt: string;
+        id: "classic-mceliece";
+        family: "code-KEM";
+        name: "Classic McEliece";
+        lineage: "McEliece (1978)";
+        fips: any;
+        title: "Classic McEliece";
+        kind: "code-based key-encapsulation";
+        replaces: "RSA/ECDH key exchange (agility)";
+        iso: "ISO/IEC 18033-2 Amd 2:2026";
+        standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+        role: "key encapsulation (code-based)";
+        note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+        params: PqcParamSet[];
+    } | {
+        receipt: string;
+        id: "frodo-kem";
+        family: "lattice-KEM-unstructured";
+        name: "FrodoKEM";
+        lineage: "Frodo (unstructured LWE)";
+        fips: any;
+        title: "FrodoKEM";
+        kind: "unstructured-lattice key-encapsulation";
+        replaces: "RSA/ECDH key exchange (hedge)";
+        iso: "ISO/IEC 18033-2 Amd 2:2026";
+        standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+        role: "key encapsulation (unstructured LWE)";
+        note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+        params: PqcParamSet[];
+    })[];
     pkMonotone: boolean;
     everyParamSourced: boolean;
     facets: ({
@@ -12107,30 +12494,9 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     thresholdMs: number;
     anySlow: boolean;
     fipsCount: number;
-    mlKemParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
-    mlDsaParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
-    slhDsaParams: {
-        paramSet: string;
-        nistCategory: number;
-        publicKeyBytes: number;
-        outputBytes: number;
-        outputKind: "ciphertext" | "signature";
-        source: string;
-    }[];
+    mlKemParams: PqcParamSet[];
+    mlDsaParams: PqcParamSet[];
+    slhDsaParams: PqcParamSet[];
     eccShorBreaks: boolean;
     eccFamily: string;
     catalog: {
@@ -12153,36 +12519,88 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
         computes: boolean;
         prefer: "lattice" | "hash" | "auto" | "code";
         selected: {
-            id: string;
-            name: string;
-            family: string;
-            params: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            standards: string[];
+            id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+            name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+            family: "lattice-KEM" | "hash-sig" | "code-KEM";
+            params: PqcParamSet[];
+            standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
         };
-        families: {
+        families: ({
             receipt: string;
-            id: string;
-            family: string;
-            name: string;
-            standards: string[];
-            params: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            role: string;
-            note: string;
-        }[];
+            id: "ml-kem";
+            family: "lattice-KEM";
+            name: "ML-KEM";
+            lineage: "CRYSTALS-Kyber";
+            fips: "FIPS 203";
+            title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+            kind: "lattice key-encapsulation";
+            replaces: "RSA/ECDH key exchange";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation";
+            note: "Primary KEM — Kyber lineage; shared secret 32 B";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "ml-dsa";
+            family: "lattice-sig";
+            name: "ML-DSA";
+            lineage: "CRYSTALS-Dilithium";
+            fips: "FIPS 204";
+            title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+            kind: "lattice signatures";
+            replaces: "RSA/ECDSA signatures (primary)";
+            iso: "ISO/IEC 14888 PQC uptake";
+            standards: readonly ["FIPS 204"];
+            role: "digital signatures";
+            note: "Primary signature — Dilithium lineage";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "slh-dsa";
+            family: "hash-sig";
+            name: "SLH-DSA";
+            lineage: "SPHINCS+";
+            fips: "FIPS 205";
+            title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+            kind: "hash-based signatures";
+            replaces: "signatures (conservative backup)";
+            iso: "ISO/IEC 14888-4:2024 sibling";
+            standards: readonly ["FIPS 205"];
+            role: "digital signatures (stateless hash)";
+            note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "classic-mceliece";
+            family: "code-KEM";
+            name: "Classic McEliece";
+            lineage: "McEliece (1978)";
+            fips: any;
+            title: "Classic McEliece";
+            kind: "code-based key-encapsulation";
+            replaces: "RSA/ECDH key exchange (agility)";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation (code-based)";
+            note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "frodo-kem";
+            family: "lattice-KEM-unstructured";
+            name: "FrodoKEM";
+            lineage: "Frodo (unstructured LWE)";
+            fips: any;
+            title: "FrodoKEM";
+            kind: "unstructured-lattice key-encapsulation";
+            replaces: "RSA/ECDH key exchange (hedge)";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation (unstructured LWE)";
+            note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+            params: PqcParamSet[];
+        })[];
         pkMonotone: boolean;
         everyParamSourced: boolean;
         facets: ({
@@ -12422,36 +12840,88 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
         computes: boolean;
         prefer: "lattice" | "hash" | "auto" | "code";
         selected: {
-            id: string;
-            name: string;
-            family: string;
-            params: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            standards: string[];
+            id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+            name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+            family: "lattice-KEM" | "hash-sig" | "code-KEM";
+            params: PqcParamSet[];
+            standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
         };
-        families: {
+        families: ({
             receipt: string;
-            id: string;
-            family: string;
-            name: string;
-            standards: string[];
-            params: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            role: string;
-            note: string;
-        }[];
+            id: "ml-kem";
+            family: "lattice-KEM";
+            name: "ML-KEM";
+            lineage: "CRYSTALS-Kyber";
+            fips: "FIPS 203";
+            title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+            kind: "lattice key-encapsulation";
+            replaces: "RSA/ECDH key exchange";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation";
+            note: "Primary KEM — Kyber lineage; shared secret 32 B";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "ml-dsa";
+            family: "lattice-sig";
+            name: "ML-DSA";
+            lineage: "CRYSTALS-Dilithium";
+            fips: "FIPS 204";
+            title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+            kind: "lattice signatures";
+            replaces: "RSA/ECDSA signatures (primary)";
+            iso: "ISO/IEC 14888 PQC uptake";
+            standards: readonly ["FIPS 204"];
+            role: "digital signatures";
+            note: "Primary signature — Dilithium lineage";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "slh-dsa";
+            family: "hash-sig";
+            name: "SLH-DSA";
+            lineage: "SPHINCS+";
+            fips: "FIPS 205";
+            title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+            kind: "hash-based signatures";
+            replaces: "signatures (conservative backup)";
+            iso: "ISO/IEC 14888-4:2024 sibling";
+            standards: readonly ["FIPS 205"];
+            role: "digital signatures (stateless hash)";
+            note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "classic-mceliece";
+            family: "code-KEM";
+            name: "Classic McEliece";
+            lineage: "McEliece (1978)";
+            fips: any;
+            title: "Classic McEliece";
+            kind: "code-based key-encapsulation";
+            replaces: "RSA/ECDH key exchange (agility)";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation (code-based)";
+            note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+            params: PqcParamSet[];
+        } | {
+            receipt: string;
+            id: "frodo-kem";
+            family: "lattice-KEM-unstructured";
+            name: "FrodoKEM";
+            lineage: "Frodo (unstructured LWE)";
+            fips: any;
+            title: "FrodoKEM";
+            kind: "unstructured-lattice key-encapsulation";
+            replaces: "RSA/ECDH key exchange (hedge)";
+            iso: "ISO/IEC 18033-2 Amd 2:2026";
+            standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+            role: "key encapsulation (unstructured LWE)";
+            note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+            params: PqcParamSet[];
+        })[];
         pkMonotone: boolean;
         everyParamSourced: boolean;
         facets: ({
@@ -12519,30 +12989,9 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        mlDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        slhDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
+        mlKemParams: PqcParamSet[];
+        mlDsaParams: PqcParamSet[];
+        slhDsaParams: PqcParamSet[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -12565,36 +13014,88 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
             computes: boolean;
             prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
-                id: string;
-                name: string;
-                family: string;
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                standards: string[];
+                id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                params: PqcParamSet[];
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
             };
-            families: {
+            families: ({
                 receipt: string;
-                id: string;
-                family: string;
-                name: string;
-                standards: string[];
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                role: string;
-                note: string;
-            }[];
+                id: "ml-kem";
+                family: "lattice-KEM";
+                name: "ML-KEM";
+                lineage: "CRYSTALS-Kyber";
+                fips: "FIPS 203";
+                title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                kind: "lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation";
+                note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "ml-dsa";
+                family: "lattice-sig";
+                name: "ML-DSA";
+                lineage: "CRYSTALS-Dilithium";
+                fips: "FIPS 204";
+                title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                kind: "lattice signatures";
+                replaces: "RSA/ECDSA signatures (primary)";
+                iso: "ISO/IEC 14888 PQC uptake";
+                standards: readonly ["FIPS 204"];
+                role: "digital signatures";
+                note: "Primary signature — Dilithium lineage";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "slh-dsa";
+                family: "hash-sig";
+                name: "SLH-DSA";
+                lineage: "SPHINCS+";
+                fips: "FIPS 205";
+                title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                kind: "hash-based signatures";
+                replaces: "signatures (conservative backup)";
+                iso: "ISO/IEC 14888-4:2024 sibling";
+                standards: readonly ["FIPS 205"];
+                role: "digital signatures (stateless hash)";
+                note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "classic-mceliece";
+                family: "code-KEM";
+                name: "Classic McEliece";
+                lineage: "McEliece (1978)";
+                fips: any;
+                title: "Classic McEliece";
+                kind: "code-based key-encapsulation";
+                replaces: "RSA/ECDH key exchange (agility)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (code-based)";
+                note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "frodo-kem";
+                family: "lattice-KEM-unstructured";
+                name: "FrodoKEM";
+                lineage: "Frodo (unstructured LWE)";
+                fips: any;
+                title: "FrodoKEM";
+                kind: "unstructured-lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange (hedge)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (unstructured LWE)";
+                note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                params: PqcParamSet[];
+            })[];
             pkMonotone: boolean;
             everyParamSourced: boolean;
             facets: ({
@@ -16203,30 +16704,9 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        mlDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        slhDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
+        mlKemParams: PqcParamSet[];
+        mlDsaParams: PqcParamSet[];
+        slhDsaParams: PqcParamSet[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -16249,36 +16729,88 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
             computes: boolean;
             prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
-                id: string;
-                name: string;
-                family: string;
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                standards: string[];
+                id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                params: PqcParamSet[];
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
             };
-            families: {
+            families: ({
                 receipt: string;
-                id: string;
-                family: string;
-                name: string;
-                standards: string[];
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                role: string;
-                note: string;
-            }[];
+                id: "ml-kem";
+                family: "lattice-KEM";
+                name: "ML-KEM";
+                lineage: "CRYSTALS-Kyber";
+                fips: "FIPS 203";
+                title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                kind: "lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation";
+                note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "ml-dsa";
+                family: "lattice-sig";
+                name: "ML-DSA";
+                lineage: "CRYSTALS-Dilithium";
+                fips: "FIPS 204";
+                title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                kind: "lattice signatures";
+                replaces: "RSA/ECDSA signatures (primary)";
+                iso: "ISO/IEC 14888 PQC uptake";
+                standards: readonly ["FIPS 204"];
+                role: "digital signatures";
+                note: "Primary signature — Dilithium lineage";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "slh-dsa";
+                family: "hash-sig";
+                name: "SLH-DSA";
+                lineage: "SPHINCS+";
+                fips: "FIPS 205";
+                title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                kind: "hash-based signatures";
+                replaces: "signatures (conservative backup)";
+                iso: "ISO/IEC 14888-4:2024 sibling";
+                standards: readonly ["FIPS 205"];
+                role: "digital signatures (stateless hash)";
+                note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "classic-mceliece";
+                family: "code-KEM";
+                name: "Classic McEliece";
+                lineage: "McEliece (1978)";
+                fips: any;
+                title: "Classic McEliece";
+                kind: "code-based key-encapsulation";
+                replaces: "RSA/ECDH key exchange (agility)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (code-based)";
+                note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "frodo-kem";
+                family: "lattice-KEM-unstructured";
+                name: "FrodoKEM";
+                lineage: "Frodo (unstructured LWE)";
+                fips: any;
+                title: "FrodoKEM";
+                kind: "unstructured-lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange (hedge)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (unstructured LWE)";
+                note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                params: PqcParamSet[];
+            })[];
             pkMonotone: boolean;
             everyParamSourced: boolean;
             facets: ({
@@ -16898,30 +17430,9 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
             thresholdMs: number;
             anySlow: boolean;
             fipsCount: number;
-            mlKemParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            mlDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            slhDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
+            mlKemParams: PqcParamSet[];
+            mlDsaParams: PqcParamSet[];
+            slhDsaParams: PqcParamSet[];
             eccShorBreaks: boolean;
             eccFamily: string;
             catalog: {
@@ -16944,36 +17455,88 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                 computes: boolean;
                 prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
-                    id: string;
-                    name: string;
-                    family: string;
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    standards: string[];
+                    id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                    name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                    family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                    params: PqcParamSet[];
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
                 };
-                families: {
+                families: ({
                     receipt: string;
-                    id: string;
-                    family: string;
-                    name: string;
-                    standards: string[];
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    role: string;
-                    note: string;
-                }[];
+                    id: "ml-kem";
+                    family: "lattice-KEM";
+                    name: "ML-KEM";
+                    lineage: "CRYSTALS-Kyber";
+                    fips: "FIPS 203";
+                    title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                    kind: "lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation";
+                    note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "ml-dsa";
+                    family: "lattice-sig";
+                    name: "ML-DSA";
+                    lineage: "CRYSTALS-Dilithium";
+                    fips: "FIPS 204";
+                    title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                    kind: "lattice signatures";
+                    replaces: "RSA/ECDSA signatures (primary)";
+                    iso: "ISO/IEC 14888 PQC uptake";
+                    standards: readonly ["FIPS 204"];
+                    role: "digital signatures";
+                    note: "Primary signature — Dilithium lineage";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "slh-dsa";
+                    family: "hash-sig";
+                    name: "SLH-DSA";
+                    lineage: "SPHINCS+";
+                    fips: "FIPS 205";
+                    title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                    kind: "hash-based signatures";
+                    replaces: "signatures (conservative backup)";
+                    iso: "ISO/IEC 14888-4:2024 sibling";
+                    standards: readonly ["FIPS 205"];
+                    role: "digital signatures (stateless hash)";
+                    note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "classic-mceliece";
+                    family: "code-KEM";
+                    name: "Classic McEliece";
+                    lineage: "McEliece (1978)";
+                    fips: any;
+                    title: "Classic McEliece";
+                    kind: "code-based key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (agility)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (code-based)";
+                    note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "frodo-kem";
+                    family: "lattice-KEM-unstructured";
+                    name: "FrodoKEM";
+                    lineage: "Frodo (unstructured LWE)";
+                    fips: any;
+                    title: "FrodoKEM";
+                    kind: "unstructured-lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (hedge)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (unstructured LWE)";
+                    note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                    params: PqcParamSet[];
+                })[];
                 pkMonotone: boolean;
                 everyParamSourced: boolean;
                 facets: ({
@@ -17808,30 +18371,9 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        mlDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
-        slhDsaParams: {
-            paramSet: string;
-            nistCategory: number;
-            publicKeyBytes: number;
-            outputBytes: number;
-            outputKind: "ciphertext" | "signature";
-            source: string;
-        }[];
+        mlKemParams: PqcParamSet[];
+        mlDsaParams: PqcParamSet[];
+        slhDsaParams: PqcParamSet[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -17854,36 +18396,88 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             computes: boolean;
             prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
-                id: string;
-                name: string;
-                family: string;
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                standards: string[];
+                id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                params: PqcParamSet[];
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
             };
-            families: {
+            families: ({
                 receipt: string;
-                id: string;
-                family: string;
-                name: string;
-                standards: string[];
-                params: {
-                    paramSet: string;
-                    nistCategory: number;
-                    publicKeyBytes: number;
-                    outputBytes: number;
-                    outputKind: "ciphertext" | "signature";
-                    source: string;
-                }[];
-                role: string;
-                note: string;
-            }[];
+                id: "ml-kem";
+                family: "lattice-KEM";
+                name: "ML-KEM";
+                lineage: "CRYSTALS-Kyber";
+                fips: "FIPS 203";
+                title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                kind: "lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation";
+                note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "ml-dsa";
+                family: "lattice-sig";
+                name: "ML-DSA";
+                lineage: "CRYSTALS-Dilithium";
+                fips: "FIPS 204";
+                title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                kind: "lattice signatures";
+                replaces: "RSA/ECDSA signatures (primary)";
+                iso: "ISO/IEC 14888 PQC uptake";
+                standards: readonly ["FIPS 204"];
+                role: "digital signatures";
+                note: "Primary signature — Dilithium lineage";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "slh-dsa";
+                family: "hash-sig";
+                name: "SLH-DSA";
+                lineage: "SPHINCS+";
+                fips: "FIPS 205";
+                title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                kind: "hash-based signatures";
+                replaces: "signatures (conservative backup)";
+                iso: "ISO/IEC 14888-4:2024 sibling";
+                standards: readonly ["FIPS 205"];
+                role: "digital signatures (stateless hash)";
+                note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "classic-mceliece";
+                family: "code-KEM";
+                name: "Classic McEliece";
+                lineage: "McEliece (1978)";
+                fips: any;
+                title: "Classic McEliece";
+                kind: "code-based key-encapsulation";
+                replaces: "RSA/ECDH key exchange (agility)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (code-based)";
+                note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                params: PqcParamSet[];
+            } | {
+                receipt: string;
+                id: "frodo-kem";
+                family: "lattice-KEM-unstructured";
+                name: "FrodoKEM";
+                lineage: "Frodo (unstructured LWE)";
+                fips: any;
+                title: "FrodoKEM";
+                kind: "unstructured-lattice key-encapsulation";
+                replaces: "RSA/ECDH key exchange (hedge)";
+                iso: "ISO/IEC 18033-2 Amd 2:2026";
+                standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                role: "key encapsulation (unstructured LWE)";
+                note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                params: PqcParamSet[];
+            })[];
             pkMonotone: boolean;
             everyParamSourced: boolean;
             facets: ({
@@ -18430,30 +19024,9 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             thresholdMs: number;
             anySlow: boolean;
             fipsCount: number;
-            mlKemParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            mlDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
-            slhDsaParams: {
-                paramSet: string;
-                nistCategory: number;
-                publicKeyBytes: number;
-                outputBytes: number;
-                outputKind: "ciphertext" | "signature";
-                source: string;
-            }[];
+            mlKemParams: PqcParamSet[];
+            mlDsaParams: PqcParamSet[];
+            slhDsaParams: PqcParamSet[];
             eccShorBreaks: boolean;
             eccFamily: string;
             catalog: {
@@ -18476,36 +19049,88 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 computes: boolean;
                 prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
-                    id: string;
-                    name: string;
-                    family: string;
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    standards: string[];
+                    id: "ml-kem" | "slh-dsa" | "classic-mceliece";
+                    name: "ML-KEM" | "SLH-DSA" | "Classic McEliece";
+                    family: "lattice-KEM" | "hash-sig" | "code-KEM";
+                    params: PqcParamSet[];
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"] | readonly ["FIPS 205"] | readonly ["ISO/IEC 18033-2 Amd 2:2026"];
                 };
-                families: {
+                families: ({
                     receipt: string;
-                    id: string;
-                    family: string;
-                    name: string;
-                    standards: string[];
-                    params: {
-                        paramSet: string;
-                        nistCategory: number;
-                        publicKeyBytes: number;
-                        outputBytes: number;
-                        outputKind: "ciphertext" | "signature";
-                        source: string;
-                    }[];
-                    role: string;
-                    note: string;
-                }[];
+                    id: "ml-kem";
+                    family: "lattice-KEM";
+                    name: "ML-KEM";
+                    lineage: "CRYSTALS-Kyber";
+                    fips: "FIPS 203";
+                    title: "Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM)";
+                    kind: "lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["FIPS 203", "ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation";
+                    note: "Primary KEM — Kyber lineage; shared secret 32 B";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "ml-dsa";
+                    family: "lattice-sig";
+                    name: "ML-DSA";
+                    lineage: "CRYSTALS-Dilithium";
+                    fips: "FIPS 204";
+                    title: "Module-Lattice-Based Digital Signature Algorithm (ML-DSA)";
+                    kind: "lattice signatures";
+                    replaces: "RSA/ECDSA signatures (primary)";
+                    iso: "ISO/IEC 14888 PQC uptake";
+                    standards: readonly ["FIPS 204"];
+                    role: "digital signatures";
+                    note: "Primary signature — Dilithium lineage";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "slh-dsa";
+                    family: "hash-sig";
+                    name: "SLH-DSA";
+                    lineage: "SPHINCS+";
+                    fips: "FIPS 205";
+                    title: "Stateless Hash-Based Digital Signature Algorithm (SLH-DSA)";
+                    kind: "hash-based signatures";
+                    replaces: "signatures (conservative backup)";
+                    iso: "ISO/IEC 14888-4:2024 sibling";
+                    standards: readonly ["FIPS 205"];
+                    role: "digital signatures (stateless hash)";
+                    note: "Conservative backup — SPHINCS+ lineage; small-signature (s) SHA2 variants";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "classic-mceliece";
+                    family: "code-KEM";
+                    name: "Classic McEliece";
+                    lineage: "McEliece (1978)";
+                    fips: any;
+                    title: "Classic McEliece";
+                    kind: "code-based key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (agility)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (code-based)";
+                    note: "ISO diversity — NIST did not standardize; HUGE public keys, TINY ciphertext (its tradeoff)";
+                    params: PqcParamSet[];
+                } | {
+                    receipt: string;
+                    id: "frodo-kem";
+                    family: "lattice-KEM-unstructured";
+                    name: "FrodoKEM";
+                    lineage: "Frodo (unstructured LWE)";
+                    fips: any;
+                    title: "FrodoKEM";
+                    kind: "unstructured-lattice key-encapsulation";
+                    replaces: "RSA/ECDH key exchange (hedge)";
+                    iso: "ISO/IEC 18033-2 Amd 2:2026";
+                    standards: readonly ["ISO/IEC 18033-2 Amd 2:2026"];
+                    role: "key encapsulation (unstructured LWE)";
+                    note: "ISO hedge against structure-specific lattice attacks; pk≈ct, larger than ML-KEM";
+                    params: PqcParamSet[];
+                })[];
                 pkMonotone: boolean;
                 everyParamSourced: boolean;
                 facets: ({
@@ -19207,7 +19832,7 @@ export declare function sslTestUiComplete(matrix?: MindMatrix, hostLabel?: strin
     speedup: number;
     memoHits: number;
     liveRemoteScanResidual: string;
-    phrases: ("ssl test" | "ssltest" | "tls test" | "https test" | "ssl/test" | "test/ssl" | "certificate test" | "open ssltest" | "quantumise ssl")[];
+    phrases: ("ssl/test" | "test/ssl" | "ssl test" | "ssltest" | "tls test" | "https test" | "certificate test" | "open ssltest" | "quantumise ssl")[];
     certified: false;
     qpuRequired: false;
     facets: ({

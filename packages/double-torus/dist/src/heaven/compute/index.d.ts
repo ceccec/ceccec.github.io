@@ -3772,7 +3772,7 @@ export declare function theoremAsStandardScientificPaper(row: {
     };
     references: string[];
     license: string;
-    status: "refuted" | "verified";
+    status: "verified" | "refuted";
 };
 /** theoremAsStandardScientificPaperCompletesTheImradMappingEverySectionComputedWithHonestClassification — standard scientific
  * format mapping, completed (user, 2026-07-26: "Standard scientific format mapping (begun, not complete yet)"). The renderer
@@ -3785,7 +3785,7 @@ export declare function theoremAsStandardScientificPaperCompletesTheImradMapping
     computes: boolean;
     sections: 15;
     resultsInSample: number;
-    status: "refuted" | "verified";
+    status: "verified" | "refuted";
     facets: {
         receipt: string;
         facet: string;

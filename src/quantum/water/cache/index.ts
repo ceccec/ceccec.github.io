@@ -8,6 +8,7 @@
 // Together — quantum/water/cache ⇄ cache/quantum — they are the quantum cache pair: compute the address
 // here, find the payload there. Agnostic, zero-dependency, deterministic.
 
+import * as __ns_water_encryption from '../../../water/encryption/index.ts'
 import { bb84 } from '../../../9/1/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
@@ -41,7 +42,8 @@ export function quantumHalvesTheHashDoublingRestoresIt(matrix: MindMatrix = buil
   const collisionClassical = SHA256 / 2
   const groverPreimage = SHA256 / 2
   const doublingRestores = SHA512 / 2
-  const pqcStandards = ['FIPS 203 ML-KEM (Kyber)', 'FIPS 204 ML-DSA (Dilithium)', 'FIPS 205 SLH-DSA (SPHINCS+)']
+  // read from the one statement of the standards (PQC_STANDARD_FAMILIES, src/water/encryption)
+  const pqcStandards = __ns_water_encryption.pqcFipsFamilies().map((f) => `${f.fips} ${f.name} (${f.lineage.replace(/^CRYSTALS-/, '')})`)
   const flagged = [
     'quantum encryption makes hashes "magnitudes stronger" (offensively)',
     'a quantum advance "doubles SHA-256" as a stronger primitive',
