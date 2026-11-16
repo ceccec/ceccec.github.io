@@ -1515,6 +1515,14 @@ export function flowerUnlocksFruitBySpin(): { holds: boolean; flower: number; fr
   return { holds: flower.length === 1 + 6 + (6 * 2) && fruit.length === (5 + 8) && contained, flower: flower.length, fruit: fruit.length }
 }
 
+/**
+ * THE SAME FLOWER, COLLECTED INSTEAD OF DRAWN. One fill per trail-age used to be one fill per
+ * (centre × age) — thirteen centres times a trail of forty was most of the movie's five hundred
+ * flower raster calls a frame. Every centre at one age shares colour and radius (age and the base
+ * hue alone; the old per-centre hue steps are dropped the way branchSegments dropped per-segment
+ * colour), so one path paints the whole age. Not pixel-identical, and said so: centres no longer
+ * carry their own hue offset, and additive compositing of many small fills becomes one fill.
+ */
 export function drawFlower(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -1539,23 +1547,25 @@ export function drawFlower(
   // The polarity bit picks the composition the same way the plasma field does: additive light on the
   // dark positive, normal density on the light negative.
   ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over'
-  for (let ci = 0; ci < centers.length; ci += 1) {
-    const c = centers[ci]
-    const ox = cx + (c.x * cos(spin) - c.y * sin(spin))
-    const oy = cy + (c.x * sin(spin) + c.y * cos(spin))
-    const hueC = (hue + ci * ANIMATION_DESIGN.drawFlower.hueC) % MOVIE_ANGLES.turn
-    for (let i = trail; i >= 0; i -= 1) {
+  for (let i = trail; i >= 0; i -= 1) {
+    const age = i / trail
+    const fade = pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1)
+    ctx.globalAlpha = fade * ANIMATION_DESIGN.drawFlower.globalAlpha
+    ctx.fillStyle = paint((hue + i * ANIMATION_DESIGN.drawFlower.paintArg0Part) % MOVIE_ANGLES.turn, fade * ANIMATION_DESIGN.drawFlower.paintArg1Part, { L: ANIMATION_DESIGN.drawFlower.paintLPart - age * ANIMATION_DESIGN.drawFlower.paintLPart2 })
+    const r = max((1 / 2), (1 - age * ANIMATION_DESIGN.drawFlower.maxArg1Part) * ANIMATION_DESIGN.drawFlower.maxArg1Part2)
+    ctx.beginPath()
+    for (let ci = 0; ci < centers.length; ci += 1) {
+      const c = centers[ci]!
+      const ox = cx + (c.x * cos(spin) - c.y * sin(spin))
+      const oy = cy + (c.x * sin(spin) + c.y * cos(spin))
       const tt = td - i * ANIMATION_DESIGN.drawFlower.tt + ci * ANIMATION_DESIGN.drawFlower.tt2
       let x = 0
       let y = 0
       for (const arm of FOL_ARMS) { x += arm.r * cos(arm.w * tt); y += arm.r * sin(arm.w * tt) }
-      const age = i / trail
-      ctx.globalAlpha = pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.globalAlpha
-      ctx.fillStyle = paint((hueC + i * ANIMATION_DESIGN.drawFlower.paintArg0Part) % MOVIE_ANGLES.turn, pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.paintArg1Part, { L: ANIMATION_DESIGN.drawFlower.paintLPart - age * ANIMATION_DESIGN.drawFlower.paintLPart2 })
-      ctx.beginPath()
-      ctx.arc(ox + x * localR, oy + y * localR, max((1 / 2), (1 - age * ANIMATION_DESIGN.drawFlower.maxArg1Part) * ANIMATION_DESIGN.drawFlower.maxArg1Part2), 0, TAU)
-      ctx.fill()
+      ctx.moveTo(ox + x * localR + r, oy + y * localR)
+      ctx.arc(ox + x * localR, oy + y * localR, r, 0, TAU)
     }
+    ctx.fill()
   }
   ctx.restore()
 }

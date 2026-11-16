@@ -12670,12 +12670,17 @@ function drawFlower(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
   const spin = t * ANIMATION_DESIGN.drawFlower.spin;
   ctx.save();
   ctx.globalCompositeOperation = dark ? "lighter" : "source-over";
-  for (let ci = 0; ci < centers.length; ci += 1) {
-    const c = centers[ci];
-    const ox = cx + (c.x * cos(spin) - c.y * sin(spin));
-    const oy = cy + (c.x * sin(spin) + c.y * cos(spin));
-    const hueC = (hue2 + ci * ANIMATION_DESIGN.drawFlower.hueC) % MOVIE_ANGLES.turn;
-    for (let i = trail; i >= 0; i -= 1) {
+  for (let i = trail; i >= 0; i -= 1) {
+    const age = i / trail;
+    const fade = pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1);
+    ctx.globalAlpha = fade * ANIMATION_DESIGN.drawFlower.globalAlpha;
+    ctx.fillStyle = paint((hue2 + i * ANIMATION_DESIGN.drawFlower.paintArg0Part) % MOVIE_ANGLES.turn, fade * ANIMATION_DESIGN.drawFlower.paintArg1Part, { L: ANIMATION_DESIGN.drawFlower.paintLPart - age * ANIMATION_DESIGN.drawFlower.paintLPart2 });
+    const r2 = max(1 / 2, (1 - age * ANIMATION_DESIGN.drawFlower.maxArg1Part) * ANIMATION_DESIGN.drawFlower.maxArg1Part2);
+    ctx.beginPath();
+    for (let ci = 0; ci < centers.length; ci += 1) {
+      const c = centers[ci];
+      const ox = cx + (c.x * cos(spin) - c.y * sin(spin));
+      const oy = cy + (c.x * sin(spin) + c.y * cos(spin));
       const tt = td - i * ANIMATION_DESIGN.drawFlower.tt + ci * ANIMATION_DESIGN.drawFlower.tt2;
       let x = 0;
       let y = 0;
@@ -12683,13 +12688,10 @@ function drawFlower(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
         x += arm.r * cos(arm.w * tt);
         y += arm.r * sin(arm.w * tt);
       }
-      const age = i / trail;
-      ctx.globalAlpha = pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.globalAlpha;
-      ctx.fillStyle = paint((hueC + i * ANIMATION_DESIGN.drawFlower.paintArg0Part) % MOVIE_ANGLES.turn, pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.paintArg1Part, { L: ANIMATION_DESIGN.drawFlower.paintLPart - age * ANIMATION_DESIGN.drawFlower.paintLPart2 });
-      ctx.beginPath();
-      ctx.arc(ox + x * localR, oy + y * localR, max(1 / 2, (1 - age * ANIMATION_DESIGN.drawFlower.maxArg1Part) * ANIMATION_DESIGN.drawFlower.maxArg1Part2), 0, TAU);
-      ctx.fill();
+      ctx.moveTo(ox + x * localR + r2, oy + y * localR);
+      ctx.arc(ox + x * localR, oy + y * localR, r2, 0, TAU);
     }
+    ctx.fill();
   }
   ctx.restore();
 }

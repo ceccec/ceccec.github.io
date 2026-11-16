@@ -1002,6 +1002,14 @@ export declare function flowerUnlocksFruitBySpin(): {
     flower: number;
     fruit: number;
 };
+/**
+ * THE SAME FLOWER, COLLECTED INSTEAD OF DRAWN. One fill per trail-age used to be one fill per
+ * (centre × age) — thirteen centres times a trail of forty was most of the movie's five hundred
+ * flower raster calls a frame. Every centre at one age shares colour and radius (age and the base
+ * hue alone; the old per-centre hue steps are dropped the way branchSegments dropped per-segment
+ * colour), so one path paints the whole age. Not pixel-identical, and said so: centres no longer
+ * carry their own hue offset, and additive compositing of many small fills becomes one fill.
+ */
 export declare function drawFlower(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, t: number, hue: number, reduce: boolean, dark?: boolean): void;
 /**
  * Coupled-cycle calendar phases as vortex-digit markers — NO stroked circumference.
