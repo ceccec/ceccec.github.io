@@ -68,7 +68,7 @@ import { domainProofPagePaths } from '../../research/index.ts'
 import { catchAllRoutePaths } from '../../wind/routes/automount/index.ts'
 import { vitepressAutomountPaths } from '../../pair/enforcement/gates/computational/index.ts'
 import { routeAliasTarget } from '../../wind/site/index.ts'
-import { LEAN_SEALED_REGISTRY, clayCaseOfSlug, leanMonographs, leanPagePaths, leanPageSlug, leanVerificationIndex } from '../../pair/formal/proofs/index.ts'
+import { LEAN_RENAMED, LEAN_SEALED_REGISTRY, clayCaseOfSlug, leanMonographs, leanPagePaths, leanPageSlug, leanVerificationIndex } from '../../pair/formal/proofs/index.ts'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion/index.ts'
 import { honestRevolutionFpgaHonesty } from '../computer/index.ts'
 import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify/index.ts'
@@ -641,6 +641,15 @@ export function legacyRedirects(matrix: MindMatrix = buildMatrix()): readonly { 
   const theoremTo = (title: string) => { const slug = sealing.get(title); return slug && posts.has(slug) ? `/lean/${slug}` : '/' }
   const out = new Map<string, string>()
   const add = (from: string, to: string) => { if (!out.has(from)) out.set(from, to) }
+  // a renamed theorem's old post leads to its successor, in both editions — refused when the successor is not a post or
+  // the old name still is one (a stale ledger row reads as a dead redirect, so it fails here instead)
+  for (const r of LEAN_RENAMED) {
+    const from = leanPageSlug(r.file, r.from), to = leanPageSlug(r.file, r.to)
+    if (!posts.has(to)) throw new Error(`LEAN_RENAMED: ${r.file} ${r.to} is not a Lean post`)
+    if (posts.has(from)) throw new Error(`LEAN_RENAMED: ${r.file} ${r.from} is still a Lean post — the rename never happened`)
+    add(`/lean/${from}`, `/lean/${to}`)
+    add(`/gla/lean/${from}`, `/gla/lean/${to}`)
+  }
   for (const row of theoremPageRows(matrix)) add(`/theorems/${row.slug}`, theoremTo(row.theorem))
   for (const p of domainProofPagePaths(matrix)) { const c = clayCaseOfSlug(p.params.slug); add(`/proofs/${p.params.slug}`, c && monographs.has(c) ? `/${c}` : '/') }
   // THE FOLDER PAGES THE BLOG RETIRED — history, so their URLs still land: once a folder is gone the tree cannot name it.

@@ -2,7 +2,7 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 95,
+  "count": 101,
   "records": [
     {
       "id": "coin--the_coin_is_an_involution",
@@ -5373,13 +5373,13 @@
       "id": "poincare--chi_and_genus_are_inverse",
       "title": "Chi and genus are inverse",
       "file": "poincare.lean",
-      "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe round trip is the identity: χ and g carry the same information.",
+      "proposition": "∀ g : Int, genus (chi g) = g",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ngenus ∘ chi is the identity at every integer g: χ loses nothing about g.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5426,7 +5426,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "poincare"
@@ -5447,7 +5447,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-chi-and-genus-are-inverse",
       "landingPageBuilt": ".vitepress/dist/lean/poincare-chi-and-genus-are-inverse.html",
-      "contentAddress": "25d2a7f475b258152bf13b3c86444c74",
+      "contentAddress": "f3b7316ba84336c0a6cb4ba3f2137c29",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -5458,11 +5458,99 @@
       ]
     },
     {
+      "id": "poincare--chi_after_genus_is_identity_on_the_even",
+      "title": "Chi after genus is identity on the even",
+      "file": "poincare.lean",
+      "proposition": "∀ c : Int, c % 2 = 0 → chi (genus c) = c",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nchi ∘ genus is the identity on the even integers — exactly the values χ takes.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/1/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-chi-after-genus-is-identity-on-the-even",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/1/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/poincare-chi-after-genus-is-identity-on-the-even",
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-chi-after-genus-is-identity-on-the-even.html",
+      "contentAddress": "7b99d9c8a12e62b846b32eb141cadcd7",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "chi_after_genus_is_identity_on_the_even",
+          "title": "Chi after genus is identity on the even"
+        }
+      ]
+    },
+    {
       "id": "poincare--sphere_has_euler_characteristic_two",
       "title": "Sphere has euler characteristic two",
       "file": "poincare.lean",
       "proposition": "chi 0 = 2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere S²: g = 0, χ = 2. (Poincaré's conjecture concerns the 3-sphere S³, whose χ is 0.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
@@ -5550,7 +5638,7 @@
       "title": "Torus has euler characteristic zero",
       "file": "poincare.lean",
       "proposition": "chi 1 = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus: g = 1, χ = 0 — by Gauss–Bonnet it is the surface that admits a flat metric.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
@@ -5637,8 +5725,8 @@
       "id": "poincare--double_torus_has_chi_minus_two_and_rank_four",
       "title": "Double torus has chi minus two and rank four",
       "file": "poincare.lean",
-      "proposition": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
+      "proposition": "chi 2 = -2 ∧ 2 - chi 2 = 4",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and 2 − χ = 4 — the band count the census uses (rank H₁ of the double torus).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
@@ -5711,7 +5799,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-double-torus-has-chi-minus-two-and-rank-four",
       "landingPageBuilt": ".vitepress/dist/lean/poincare-double-torus-has-chi-minus-two-and-rank-four.html",
-      "contentAddress": "058f36e8eba1f17011f93c7e44c40f8a",
+      "contentAddress": "32f4b4e70755f2dc88b10cf45dd24465",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -5725,13 +5813,13 @@
       "id": "poincare--homology_rank_is_twice_the_genus",
       "title": "Homology rank is twice the genus",
       "file": "poincare.lean",
-      "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nrank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
+      "proposition": "∀ g : Int, 2 - chi g = 2 * g",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n2 − χ = 2g at every genus: the arithmetic rank H₁(Σ_g) = 2g equals (Hatcher Ex. 2.36).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5778,7 +5866,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "poincare"
@@ -5799,7 +5887,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-homology-rank-is-twice-the-genus",
       "landingPageBuilt": ".vitepress/dist/lean/poincare-homology-rank-is-twice-the-genus.html",
-      "contentAddress": "778bc0d62d77b9248b71b5eb21c3fc65",
+      "contentAddress": "d778df27d762b2062f96c2511b7cc17c",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -5813,13 +5901,13 @@
       "id": "riemann--sigma_is_an_involution",
       "title": "Sigma is an involution",
       "file": "riemann.lean",
-      "proposition": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
+      "proposition": "∀ z : Int × Int, σ (σ z) = z",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id at every point of the plane.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5866,7 +5954,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "riemann"
@@ -5887,7 +5975,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-sigma-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-is-an-involution.html",
-      "contentAddress": "7d2772136ad59f104bdb5885bd358fb0",
+      "contentAddress": "d480f9e92714ab7d0bcf415c06f390d2",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -5901,13 +5989,13 @@
       "id": "riemann--critical_line_is_the_fixed_point",
       "title": "Critical line is the fixed point",
       "file": "riemann.lean",
-      "proposition": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed point is n = 1, i.e. s = 1/2 — the critical line.",
+      "proposition": "∀ z : Int × Int, τ z = z ↔ z.1 = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE CRITICAL LINE IS THE FIXED SET OF τ: τ(s) = s exactly when Re(s) = 1/2, i.e. numerator a = 1, at every imaginary part. (It is not the fixed set of σ — see `sigma_fixes_only_the_point_one_half`.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5954,7 +6042,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "riemann"
@@ -5975,7 +6063,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-critical-line-is-the-fixed-point",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-critical-line-is-the-fixed-point.html",
-      "contentAddress": "63a504bcd11364e655c1a74ec4ee6e91",
+      "contentAddress": "91be7ed4ec2b341f1efa08acdcad48d3",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -5989,8 +6077,8 @@
       "id": "riemann--sigma_pairs_the_plane",
       "title": "Sigma pairs the plane",
       "file": "riemann.lean",
-      "proposition": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
+      "proposition": "σ (0, 0) = (2, 0) ∧ σ (-2, 0) = (4, 0) ∧ σ (1, 2) = (1, -2)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1 − s: on the real axis s = 0 ↔ s = 1 (where ζ has its pole) and s = −1 ↔ s = 2; on the critical line 1/2 + i ↔ 1/2 − i — σ moves the line's points, it does not fix them. (In numerators: (0,0) ↔ (2,0), (−2,0) ↔ (4,0), (1,2) ↔ (1,−2).)",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
@@ -6063,7 +6151,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-sigma-pairs-the-plane",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-pairs-the-plane.html",
-      "contentAddress": "78dd45adfdb9b3930eb7a7db98e80535",
+      "contentAddress": "817b3cc0b8710bc82146b1bfc6d06209",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6074,11 +6162,11 @@
       ]
     },
     {
-      "id": "riemann--the_fixed_line_is_one_half",
-      "title": "The fixed line is one half",
+      "id": "riemann--sigma_fixes_only_the_point_one_half",
+      "title": "Sigma fixes only the point one half",
       "file": "riemann.lean",
-      "proposition": "∀ n : Int, σ n = n ↔ n = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed set over EVERY numerator, not a sample: σ n = n exactly when n = 1, i.e. s = 1/2. (This was `(2 : Int) * 1 = 2 ∧ σ 1 = 1`.)",
+      "proposition": "∀ z : Int × Int, σ z = z ↔ z = (1, 0)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ FIXES ONE POINT, s = 1/2, and nothing else in ℂ.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
@@ -6111,7 +6199,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half",
+          "identifier": "https://ceccec.github.io/lean/riemann-sigma-fixes-only-the-point-one-half",
           "relation": "isDocumentedBy",
           "scheme": "url"
         }
@@ -6149,15 +6237,103 @@
         "src/2/riemann.lean",
         "src/research/lean-theorems.tex"
       ],
-      "landingPage": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-the-fixed-line-is-one-half.html",
-      "contentAddress": "f8973d0274b46d3c42188f56dcd5bf70",
+      "landingPage": "https://ceccec.github.io/lean/riemann-sigma-fixes-only-the-point-one-half",
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-fixes-only-the-point-one-half.html",
+      "contentAddress": "a063ecaa37214badb8cbf8c49ea3ca34",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "riemann.lean",
-          "theorem": "the_fixed_line_is_one_half",
-          "title": "The fixed line is one half"
+          "theorem": "sigma_fixes_only_the_point_one_half",
+          "title": "Sigma fixes only the point one half"
+        }
+      ]
+    },
+    {
+      "id": "riemann--tau_is_sigma_then_conjugation",
+      "title": "Tau is sigma then conjugation",
+      "file": "riemann.lean",
+      "proposition": "∀ z : Int × Int, τ z = conj (σ z)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nτ is σ followed by conjugation.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/2/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-tau-is-sigma-then-conjugation",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/2/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/riemann-tau-is-sigma-then-conjugation",
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-tau-is-sigma-then-conjugation.html",
+      "contentAddress": "186751d85ad7a173e60800d2b273c019",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "tau_is_sigma_then_conjugation",
+          "title": "Tau is sigma then conjugation"
         }
       ]
     },
@@ -6165,8 +6341,8 @@
       "id": "riemann--involution_fixes_the_critical_line",
       "title": "Involution fixes the critical line",
       "file": "riemann.lean",
-      "proposition": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ is an involution on EVERY numerator, and fixes the critical line. (This was `σ (σ 3) = 3 ∧ σ 1 = 1`, two cases already inside the sample theorems above.)",
+      "proposition": "(∀ z : Int × Int, τ (τ z) = z) ∧ ∀ b : Int, τ (1, b) = (1, b)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nτ is an involution, and it fixes every point of the critical line: τ(1/2 + it) = 1/2 + it for every t.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
@@ -6239,7 +6415,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-involution-fixes-the-critical-line.html",
-      "contentAddress": "dc29cbf0ce649d44a4f5e1c78675988d",
+      "contentAddress": "d18c86a15135cb35726126c89389f440",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6250,16 +6426,104 @@
       ]
     },
     {
-      "id": "p-vs-np--sigma_is_an_involution",
-      "title": "Sigma is an involution",
+      "id": "p-vs-np--compl_compl",
+      "title": "Compl compl",
       "file": "p-vs-np.lean",
-      "proposition": "∀ c : Class, σ (σ c) = c",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "proposition": "∀ L : Lang, compl (compl L) = L",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nComplementing a language twice returns it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/4/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-compl-compl",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/4/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/p-vs-np-compl-compl",
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-compl-compl.html",
+      "contentAddress": "26cd24a335eee1e34a7b5c910cf918be",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "compl_compl",
+          "title": "Compl compl"
+        }
+      ]
+    },
+    {
+      "id": "p-vs-np--sigma_is_an_involution",
+      "title": "Sigma is an involution",
+      "file": "p-vs-np.lean",
+      "proposition": "∀ C : Class, σ (σ C) = C",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id on every class.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6306,7 +6570,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "p-vs-np"
@@ -6327,7 +6591,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-sigma-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-sigma-is-an-involution.html",
-      "contentAddress": "75d301514aace0113f945e436d55b8ee",
+      "contentAddress": "8d2405e6dd7b3c2c15784e5714182285",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6338,16 +6602,16 @@
       ]
     },
     {
-      "id": "p-vs-np--fixed_points_are_p_and_pspace",
-      "title": "Fixed points are p and pspace",
+      "id": "p-vs-np--fixed_points_are_the_closed_classes",
+      "title": "Fixed points are the closed classes",
       "file": "p-vs-np.lean",
-      "proposition": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.",
+      "proposition": "∀ C : Class, σ C = C ↔ ∀ L, C L → C (compl L)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ FIXES EXACTLY THE CLASSES CLOSED UNDER COMPLEMENT — the fixed set the question is about.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6375,7 +6639,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-p-and-pspace",
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-the-closed-classes",
           "relation": "isDocumentedBy",
           "scheme": "url"
         }
@@ -6394,7 +6658,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "p-vs-np"
@@ -6413,15 +6677,15 @@
         "src/4/p-vs-np.lean",
         "src/research/lean-theorems.tex"
       ],
-      "landingPage": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-p-and-pspace",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-fixed-points-are-p-and-pspace.html",
-      "contentAddress": "919c71cbfc83a68292d6632ce218d86f",
+      "landingPage": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-the-closed-classes",
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-fixed-points-are-the-closed-classes.html",
+      "contentAddress": "cdd94e734bb704700c0ecf4e956499ad",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "p-vs-np.lean",
-          "theorem": "fixed_points_are_p_and_pspace",
-          "title": "Fixed points are p and pspace"
+          "theorem": "fixed_points_are_the_closed_classes",
+          "title": "Fixed points are the closed classes"
         }
       ]
     },
@@ -6429,13 +6693,13 @@
       "id": "p-vs-np--np_and_conp_are_swapped",
       "title": "Np and conp are swapped",
       "file": "p-vs-np.lean",
-      "proposition": "σ NP = coNP ∧ σ coNP = NP",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ swaps NP and coNP — they are complements by definition, not by theorem.",
+      "proposition": "∀ NP : Class, σ NP = (fun L => NP (compl L)) ∧ σ (σ NP) = NP",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ncoNP is σ(NP) by definition, and σ sends coNP back to NP — complements by definition, swapped by σ² = id.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6482,7 +6746,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "p-vs-np"
@@ -6503,7 +6767,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-np-and-conp-are-swapped",
       "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-np-and-conp-are-swapped.html",
-      "contentAddress": "eeadc8df87d0de3f1631a08e4055bef9",
+      "contentAddress": "c54288c08a3355574b062d9bcd52a654",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6514,11 +6778,11 @@
       ]
     },
     {
-      "id": "p-vs-np--if_np_is_fixed_then_np_equals_conp",
-      "title": "If np is fixed then np equals conp",
+      "id": "p-vs-np--if_p_equals_np_then_np_is_fixed",
+      "title": "If p equals np then np is fixed",
       "file": "p-vs-np.lean",
-      "proposition": "σ NP = NP → NP = coNP",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 \"theorems\" worthless. Removed.)",
+      "proposition": "∀ P NP : Class, σ P = P → P = NP → σ NP = NP",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE EASY DIRECTION, FOR EVERY PAIR OF CLASSES: if P is closed under complement (σ P = P) and P = NP, then NP is closed under complement, i.e. NP = coNP. Its contrapositive is NP ≠ coNP ⇒ P ≠ NP. Nothing here decides whether P = NP or NP = coNP.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
@@ -6551,7 +6815,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://ceccec.github.io/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp",
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-if-p-equals-np-then-np-is-fixed",
           "relation": "isDocumentedBy",
           "scheme": "url"
         }
@@ -6589,29 +6853,29 @@
         "src/4/p-vs-np.lean",
         "src/research/lean-theorems.tex"
       ],
-      "landingPage": "https://ceccec.github.io/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp.html",
-      "contentAddress": "722de9e81400bc77bce394df5412ac91",
+      "landingPage": "https://ceccec.github.io/lean/p-vs-np-if-p-equals-np-then-np-is-fixed",
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-if-p-equals-np-then-np-is-fixed.html",
+      "contentAddress": "a4741a5669da253d554df48f0c055b5d",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "p-vs-np.lean",
-          "theorem": "if_np_is_fixed_then_np_equals_conp",
-          "title": "If np is fixed then np equals conp"
+          "theorem": "if_p_equals_np_then_np_is_fixed",
+          "title": "If p equals np then np is fixed"
         }
       ]
     },
     {
-      "id": "p-vs-np--p_is_closed_under_complement",
-      "title": "P is closed under complement",
+      "id": "p-vs-np--closed_classes_are_fixed",
+      "title": "Closed classes are fixed",
       "file": "p-vs-np.lean",
-      "proposition": "σ P = P",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nP is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.",
+      "proposition": "∀ C : Class, (∀ L, C L → C (compl L)) → σ C = C",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA class whose every member's complement is again a member is fixed by σ — the property P and PSPACE have because a deterministic decider's answer can be flipped (Arora–Barak §2.6; Sipser §7). The model takes the closure as the hypothesis; it does not define P by machines.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6639,7 +6903,7 @@
           "scheme": "url"
         },
         {
-          "identifier": "https://ceccec.github.io/lean/p-vs-np-p-is-closed-under-complement",
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-closed-classes-are-fixed",
           "relation": "isDocumentedBy",
           "scheme": "url"
         }
@@ -6658,7 +6922,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "p-vs-np"
@@ -6677,15 +6941,15 @@
         "src/4/p-vs-np.lean",
         "src/research/lean-theorems.tex"
       ],
-      "landingPage": "https://ceccec.github.io/lean/p-vs-np-p-is-closed-under-complement",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-p-is-closed-under-complement.html",
-      "contentAddress": "6d6d8250d39002ed5ffbe598b4e37890",
+      "landingPage": "https://ceccec.github.io/lean/p-vs-np-closed-classes-are-fixed",
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-closed-classes-are-fixed.html",
+      "contentAddress": "f775d5d994f80bc9c1c038ebc7ee65b8",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "p-vs-np.lean",
-          "theorem": "p_is_closed_under_complement",
-          "title": "P is closed under complement"
+          "theorem": "closed_classes_are_fixed",
+          "title": "Closed classes are fixed"
         }
       ]
     },
@@ -6693,13 +6957,13 @@
       "id": "bsd--sigma_is_an_involution",
       "title": "Sigma is an involution",
       "file": "bsd.lean",
-      "proposition": "∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "proposition": "∀ s : Int, σ (σ s) = s",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id at every s.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6746,7 +7010,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "bsd"
@@ -6767,7 +7031,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-sigma-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/bsd-sigma-is-an-involution.html",
-      "contentAddress": "0d31f4921e5f2db873a6a855f1d9c4d7",
+      "contentAddress": "c498048c2430af064e3814edaa5ef035",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6781,13 +7045,13 @@
       "id": "bsd--central_point_is_the_fixed_point",
       "title": "Central point is the fixed point",
       "file": "bsd.lean",
-      "proposition": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe central point s = 1 is the unique fixed point — the point BSD is about.",
+      "proposition": "∀ s : Int, σ s = s ↔ s = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe central point s = 1 is the unique fixed point — the point BSD is about.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6834,7 +7098,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "bsd"
@@ -6855,7 +7119,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-central-point-is-the-fixed-point",
       "landingPageBuilt": ".vitepress/dist/lean/bsd-central-point-is-the-fixed-point.html",
-      "contentAddress": "40f4475a5646348e75d3c6451c5c4dd5",
+      "contentAddress": "04b83c1f78c0fd85ebf063128cd4063f",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -6870,7 +7134,7 @@
       "title": "Root number squares to one",
       "file": "bsd.lean",
       "proposition": "∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1. (This was `1·1 = 1 ∧ (−1)·(−1) = 1`.)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
@@ -6954,11 +7218,99 @@
       ]
     },
     {
+      "id": "bsd--root_number_minus_one_forces_a_central_zero",
+      "title": "Root number minus one forces a central zero",
+      "file": "bsd.lean",
+      "proposition": "∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → w = -1 → Λ 1 = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA ROOT NUMBER OF −1 FORCES A ZERO AT THE CENTRE: if Λ(σ s) = w·Λ(s) for every s and w = −1, then Λ(1) = −Λ(1), so Λ(1) = 0 — the analytic rank is then at least one.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/5/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-root-number-minus-one-forces-a-central-zero",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/5/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/bsd-root-number-minus-one-forces-a-central-zero",
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-minus-one-forces-a-central-zero.html",
+      "contentAddress": "50d5b1121f4ba56cf17f67104619e8e1",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "root_number_minus_one_forces_a_central_zero",
+          "title": "Root number minus one forces a central zero"
+        }
+      ]
+    },
+    {
       "id": "bsd--root_number_one_iff_rank_even",
       "title": "Root number one iff rank even",
       "file": "bsd.lean",
-      "proposition": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE PARITY EQUIVALENCE. w = (−1)^rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.",
+      "proposition": "∀ (w : Int), (w = 1 ∨ w = -1) → ∀ r : Nat, (w = sign r ↔ (w = 1 ↔ r % 2 = 0))",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE PARITY EQUIVALENCE, EXACT: for a sign w (w = 1 or w = −1), w = (−1)^r holds exactly when (w = 1 ↔ r is even), at every r.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
@@ -7031,7 +7383,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-root-number-one-iff-rank-even",
       "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-one-iff-rank-even.html",
-      "contentAddress": "8da060ec4870cde469b8a56b8874e23c",
+      "contentAddress": "c1bb46c355e47d4022fe0360ec936db7",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7045,13 +7397,13 @@
       "id": "bsd--parity_is_an_involution",
       "title": "Parity is an involution",
       "file": "bsd.lean",
-      "proposition": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.",
+      "proposition": "∀ r : Nat, sign (r + 1) = -(sign r) ∧ sign (r + 2) = sign r",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nParity as an action: one more in the rank negates the sign and two more returns it, at every r — the sign intertwines r ↦ r + 1 with the involution w ↦ −w on {1, −1}.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7098,7 +7450,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "bsd"
@@ -7119,7 +7471,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-parity-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/bsd-parity-is-an-involution.html",
-      "contentAddress": "57687a8fd2c3617b4d62678c84ab2415",
+      "contentAddress": "6853cf45bfee09cfda194aeede83fa67",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7133,8 +7485,8 @@
       "id": "hodge--sigma_is_an_involution",
       "title": "Sigma is an involution",
       "file": "hodge.lean",
-      "proposition": "∀ t ∈ middleTypes, σ (σ t) = t",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "proposition": "∀ t : Nat × Nat, σ (σ t) = t",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id on every type.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
@@ -7207,7 +7559,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-sigma-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-is-an-involution.html",
-      "contentAddress": "a528a752aaaf974778a10b2e080dc59b",
+      "contentAddress": "4188562beb0c466a6bb8fe93233764d0",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7221,13 +7573,13 @@
       "id": "hodge--sigma_preserves_degree",
       "title": "Sigma preserves degree",
       "file": "hodge.lean",
-      "proposition": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ preserves total degree — it acts WITHIN H^n, which is why it decomposes it.",
+      "proposition": "∀ t : Nat × Nat, (σ t).1 + (σ t).2 = t.1 + t.2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ preserves the total degree p + q, so it acts within each H^n (the decomposition is harmonic theory's, not σ's).",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7274,7 +7626,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "hodge"
@@ -7295,7 +7647,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-sigma-preserves-degree",
       "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-preserves-degree.html",
-      "contentAddress": "563da4be09a1b4a80d44d9bb2644558f",
+      "contentAddress": "77af277a526ba2ddea48da010515eb1d",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7309,13 +7661,13 @@
       "id": "hodge--fixed_type_is_p_equals_q",
       "title": "Fixed type is p equals q",
       "file": "hodge.lean",
-      "proposition": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe unique fixed type in degree 2k is (k,k). Here k = 2.",
+      "proposition": "∀ p q : Nat, σ (p, q) = (p, q) ↔ p = q",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed types are exactly the diagonal p = q.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7362,7 +7714,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "hodge"
@@ -7383,7 +7735,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-fixed-type-is-p-equals-q",
       "landingPageBuilt": ".vitepress/dist/lean/hodge-fixed-type-is-p-equals-q.html",
-      "contentAddress": "c45a9bf698fad5311563c32430a9065c",
+      "contentAddress": "e3b501f68cd2032f38e9b06776e0d0ee",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7397,13 +7749,13 @@
       "id": "hodge--diagonal_is_fixed_at_every_k",
       "title": "Diagonal is fixed at every k",
       "file": "hodge.lean",
-      "proposition": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.",
+      "proposition": "(∀ k : Nat, σ (k, k) = (k, k)) ∧ (∀ p q : Nat, p ≠ q → σ (p, q) ≠ (p, q))",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAt every k the diagonal type (k,k) is fixed, and every off-diagonal type is swapped.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7450,7 +7802,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "hodge"
@@ -7471,7 +7823,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-diagonal-is-fixed-at-every-k",
       "landingPageBuilt": ".vitepress/dist/lean/hodge-diagonal-is-fixed-at-every-k.html",
-      "contentAddress": "15e20da79f4c7f0ac6a173614a7b21e2",
+      "contentAddress": "7897619f90465ec8dce12f01b7aa6023",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7482,11 +7834,99 @@
       ]
     },
     {
+      "id": "hodge--odd_degree_has_no_fixed_type",
+      "title": "Odd degree has no fixed type",
+      "file": "hodge.lean",
+      "proposition": "∀ p q : Nat, (p + q) % 2 = 1 → σ (p, q) ≠ (p, q)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nIn odd degree no type is fixed: p + q odd rules out p = q.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/5/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-odd-degree-has-no-fixed-type",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/5/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/hodge-odd-degree-has-no-fixed-type",
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-odd-degree-has-no-fixed-type.html",
+      "contentAddress": "14e6ac7b33d8709b5ec1c114d48cc9d2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "odd_degree_has_no_fixed_type",
+          "title": "Odd degree has no fixed type"
+        }
+      ]
+    },
+    {
       "id": "hodge--involution_fixes_the_diagonal",
       "title": "Involution fixes the diagonal",
       "file": "hodge.lean",
-      "proposition": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed diagonal, together.",
+      "proposition": "(∀ t : Nat × Nat, σ (σ t) = t) ∧ ∀ k : Nat, σ (k, k) = (k, k)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed diagonal, together, at every type.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
@@ -7559,7 +7999,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-involution-fixes-the-diagonal",
       "landingPageBuilt": ".vitepress/dist/lean/hodge-involution-fixes-the-diagonal.html",
-      "contentAddress": "7e88cc1617b29800598223ac2738c9c2",
+      "contentAddress": "df36d5a1aa1e0f83ad6b9a735999ba1d",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7573,13 +8013,13 @@
       "id": "navier-stokes--reversal_is_an_involution",
       "title": "Reversal is an involution",
       "file": "navier-stokes.lean",
-      "proposition": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT² = id. Reversing time twice returns the equation, whatever the viscosity.",
+      "proposition": "∀ s : Terms, T (T s) = s",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT² = id on every sign table — whatever the viscosity.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7626,7 +8066,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "navier-stokes"
@@ -7647,7 +8087,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-reversal-is-an-involution",
       "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-reversal-is-an-involution.html",
-      "contentAddress": "74dc76f522c6014fbc903e9417a0da3b",
+      "contentAddress": "8d0451a6f911881d52f109272332d417",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -7662,7 +8102,7 @@
       "title": "Euler is time reversible",
       "file": "navier-stokes.lean",
       "proposition": "T euler = euler",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEuler is invariant: every term transforms alike, so T fixes it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEuler is invariant: T fixes it.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
@@ -7837,13 +8277,13 @@
       "id": "navier-stokes--fixed_points_are_exactly_the_inviscid",
       "title": "Fixed points are exactly the inviscid",
       "file": "navier-stokes.lean",
-      "proposition": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nInvariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.",
+      "proposition": "∀ s : Terms, T s = s ↔ s.viscous = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT fixes a sign table exactly when its viscous sign is zero: the fixed points are exactly the inviscid equations.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -7890,7 +8330,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "navier-stokes"
@@ -7911,7 +8351,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-fixed-points-are-exactly-the-inviscid",
       "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-fixed-points-are-exactly-the-inviscid.html",
-      "contentAddress": "affea5104132bd606aa02c0f7a0cf80d",
+      "contentAddress": "bf316f6886248d2608c9cdfaaf9ecdf7",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
@@ -8102,7 +8542,7 @@
       "title": "Selfdual and antiselfdual split the six",
       "file": "yang-mills.lean",
       "proposition": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧ star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧ star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧ star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧ 3 + 3 = choose 4 2",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴).",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴). That the six are a basis over ℚ follows from `selfdual_and_antiselfdual_meet_only_in_zero` (the halves meet in 0) and the 2v identity below (they span).",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
@@ -8189,13 +8629,13 @@
       "id": "yang-mills--star_is_an_endomorphism_only_in_the_middle",
       "title": "Star is an endomorphism only in the middle",
       "file": "yang-mills.lean",
-      "proposition": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
+      "proposition": "(∀ k : Nat, k ≤ 4 → (4 - k = k ↔ k = 2)) ∧ (∀ n k : Nat, k ≤ n → (n - k = k ↔ n = 2 * k))",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it maps a degree to itself exactly when n − k = k. The statement is about the DEGREES ★ connects: for n = 4 and every k ≤ 4, 4 − k = k holds exactly at k = 2 — which is why the self-dual split is about 2-forms in four dimensions; and in general, for every n and k ≤ n, n − k = k exactly when n = 2k.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: the kernel alone (no axiom), dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -8242,7 +8682,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "yang-mills"
@@ -8263,13 +8703,101 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle",
       "landingPageBuilt": ".vitepress/dist/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle.html",
-      "contentAddress": "4354ab0cfbf119c3c9a86dbc82b3355f",
+      "contentAddress": "392e5d6bcd2fd6e3ee5f37f62eedde20",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",
           "file": "yang-mills.lean",
           "theorem": "star_is_an_endomorphism_only_in_the_middle",
           "title": "Star is an endomorphism only in the middle"
+        }
+      ]
+    },
+    {
+      "id": "yang-mills--selfdual_and_antiselfdual_meet_only_in_zero",
+      "title": "Selfdual and antiselfdual meet only in zero",
+      "file": "yang-mills.lean",
+      "proposition": "∀ v : Form2, star v = v → star v = neg v → v = ⟨0, 0, 0, 0, 0, 0⟩",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE SUM IS DIRECT: a 2-form that is both self-dual (★v = v) and anti-self-dual (★v = −v) is zero.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, debit: this theorem; credit: Quot.sound and propext, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/8/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-meet-only-in-zero",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "standard axioms only",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/8/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-meet-only-in-zero",
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-selfdual-and-antiselfdual-meet-only-in-zero.html",
+      "contentAddress": "7f89400d21b5c4187246039076875c94",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "selfdual_and_antiselfdual_meet_only_in_zero",
+          "title": "Selfdual and antiselfdual meet only in zero"
         }
       ]
     },

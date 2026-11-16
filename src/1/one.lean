@@ -164,8 +164,11 @@ Poincaré, and the reflection σ does not fold it back onto itself — σ sends 
 def chi (g : Int) : Int := 2 - 2 * g
 def genus (c : Int) : Int := (2 - c) / 2
 
-/-- …and σ carries the station to the frontier 9, where the smooth 4D question stays open. -/
+/-- genus ∘ chi is the identity at every integer, chi ∘ chi is not, and σ carries the station to 9 (a digit of the walk;
+    the smooth four-dimensional Poincaré question is open, and nothing here bears on it). -/
 theorem poincare_is_an_inverse_pair_and_reflects_to_the_frontier :
-    (∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9 := by decide
+    (∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9 := by
+  refine ⟨fun g => ?_, by decide, by decide⟩
+  unfold genus chi; omega
 
 end DigitOne

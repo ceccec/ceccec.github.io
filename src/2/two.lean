@@ -158,14 +158,15 @@ theorem walking_from_the_mirror_is_walking_from_here_shifted :
 
 /-! ## Riemann's own reflection, experienced here
 
-On numerators of s = n/2, the functional equation's s ↦ 1 − s is n ↦ 2 − n; it fixes exactly the critical line n = 1. -/
+On numerators of s = n/2, the functional equation's s ↦ 1 − s is n ↦ 2 − n; on the real axis it fixes exactly s = 1/2
+(n = 1), where the critical line crosses it. The line itself is the fixed set of s ↦ 1 − s̄ (riemann.lean). -/
 
 def riemannReflect (n : Int) : Int := 2 - n
 
 theorem riemann_reflection_is_an_involution : ∀ n : Int, riemannReflect (riemannReflect n) = n := by
   intro n; unfold riemannReflect; omega
 
-theorem riemann_reflection_fixes_exactly_the_critical_line : ∀ n : Int, riemannReflect n = n ↔ n = 1 := by
+theorem riemann_reflection_fixes_exactly_one_half : ∀ n : Int, riemannReflect n = n ↔ n = 1 := by
   intro n; unfold riemannReflect
   constructor
   · intro h; omega

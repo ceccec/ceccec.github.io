@@ -18,14 +18,14 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 341 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 348 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
 \noindent Each theorem is printed as Lean source, not re-typeset in mathematical notation, so that the statement the kernel checked and the statement on the page cannot differ. A proof by \texttt{decide} reduces a finite proposition in the kernel and depends on no axiom. A general theorem, proved for every value, rests on \texttt{propext} and \texttt{Quot.sound} and on nothing else; the gate refuses any theorem that reaches \texttt{Classical.choice}. To re-check everything from a clone, run \texttt{npm run verify:lean}.
 
 \section{Machine-checked involutions}
-\noindent 95 theorems in 12 files of \texttt{src/pair/formal/proofs}.
+\noindent 101 theorems in 12 files of \texttt{src/pair/formal/proofs}.
 \subsection{\texttt{coin.lean}}
 \begin{theorem}[The coin is an involution]
 PULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.
@@ -330,139 +330,167 @@ The same four laws at other shapes, so none of them is an accident of 18 and 10.
 \begin{proof}\raggedright By \texttt{decide} in \texttt{three.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \subsection{\texttt{poincare.lean}}
 \begin{theorem}[Chi and genus are inverse]
-The round trip is the identity: χ and g carry the same information.
-\begin{lean}∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g\end{lean}
+genus ∘ chi is the identity at every integer g: χ loses nothing about g.
+\begin{lean}∀ g : Int, genus (chi g) = g\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro g; unfold genus chi; omega} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Chi after genus is identity on the even]
+chi ∘ genus is the identity on the even integers — exactly the values χ takes.
+\begin{lean}∀ c : Int, c \% 2 = 0 → chi (genus c) = c\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro c hc; unfold chi genus; omega} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Sphere has euler characteristic two]
-The sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.
+The sphere S²: g = 0, χ = 2. (Poincaré's conjecture concerns the 3-sphere S³, whose χ is 0.)
 \begin{lean}chi 0 = 2\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Torus has euler characteristic zero]
-The torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.
+The torus: g = 1, χ = 0 — by Gauss–Bonnet it is the surface that admits a flat metric.
 \begin{lean}chi 1 = 0\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Double torus has chi minus two and rank four]
-THIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.
-\begin{lean}chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4\end{lean}
+THIS CORPUS: genus 2, χ = −2, and 2 − χ = 4 — the band count the census uses (rank H₁ of the double torus).
+\begin{lean}chi 2 = -2 ∧ 2 - chi 2 = 4\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Homology rank is twice the genus]
-rank H₁(Σ\_g) = 2g, equivalently 2 − χ, at every genus checked.
-\begin{lean}∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g\end{lean}
+2 − χ = 2g at every genus: the arithmetic rank H₁(Σ\_g) = 2g equals (Hatcher Ex. 2.36).
+\begin{lean}∀ g : Int, 2 - chi g = 2 * g\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro g; unfold chi; omega} in \texttt{poincare.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{riemann.lean}}
 \begin{theorem}[Sigma is an involution]
-σ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.
-\begin{lean}∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n\end{lean}
+σ² = id at every point of the plane.
+\begin{lean}∀ z : Int × Int, σ (σ z) = z\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b⟩; simp only [σ, Prod.mk.injEq]; refine ⟨?\_, ?\_⟩ <;> omega} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Critical line is the fixed point]
-The fixed point is n = 1, i.e. s = 1/2 — the critical line.
-\begin{lean}σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)\end{lean}
+THE CRITICAL LINE IS THE FIXED SET OF τ: τ(s) = s exactly when Re(s) = 1/2, i.e. numerator a = 1, at every imaginary part. (It is not the fixed set of σ — see `sigma\_fixes\_only\_the\_point\_one\_half`.)
+\begin{lean}∀ z : Int × Int, τ z = z ↔ z.1 = 1\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b⟩; simp only [τ, Prod.mk.injEq, and\_true]} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Sigma pairs the plane]
-σ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).
-\begin{lean}σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2\end{lean}
+σ pairs s with 1 − s: on the real axis s = 0 ↔ s = 1 (where ζ has its pole) and s = −1 ↔ s = 2; on the critical line 1/2 + i ↔ 1/2 − i — σ moves the line's points, it does not fix them. (In numerators: (0,0) ↔ (2,0), (−2,0) ↔ (4,0), (1,2) ↔ (1,−2).)
+\begin{lean}σ (0, 0) = (2, 0) ∧ σ (-2, 0) = (4, 0) ∧ σ (1, 2) = (1, -2)\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
-\begin{theorem}[The fixed line is one half]
-The fixed set over EVERY numerator, not a sample: σ n = n exactly when n = 1, i.e. s = 1/2. (This was `(2 : Int) * 1 = 2 ∧ σ 1 = 1`.)
-\begin{lean}∀ n : Int, σ n = n ↔ n = 1\end{lean}
+\begin{theorem}[Sigma fixes only the point one half]
+σ FIXES ONE POINT, s = 1/2, and nothing else in ℂ.
+\begin{lean}∀ z : Int × Int, σ z = z ↔ z = (1, 0)\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{intro n; unfold σ} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b⟩; simp only [σ, Prod.mk.injEq]} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Tau is sigma then conjugation]
+τ is σ followed by conjugation.
+\begin{lean}∀ z : Int × Int, τ z = conj (σ z)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b⟩; simp only [τ, conj, σ, Int.neg\_neg]} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Involution fixes the critical line]
-σ is an involution on EVERY numerator, and fixes the critical line. (This was `σ (σ 3) = 3 ∧ σ 1 = 1`, two cases already inside the sample theorems above.)
-\begin{lean}(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1\end{lean}
+τ is an involution, and it fixes every point of the critical line: τ(1/2 + it) = 1/2 + it for every t.
+\begin{lean}(∀ z : Int × Int, τ (τ z) = z) ∧ ∀ b : Int, τ (1, b) = (1, b)\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{refine ⟨fun n => ?\_, rfl⟩} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun ⟨a, b⟩ => ?\_, fun b => ?\_⟩} in \texttt{riemann.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{p-vs-np.lean}}
+\begin{theorem}[Compl compl]
+Complementing a language twice returns it.
+\begin{lean}∀ L : Lang, compl (compl L) = L\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro L; funext w; simp [compl]} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Sigma is an involution]
-\begin{lean}∀ c : Class, σ (σ c) = c\end{lean}
+σ² = id on every class.
+\begin{lean}∀ C : Class, σ (σ C) = C\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{intro c; cases c <;> rfl} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
-\begin{theorem}[Fixed points are p and pspace]
-The classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.
-\begin{lean}(classes.filter (fun c => σ c == c)) = [P, PSPACE]\end{lean}
+\begin{proof}\raggedright By \texttt{intro C; funext L; simp only [σ, compl\_compl]} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Fixed points are the closed classes]
+σ FIXES EXACTLY THE CLASSES CLOSED UNDER COMPLEMENT — the fixed set the question is about.
+\begin{lean}∀ C : Class, σ C = C ↔ ∀ L, C L → C (compl L)\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro C} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Np and conp are swapped]
-σ swaps NP and coNP — they are complements by definition, not by theorem.
-\begin{lean}σ NP = coNP ∧ σ coNP = NP\end{lean}
+coNP is σ(NP) by definition, and σ sends coNP back to NP — complements by definition, swapped by σ² = id.
+\begin{lean}∀ NP : Class, σ NP = (fun L => NP (compl L)) ∧ σ (σ NP) = NP\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
-\begin{theorem}[If np is fixed then np equals conp]
-THE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 "theorems" worthless. Removed.)
-\begin{lean}σ NP = NP → NP = coNP\end{lean}
+\begin{proof}\raggedright By \texttt{intro NP; exact ⟨rfl, sigma\_is\_an\_involution NP⟩} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[If p equals np then np is fixed]
+THE EASY DIRECTION, FOR EVERY PAIR OF CLASSES: if P is closed under complement (σ P = P) and P = NP, then NP is closed under complement, i.e. NP = coNP. Its contrapositive is NP ≠ coNP ⇒ P ≠ NP. Nothing here decides whether P = NP or NP = coNP.
+\begin{lean}∀ P NP : Class, σ P = P → P = NP → σ NP = NP\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{intro h; exact h.symm} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
-\begin{theorem}[P is closed under complement]
-P is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.
-\begin{lean}σ P = P\end{lean}
+\begin{proof}\raggedright By \texttt{intro P NP hP hPNP; subst hPNP; exact hP} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Closed classes are fixed]
+A class whose every member's complement is again a member is fixed by σ — the property P and PSPACE have because a deterministic decider's answer can be flipped (Arora–Barak §2.6; Sipser §7). The model takes the closure as the hypothesis; it does not define P by machines.
+\begin{lean}∀ C : Class, (∀ L, C L → C (compl L)) → σ C = C\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{rfl} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{fun C h => (fixed\_points\_are\_the\_closed\_classes C).mpr h} in \texttt{p-vs-np.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{bsd.lean}}
 \begin{theorem}[Sigma is an involution]
-\begin{lean}∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s\end{lean}
+σ² = id at every s.
+\begin{lean}∀ s : Int, σ (σ s) = s\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro s; unfold σ; omega} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Central point is the fixed point]
 The central point s = 1 is the unique fixed point — the point BSD is about.
-\begin{lean}σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)\end{lean}
+\begin{lean}∀ s : Int, σ s = s ↔ s = 1\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro s; unfold σ} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Root number squares to one]
-WHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1. (This was `1·1 = 1 ∧ (−1)·(−1) = 1`.)
+WHY w² = 1: for any Λ with Λ(σ s) = w·Λ(s) at every s, reflecting twice returns s, so Λ(s) = w·w·Λ(s); at any s where Λ does not vanish, w·w = 1.
 \begin{lean}∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro w Λ h s hs} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Root number minus one forces a central zero]
+A ROOT NUMBER OF −1 FORCES A ZERO AT THE CENTRE: if Λ(σ s) = w·Λ(s) for every s and w = −1, then Λ(1) = −Λ(1), so Λ(1) = 0 — the analytic rank is then at least one.
+\begin{lean}∀ (w : Int) (Λ : Int → Int), (∀ s, Λ (σ s) = w * Λ s) → w = -1 → Λ 1 = 0\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro w Λ h hw} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Root number one iff rank even]
-THE PARITY EQUIVALENCE. w = (−1)\textasciicircum{}rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.
-\begin{lean}(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)\end{lean}
+THE PARITY EQUIVALENCE, EXACT: for a sign w (w = 1 or w = −1), w = (−1)\textasciicircum{}r holds exactly when (w = 1 ↔ r is even), at every r.
+\begin{lean}∀ (w : Int), (w = 1 ∨ w = -1) → ∀ r : Nat, (w = sign r ↔ (w = 1 ↔ r \% 2 = 0))\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro w hw r} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Parity is an involution]
-The sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.
-\begin{lean}(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)\end{lean}
+Parity as an action: one more in the rank negates the sign and two more returns it, at every r — the sign intertwines r ↦ r + 1 with the involution w ↦ −w on \{1, −1\}.
+\begin{lean}∀ r : Nat, sign (r + 1) = -(sign r) ∧ sign (r + 2) = sign r\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro r} in \texttt{bsd.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{hodge.lean}}
 \begin{theorem}[Sigma is an involution]
-\begin{lean}∀ t ∈ middleTypes, σ (σ t) = t\end{lean}
+σ² = id on every type.
+\begin{lean}∀ t : Nat × Nat, σ (σ t) = t\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{fun \_ => rfl} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Sigma preserves degree]
-σ preserves total degree — it acts WITHIN H\textasciicircum{}n, which is why it decomposes it.
-\begin{lean}∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2\end{lean}
+σ preserves the total degree p + q, so it acts within each H\textasciicircum{}n (the decomposition is harmonic theory's, not σ's).
+\begin{lean}∀ t : Nat × Nat, (σ t).1 + (σ t).2 = t.1 + t.2\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨p, q⟩; show q + p = p + q; omega} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Fixed type is p equals q]
-The unique fixed type in degree 2k is (k,k). Here k = 2.
-\begin{lean}(middleTypes.filter (fun t => σ t == t)) = [(2,2)]\end{lean}
+The fixed types are exactly the diagonal p = q.
+\begin{lean}∀ p q : Nat, σ (p, q) = (p, q) ↔ p = q\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro p q; simp only [σ, Prod.mk.injEq]} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Diagonal is fixed at every k]
-And it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.
-\begin{lean}(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))\end{lean}
+At every k the diagonal type (k,k) is fixed, and every off-diagonal type is swapped.
+\begin{lean}(∀ k : Nat, σ (k, k) = (k, k)) ∧ (∀ p q : Nat, p ≠ q → σ (p, q) ≠ (p, q))\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun \_ => rfl, fun p q hpq h => hpq ((fixed\_type\_is\_p\_equals\_q p q).mp h)⟩} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Odd degree has no fixed type]
+In odd degree no type is fixed: p + q odd rules out p = q.
+\begin{lean}∀ p q : Nat, (p + q) \% 2 = 1 → σ (p, q) ≠ (p, q)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro p q hodd h} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Involution fixes the diagonal]
-The involution and its fixed diagonal, together.
-\begin{lean}σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)\end{lean}
+The involution and its fixed diagonal, together, at every type.
+\begin{lean}(∀ t : Nat × Nat, σ (σ t) = t) ∧ ∀ k : Nat, σ (k, k) = (k, k)\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{⟨sigma\_is\_an\_involution, fun \_ => rfl⟩} in \texttt{hodge.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \subsection{\texttt{navier-stokes.lean}}
 \begin{theorem}[Reversal is an involution]
-T² = id. Reversing time twice returns the equation, whatever the viscosity.
-\begin{lean}T (T navierStokes) = navierStokes ∧ T (T euler) = euler\end{lean}
+T² = id on every sign table — whatever the viscosity.
+\begin{lean}∀ s : Terms, T (T s) = s\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b, c, d⟩; simp only [T, Int.neg\_neg]} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Euler is time reversible]
-Euler is invariant: every term transforms alike, so T fixes it.
+Euler is invariant: T fixes it.
 \begin{lean}T euler = euler\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
@@ -472,10 +500,10 @@ Navier-Stokes is NOT invariant, and the viscous term is the only one that differ
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Fixed points are exactly the inviscid]
-Invariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.
-\begin{lean}(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩\end{lean}
+T fixes a sign table exactly when its viscous sign is zero: the fixed points are exactly the inviscid equations.
+\begin{lean}∀ s : Terms, T s = s ↔ s.viscous = 0\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro ⟨a, b, c, d⟩} in \texttt{navier-stokes.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{yang-mills.lean}}
 \begin{theorem}[Middle forms have dimension six]
 dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.
@@ -488,22 +516,27 @@ dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro v; cases v; simp [star, Int.neg\_neg]} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Selfdual and antiselfdual split the six]
-The split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴).
+The split, by its bases: the three self-dual forms e₁₂+e₃₄, e₁₃−e₂₄, e₁₄+e₂₃ are fixed by ★, the three anti-self-dual forms e₁₂−e₃₄, e₁₃+e₂₄, e₁₄−e₂₃ are negated, and 3 + 3 = dim Λ²(ℝ⁴). That the six are a basis over ℚ follows from `selfdual\_and\_antiselfdual\_meet\_only\_in\_zero` (the halves meet in 0) and the 2v identity below (they span).
 \begin{lean}star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧ star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧ star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧ star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧ 3 + 3 = choose 4 2\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Star is an endomorphism only in the middle]
-★ sends Λ\textasciicircum{}k to Λ\textasciicircum{}(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.
-\begin{lean}(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)\end{lean}
+★ sends Λ\textasciicircum{}k to Λ\textasciicircum{}(n−k), so it maps a degree to itself exactly when n − k = k. The statement is about the DEGREES ★ connects: for n = 4 and every k ≤ 4, 4 − k = k holds exactly at k = 2 — which is why the self-dual split is about 2-forms in four dimensions; and in general, for every n and k ≤ n, n − k = k exactly when n = 2k.
+\begin{lean}(∀ k : Nat, k ≤ 4 → (4 - k = k ↔ k = 2)) ∧ (∀ n k : Nat, k ≤ n → (n - k = k ↔ n = 2 * k))\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun k hk => ?\_, fun n k hk => ?\_⟩} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Selfdual and antiselfdual meet only in zero]
+THE SUM IS DIRECT: a 2-form that is both self-dual (★v = v) and anti-self-dual (★v = −v) is zero.
+\begin{lean}∀ v : Form2, star v = v → star v = neg v → v = ⟨0, 0, 0, 0, 0, 0⟩\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro v h1 h2} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Involution splits the middle forms]
 The involution and the split it produces, for every 2-form v: v + ★v is self-dual, v − ★v is anti-self-dual, and the two halves add back to 2v. This is the F = F⁺ + F⁻ instantons are built on.
 \begin{lean}∀ v : Form2, star (add v (star v)) = add v (star v) ∧ star (sub v (star v)) = neg (sub v (star v)) ∧ add (add v (star v)) (sub v (star v)) = add v v\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro v; cases v} in \texttt{yang-mills.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 246 theorems in 11 files of \texttt{src/pair/lean/proofs}.
+\noindent 247 theorems in 11 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{consciousness.lean}}
 \begin{theorem}[The turn returns in three]
 \begin{lean}∀ p ∈ points, turn (turn (turn p)) = p\end{lean}
@@ -664,6 +697,11 @@ Wherever σ fixes x, the odd part is zero there.
 \begin{lean}\{α : Type\} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{unfold odd} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Compl compl]
+Complementing a language twice returns it — canonical in p-vs-np.lean.
+\begin{lean}∀ L : Lang, compl (compl L) = L\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro L; funext w; simp [compl]} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Riemann is an involution]
 \begin{lean}IsInvolution riemann\end{lean}
 \end{theorem}
@@ -687,13 +725,14 @@ Wherever σ fixes x, the odd part is zero there.
 \begin{theorem}[Complement is an involution]
 \begin{lean}IsInvolution complement\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{fun c => by cases c <;> rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{fun C => by} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[The odd part cancels in every clay involution]
 The cross formula at all six: the odd part of ANY integer-valued f cancels over every orbit.
 \begin{lean}(∀ (f : Int → Int) n, odd f riemann n + odd f riemann (riemann n) = 0) ∧ (∀ (f : Int → Int) s, odd f bsd s + odd f bsd (bsd s) = 0) ∧ (∀ (f : Nat × Nat → Int) t, odd f hodge t + odd f hodge (hodge t) = 0) ∧ (∀ (f : Int → Int) v, odd f viscous v + odd f viscous (viscous v) = 0) ∧ (∀ (f : Form2 → Int) v, odd f star v + odd f star (star v) = 0) ∧ (∀ (f : Class → Int) c, odd f complement c + odd f complement (complement c) = 0)\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{⟨fun f => odd\_cancels f riemann riemann\_is\_an\_involution,} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
-\begin{theorem}[Riemann fixes exactly the critical line]
+\begin{theorem}[Riemann fixes exactly one half]
+On the real axis the reflection fixes exactly s = 1/2 (n = 1), where the critical line crosses it; the line is the fixed set of s ↦ 1 − s̄ (riemann.lean).
 \begin{lean}∀ n : Int, riemann n = n ↔ n = 1\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro n; unfold riemann} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
@@ -709,35 +748,36 @@ The cross formula at all six: the odd part of ANY integer-valued f cancels over 
 \begin{lean}∀ v : Int, viscous v = v ↔ v = 0\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro v; unfold viscous} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
-\begin{theorem}[Complement fixes exactly p and pspace]
-\begin{lean}[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE]\end{lean}
+\begin{theorem}[Complement fixes exactly the closed classes]
+Complement fixes exactly the classes closed under complement — P and PSPACE are; whether NP is, is open.
+\begin{lean}∀ C : Class, complement C = C ↔ ∀ L, C L → C (compl L)\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{intro C} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[The reflection cluster]
 REFLECTION: σ x + x is constant — 2 for Riemann (numerators) and BSD, the degree for Hodge.
 \begin{lean}(∀ n, riemann n + n = 2) ∧ (∀ s, bsd s + s = 2) ∧ (∀ p q : Nat, (hodge (p, q)).1 + p = p + q)\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{refine ⟨fun n => ?\_, fun s => ?\_, fun p q => ?\_⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Riemann and bsd are one reflection]
-In doubled coordinates the Riemann reflection IS the weight-two reflection: one map, not two.
+The same formula, 2 − n, in two coordinates: Riemann's n is 2s (centre 1/2), BSD's s is s itself (centre 1). An identity of the encodings, not of the L-functions; analytically the two centres correspond under s ↦ s − 1/2.
 \begin{lean}riemann = bsd\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{rfl} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[The negation cluster]
-NEGATION: Navier–Stokes' time reversal on the viscous term, and the star on every anti-self-dual form, are both v ↦ −v.
+NEGATION: Navier–Stokes' time reversal on the viscous term, and the star on every form v − ★v (twice v's anti-self-dual part), are both w ↦ −w.
 \begin{lean}(∀ v, viscous v = -v) ∧ (∀ v : Form2, star (asd v) = neg (asd v))\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{refine ⟨fun v => rfl, fun v => ?\_⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Complement is its own class]
-P vs NP is its own class: a swap whose σ c + c is not a constant — it has two fixed points and one exchanged pair, which no reflection or negation on a four-point model has.
-\begin{lean}complement .NP = .coNP ∧ complement .coNP = .NP ∧ complement .P = .P ∧ complement .PSPACE = .PSPACE\end{lean}
+P vs NP is its own class: not a map on a number line, so neither a reflection nor a negation — complement fixes the class of all languages (closed under complement) and exchanges always-yes with always-no.
+\begin{lean}complement allLangs = allLangs ∧ complement yesOnly = noOnly ∧ complement noOnly = yesOnly\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨rfl, ?\_, ?\_⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Poincare is an inverse pair not an involution]
-POINCARÉ IS NOT AN INVOLUTION: genus inverts chi, but chi applied twice moves the sphere's genus 0 to −2. The pair is a bijection, and it is listed here so its absence from the law above is proved, not omitted.
-\begin{lean}(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0\end{lean}
+POINCARÉ IS NOT AN INVOLUTION: genus inverts chi at every integer, but chi applied twice moves the sphere's genus 0 to −2. An inverse pair (chi ∘ genus is the identity on the even integers only), listed here so its absence from the law above is proved, not omitted.
+\begin{lean}(∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun g => ?\_, by decide⟩} in \texttt{cross.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[ExponentSwap is an involution]
 \begin{lean}IsInvolution exponentSwap\end{lean}
 \end{theorem}
@@ -1649,7 +1689,7 @@ The ratchet law in its general form: dissolving a leaf strictly decreases the co
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{wave-57-extraction-verified.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \section{Machine-checked station perspectives}
-\noindent 248 theorems in 9 files of \texttt{src/1 … src/9}.
+\noindent 249 theorems in 9 files of \texttt{src/1 … src/9}.
 \subsection{\texttt{one.lean}}
 \begin{theorem}[From one the sequence is one cycle through every station]
 From 1 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
@@ -1777,10 +1817,10 @@ Walking from the mirror is walking from here, 8 steps ahead: the reflection move
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
 \begin{theorem}[Poincare is an inverse pair and reflects to the frontier]
-…and σ carries the station to the frontier 9, where the smooth 4D question stays open.
-\begin{lean}(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9\end{lean}
+genus ∘ chi is the identity at every integer, chi ∘ chi is not, and σ carries the station to 9 (a digit of the walk; the smooth four-dimensional Poincaré question is open, and nothing here bears on it).
+\begin{lean}(∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun g => ?\_, by decide, by decide⟩} in \texttt{one.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{two.lean}}
 \begin{theorem}[From two the sequence is one cycle through every station]
 From 2 the walk is one cycle through all ten stations, home after exactly ten steps and never sooner.
@@ -1911,7 +1951,7 @@ Walking from the mirror is walking from here, 2 steps ahead: the reflection move
 \begin{lean}∀ n : Int, riemannReflect (riemannReflect n) = n\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro n; unfold riemannReflect; omega} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
-\begin{theorem}[Riemann reflection fixes exactly the critical line]
+\begin{theorem}[Riemann reflection fixes exactly one half]
 \begin{lean}∀ n : Int, riemannReflect n = n ↔ n = 1\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{intro n; unfold riemannReflect} in \texttt{two.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
@@ -2167,15 +2207,20 @@ Walking from the mirror is walking from here, 5 steps ahead: the reflection move
 \begin{lean}stepsTo 4 6 = 5 ∧ ∀ k : Fin 10, walk 6 k.val = walk 4 (k.val + 5)\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{theorem}[Compl compl]
+Complementing a language twice returns it — canonical in p-vs-np.lean.
+\begin{lean}∀ L : Lang, compl (compl L) = L\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{intro L; funext w; simp [compl]} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \begin{theorem}[Complement is an involution]
-\begin{lean}∀ c : Class, complement (complement c) = c\end{lean}
+\begin{lean}∀ C : Class, complement (complement C) = C\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{intro c; cases c <;> rfl} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
-\begin{theorem}[Complement fixes p and pspace and reflects to an axis gate]
-The swap fixes P and PSPACE, and σ carries the station to the axis gate 6, which holds no case.
-\begin{lean}[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6\end{lean}
+\begin{proof}\raggedright By \texttt{intro C; funext L; show C (compl (compl L)) = C L; rw [compl\_compl]} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
+\begin{theorem}[Complement fixes the closed classes and reflects to an axis gate]
+Every class closed under complement is fixed by the swap, and σ carries the station to the axis gate 6, which holds no case.
+\begin{lean}(∀ C : Class, (∀ L, C L → C (compl L)) → complement C = C) ∧ reflect 4 = 6\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{decide} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{of\_decide\_eq\_true} (the kernel itself: the statement reduces to true by computation, and the rule that turns that reduction into a proof rests on no axiom). \end{proof}
+\begin{proof}\raggedright By \texttt{refine ⟨fun C h => ?\_, by decide⟩} in \texttt{four.lean}. Checked by the Lean kernel; debit: this theorem; credit: \texttt{Quot.sound} (a quotient makes equal what its relation relates — the axiom behind function extensionality) and \texttt{propext} (two propositions that imply each other are the same proposition). \end{proof}
 \subsection{\texttt{five.lean}}
 \begin{theorem}[The sequence is one cycle through every station]
 The walk is ONE cycle through all ten stations: from every station it reaches every station, and returns after exactly ten steps, never sooner.

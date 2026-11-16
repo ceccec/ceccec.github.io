@@ -12,19 +12,24 @@
   src/thunder/verify/testing): a REFLECTION is a map with σ x + x constant, a NEGATION is σ x = −x,
   and anything else is its own class.
 
-    reflection   Riemann  s ↦ 1 − s   (numerators: n ↦ 2 − n)     the same map as BSD's, proved below
+    reflection   Riemann  s ↦ 1 − s on the real axis (numerators: n ↦ 2 − n) — the same formula as BSD's, proved below
                  BSD      s ↦ 2 − s
                  Hodge    (p, q) ↦ (q, p): on each degree p + q = n it is p ↦ n − p
     negation     Navier–Stokes   time reversal acts on the viscous coefficient as v ↦ −v
-                 Yang–Mills      ★ acts on every anti-self-dual 2-form as v ↦ −v
-    own          P vs NP  complement on {P, NP, coNP, PSPACE}: a swap with two fixed points
-    none         Poincaré χ = 2 − 2g and g = (2 − χ)/2 are mutually inverse — a bijection between
-                 two sets, NOT an involution of either; χ ∘ χ moves 0 to −2, proved below.
+                 Yang–Mills      ★ acts on every form v − ★v (twice v's anti-self-dual part) as w ↦ −w
+    own          P vs NP  complement on classes of decidable languages: it fixes exactly the classes closed under
+                 complement and exchanges the rest
+    none         Poincaré χ = 2 − 2g and g = (2 − χ)/2: genus ∘ chi is the identity on ℤ and chi ∘ genus on the even
+                 integers — an inverse pair, NOT an involution of either set; χ ∘ χ moves 0 to −2, proved below.
 
-  WHAT IS PROVED, AND WHAT IS OPEN: the symmetry each of the seven is stated over, and its exact fixed
-  set. Each open problem is a question about that fixed set — are all nontrivial zeros on Re s = 1/2?
-  is NP among the fixed classes? — and stays open, stated in the terms proved here. Poincaré is
-  Perelman's theorem. The definitions are restated from their files because each .lean file in
+  WHAT IS PROVED, AND WHAT IS OPEN: each map, that it is an involution (or, for Poincaré, why not), and its exact fixed
+  set — on a small model of the problem, never on the problem's own objects. How each open problem relates to its fixed
+  set differs, and is stated, not assumed: P vs NP asks whether NP is among complement's fixed classes (NP =? coNP, and
+  P =? NP beside it); BSD's order of vanishing is taken at the fixed point s = 1; Riemann's zeros are asked to lie on
+  the fixed set of s ↦ 1 − s̄ (the critical line), not of s ↦ 1 − s, which fixes only s = 1/2; Navier–Stokes is posed
+  at ν > 0, OFF the fixed set of time reversal; Hodge asks about rational classes and algebraic cycles, of which the
+  fixed type (k,k) is only the necessary type; Yang–Mills is a quantum question the classical star does not reach. All
+  six stay open. Poincaré is Perelman's theorem. The definitions are restated from their files because each .lean file in
   this corpus compiles alone (bare `lean`, no imports); `riemann_and_bsd_are_one_reflection` and the
   cluster theorems are the cross the separate files could not state.
 -/
@@ -78,15 +83,15 @@ def neg (v : Form2) : Form2 := ⟨-v.e12, -v.e13, -v.e14, -v.e23, -v.e24, -v.e34
 def asd (v : Form2) : Form2 :=
   ⟨v.e12 - v.e34, v.e13 + v.e24, v.e14 - v.e23, v.e23 - v.e14, v.e24 + v.e13, v.e34 - v.e12⟩
 
-/-- P vs NP: complementation on four classes. -/
-inductive Class where
-  | P | NP | coNP | PSPACE
-  deriving DecidableEq, Repr
-def complement : Class → Class
-  | .P => .P
-  | .NP => .coNP
-  | .coNP => .NP
-  | .PSPACE => .PSPACE
+/-- P vs NP: a class is a predicate on decidable languages, and complement sends C to the class of complements of its
+    members. (Named constructors would make P ≠ NP provable by `decide`; this model decides neither P =? NP nor NP =? coNP.) -/
+abbrev Lang := List Bool → Bool
+def compl (L : Lang) : Lang := fun w => !L w
+def Class := Lang → Prop
+def complement (C : Class) : Class := fun L => C (compl L)
+/-- Complementing a language twice returns it — canonical in p-vs-np.lean. -/
+theorem compl_compl : ∀ L : Lang, compl (compl L) = L := by
+  intro L; funext w; simp [compl]
 
 /-- Poincaré: Euler characteristic and genus of a closed orientable surface. -/
 def chi (g : Int) : Int := 2 - 2 * g
@@ -100,7 +105,8 @@ theorem hodge_is_an_involution : IsInvolution hodge := fun _ => rfl
 theorem viscous_is_an_involution : IsInvolution viscous := fun v => Int.neg_neg v
 theorem star_is_an_involution : IsInvolution star := fun v => by
   cases v; simp [star, Int.neg_neg]
-theorem complement_is_an_involution : IsInvolution complement := fun c => by cases c <;> rfl
+theorem complement_is_an_involution : IsInvolution complement := fun C => by
+  funext L; show C (compl (compl L)) = C L; rw [compl_compl]
 
 /-! ## So the law holds for every one of them -/
 
@@ -121,7 +127,9 @@ theorem the_odd_part_cancels_in_every_clay_involution :
 
 /-! ## The fixed sets, where each problem's question lives -/
 
-theorem riemann_fixes_exactly_the_critical_line : ∀ n : Int, riemann n = n ↔ n = 1 := by
+/-- On the real axis the reflection fixes exactly s = 1/2 (n = 1), where the critical line crosses it; the line is the
+    fixed set of s ↦ 1 − s̄ (riemann.lean). -/
+theorem riemann_fixes_exactly_one_half : ∀ n : Int, riemann n = n ↔ n = 1 := by
   intro n; unfold riemann
   constructor
   · intro h; omega
@@ -145,8 +153,18 @@ theorem viscous_fixes_exactly_the_inviscid : ∀ v : Int, viscous v = v ↔ v = 
   · intro h; omega
   · intro h; subst h; rfl
 
-theorem complement_fixes_exactly_p_and_pspace :
-    [Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] := by decide
+/-- Complement fixes exactly the classes closed under complement — P and PSPACE are; whether NP is, is open. -/
+theorem complement_fixes_exactly_the_closed_classes : ∀ C : Class, complement C = C ↔ ∀ L, C L → C (compl L) := by
+  intro C
+  constructor
+  · intro h L hL
+    have : complement C (compl L) = C (compl L) := by rw [h]
+    simp only [complement, compl_compl] at this
+    exact this ▸ hL
+  · intro h; funext L; apply propext
+    constructor
+    · intro hL; have := h (compl L) hL; rw [compl_compl] at this; exact this
+    · intro hL; exact h L hL
 
 /-! ## The clusters -/
 
@@ -158,11 +176,12 @@ theorem the_reflection_cluster :
   · unfold bsd; omega
   · unfold hodge; omega
 
-/-- In doubled coordinates the Riemann reflection IS the weight-two reflection: one map, not two. -/
+/-- The same formula, 2 − n, in two coordinates: Riemann's n is 2s (centre 1/2), BSD's s is s itself (centre 1). An
+    identity of the encodings, not of the L-functions; analytically the two centres correspond under s ↦ s − 1/2. -/
 theorem riemann_and_bsd_are_one_reflection : riemann = bsd := rfl
 
-/-- NEGATION: Navier–Stokes' time reversal on the viscous term, and the star on every anti-self-dual
-    form, are both v ↦ −v. -/
+/-- NEGATION: Navier–Stokes' time reversal on the viscous term, and the star on every form v − ★v (twice v's
+    anti-self-dual part), are both w ↦ −w. -/
 theorem the_negation_cluster :
     (∀ v, viscous v = -v) ∧ (∀ v : Form2, star (asd v) = neg (asd v)) := by
   refine ⟨fun v => rfl, fun v => ?_⟩
@@ -170,17 +189,32 @@ theorem the_negation_cluster :
   simp only [star, asd, neg, Form2.mk.injEq]
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩ <;> omega
 
-/-- P vs NP is its own class: a swap whose σ c + c is not a constant — it has two fixed points and
-    one exchanged pair, which no reflection or negation on a four-point model has. -/
-theorem complement_is_its_own_class :
-    complement .NP = .coNP ∧ complement .coNP = .NP ∧ complement .P = .P ∧ complement .PSPACE = .PSPACE := by
-  decide
+/-- The class of all languages, and the classes holding only the always-yes or only the always-no language. -/
+def allLangs : Class := fun _ => True
+def yesOnly : Class := fun L => L = fun _ => true
+def noOnly : Class := fun L => L = fun _ => false
 
-/-- POINCARÉ IS NOT AN INVOLUTION: genus inverts chi, but chi applied twice moves the sphere's genus 0
-    to −2. The pair is a bijection, and it is listed here so its absence from the law above is proved,
-    not omitted. -/
+/-- P vs NP is its own class: not a map on a number line, so neither a reflection nor a negation — complement fixes the
+    class of all languages (closed under complement) and exchanges always-yes with always-no. -/
+theorem complement_is_its_own_class :
+    complement allLangs = allLangs ∧ complement yesOnly = noOnly ∧ complement noOnly = yesOnly := by
+  refine ⟨rfl, ?_, ?_⟩
+  · funext L; apply propext
+    constructor
+    · intro h; funext w; have := congrFun h w; simpa [compl] using this
+    · intro h; subst h; rfl
+  · funext L; apply propext
+    constructor
+    · intro h; funext w; have := congrFun h w; simpa [compl] using this
+    · intro h; subst h; rfl
+
+/-- POINCARÉ IS NOT AN INVOLUTION: genus inverts chi at every integer, but chi applied twice moves the sphere's genus 0
+    to −2. An inverse pair (chi ∘ genus is the identity on the even integers only), listed here so its absence from the
+    law above is proved, not omitted. -/
 theorem poincare_is_an_inverse_pair_not_an_involution :
-    (∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 := by decide
+    (∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0 := by
+  refine ⟨fun g => ?_, by decide⟩
+  unfold genus chi; omega
 
 /-! ## The six extensions the catalogue crosses with them, decided the same way
 

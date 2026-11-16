@@ -14,7 +14,10 @@
   "mirror_walk_reaches_poincare": [],
   "mirror_walk_reaches_riemann": [],
   "mirror_walk_reaches_yangMills": [],
-  "poincare_is_an_inverse_pair_and_reflects_to_the_frontier": [],
+  "poincare_is_an_inverse_pair_and_reflects_to_the_frontier": [
+   "Quot.sound",
+   "propext"
+  ],
   "reflection_meets_no_case": [],
   "the_four_faces_at_one": [],
   "the_step_out_of_one": [],
@@ -28,22 +31,41 @@
   "walking_from_the_mirror_is_walking_from_here_shifted": []
  },
  "src/1/poincare.lean": {
-  "chi_and_genus_are_inverse": [],
+  "chi_after_genus_is_identity_on_the_even": [
+   "Quot.sound",
+   "propext"
+  ],
+  "chi_and_genus_are_inverse": [
+   "Quot.sound",
+   "propext"
+  ],
   "double_torus_has_chi_minus_two_and_rank_four": [],
-  "homology_rank_is_twice_the_genus": [],
+  "homology_rank_is_twice_the_genus": [
+   "Quot.sound",
+   "propext"
+  ],
   "sphere_has_euler_characteristic_two": [],
   "torus_has_euler_characteristic_zero": []
  },
  "src/2/riemann.lean": {
-  "critical_line_is_the_fixed_point": [],
+  "critical_line_is_the_fixed_point": [
+   "Quot.sound",
+   "propext"
+  ],
   "involution_fixes_the_critical_line": [
    "Quot.sound",
    "propext"
   ],
-  "sigma_is_an_involution": [],
-  "sigma_pairs_the_plane": [],
-  "the_fixed_line_is_one_half": [
+  "sigma_fixes_only_the_point_one_half": [
    "Quot.sound",
+   "propext"
+  ],
+  "sigma_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "sigma_pairs_the_plane": [],
+  "tau_is_sigma_then_conjugation": [
    "propext"
   ]
  },
@@ -63,7 +85,7 @@
   "mirror_walk_reaches_riemann": [],
   "mirror_walk_reaches_yangMills": [],
   "reflection_meets": [],
-  "riemann_reflection_fixes_exactly_the_critical_line": [
+  "riemann_reflection_fixes_exactly_one_half": [
    "Quot.sound",
    "propext"
   ],
@@ -113,8 +135,18 @@
   "at_four_mirroring_twice_is_the_sequence": [],
   "at_four_the_nine_complement_commutes_with_the_walk": [],
   "at_four_the_reflection_lags_the_walk_by_one_step": [],
-  "complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate": [],
-  "complement_is_an_involution": [],
+  "compl_compl": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_fixes_the_closed_classes_and_reflects_to_an_axis_gate": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
   "from_four_the_sequence_is_one_cycle_through_every_station": [],
   "from_four_walking_the_reflection_experiences_the_sequence": [],
   "here_carries": [],
@@ -139,21 +171,50 @@
   "walking_from_the_mirror_is_walking_from_here_shifted": []
  },
  "src/4/p-vs-np.lean": {
-  "fixed_points_are_p_and_pspace": [],
-  "if_np_is_fixed_then_np_equals_conp": [],
-  "np_and_conp_are_swapped": [],
-  "p_is_closed_under_complement": [],
-  "sigma_is_an_involution": []
+  "closed_classes_are_fixed": [
+   "Quot.sound",
+   "propext"
+  ],
+  "compl_compl": [
+   "Quot.sound",
+   "propext"
+  ],
+  "fixed_points_are_the_closed_classes": [
+   "Quot.sound",
+   "propext"
+  ],
+  "if_p_equals_np_then_np_is_fixed": [],
+  "np_and_conp_are_swapped": [
+   "Quot.sound",
+   "propext"
+  ],
+  "sigma_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ]
  },
  "src/5/bsd.lean": {
-  "central_point_is_the_fixed_point": [],
-  "parity_is_an_involution": [],
+  "central_point_is_the_fixed_point": [
+   "Quot.sound",
+   "propext"
+  ],
+  "parity_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "root_number_minus_one_forces_a_central_zero": [
+   "Quot.sound",
+   "propext"
+  ],
   "root_number_one_iff_rank_even": [],
   "root_number_squares_to_one": [
    "Quot.sound",
    "propext"
   ],
-  "sigma_is_an_involution": []
+  "sigma_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ]
  },
  "src/5/five.lean": {
   "bsd_reflection_fixes_exactly_the_central_point": [
@@ -196,11 +257,22 @@
   "walking_the_reflection_experiences_the_sequence": []
  },
  "src/5/hodge.lean": {
-  "diagonal_is_fixed_at_every_k": [],
-  "fixed_type_is_p_equals_q": [],
+  "diagonal_is_fixed_at_every_k": [
+   "propext"
+  ],
+  "fixed_type_is_p_equals_q": [
+   "propext"
+  ],
   "involution_fixes_the_diagonal": [],
+  "odd_degree_has_no_fixed_type": [
+   "Quot.sound",
+   "propext"
+  ],
   "sigma_is_an_involution": [],
-  "sigma_preserves_degree": []
+  "sigma_preserves_degree": [
+   "Quot.sound",
+   "propext"
+  ]
  },
  "src/6/six.lean": {
   "at_six_mirroring_twice_is_the_sequence": [],
@@ -231,8 +303,13 @@
  },
  "src/7/navier-stokes.lean": {
   "euler_is_time_reversible": [],
-  "fixed_points_are_exactly_the_inviscid": [],
-  "reversal_is_an_involution": [],
+  "fixed_points_are_exactly_the_inviscid": [
+   "Quot.sound",
+   "propext"
+  ],
+  "reversal_is_an_involution": [
+   "propext"
+  ],
   "viscosity_breaks_time_reversal": []
  },
  "src/7/seven.lean": {
@@ -307,8 +384,15 @@
    "propext"
   ],
   "middle_forms_have_dimension_six": [],
+  "selfdual_and_antiselfdual_meet_only_in_zero": [
+   "Quot.sound",
+   "propext"
+  ],
   "selfdual_and_antiselfdual_split_the_six": [],
-  "star_is_an_endomorphism_only_in_the_middle": [],
+  "star_is_an_endomorphism_only_in_the_middle": [
+   "Quot.sound",
+   "propext"
+  ],
   "star_squares_to_the_identity": [
    "propext"
   ]
@@ -556,9 +640,22 @@
   ],
   "cartanTranspose_is_an_involution": [],
   "cartanTranspose_swaps_B2_and_C2_and_fixes_A2": [],
-  "complement_fixes_exactly_p_and_pspace": [],
-  "complement_is_an_involution": [],
-  "complement_is_its_own_class": [],
+  "compl_compl": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_fixes_exactly_the_closed_classes": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_is_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
+  "complement_is_its_own_class": [
+   "Quot.sound",
+   "propext"
+  ],
   "exponentSwap_is_an_involution": [],
   "exponentSwap_keeps_the_reciprocal_sum": [
    "Quot.sound",
@@ -589,10 +686,13 @@
    "Quot.sound",
    "propext"
   ],
-  "poincare_is_an_inverse_pair_not_an_involution": [],
+  "poincare_is_an_inverse_pair_not_an_involution": [
+   "Quot.sound",
+   "propext"
+  ],
   "rank_two_types_are_self_dual_up_to_relabelling": [],
   "riemann_and_bsd_are_one_reflection": [],
-  "riemann_fixes_exactly_the_critical_line": [
+  "riemann_fixes_exactly_one_half": [
    "Quot.sound",
    "propext"
   ],

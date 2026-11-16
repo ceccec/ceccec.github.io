@@ -729,6 +729,16 @@ export declare const CLAY_CASE_MAPS: Readonly<Record<string, Partial<Record<Clay
 /** The cases a theorem is bonded to: its own case file, or a case map its own file defines and its statement uses. */
 export declare function clayCasesOf(sourcePath: string, proposition: string): ClayCase[];
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
+/**
+ * THEOREMS RENAMED BECAUSE THE OLD NAME STATED SOMETHING FALSE (owner, 2026-11-16: "apply all" — the Clay corrections the
+ * textbook cross-check found). Each old post URL leads to its successor (legacyRedirects, src/quantum/dist). Data, not
+ * logic: a rename is a decision about meaning, recorded once.
+ */
+export declare const LEAN_RENAMED: readonly {
+    readonly file: string;
+    readonly from: string;
+    readonly to: string;
+}[];
 export declare function leanPageSlug(file: string, name: string): string;
 /**
  * THE MONOGRAPHS — one study per subject, its sections the Lean posts bonded to it (owner, 2026-11-15: "everything may be

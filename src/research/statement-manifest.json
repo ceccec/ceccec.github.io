@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 533,
+  "count": 544,
   "statements": [
     {
       "statementUuid": "ea568c25-b4af-85aa-961f-530a3d260ff6",
@@ -160,16 +160,22 @@
       "statement": "stepsTo 1 9 = 8 ∧ ∀ k : Fin 10, walk 9 k.val = walk 1 (k.val + 8)"
     },
     {
-      "statementUuid": "e0fdb88c-1e2a-8b4b-bb19-db02e6b10fe2",
+      "statementUuid": "71b34d4e-e708-87d3-aca1-5dcba6769cf1",
       "file": "src/1/one.lean",
       "name": "poincare_is_an_inverse_pair_and_reflects_to_the_frontier",
-      "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9"
+      "statement": "(∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0 ∧ reflect 1 = 9"
     },
     {
-      "statementUuid": "1717d2a1-6ed4-8bd8-937e-ddba05f91a91",
+      "statementUuid": "b200c31b-d6f7-8c19-881a-504dce2fdce1",
       "file": "src/1/poincare.lean",
       "name": "chi_and_genus_are_inverse",
-      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g"
+      "statement": "∀ g : Int, genus (chi g) = g"
+    },
+    {
+      "statementUuid": "391c63ab-fc53-828b-8123-752e7cce25ae",
+      "file": "src/1/poincare.lean",
+      "name": "chi_after_genus_is_identity_on_the_even",
+      "statement": "∀ c : Int, c % 2 = 0 → chi (genus c) = c"
     },
     {
       "statementUuid": "21fa0a30-10d4-8e82-8da4-8a7bcffe4f9b",
@@ -184,46 +190,52 @@
       "statement": "chi 1 = 0"
     },
     {
-      "statementUuid": "1b025c6f-9591-8b60-abc5-b8e0b322480e",
+      "statementUuid": "716402af-fde3-8204-a8f5-86c094558fd9",
       "file": "src/1/poincare.lean",
       "name": "double_torus_has_chi_minus_two_and_rank_four",
-      "statement": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4"
+      "statement": "chi 2 = -2 ∧ 2 - chi 2 = 4"
     },
     {
-      "statementUuid": "0ff924b2-06cd-84b6-9aa8-6846e6378050",
+      "statementUuid": "c9bd82f0-0026-8d52-99fa-ea12aba61ce9",
       "file": "src/1/poincare.lean",
       "name": "homology_rank_is_twice_the_genus",
-      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g"
+      "statement": "∀ g : Int, 2 - chi g = 2 * g"
     },
     {
-      "statementUuid": "9a04b317-96c4-8c86-a1c0-adcec2aa1676",
+      "statementUuid": "53c8296f-1a2d-8758-8188-c13b08c0e5ae",
       "file": "src/2/riemann.lean",
       "name": "sigma_is_an_involution",
-      "statement": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n"
+      "statement": "∀ z : Int × Int, σ (σ z) = z"
     },
     {
-      "statementUuid": "458cdb64-f58b-876d-9852-9eb71ae26e12",
+      "statementUuid": "271ba1d6-4e56-893b-b88e-215d55a4578c",
       "file": "src/2/riemann.lean",
       "name": "critical_line_is_the_fixed_point",
-      "statement": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)"
+      "statement": "∀ z : Int × Int, τ z = z ↔ z.1 = 1"
     },
     {
-      "statementUuid": "449f66c0-7393-8a71-ab8b-6587ae5155f5",
+      "statementUuid": "caf56f51-75f6-8fba-9af6-e7a5ba5074e9",
       "file": "src/2/riemann.lean",
       "name": "sigma_pairs_the_plane",
-      "statement": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2"
+      "statement": "σ (0, 0) = (2, 0) ∧ σ (-2, 0) = (4, 0) ∧ σ (1, 2) = (1, -2)"
     },
     {
-      "statementUuid": "292823aa-9648-8a74-a6e2-ce8afaf66e25",
+      "statementUuid": "f97c53aa-f43d-86f0-8da7-3cc5a67b81ca",
       "file": "src/2/riemann.lean",
-      "name": "the_fixed_line_is_one_half",
-      "statement": "∀ n : Int, σ n = n ↔ n = 1"
+      "name": "sigma_fixes_only_the_point_one_half",
+      "statement": "∀ z : Int × Int, σ z = z ↔ z = (1, 0)"
     },
     {
-      "statementUuid": "1c0537f0-a564-8ab6-ba81-aba3e6608b9e",
+      "statementUuid": "fb0677be-4f87-8b0c-b28d-6f6244df7c4d",
+      "file": "src/2/riemann.lean",
+      "name": "tau_is_sigma_then_conjugation",
+      "statement": "∀ z : Int × Int, τ z = conj (σ z)"
+    },
+    {
+      "statementUuid": "acb8780f-2aba-85e9-919a-30688ae1aabd",
       "file": "src/2/riemann.lean",
       "name": "involution_fixes_the_critical_line",
-      "statement": "(∀ n : Int, σ (σ n) = n) ∧ σ 1 = 1"
+      "statement": "(∀ z : Int × Int, τ (τ z) = z) ∧ ∀ b : Int, τ (1, b) = (1, b)"
     },
     {
       "statementUuid": "209376e8-a80c-8693-8251-a0eaa0fd4726",
@@ -384,7 +396,7 @@
     {
       "statementUuid": "70caf7ab-06be-8b49-aea4-f533149f6cba",
       "file": "src/2/two.lean",
-      "name": "riemann_reflection_fixes_exactly_the_critical_line",
+      "name": "riemann_reflection_fixes_exactly_one_half",
       "statement": "∀ n : Int, riemannReflect n = n ↔ n = 1"
     },
     {
@@ -688,46 +700,70 @@
       "statement": "stepsTo 4 6 = 5 ∧ ∀ k : Fin 10, walk 6 k.val = walk 4 (k.val + 5)"
     },
     {
-      "statementUuid": "e7f106c8-4d3a-87a0-bcf4-7e7d340c5077",
+      "statementUuid": "0edafda0-bcf3-8273-8ce3-d3d8af06e054",
+      "file": "src/4/four.lean",
+      "name": "compl_compl",
+      "statement": "∀ L : Lang, compl (compl L) = L"
+    },
+    {
+      "statementUuid": "00113b04-e398-8a40-a427-6c1fc6a2f81f",
       "file": "src/4/four.lean",
       "name": "complement_is_an_involution",
-      "statement": "∀ c : Class, complement (complement c) = c"
+      "statement": "∀ C : Class, complement (complement C) = C"
     },
     {
-      "statementUuid": "99dba1ed-ead3-8d48-94a2-58ce39859d0f",
+      "statementUuid": "8b3cc707-6ed7-8906-80f6-6dd19321e599",
       "file": "src/4/four.lean",
-      "name": "complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate",
-      "statement": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6"
+      "name": "complement_fixes_the_closed_classes_and_reflects_to_an_axis_gate",
+      "statement": "(∀ C : Class, (∀ L, C L → C (compl L)) → complement C = C) ∧ reflect 4 = 6"
     },
     {
-      "statementUuid": "ce03f161-7058-8a3f-90b8-932832460c34",
+      "statementUuid": "0edafda0-bcf3-8273-8ce3-d3d8af06e054",
       "file": "src/4/p-vs-np.lean",
-      "name": "fixed_points_are_p_and_pspace",
-      "statement": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]"
+      "name": "compl_compl",
+      "statement": "∀ L : Lang, compl (compl L) = L"
     },
     {
-      "statementUuid": "fbc53f30-218c-874a-9b33-d143148c80a7",
+      "statementUuid": "457ebbde-6360-875c-8bcb-cfe6ce2359b8",
+      "file": "src/4/p-vs-np.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ C : Class, σ (σ C) = C"
+    },
+    {
+      "statementUuid": "816ff652-4108-8f59-95d0-2bc8a5aa9e85",
+      "file": "src/4/p-vs-np.lean",
+      "name": "fixed_points_are_the_closed_classes",
+      "statement": "∀ C : Class, σ C = C ↔ ∀ L, C L → C (compl L)"
+    },
+    {
+      "statementUuid": "fae3d0a8-089a-81dc-adea-f787a9155170",
       "file": "src/4/p-vs-np.lean",
       "name": "np_and_conp_are_swapped",
-      "statement": "σ NP = coNP ∧ σ coNP = NP"
+      "statement": "∀ NP : Class, σ NP = (fun L => NP (compl L)) ∧ σ (σ NP) = NP"
     },
     {
-      "statementUuid": "2339aa02-06ed-8aa1-862d-dc3ade18ccd8",
+      "statementUuid": "ad3e6317-d715-8c58-86e1-c79ea4057adc",
       "file": "src/4/p-vs-np.lean",
-      "name": "if_np_is_fixed_then_np_equals_conp",
-      "statement": "σ NP = NP → NP = coNP"
+      "name": "if_p_equals_np_then_np_is_fixed",
+      "statement": "∀ P NP : Class, σ P = P → P = NP → σ NP = NP"
     },
     {
-      "statementUuid": "11515ce7-7e26-8bbb-8714-d917634ef57f",
+      "statementUuid": "5d0011f9-8f6e-8f66-836e-8f3fa6f4b0ed",
       "file": "src/4/p-vs-np.lean",
-      "name": "p_is_closed_under_complement",
-      "statement": "σ P = P"
+      "name": "closed_classes_are_fixed",
+      "statement": "∀ C : Class, (∀ L, C L → C (compl L)) → σ C = C"
     },
     {
-      "statementUuid": "07b6d2c8-c011-84ef-98f1-e2a09f45d568",
+      "statementUuid": "ebcb97ff-3d26-83c4-8e17-f0ff87c02833",
+      "file": "src/5/bsd.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ s : Int, σ (σ s) = s"
+    },
+    {
+      "statementUuid": "04675b71-0371-8229-9402-28abfffede83",
       "file": "src/5/bsd.lean",
       "name": "central_point_is_the_fixed_point",
-      "statement": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)"
+      "statement": "∀ s : Int, σ s = s ↔ s = 1"
     },
     {
       "statementUuid": "6b014baa-9965-8b9c-9717-cf3a6d16195d",
@@ -736,16 +772,22 @@
       "statement": "∀ (w : Int) (Λ : Int → Int),\n    (∀ s, Λ (σ s) = w * Λ s) → ∀ s, Λ s ≠ 0 → w * w = 1"
     },
     {
-      "statementUuid": "799e7a3e-e9a3-8e41-ae23-58f022c73050",
+      "statementUuid": "2aae3551-a256-8c76-82d7-793b5b19f7a0",
       "file": "src/5/bsd.lean",
-      "name": "root_number_one_iff_rank_even",
-      "statement": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)"
+      "name": "root_number_minus_one_forces_a_central_zero",
+      "statement": "∀ (w : Int) (Λ : Int → Int),\n    (∀ s, Λ (σ s) = w * Λ s) → w = -1 → Λ 1 = 0"
     },
     {
-      "statementUuid": "7c440efb-ebd7-888b-8764-3d09eb9d18da",
+      "statementUuid": "ce6879d9-47d6-8dc5-929c-2cbbdea23353",
+      "file": "src/5/bsd.lean",
+      "name": "root_number_one_iff_rank_even",
+      "statement": "∀ (w : Int), (w = 1 ∨ w = -1) → ∀ r : Nat,\n    (w = sign r ↔ (w = 1 ↔ r % 2 = 0))"
+    },
+    {
+      "statementUuid": "7a5e3747-74c6-831f-965b-f9e1d3f5cada",
       "file": "src/5/bsd.lean",
       "name": "parity_is_an_involution",
-      "statement": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧\n    (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)"
+      "statement": "∀ r : Nat, sign (r + 1) = -(sign r) ∧ sign (r + 2) = sign r"
     },
     {
       "statementUuid": "5f26e720-49a6-80c7-ba50-a601d866687a",
@@ -922,28 +964,40 @@
       "statement": "∀ s : Int, bsdReflect s = s ↔ s = 1"
     },
     {
-      "statementUuid": "debf8f5a-e4e5-889f-b1c0-30c5e5f9fdb6",
+      "statementUuid": "11798f58-362a-88ba-aadc-24f28d4079cb",
+      "file": "src/5/hodge.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ t : Nat × Nat, σ (σ t) = t"
+    },
+    {
+      "statementUuid": "f78b6127-41db-85bb-962f-3d131fcbe707",
       "file": "src/5/hodge.lean",
       "name": "sigma_preserves_degree",
-      "statement": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2"
+      "statement": "∀ t : Nat × Nat, (σ t).1 + (σ t).2 = t.1 + t.2"
     },
     {
-      "statementUuid": "e41db480-87c7-84fe-84ae-990f00100b6e",
+      "statementUuid": "933a32a9-d1cd-8aae-bf1f-2b5dfe14274a",
       "file": "src/5/hodge.lean",
       "name": "fixed_type_is_p_equals_q",
-      "statement": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]"
+      "statement": "∀ p q : Nat, σ (p, q) = (p, q) ↔ p = q"
     },
     {
-      "statementUuid": "24780eb2-1fb2-8250-88f9-1a8f3de36bd1",
+      "statementUuid": "504e31c3-889c-8194-bbd4-f66d318acb85",
       "file": "src/5/hodge.lean",
       "name": "diagonal_is_fixed_at_every_k",
-      "statement": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧\n    (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))"
+      "statement": "(∀ k : Nat, σ (k, k) = (k, k)) ∧ (∀ p q : Nat, p ≠ q → σ (p, q) ≠ (p, q))"
     },
     {
-      "statementUuid": "d6d361e8-d180-8c3a-a29b-89d4d0135834",
+      "statementUuid": "ac6843c4-b65a-8dac-bbbf-b693c382978f",
+      "file": "src/5/hodge.lean",
+      "name": "odd_degree_has_no_fixed_type",
+      "statement": "∀ p q : Nat, (p + q) % 2 = 1 → σ (p, q) ≠ (p, q)"
+    },
+    {
+      "statementUuid": "a15cb9cf-58fb-8f46-9e97-04f8ef253fb9",
       "file": "src/5/hodge.lean",
       "name": "involution_fixes_the_diagonal",
-      "statement": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)"
+      "statement": "(∀ t : Nat × Nat, σ (σ t) = t) ∧ ∀ k : Nat, σ (k, k) = (k, k)"
     },
     {
       "statementUuid": "7e472d56-667b-8e9c-82b6-b499374324e4",
@@ -1096,10 +1150,10 @@
       "statement": "stepsTo 6 4 = 5 ∧ ∀ k : Fin 10, walk 4 k.val = walk 6 (k.val + 5)"
     },
     {
-      "statementUuid": "db94b4db-e59e-8bb9-900f-469c8c3626b1",
+      "statementUuid": "a5dee801-2803-8073-87b8-e3aa4bc9f12f",
       "file": "src/7/navier-stokes.lean",
       "name": "reversal_is_an_involution",
-      "statement": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler"
+      "statement": "∀ s : Terms, T (T s) = s"
     },
     {
       "statementUuid": "ed9b254b-49dc-8a6b-b8ed-47f2350fa258",
@@ -1114,10 +1168,10 @@
       "statement": "T navierStokes ≠ navierStokes ∧\n    (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧\n    (T navierStokes).convective = navierStokes.convective ∧\n    (T navierStokes).pressure = navierStokes.pressure ∧\n    (T navierStokes).viscous ≠ navierStokes.viscous"
     },
     {
-      "statementUuid": "79204fc1-b139-80ca-b43f-b0455a4d44d9",
+      "statementUuid": "2b0ede98-a261-839c-9253-b6d0a0f6626b",
       "file": "src/7/navier-stokes.lean",
       "name": "fixed_points_are_exactly_the_inviscid",
-      "statement": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩"
+      "statement": "∀ s : Terms, T s = s ↔ s.viscous = 0"
     },
     {
       "statementUuid": "b6c9b8f1-6fd4-8c53-9598-5a21aaabe811",
@@ -1462,10 +1516,16 @@
       "statement": "star ⟨1, 0, 0, 0, 0, 1⟩ = ⟨1, 0, 0, 0, 0, 1⟩ ∧ star ⟨0, 1, 0, 0, -1, 0⟩ = ⟨0, 1, 0, 0, -1, 0⟩ ∧\n    star ⟨0, 0, 1, 1, 0, 0⟩ = ⟨0, 0, 1, 1, 0, 0⟩ ∧\n    star ⟨1, 0, 0, 0, 0, -1⟩ = neg ⟨1, 0, 0, 0, 0, -1⟩ ∧ star ⟨0, 1, 0, 0, 1, 0⟩ = neg ⟨0, 1, 0, 0, 1, 0⟩ ∧\n    star ⟨0, 0, 1, -1, 0, 0⟩ = neg ⟨0, 0, 1, -1, 0, 0⟩ ∧\n    3 + 3 = choose 4 2"
     },
     {
-      "statementUuid": "e7c9a664-4ed2-8617-aebd-36d2a910de03",
+      "statementUuid": "783ffcbb-424d-87c3-a113-07c0f933785f",
       "file": "src/8/yang-mills.lean",
       "name": "star_is_an_endomorphism_only_in_the_middle",
-      "statement": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)"
+      "statement": "(∀ k : Nat, k ≤ 4 → (4 - k = k ↔ k = 2)) ∧ (∀ n k : Nat, k ≤ n → (n - k = k ↔ n = 2 * k))"
+    },
+    {
+      "statementUuid": "b91f1061-e50f-81f2-b014-14e9771fd66c",
+      "file": "src/8/yang-mills.lean",
+      "name": "selfdual_and_antiselfdual_meet_only_in_zero",
+      "statement": "∀ v : Form2, star v = v → star v = neg v → v = ⟨0, 0, 0, 0, 0, 0⟩"
     },
     {
       "statementUuid": "e1865376-113f-84ad-9c34-9773f1dacd79",
@@ -2146,6 +2206,12 @@
       "statement": "64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧\n    1073741824 / 16777216 = 64"
     },
     {
+      "statementUuid": "0edafda0-bcf3-8273-8ce3-d3d8af06e054",
+      "file": "src/pair/lean/proofs/cross.lean",
+      "name": "compl_compl",
+      "statement": "∀ L : Lang, compl (compl L) = L"
+    },
+    {
       "statementUuid": "908772d2-8e79-807e-ae1f-4f0e72928e1f",
       "file": "src/pair/lean/proofs/cross.lean",
       "name": "riemann_is_an_involution",
@@ -2190,7 +2256,7 @@
     {
       "statementUuid": "bddd021c-bd16-889e-9549-c35266a3b816",
       "file": "src/pair/lean/proofs/cross.lean",
-      "name": "riemann_fixes_exactly_the_critical_line",
+      "name": "riemann_fixes_exactly_one_half",
       "statement": "∀ n : Int, riemann n = n ↔ n = 1"
     },
     {
@@ -2212,10 +2278,10 @@
       "statement": "∀ v : Int, viscous v = v ↔ v = 0"
     },
     {
-      "statementUuid": "60945828-4646-8438-88fb-2b01e16f8ffb",
+      "statementUuid": "bda56ce8-3c4c-8e98-8846-b5b0e5fea7ff",
       "file": "src/pair/lean/proofs/cross.lean",
-      "name": "complement_fixes_exactly_p_and_pspace",
-      "statement": "[Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE]"
+      "name": "complement_fixes_exactly_the_closed_classes",
+      "statement": "∀ C : Class, complement C = C ↔ ∀ L, C L → C (compl L)"
     },
     {
       "statementUuid": "b3cf1853-a00c-8773-bd29-f0eb839f85cc",
@@ -2236,16 +2302,16 @@
       "statement": "(∀ v, viscous v = -v) ∧ (∀ v : Form2, star (asd v) = neg (asd v))"
     },
     {
-      "statementUuid": "efded020-061c-8c52-bfb9-c01ec86b7f42",
+      "statementUuid": "ad4c2ae0-8f10-8189-8cd4-3caaa8bbd572",
       "file": "src/pair/lean/proofs/cross.lean",
       "name": "complement_is_its_own_class",
-      "statement": "complement .NP = .coNP ∧ complement .coNP = .NP ∧ complement .P = .P ∧ complement .PSPACE = .PSPACE"
+      "statement": "complement allLangs = allLangs ∧ complement yesOnly = noOnly ∧ complement noOnly = yesOnly"
     },
     {
-      "statementUuid": "1170b06b-d9a8-8227-b653-9923add801d5",
+      "statementUuid": "f26a0fb2-639a-8b0e-8f22-b47a7f4079f4",
       "file": "src/pair/lean/proofs/cross.lean",
       "name": "poincare_is_an_inverse_pair_not_an_involution",
-      "statement": "(∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g) ∧ chi (chi 0) ≠ 0"
+      "statement": "(∀ g : Int, genus (chi g) = g) ∧ chi (chi 0) ≠ 0"
     },
     {
       "statementUuid": "c926baa2-9936-8467-a369-bf9905c359ba",

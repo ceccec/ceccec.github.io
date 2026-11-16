@@ -1,9 +1,15 @@
 /-
-  HODGE — CONJUGATION IS AN INVOLUTION, AND ITS FIXED SET IS WHERE HODGE CLASSES LIVE.
+  HODGE — CONJUGATION IS AN INVOLUTION ON HODGE TYPES, AND (k,k) IS THE ONE TYPE IT FIXES IN DEGREE 2k.
 
-  Complex conjugation acts on the Hodge decomposition H^n = ⊕ H^{p,q} by σ(p,q) = (q,p).
-  It is an involution, and on the middle degree n = 2k the only type it fixes is (k,k) —
-  exactly the type a Hodge class has. This file proves that.
+  On a compact Kähler manifold the Hodge decomposition H^n(X,ℂ) = ⊕ H^{p,q} satisfies H^{q,p} = conj H^{p,q} (Hodge
+  symmetry; Voisin, Hodge Theory and Complex Algebraic Geometry I, ch. 6; Griffiths–Harris ch. 0), so on TYPES conjugation
+  acts by σ(p,q) = (q,p). The decomposition itself comes from harmonic theory on X, not from this map. σ is an involution,
+  it fixes exactly the diagonal p = q, and in odd degree it fixes no type at all.
+
+  A Hodge class has type (k,k) — necessary, not sufficient: the Hodge classes are the RATIONAL classes of type (k,k),
+  H^{2k}(X,ℚ) ∩ H^{k,k}, and the Hodge conjecture (Deligne, the official Clay description) asks that on a smooth projective
+  variety every such class be a rational combination of classes of algebraic cycles. Nothing here involves a variety,
+  rational structure or a cycle; it proves the index facts about (p,q) ↦ (q,p) that the type condition rests on.
 -/
 
 namespace Formal.Hodge
@@ -11,26 +17,33 @@ namespace Formal.Hodge
 /-- σ(p,q) = (q,p) — conjugation on Hodge types. -/
 def σ (t : Nat × Nat) : Nat × Nat := (t.2, t.1)
 
-/-- The types of total degree n = 2k, for k = 2: (0,4) (1,3) (2,2) (3,1) (4,0). -/
-def middleTypes : List (Nat × Nat) := [(0,4), (1,3), (2,2), (3,1), (4,0)]
+/-- σ² = id on every type. -/
+theorem sigma_is_an_involution : ∀ t : Nat × Nat, σ (σ t) = t := fun _ => rfl
 
-theorem sigma_is_an_involution : ∀ t ∈ middleTypes, σ (σ t) = t := by decide
+/-- σ preserves the total degree p + q, so it acts within each H^n (the decomposition is harmonic theory's, not σ's). -/
+theorem sigma_preserves_degree : ∀ t : Nat × Nat, (σ t).1 + (σ t).2 = t.1 + t.2 := by
+  intro ⟨p, q⟩; show q + p = p + q; omega
 
-/-- σ preserves total degree — it acts WITHIN H^n, which is why it decomposes it. -/
-theorem sigma_preserves_degree : ∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2 := by decide
+/-- The fixed types are exactly the diagonal p = q. -/
+theorem fixed_type_is_p_equals_q : ∀ p q : Nat, σ (p, q) = (p, q) ↔ p = q := by
+  intro p q; simp only [σ, Prod.mk.injEq]
+  constructor
+  · intro h; exact h.2
+  · intro h; exact ⟨h.symm, h⟩
 
-/-- The unique fixed type in degree 2k is (k,k). Here k = 2. -/
-theorem fixed_type_is_p_equals_q :
-    (middleTypes.filter (fun t => σ t == t)) = [(2,2)] := by decide
-
-/-- And it is the same in every even degree: (k,k) is fixed, everything else is swapped.
-    Checked at k = 0, 1, 2, 3. -/
+/-- At every k the diagonal type (k,k) is fixed, and every off-diagonal type is swapped. -/
 theorem diagonal_is_fixed_at_every_k :
-    (∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧
-    (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p)) := by decide
+    (∀ k : Nat, σ (k, k) = (k, k)) ∧ (∀ p q : Nat, p ≠ q → σ (p, q) ≠ (p, q)) := by
+  refine ⟨fun _ => rfl, fun p q hpq h => hpq ((fixed_type_is_p_equals_q p q).mp h)⟩
 
-/-- The involution and its fixed diagonal, together. -/
-theorem involution_fixes_the_diagonal :
-    σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2) := by decide
+/-- In odd degree no type is fixed: p + q odd rules out p = q. -/
+theorem odd_degree_has_no_fixed_type : ∀ p q : Nat, (p + q) % 2 = 1 → σ (p, q) ≠ (p, q) := by
+  intro p q hodd h
+  have := (fixed_type_is_p_equals_q p q).mp h
+  subst this; omega
+
+/-- The involution and its fixed diagonal, together, at every type. -/
+theorem involution_fixes_the_diagonal : (∀ t : Nat × Nat, σ (σ t) = t) ∧ ∀ k : Nat, σ (k, k) = (k, k) :=
+  ⟨sigma_is_an_involution, fun _ => rfl⟩
 
 end Formal.Hodge

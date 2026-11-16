@@ -158,8 +158,8 @@ theorem walking_from_the_mirror_is_walking_from_here_shifted :
 
 /-! ## Yang–Mills' own reflection, experienced here
 
-A 2-form on ℝ⁴ by its six coefficients; the Hodge star squares to the identity, and on every anti-self-dual form
-it is negation. -/
+A 2-form on ℝ⁴ by its six coefficients; the Hodge star squares to the identity, and on every form v − ★v (twice the
+anti-self-dual part of v; over ℚ every anti-self-dual form is one of these) it is negation. -/
 
 structure Form2 where
   e12 : Int

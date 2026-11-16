@@ -1711,6 +1711,22 @@ export function clayCasesOf(sourcePath: string, proposition: string): ClayCase[]
 }
 
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
+/**
+ * THEOREMS RENAMED BECAUSE THE OLD NAME STATED SOMETHING FALSE (owner, 2026-11-16: "apply all" — the Clay corrections the
+ * textbook cross-check found). Each old post URL leads to its successor (legacyRedirects, src/quantum/dist). Data, not
+ * logic: a rename is a decision about meaning, recorded once.
+ */
+export const LEAN_RENAMED: readonly { readonly file: string; readonly from: string; readonly to: string }[] = [
+  { file: 'riemann.lean', from: 'the_fixed_line_is_one_half', to: 'sigma_fixes_only_the_point_one_half' },
+  { file: 'two.lean', from: 'riemann_reflection_fixes_exactly_the_critical_line', to: 'riemann_reflection_fixes_exactly_one_half' },
+  { file: 'cross.lean', from: 'riemann_fixes_exactly_the_critical_line', to: 'riemann_fixes_exactly_one_half' },
+  { file: 'cross.lean', from: 'complement_fixes_exactly_p_and_pspace', to: 'complement_fixes_exactly_the_closed_classes' },
+  { file: 'p-vs-np.lean', from: 'fixed_points_are_p_and_pspace', to: 'fixed_points_are_the_closed_classes' },
+  { file: 'p-vs-np.lean', from: 'if_np_is_fixed_then_np_equals_conp', to: 'if_p_equals_np_then_np_is_fixed' },
+  { file: 'p-vs-np.lean', from: 'p_is_closed_under_complement', to: 'closed_classes_are_fixed' },
+  { file: 'four.lean', from: 'complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate', to: 'complement_fixes_the_closed_classes_and_reflects_to_an_axis_gate' },
+]
+
 export function leanPageSlug(file: string, name: string): string {
   return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
 }

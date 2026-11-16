@@ -158,23 +158,29 @@ theorem walking_from_the_mirror_is_walking_from_here_shifted :
 
 /-! ## P vs NP's own swap, experienced here
 
-Complementation on four classes: a swap with two fixed points (P, PSPACE) and one exchanged pair (NP, coNP). -/
+Complementation on classes of decidable languages: an involution that fixes exactly the classes closed under complement
+(P and PSPACE are, being deterministic; whether NP is, is NP =? coNP — open, and not decided by this model; p-vs-np.lean). -/
 
-inductive Class where
-  | P | NP | coNP | PSPACE
-  deriving DecidableEq, Repr
+abbrev Lang := List Bool → Bool
+def compl (L : Lang) : Lang := fun w => !L w
+def Class := Lang → Prop
+def complement (C : Class) : Class := fun L => C (compl L)
 
-def complement : Class → Class
-  | .P => .P
-  | .NP => .coNP
-  | .coNP => .NP
-  | .PSPACE => .PSPACE
+/-- Complementing a language twice returns it — canonical in p-vs-np.lean. -/
+theorem compl_compl : ∀ L : Lang, compl (compl L) = L := by
+  intro L; funext w; simp [compl]
 
-theorem complement_is_an_involution : ∀ c : Class, complement (complement c) = c := by
-  intro c; cases c <;> rfl
+theorem complement_is_an_involution : ∀ C : Class, complement (complement C) = C := by
+  intro C; funext L; show C (compl (compl L)) = C L; rw [compl_compl]
 
-/-- The swap fixes P and PSPACE, and σ carries the station to the axis gate 6, which holds no case. -/
-theorem complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate :
-    [Class.P, .NP, .coNP, .PSPACE].filter (fun c => complement c == c) = [.P, .PSPACE] ∧ reflect 4 = 6 := by decide
+/-- Every class closed under complement is fixed by the swap, and σ carries the station to the axis gate 6, which holds
+    no case. -/
+theorem complement_fixes_the_closed_classes_and_reflects_to_an_axis_gate :
+    (∀ C : Class, (∀ L, C L → C (compl L)) → complement C = C) ∧ reflect 4 = 6 := by
+  refine ⟨fun C h => ?_, by decide⟩
+  funext L; apply propext
+  constructor
+  · intro hL; have := h (compl L) hL; rw [compl_compl] at this; exact this
+  · intro hL; exact h L hL
 
 end DigitFour
