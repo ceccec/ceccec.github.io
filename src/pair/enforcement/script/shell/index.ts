@@ -128,6 +128,18 @@ function logDocsBuildDetail(detail: string, verbose: boolean): void {
 }
 
 /** Clean audit bound to current src merkle — shared gate for vitepress + trinity respawn. */
+/** True when dist/ was built from THIS merkle and awaits its trinity (docs:build marked it pendingTrinity), or merkle.key
+ *  already names it. Only then may the trinity seal merkle.key — the key docs:build reads as "dist is this tree, skip the build". */
+export function distBuiltFromMerkle(root: string, merkle: string): boolean {
+  if (readSealedMerkle(root) === merkle) return true
+  const auditPath = distAuditPath(root)
+  if (!existsSync(auditPath)) return false
+  try {
+    const audit = JSON.parse(readFileSync(auditPath, 'utf8')) as { pendingTrinity?: boolean; srcMerkle?: string }
+    return audit.pendingTrinity === true && audit.srcMerkle === merkle
+  } catch { return false }
+}
+
 export function auditBoundToSrcMerkle(root: string, merkle: string): boolean {
   const auditPath = distAuditPath(root)
   if (!existsSync(auditPath)) return false
@@ -153,9 +165,9 @@ export function canRespawnVitepressBuild(root: string, merkle: string, force = f
 }
 
 /** Trinity audit sealed clean on the same merkle — no re-audit grind. Requires audit.srcMerkle binding. */
+// THE TRINITY RESPAWNS ON ITS OWN RECEIPT (a clean audit bound to this merkle), not on merkle.key — that key means "dist built".
 export function canRespawnTrinity(root: string, merkle: string, force = false): boolean {
   if (force) return false
-  if (readSealedMerkle(root) !== merkle) return false
   return auditBoundToSrcMerkle(root, merkle)
 }
 

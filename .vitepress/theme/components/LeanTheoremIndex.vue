@@ -6,7 +6,7 @@
 import { computed, ref, onMounted } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
 import type { LeanPageRow } from '../../../src/pair/formal/proofs/index.ts'
-import { toGlagolitic } from '../../../src/quantum/heaven/library/index.ts'
+import { toGlagolitic, leanPostLink } from '../../../src/quantum/heaven/library/index.ts'
 import leanCorpus from '../../data/lean-corpus.json'
 
 type FeedRow = Pick<LeanPageRow, 'slug' | 'title' | 'file' | 'tags' | 'seals' | 'axioms'>
@@ -20,12 +20,15 @@ const route = useRoute()
 const locale = computed<'en' | 'bg' | 'gla'>(() => (/^\/bg(\/|$)/.test(route.path) ? 'bg' : /^\/gla(\/|$)/.test(route.path) ? 'gla' : 'en'))
 // Posts exist in English and in Glagolitic script; there are no Bulgarian posts (owner: the offline translator transliterates,
 // it does not translate), so the bg feed lists the English titles and opens the English posts — no transliterated text.
-const prefix = computed(() => (locale.value === 'gla' ? '/gla' : ''))
 const tr = (text: string) => (locale.value === 'gla' ? toGlagolitic(text) : text)
 
-// the tag read from the query once mounted — the static HTML carries the whole feed, so a crawler sees every post
-const tag = ref<string | null>(null)
-onMounted(() => { tag.value = new URLSearchParams(window.location.search).get('tag') })
+// THE TAG IS THE ROUTE'S QUERY (useRoute().query), read only after mount so the first client render matches the static HTML —
+// which carries the whole feed, so a crawler sees every post. A tag link is a real link: VitePress navigates, the address bar
+// and history follow, and back/forward re-filter. This read the query from the window once and prevented every click.
+const mounted = ref(false)
+onMounted(() => { mounted.value = true })
+const tag = computed(() => (mounted.value ? new URLSearchParams(route.query).get('tag') : null))
+const tagLink = (t: string | null) => (t ? `${route.path}?tag=${encodeURIComponent(t)}` : route.path)
 
 const cloud = computed(() => {
   const counts = new Map<string, number>()
@@ -56,15 +59,15 @@ const onKernelAlone = computed(() => ALL.value.filter((row) => row.axioms !== nu
     </p>
 
     <nav class="cloud" :aria-label="tr('Tags')">
-      <a class="tag" :class="{ 'tag--on': !tag }" :href="withBase(`${locale === 'en' ? '' : '/' + locale}/`)" @click.prevent="tag = null">{{ tr('all') }} · {{ ALL.length }}</a>
-      <a v-for="[t, n] in cloud" :key="t" class="tag" :class="{ 'tag--on': tag === t }" :href="withBase(`${prefix}/?tag=${encodeURIComponent(t)}`)" @click.prevent="tag = t">{{ t }} · {{ n }}</a>
+      <a class="tag" :class="{ 'tag--on': !tag }" :href="tagLink(null)">{{ tr('all') }} · {{ ALL.length }}</a>
+      <a v-for="[t, n] in cloud" :key="t" class="tag" :class="{ 'tag--on': tag === t }" :href="tagLink(t)">{{ t }} · {{ n }}</a>
     </nav>
 
     <div v-for="[file, rows] in groups" :key="file">
       <h2>{{ file }}</h2>
       <ul>
         <li v-for="row in rows" :key="row.slug">
-          <a :href="withBase(`${prefix}/lean/${row.slug}`)">{{ tr(row.title) }}</a>
+          <a :href="withBase(leanPostLink(row.slug, locale))">{{ tr(row.title) }}</a>
           <span v-if="row.seals.length" class="seals"> — {{ tr('decides') }} {{ row.seals.length }} {{ tr('registry row(s)') }}</span>
         </li>
       </ul>

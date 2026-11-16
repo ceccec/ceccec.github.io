@@ -8,7 +8,8 @@ import { UNFOLDED_CENSUS, sourceAtlasJson, theoremSourcesJson } from '../../gate
 import type { Plugin } from 'vite'
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs'
 import { join, relative, dirname, resolve, basename } from 'node:path'
-import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../../../quantum/heaven/mind/index.ts'
+import { LEAN_POST_EDITIONS } from '../../../../quantum/heaven/library/index.ts'
+import { VITEPRESS_API_FORBIDDEN, componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../../../quantum/heaven/mind/index.ts'
 import { displayDualDebtReceipt } from '../../../../earth/architecture/index.ts'
 import { monolithTargetVsCensusCapacity } from '../../../../water/stack/index.ts'
 import type { AuditRoot, Finding } from '../../gates/index.ts'
@@ -20,7 +21,7 @@ import { computedDistFiles, readmeMarkdown } from '../../../../quantum/dist/inde
 import { theoremPageRows } from '../../../../wind/routes/corpus/index.ts'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops/index.ts'
 import { ceil, floor, log, log2, max, merkleFold, min, round, toUuid } from '../../../../0/index.ts'
-import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell/index.ts'
+import { buildForceFlag, canRespawnTrinity, distBuiltFromMerkle, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell/index.ts'
 import { invisibleGapsCaughtByGates } from '../../gates/index.ts'
 
 export type { Finding, AuditRoot } from '../../gates/index.ts'
@@ -262,15 +263,28 @@ for (const [route, components] of Object.entries(placedBy)) {
     }
   }
 }
-// Tighten the gates: STRICT VitePress (onlyVitePressApi). The whole render layer — every .vue in src/render/ui
-// (recursive) and src/render/ui/index.ts — must route, navigate and read page data only through the VitePress API.
+// Tighten the gates: STRICT VitePress (onlyVitePressApi). The whole render layer — every .vue and .ts under .vitepress/theme
+// and .vitepress/lib — must route, navigate and read page data only through the VitePress API.
 // Refuse the entire non-VitePress surface: a parallel router, its template components, raw window.location
 // navigation, and the History API. Internal navigation stays on VitePress (useData/useRoute/useRouter, <a href>).
-const renderForbidden = /from ['"]vue-router|create(Router|Web(Hash)?History|MemoryHistory)|<router-(link|view)|<Router(Link|View)|location\.(href\s*=(?!=)|assign\(|replace\()|window\.location\s*=(?!=)|history\.(push|replace)State\(/
-const renderLayer = [...vueFilesUnder(join(root, 'src', 'render', 'ui')), join(root, 'src', 'render', 'ui', 'index.ts')]
-for (const file of renderLayer) {
-  const src = read(file)
-  if (renderForbidden.test(src)) gaps.push({ harmonic: 'render', kind: 'non-vitepress-api', detail: `${relative(root, file)} uses a non-VitePress router or raw navigation — why this fails: the render layer speaks only the VitePress API (useData / useRoute / useRouter and <a href> links VitePress intercepts); remove the parallel router / <router-link> / location-or-history navigation and route through VitePress` })
+// THE RENDER LAYER IS .vitepress/theme AND .vitepress/lib. This scanned src/render/ui — two CSS files since the theme moved —
+// so it read no component and passed. Each forbidden pattern (VITEPRESS_API_FORBIDDEN, src/fire/li) is checked per file, and a
+// layer with no files is itself a gap: a scan of nothing is not a pass.
+const renderFiles = (dir: string): string[] => { if (!existsSync(dir)) return []; const out: string[] = []; for (const e of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, e.name); if (e.isDirectory()) out.push(...renderFiles(p)); else if (/\.(vue|ts)$/.test(e.name)) out.push(p) } return out }
+const renderLayerReal = [...renderFiles(join(root, '.vitepress', 'theme')), ...renderFiles(join(root, '.vitepress', 'lib'))]
+if (renderLayerReal.length === 0) gaps.push({ harmonic: 'render', kind: 'non-vitepress-api', detail: 'no render files found under .vitepress/theme or .vitepress/lib — the VitePress-API check read nothing' })
+for (const file of renderLayerReal) {
+  const src = readFileSync(file, 'utf8')
+  for (const rule of VITEPRESS_API_FORBIDDEN) {
+    const hit = new RegExp(rule.pattern).exec(src)
+    if (hit) gaps.push({ harmonic: 'render', kind: 'non-vitepress-api', detail: `${relative(root, file)}:${src.slice(0, hit.index).split('\n').length} — "${hit[0].split('\n')[0]}" — ${rule.why}` })
+  }
+}
+// THE LEAN POST EDITIONS ARE THE PAGE TREE: an edition listed in LEAN_POST_EDITIONS must have its lean/ folder, and a lean/ folder
+// must be listed — otherwise post links point at pages that are not built, or a built edition is never linked.
+for (const ed of ['bg', 'gla']) {
+  const built = existsSync(join(root, '.vitepress', 'pages', ed, 'lean'))
+  if (built !== (LEAN_POST_EDITIONS as readonly string[]).includes(ed)) gaps.push({ harmonic: 'render', kind: 'lean-post-editions', detail: `edition ${ed}: lean/ folder ${built ? 'built' : 'absent'} but LEAN_POST_EDITIONS ${built ? 'omits' : 'lists'} it` })
 }
 // THE CENSUS IS ENCRYPTION PER BYTE, NOT PER FILE. The old fibonacci-gap counted files and demanded more of
 // them — but adding files adds bytes WITHOUT adding encryption, which LOWERS the density. A file count is the
@@ -326,7 +340,7 @@ if (hardcodedNav.length > 0) {
 }
 // THE LAW IS 'THE CONFIG READS A NAVIGATION COMPUTED IN src', NOT A FUNCTION'S NAME: the Lean blog computes its nav from the
 // monographs (leanBlogNavigation, src/wind/site).
-const readsComputedNav = /leanBlogNavigation\('(en|bg|gla)'\)/.test(configText)
+const readsComputedNav = /leanBlogNavigation\('(en|bg|gla)'(,\s*[A-Za-z_][\w]*)?\)/.test(configText)
 if (!readsComputedNav) {
   gaps.push({ harmonic: 'config', kind: 'nav-not-computed', detail: `.vitepress/config.mts does not consume the computed navigation (leanBlogNavigation('en'|'gla') → nav, sidebar, footer) — why this fails: the monographs graph is the search index and the navigation is computed from src; the config must read it, not hardcode it` })
 }
@@ -341,9 +355,20 @@ for (const sdk of tokenPolicy.llmSdks) {
     gaps.push({ harmonic: 'token', kind: 'llm-sdk', detail: `package.json depends on the LLM SDK "${sdk}" — why this fails: ${tokenPolicy.why.sdk}` })
   }
 }
-const chatSource = read(join(root, tokenPolicy.tokenPath))
-if (chatSource && !chatSource.includes(tokenPolicy.byokGate)) {
-  gaps.push({ harmonic: 'token', kind: 'byok-gate', detail: `${tokenPolicy.tokenPath} no longer gates its token call behind a user key (${tokenPolicy.byokGate}…) — why this fails: ${tokenPolicy.why.gate}` })
+// THE TOKEN PATH IS DECLARED OR ABSENT — NEVER READ AS EMPTY. This read the declared chat file and checked its key gate only
+// `if (chatSource && …)`: the file (useQuantumChat.ts) had left the tree, read as '', and the check passed on a file that does
+// not exist. Now: with no declared path, no source in src/ or .vitepress/ may make the token call; with one, the file must exist
+// and gate the call behind a user key.
+const tokenCall = tokenPolicy.byokGate.split('(')[0]! + '('
+const vueSources = (() => { const out: string[] = []; const walk = (d: string) => { if (!existsSync(d)) return; for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) { if (e !== 'cache' && e !== 'dist' && e !== 'node_modules') walk(p) } else if (/\.(vue|ts|mts)$/.test(e)) out.push(p) } }; walk(join(root, '.vitepress')); return out })()
+if (tokenPolicy.tokenPath === null) {
+  const policyFile = join(root, 'src', 'fire', 'li', 'index.ts')
+  const callers = [...enforcementFacts.indexTsFiles.map((f) => (f.startsWith(root) ? f : join(root, f))), ...vueSources].filter((f) => f !== policyFile && read(f).includes(tokenCall))
+  for (const f of callers) gaps.push({ harmonic: 'token', kind: 'byok-gate', detail: `${relative(root, f)} makes the token call (${tokenCall}…) but zeroTokenPolicy declares no token path — why this fails: ${tokenPolicy.why.gate}` })
+} else {
+  const chatSource = read(join(root, tokenPolicy.tokenPath))
+  if (!chatSource) gaps.push({ harmonic: 'token', kind: 'byok-gate', detail: `the declared token path ${tokenPolicy.tokenPath} is not in the tree — a key gate on a missing file is not a key gate` })
+  else if (!chatSource.includes(tokenPolicy.byokGate)) gaps.push({ harmonic: 'token', kind: 'byok-gate', detail: `${tokenPolicy.tokenPath} no longer gates its token call behind a user key (${tokenPolicy.byokGate}…) — why this fails: ${tokenPolicy.why.gate}` })
 }
 
 // No files outside src/ except generated and those that need to stay in root. The logic lives in
@@ -1249,6 +1274,8 @@ function sealAudit(root: string, audit: ReturnType<typeof intelligentAudit>, src
 export function runEnforcementTrinity(root: string): number {
   logDocsBuildPhase('enforcement-trinity', 'collectEnforcementFacts')
   const facts = collectEnforcementFacts(root)
+  // READ BEFORE sealAudit OVERWRITES audit.json: was dist/ built from this tree?
+  const builtHere = distBuiltFromMerkle(root, facts.merkle)
   logDocsBuildPhase('enforcement-trinity', 'auditStrictGates')
   const gate = auditStrictGates(facts)
   logDocsBuildPhase('enforcement-trinity', 'auditComputationalGates')
@@ -1283,8 +1310,11 @@ export function runEnforcementTrinity(root: string): number {
     for (const finding of audit.warns) console.warn(`    [${finding.wave}/${finding.harmonic}/${finding.kind}] ${finding.detail}`)
   }
   sealAudit(root, audit, facts.merkle)
-  writeSealedMerkle(root, facts.merkle)
-  console.log(`Enforcement trinity complete: gate · cross · fold · weave — 0 findings, audit sealed ${audit.receipt} · srcMerkle bound.`)
+  // MERKLE.KEY ONLY FOR A BUILT TREE. This wrote the key on every clean audit, and docs:build reads that key as "dist is this
+  // tree" and skips VitePress: a standalone trinity after an edit left the next build serving the old dist (measured
+  // 2026-11-16 — dist from 20:21, source edited at 21:15, docs:build skipped in 33 ms).
+  if (builtHere) writeSealedMerkle(root, facts.merkle)
+  console.log(`Enforcement trinity complete: gate · cross · fold · weave — 0 findings, audit sealed ${audit.receipt} · srcMerkle bound${builtHere ? ' · merkle.key sealed (dist built from this tree)' : ' · merkle.key left alone (dist not built from this tree — docs:build will build)'}.`)
   const slowBuild = slowBuildIsQuantumGapGate(root)
   console.log(
     `${slowBuild.passed ? '✓' : '✗'} gate/slow-build — HARD=${slowBuild.hardOpenCount} WARN=${slowBuild.warnOpenCount} · ${slowBuild.statement}`,

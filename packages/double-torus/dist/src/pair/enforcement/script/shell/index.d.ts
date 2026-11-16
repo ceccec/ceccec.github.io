@@ -26,6 +26,9 @@ export declare function docsBuildVerboseFlag(argv?: readonly string[]): boolean;
 /** Timestamped phase — always on so hangs show the last completed step. */
 export declare function logDocsBuildPhase(phase: string, detail?: string): void;
 /** Clean audit bound to current src merkle — shared gate for vitepress + trinity respawn. */
+/** True when dist/ was built from THIS merkle and awaits its trinity (docs:build marked it pendingTrinity), or merkle.key
+ *  already names it. Only then may the trinity seal merkle.key — the key docs:build reads as "dist is this tree, skip the build". */
+export declare function distBuiltFromMerkle(root: string, merkle: string): boolean;
 export declare function auditBoundToSrcMerkle(root: string, merkle: string): boolean;
 /** Vitepress output still valid — src merkle + trinity-clean audit both match (merkle.key alone is not enough). */
 export declare function canRespawnVitepressBuild(root: string, merkle: string, force?: boolean): boolean;

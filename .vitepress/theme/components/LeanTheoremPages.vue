@@ -6,7 +6,7 @@
 import { computed } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
 import { leanLedgerEntry, type LeanPageRow } from '../../../src/pair/formal/proofs/index.ts'
-import { toGlagolitic } from '../../../src/quantum/heaven/library/index.ts'
+import { toGlagolitic, leanPostLink, leanFeedLink } from '../../../src/quantum/heaven/library/index.ts'
 // THE POST'S OWN ROW ARRIVES IN ITS ROUTE PARAMS (leanPagePaths), with its siblings' titles — computed at build from the
 // .lean sources. Importing lean-corpus.json here shipped all 589 rows to every post (311 KB); a post needs one.
 
@@ -18,7 +18,6 @@ const route = useRoute()
 // THE LOCALE IS READ FROM THE URL: /gla/lean/<slug> is the same post in Glagolitic script (toGlagolitic); there are no
 // Bulgarian posts. The proposition and the tactic stay exactly as the kernel checked them.
 const locale = computed<'en' | 'bg' | 'gla'>(() => (/^\/bg\//.test(route.path) ? 'bg' : /^\/gla\//.test(route.path) ? 'gla' : 'en'))
-const prefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
 const tr = (text: string) => (locale.value === 'gla' ? toGlagolitic(text) : text)
 const { params } = useData()
 const rows = computed<LeanPageRow[]>(() => (params.value?.row ? [params.value.row as LeanPageRow] : []))
@@ -28,7 +27,7 @@ const siblings = (_row: LeanPageRow) => (params.value?.siblings ?? []) as { slug
 <template>
   <article v-for="row in rows" :key="row.slug" class="lean-paper">
     <h1>{{ tr(row.title) }}</h1>
-    <p class="tags"><a v-for="tag in row.tags" :key="tag" class="tag" :href="withBase(`${prefix}/?tag=${encodeURIComponent(tag)}`)">{{ tag }}</a></p>
+    <p class="tags"><a v-for="tag in row.tags" :key="tag" class="tag" :href="withBase(`${leanFeedLink(locale)}?tag=${encodeURIComponent(tag)}`)">{{ tag }}</a></p>
 
     <!-- THE CLAIM FIRST. A reader must know what this does and does not assert before the mathematics,
          not after it — the same order the Zenodo abstract uses. -->
@@ -79,11 +78,11 @@ const siblings = (_row: LeanPageRow) => (params.value?.siblings ?? []) as { slug
     <h2 v-if="siblings(row).length">Proved in the same file</h2>
     <ul v-if="siblings(row).length" class="siblings">
       <li v-for="s in siblings(row)" :key="s.slug">
-        <a :href="withBase(`${prefix}/lean/${s.slug}`)">{{ tr(s.title) }}</a>
+        <a :href="withBase(leanPostLink(s.slug, locale))">{{ tr(s.title) }}</a>
       </li>
     </ul>
 
-    <p class="all"><a :href="withBase(`${prefix}/`)">{{ tr('All machine-checked theorems') }}</a></p>
+    <p class="all"><a :href="withBase(leanFeedLink(locale))">{{ tr('All machine-checked theorems') }}</a></p>
   </article>
 </template>
 

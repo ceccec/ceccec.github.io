@@ -4,6 +4,14 @@ export { merkabaFoldUrl, entry, type Uuid, type Entry };
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export declare const GLAGOLITIC_MAP: Record<string, string>;
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+/** THE EDITIONS THAT CARRY LEAN POSTS — the English root and the Glagolitic script edition (.vitepress/pages/gla/lean). There
+ *  are no Bulgarian posts: the offline translator transliterates, it does not translate, so a bg reader opens the English post.
+ *  The weave gate holds this list to the page tree. One rule for every post link, instead of a prefix built by hand per page. */
+export declare const LEAN_POST_EDITIONS: readonly LocaleName[];
+/** The route of a Lean post in a reader's edition — pass it through withBase. */
+export declare function leanPostLink(slug: string, locale: LocaleName): string;
+/** The route of the feed in a reader's edition (every edition has one) — pass it through withBase. */
+export declare function leanFeedLink(locale: LocaleName): string;
 export declare function toGlagolitic(text: string): string;
 export declare function fromGlagolitic(text: string): string;
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */

@@ -36,6 +36,19 @@ export const GLAGOLITIC_MAP: Record<string, string> = {
   y: 'Ⰹ', k: 'Ⰽ', q: 'Ⰽ', l: 'Ⰾ', m: 'Ⰿ', n: 'Ⱀ', o: 'Ⱁ', p: 'Ⱂ', r: 'Ⱃ', s: 'Ⱄ',
   t: 'Ⱅ', u: 'Ⱆ', f: 'Ⱇ', h: 'Ⱈ', x: 'Ⱈ', c: 'Ⱌ' }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
+/** THE EDITIONS THAT CARRY LEAN POSTS — the English root and the Glagolitic script edition (.vitepress/pages/gla/lean). There
+ *  are no Bulgarian posts: the offline translator transliterates, it does not translate, so a bg reader opens the English post.
+ *  The weave gate holds this list to the page tree. One rule for every post link, instead of a prefix built by hand per page. */
+export const LEAN_POST_EDITIONS: readonly LocaleName[] = ['en', 'gla']
+/** The route of a Lean post in a reader's edition — pass it through withBase. */
+export function leanPostLink(slug: string, locale: LocaleName): string {
+  return locale !== 'en' && LEAN_POST_EDITIONS.includes(locale) ? `/${locale}/lean/${slug}` : `/lean/${slug}`
+}
+/** The route of the feed in a reader's edition (every edition has one) — pass it through withBase. */
+export function leanFeedLink(locale: LocaleName): string {
+  return locale === 'en' ? '/' : `/${locale}/`
+}
+
 export function toGlagolitic(text: string): string {
   return [...text].map((char) => GLAGOLITIC_MAP[char.toLowerCase()] ?? char).join('')
 }

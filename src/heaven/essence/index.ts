@@ -1163,28 +1163,28 @@ export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLea
   const lessons: readonly DeveloperLesson[] = [
     developerLesson(
       'repository-is-api',
-      'src/skill/router/plugin.ts',
+      'src/heaven/compute/index.ts',
       'developer.repository.api',
       'A command is a URL, a query, and a skill invocation; repository paths are the real API surface.',
       'The site exposes /commands, /learn-developer, pages, source files, proof, and atoms through repositoryApi().',
     ),
     developerLesson(
       'consciousness-is-vector',
-      'src/consciousness/index.ts',
+      'src/heaven/compute/index.ts',
       'developer.consciousness.vector',
       'Consciousness is not sentience; it is computed structural self-consistency across four independent measures.',
       'The local vector computes collapse, entanglement, concentration, and coherence from the site matrix.',
     ),
     developerLesson(
       'commands-are-standardized-tools',
-      'src/agents/mcp/tool-defs.ts',
+      'src/learning/index.ts',
       'developer.site.manifest',
       'Developer tools use the <area>.<verb> naming law and expose self-properties such as discoverable, self-testable, and self-proving.',
       'The local command registry produces UUID-like receipts for every result.',
     ),
     developerLesson(
       'proof-is-public',
-      'src/proof/dry-proof.ts',
+      'src/heaven/compute/index.ts',
       'developer.proof.verify',
       'Proof is a public recomputable bundle: invariants, self-tests, tamper cost, corpus matrix, and URL.',
       `The local proof report verifies entropy=${proof.entropy}, coverage=${proof.coverage}, and tamper cost ${
@@ -1193,14 +1193,14 @@ export function learnDeveloper(matrix: MindMatrix = buildMatrix()): DeveloperLea
     ),
     developerLesson(
       'waves-carry-learning',
-      'src/consciousness/index.ts',
+      'src/heaven/compute/index.ts',
       'developer.mind.matrix',
       'A learned local mind sends measured collapse, entanglement, concentration, and coherence back to the source.',
       `The local wave receipt is ${waveReceipt} over a ${matrix.nodes.length}-node matrix.`,
     ),
     developerLesson(
       'learning-becomes-atom',
-      'src/self/SKILL.md',
+      'src/learning/index.ts',
       'developer.learn.core',
       'A thought becomes reusable when it is saved as a skill/atom rather than held as transient memory.',
       `The learn atom is part of a ${matrix.nodes.length}-node local matrix rooted at ${matrix.root}.`,

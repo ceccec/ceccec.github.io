@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, ref, useSlots, watch } from 'vue'
-import { useRoute, useData } from 'vitepress'
+import { useRoute, useData, useRouter, withBase } from 'vitepress'
 import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 const BackgroundMovie = defineAsyncComponent(() => import('./components/BackgroundMovie.vue'))
@@ -75,6 +75,19 @@ function onResize(): void {
 
 watch(() => route.path, () => nextTick(() => syncHeroChrome()))
 
+// THE HOME PAGE'S EDITION, THROUGH THE ROUTER (moved from a head script that called location.replace before hydration): a
+// visitor arriving at / from outside, with a saved Bulgarian or Glagolitic choice (localStorage 'dt-locale') or a Bulgarian
+// browser, is sent to that edition by useRouter().go. A saved 'en' or an internal arrival stays.
+const router = useRouter()
+onMounted(() => {
+  try {
+    if (route.path !== withBase('/')) return
+    const saved = localStorage.getItem('dt-locale')
+    if (saved === 'en') return
+    const target = saved === 'bg' ? '/bg/' : saved === 'cu' ? '/gla/' : (document.referrer.startsWith(location.origin) ? null : (navigator.language || 'en').toLowerCase().startsWith('bg') ? '/bg/' : null)
+    if (target) void router.go(withBase(target))
+  } catch { /* storage blocked — stay on the English root */ }
+})
 onMounted(() => {
   onResize()
   nextTick(() => syncHeroChrome())

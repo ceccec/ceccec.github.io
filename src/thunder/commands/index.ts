@@ -592,8 +592,8 @@ function runConceptCommand(
       root: merkleFold([placed.root, ...domains.domains.map((d) => d.receipt)]) })
   }
   if (command === 'concept.fold.generate') {
-    // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
-    // src/quantum/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
+    // All eight bāguà generator slots filled. Runtime: `npm run gen` → runGenerator, called from src/pair/enforcement/ops/index.ts,
+    // defined in src/quantum/dist/generators/index.ts; descriptor kept self-contained (mind does not import dist).
     const filled = [
       { name: 'bible', bits: 0b000 },
       { name: 'vortex', bits: 0b001 },
@@ -609,7 +609,7 @@ function runConceptCommand(
       return { glyph: tri.glyph, pinyin: tri.pinyin, name: tri.name, generator: gen ? gen.name : null, filled: Boolean(gen) }
     })
     return result(command, filled.length === BAGUA.length, 'All eight bāguà generator slots filled — run: npm run gen <glyph|name>.', {
-      runner: 'scripts/iching.mjs',
+      runner: 'src/pair/enforcement/ops/index.ts',
       slots,
       filled: filled.map((f) => f.name),
       root: merkleFold(slots.map((s) => toUuid(`iching-gen-slot:${s.glyph}:${s.generator ?? 'open'}`))) })

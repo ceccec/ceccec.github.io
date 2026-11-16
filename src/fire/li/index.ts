@@ -1117,7 +1117,10 @@ export function jsonLdPathRules() {
 export function zeroTokenPolicy() {
   return {
     llmSdks: ['openai', '@anthropic-ai/sdk', '@anthropic-ai/bedrock-sdk', 'cohere-ai', 'langchain', '@google/generative-ai', 'mistralai', 'replicate', 'together-ai'], // none may be a dependency
-    tokenPath: 'src/render/ui/lib/useQuantumChat.ts', // the single opt-in BYOK chat; the only token egress
+    // NO TOKEN PATH: this named useQuantumChat.ts, the opt-in bring-your-own-key chat, which is no longer in
+    // the tree — and nothing calls runAiChat. The portal has no token egress at all; the weave gate refuses any call that
+    // reappears without a declared, key-gated path.
+    tokenPath: null as string | null,
     byokGate: 'runAiChat(apiKey', // the call must require a user-supplied key — never automatic
     why: {
       sdk: 'an LLM SDK as a dependency means the portal could spend tokens on its own; the portal answers from its own computed model (zero tokens), so no LLM SDK belongs in the dependencies — remove it and answer locally, or keep token use to the opt-in bring-your-own-key chat',
@@ -2004,6 +2007,18 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
       'EXACT vs faithful stays honest. The storage precedents (git, IPFS, Merkle) share the SAME algebra as the project\'s FNV/UUID address — a deterministic, one-way, collision-resistant, avalanching map — and the four identities are recomputed, not asserted. The MEMORY precedents share only the whole-from-part SEMANTICS: Hopfield/CA3 retrieval is iterative, error-tolerant basin-of-attraction relaxation, whereas H is an exact one-shot map, so those are analogy not mechanism. The CA3 retrieval-stage NMDA role is contested (Mei et al. 2011), and "QEC syndrome = content-addressing" is the project\'s own metaphor, not literature terminology.' }
 }
 
+/** THE SURFACE THE RENDER LAYER MAY NOT TOUCH — one list, read by onlyVitePressApi (declared) and the weave gate (measured over
+ *  .vitepress/theme and .vitepress/lib on every build). Each entry is a regular expression and the reason it is a bypass. */
+export const VITEPRESS_API_FORBIDDEN: readonly { readonly pattern: string; readonly why: string }[] = [
+  { pattern: "from ['\"]vue-router|create(Router|Web(Hash)?History|MemoryHistory)\\b|<router-(link|view)|<Router(Link|View)", why: 'a parallel router — VitePress owns routing' },
+  { pattern: 'location\\.(href\\s*=(?!=)|assign\\(|replace\\()|window\\.location\\s*=(?!=)', why: 'raw navigation — internal navigation is an <a href> VitePress intercepts, or useRouter().go' },
+  { pattern: 'history\\.(push|replace)State\\(', why: 'the raw History API — a router bypass' },
+  { pattern: 'location\\.(pathname|search|hash)\\b', why: 'reading the URL around the router — useRoute() carries path, query and hash' },
+  { pattern: "querySelector(All)?\\(['\"]\\.(VP|vp-)", why: "reaching into VitePress's private rendered DOM classes" },
+  { pattern: '<a\\b[^>]*@click\\.prevent', why: 'a link whose click never navigates — the address bar and history stop matching the screen' },
+  { pattern: '\\shref="/(?!/)|:href="[`\']/(?!/)', why: 'a raw internal link — internal links go through withBase (or the locale helper that applies it)' },
+]
+
 /** @rosetta ✦₁ · Fire · clarity */
 export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
   const api = ['useData', 'useRoute', 'useRouter', 'withBase', '<a href>'] // the VitePress render API the layer may use
@@ -2020,9 +2035,13 @@ export function onlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
     api,
     forbidden,
     strict: true,
-    scanned: 'every .vue in src/ui (recursive) + src/render/ui/index.ts',
-    holds: true, // enforced over the whole render tree by the harmonic gate's render/non-vitepress-api check
-    root: merge(matrix.root, merkleFold(forbidden.map((f) => toUuid(`only-vitepress:${f}`)))),
+    // MEASURED IN WEAVE, NOT TYPED HERE: this said `holds: true` and named src/render/ui as the scanned layer — a folder that now
+    // holds two CSS files, so the gate scanned nothing and the 19 theme components were never read. The fold declares; the
+    // weave gate measures every .vue and .ts under .vitepress/theme and .vitepress/lib against VITEPRESS_API_FORBIDDEN.
+    scanned: '.vitepress/theme (every .vue and .ts, recursive) + .vitepress/lib',
+    patterns: VITEPRESS_API_FORBIDDEN.map((f) => f.pattern),
+    declared: forbidden.length > 0 && VITEPRESS_API_FORBIDDEN.length > 0,
+    root: merge(matrix.root, merkleFold([...forbidden, ...VITEPRESS_API_FORBIDDEN.map((f) => f.pattern)].map((f) => toUuid(`only-vitepress:${f}`)))),
     statement:
       'STRICT VitePress: the render layer routes, navigates and reads page data only through the VitePress API. Pages are markdown and the [page] dynamic route (params via useData); data and locale come from useData; internal navigation is a plain <a href> link VitePress intercepts, or useRouter().go. The whole non-VitePress surface is refused at the gate over the entire src/ui render layer (every .vue + src/render/ui/index.ts): no parallel router (vue-router / createRouter / createWeb(Hash)History / createMemoryHistory), no router template components (<router-link> / <router-view>), no raw navigation (assigning location.href or window.location, location.assign / replace), no History API (history.pushState / replaceState), and no reaching into VitePress’s PRIVATE rendered DOM classes (document.querySelector on .VP* / .vp-doc to mutate what VitePress owns — the sidebar, nav, doc). One render API, no drift.',
     boundary:
@@ -2044,15 +2063,15 @@ export function linksUseOnlyVitePressApi(matrix: MindMatrix = buildMatrix()) {
     const hasRequired = required.every((name) => api.includes(name))
     const allowsVpAnchor = api.includes('<a href>')
     const facets = [
-      { facet: 'onlyVitePressApi.holds — render layer refuses parallel router / History bypass', on: vp.holds && vp.strict },
+      { facet: 'onlyVitePressApi declared — the forbidden surface is listed once; weave measures it over .vitepress/theme and .vitepress/lib', on: vp.declared && vp.strict },
       { facet: 'API surface names useData · useRoute · useRouter · withBase', on: hasRequired },
       { facet: 'VP-intercepted <a href> allowed (withBase-prefixed internals preferred in theme)', on: allowsVpAnchor },
       { facet: 'forbidden surface listed (vue-router · location.assign · history.pushState · .VP* querySelector)', on: vp.forbidden.length >= 5 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`links-use-only-vitepress-api:${entry.facet}:${entry.on}`) }))
     const sealed = facets.every((f) => f.on)
     return {
-      computes: sealed && vp.holds,
-      linksUseOnlyVitePressApi: sealed && vp.holds,
+      computes: sealed && vp.declared,
+      linksUseOnlyVitePressApi: sealed && vp.declared,
       api,
       forbidden: vp.forbidden,
       facets,

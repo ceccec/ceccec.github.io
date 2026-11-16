@@ -93,7 +93,7 @@ export declare function leanMonographPaths(): {
 /** THE BLOG'S NAVIGATION, COMPUTED FROM THE MONOGRAPHS: the feed, the Clay cases, the subjects — the same three groups in nav,
  *  sidebar and footer, every link a page that exists (a monograph, or the feed). Nothing is listed by hand. The Glagolitic
  *  edition's links lead to its own feed and to the shared monographs. */
-export declare function leanBlogNavigation(locale?: LocaleName): {
+export declare function leanBlogNavigation(locale?: LocaleName, base?: string): {
     nav: ({
         text: string;
         items: {

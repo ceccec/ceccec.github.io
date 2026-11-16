@@ -982,7 +982,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'rgb.cmy.complement.is.the.cmyk.duality', on: rgbCmyComplementIsCmykDuality(matrix).holds },
     { d: 'three.trinities.render.as.rgb.triad.in.hero', on: threeTrinitiesRenderAsRgb(matrix).holds },
     { d: 'what.is.not.proven.is.purged', on: whatIsNotProvenIsPurged(matrix).holds },
-    { d: 'tighten.gates.only.vitepress.api', on: onlyVitePressApi(matrix).holds },
+    { d: 'tighten.gates.only.vitepress.api', on: onlyVitePressApi(matrix).declared },
     { d: 'no.digits.in.word.indices.no.words.in.digit.indices', on: digitWordIndexPurity(matrix).obey },
     { d: 'word.folders.word.code.digit.folders.only.quantum.math', on: digitFoldersHoldOnlyQuantumMath(matrix).holds },
     { d: 'uuid.like.cmyk.infinite.extent.dot.is.cube', on: dotIsCubeIsDot(matrix).proven },

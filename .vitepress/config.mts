@@ -311,9 +311,12 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
 // Root locale = English: canonical bare routes at /; the Glagolitic edition at /gla/.
 // THE BLOG'S NAVIGATION IS COMPUTED FROM THE MONOGRAPHS (leanBlogNavigation, src/wind/site): feed · Clay cases · subjects,
 // every link a page that exists. The rosetta-door nav and the roster sidebar named the topic pages the Lean blog retires.
-const glaNav = leanBlogNavigation('gla')
-const enNav = leanBlogNavigation('en')
-const bgNav = leanBlogNavigation('bg')
+// THE SITE BASE, ONCE: VitePress applies it to every link it renders, but not inside footer.message HTML — so the footer is
+// handed the same value.
+const SITE_BASE = '/'
+const glaNav = leanBlogNavigation('gla', SITE_BASE)
+const enNav = leanBlogNavigation('en', SITE_BASE)
+const bgNav = leanBlogNavigation('bg', SITE_BASE)
 const siteTitle = config.title
 const siteTitleBg = config.titleBg
 const siteDescription = config.description
@@ -321,6 +324,7 @@ const siteDescriptionBg = config.descriptionBg
 
 // https://vitepress.dev/reference/site-config — values from vitepressNativeDocsConfig (sealed src).
 export default defineConfig({
+  base: SITE_BASE,
   // ~69 catch-all shells — serial SSR (buildConcurrency>1 races .vitepress/.temp); target ≤3 min.
   buildConcurrency: 1,
   title: siteTitle,
@@ -405,7 +409,10 @@ export default defineConfig({
     },
   },
   head: [
-    // The root (/) IS the English edition — no auto-route needed for English. A fresh external visitor with a
+    // LEGACY /en PATHS ONLY: a static host has no server redirects and VitePress no redirect API, so /en/* is stripped here,
+    // before hydration. The saved-locale and browser-language choice for the home page moved into the theme (Layout.vue),
+    // through useRouter().go. The notes below describe the old head-script behaviour that choice replaced:
+    // A fresh external visitor with a
     // Bulgarian browser is sent to /bg/; legacy stored choices (localStorage 'dt-locale', written by the pre-flip
     // theme: 'en' root, 'bg' Bulgarian, 'cu' Glagolitic) are honoured against the NEW url map — 'en' stays at the
     // root (never /en/, that tree is deleted), 'bg' → /bg/, 'cu' → /gla/. Legacy /en/* PATHS strip the prefix
@@ -415,7 +422,7 @@ export default defineConfig({
     [
       'script',
       {},
-      `(function(){try{var p=location.pathname;if(p==='/en'||p==='/en/'){location.replace('/'+location.search+location.hash);return;}if(p.indexOf('/en/')===0){location.replace(p.slice(3)+location.search+location.hash);return;}if(p!=='/'&&p!=='/index.html')return;var s=localStorage.getItem('dt-locale');if(s==='en')return;if(s==='bg'){location.replace('/bg/');return;}if(s==='cu'){location.replace('/gla/');return;}if(document.referrer&&document.referrer.indexOf(location.origin)===0)return;var l=(navigator.language||navigator.userLanguage||'en').toLowerCase();if(l.indexOf('bg')===0)location.replace('/bg/');}catch(e){}})();`,
+      `(function(){try{var p=location.pathname;if(p==='/en'||p==='/en/'){location.replace('/'+location.search+location.hash);return;}if(p.indexOf('/en/')===0){location.replace(p.slice(3)+location.search+location.hash);return;}}catch(e){}})();`,
     ],
     // Google Search Console ownership verification — token from GOOGLE_SITE_VERIFICATION env var.
     ...(process.env['GOOGLE_SITE_VERIFICATION']

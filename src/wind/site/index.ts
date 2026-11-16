@@ -84,7 +84,7 @@ export function leanMonographPaths(): { params: { monograph: string; title: stri
 /** THE BLOG'S NAVIGATION, COMPUTED FROM THE MONOGRAPHS: the feed, the Clay cases, the subjects — the same three groups in nav,
  *  sidebar and footer, every link a page that exists (a monograph, or the feed). Nothing is listed by hand. The Glagolitic
  *  edition's links lead to its own feed and to the shared monographs. */
-export function leanBlogNavigation(locale: LocaleName = 'en') {
+export function leanBlogNavigation(locale: LocaleName = 'en', base = '/') {
   // the Glagolitic edition has no monograph pages of its own: its links stay on the shared pages, only the labels are in its script
   const label = (text: string) => (locale === 'gla' ? toGlagolitic(text) : text)
   const home = locale === 'en' ? '/' : `/${locale}/`
@@ -98,7 +98,8 @@ export function leanBlogNavigation(locale: LocaleName = 'en') {
     sidebar: [{ text: label('Feed'), items: [{ text: label('All theorems'), link: home }] }, ...groups.map((g) => ({ ...g, collapsed: false }))],
     // the theme's footer is a line of links and a copyright line
     footer: {
-      message: [{ text: label('Feed'), link: home }, ...clay].map((l) => `<a href="${l.link}">${l.text}</a>`).join(' · '),
+      // footer.message is raw HTML, where VitePress applies no base — so the base is applied here, from the config's own
+      message: [{ text: label('Feed'), link: home }, ...clay].map((l) => `<a href="${base.replace(/\/$/, '')}${l.link}">${l.text}</a>`).join(' · '),
       copyright: label('Open, recomputable, content-addressed — the Double Torus.'),
     },
   }
@@ -1184,14 +1185,14 @@ const CRAWLER_SOURCE: Record<string, string> = {
   'Bulgarian ancient civilisations': 'src/quantum/icons/index.ts',
   'Bulgarian ethnogenesis': 'src/quantum/icons/index.ts',
   'Bulgarian genetics': 'src/quantum/icons/index.ts',
-  Alphabets: 'src/quantum/heaven/mind/language.ts',
-  Glagolitic: 'src/quantum/heaven/mind/language.ts',
-  'Script, language and gene': 'src/quantum/heaven/mind/language.ts',
+  Alphabets: 'src/quantum/heaven/library/index.ts',
+  Glagolitic: 'src/quantum/heaven/library/index.ts',
+  'Script, language and gene': 'src/quantum/heaven/library/index.ts',
   'Tesla patents': 'src/quantum/science/index.ts',
   'Public frequency & data APIs': 'src/quantum/science/index.ts',
-  'AI and the movie industry': 'src/quantum/heaven/mind/decode.ts',
-  'Tech & mentality for peace': 'src/quantum/heaven/mind/peace.ts',
-  'The model': 'src/quantum/heaven/mind/matrix.ts',
+  'AI and the movie industry': 'src/thunder/decode/index.ts',
+  'Tech & mentality for peace': 'src/earth/world/index.ts',
+  'The model': 'src/heaven/compute/index.ts',
   'Efficiency — no known model is more efficient': 'src/quantum/science/index.ts',
   'Paste any link → auto-wire': 'src/quantum/apps/index.ts' }
 

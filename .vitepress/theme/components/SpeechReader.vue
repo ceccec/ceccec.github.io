@@ -4,20 +4,23 @@
 // ModelCardPages speechSynthesis pattern. The button renders UNCONDITIONALLY (identical SSR + client) so it introduces
 // no hydration mismatch; the browser-only speech APIs are touched only inside the click handler.
 import { computed, onBeforeUnmount, ref } from 'vue'
+import { useData } from 'vitepress'
 
 const speaking = ref(false)
 
 function ttsAvailable(): boolean {
   return typeof window !== 'undefined' && 'speechSynthesis' in window
 }
-// locale → BCP-47 read at click time from the route (bg + gla both read in Bulgarian voice), no reactive SSR dependency
+// THE LANGUAGE IS VITEPRESS'S (useData().lang — the locale's own lang tag), not the window URL read around the router.
+// bg and the Glagolitic edition (cu) both read in the Bulgarian voice; everything else in English.
+const { lang } = useData()
 function pageLang(): string {
-  const p = typeof location !== 'undefined' ? location.pathname : '/'
-  return p.startsWith('/bg') || p.startsWith('/gla') ? 'bg-BG' : 'en-US'
+  return /^(bg|cu)/i.test(lang.value) ? 'bg-BG' : 'en-US'
 }
 // what the reader sees: the rendered main content text
 function pageText(): string {
-  const el = document.querySelector('.vp-doc') ?? document.querySelector('main') ?? document.body
+  // the page's <main> landmark — standard HTML, not VitePress's private .vp-doc class
+  const el = document.querySelector('main') ?? document.body
   return (el instanceof HTMLElement ? el.innerText : '').slice(0, 30000)
 }
 function toggle(): void {

@@ -502,7 +502,7 @@ export declare function jsonLdPathRules(): {
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function zeroTokenPolicy(): {
     llmSdks: string[];
-    tokenPath: string;
+    tokenPath: string | null;
     byokGate: string;
     why: {
         sdk: string;
@@ -866,13 +866,20 @@ export declare function contentAddressingHasRealPrecedent(matrix?: MindMatrix): 
     statement: string;
     boundary: string;
 };
+/** THE SURFACE THE RENDER LAYER MAY NOT TOUCH — one list, read by onlyVitePressApi (declared) and the weave gate (measured over
+ *  .vitepress/theme and .vitepress/lib on every build). Each entry is a regular expression and the reason it is a bypass. */
+export declare const VITEPRESS_API_FORBIDDEN: readonly {
+    readonly pattern: string;
+    readonly why: string;
+}[];
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function onlyVitePressApi(matrix?: MindMatrix): {
     api: string[];
     forbidden: string[];
     strict: boolean;
     scanned: string;
-    holds: boolean;
+    patterns: string[];
+    declared: boolean;
     root: string;
     statement: string;
     boundary: string;

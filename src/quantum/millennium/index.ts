@@ -352,9 +352,10 @@ export type ProofResult = {
 }
 
 // Proof registry — add new proofs here
-const proofMap: Record<string, string> = {
-  'rsa:factored': 'src/quantum/millennium/rsa-is-factored-proof.mjs',
-}
+// EMPTY, AND SAYS SO: this listed rsa:factored → rsa-is-factored-proof.mjs, a harness scripts/verify
+// replaced (it carried a second content-address implementation); the file is gone, so the runner advertised a proof it
+// could only answer "not found" for. A proof enters here only with a file that exists.
+const proofMap: Record<string, string> = {}
 
 export function listAvailableProofs(): string[] {
   return Object.keys(proofMap)
