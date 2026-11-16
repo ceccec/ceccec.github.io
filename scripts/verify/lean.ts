@@ -287,6 +287,44 @@ function compileOne(file: string, rel: string, root: string): LeanResult {
   })()
 }
 
+/**
+ * LEAN VERIFIES THE FILES IT IS GIVEN — the door the hooks call (owner, 2026-11-16: "let lean verify all").
+ * argv: .lean paths (the Claude Code edit hook passes the one file it edited); none → the staged .lean files (pre-commit);
+ * `--push` → the .lean files changed since the upstream (pre-push). Each file: the real compiler, no `sorry`, and every
+ * theorem's axioms within propext and Quot.sound — Classical.choice and sorryAx refuse. Lake-package files are left to
+ * verify:sparkle. Exit 2 on a refusal, so a Claude Code PostToolUse hook feeds the reason back; 0 when every file holds
+ * or there is nothing to check (said, never silent).
+ */
+export function runLeanCheckExit(root: string = process.cwd(), argv: readonly string[] = []): number {
+  const git = (...a: string[]) => { try { return execFileSync('git', ['-C', root, ...a], { encoding: 'utf8' }) } catch { return '' } }
+  const named = argv.filter((a) => a.endsWith('.lean'))
+  const files = (named.length ? named : argv.includes('--push')
+    ? git('diff', '--name-only', '--diff-filter=ACMR', '@{upstream}...HEAD', '--', '*.lean').split('\n')
+    : git('diff', '--cached', '--name-only', '--diff-filter=ACMR', '--', '*.lean').split('\n'))
+    .map((p) => p.trim()).filter(Boolean)
+    .map((p) => relative(root, p.startsWith('/') ? p : join(root, p)))
+    .filter((rel) => existsSync(join(root, rel)) && lakePackageOf(join(root, rel), root) === null)
+  if (!files.length) { console.log('lean:check — no standalone .lean file to verify'); return 0 }
+  const missing = leanToolchainMissing()
+  if (missing.length) { console.error(`lean:check — NOT MEASURED: ${missing.join(', ')} not installed, so nothing was verified`); return 2 }
+  const refusals: string[] = []
+  for (const rel of files) {
+    const r = compileOne(join(root, rel), rel, root)
+    if (!r.ok) { refusals.push(`${rel}: ${r.sorries ? `${r.sorries} sorry · ` : ''}${r.timedOut ? 'compiler timed out (NOT MEASURED)' : r.error || 'does not compile'}`); continue }
+    const a = axiomFreedom(join(root, rel), root)
+    if (a.notMeasured) { refusals.push(`${rel}: axioms NOT MEASURED`); continue }
+    const beyond = Object.entries(a.byTheorem ?? {}).filter(([, ax]) => ax.some((x) => x !== 'propext' && x !== 'Quot.sound'))
+    if (beyond.length) { refusals.push(`${rel}: ${beyond.map(([n, ax]) => `${n} rests on [${ax.join(', ')}]`).join(' · ')}`); continue }
+    console.log(`  ✓ ${rel}: compiles, no sorry, ${a.total} theorem(s) within propext and Quot.sound (${a.axiomFree} on no axiom at all)`)
+  }
+  if (refusals.length) {
+    console.error(`lean:check — ${refusals.length} file(s) refused by the Lean kernel:\n  ${refusals.join('\n  ')}`)
+    return 2
+  }
+  console.log(`lean:check — ${files.length} file(s) verified by Lean`)
+  return 0
+}
+
 export function assertLeanCompiles(): void {
   // BOTH BINARIES, BECAUSE THIS PROBED ONE AND SPAWNED THE OTHER. The skip below is exactly right and
   // it asked only whether `lean` was on PATH — while leanCommand reaches for `lake`, since the corpus
@@ -349,7 +387,10 @@ export function assertLeanCompiles(): void {
     // dependencies NEVER MEASURED. It compiled green, which says nothing about what it leans on: a proof
     // can compile and still rest on Classical.choice, or on sorryAx, which would make green a lie. Asked
     // for the first time, it answers 18/18 with no axiom. Not measuring it was not evidence.
-    if (!r.file.includes('/proofs/')) continue
+    // EVERY STANDALONE FILE, NOT ONLY THE PROOFS DIRECTORIES (2026-11-16). This read `/proofs/` alone, so the seven Clay
+    // case files and the nine station files in src/1–src/9 compiled green with their axioms NEVER MEASURED: a
+    // Classical.choice in riemann.lean would have passed. Only a Lake package (its own toolchain) is left to its own gate.
+    if (lakePackageOf(join(process.cwd(), r.file), process.cwd()) !== null) continue
     const a = sealedAxioms(r.file)
     totalThm += a.total
     totalFree += a.axiomFree

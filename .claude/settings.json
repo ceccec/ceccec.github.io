@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r \".tool_input.file_path // .tool_response.filePath // empty\"); case \"$f\" in *.lean) cd \"${CLAUDE_PROJECT_DIR:-.}\" && npm run -s lean:check -- \"$f\" 1>&2 ;; *) exit 0 ;; esac",
+            "timeout": 300,
+            "statusMessage": "Lean is verifying the edited file"
+          }
+        ]
+      }
+    ]
+  }
+}
