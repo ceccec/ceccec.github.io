@@ -573,6 +573,13 @@ export type LeanTheoremLatex = {
     readonly doc: string;
     readonly proposition: string;
     readonly tactic: string;
+    /** THE WHOLE PROOF, verbatim: everything after `:=` to the end of the declaration, line breaks and indentation kept. */
+    readonly proof: string;
+    /** The file's definitions the statement names (and those they name in turn), each verbatim — what the proof unfolds. */
+    readonly definitions: readonly {
+        readonly name: string;
+        readonly text: string;
+    }[];
     /** What the kernel reported this theorem rests on (.vitepress/data/lean-axioms.json): [] is "no axiom"; null is NOT RECORDED. */
     readonly axioms: readonly string[] | null;
 };

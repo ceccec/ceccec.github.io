@@ -1364,6 +1364,10 @@ export type LeanTheoremLatex = {
   readonly doc: string
   readonly proposition: string
   readonly tactic: string
+  /** THE WHOLE PROOF, verbatim: everything after `:=` to the end of the declaration, line breaks and indentation kept. */
+  readonly proof: string
+  /** The file's definitions the statement names (and those they name in turn), each verbatim — what the proof unfolds. */
+  readonly definitions: readonly { readonly name: string; readonly text: string }[]
   /** What the kernel reported this theorem rests on (.vitepress/data/lean-axioms.json): [] is "no axiom"; null is NOT RECORDED. */
   readonly axioms: readonly string[] | null
 }
@@ -1371,6 +1375,15 @@ export type LeanTheoremLatex = {
 const TITLE_OF = (name: string): string => name.replace(/_/g, ' ').replace(/^(.)/, (c) => c.toUpperCase())
 
 /** Escape the characters TeX reads as markup. The proposition goes in \texttt, so it stays verbatim otherwise. */
+/** Lean source as typeset lines: each line escaped, its leading spaces kept as hard spaces, lines joined by forced breaks. */
+function texLeanLines(text: string): string {
+  return text.split('\n').map((line) => {
+    const lead = (/^ */.exec(line)?.[0] ?? '').length
+    // a SOFT WRAP for lines wider than the page: a break is allowed after _ . , and opening brackets — the text is unchanged
+    return `${'\\ '.repeat(lead)}${texEscape(line.slice(lead)).replace(/(\\_|[.,(\[⟨])/g, '$1\\allowbreak{}').replace(/(\d)(?=\d)/g, '$1\\allowbreak{}')}`
+  }).map((line) => (line.length ? line : '\\mbox{}')).join('\\\\\n')
+}
+
 function texEscape(text: string): string {
   // ONE PASS. Done as four replacements in a row, the braces of \textbackslash{} were escaped by the second and a
   // backslash came out as \textbackslash\{\} — no proposition carried one until a set difference did.
@@ -1519,6 +1532,27 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
     // Theorem [Is] with a `def` for a proposition and a list literal for a tactic — a document stating a theorem the
     // kernel never saw, found the first time the document was compiled and one box came out 150pt too wide.
     const inComment = leanBlockCommentLines(lines)
+    // A DECLARATION ENDS AT THE NEXT LINE THAT STARTS AT COLUMN ZERO: Lean continues a declaration on indented lines, so the
+    // first non-indented, non-blank line after its head is the next declaration, a comment, or `end`.
+    const declarationEnd = (from: number) => {
+      let k = from + 1
+      while (k < lines.length && !(lines[k]!.length > 0 && !/^\s/.test(lines[k]!))) k += 1
+      while (k - 1 > from && (lines[k - 1] ?? '').trim() === '') k -= 1
+      return k
+    }
+    const definitions = new Map<string, string>()
+    for (let i = 0; i < lines.length; i += 1) {
+      if (inComment[i]) continue
+      const d = /^(?:def|abbrev|structure|inductive)\s+([A-Za-z_\u0370-\u03FF][\w'\u0370-\u03FF]*)/.exec(lines[i] ?? '')
+      if (d) definitions.set(d[1]!, lines.slice(i, declarationEnd(i)).join('\n'))
+    }
+    const namedIn = (text: string) => [...definitions.keys()].filter((name) => new RegExp(`(^|[^\\w'\\u0370-\\u03FF.])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w'\\u0370-\\u03FF])`).test(text))
+    const definitionsFor = (proposition: string) => {
+      const seen = new Set<string>()
+      const queue = namedIn(proposition)
+      while (queue.length) { const n = queue.shift()!; if (seen.has(n)) continue; seen.add(n); queue.push(...namedIn(definitions.get(n)!)) }
+      return [...definitions.keys()].filter((n) => seen.has(n)).map((name) => ({ name, text: definitions.get(name)! }))
+    }
     for (let i = 0; i < lines.length; i += 1) {
       if (inComment[i]) continue
       const head = /^\s*theorem\s+([A-Za-z_][\w']*)\s*:?(.*)$/.exec(lines[i] ?? '')
@@ -1554,6 +1588,8 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
         // tactic as the word "by" — "By by in quantum.lean" — for every proof Lean had wrapped.
         axioms: recorded.byFile?.[`${relDir}/${file}`]?.[head[1] ?? ''] ?? null,
         tactic: ((after ?? '').trim().replace(/^by\b\s*/, '') || (lines[j + 1] ?? '').trim().replace(/^by\b\s*/, '') || 'decide'),
+        proof: [(after ?? '').trim(), ...lines.slice(j + 1, declarationEnd(j))].filter((l, n) => n > 0 || l.length > 0).join('\n'),
+        definitions: definitionsFor((prop ?? '').trim()),
       })
     }
   }
@@ -1589,7 +1625,10 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
     r.doc ? texEscape(r.doc) : '',
     `\\begin{lean}${texEscape(r.proposition)}\\end{lean}`,
     '\\end{theorem}',
-    `\\begin{proof}\\raggedright By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}. Checked by the Lean kernel; ${leanAxiomSentence(r.axioms, (name) => `\\texttt{${texEscape(name)}}`)}. \\end{proof}`,
+    `\\begin{proof}\\raggedright`,
+    r.definitions.length ? `Definitions it unfolds, from \\texttt{${texEscape(r.file)}}:\\begin{lean}${texLeanLines(r.definitions.map((d) => d.text).join('\n\n'))}\\end{lean}` : '',
+    `The proof, verbatim as the Lean kernel checked it:\\begin{lean}${texLeanLines(`theorem ${r.name} : ${r.proposition} :=${r.proof.includes('\n') ? '\n' : ' '}${r.proof}`)}\\end{lean}`,
+    `It rests on: ${leanAxiomSentence(r.axioms, (name) => `\\texttt{${texEscape(name)}}`)}. \\end{proof}`,
     '',
   ].filter((line) => line.length > 0).join('\n')
   const part = (title: string, dir: string, rows: readonly LeanTheoremLatex[]) => {
