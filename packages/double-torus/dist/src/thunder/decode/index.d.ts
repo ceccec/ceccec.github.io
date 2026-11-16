@@ -524,11 +524,6 @@ export declare function iChingLearnBeforeImplement(matrix?: MindMatrix): {
         module: string;
         slugs: string[];
     }[];
-    threePowers: {
-        axis: string;
-        glyph: string;
-        reading: string;
-    }[];
     count: number;
     checks: {
         receipt: string;

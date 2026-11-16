@@ -123,6 +123,25 @@ export declare function leanBlogNavigation(locale?: LocaleName): {
         copyright: string;
     };
 };
+/** THE BLOG'S DESTINATIONS: every distinct link its navigation carries — the feed, then each monograph — once, with the
+ *  position of the nav entry it sits under (1 = the feed). */
+export declare function leanBlogDestinations(locale?: LocaleName): {
+    text: string;
+    link: string;
+    entry: number;
+}[];
+/** THE BLOG'S NAVIGATION, CHECKED: every link is the feed or a monograph that exists, every monograph is listed, none twice;
+ *  the sidebar's groups are the nav's, link for link; the footer carries the feed and every Clay case. Each part refutable. */
+export declare function leanBlogNavigationHolds(locale?: LocaleName): {
+    computes: boolean;
+    destinations: number;
+    monographs: number;
+    everyLinkExists: boolean;
+    monographsCovered: boolean;
+    noneTwice: boolean;
+    sidebarIsNav: boolean;
+    footerCarriesClay: boolean;
+};
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own
  * aliases in SITE_DOMAIN_SEED — or null when the slug is no alias. The router mounts aliases from these same two tables;
  * the canonical link (src/mountain/og canonicalRouteOf) and the sitemap ask here, so none of the three can disagree. */

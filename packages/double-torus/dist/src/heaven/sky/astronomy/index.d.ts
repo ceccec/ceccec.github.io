@@ -5193,8 +5193,8 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-                action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
@@ -5251,7 +5251,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                 wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
@@ -10390,8 +10390,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         root: string;
                     };
                     rows: {
-                        tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-                        action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                        tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                        action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         ray: number;
                         rayMeta: {
                             readonly ray: 0;
@@ -10448,7 +10448,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         legacyBare: string;
                         schemaTarget: string;
                         canonical: string;
-                        importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                        importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         wave: 2 | 1;
                         applied: boolean;
                         receipt: string;
@@ -19035,8 +19035,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-                    action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -19093,7 +19093,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;

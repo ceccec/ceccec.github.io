@@ -140,7 +140,6 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'harmonicLicenseWaves',
   'harmonicMusicMayBeEnabled',
   'harmoniseWordsToMinimum',
-  'harmonisedNavigation',
   'harmonisedToHealAtGates',
   'heroLawAlignment',
   'heroTapMusic',

@@ -6,7 +6,7 @@ import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../.
 import { buildMatrix, coverage, entropy, proofReport } from '../../heaven/compute/index.ts'
 import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0/index.ts'
 import { superdense } from '../../9/1/index.ts'
-import { navigation358 } from '../../learning/index.ts'
+import { leanBlogDestinations } from '../../wind/site/index.ts'
 import { doubleTorusSurface, quantumDoubleTorus } from '../../mountain/topology/index.ts'
 import { harmonicLicenseWaves, harmonicPathRevealsItself, piMusic } from '../../music/index.ts'
 import { energyFuse, fuseUxSensors, torusUuid, universalLanguage } from '../li/index.ts'
@@ -65,7 +65,7 @@ export function quantumBrowserOs(matrix: MindMatrix = buildMatrix()) {
 // no two places the same — and a link is a path from one coordinate to another.
 export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
   const digitOf = (uuid: string) => uuid.replace(/[^0-9a-f]/gi, '').split('').reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0)
-  const items = navigation358().tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })))
+  const items = leanBlogDestinations('en').map((d) => ({ label: d.text, route: d.link, tier: d.entry }))
   const coordinates = items.map((item, index) => {
     const uuid = toUuid(`nav-coord:${item.route}`)
     const d = digitOf(uuid)
@@ -90,7 +90,7 @@ export function quantumCoordinateNav(matrix: MindMatrix = buildMatrix()) {
   })
   const places = new Set(coordinates.map((entry) => `${entry.x.toFixed(2)},${entry.y.toFixed(2)},${entry.z.toFixed(2)}`))
   return {
-    placed: coordinates.length === 16 && places.size === coordinates.length, // every page a distinct place
+    placed: coordinates.length === items.length && coordinates.length > 0 && places.size === coordinates.length, // every destination a distinct place
     count: coordinates.length,
     coordinates,
     root: merkleFold(coordinates.map((entry) => entry.receipt)),

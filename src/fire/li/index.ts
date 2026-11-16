@@ -36,7 +36,7 @@ import {
   sexagesimal, fromSexagesimal, luoShu } from '../../quantum/heaven/library/index.ts'
 import { verifyRoot, reciprocity } from '../../heaven/compute/index.ts'
 import { folderLaw, treeOfLifeSephirotFolders, dualitiesMeetInCrossFolders } from '../../earth/architecture/index.ts'
-import { iChingDomainMap, threeEightFoldsTopNav, enforcementPipelineComplete } from '../../heaven/balance/index.ts'
+import { iChingDomainMap, enforcementPipelineComplete } from '../../heaven/balance/index.ts'
 import { BAGUA, iChing, cloudflareBindings } from '../../heaven/core/index.ts'
 import { a432IsTheBlood, harmonics, harmonicPathRevealsItself, rhythm } from '../../music/index.ts'
 import { quantumProofs } from '../../ledger/index.ts'

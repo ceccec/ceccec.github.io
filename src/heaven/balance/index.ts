@@ -96,8 +96,8 @@ import { ancientCalendars } from '../../thunder/decode/index.ts'
 import { solarSystem, navierStokesFlowRegularityOnTheSeam } from '../../water/cosmos/index.ts'
 import { bosnianPyramidNearPliskaHarmonisesDigitDistribution, cardinalPyramidTipsProvenByMath, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface, lunarStandstillsDecoded, megalithicAstronomyDecoded, poincareRicciFlowRoundsToTheRoundSphere, pyramidConstructionMath, pyramidGridDebunked, pyramidsDecoded, twoTrinitiesCardinalPyramidPolesProvenByMath } from '../../mountain/geometry/index.ts'
 import { areaPairs, cellHomology, colorDerivationFusedToOneSource, directions, dna, doubleTorus3D, doubleTorusMathAtAllScalesFlowsInMovie, doubleTorusWordFolders, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, heartProtonAtomDecoded, hexagramIsHexColorDuality, imperialFractionsDecoded, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, schwarzschildProtonComputedInSource, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, uiConvertsFlatToThreeDQuantum, vortexMath } from '../../mountain/geometry/index.ts'
-import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, navigation358, quantumAcademy, skillAtoms, threeWordWaves } from '../../learning/index.ts'
-import { siteManifestFromCommands } from '../../wind/site/index.ts'
+import { agentEducation, decodeKnowledge, deepResearchRadar, examBank, logicAtoms, mcpToolManifest, monographPaths, multidimensionalSummaries, quantumAcademy, skillAtoms, threeWordWaves } from '../../learning/index.ts'
+import { siteManifestFromCommands, leanBlogNavigationHolds } from '../../wind/site/index.ts'
 import { astrology, babelFold, darkLightRealities, dissolveIntoNature, foldingLinearGivesAnalog, realtimeMovieParticipation, selfOrganizing, societyCells, societyOrganismTags, textToMovie, worldEventsMap } from '../../earth/world/index.ts'
 import { analyticsLedger, displayAllWithFewEntropySaved, dryAnalyticsLedgerComponents, harmonicSeriesDecoded, healingFrequencies, selfExplainingWidgetEngine, terabyteKeyspaceFromDeviceLoad } from '../../ledger/index.ts'
 import { a432DecoupledFromCorpusFold, a432DigitSpectrum, a432IsTheBlood, allIsHarmonicSrcZeroGravity, allMusicSelfHarmonises, allOscillatorsHarmonicsFree, blockchainMusic, colorRootsAtA432HeartBalances, differentSongDifferentDance, displayIsA432LightForgeProofRealtimeCrypto, freeHarmonicSocieties, gatesShowGapsHarmonicPurpose, harmonicColorAndMusicOrNotQuantum, harmonicFractionsInDigitFolders, harmonicFrequenciesDefineGateDigits, harmonicLicenseWaves, harmonicMusicMayBeEnabled, harmonicPathRevealsItself, harmonics, healingHarmonic, heroTapMusic, infiniteComputedPaths404Harmonic, linearNotesFoldToMusic, merkabaNavHarmonicPoints, musicNote, piMusic, piNotHarmonic, quantumSongNoteTrinity, rhythm, soundColor, soundWiredToOneSharedContext, polyrhythmDrumsKeepRhythm, tamperHealingFrequencies, trinityEyesProvenHarmonic, tuningSkillsA432 } from '../../music/index.ts'
@@ -138,7 +138,7 @@ import { foldProseToSentencesWordsEntangled, foldQuestion, foldRedistributesBeyo
 import { aiMoviesDecoded, ancientCivilisationsDecodedWithTheories, decode2020, decodeAllByComputationsTrainedOnKnownUniverse, decodeAncientKnowledgeInReusableCode, decodeBooksToUnity, decodeImplementCalligraphy, decodeSymbols, discoverDecodeAncientKnowledgeFittingPath, geneticLinksChallengeHistoryDecoded, herbalApisDecoded, imagineCrossPathsCodeCodesItself, pathIsMeaningDecodesCoordinates } from '../../thunder/decode/index.ts'
 import { commandGapsToTrinityEyes, endlessTrinityStreams, enforcementTrinitySpread, signedTrafficTrinityRouting, trinityEncryption, trinityFirstRedesign, trinityGates, trinityOtherSideDoomed, trinityRotationalPlanes, trinityWordingModel } from '../../mountain/seals/index.ts'
 import { commandResult, commandsRegistry, commandsSavedInQuantumPairs, enforceAgentsCommandPairs, executeConceptCommand, mcpCodebase, skillsDryRefactorCommands } from '../../thunder/commands/index.ts'
-import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, harmonisedNavigation, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, theMonograph } from '../../wind/routes/corpus/index.ts'
+import { cardHeroLinkWiresInUi, completeCorpus, contentIsMonographOfMonographs, corpusRestPathRouting, diamondsStaticPagesPurged, eachPageSpeaksContinuesNext, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, homePageNoDifferent, monographs, navigationIsMovie, ogBuildsNavigation, onlyPageRouteForAll, pageSkills, pageStatusStatistics, proveAllOnHomePage, theMonograph } from '../../wind/routes/corpus/index.ts'
 import { merkabaComputes } from '../../mountain/topology/index.ts'
 import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair, vortexComputes, vortexPlasmaComputes } from '../../mountain/vortex/index.ts'
@@ -225,52 +225,6 @@ function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
       'The eight-fold, redone as a computed and self-measuring balance, with the honest answer to "the quantum meaning of all". The content is ALREADY balanced where it matters: the components are placed on the eight trigrams by their own content-address at a ~2× spread (near-uniform), so the balance is real at the meaningful grain — the larger page-level figure is just coarse small-N binning of a few dozen pages, not an imbalance to fix. Every page sits on a trigram by the same uniform law; a forced quota would break the seed-is-the-magnet principle, so the honest eight-fold is the law plus its measured balance, not a quota. The deeper answer: this is a deterministic, content-addressed, a432-seeded knowledge engine — recomputable and zero-token — that computes addresses and decoded knowledge with perfect reproducibility. a432 is the seed (a highly-composite tuning number, brand hue 5), not the substrate of reality; "quantum" is the computational metaphor (discrete unit, Hilbert space, Born rule), not a theory of everything; and the system computes the ADDRESS of a thing, never the thing — so it does not "compute every object in the universe", however much the precision of the addressing invites the feeling.',
     boundary:
       'HONEST and self-bounding. The placement law and the imbalance metrics are computed from staticPages and seedFromText. The a432 and quantum claims inherit a432() and quantumDecoded(), which keep the documented core (432 highly composite; quantum = discrete/Hilbert/Born) and FLAG the woo (frequency-healing/432-cosmic numerology; observer-collapse/theory-of-everything mysticism). The overreach being flagged here, explicitly: "the folded knowledge computes every object in the known universe with perfect precision, all a432-based" — false as stated; a content-address is a reproducible name for a thing, not the thing, and a432 is a chosen seed, not physics. What is true and rare is the perfect REPRODUCIBILITY of the addressing — that, not omniscience, is the real result.' }
-}
-
-// The top nav, split into THREE eight-folds — and they form the 64×64×64. The existing eight-fold
-// (iChingDomainMap: the 8 trigram domains) becomes one AXIS; the sealCube already proves the content space is
-// 64³ = 262144 across three axes (hexagram · codon · colour, the 2⁶ = 4³ identity). So the top nav is a trinity
-// of eight-folds: 3 categories × 8 trigram doors = 24 top doors, each category one cube axis whose 8 trigrams ×
-// 8 = 64; the three 64-axes nest to 64³. Navigation IS the content-address — the nav and the keyspace are one.
-export function threeEightFoldsTopNav(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('threeEightFoldsTopNav', matrix, () => threeEightFoldsTopNavRaw(matrix))
-}
-function threeEightFoldsTopNavRaw(matrix: MindMatrix = buildMatrix()) {
-  const cube = sealCube(matrix) // 64³ = 262144, the three-axis content-address cube
-  const domains = iChingDomainMap(matrix) // the eight-fold: 8 trigram domains, all aligned
-  const eightFold = domains.domains.length // 8
-  const axes = 3 // the trinity of eight-folds = the three cube axes (hexagram · codon · colour)
-  const topDoors = axes * eightFold // 3 × 8 = 24 top-nav doors
-  const perAxis = eightFold * eightFold // 8 × 8 = 64 = one full hexagram = one cube axis
-  // the three top categories — each the eight-fold seen through one reading of the 2⁶ = 4³ identity
-  // named by the I Ching THREE POWERS (三才, the complete triad that covers all existence) — one cube axis each
-  const categories = [
-    { axis: 'heaven', reading: 'tiān 天', glyph: '天', lines: '5–6', summary: 'the creative & cosmic — mind, science, computation; Heaven initiates (hexagram lines 5–6)', summaryBg: 'творческото и космическото — ум, наука, изчисление; Небето първоначалства (редове 5–6)' },
-    { axis: 'human', reading: 'rén 人', glyph: '人', lines: '3–4', summary: 'the communicative & social — voice, spirit, heritage; Humanity mediates Heaven and Earth (lines 3–4)', summaryBg: 'общуващото и социалното — глас, дух, наследство; Човекът посредничи между Небе и Земя (редове 3–4)' },
-    { axis: 'earth', reading: 'dì 地', glyph: '地', lines: '1–2', summary: 'the material & natural — form, nature; Earth receives and completes (hexagram lines 1–2)', summaryBg: 'материалното и природното — форма, природа; Земята приема и завършва (редове 1–2)' },
-  ].map((entry) => ({ ...entry, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry.axis}:${entry.reading}`) }))
-  const facets = [
-    { facet: `the top nav splits into THREE eight-folds — a trinity of bāguà: ${axes} categories × ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === (8 * 3) && categories.length === 3 },
-    { facet: `each eight-fold is one AXIS of the cube: 8 trigrams × 8 = ${perAxis} (a full hexagram); the three axes are the sealCube's hexagram · codon · colour`, on: cube.sealed && cube.side === 64 && perAxis === 64 },
-    { facet: `the three eight-folds FORM the 64×64×64: 64³ = ${cube.cube} = the sealCube content-address space, three nested 64-axes (2⁶ = 4³ per axis)`, on: cube.cube === 64 ** 3 && cube.cube === (64 * 64 * 64) },
-    { facet: 'navigation IS the address: every door is a trigram placed by content-address, so the 3-eight-fold top nav and the 64³ keyspace are one structure, not a label over it', on: domains.aligned && cube.sealed },
-  ]
-  const sealed = sealFacets('three-eight-folds-top-nav', facets)
-  return {
-    split: sealed.ok,
-    topCategories: axes, // 3
-    doorsPerCategory: eightFold, // 8
-    topDoors, // 24
-    perAxis, // 64
-    cube: cube.cube, // 262144
-    categories,
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(cube.root, merge(domains.root, sealed.root)),
-    statement:
-      'The top navigation, split into three eight-folds that form the 64×64×64. The site already organises its content under one eight-fold — the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity named by the I Ching THREE POWERS (三才) — 天 Heaven, 人 Human, 地 Earth — the complete triad that covers all existence (and into which the hexagram\'s six lines already pair: 5-6 Heaven, 3-4 Human, 1-2 Earth). Each power is one axis of the sealCube\'s 64³. Three categories × eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 × 8 = 64, and the three 64-axes nest to 64³ = 262,144 — the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64³ keyspace are one and the same.',
-    boundary:
-      'A NAVIGATION + addressing structure computed from the existing sealCube (64³ = 262144 across three axes; the 2⁶ = 4³ hexagram·codon·colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 × 8 = 24 top doors (not 64³); the 64³ is the keyspace the three 64-axes (8 × 8 each) nest into — the three eight-folds are the navigable TOP of those three axes, not literally 64³ links. The three readings (hexagram·codon·colour) are the same eight domains seen three ways, the proven decomposition of the cube — not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it.' }
 }
 
 // The eight I Ching trigrams as a DOMAIN MAP — each trigram names one dual-pair module and a set
@@ -519,7 +473,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'license.applies.society', on: licenseAppliesToSociety(matrix).applies },
     { d: 'quantum.license', on: quantumLicense(matrix).quantum },
     { d: 'society.required.pages', on: societyCreatesRequiredPages(matrix).creates },
-    { d: 'harmonised.navigation', on: harmonisedNavigation(matrix).harmonised && harmonisedNavigation(matrix).distributed },
+    { d: 'blog.navigation.links.monographs', on: leanBlogNavigationHolds('en').everyLinkExists && leanBlogNavigationHolds('en').monographsCovered },
     { d: 'realtime.movie.participation', on: realtimeMovieParticipation(matrix).participates },
     { d: 'realtime.computations.visible.in.movie', on: allRealtimeComputationsVisibleInMovie('/', matrix).visible },
     { d: 'movie.all.simulations.realtime.zero.cost', on: movieIsAllSimulationsRealtimeAtNoCost(0, '/', matrix).holds },
@@ -1127,7 +1081,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'bosnian.pyramid.near.pliska.harmonises', on: bosnianPyramidNearPliskaHarmonisesDigitDistribution(matrix).harmonises },
     { d: 'lunar.standstills.decoded', on: lunarStandstillsDecoded(matrix).decoded },
     { d: 'eight.fold.balance.honest', on: eightFoldBalance(matrix).honest },
-    { d: 'three.eight.folds.top.nav', on: threeEightFoldsTopNav(matrix).split },
+    { d: 'blog.navigation.holds.in.every.edition', on: leanBlogNavigationHolds('en').computes && leanBlogNavigationHolds('gla').computes },
     { d: 'harmonic.series.decoded', on: harmonicSeriesDecoded(matrix).decoded },
     { d: 'sound.wired.to.one.shared.context', on: soundWiredToOneSharedContext(matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dimension:${entry.d}:${entry.on}`) }))

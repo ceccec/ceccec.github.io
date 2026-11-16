@@ -16,7 +16,8 @@ import { determinismProofs, fuseAllForge, sealCube, fuseAll, sealHonestyToPath }
 import { abs, exp, floor, foldPair, isUuid, log, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sample, toUuid } from '../../0/index.ts'
 import { qieaRotate } from '../../7/3/index.ts'
 import { genesis, breathe, enforceAllAtGatesEntropyRecycled } from '../../earth/nature/index.ts'
-import { completeCorpus, harmonisedNavigation, monographs, ogBuildsNavigation, theMonograph } from '../../wind/routes/corpus/index.ts'
+import { completeCorpus, monographs, ogBuildsNavigation, theMonograph } from '../../wind/routes/corpus/index.ts'
+import { leanBlogNavigationHolds } from '../../wind/site/index.ts'
 import { quantumComputer, quantumFusedDeviceEnergyHonest, quantumNoCyclesFusedSequence, quantumBrowserOs, quantumFirewallProxyWorker } from '../../fire/features/index.ts'
 import { cleanupOldLogic } from '../../mountain/og/index.ts'
 import { completeQuantumSolutionsImplemented, buildSequenceReducesComputations } from '../compute/index.ts'
@@ -1296,7 +1297,7 @@ export function refactorLinearToTrinities(matrix: MindMatrix = buildMatrix()) {
 export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     // not a check — a sentence, kept as one: 'home cards link to their topic'
-    { facet: 'nav and footer carry every destination', on: harmonisedNavigation(matrix).distributed },
+    { facet: 'nav and sidebar carry every monograph; the footer carries the feed and every Clay case', on: leanBlogNavigationHolds('en').monographsCovered && leanBlogNavigationHolds('en').sidebarIsNav && leanBlogNavigationHolds('en').footerCarriesClay },
     { facet: 'the open graph builds the navigation', on: ogBuildsNavigation(matrix).builds },
     { facet: 'the feature map cross-links each item to the next', on: features(matrix).displayed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cross-link:${entry.facet}:${entry.on}`) }))

@@ -31,34 +31,6 @@ export declare function eightFoldBalance(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function threeEightFoldsTopNav(matrix?: MindMatrix): {
-    split: boolean;
-    topCategories: number;
-    doorsPerCategory: number;
-    topDoors: number;
-    perAxis: number;
-    cube: number;
-    categories: {
-        doors: number;
-        receipt: string;
-        axis: string;
-        reading: string;
-        glyph: string;
-        lines: string;
-        summary: string;
-        summaryBg: string;
-    }[];
-    count: number;
-    facets: ({
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function iChingDomainMap(matrix?: MindMatrix): {
     aligned: boolean;
     domains: {

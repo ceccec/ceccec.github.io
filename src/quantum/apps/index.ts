@@ -128,7 +128,7 @@ const ROSETTA_CORE_API_LABELS = [
   'rosettaCoreApi', 'rosettaCoreApiSelfWires', 'rosettaShelve', 'rosettaRayOf', 'rosettaComputesAll',
   'rosettaDecodesUrlPath', 'rosettaComputesItself', 'rosettaReuse', 'ROSETTA_RAYS', 'ROSETTA_COMPUTATION_TYPES',
   'ROSETTA_RAY_HUBS', 'ROSETTA_CORE_KINDS', 'sevenStarRosettaNaturalMotion', 'VORTEX_SEQUENCE',
-  'navigation358', 'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
+  'quantumAppsRegistry', 'quantumCliToolsCatalog', 'sessionManualWorkAsQuantumTools',
   'standardToolboxIoCatalog', 'distributedReuseExtendsCapacity',
   'importFractalMap',
   'measureDecide',
@@ -244,7 +244,7 @@ const ROSETTA_CORE_API_LABELS = [
 
 const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   rosettaComputesAll: 'compute', rosettaDecodesUrlPath: 'route', VORTEX_SEQUENCE: 'compute',
-  ROSETTA_RAY_HUBS: 'nav', navigation358: 'nav', sevenStarRosettaNaturalMotion: 'projection',
+  ROSETTA_RAY_HUBS: 'nav', sevenStarRosettaNaturalMotion: 'projection',
   sharedHeroAt: 'projection', computeUniversalPage: 'route', quantumAppsRegistry: 'app',
   quantumCliToolsCatalog: 'tool', sessionManualWorkAsQuantumTools: 'tool',
   standardToolboxIoCatalog: 'tool', distributedReuseExtendsCapacity: 'compute',

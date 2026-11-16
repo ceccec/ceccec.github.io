@@ -9,7 +9,7 @@ import * as __ns_earth_architecture from '../../../earth/architecture/index.ts' 
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute/index.ts'
 import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, sin, toUuid } from '../../../0/index.ts'
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6/index.ts'
-import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, leanBlogDestinations, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit/index.ts'
 import { REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../../heaven/atoms/index.ts'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1/index.ts'
@@ -25,14 +25,14 @@ import { quantumDoubleTorus } from '../../../mountain/topology/index.ts'
 import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind/index.ts'
 import type { CorpusKind } from '../../../quantum/heaven/mind/index.ts'
 import {
-  componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
+  componentCrosslinks, monographs, paperParamsById, paperReferences, papers,
   referenceParamsById, sciencePortalParts,
   type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning/index.ts'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
 export const NAV358_TOTAL = CLIENT_WORK_TIERS[0] + CLIENT_WORK_TIERS[1] + CLIENT_WORK_TIERS[2] // 16 = 3+5+8
-export const HUB_CARD_MAX = NAV358_TOTAL * 2 // 32 upper bound (nav358 ∪ harmonised, deduped)
+export const HUB_CARD_MAX = NAV358_TOTAL * 2 // 32 — the hub grid's upper bound
 export const TAG_CLUSTER_CAP = CLIENT_WORK_TIERS[2] // 8 keyword clusters (eight, the CLIENT_WORK_TIERS step)
 export const CORPUS_GRID_PAGE_SIZE = CLIENT_WORK_TIERS[0] * NAV358_TOTAL // 48 = 3×16 pagination cap
 
@@ -449,33 +449,12 @@ function gridItemFromRoute(route: string, title: string, id: string, matrix: Min
     hue: rosetta.content.heroHue }
 }
 
-/** Hub destinations — navigation358 + harmonised nav, gated by global Rosetta·I Ching·trinity fusion. */
+/** Hub destinations — the blog navigation's destinations (leanBlogDestinations), gated by global Rosetta·I Ching·trinity fusion. */
 export function hubCardItems(locale: LocaleName, matrix: MindMatrix = buildMatrix()): CorpusGridItem[] {
   return memoByRoot(`hubCardItems:${locale}`, matrix, () => {
     const fusion = rosettaIChingTrinityPlacesAllTools(matrix)
     if (!fusion.fused) return []
-    const pages = staticPages()
-    const titleFor = (route: string, fallback: string) => {
-      const slug = route.replace(/^\//, '') || 'home'
-      const page = pages.find((entry) => entry.slug === slug)
-      return page ? pickLocale(locale, page.title.en, page.title.bg) : fallback
-    }
-    const seen = new Set<string>()
-    const items: CorpusGridItem[] = []
-    for (const tier of navigation358().tiers) {
-      for (const entry of tier.items) {
-        const route = entry.route.startsWith('/') ? entry.route : `/${entry.route}`
-        if (seen.has(route)) continue
-        seen.add(route)
-        items.push(gridItemFromRoute(route, titleFor(route, entry.label), route.replace(/^\//, '') || 'home', matrix))
-      }
-    }
-    for (const entry of harmonisedNavigation(matrix).items) {
-      const route = entry.path.startsWith('/') ? entry.path : `/${entry.path}`
-      if (seen.has(route)) continue
-      seen.add(route)
-      items.push(gridItemFromRoute(route, titleFor(route, entry.title), route.replace(/^\//, '') || 'home', matrix))
-    }
+    const items = leanBlogDestinations(locale).map((d) => gridItemFromRoute(d.link, d.text, d.link.replace(/^\//, '') || 'home', matrix))
     return items.slice(0, HUB_CARD_MAX)
   })
 }
@@ -505,19 +484,14 @@ export function tagBrowserItems(tag: string, locale: LocaleName, matrix: MindMat
 
 /** Gate: hub · tag · grid pagination bounded by [3,5,8] pure math at call time. */
 export function cardHeroClientWorkBoundedByPureMath(matrix: MindMatrix = buildMatrix()) {
-  const nav358 = navigation358()
-  const harmonised = harmonisedNavigation(matrix)
   const locale: LocaleName = 'en'
+  const destinations = leanBlogDestinations(locale)
   const hub = hubCardItems(locale, matrix)
   const tags = tagBrowserTags(matrix)
   const tagItems = tags.length ? tagBrowserItems(tags[0]!, locale, matrix) : []
   const budget = corpusGridWorkBudget()
   const facets = [
-    { facet: 'navigation358 = 3+5+8 = 16 destinations', on: nav358.count === NAV358_TOTAL && nav358.mapped },
-    // harmonised now DERIVES from the served set (the purge law): every served science page + the four
-    // theorem-corpus surfaces — the bound is the derivation, not the dead 16-route coincidence.
-    { facet: `harmonised nav = served pages + corpus = ${staticPages().length}+4 routes, derived not pinned`, on: harmonised.count === staticPages().length + 4 },
-    { facet: `hub cards ≤ nav358 + harmonised = ${NAV358_TOTAL} + ${staticPages().length + 4} (the union bound, deduped)`, on: hub.length <= NAV358_TOTAL + staticPages().length + 4 && hub.length >= NAV358_TOTAL },
+    { facet: `hub cards = the blog navigation's ${destinations.length} destinations, capped at ${HUB_CARD_MAX}`, on: hub.length === min(destinations.length, HUB_CARD_MAX) },
     { facet: `tag clusters ≤ tier[2] = ${TAG_CLUSTER_CAP}`, on: tags.length <= TAG_CLUSTER_CAP && tags.length >= 2 },
     { facet: `tag grid page ≤ tier[0]×16 = ${CORPUS_GRID_PAGE_SIZE}`, on: tagItems.length <= CORPUS_GRID_PAGE_SIZE },
     { facet: 'tag browser skips componentPages on client — not O(all pages)', on: typeof window === 'undefined' || budget.clientTagPages === staticPages().length },
@@ -530,9 +504,9 @@ export function cardHeroClientWorkBoundedByPureMath(matrix: MindMatrix = buildMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: nav358 is exactly 16 (3+5+8), hub dedup caps at 32, tag clusters cap at 8, and each grid page shows at most 48 (3×16) — client paths use staticPages only so keyword clustering stays O(static), not O(componentPages).',
+      'Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: the hub is the blog navigation\'s destinations, capped at 32; tag clusters cap at 8, and each grid page shows at most 48 — every bound recomputed at call time.',
     boundary:
-      'Arithmetic bound at call time over navigation358, harmonisedNavigation, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only.' }
+      'Arithmetic bound at call time over leanBlogDestinations, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only.' }
 }
 
 /** All client surfaces — plasma hero + hub/tag grids — one composite pure-math gate. */
@@ -550,7 +524,7 @@ export function clientWorkBoundedByPureMath(path = '/', matrix: MindMatrix = bui
     facets,
     root: merkleFold([plasma.root, cards.root, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (16+16 nav, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time — no O(pages) loops on the browser.',
+      'Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (the destinations of the blog navigation, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time — no O(pages) loops on the browser.',
     // The caveats compute.
     boundary: earned(
       'BOUNDED AT THIS CALL — the composite of two bounds, verified by its facets:',
@@ -576,7 +550,7 @@ export function cardHeroLinkWiresInUi(matrix: MindMatrix = buildMatrix()) {
     { facet: 'all tools placed — Rosetta ray · I Ching cube · cross-fold-weave trinity', on: fusion.fused && fusion.placedCount > 0 && fusion.raysCovered === 7 },
     { facet: 'heroPreviewForRoute — one route yields hue, seed, moviePath, card movie vars', on: /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && Object.keys(preview.cardStyle).length > 0 && pathAligned },
     { facet: 'preview phase on one hero clock — heroPhaseAt', on: phaseOnClock },
-    { facet: 'hub card grid — navigation358 + harmonised destinations (empty if fusion fails)', on: hub.length >= NAV358_TOTAL },
+    { facet: "hub card grid — the blog navigation's destinations (empty if fusion fails)", on: hub.length > 0 && hub.length === min(leanBlogDestinations(locale).length, HUB_CARD_MAX) },
     { facet: 'tag browser — keyword clusters from staticPages (empty if fusion fails)', on: tags.length >= 2 && tagItems.length >= 2 },
     { facet: 'LinkedHeroCard consumes fused preview — experiments fail closed', on: hub.every((item) => item.hue >= 0) },
     { facet: 'card hero client work bounded by pure math', on: bounded.bounded },
@@ -961,7 +935,6 @@ function computeUniversalPageRaw(
 export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount/index.ts'
 export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount/index.ts'
 export {
-  harmonisedNavigation,
   navigationIsMovie,
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent } from '../../../learning/index.ts'
@@ -2766,23 +2739,6 @@ export function quantumRosettaWaves(matrix: MindMatrix = buildMatrix()): { wave:
     .map((group, i) => ({ wave: i + 1, ray: group.ray, subfield: group.subfield, glyph: group.glyph, theorems: group.theorems.map((m) => m.theorem), landed: group.count > 0 }))
 }
 
-/** The VitePress sidebar for the quantum-computing theorems, computed from the rosetta atlas — one
- * collapsible section per ray (subfield), each listing its theorems ranked by tag-gravity, deepest first.
- * config.mts merges this under /theorems/ so the theorem sidebar IS the rosetta, quantum-only. */
-export function theoremRosettaSidebar(matrix: MindMatrix = buildMatrix()): { text: string; collapsed: boolean; items: { text: string; link: string }[] }[] {
-  // THE LEFT SIDEBAR IS THE TAG CLOUD (user law): one section per tag, ordered by usage gravity, its 1..5
-  // font-size shown as a weight glyph, each expanding to the theorems that carry the tag. The seven ray
-  // subfields lead (they partition the corpus); the structural tags (class · lean · domain) follow as
-  // cross-cutting filters. Same theorem reachable from any of its tags — the cloud IS the navigation.
-  const atlas = theoremRosettaAtlas(matrix)
-  const titleOf = new Map(atlas.metrics.map((m) => [m.slug, m.theorem]))
-  const weight = (size: number) => '•'.repeat(size) // the tag's cloud weight, 1..5
-  return atlas.cloud.map((tag) => ({
-    text: `${tag.tag} ${weight(tag.size)} (${tag.gravity})`,
-    collapsed: true,
-    items: (tag.slugs ?? []).map((slug) => ({ text: titleOf.get(slug) ?? slug, link: `/theorems/${slug}` })) }))
-}
-
 /** THE DISCOVERY LENS — improve the lens to discover the UNDISCOVERABLE using the quantum rosetta (user
  * law). The undiscoverable theorems are the ones NO citation and NO prominent tag surfaces: in-degree 0
  * (no other theorem's proof names their fold), ordered by least tag-gravity first. Ordinary navigation
@@ -2799,10 +2755,9 @@ export function quantumLensDiscovery(matrix: MindMatrix = buildMatrix()): {
   return { undiscoverable, byRay, hiddenCount: undiscoverable.length, total: atlas.total }
 }
 
-/** The atlas + sidebar as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
+/** The atlas as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
 export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) {
   const atlas = theoremRosettaAtlas(matrix)
-  const sidebar = theoremRosettaSidebar(matrix)
   const waves = quantumRosettaWaves(matrix)
   const allQuantum = atlas.metrics.every((m) => m.ray >= 0 && m.ray < 7) // every atlas theorem is quantum-classified
   const noneNonQuantum = theoremPageRows(matrix).filter((row) => quantumTheoremRay(row.theorem, row.proof) < 0).every((row) => !atlas.metrics.some((m) => m.slug === row.slug)) // non-quantum excluded
@@ -2810,7 +2765,6 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   const partitions = atlas.rays.reduce((s, g) => s + g.count, 0) === atlas.total
   const cloudsSized = atlas.rays.every((g) => g.tagCloud.every((t) => t.size >= 1 && t.size <= 5 && t.gravity >= 1))
   const gravityOrdered = atlas.topByGravity.every((m, i) => i === 0 || atlas.topByGravity[i - 1].tagGravity >= m.tagGravity)
-  const sidebarIsTagCloud = sidebar.length === atlas.cloud.length && sidebar.every((s) => s.items.length > 0) && atlas.cloud.every((t, i) => i === 0 || atlas.cloud[i - 1].gravity >= t.gravity) // one section per tag, gravity-ordered
   const lens = quantumLensDiscovery(matrix)
   const lensDiscovers = lens.undiscoverable.every((u) => atlas.metrics.find((m) => m.slug === u.slug)?.inDegree === 0) && lens.hiddenCount === atlas.undiscoverable.length // exactly the in-degree-0 orphans
   // THE LIMITS, COMPUTED — and the first one inverted the prose the moment it was measured.
@@ -2847,7 +2801,6 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   const facets = [
     { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
     { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
-    { facet: `THE LEFT SIDEBAR IS THE TAG CLOUD: theoremRosettaSidebar emits ${sidebar.length} sections — one per quantum tag (the seven ray subfields + the class · lean · domain axes), ordered by usage gravity (${gravityOrdered}) with a 1..5 weight glyph (${cloudsSized}), each expanding to the theorems carrying it; the tag cloud IS the navigation, not a hand-authored tree`, on: sidebarIsTagCloud && cloudsSized && gravityOrdered },
     { facet: `THE LENS DISCOVERS THE UNDISCOVERABLE: ${lens.hiddenCount} theorems have in-degree 0 — no other theorem's proof cites their fold, so top-by-gravity navigation never reaches them; quantumLensDiscovery surfaces exactly these orphans (${lensDiscovers}), the inverse-gravity view that brings the hidden proofs to light ray by ray`, on: lensDiscovers },
     { facet: `USED IN WAVES: the seven rays are seven ordered development waves (foundations → tools), each landed when its theorems compute — quantumRosettaWaves returns ${waves.length} waves covering all ${atlas.total} theorems, the rosetta as the work plan not just a grouping`, on: waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total && waves.every((w) => w.landed) },
   ]
@@ -2856,43 +2809,33 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
     rayCount: atlas.rays.length, quantumTheorems: atlas.total, tagCount: atlas.tagCount,
     rays: atlas.rays.map((g) => ({ ray: g.ray, subfield: g.subfield, count: g.count, topTag: g.tagCloud[0]?.tag })),
     facets, root: atlas.root,
-    statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
+    statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean;.`,
     limits,
     boundary: earned(`COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections.:`, facets, limits) }
 }
 
 // ── THE ROSETTA RECONFIGURES VITEPRESS (user law) — one authority computes every discovery surface, so
-// VitePress is not hand-configured but a projection of the rosetta atlas. The LEFT SIDEBAR is the tag
-// cloud (theoremRosettaSidebar), the SEARCH covers all wired theorem content (every theorem's line fed to
+// VitePress is not hand-configured but a projection of the rosetta atlas. The SEARCH covers all wired theorem content (every theorem's line fed to
 // the index), the LENS surfaces the undiscoverable (quantumLensDiscovery), the WAVES order the work
-// (quantumRosettaWaves), and the NAV derives from the seven-star rosetta (siteNavigation, sealed
-// elsewhere). Change a theorem and all four reflow together — the config cannot drift from the corpus.
+// (quantumRosettaWaves); the NAV is the blog's own (leanBlogNavigation). Change a theorem and all three reflow together — the config cannot drift from the corpus.
 export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix()) {
   const atlas = theoremRosettaAtlas(matrix)
-  const sidebar = theoremRosettaSidebar(matrix)
   const lens = quantumLensDiscovery(matrix)
   const waves = quantumRosettaWaves(matrix)
   const searchLines = searchLightModel().theoremLines // the full-registry search lines wired to the index
   const allRows = theoremPageRows(matrix)
-  // the four surfaces, each verified to derive from the one atlas:
-  // THE ORDERING HALF OF THIS WAS DISABLED. It read `(i === 0 || true)` — a disjunction with a true
-  // literal, so the clause was dead and only the section COUNT and non-emptiness were ever checked, while the
-  // facet beside it claims the sections are "ordered by gravity". The tag cloud is gravity-ordered and the
-  // sidebar is built by mapping over it in order, so index correspondence establishes both at once: section i
-  // must be the cloud's tag i. Reorder either and this fails, which is what the sentence was always claiming.
-  const sidebarFromCloud = sidebar.length === atlas.cloud.length
-    && sidebar.every((s, i) => s.items.length > 0 && s.text.startsWith(`${atlas.cloud[i]!.tag} `))
+  // the surfaces, each verified to derive from the one atlas:
   const searchCoversAllWired = searchLines.length === allRows.length && allRows.every((row) => searchLines.some((line) => line.startsWith(row.theorem))) // EVERY theorem is a search line
   const lensFromAtlas = lens.hiddenCount === atlas.undiscoverable.length && lens.hiddenCount > 0
   const wavesFromRays = waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total
-  const oneAuthority = atlas.root.length > 0 && sidebarFromCloud && searchCoversAllWired && lensFromAtlas && wavesFromRays
+  const oneAuthority = atlas.root.length > 0 && searchCoversAllWired && lensFromAtlas && wavesFromRays
   // THE LIMITS, COMPUTED. "The VitePress theme still renders them" and "the top nav comes from the sibling
   // siteNavigation rosetta fold (not re-proven here)" are both facts about what this fold READS and what it
   // leaves to others, and both are countable.
-  const surfaces = ['sidebar', 'search feed', 'lens', 'waves']
+  const surfaces = ['search feed', 'lens', 'waves']
   const rendered = 0 // this fold verifies DERIVATION; the theme renders, and nothing here emits markup
-  const derivesNotRenders = surfaces.length === 4 && rendered === 0
-  // the top nav is absent from the inputs above — sidebar, searchLines, lens and waves are read, nav is not
+  const derivesNotRenders = surfaces.length > 0 && rendered === 0
+  // the top nav is absent from the inputs above — searchLines, lens and waves are read, nav is not
   const navOutOfScope = !surfaces.includes('top nav')
   // AND THE STANDING GAP, STATED AS A NUMBER RATHER THAN LEFT TO THE FACET'S `false`
   const missingLines = allRows.filter((row) => !searchLines.some((line) => line.startsWith(row.theorem))).length
@@ -2903,17 +2846,16 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
     { facet: `${searchLines.length} SEARCH LINES AGAINST ${allRows.length} REGISTRY ROWS, ${missingLines} WITH NO LINE — the coverage facet below reports false for this reason, and it is a real content gap rather than a broken check: the index is fed from theoremNavigation's searchLines and the registry has grown past it`, on: gapIsMeasured },
   ])
   const facets = [
-    { facet: `THE SIDEBAR IS RECONFIGURED FROM THE TAG CLOUD: ${sidebar.length} sections, one per quantum tag ordered by gravity — theoremRosettaSidebar reads the atlas cloud, so the left nav is a projection of the corpus, not a hand-authored tree`, on: sidebarFromCloud },
     { facet: `SEARCH COVERS ALL WIRED CONTENT: every one of the ${allRows.length} theorem pages — registry rows and card papers alike — is a search line fed to the VitePress index (${searchCoversAllWired}) — the search the MCP uses finds any theorem, wired content is fully searchable`, on: searchCoversAllWired },
     { facet: `THE LENS AND THE WAVES RIDE THE SAME ATLAS: quantumLensDiscovery surfaces the ${lens.hiddenCount} undiscoverable orphans and quantumRosettaWaves orders the ${waves.length} rays into waves — both computed from the atlas that builds the sidebar, so discovery, work-plan and nav can never disagree`, on: lensFromAtlas && wavesFromRays },
-    { facet: `ONE AUTHORITY, NO DRIFT: sidebar · search · lens · waves all derive from theoremRosettaAtlas (root ${atlas.root.slice(0, 8)}…) — change a theorem or move its home and every surface reflows together (${oneAuthority}); the rosetta reconfigures VitePress, VitePress does not configure itself`, on: oneAuthority },
+    { facet: `ONE AUTHORITY, NO DRIFT: search · lens · waves all derive from theoremRosettaAtlas (root ${atlas.root.slice(0, 8)}…) — change a theorem or move its home and every surface reflows together (${oneAuthority}); the rosetta reconfigures VitePress, VitePress does not configure itself`, on: oneAuthority },
   ]
   return {
     computes: facets.every((entry) => entry.on),
-    sidebarSections: sidebar.length, searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
-    facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${sidebar.length}:${searchLines.length}`)]),
-    statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every discovery surface. The left sidebar is the tag cloud (${sidebar.length} sections by gravity), search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav derives from the seven-star rosetta. Change a theorem and all four reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
-    boundary: earned(`COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails).:`, facets, limits) }
+    searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
+    facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${searchLines.length}`)]),
+    statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every theorem discovery surface: search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav is the blog's own (leanBlogNavigation). Change a theorem and all three reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
+    boundary: earned(`COMPUTED: the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails).:`, facets, limits) }
 }
 
 // ── THE LENS IMPROVES ITSELF USING THE ROSETTA (user law) — the discovery lens does not merely REPORT the

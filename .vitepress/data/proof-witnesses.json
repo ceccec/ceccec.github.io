@@ -284,16 +284,16 @@
    2833,
    2868,
    2903,
-   551,
-   657,
-   715,
-   813,
-   860,
-   1469,
-   1587
+   550,
+   656,
+   714,
+   812,
+   859,
+   1468,
+   1586
   ],
   "holds": true,
-  "caption": "the first 64 of 1873 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1871 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -1498,7 +1498,7 @@
  "the chat audits README usability by algebra — strong structure and navigation, rich linkage, a computed readability gap (dense prose)": {
   "form": "bars",
   "values": [
-   274,
+   273,
    528,
    76
   ],
@@ -2119,13 +2119,12 @@
  "the rosetta reconfigures VitePress — one authority, four surfaces": {
   "form": "bars",
   "values": [
-   18,
    787,
    10,
    7
   ],
   "holds": true,
-  "caption": "the quantities theRosettaReconfiguresVitepress computes for this theorem (sidebarSections, searchLines, undiscoverable, waves), drawn from its own run — no other proof returns them"
+  "caption": "the quantities theRosettaReconfiguresVitepress computes for this theorem (searchLines, undiscoverable, waves), drawn from its own run — no other proof returns them"
  },
  "Shor period-finding factors — the full order-finding circuit runs": {
   "form": "bars",
@@ -2248,10 +2247,10 @@
    160,
    152,
    135,
-   135,
+   134,
    126,
    125,
-   119,
+   118,
    106,
    101,
    90,
@@ -2288,7 +2287,7 @@
    47,
    47,
    46,
-   45,
+   44,
    44,
    44,
    44,

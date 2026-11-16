@@ -375,7 +375,7 @@ export type UniversalPage = {
  * Closes multi-clock / destination-vs-page-route desync (pair hero/card · card/hero · hero/anim).
  */
 export declare function heroPreviewForRoute(route: string, title?: string, matrix?: MindMatrix, at?: number): HeroPreview;
-/** Hub destinations — navigation358 + harmonised nav, gated by global Rosetta·I Ching·trinity fusion. */
+/** Hub destinations — the blog navigation's destinations (leanBlogDestinations), gated by global Rosetta·I Ching·trinity fusion. */
 export declare function hubCardItems(locale: LocaleName, matrix?: MindMatrix): CorpusGridItem[];
 /** Top keyword tags — staticPages on client (O(static)); full catalog on SSR/build. */
 export declare function tagBrowserTags(matrix?: MindMatrix): readonly string[];
@@ -511,7 +511,7 @@ export declare function rosettaBreadcrumbs(route: string, at?: number, matrix?: 
 export declare function computeUniversalPage(route: string, params?: Record<string, unknown>, matrix?: MindMatrix): UniversalPage;
 export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount/index.ts';
 export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount/index.ts';
-export { harmonisedNavigation, navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../../learning/index.ts';
+export { navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../../learning/index.ts';
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts';
 export { contentIsMonographOfMonographs, eachPageSpeaksContinuesNext, everyElementIsALinkedNodeOrUseless, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, monographs, onlyPageRouteForAll, theMonograph } from '../../../learning/index.ts';
 export { homePageNoDifferent, homepage, pageStatusStatistics, proveAllOnHomePage } from '../../site/index.ts';
@@ -1432,17 +1432,6 @@ export declare function quantumRosettaWaves(matrix?: MindMatrix): {
     theorems: string[];
     landed: boolean;
 }[];
-/** The VitePress sidebar for the quantum-computing theorems, computed from the rosetta atlas — one
- * collapsible section per ray (subfield), each listing its theorems ranked by tag-gravity, deepest first.
- * config.mts merges this under /theorems/ so the theorem sidebar IS the rosetta, quantum-only. */
-export declare function theoremRosettaSidebar(matrix?: MindMatrix): {
-    text: string;
-    collapsed: boolean;
-    items: {
-        text: string;
-        link: string;
-    }[];
-}[];
 /** THE DISCOVERY LENS — improve the lens to discover the UNDISCOVERABLE using the quantum rosetta (user
  * law). The undiscoverable theorems are the ones NO citation and NO prominent tag surfaces: in-degree 0
  * (no other theorem's proof names their fold), ordered by least tag-gravity first. Ordinary navigation
@@ -1466,7 +1455,7 @@ export declare function quantumLensDiscovery(matrix?: MindMatrix): {
     hiddenCount: number;
     total: number;
 };
-/** The atlas + sidebar as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
+/** The atlas as a computing theorem — quantum-only, the seven rays distinct, clouds ray-local. */
 export declare function theoremRosettaAtlasComputes(matrix?: MindMatrix): {
     computes: boolean;
     rayCount: number;
@@ -1492,7 +1481,6 @@ export declare function theoremRosettaAtlasComputes(matrix?: MindMatrix): {
 };
 export declare function theRosettaReconfiguresVitepress(matrix?: MindMatrix): {
     computes: boolean;
-    sidebarSections: number;
     searchLines: number;
     undiscoverable: number;
     waves: number;

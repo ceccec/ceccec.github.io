@@ -763,7 +763,7 @@ export declare function clayCrossDiscovery(fetched: Readonly<Record<string, stri
             closed: boolean;
         };
     }[];
-    perspectives: ("geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "quantum" | "merkaba" | "diamonds" | "plasma" | "life" | "fusion" | "star" | "faces" | "physics" | "corpus" | "vortex" | "computer" | "movie" | "algebra" | "voice" | "lens" | "sixty-ninety" | "vite-mirror" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles")[];
+    perspectives: ("geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "quantum" | "merkaba" | "diamonds" | "plasma" | "life" | "star" | "faces" | "physics" | "fusion" | "corpus" | "vortex" | "computer" | "movie" | "algebra" | "voice" | "lens" | "sixty-ninety" | "vite-mirror" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles")[];
     statement: string;
 };
 export declare const LEAN_CROSS_FILE = "src/pair/lean/proofs/cross.lean";

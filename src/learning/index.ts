@@ -27,7 +27,7 @@ import { componentGraph } from '../heaven/core/index.ts'
 import { realtimeWiring } from '../fire/plasma/ball/index.ts'
 import { toGlagolitic } from '../quantum/heaven/library/index.ts'
 import { mcpCodebase, mcpUsesVitepressSearch } from '../thunder/commands/index.ts'
-import { completeCorpus, theoremRosettaSidebar, theRosettaReconfiguresVitepress } from '../wind/routes/corpus/index.ts'
+import { completeCorpus, theRosettaReconfiguresVitepress } from '../wind/routes/corpus/index.ts'
 import { diamondLattice } from '../fire/diamonds/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../water/digit/index.ts'
 import { SESSION_SKILL_FNS } from '../2/8/index.ts'
@@ -36,7 +36,7 @@ import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../4/6/index.ts'
 // call-time namespace edges (cycle-safe): the attachment folds read back at call time
 import * as __ns_up_earth_iching from '../earth/iching/index.ts'
 import * as __ns_up_movie_canvas from '../thunder/movie/canvas/index.ts'
-import { proofAcknowledgmentFormatSaved, leanBlogNavigation } from '../wind/site/index.ts'
+import { proofAcknowledgmentFormatSaved, leanBlogNavigation, leanBlogDestinations, leanBlogNavigationHolds } from '../wind/site/index.ts'
 import { quantumCoordinateNav } from '../fire/features/index.ts'
 import { openGraph } from '../quantum/icons/index.ts'
 import { navigationAroundHero } from '../ui/index.ts'
@@ -679,64 +679,6 @@ export function decodeKnowledge(matrix: MindMatrix = buildMatrix()) {
     statement: 'All knowledge decoded into the one ancient language: every area, atom, and command rendered as symbol, number, and fold.',
     boundary: 'A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim.' }
 }
-
-// Navigation in 3-5-8, with a tooltip on every destination. Three ways to
-// arrive, five to use, eight to go deep — the whole portal as one tooltip-rich
-// map, organized by the Fibonacci tiers.
-export function navigation358(matrix: MindMatrix = buildMatrix()) {
-  // COMPUTED 3-5-8 (user law: purge old links; pages are rosetta combinations of theorems) — no hand
-  // list survives: arrive = home + the two theorem surfaces, use = the populated ray hubs (the lens
-  // decides which rays hold served pages), deep = the corpus REST + the machine artifacts. 3 + 5 = 8.
-  // Each destination shelves through rosettaShelve(kind=nav) — addresses via the core API, not a wet map.
-  const lens = theoremScienceLens(matrix)
-  const hubs = lens.rays.map((ray) => ({ label: ray.labelEn, route: `/${ray.slug}`, tip: `${ray.labelEn}: ${ray.pages.length} served science ${ray.pages.length === 1 ? 'paper' : 'papers'}.` }))
-  const tiers = [
-    { tier: 3, name: 'arrive', items: [
-      { label: 'Home', route: '/', tip: 'The root monograph — the portal in one page.' },
-      { label: 'Theorem registry', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
-      { label: 'Domain proofs', route: '/proofs', tip: 'Canonical domain proof catalog · Clay marks Millennium challenges only.' },
-    ] },
-    // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
-    // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.
-    { tier: 5, name: 'use', items: [...hubs, ...lens.pages.filter((page) => !hubs.some((hub) => hub.route === '/' + page.slug)).map((page) => ({ label: page.title.en, route: '/' + page.slug, tip: 'Theorem post: ' + page.title.en + '.' }))].slice(0, 5) },
-    { tier: 8, name: 'go deep', items: [
-      { label: 'Tag index', route: '/theorems', tip: 'Registry theorems by tag — a view, not a second hub.' },
-      { label: 'Papers (REST)', route: '/papers/', tip: 'Machine export: 432 proof papers.' },
-      { label: 'References (REST)', route: '/references', tip: 'Machine export: bibliographic duals.' },
-      { label: 'Diamonds (REST)', route: '/diamonds', tip: 'Machine export: diamond lattice.' },
-      { label: 'mcp.json', route: '/mcp.json', tip: 'Every command as an MCP tool.' },
-      { label: 'llms.txt', route: '/llms.txt', tip: 'The agent protocol and the science corpus.' },
-      { label: 'digit-index.json', route: '/digit-index.json', tip: 'The pi-digit fold index.' },
-      { label: 'print.css', route: '/print.css', tip: 'The paper projection, media="print".' },
-    ] },
-  ]
-  const items = tiers.flatMap((tier) => tier.items.map((item) => {
-    const slug = item.route.replace(/^\/+/, '').split('/').filter(Boolean)[0] || 'home'
-    const shelved = __ns_up_quantum_apps.rosettaShelve(slug, 'nav')
-    return { ...item, tier: tier.tier, ray: shelved.ray, hue: shelved.hue, address: shelved.address }
-  }))
-  const unresolved = items.filter((item) => !isServedRoute(item.route))
-  const core = __ns_up_quantum_apps.rosettaCoreApi(0, matrix)
-  const facets = [
-    { facet: 'every nav route is a SERVED surface (isServedRoute — the purge law): no removed page can appear', on: unresolved.length === 0 },
-    { facet: '3-5-8 shape holds — the deep tier equals arrive + use', on: tiers[2]!.items.length === tiers[1]!.items.length + tiers[0]!.items.length },
-    { facet: 'every nav item shelved through rosettaShelve(kind=nav)', on: items.every((item) => item.ray >= 0 && item.ray < 7 && item.address.length === 36) },
-    { facet: 'rosettaCoreApi computes — nav dispatches through the core API', on: core.computes },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`nav358-facet:${entry.facet}:${entry.on}`) }))
-  return {
-    mapped: items.length === (8 * 2) && facets.every((entry) => entry.on),
-    tiers,
-    count: items.length,
-    items,
-    core,
-    facets,
-    routesResolve: facets[0]!.on,
-    unresolved: unresolved.map((item) => item.route),
-    root: merkleFold([core.root, ...items.map((item) => item.address)]),
-    statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home · theorem registry · domain proofs), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(' · ')}), eight to go deep (tag index + REST exports + machine artifacts) — every destination shelved on a rosetta ray.`,
-    boundary: 'The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Discovery hubs ≠ machine corpora. Addresses via the core API, not a parallel nav registry.' }
-}
-
 
 // Multidimensional summaries — including the one third from beyond. The eight dimensions of
 // experience each get a one-line summary, and the missing one is added: the third from beyond —
@@ -1690,38 +1632,16 @@ export function navigationIsMovie(matrix: MindMatrix = buildMatrix()) {
       'A structural framing that unifies the quantum-coordinate navigation with the movie and a content-addressed "library" of routes. A metaphor over the real links and the canvas movie, not a change to navigation behaviour.' }
 }
 
-export function harmonisedNavigation(matrix: MindMatrix = buildMatrix()) {
-  // The route list DERIVES from the served set (user law: purge old links) — every served science page
-  // plus the corpus REST; the old hand-typed portal list carried removed pages.
-  const routes = [...staticPages().map((page) => `/${page.slug}`), '/theorems', '/papers', '/references', '/diamonds']
-  void matrix
-  const titleOf = (path: string) => path.slice(1).split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-  const slugOf = (title: string) => title.toLowerCase().replace(/ /g, '-')
-  const items = routes.map((path) => {
-    const title = titleOf(path)
-    return { path, title, matches: slugOf(title) === path.slice(1), inFooter: true, receipt: toUuid(`nav-harmonised:${path}:${title}`) }
-  })
-  return {
-    harmonised: items.every((entry) => entry.matches),
-    distributed: items.every((entry) => entry.inFooter),
-    count: items.length,
-    items,
-    root: merkleFold(items.map((entry) => entry.receipt)),
-    statement:
-      'Simplify navigation by harmonising names and titles to match paths, and distribute the links to the footer: every navigation title is its own path, title-cased — so a name tells you the path, and the only "types" are the group names — and every destination is also laid out in one path-matched row in the footer.',
-    boundary:
-      'A verification that each navigation title round-trips to its route (title-case ↔ slug) and that every destination is distributed to the footer. A structural check of the real nav and footer configuration; acronyms (e.g. MCP) are shown upper-cased while still matching their slug.' }
-}
-
 export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
   const og = openGraph().root
-  const nav = harmonisedNavigation(matrix)
-  const items = nav.items.map((item) => {
-    const fold = foldPair(og, toUuid(`og-nav:${item.path}`))
-    return { path: item.path, title: item.title, built: fold.bidirectional, card: fold.merged, receipt: toUuid(`og-nav-card:${item.path}`) }
+  const holds = leanBlogNavigationHolds('en')
+  const destinations = leanBlogDestinations('en')
+  const items = destinations.map((d) => {
+    const fold = foldPair(og, toUuid(`og-nav:${d.link}`))
+    return { path: d.link, title: d.text, built: fold.bidirectional, card: fold.merged, receipt: toUuid(`og-nav-card:${d.link}`) }
   })
   return {
-    builds: items.length === nav.items.length && items.every((entry) => entry.built) && nav.harmonised && templateDisplaysEveryOgObject(matrix).displaysAll,
+    builds: items.length === destinations.length && items.every((entry) => entry.built) && holds.computes && templateDisplaysEveryOgObject(matrix).displaysAll,
     count: items.length,
     items,
     root: merkleFold(items.map((entry) => entry.receipt)),
@@ -1785,7 +1705,7 @@ export function vitepressShowsOnlyScience(matrix: MindMatrix = buildMatrix()) {
     hero.tagline.includes(`into ${lens.rays.length} rays`)
   const facets = [
     { facet: `SCIENCE SHOWS, THE REST IS HIDDEN — the navigation is the blog's own, computed from the Lean monographs (${blogNav.nav.length - 1} groups after the feed, none empty), and the lens genuinely removes (${lens.hidden.length} pages with no route, no build, no search entry)`, on: blogNav.nav.slice(1).every((g) => 'items' in g && g.items.length > 0) && lens.hidden.length > 0 },
-    { facet: `ORGANISED BY THE ROSETTA — the ${lens.visibleCount} visible pages shelve into ${lens.rays.length} rosetta rays with none lost, and the theorem sidebar is the rosetta atlas tag cloud (${reconf.sidebarSections} sections by gravity)`, on: lens.computes && reconf.computes },
+    { facet: `ORGANISED BY THE ROSETTA — the ${lens.visibleCount} visible pages shelve into ${lens.rays.length} rosetta rays with none lost, and the theorem search, lens and waves ride the one rosetta atlas`, on: lens.computes && reconf.computes },
     { facet: `ALL WIRED IN VITEPRESS SEARCH — every one of the ${reconf.searchLines} registry theorems is a search line fed to the local index`, on: reconf.searchLines > 0 },
     { facet: `THE MCP USES THE SAME SEARCH — the manifest instructions point agents at the VitePress local index and the searchable corpora are served pages`, on: mcp.computes },
     { facet: `THE HOMEPAGE MATCHES — hero has exactly two discovery CTAs (registry · domain proofs), zero synonym corpus CTAs (${heroLensed && heroZeroSynonym}), text ${lens.theoremCount} proven · tagline ${lens.rays.length} rays`, on: heroLensed && heroZeroSynonym && heroStatesTheLens },

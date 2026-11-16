@@ -3543,8 +3543,8 @@ export declare function rosettaComputesItself(at?: number, matrix?: MindMatrix):
         root: string;
     };
     rows: {
-        tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-        action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+        tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+        action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
         ray: number;
         rayMeta: {
             readonly ray: 0;
@@ -3601,7 +3601,7 @@ export declare function rosettaComputesItself(at?: number, matrix?: MindMatrix):
         legacyBare: string;
         schemaTarget: string;
         canonical: string;
-        importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+        importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
         wave: 2 | 1;
         applied: boolean;
         receipt: string;
@@ -3733,8 +3733,8 @@ export declare function rosettaReuse(at?: number, matrix?: MindMatrix): {
             root: string;
         };
         rows: {
-            tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-            action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
             ray: number;
             rayMeta: {
                 readonly ray: 0;
@@ -3791,7 +3791,7 @@ export declare function rosettaReuse(at?: number, matrix?: MindMatrix): {
             legacyBare: string;
             schemaTarget: string;
             canonical: string;
-            importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
             wave: 2 | 1;
             applied: boolean;
             receipt: string;

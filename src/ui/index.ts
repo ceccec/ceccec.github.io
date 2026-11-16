@@ -16,7 +16,7 @@ import { clownActQuantumSteps, harmonics } from '../music/index.ts'
 import { blockchainFusion, tamperingCostDecoded } from '../water/crypto/index.ts'
 import { societyFuture, societyRegulates } from '../earth/governance/index.ts'
 import { conceptCommands } from '../heaven/atoms/index.ts'
-import { multidimensionalSummaries, navigation358, skillAtoms } from '../learning/index.ts'
+import { multidimensionalSummaries, skillAtoms } from '../learning/index.ts'
 import { analogSpeech, lawfulHarmonise, openGraph } from '../quantum/icons/index.ts'
 import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../fire/li/index.ts'
 import { ancientCalendars, ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime } from '../thunder/decode/index.ts'
@@ -30,7 +30,7 @@ import { scaleColor, A432_HUE, movieCanvasHex } from '../quantum/science/index.t
 import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../fire/plasma/ball/index.ts' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
 export { scaleColor, oklchToHex } from '../quantum/science/index.ts' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site/index.ts' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
-import { staticPages, homeHero, leanBlogNavigation } from '../wind/site/index.ts'
+import { staticPages, homeHero, leanBlogNavigation, leanBlogDestinations } from '../wind/site/index.ts'
 import { sealWholeDiamond } from '../fire/diamonds/index.ts'
 import { dimensionalMerkabaGraphRealtimeMetric } from '../thunder/trading/index.ts'
 import { teslaPatentsResearchedInWaves } from '../fire/physics/index.ts'
@@ -235,8 +235,9 @@ function computeHeroLawAlignment(matrix: MindMatrix) {
 // angle around each shell, so the whole map radiates from the hero you start at.
 export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
   const hero = { label: 'Double Torus', route: '/' } // the hero at the origin
-  const shells = navigation358().tiers.map((tier) => {
-    const radius = tier.tier // the tier IS the shell radius around the hero
+  // THE SHELLS ARE THE BLOG'S NAV ENTRIES (leanBlogNavigation): the feed, then each group, outward — radius = position.
+  const shells = leanBlogNavigation('en').nav.map((entry, g) => ({ tier: g + 1, name: entry.text, items: 'items' in entry ? entry.items.map((i) => ({ label: i.text, route: i.link })) : [{ label: entry.text, route: entry.link }] })).map((tier) => {
+    const radius = tier.tier // the entry's position IS the shell radius around the hero
     const items = tier.items.map((item, index) => {
       const angle = (index / tier.items.length) * TAU
       return {
@@ -250,15 +251,15 @@ export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
     return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) }
   })
   return {
-    aroundHero: shells.length === 3 && hero.route === '/' && shells.every((shell) => shell.items.length > 0) && shells[2].radius === shells[0].radius + shells[1].radius,
+    aroundHero: shells.length > 1 && shells[0]!.items.some((item) => item.route === hero.route) && shells.every((shell) => shell.items.length > 0) && shells.every((shell, i) => i === 0 || shell.radius > shells[i - 1]!.radius),
     hero,
     shellCount: shells.length,
     shells,
     root: merkleFold(shells.map((shell) => shell.receipt)),
     statement:
-      'Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its 3-5-8 tier — three ways to arrive on the inner shell, five to use on the middle, eight to go deep on the outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by angle around each shell, so the whole map radiates from the hero you start at.',
+      'Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its place in the blog\'s navigation — the feed on the inner shell, then the Clay cases, then the subjects (leanBlogNavigation). Items spread evenly by angle around each shell.',
     boundary:
-      'A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.' }
+      'A polar layout of the blog\'s navigation (leanBlogNavigation) around the home hero as concentric shells, radius = the nav entry\'s position. A geometric arrangement of the existing routes for orientation — it does not change the links, only places them around the hero.' }
 }
 
 // Each pair is the trinity open graph, used everywhere. Two terms fold, order-sensitive,
@@ -2211,7 +2212,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
     const lens = theoremScienceLens(matrix)
     const colourPosts = ['hexagram-colour', 'trinity-rgb', 'rgb-cmyk']
     const colourServed = colourPosts.every((slug) => lens.pages.some((page: { slug: string }) => page.slug === slug))
-    const nav = navigation358(matrix)
+    const nav = leanBlogDestinations('en')
     const blogNav = leanBlogNavigation('en')
     const shadcn = __ns_up_up_mountain_shadcn.shadcnComputes(matrix)
     const shadcnLens = __ns_up_up_mountain_shadcn.shadcnQuantumLens(matrix)
@@ -2219,7 +2220,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
     const facets = [
       { facet: `the design tokens ARE theorem numbers — src/render/ui/tokens.css emits from ichingTokensCss (${tokens.length} bytes) and passes its own hardcoded-value scanner: ${offenders.length} offenders — the CSS is computed, never authored`, on: tokens.length > 0 && offenders.length === 0 },
       { facet: `the colour computations are THEOREM POSTS the blog serves — ${colourPosts.join(' · ')} are lens survivors: a reader clicks from a colour to the theorem that computes it`, on: colourServed },
-      { facet: `navigation · sidebar · related cards recompute from the lens and the rosetta at call time — navigation358 maps ${nav.count} destinations, the sidebar is the blog's own (${blogNav.sidebar.length} groups, computed from the monographs, none empty) — VitePress API first, zero hand-wired routes`, on: nav.mapped && blogNav.sidebar.length > 0 && blogNav.sidebar.every((g) => g.items.length > 0) },
+      { facet: `navigation · sidebar · related cards recompute from the lens and the rosetta at call time — the navigation reaches ${nav.length} destinations, the sidebar is the blog's own (${blogNav.sidebar.length} groups, computed from the monographs, none empty) — VitePress API first, zero hand-wired routes`, on: nav.length > 0 && blogNav.sidebar.length > 0 && blogNav.sidebar.every((g) => g.items.length > 0) },
       { facet: 'shadcn completes the quantum presentation — the registry computes (7 facets) and the cva table is the proven 3·2⁶ tensor with ground states (shadcnQuantumLens)', on: shadcn.computes && shadcnLens.opens },
       { facet: `every part is HOLOGRAPHIC and REUSABLE — each part contains the whole (holographic: ${holo.holographic}, ${holo.count} cells) and every projection is content-addressed: the tokens artifact folds to one reusable address`, on: isUuid(toUuid(tokens)) && holo.holographic },
       { facet: 'and INVERTIBLE — light/dark is the visible ℤ₂ inversion (the tokens bridge .dark, the movie flips paint polarity, the digit-hue complement lands in the void gap), and the sealed involutions (反 · 對 · negation · complement) say more inversions await discovery: every projection carries its inverse', on: tokens.includes('.dark') || tokens.includes('dark') },
@@ -2231,7 +2232,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `CSS becomes another use case of the theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: the design tokens emit from the same I Ching numbers the theorems prove (and pass their own scanner with zero offenders), the colour computations are served theorem posts (hexagram-colour · trinity-rgb · rgb-cmyk), navigation, sidebar and related cards recompute from the lens and rosetta through the VitePress API with shadcn completing the presentation as the proven 3·2⁶ tensor, and every part is holographic and reusable — each projection carries the whole matrix and folds to one content address.`,
-      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, navigation358/sidebar/crosslink counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems.` }
+      boundary: `COMPOSED of live verdicts: the token emission and its self-scan, the lens roster membership, the blog navigation counts, the shadcn folds, and the holographic gate — each refutable at its home. HONEST SCOPE: "every part holographic" is the sealed holographic fold's claim (each part recomputes the whole's root), and "reusable" means content-addressed (same address ⇒ same artifact, anywhere); the render layer stays VitePress-first by the weave's own onlyVitePressApi gate (cited — it runs at build, not here). CSS is a PROJECTION of theorems the way README, home and the movie are — one matrix, many use cases; no claim that browsers parse theorems.` }
   })
 }
 

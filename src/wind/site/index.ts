@@ -104,6 +104,34 @@ export function leanBlogNavigation(locale: LocaleName = 'en') {
   }
 }
 
+/** THE BLOG'S DESTINATIONS: every distinct link its navigation carries — the feed, then each monograph — once, with the
+ *  position of the nav entry it sits under (1 = the feed). */
+export function leanBlogDestinations(locale: LocaleName = 'en') {
+  const all = leanBlogNavigation(locale).nav.flatMap((entry, g) => ('items' in entry ? entry.items : [entry]).map((d) => ({ text: d.text, link: d.link, entry: g + 1 })))
+  return all.filter((d, i) => all.findIndex((x) => x.link === d.link) === i)
+}
+
+/** THE BLOG'S NAVIGATION, CHECKED: every link is the feed or a monograph that exists, every monograph is listed, none twice;
+ *  the sidebar's groups are the nav's, link for link; the footer carries the feed and every Clay case. Each part refutable. */
+export function leanBlogNavigationHolds(locale: LocaleName = 'en') {
+  const nav = leanBlogNavigation(locale)
+  const home = locale === 'en' ? '/' : `/${locale}/`
+  const routes = new Set(leanMonographs().map((m) => `/${m.slug}`))
+  const destinations = leanBlogDestinations(locale)
+  const groupLinks = (groups: readonly unknown[]) => groups.flatMap((g) => (g && typeof g === 'object' && 'items' in g ? (g as { items: { link: string }[] }).items.map((i) => i.link) : []))
+  const linked = groupLinks(nav.nav)
+  const everyLinkExists = destinations.every((d) => d.link === home || routes.has(d.link))
+  const monographsCovered = [...routes].every((r) => linked.includes(r))
+  const noneTwice = new Set(linked).size === linked.length
+  const sidebarIsNav = linked.join(' ') === groupLinks(nav.sidebar.slice(1)).join(' ')
+  const clay = nav.nav[1] && 'items' in nav.nav[1] ? nav.nav[1].items : []
+  const footerCarriesClay = nav.footer.message.includes(`href="${home}"`) && clay.length > 0 && clay.every((i) => nav.footer.message.includes(`href="${i.link}"`))
+  return {
+    computes: everyLinkExists && monographsCovered && noneTwice && sidebarIsNav && footerCarriesClay,
+    destinations: destinations.length, monographs: routes.size, everyLinkExists, monographsCovered, noneTwice, sidebarIsNav, footerCarriesClay,
+  }
+}
+
 /** THE ONE ALIAS READER: the slug an alias stands for, from either alias table — ROUTE_ALIASES and each domain's own
  * aliases in SITE_DOMAIN_SEED — or null when the slug is no alias. The router mounts aliases from these same two tables;
  * the canonical link (src/mountain/og canonicalRouteOf) and the sitemap ask here, so none of the three can disagree. */

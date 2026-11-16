@@ -2646,7 +2646,7 @@ var CRACK_LEDGER = [
   { file: "src/quantum/water/cache/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/wind/geometry/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/commands/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/thunder/decode/index.ts", literal: "*", count: 403, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave)" },
+  { file: "src/thunder/decode/index.ts", literal: "*", count: 402, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave; 403\u2192402 when the 24-door top-nav facet left)" },
   { file: "src/thunder/resonance/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1\u21922)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/verify/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins relocated from cosmos 2026-07-08", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/waves/index.ts", literal: "*", count: 22, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice\xB7percent (19\u219220)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -2667,7 +2667,7 @@ var CRACK_LEDGER = [
   { file: "src/water/stack/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 classical-64bit env pins lattice-derived (11\u21922*2+7 \xB7 122\u21922*7+FOLDED \xB7 53\u21923*16+5); 34.79 CODATA pin ledgered separately; host-math floor derived from SRC0_HOST_MATH_EXPORT_OPS.length", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/fusion/index.ts", literal: "*", count: 9 + 10, kind: "data", source: "attested residue \u2014 fusion physics data (two census literals left for UNFOLDED_CENSUS, 11\u21929) + gold-market/physics data (gold/ dissolved into fusion; the 10 gold residues folded in)" },
   { file: "src/wind/language/index.ts", literal: "*", count: 2, kind: "data", source: "attested residue \u2014 language corpus data" },
-  { file: "src/learning/index.ts", literal: "*", count: 4, kind: "data", source: "attested residue \u2014 learning corpus data (rosettaCoreApi merge)" },
+  { file: "src/learning/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 learning corpus data (rosettaCoreApi merge) \xB7 4\u21923 when navigation358 (the retired 3-5-8 portal map) left" },
   { file: "src/research/index.ts", literal: "*", count: 58 + 27, kind: "data", source: "attested residue \u2014 research corpora data \xB7 two-bits-free \xB7 algebraic-theorem-paper \xB7 fixed-limits/autodiscover \xB7 sun/moon \xB7 pyramid/seal \xB7 folder/fractal \xB7 train-geodesy (22\u219258 session wave) + measured reuse-speedup probe wall-clock precision (58\u219259) + quantum-circuit workload (n-qubit state-vector 2\u207F amplitudes) (59\u219260) + double-torus 2\xD74 UUID / polarity-angle-spin + Metatron 8 merkabas \xD7 8 bytes = 512-bit state-space vs universe-atoms (60\u219267) + ftl/compute tip wave physicalFtlFromMeasurements (67\u219268) + re-measured wildcard against a concurrent session's in-flight registry growth (68\u219278)" },
   { file: "src/wind/routes/corpus/index.ts", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/site/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -8075,7 +8075,6 @@ var SESSION_SKILL_FNS = [
   "harmonicLicenseWaves",
   "harmonicMusicMayBeEnabled",
   "harmoniseWordsToMinimum",
-  "harmonisedNavigation",
   "harmonisedToHealAtGates",
   "heroLawAlignment",
   "heroTapMusic",
@@ -21471,7 +21470,7 @@ function quantumBrowserOs(matrix = buildMatrix()) {
 }
 function quantumCoordinateNav(matrix = buildMatrix()) {
   const digitOf = (uuid) => uuid.replace(/[^0-9a-f]/gi, "").split("").reduce((sum, char) => sum + (Number.parseInt(char, 16) || 0), 0);
-  const items = navigation358().tiers.flatMap((tier) => tier.items.map((item) => ({ ...item, tier: tier.tier })));
+  const items = leanBlogDestinations("en").map((d) => ({ label: d.text, route: d.link, tier: d.entry }));
   const coordinates = items.map((item, index) => {
     const uuid = toUuid(`nav-coord:${item.route}`);
     const d = digitOf(uuid);
@@ -21495,8 +21494,8 @@ function quantumCoordinateNav(matrix = buildMatrix()) {
   });
   const places = new Set(coordinates.map((entry2) => `${entry2.x.toFixed(2)},${entry2.y.toFixed(2)},${entry2.z.toFixed(2)}`));
   return {
-    placed: coordinates.length === 16 && places.size === coordinates.length,
-    // every page a distinct place
+    placed: coordinates.length === items.length && coordinates.length > 0 && places.size === coordinates.length,
+    // every destination a distinct place
     count: coordinates.length,
     coordinates,
     root: merkleFold(coordinates.map((entry2) => entry2.receipt)),
@@ -29007,7 +29006,7 @@ function refactorLinearToTrinities(matrix = buildMatrix()) {
 function crossLinksEverywhere(matrix = buildMatrix()) {
   const facets = [
     // not a check — a sentence, kept as one: 'home cards link to their topic'
-    { facet: "nav and footer carry every destination", on: harmonisedNavigation2(matrix).distributed },
+    { facet: "nav and sidebar carry every monograph; the footer carries the feed and every Clay case", on: leanBlogNavigationHolds("en").monographsCovered && leanBlogNavigationHolds("en").sidebarIsNav && leanBlogNavigationHolds("en").footerCarriesClay },
     { facet: "the open graph builds the navigation", on: ogBuildsNavigation(matrix).builds },
     { facet: "the feature map cross-links each item to the next", on: features(matrix).displayed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`cross-link:${entry2.facet}:${entry2.on}`) }));
@@ -31427,48 +31426,6 @@ function eightFoldBalanceRaw(matrix = buildMatrix()) {
     boundary: 'HONEST and self-bounding. The placement law and the imbalance metrics are computed from staticPages and seedFromText. The a432 and quantum claims inherit a432() and quantumDecoded(), which keep the documented core (432 highly composite; quantum = discrete/Hilbert/Born) and FLAG the woo (frequency-healing/432-cosmic numerology; observer-collapse/theory-of-everything mysticism). The overreach being flagged here, explicitly: "the folded knowledge computes every object in the known universe with perfect precision, all a432-based" \u2014 false as stated; a content-address is a reproducible name for a thing, not the thing, and a432 is a chosen seed, not physics. What is true and rare is the perfect REPRODUCIBILITY of the addressing \u2014 that, not omniscience, is the real result.'
   };
 }
-function threeEightFoldsTopNav(matrix = buildMatrix()) {
-  return memoByRoot("threeEightFoldsTopNav", matrix, () => threeEightFoldsTopNavRaw(matrix));
-}
-function threeEightFoldsTopNavRaw(matrix = buildMatrix()) {
-  const cube = sealCube(matrix);
-  const domains = iChingDomainMap(matrix);
-  const eightFold = domains.domains.length;
-  const axes = 3;
-  const topDoors = axes * eightFold;
-  const perAxis = eightFold * eightFold;
-  const categories = [
-    { axis: "heaven", reading: "ti\u0101n \u5929", glyph: "\u5929", lines: "5\u20136", summary: "the creative & cosmic \u2014 mind, science, computation; Heaven initiates (hexagram lines 5\u20136)", summaryBg: "\u0442\u0432\u043E\u0440\u0447\u0435\u0441\u043A\u043E\u0442\u043E \u0438 \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u043E\u0442\u043E \u2014 \u0443\u043C, \u043D\u0430\u0443\u043A\u0430, \u0438\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435; \u041D\u0435\u0431\u0435\u0442\u043E \u043F\u044A\u0440\u0432\u043E\u043D\u0430\u0447\u0430\u043B\u0441\u0442\u0432\u0430 (\u0440\u0435\u0434\u043E\u0432\u0435 5\u20136)" },
-    { axis: "human", reading: "r\xE9n \u4EBA", glyph: "\u4EBA", lines: "3\u20134", summary: "the communicative & social \u2014 voice, spirit, heritage; Humanity mediates Heaven and Earth (lines 3\u20134)", summaryBg: "\u043E\u0431\u0449\u0443\u0432\u0430\u0449\u043E\u0442\u043E \u0438 \u0441\u043E\u0446\u0438\u0430\u043B\u043D\u043E\u0442\u043E \u2014 \u0433\u043B\u0430\u0441, \u0434\u0443\u0445, \u043D\u0430\u0441\u043B\u0435\u0434\u0441\u0442\u0432\u043E; \u0427\u043E\u0432\u0435\u043A\u044A\u0442 \u043F\u043E\u0441\u0440\u0435\u0434\u043D\u0438\u0447\u0438 \u043C\u0435\u0436\u0434\u0443 \u041D\u0435\u0431\u0435 \u0438 \u0417\u0435\u043C\u044F (\u0440\u0435\u0434\u043E\u0432\u0435 3\u20134)" },
-    { axis: "earth", reading: "d\xEC \u5730", glyph: "\u5730", lines: "1\u20132", summary: "the material & natural \u2014 form, nature; Earth receives and completes (hexagram lines 1\u20132)", summaryBg: "\u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u043D\u043E\u0442\u043E \u0438 \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u043E\u0442\u043E \u2014 \u0444\u043E\u0440\u043C\u0430, \u043F\u0440\u0438\u0440\u043E\u0434\u0430; \u0417\u0435\u043C\u044F\u0442\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u0438 \u0437\u0430\u0432\u044A\u0440\u0448\u0432\u0430 (\u0440\u0435\u0434\u043E\u0432\u0435 1\u20132)" }
-  ].map((entry2) => ({ ...entry2, doors: eightFold, receipt: toUuid(`top-nav-axis:${entry2.axis}:${entry2.reading}`) }));
-  const facets = [
-    { facet: `the top nav splits into THREE eight-folds \u2014 a trinity of b\u0101gu\xE0: ${axes} categories \xD7 ${eightFold} trigram doors = ${topDoors} top doors (the eight-fold is iChingDomainMap, all eight aligned)`, on: domains.aligned && eightFold === 8 && topDoors === 8 * 3 && categories.length === 3 },
-    { facet: `each eight-fold is one AXIS of the cube: 8 trigrams \xD7 8 = ${perAxis} (a full hexagram); the three axes are the sealCube's hexagram \xB7 codon \xB7 colour`, on: cube.sealed && cube.side === 64 && perAxis === 64 },
-    { facet: `the three eight-folds FORM the 64\xD764\xD764: 64\xB3 = ${cube.cube} = the sealCube content-address space, three nested 64-axes (2\u2076 = 4\xB3 per axis)`, on: cube.cube === 64 ** 3 && cube.cube === 64 * 64 * 64 },
-    { facet: "navigation IS the address: every door is a trigram placed by content-address, so the 3-eight-fold top nav and the 64\xB3 keyspace are one structure, not a label over it", on: domains.aligned && cube.sealed }
-  ];
-  const sealed = sealFacets("three-eight-folds-top-nav", facets);
-  return {
-    split: sealed.ok,
-    topCategories: axes,
-    // 3
-    doorsPerCategory: eightFold,
-    // 8
-    topDoors,
-    // 24
-    perAxis,
-    // 64
-    cube: cube.cube,
-    // 262144
-    categories,
-    count: sealed.count,
-    facets: sealed.facets,
-    root: merge(cube.root, merge(domains.root, sealed.root)),
-    statement: "The top navigation, split into three eight-folds that form the 64\xD764\xD764. The site already organises its content under one eight-fold \u2014 the eight I Ching trigram domains (heritage, science, voice, spirit, icons, computation, nature, mind). This makes that eight-fold one axis of a trinity named by the I Ching THREE POWERS (\u4E09\u624D) \u2014 \u5929 Heaven, \u4EBA Human, \u5730 Earth \u2014 the complete triad that covers all existence (and into which the hexagram's six lines already pair: 5-6 Heaven, 3-4 Human, 1-2 Earth). Each power is one axis of the sealCube's 64\xB3. Three categories \xD7 eight trigram doors = twenty-four top doors; each category is one cube axis whose eight trigrams pair to 8 \xD7 8 = 64, and the three 64-axes nest to 64\xB3 = 262,144 \u2014 the content-address keyspace. The navigation is not a label over the structure; each door is a trigram placed by its own content-address, so the top nav and the 64\xB3 keyspace are one and the same.",
-    boundary: "A NAVIGATION + addressing structure computed from the existing sealCube (64\xB3 = 262144 across three axes; the 2\u2076 = 4\xB3 hexagram\xB7codon\xB7colour identity) and iChingDomainMap (the eight aligned trigram domains). HONEST arithmetic: 3 \xD7 8 = 24 top doors (not 64\xB3); the 64\xB3 is the keyspace the three 64-axes (8 \xD7 8 each) nest into \u2014 the three eight-folds are the navigable TOP of those three axes, not literally 64\xB3 links. The three readings (hexagram\xB7codon\xB7colour) are the same eight domains seen three ways, the proven decomposition of the cube \u2014 not three disjoint content sets. This fold defines the source structure; wiring it into the rendered VitePress top nav is the follow-on step that reads it."
-  };
-}
 function iChingDomainMap(matrix = buildMatrix()) {
   void matrix;
   const domains = [
@@ -31613,7 +31570,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "license.applies.society", on: licenseAppliesToSociety2(matrix).applies },
     { d: "quantum.license", on: quantumLicense(matrix).quantum },
     { d: "society.required.pages", on: societyCreatesRequiredPages(matrix).creates },
-    { d: "harmonised.navigation", on: harmonisedNavigation2(matrix).harmonised && harmonisedNavigation2(matrix).distributed },
+    { d: "blog.navigation.links.monographs", on: leanBlogNavigationHolds("en").everyLinkExists && leanBlogNavigationHolds("en").monographsCovered },
     { d: "realtime.movie.participation", on: realtimeMovieParticipation(matrix).participates },
     { d: "realtime.computations.visible.in.movie", on: allRealtimeComputationsVisibleInMovie("/", matrix).visible },
     { d: "movie.all.simulations.realtime.zero.cost", on: movieIsAllSimulationsRealtimeAtNoCost(0, "/", matrix).holds },
@@ -32223,7 +32180,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "bosnian.pyramid.near.pliska.harmonises", on: bosnianPyramidNearPliskaHarmonisesDigitDistribution(matrix).harmonises },
     { d: "lunar.standstills.decoded", on: lunarStandstillsDecoded(matrix).decoded },
     { d: "eight.fold.balance.honest", on: eightFoldBalance(matrix).honest },
-    { d: "three.eight.folds.top.nav", on: threeEightFoldsTopNav(matrix).split },
+    { d: "blog.navigation.holds.in.every.edition", on: leanBlogNavigationHolds("en").computes && leanBlogNavigationHolds("gla").computes },
     { d: "harmonic.series.decoded", on: harmonicSeriesDecoded(matrix).decoded },
     { d: "sound.wired.to.one.shared.context", on: soundWiredToOneSharedContext(matrix).wired }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`dimension:${entry2.d}:${entry2.on}`) }));
@@ -32375,7 +32332,6 @@ var ROSETTA_CORE_API_LABELS = [
   "ROSETTA_CORE_KINDS",
   "sevenStarRosettaNaturalMotion",
   "VORTEX_SEQUENCE",
-  "navigation358",
   "quantumAppsRegistry",
   "quantumCliToolsCatalog",
   "sessionManualWorkAsQuantumTools",
@@ -32557,7 +32513,6 @@ var ROSETTA_CORE_LABEL_KIND = {
   rosettaDecodesUrlPath: "route",
   VORTEX_SEQUENCE: "compute",
   ROSETTA_RAY_HUBS: "nav",
-  navigation358: "nav",
   sevenStarRosettaNaturalMotion: "projection",
   sharedHeroAt: "projection",
   computeUniversalPage: "route",
@@ -38014,28 +37969,7 @@ function hubCardItems(locale, matrix = buildMatrix()) {
   return memoByRoot(`hubCardItems:${locale}`, matrix, () => {
     const fusion = rosettaIChingTrinityPlacesAllTools(matrix);
     if (!fusion.fused) return [];
-    const pages = staticPages();
-    const titleFor = (route, fallback) => {
-      const slug = route.replace(/^\//, "") || "home";
-      const page = pages.find((entry2) => entry2.slug === slug);
-      return page ? pickLocale(locale, page.title.en, page.title.bg) : fallback;
-    };
-    const seen = /* @__PURE__ */ new Set();
-    const items = [];
-    for (const tier of navigation358().tiers) {
-      for (const entry2 of tier.items) {
-        const route = entry2.route.startsWith("/") ? entry2.route : `/${entry2.route}`;
-        if (seen.has(route)) continue;
-        seen.add(route);
-        items.push(gridItemFromRoute(route, titleFor(route, entry2.label), route.replace(/^\//, "") || "home", matrix));
-      }
-    }
-    for (const entry2 of harmonisedNavigation2(matrix).items) {
-      const route = entry2.path.startsWith("/") ? entry2.path : `/${entry2.path}`;
-      if (seen.has(route)) continue;
-      seen.add(route);
-      items.push(gridItemFromRoute(route, titleFor(route, entry2.title), route.replace(/^\//, "") || "home", matrix));
-    }
+    const items = leanBlogDestinations(locale).map((d) => gridItemFromRoute(d.link, d.text, d.link.replace(/^\//, "") || "home", matrix));
     return items.slice(0, HUB_CARD_MAX);
   });
 }
@@ -38059,19 +37993,14 @@ function tagBrowserItems(tag, locale, matrix = buildMatrix()) {
   });
 }
 function cardHeroClientWorkBoundedByPureMath(matrix = buildMatrix()) {
-  const nav358 = navigation358();
-  const harmonised = harmonisedNavigation2(matrix);
   const locale = "en";
+  const destinations = leanBlogDestinations(locale);
   const hub = hubCardItems(locale, matrix);
   const tags = tagBrowserTags(matrix);
   const tagItems = tags.length ? tagBrowserItems(tags[0], locale, matrix) : [];
   const budget = corpusGridWorkBudget();
   const facets = [
-    { facet: "navigation358 = 3+5+8 = 16 destinations", on: nav358.count === NAV358_TOTAL && nav358.mapped },
-    // harmonised now DERIVES from the served set (the purge law): every served science page + the four
-    // theorem-corpus surfaces — the bound is the derivation, not the dead 16-route coincidence.
-    { facet: `harmonised nav = served pages + corpus = ${staticPages().length}+4 routes, derived not pinned`, on: harmonised.count === staticPages().length + 4 },
-    { facet: `hub cards \u2264 nav358 + harmonised = ${NAV358_TOTAL} + ${staticPages().length + 4} (the union bound, deduped)`, on: hub.length <= NAV358_TOTAL + staticPages().length + 4 && hub.length >= NAV358_TOTAL },
+    { facet: `hub cards = the blog navigation's ${destinations.length} destinations, capped at ${HUB_CARD_MAX}`, on: hub.length === min(destinations.length, HUB_CARD_MAX) },
     { facet: `tag clusters \u2264 tier[2] = ${TAG_CLUSTER_CAP}`, on: tags.length <= TAG_CLUSTER_CAP && tags.length >= 2 },
     { facet: `tag grid page \u2264 tier[0]\xD716 = ${CORPUS_GRID_PAGE_SIZE}`, on: tagItems.length <= CORPUS_GRID_PAGE_SIZE },
     { facet: "tag browser skips componentPages on client \u2014 not O(all pages)", on: typeof window === "undefined" || budget.clientTagPages === staticPages().length }
@@ -38083,8 +38012,8 @@ function cardHeroClientWorkBoundedByPureMath(matrix = buildMatrix()) {
     tagCount: tags.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: nav358 is exactly 16 (3+5+8), hub dedup caps at 32, tag clusters cap at 8, and each grid page shows at most 48 (3\xD716) \u2014 client paths use staticPages only so keyword clustering stays O(static), not O(componentPages).",
-    boundary: "Arithmetic bound at call time over navigation358, harmonisedNavigation, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only."
+    statement: "Hub cards, tag browser, and corpus grids share the same Fibonacci tier math as the plasma hero: the hub is the blog navigation's destinations, capped at 32; tag clusters cap at 8, and each grid page shows at most 48 \u2014 every bound recomputed at call time.",
+    boundary: "Arithmetic bound at call time over leanBlogDestinations, hubCardItems, and tagBrowserTags. SSR/build may include componentPages for full catalog gates; browser paths remain static-only."
   };
 }
 function clientWorkBoundedByPureMath(path12 = "/", matrix = buildMatrix()) {
@@ -38100,7 +38029,7 @@ function clientWorkBoundedByPureMath(path12 = "/", matrix = buildMatrix()) {
     cards,
     facets,
     root: merkleFold([plasma.root, cards.root, ...facets.map((entry2) => entry2.receipt)]),
-    statement: "Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (16+16 nav, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time \u2014 no O(pages) loops on the browser.",
+    statement: "Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (the destinations of the blog navigation, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time \u2014 no O(pages) loops on the browser.",
     // The caveats compute.
     boundary: earned(
       "BOUNDED AT THIS CALL \u2014 the composite of two bounds, verified by its facets:",
@@ -38126,7 +38055,7 @@ function cardHeroLinkWiresInUi(matrix = buildMatrix()) {
     { facet: "all tools placed \u2014 Rosetta ray \xB7 I Ching cube \xB7 cross-fold-weave trinity", on: fusion.fused && fusion.placedCount > 0 && fusion.raysCovered === 7 },
     { facet: "heroPreviewForRoute \u2014 one route yields hue, seed, moviePath, card movie vars", on: /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && Object.keys(preview.cardStyle).length > 0 && pathAligned },
     { facet: "preview phase on one hero clock \u2014 heroPhaseAt", on: phaseOnClock },
-    { facet: "hub card grid \u2014 navigation358 + harmonised destinations (empty if fusion fails)", on: hub.length >= NAV358_TOTAL },
+    { facet: "hub card grid \u2014 the blog navigation's destinations (empty if fusion fails)", on: hub.length > 0 && hub.length === min(leanBlogDestinations(locale).length, HUB_CARD_MAX) },
     { facet: "tag browser \u2014 keyword clusters from staticPages (empty if fusion fails)", on: tags.length >= 2 && tagItems.length >= 2 },
     { facet: "LinkedHeroCard consumes fused preview \u2014 experiments fail closed", on: hub.every((item) => item.hue >= 0) },
     { facet: "card hero client work bounded by pure math", on: bounded.bounded }
@@ -48127,56 +48056,6 @@ function decodeKnowledge3(matrix = buildMatrix()) {
     boundary: "A complete symbolic encoding of the model into one notation. Bookkeeping, not an external knowledge claim."
   };
 }
-function navigation358(matrix = buildMatrix()) {
-  const lens = theoremScienceLens(matrix);
-  const hubs = lens.rays.map((ray) => ({ label: ray.labelEn, route: `/${ray.slug}`, tip: `${ray.labelEn}: ${ray.pages.length} served science ${ray.pages.length === 1 ? "paper" : "papers"}.` }));
-  const tiers = [
-    { tier: 3, name: "arrive", items: [
-      { label: "Home", route: "/", tip: "The root monograph \u2014 the portal in one page." },
-      { label: "Theorem registry", route: "/frontiers", tip: `The registry: ${lens.theoremCount} proven theorems.` },
-      { label: "Domain proofs", route: "/proofs", tip: "Canonical domain proof catalog \xB7 Clay marks Millennium challenges only." }
-    ] },
-    // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
-    // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.
-    { tier: 5, name: "use", items: [...hubs, ...lens.pages.filter((page) => !hubs.some((hub) => hub.route === "/" + page.slug)).map((page) => ({ label: page.title.en, route: "/" + page.slug, tip: "Theorem post: " + page.title.en + "." }))].slice(0, 5) },
-    { tier: 8, name: "go deep", items: [
-      { label: "Tag index", route: "/theorems", tip: "Registry theorems by tag \u2014 a view, not a second hub." },
-      { label: "Papers (REST)", route: "/papers/", tip: "Machine export: 432 proof papers." },
-      { label: "References (REST)", route: "/references", tip: "Machine export: bibliographic duals." },
-      { label: "Diamonds (REST)", route: "/diamonds", tip: "Machine export: diamond lattice." },
-      { label: "mcp.json", route: "/mcp.json", tip: "Every command as an MCP tool." },
-      { label: "llms.txt", route: "/llms.txt", tip: "The agent protocol and the science corpus." },
-      { label: "digit-index.json", route: "/digit-index.json", tip: "The pi-digit fold index." },
-      { label: "print.css", route: "/print.css", tip: 'The paper projection, media="print".' }
-    ] }
-  ];
-  const items = tiers.flatMap((tier) => tier.items.map((item) => {
-    const slug = item.route.replace(/^\/+/, "").split("/").filter(Boolean)[0] || "home";
-    const shelved = rosettaShelve(slug, "nav");
-    return { ...item, tier: tier.tier, ray: shelved.ray, hue: shelved.hue, address: shelved.address };
-  }));
-  const unresolved = items.filter((item) => !isServedRoute(item.route));
-  const core = rosettaCoreApi(0, matrix);
-  const facets = [
-    { facet: "every nav route is a SERVED surface (isServedRoute \u2014 the purge law): no removed page can appear", on: unresolved.length === 0 },
-    { facet: "3-5-8 shape holds \u2014 the deep tier equals arrive + use", on: tiers[2].items.length === tiers[1].items.length + tiers[0].items.length },
-    { facet: "every nav item shelved through rosettaShelve(kind=nav)", on: items.every((item) => item.ray >= 0 && item.ray < 7 && item.address.length === 36) },
-    { facet: "rosettaCoreApi computes \u2014 nav dispatches through the core API", on: core.computes }
-  ].map((entry2) => ({ ...entry2, receipt: toUuid(`nav358-facet:${entry2.facet}:${entry2.on}`) }));
-  return {
-    mapped: items.length === 8 * 2 && facets.every((entry2) => entry2.on),
-    tiers,
-    count: items.length,
-    items,
-    core,
-    facets,
-    routesResolve: facets[0].on,
-    unresolved: unresolved.map((item) => item.route),
-    root: merkleFold([core.root, ...items.map((item) => item.address)]),
-    statement: `Navigation in 3-5-8, computed via rosettaCoreApi: three ways to arrive (home \xB7 theorem registry \xB7 domain proofs), five to use (the populated ray hubs: ${hubs.map((hub) => hub.label).join(" \xB7 ")}), eight to go deep (tag index + REST exports + machine artifacts) \u2014 every destination shelved on a rosetta ray.`,
-    boundary: "The 3-5-8 map derives at call time from the theorem-science lens + rosettaShelve; isServedRoute gates every item. Discovery hubs \u2260 machine corpora. Addresses via the core API, not a parallel nav registry."
-  };
-}
 function multidimensionalSummaries2(matrix = buildMatrix()) {
   const summaries = [
     { dimension: "see", summary: "fractals, movie, light" },
@@ -48937,34 +48816,16 @@ function navigationIsMovie2(matrix = buildMatrix()) {
     boundary: 'A structural framing that unifies the quantum-coordinate navigation with the movie and a content-addressed "library" of routes. A metaphor over the real links and the canvas movie, not a change to navigation behaviour.'
   };
 }
-function harmonisedNavigation2(matrix = buildMatrix()) {
-  const routes = [...staticPages().map((page) => `/${page.slug}`), "/theorems", "/papers", "/references", "/diamonds"];
-  void matrix;
-  const titleOf = (path12) => path12.slice(1).split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-  const slugOf = (title) => title.toLowerCase().replace(/ /g, "-");
-  const items = routes.map((path12) => {
-    const title = titleOf(path12);
-    return { path: path12, title, matches: slugOf(title) === path12.slice(1), inFooter: true, receipt: toUuid(`nav-harmonised:${path12}:${title}`) };
-  });
-  return {
-    harmonised: items.every((entry2) => entry2.matches),
-    distributed: items.every((entry2) => entry2.inFooter),
-    count: items.length,
-    items,
-    root: merkleFold(items.map((entry2) => entry2.receipt)),
-    statement: 'Simplify navigation by harmonising names and titles to match paths, and distribute the links to the footer: every navigation title is its own path, title-cased \u2014 so a name tells you the path, and the only "types" are the group names \u2014 and every destination is also laid out in one path-matched row in the footer.',
-    boundary: "A verification that each navigation title round-trips to its route (title-case \u2194 slug) and that every destination is distributed to the footer. A structural check of the real nav and footer configuration; acronyms (e.g. MCP) are shown upper-cased while still matching their slug."
-  };
-}
 function ogBuildsNavigation(matrix = buildMatrix()) {
   const og = openGraph().root;
-  const nav = harmonisedNavigation2(matrix);
-  const items = nav.items.map((item) => {
-    const fold9 = foldPair(og, toUuid(`og-nav:${item.path}`));
-    return { path: item.path, title: item.title, built: fold9.bidirectional, card: fold9.merged, receipt: toUuid(`og-nav-card:${item.path}`) };
+  const holds = leanBlogNavigationHolds("en");
+  const destinations = leanBlogDestinations("en");
+  const items = destinations.map((d) => {
+    const fold9 = foldPair(og, toUuid(`og-nav:${d.link}`));
+    return { path: d.link, title: d.text, built: fold9.bidirectional, card: fold9.merged, receipt: toUuid(`og-nav-card:${d.link}`) };
   });
   return {
-    builds: items.length === nav.items.length && items.every((entry2) => entry2.built) && nav.harmonised && templateDisplaysEveryOgObject(matrix).displaysAll,
+    builds: items.length === destinations.length && items.every((entry2) => entry2.built) && holds.computes && templateDisplaysEveryOgObject(matrix).displaysAll,
     count: items.length,
     items,
     root: merkleFold(items.map((entry2) => entry2.receipt)),
@@ -54565,6 +54426,34 @@ function leanBlogNavigation(locale = "en") {
     }
   };
 }
+function leanBlogDestinations(locale = "en") {
+  const all = leanBlogNavigation(locale).nav.flatMap((entry2, g) => ("items" in entry2 ? entry2.items : [entry2]).map((d) => ({ text: d.text, link: d.link, entry: g + 1 })));
+  return all.filter((d, i) => all.findIndex((x) => x.link === d.link) === i);
+}
+function leanBlogNavigationHolds(locale = "en") {
+  const nav = leanBlogNavigation(locale);
+  const home = locale === "en" ? "/" : `/${locale}/`;
+  const routes = new Set(leanMonographs().map((m) => `/${m.slug}`));
+  const destinations = leanBlogDestinations(locale);
+  const groupLinks = (groups) => groups.flatMap((g) => g && typeof g === "object" && "items" in g ? g.items.map((i) => i.link) : []);
+  const linked = groupLinks(nav.nav);
+  const everyLinkExists = destinations.every((d) => d.link === home || routes.has(d.link));
+  const monographsCovered = [...routes].every((r2) => linked.includes(r2));
+  const noneTwice = new Set(linked).size === linked.length;
+  const sidebarIsNav = linked.join(" ") === groupLinks(nav.sidebar.slice(1)).join(" ");
+  const clay = nav.nav[1] && "items" in nav.nav[1] ? nav.nav[1].items : [];
+  const footerCarriesClay = nav.footer.message.includes(`href="${home}"`) && clay.length > 0 && clay.every((i) => nav.footer.message.includes(`href="${i.link}"`));
+  return {
+    computes: everyLinkExists && monographsCovered && noneTwice && sidebarIsNav && footerCarriesClay,
+    destinations: destinations.length,
+    monographs: routes.size,
+    everyLinkExists,
+    monographsCovered,
+    noneTwice,
+    sidebarIsNav,
+    footerCarriesClay
+  };
+}
 function localePaths(route) {
   return { gla: localePath(route, "gla"), en: localePath(route, "en"), bg: localePath(route, "bg") };
 }
@@ -54843,7 +54732,7 @@ function staticPages() {
   staticPageLens ??= new Set(all.filter((page) => theoremScienceVisible(page.slug, page.keywords)).map((page) => page.slug));
   return all.filter((page) => staticPageLens.has(page.slug));
 }
-function isServedRoute(route) {
+function isServedRoute2(route) {
   const pages = staticPages();
   const populatedRays = new Set(pages.map((page) => rosettaRayOfContent(page.slug, page.keywords)));
   const slugs = /* @__PURE__ */ new Set([
@@ -55040,7 +54929,7 @@ function proveAllOnHomePage(matrix = buildMatrix()) {
   };
 }
 function siteManifestFromCommands() {
-  const serve = (route) => isServedRoute(route) ? route : "/";
+  const serve = (route) => isServedRoute2(route) ? route : "/";
   return sections().map((section) => ({ ...section, route: serve(section.route) }));
 }
 function sections() {
@@ -64210,7 +64099,7 @@ function computeHeroLawAlignment(matrix) {
 }
 function navigationAroundHero3(matrix = buildMatrix()) {
   const hero = { label: "Double Torus", route: "/" };
-  const shells = navigation358().tiers.map((tier) => {
+  const shells = leanBlogNavigation("en").nav.map((entry2, g) => ({ tier: g + 1, name: entry2.text, items: "items" in entry2 ? entry2.items.map((i) => ({ label: i.text, route: i.link })) : [{ label: entry2.text, route: entry2.link }] })).map((tier) => {
     const radius = tier.tier;
     const items = tier.items.map((item, index) => {
       const angle = index / tier.items.length * TAU;
@@ -64226,13 +64115,13 @@ function navigationAroundHero3(matrix = buildMatrix()) {
     return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) };
   });
   return {
-    aroundHero: shells.length === 3 && hero.route === "/" && shells.every((shell) => shell.items.length > 0) && shells[2].radius === shells[0].radius + shells[1].radius,
+    aroundHero: shells.length > 1 && shells[0].items.some((item) => item.route === hero.route) && shells.every((shell) => shell.items.length > 0) && shells.every((shell, i) => i === 0 || shell.radius > shells[i - 1].radius),
     hero,
     shellCount: shells.length,
     shells,
     root: merkleFold(shells.map((shell) => shell.receipt)),
-    statement: "Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its 3-5-8 tier \u2014 three ways to arrive on the inner shell, five to use on the middle, eight to go deep on the outer (and 8 = 5 + 3, so the shells nest like the tiers). Items spread evenly by angle around each shell, so the whole map radiates from the hero you start at.",
-    boundary: "A polar layout of the real 3-5-8 navigation around the home hero as concentric shells, radii set by tier. A geometric arrangement of the existing routes for orientation \u2014 it does not change the links, only places them around the hero."
+    statement: "Rebuild navigation around the hero: the hero is the origin, and every destination orbits it on a shell whose radius is its place in the blog's navigation \u2014 the feed on the inner shell, then the Clay cases, then the subjects (leanBlogNavigation). Items spread evenly by angle around each shell.",
+    boundary: "A polar layout of the blog's navigation (leanBlogNavigation) around the home hero as concentric shells, radius = the nav entry's position. A geometric arrangement of the existing routes for orientation \u2014 it does not change the links, only places them around the hero."
   };
 }
 function compactHeroReplacesSimple2(matrix = buildMatrix()) {

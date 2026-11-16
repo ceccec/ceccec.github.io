@@ -212,233 +212,6 @@ export declare function decodeKnowledge(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function navigation358(matrix?: MindMatrix): {
-    mapped: boolean;
-    tiers: {
-        tier: number;
-        name: string;
-        items: {
-            label: string;
-            route: string;
-            tip: string;
-        }[];
-    }[];
-    count: number;
-    items: {
-        tier: number;
-        ray: number;
-        hue: number;
-        address: string;
-        label: string;
-        route: string;
-        tip: string;
-    }[];
-    core: {
-        computes: boolean;
-        at: number;
-        surfaces: __ns_up_quantum_apps.RosettaCoreSurface[];
-        inventory: {
-            core: {
-                label: string;
-                kind: __ns_up_quantum_apps.RosettaCoreSurfaceKind;
-                ray: number;
-                address: string;
-            }[];
-            parallel: readonly string[];
-            hubs: {
-                slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
-                ray: number;
-                route: string;
-                hue: number;
-            }[];
-        };
-        hubs: readonly __ns_up_water_digit.RosettaRayHub[];
-        raysUsed: number;
-        kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-        resolve: (label: string, kind?: __ns_up_quantum_apps.RosettaCoreSurfaceKind) => __ns_up_quantum_apps.RosettaCoreSurface;
-        shelve: typeof __ns_up_quantum_apps.rosettaShelve;
-        byRay: (ray: number) => __ns_up_quantum_apps.RosettaCoreSurface[];
-        resolveRoute: (route: string) => {
-            surface: __ns_up_quantum_apps.RosettaCoreSurface;
-            address: string;
-            computed: boolean;
-            route: string;
-            slug: string;
-            ray: number;
-            rayMeta: {
-                readonly ray: 0;
-                readonly glyph: "Ⰰ";
-                readonly nameEn: "Origin";
-                readonly nameBg: "Произход";
-                readonly domain: "origin";
-                readonly hue: 0;
-            } | {
-                readonly ray: 1;
-                readonly glyph: "Ⰲ";
-                readonly nameEn: "Proof";
-                readonly nameBg: "Доказателства";
-                readonly domain: "expression";
-                readonly hue: 51;
-            } | {
-                readonly ray: 2;
-                readonly glyph: "Ⰴ";
-                readonly nameEn: "Explore";
-                readonly nameBg: "Изследване";
-                readonly domain: "knowledge";
-                readonly hue: 102;
-            } | {
-                readonly ray: 3;
-                readonly glyph: "Ⰶ";
-                readonly nameEn: "Learn";
-                readonly nameBg: "Обучение";
-                readonly domain: "nature";
-                readonly hue: 154;
-            } | {
-                readonly ray: 4;
-                readonly glyph: "Ⰹ";
-                readonly nameEn: "Apps";
-                readonly nameBg: "Приложения";
-                readonly domain: "computation";
-                readonly hue: 205;
-            } | {
-                readonly ray: 5;
-                readonly glyph: "Ⰿ";
-                readonly nameEn: "Frontier";
-                readonly nameBg: "Граници";
-                readonly domain: "geometry";
-                readonly hue: 257;
-            } | {
-                readonly ray: 6;
-                readonly glyph: "Ⱄ";
-                readonly nameEn: "Reference";
-                readonly nameBg: "Справочник";
-                readonly domain: "language";
-                readonly hue: 308;
-            };
-            station: number;
-            crossPair: string;
-            glaAddress: string;
-            navigation: {
-                rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
-                rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
-                rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-                rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../types/index.ts").ConceptCommandName[];
-                siblingCount: number;
-            };
-            content: {
-                pageKind: __ns_up_water_digit.RosettaComputationType;
-                heroPhase: number;
-                bodySeed: string;
-                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
-            };
-            motion: {
-                at: number;
-                rays: {
-                    ray: number;
-                    baseAngle: number;
-                    currentAngle: number;
-                    angularVelocity: number;
-                    vortexRate: number;
-                    radius: number;
-                    letters: {
-                        letterIndex: number;
-                        letterAngle: number;
-                        letterRadius: number;
-                        digitalRootPosition: number;
-                    }[];
-                }[];
-                breathRadius: number;
-                breathPulse: number;
-                proof: {
-                    coprime7_6: boolean;
-                    coprime7_9: boolean;
-                    coprime7_10: boolean;
-                    holds: boolean;
-                };
-                constants: {
-                    RAYS: number;
-                    LETTERS_PER_RAY: number;
-                    PHI: number;
-                    GOLDEN_ANGLE: number;
-                    DOUBLING_PERIOD: number;
-                    DR_MODULUS: number;
-                    STATION_COUNT: number;
-                };
-                root: string;
-            };
-            stationDetail: {
-                digit: number;
-                folder: string;
-                path: string;
-            };
-            sharedRoot: string;
-            root: string;
-            statement: string;
-            boundary: string;
-        };
-        resolveProjection: (label: string) => {
-            surface: __ns_up_quantum_apps.RosettaCoreSurface;
-            phase: number;
-            hue: number;
-            motion: {
-                at: number;
-                rays: {
-                    ray: number;
-                    baseAngle: number;
-                    currentAngle: number;
-                    angularVelocity: number;
-                    vortexRate: number;
-                    radius: number;
-                    letters: {
-                        letterIndex: number;
-                        letterAngle: number;
-                        letterRadius: number;
-                        digitalRootPosition: number;
-                    }[];
-                }[];
-                breathRadius: number;
-                breathPulse: number;
-                proof: {
-                    coprime7_6: boolean;
-                    coprime7_9: boolean;
-                    coprime7_10: boolean;
-                    holds: boolean;
-                };
-                constants: {
-                    RAYS: number;
-                    LETTERS_PER_RAY: number;
-                    PHI: number;
-                    GOLDEN_ANGLE: number;
-                    DOUBLING_PERIOD: number;
-                    DR_MODULUS: number;
-                    STATION_COUNT: number;
-                };
-                root: string;
-            };
-        };
-        facets: {
-            receipt: string;
-            facet: string;
-            on: boolean;
-        }[];
-        root: string;
-        pair: "rosetta/core";
-        cli: string;
-        statement: string;
-        boundary: string;
-    };
-    facets: {
-        receipt: string;
-        facet: string;
-        on: boolean;
-    }[];
-    routesResolve: boolean;
-    unresolved: string[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function multidimensionalSummaries(matrix?: MindMatrix): {
     summarised: boolean;
     fromBeyond: boolean;
@@ -962,21 +735,6 @@ export declare function navigationIsMovie(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export declare function harmonisedNavigation(matrix?: MindMatrix): {
-    harmonised: boolean;
-    distributed: boolean;
-    count: number;
-    items: {
-        path: string;
-        title: string;
-        matches: boolean;
-        inFooter: boolean;
-        receipt: string;
-    }[];
-    root: string;
-    statement: string;
-    boundary: string;
-};
 export declare function ogBuildsNavigation(matrix?: MindMatrix): {
     builds: boolean;
     count: number;
@@ -1282,8 +1040,8 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             root: string;
         };
         rows: {
-            tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
-            action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            tail: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            action: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
             ray: number;
             rayMeta: {
                 readonly ray: 0;
@@ -1340,7 +1098,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             legacyBare: string;
             schemaTarget: string;
             canonical: string;
-            importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            importBarrel: "language" | "ui" | "site" | "fusion" | "rosetta" | "routes" | "learning" | "types" | "iching";
             wave: 2 | 1;
             applied: boolean;
             receipt: string;
