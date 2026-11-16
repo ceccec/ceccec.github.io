@@ -298,7 +298,7 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## Receipt
 
-**Quantum receipt `ad2aa49e7aff5061` over tree `e948f3b3c96e8ee2`** — 73 gates asked through one door (verify:stream ≡ MCP run_wave verify): 69 clean, 0 tree gates refused, 4 of 10 live surfaces refused (verify:deposit-counts, verify:deposit-metadata, verify:release-live, verify:theorem-sources — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
+**Quantum receipt `4d3b9ad552d77e0b` over tree `80626591beafc496`** — 73 gates asked through one door (verify:stream ≡ MCP run_wave verify): 69 clean, 0 tree gates refused, 4 of 10 live surfaces refused (verify:deposit-counts, verify:deposit-metadata, verify:release-live, verify:theorem-sources — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
 
 The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does. Below is what produced it: **73 gates** chained by `npm run verify:all`, and **36 ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.
 

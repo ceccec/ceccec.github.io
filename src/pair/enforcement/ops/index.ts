@@ -612,7 +612,31 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
   return sig.valid && svg === 0 && unplaced.length === 0 ? 0 : 1
 }
 
+/** The stream receipt that already holds `verify` clean over THIS tree, or null. Same rule as the stream's own priorClean: a
+ *  verdict over an identical tree digest is reproduced, by name, with the receipt it came from. */
+export function streamVerifiedThisTree(root: string): string | null {
+  const probe = spawnSync('node', ['--experimental-strip-types', 'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/every-fold.ts', 'treeDigest'], { cwd: root, encoding: 'utf8' })
+  const tree = (probe.stdout ?? '').trim().replace(/^"|"$/g, '')
+  if (!/^[0-9a-f]{8,}$/.test(tree)) return null
+  const dir = join(root, 'scripts', 'verify', 'receipts')
+  let files: string[] = []
+  try { files = readdirSync(dir).filter((f) => f.startsWith(`${tree}-`) && f.endsWith('.json')).sort().reverse() } catch { return null }
+  for (const f of files) {
+    try {
+      const r = JSON.parse(readFileSync(join(dir, f), 'utf8')) as { address?: string; results?: { gate: string; verdict: string }[] }
+      if ((r.results ?? []).some((x) => x.gate === 'verify' && x.verdict === 'clean')) return `verify: reproduced from stream receipt ${r.address ?? f} over this same tree ${tree} — not re-run (VERIFY_FRESH=1 runs it)`
+    } catch { /* a malformed receipt reproduces nothing */ }
+  }
+  return null
+}
+
 export async function runPrecommitRosettaExit(root: string): Promise<number> {
+  // THE STREAM ALREADY RAN THIS ON THIS TREE. `npm run land` runs the whole stream — `verify` among its gates — and then
+  // commits, and this hook ran `verify` again over the identical tree (~5 min a land, measured 2026-11-16). A clean verdict in
+  // a stream receipt over the same tree digest is reproduced, named, exactly as the stream reproduces its own; any change to
+  // the tree, no receipt, or verify not clean in it — the full check runs.
+  const reused = process.env.VERIFY_FRESH === '1' ? null : streamVerifiedThisTree(root)
+  if (reused) { console.log(reused); return 0 }
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
   const rosetta = await runRosettaDiagnoseExit(root, ['all'])

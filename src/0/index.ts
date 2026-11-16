@@ -1834,6 +1834,53 @@ export function cnot(state: QuantumState, control: number, target: number): Quan
   return { n: state.n, re, im }
 }
 
+// A whole circuit on ONE private buffer. applyGate and cnot each allocate two fresh 2ⁿ arrays per gate — at n = 26 that is
+// two 67-million-element arrays for every gate, and the stabilizer gate's state-vector cross-check spent ~700 s doing it
+// (owner, 2026-11-16: "In-place gates in src/0"). This copies the input once, applies every gate to that copy in place, and
+// returns it: the caller's state is never touched, so it stays pure from outside. Each pair update is the same arithmetic
+// in the same order as applyGate, and each CNOT swaps exactly the pairs cnot maps — the result is identical, bit for bit,
+// to applying the gates one by one (the stabilizer gate checks that equality at every width it runs).
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function applyCircuit(state: QuantumState, ops: readonly CircuitOp[]): QuantumState {
+  const re = state.re.slice(), im = state.im.slice()
+  const size = re.length
+  for (const op of ops) {
+    const g = op.gate.toUpperCase(), tg = op.targets
+    if (g === 'CNOT' || g === 'CX') {
+      const c = 1 << tg[0]!, t = 1 << tg[1]!
+      for (let i = 0; i < size; i++) {
+        if ((i & c) === 0 || (i & t) !== 0) continue
+        const j = i | t
+        const r = re[i]!; re[i] = re[j]!; re[j] = r
+        const m = im[i]!; im[i] = im[j]!; im[j] = m
+      }
+      continue
+    }
+    // the single-qubit gates as 2×2 matrices — the named seven and the rotations; any other gate goes through its own pure
+    // function on the buffer (correct, not allocation-free)
+    const theta = op.theta ?? 0
+    const gate = g === 'RX' ? rx(theta) : g === 'RY' ? ry(theta) : g === 'RZ' ? rz(theta) : (GATES as Record<string, readonly number[]>)[g]
+    if (!gate) {
+      const cur: QuantumState = { n: state.n, re, im }
+      const next = g === 'CZ' ? cz(cur, tg[0]!, tg[1]!) : g === 'SWAP' ? swap(cur, tg[0]!, tg[1]!) : g === 'TOFFOLI' || g === 'CCX' ? toffoli(cur, tg[0]!, tg[1]!, tg[2]!) : cur
+      for (let i = 0; i < size; i++) { re[i] = next.re[i]!; im[i] = next.im[i]! }
+      continue
+    }
+    const bit = 1 << tg[0]!
+    const g0 = gate[0]!, g1 = gate[1]!, g2 = gate[2]!, g3 = gate[3]!, g4 = gate[4]!, g5 = gate[5]!, g6 = gate[6]!, g7 = gate[7]!
+    for (let i = 0; i < size; i++) {
+      if ((i & bit) !== 0) continue
+      const j = i | bit
+      const ar = re[i]!, ai = im[i]!, br = re[j]!, bi = im[j]!
+      re[i] = g0 * ar - g1 * ai + g2 * br - g3 * bi
+      im[i] = g0 * ai + g1 * ar + g2 * bi + g3 * br
+      re[j] = g4 * ar - g5 * ai + g6 * br - g7 * bi
+      im[j] = g4 * ai + g5 * ar + g6 * bi + g7 * br
+    }
+  }
+  return { n: state.n, re, im }
+}
+
 // Controlled-Z — phase −1 where both control and target are 1.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function cz(state: QuantumState, control: number, target: number): QuantumState {

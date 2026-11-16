@@ -101,6 +101,8 @@ untracked=$(git ls-files --others --exclude-standard | grep -vxF -f <(printf '%s
 # and bundles — 3.4s — so the cheap class never costs the expensive run again.
 gates=(guard check:types verify:stream)
 grep -qE '^\.vitepress/|^src/ui/' <<<"$changed" && gates+=(docs:build)
+# ONE BUILD PER LAND: when this land builds (docs:build --force below), verify:release inside the stream defers its build to it.
+[[ " ${gates[*]} " == *" docs:build "* ]] && export LAND_DOCS_BUILD=1
 gates+=(${EXTRA[@]+"${EXTRA[@]}"})
 mkdir -p "$LOGS"
 rm -f "$LOGS"/*.log # a log left by an earlier landing must not be reported as this one's (it re-printed a tightened ratchet)
@@ -336,6 +338,10 @@ mkdir -p "$(dirname "$SITEMAP_COPY")"
 cp "$ROOT/.vitepress/dist/sitemap.xml" "$SITEMAP_COPY" 2>/dev/null || SITEMAP_COPY=""
 rm -f "$LOCK"; trap - EXIT
 echo "land: checkout released — the deploy watch below runs without it"
+# WHAT IS NEXT IS THE PIPELINE'S, NOT THE AGENT'S (owner, 2026-11-16: "next should be pipeline"). On a green land the last
+# line is the top open floor of the ratchet ledger — the lead to work next, through this same pipeline. A red land prints
+# nothing: the refusal is what is next.
+trap 'rc=$?; [ "$rc" = 0 ] && npm run -s next:lead; exit $rc' EXIT
 
 # 5 — the deploy of this exact SHA
 [ "$DEPLOY" = 1 ] || exit 0

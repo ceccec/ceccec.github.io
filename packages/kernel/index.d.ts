@@ -1007,6 +1007,8 @@ export declare function applyGate(state: QuantumState, gate: readonly number[], 
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function cnot(state: QuantumState, control: number, target: number): QuantumState;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function applyCircuit(state: QuantumState, ops: readonly CircuitOp[]): QuantumState;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function cz(state: QuantumState, control: number, target: number): QuantumState;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function probabilities(state: QuantumState): number[];

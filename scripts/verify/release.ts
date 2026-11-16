@@ -26,7 +26,7 @@ import { join } from 'node:path'
 import { measureBundle } from './purity.ts'
 import { latestReceipt } from './status.ts'
 
-type Step = { readonly name: string; readonly run: () => { ok: boolean; detail: string } }
+type Step = { readonly name: string; readonly run: () => { ok: boolean; detail: string; deferred?: true } }
 
 function shell(cmd: string, args: readonly string[], cwd: string = process.cwd()) {
   const r = spawnSync(cmd, [...args], { cwd, encoding: 'utf8', timeout: 1_800_000 })
@@ -40,6 +40,12 @@ const STEPS: readonly Step[] = [
   {
     name: 'docs:build — the Pages build, which verify:all never runs',
     run: () => {
+      // ONE BUILD PER LAND. Inside `npm run land` with docs:build among its gates, the land builds this same tree with --force
+      // right after the stream, and verify:build-time reads that dist. Building here as well cost a second VitePress pass
+      // (113 s measured) — and the seal it left could not be trusted: the stream runs enforcement:trinity beside this step,
+      // which overwrote the built-pending marker, so its trinity left merkle.key alone and the land rebuilt anyway. So the
+      // step DEFERS, by name — never reported as OK, never counted as a pass the land did not earn.
+      if (process.env.LAND_DOCS_BUILD === '1') return { ok: true, deferred: true, detail: "deferred to the land's docs:build gate (--force), which builds this same tree after the stream" }
       const { code, out } = shell('npm', ['run', 'docs:build'])
       // THE SEAL LINE IS NOT A RELIABLE SIGNAL and requiring it made this step flaky: two consecutive
       // runs of the same tree gave OK and then FAIL, because a warm build skips the work that prints
@@ -154,9 +160,10 @@ const STEPS: readonly Step[] = [
 
 export function assertReleaseReady(): void {
   const results = STEPS.map((s) => ({ name: s.name, ...s.run() }))
-  for (const r of results) console.log(`  ${r.ok ? 'OK  ' : 'FAIL'} ${r.name}\n         ${r.detail}`)
+  for (const r of results) console.log(`  ${r.deferred ? 'DEFER' : r.ok ? 'OK  ' : 'FAIL'} ${r.name}\n         ${r.detail}`)
   const failed = results.filter((r) => !r.ok)
-  console.log(`\nrelease surface: ${results.length - failed.length}/${results.length} green`)
+  const deferred = results.filter((r) => r.deferred)
+  console.log(`\nrelease surface: ${results.length - failed.length - deferred.length}/${results.length} green${deferred.length ? ` · ${deferred.length} deferred to the land` : ''}`)
   if (failed.length) {
     throw new Error(`${failed.length} publish-time step(s) fail on a tree verify:all calls clean — this is the gap that put a red Pages build up for a month and a broken declaration graph on npm`)
   }

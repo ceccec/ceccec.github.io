@@ -171,6 +171,7 @@ not quantum randomness**.
 | `qubits(n)` → `QuantumState` | analog | the n-qubit register `\|0…0⟩` — `2ⁿ` complex amplitudes (`re`/`im`). |
 | `GATES` · `applyGate(state, gate, q)` | analog | the standard single-qubit gates `I·X·Y·Z·H·S·T` as 2×2 unitaries. |
 | `cnot` · `cz(state, control, target)` | analog | the two-qubit entanglers. |
+| `applyCircuit(state, ops)` | analog | a whole circuit (the same `CircuitOp` list `runQuantumCircuit` takes) on one private buffer — single-qubit gates, rotations and CNOT in place, in place — identical, bit for bit, to applying them one by one, without two fresh `2ⁿ` arrays per gate. Pure from outside (the input is copied once). |
 | `probabilities(state)` | analog | the Born-rule distribution over the `2ⁿ` basis states (deterministic). |
 | `sampleCounts(dist, n, shots, seed)` | **A→D** | the shared readout — a distribution → a histogram of digital bitstrings. |
 | `measure(state, q, seed)` | A→D | Born-rule measurement of one qubit → outcome + collapsed state. |

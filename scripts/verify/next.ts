@@ -106,6 +106,18 @@ export function runNextJsonExit(root: string = process.cwd()): number {
   return 0
 }
 
+/** runNextLeadExit — THE ONE NEXT LEAD, printed by `npm run land` on a green land: the largest open floor of the largest family
+ *  (the order runNextExit prints, ties by name), the gate that measures it, and the command that lists its evidence. */
+export function runNextLeadExit(root: string = process.cwd()): number {
+  const floors = openLeads(root).filter((l) => l.kind === 'floor')
+  if (floors.length === 0) { console.log('next: no open floor — every ratchet in the ledger is at zero'); return 0 }
+  const totals = new Map<string, number>()
+  for (const l of floors) totals.set(l.family, (totals.get(l.family) ?? 0) + l.open)
+  const top = [...floors].sort((a, b) => totals.get(b.family)! - totals.get(a.family)! || a.family.localeCompare(b.family) || b.open - a.open || a.ratchet.localeCompare(b.ratchet))[0]!
+  console.log(`next: ${top.ratchet} — ${top.open} open (family ${top.family}, ${totals.get(top.family)} in all) · measured by ${top.gate} · evidence: VERIFY_EVIDENCE=1 npm run ${top.gate}`)
+  return 0
+}
+
 export function runNextExit(root: string = process.cwd()): number {
   const leads = openLeads(root)
   const floors = leads.filter((l) => l.kind === 'floor')

@@ -1230,6 +1230,50 @@ function cnot(state, control, target) {
   }
   return { n: state.n, re, im };
 }
+function applyCircuit(state, ops) {
+  const re = state.re.slice(), im = state.im.slice();
+  const size = re.length;
+  for (const op of ops) {
+    const g = op.gate.toUpperCase(), tg = op.targets;
+    if (g === "CNOT" || g === "CX") {
+      const c = 1 << tg[0], t = 1 << tg[1];
+      for (let i = 0; i < size; i++) {
+        if ((i & c) === 0 || (i & t) !== 0) continue;
+        const j = i | t;
+        const r = re[i];
+        re[i] = re[j];
+        re[j] = r;
+        const m = im[i];
+        im[i] = im[j];
+        im[j] = m;
+      }
+      continue;
+    }
+    const theta = op.theta ?? 0;
+    const gate = g === "RX" ? rx(theta) : g === "RY" ? ry(theta) : g === "RZ" ? rz(theta) : GATES[g];
+    if (!gate) {
+      const cur = { n: state.n, re, im };
+      const next = g === "CZ" ? cz(cur, tg[0], tg[1]) : g === "SWAP" ? swap(cur, tg[0], tg[1]) : g === "TOFFOLI" || g === "CCX" ? toffoli(cur, tg[0], tg[1], tg[2]) : cur;
+      for (let i = 0; i < size; i++) {
+        re[i] = next.re[i];
+        im[i] = next.im[i];
+      }
+      continue;
+    }
+    const bit = 1 << tg[0];
+    const g0 = gate[0], g1 = gate[1], g2 = gate[2], g3 = gate[3], g4 = gate[4], g5 = gate[5], g6 = gate[6], g7 = gate[7];
+    for (let i = 0; i < size; i++) {
+      if ((i & bit) !== 0) continue;
+      const j = i | bit;
+      const ar = re[i], ai = im[i], br = re[j], bi = im[j];
+      re[i] = g0 * ar - g1 * ai + g2 * br - g3 * bi;
+      im[i] = g0 * ai + g1 * ar + g2 * bi + g3 * br;
+      re[j] = g4 * ar - g5 * ai + g6 * br - g7 * bi;
+      im[j] = g4 * ai + g5 * ar + g6 * bi + g7 * br;
+    }
+  }
+  return { n: state.n, re, im };
+}
 function cz(state, control, target) {
   const re = state.re.slice();
   const im = state.im.slice();
@@ -1812,6 +1856,7 @@ export {
   addressSearchCostsLog2,
   admixToward,
   antichainLevels,
+  applyCircuit,
   applyGate,
   applyTransliterationCase,
   asMerkaba,
