@@ -123,6 +123,12 @@ export declare const CITATION_RECORD: {
         readonly to: "Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA";
         readonly enclosure: "Quantum Proofs of the Clay Millennium Problems";
         readonly enclosureDoi: "10.5281/zenodo.21787144";
+        readonly reply: {
+            readonly date: "2026-08-06";
+            readonly from: "Clay Mathematics Institute, Office of the President";
+            readonly statement: "received; under the published rules CMI does not accept direct submission of, nor comment on, proposed solutions — a proposed solution must be published in a Qualifying Outlet, at least two years must have passed since publication, and it must have received general acceptance in the global mathematics community";
+            readonly rules: "https://www.claymath.org/millennium-problems/rules/";
+        };
     };
     readonly repository: "https://github.com/ceccec/ceccec.github.io";
     readonly url: "https://ceccec.psg.bg";

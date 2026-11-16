@@ -71,7 +71,7 @@ export function zenodoDepositMetadata(root: string = process.cwd()): Record<stri
     // the application to the Clay Mathematics Institute has no DOI, so it is a free-text reference (CITATION_RECORD.claySubmission)
     references: [
       ...((committed.references as string[] | undefined) ?? []).filter((r) => !r.includes(CITATION_RECORD.claySubmission.title)),
-      `${PUBLICATION_CREDIT.author.split(' ').reverse().join(', ')} (${CITATION_RECORD.claySubmission.date}). ${CITATION_RECORD.claySubmission.title}. Letter of application to the ${CITATION_RECORD.claySubmission.to}; encloses "${CITATION_RECORD.claySubmission.enclosure}", https://doi.org/${CITATION_RECORD.claySubmission.enclosureDoi}. ORCID ${PUBLICATION_CREDIT.orcid}.`,
+      `${PUBLICATION_CREDIT.author.split(' ').reverse().join(', ')} (${CITATION_RECORD.claySubmission.date}). ${CITATION_RECORD.claySubmission.title}. Letter of application to the ${CITATION_RECORD.claySubmission.to}; encloses "${CITATION_RECORD.claySubmission.enclosure}", https://doi.org/${CITATION_RECORD.claySubmission.enclosureDoi}. Reply of ${CITATION_RECORD.claySubmission.reply.date} from the ${CITATION_RECORD.claySubmission.reply.from}: ${CITATION_RECORD.claySubmission.reply.statement} (${CITATION_RECORD.claySubmission.reply.rules}). ORCID ${PUBLICATION_CREDIT.orcid}.`,
     ],
     related_identifiers: [
       ...((committed.related_identifiers as { identifier: string }[] | undefined) ?? []).filter((r) => !CITATION_RECORD.priorPublications.some((p) => r.identifier.endsWith(p.doi))),

@@ -584,7 +584,7 @@ export function clayChallengesComputableMarkdownSection(
             '',
           ]
         })(),
-        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** The author's initial publications, ${CITATION_RECORD.priorPublications.map((p) => `${p.date}: [${p.title}](https://doi.org/${p.doi}) (DOI ${p.doi}; concept [${p.conceptDoi}](https://doi.org/${p.conceptDoi}))`).join(' · ')} · the application to the Clay Mathematics Institute, ${CITATION_RECORD.claySubmission.date}: "${CITATION_RECORD.claySubmission.title}", to the ${CITATION_RECORD.claySubmission.to}, enclosing [${CITATION_RECORD.claySubmission.enclosure}](https://doi.org/${CITATION_RECORD.claySubmission.enclosureDoi}) · ORCID [${PUBLICATION_CREDIT.orcid}](${PUBLICATION_CREDIT.orcidUrl}) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
+        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** The author's initial publications, ${CITATION_RECORD.priorPublications.map((p) => `${p.date}: [${p.title}](https://doi.org/${p.doi}) (DOI ${p.doi}; concept [${p.conceptDoi}](https://doi.org/${p.conceptDoi}))`).join(' · ')} · the application to the Clay Mathematics Institute, ${CITATION_RECORD.claySubmission.date}: "${CITATION_RECORD.claySubmission.title}", to the ${CITATION_RECORD.claySubmission.to}, enclosing [${CITATION_RECORD.claySubmission.enclosure}](https://doi.org/${CITATION_RECORD.claySubmission.enclosureDoi}), answered ${CITATION_RECORD.claySubmission.reply.date} by the ${CITATION_RECORD.claySubmission.reply.from}: ${CITATION_RECORD.claySubmission.reply.statement} ([rules](${CITATION_RECORD.claySubmission.reply.rules})) · ORCID [${PUBLICATION_CREDIT.orcid}](${PUBLICATION_CREDIT.orcidUrl}) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
         '',
       ]
     })(),
@@ -1023,6 +1023,15 @@ export const CITATION_RECORD = {
     to: 'Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA',
     enclosure: 'Quantum Proofs of the Clay Millennium Problems',
     enclosureDoi: '10.5281/zenodo.21787144',
+    // THE INSTITUTE'S REPLY, 2026-08-06, from its Office of the President (administration), quoted: it received the e-mail,
+    // and "according to the published rules for the problems, CMI does not accept direct submission of, nor comment on,
+    // proposed solutions to these problems", naming the three conditions before it considers one. No staff name is published.
+    reply: {
+      date: '2026-08-06',
+      from: 'Clay Mathematics Institute, Office of the President',
+      statement: 'received; under the published rules CMI does not accept direct submission of, nor comment on, proposed solutions — a proposed solution must be published in a Qualifying Outlet, at least two years must have passed since publication, and it must have received general acceptance in the global mathematics community',
+      rules: 'https://www.claymath.org/millennium-problems/rules/',
+    },
   },
   repository: 'https://github.com/ceccec/ceccec.github.io',
   url: 'https://ceccec.psg.bg',
@@ -1131,7 +1140,7 @@ export function citationCff(tree: { readonly version: string; readonly date: str
     `        given-names: ${given}`,
     `        orcid: "${PUBLICATION_CREDIT.orcidUrl}"`,
     `    title: "${r.claySubmission.title}"`,
-    `    notes: "Letter of application to the ${r.claySubmission.to}, ${r.claySubmission.date}; encloses \\"${r.claySubmission.enclosure}\\" (DOI ${r.claySubmission.enclosureDoi})."`,
+    `    notes: "Letter of application to the ${r.claySubmission.to}, ${r.claySubmission.date}; encloses \\"${r.claySubmission.enclosure}\\" (DOI ${r.claySubmission.enclosureDoi}). Reply of ${r.claySubmission.reply.date} from the ${r.claySubmission.reply.from}: ${r.claySubmission.reply.statement} (${r.claySubmission.reply.rules})."`,
     `    date-published: ${r.claySubmission.date}`,
     `    year: ${r.claySubmission.date.slice(0, 4)}`,
     '',
