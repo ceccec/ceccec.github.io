@@ -117,6 +117,13 @@ export declare const CITATION_RECORD: {
         readonly date: "2026-08-04";
         readonly title: "Quantum Proofs of the Clay Millennium Problems v1.0";
     }];
+    readonly claySubmission: {
+        readonly date: "2026-08-04";
+        readonly title: "Formal Submission of Proofs for All Six Clay Millennium Prize Problems";
+        readonly to: "Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA";
+        readonly enclosure: "Quantum Proofs of the Clay Millennium Problems";
+        readonly enclosureDoi: "10.5281/zenodo.21787144";
+    };
     readonly repository: "https://github.com/ceccec/ceccec.github.io";
     readonly url: "https://ceccec.psg.bg";
     readonly contactEmail: "ceci@psg.bg";

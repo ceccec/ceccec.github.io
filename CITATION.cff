@@ -118,3 +118,12 @@ references:
       name: "Cambridge University Press"
     year: 2010
     isbn: "9781107002173"
+  - type: generic
+    authors:
+      - family-names: Rouschev
+        given-names: Tsvetan
+        orcid: "https://orcid.org/0009-0000-7312-9778"
+    title: "Formal Submission of Proofs for All Six Clay Millennium Prize Problems"
+    notes: "Letter of application to the Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA, 2026-08-04; encloses \"Quantum Proofs of the Clay Millennium Problems\" (DOI 10.5281/zenodo.21787144)."
+    date-published: 2026-08-04
+    year: 2026

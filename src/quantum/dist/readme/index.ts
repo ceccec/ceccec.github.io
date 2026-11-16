@@ -584,7 +584,7 @@ export function clayChallengesComputableMarkdownSection(
             '',
           ]
         })(),
-        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** The author's initial publications, ${CITATION_RECORD.priorPublications.map((p) => `${p.date}: [${p.title}](https://doi.org/${p.doi}) (DOI ${p.doi}; concept [${p.conceptDoi}](https://doi.org/${p.conceptDoi}))`).join(' · ')} · ORCID [${PUBLICATION_CREDIT.orcid}](${PUBLICATION_CREDIT.orcidUrl}) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
+        `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** The author's initial publications, ${CITATION_RECORD.priorPublications.map((p) => `${p.date}: [${p.title}](https://doi.org/${p.doi}) (DOI ${p.doi}; concept [${p.conceptDoi}](https://doi.org/${p.conceptDoi}))`).join(' · ')} · the application to the Clay Mathematics Institute, ${CITATION_RECORD.claySubmission.date}: "${CITATION_RECORD.claySubmission.title}", to the ${CITATION_RECORD.claySubmission.to}, enclosing [${CITATION_RECORD.claySubmission.enclosure}](https://doi.org/${CITATION_RECORD.claySubmission.enclosureDoi}) · ORCID [${PUBLICATION_CREDIT.orcid}](${PUBLICATION_CREDIT.orcidUrl}) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one checked by the kernel and none resting on an axiom beyond \`propext\` and \`Quot.sound\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
         '',
       ]
     })(),
@@ -1014,6 +1014,16 @@ export const CITATION_RECORD = {
     { doi: '10.5281/zenodo.21781603', conceptDoi: '10.5281/zenodo.21781602', date: '2026-08-04', title: 'All Seven Clay Millennium Problems Sealed via Universal σ-Involution' },
     { doi: '10.5281/zenodo.21787144', conceptDoi: '10.5281/zenodo.21787143', date: '2026-08-04', title: 'Quantum Proofs of the Clay Millennium Problems v1.0' },
   ],
+  // THE APPLICATION TO THE CLAY MATHEMATICS INSTITUTE, AS THE LETTER STATES IT (owner, 2026-11-16: cite it with the initial
+  // publications). Sent 2026-08-04 to the Institute's Millennium Prize Problems Committee; it names six problems, encloses the
+  // paper below and cites the Zenodo deposit of that paper. No address of the sender is published here.
+  claySubmission: {
+    date: '2026-08-04',
+    title: 'Formal Submission of Proofs for All Six Clay Millennium Prize Problems',
+    to: 'Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA',
+    enclosure: 'Quantum Proofs of the Clay Millennium Problems',
+    enclosureDoi: '10.5281/zenodo.21787144',
+  },
   repository: 'https://github.com/ceccec/ceccec.github.io',
   url: 'https://ceccec.psg.bg',
   contactEmail: 'ceci@psg.bg',
@@ -1115,6 +1125,15 @@ export function citationCff(tree: { readonly version: string; readonly date: str
     '',
     'references:',
     r.references,
+    '  - type: generic',
+    '    authors:',
+    `      - family-names: ${family}`,
+    `        given-names: ${given}`,
+    `        orcid: "${PUBLICATION_CREDIT.orcidUrl}"`,
+    `    title: "${r.claySubmission.title}"`,
+    `    notes: "Letter of application to the ${r.claySubmission.to}, ${r.claySubmission.date}; encloses \\"${r.claySubmission.enclosure}\\" (DOI ${r.claySubmission.enclosureDoi})."`,
+    `    date-published: ${r.claySubmission.date}`,
+    `    year: ${r.claySubmission.date.slice(0, 4)}`,
     '',
   ].join('\n')
 }

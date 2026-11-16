@@ -74,7 +74,8 @@
     "Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. STOC '96, 212-219.",
     "Shor, P. W. (1997). Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer. SIAM J. Comput., 26(5), 1484-1509.",
     "Merkle, R. C. (1988). A Digital Signature Based on a Conventional Encryption Function. CRYPTO '87, 369-378.",
-    "Nielsen, M. A., Chuang, I. L. (2010). Quantum Computation and Quantum Information. Cambridge University Press."
+    "Nielsen, M. A., Chuang, I. L. (2010). Quantum Computation and Quantum Information. Cambridge University Press.",
+    "Rouschev, Tsvetan (2026-08-04). Formal Submission of Proofs for All Six Clay Millennium Prize Problems. Letter of application to the Clay Mathematics Institute, Millennium Prize Problems Committee, Wellesley, MA; encloses \"Quantum Proofs of the Clay Millennium Problems\", https://doi.org/10.5281/zenodo.21787144. ORCID 0009-0000-7312-9778."
   ],
   "custom_fields": {
     "grover_success_probability": "94.5%-99.9% (n=8,16,32)",
