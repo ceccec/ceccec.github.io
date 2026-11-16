@@ -227,7 +227,6 @@ const ROSETTA_CORE_API_LABELS = [
   'thunderAndPlasmaAreSameInDifferentAspects',
   'crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities',
   'crossWavesUpgradeAll',
-  'folderMigrationDedupWaves',
   'sharedHeroAt', 'computeUniversalPage',
   // Collapsed synonym registries — shelved through core (no parallel tables).
   'rosettaCodec', 'rosettaClaim', 'rosettaOwner', 'quantumProjectionParams',
@@ -390,7 +389,6 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   thunderAndPlasmaAreSameInDifferentAspects: 'compute',
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities: 'tool',
   crossWavesUpgradeAll: 'tool',
-  folderMigrationDedupWaves: 'nav',
   rosettaCodec: 'compute', rosettaClaim: 'api', rosettaOwner: 'api',
   quantumProjectionParams: 'projection',
   stringTheoryMillenniumTheoremGapsInventory: 'compute',
@@ -659,7 +657,6 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'autodiscover-compute-decode', title: 'Autodiscover what to compute or decode', fold: 'autodiscoverWhatIsToBeComputedOrDecoded', cli: 'npm run quantum:autodiscover-compute-decode', pair: 'discover/compute-decode', route: '/quantum-tools#autodiscover-compute-decode', barrel: 'src/research', boundary: 'Drainable=open|partial · honest-open=intentional Clay/FTL/DE440/earth · backlogDrained when computeOpen=decodeDrainable=0', browserRunnable: true, browserGap: '' },
   { id: 'one-command-decode', title: 'One command decode hash|string|sequence', fold: 'oneCommandDecodeHashOrStringOrSequence', cli: 'npm run quantum:decode', pair: 'decode/one', route: '/quantum-tools#one-command-decode', barrel: 'src/thunder/decode', boundary: 'Unified sealed decode · oneCommandDecodeComputable · production RSA refuse unchanged', browserRunnable: true, browserGap: '' },
   { id: 'vitepress-docs-research', title: 'VitePress docs research → native improvements', fold: 'vitepressDocsResearchImprovements', cli: 'npm run quantum:vitepress-docs-research', pair: 'docs/improve', route: '/en/', barrel: 'src/wind/site', boundary: 'VP 2.0.0-alpha.17 docs researched · applied lazy/lastUpdated/editLink/logo/externalIcon/bg-locale fix · carbon/Algolia skipped', browserRunnable: true, browserGap: '' },
-  { id: 'folder-migration-waves', title: 'Folder migration + dedup waves → nav/sidebars', fold: 'folderMigrationDedupWaves', cli: 'npm run quantum:folder-migration-waves', pair: 'folder/migrate', route: '/quantum-tools#folder-migration-waves', barrel: 'src/wind/site', boundary: '23-folder census · domain sidebars · #61 hierarchy · orphan-free vitepressSidebar · compose ui/prose+mcp audit', browserRunnable: true, browserGap: '' },
   { id: 'import-path-distance', title: 'Import path distance — migration matrix compactness', fold: 'importPathShowsDistanceInMigrationMatrix', cli: 'npm run quantum:import-path-distance', pair: 'import/distance', route: '/quantum-tools#import-path-distance', barrel: 'src/pair/enforcement/gates', boundary: 'segmentDistance · treeHopDistance · gapHops per edge · compact+even via FREE_BITS · compose folder law/dissolve/census', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI/limits soft report' },
   { id: 'cmd-place', title: 'Commands audited for best place then full dry clean', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:cmd-place', pair: 'cmd/place', route: '/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · censusHolds · residual:quantum-apps-monolith · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'place-audit', title: 'Place audit (alias cmd/place)', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:place-audit', pair: 'place/audit', route: '/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'Dual place/audit — same fold · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
@@ -1720,7 +1717,6 @@ const FRACTAL_IMPORT_RENAME_APPLIED = [
   { wetId: 'toolbox-standard-io', fractalId: 'tool-envelope', pair: 'tool/envelope' },
   { wetId: 'import-path-distance', fractalId: 'import-distance', pair: 'import/distance' },
   { wetId: 'path-message-three-words', fractalId: 'path-message', pair: 'path/message' },
-  { wetId: 'folder-migration-waves', fractalId: 'folder-migrate', pair: 'folder/migrate' },
   { wetId: 'chat-solve', fractalId: 'chat-solve', pair: 'chat/solve' },
 ] as const
 
@@ -2620,7 +2616,6 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'manual-agents-waves', saves: 'replaces wet-linear agent grind — one wave/turn · waves/build+edit/build · trinity/speedup · mission:gate' },
   { id: 'waves-push', saves: 'replaces wet force-push / parallel push grind — one sequential push · noForceMain · waves/build · vote/build/commit/push' },
   { id: 'ui-prose-duplication-removed', saves: 'replaces wet re-audit of heading/eyebrow/badge/lede synonym stacks — sealed before/after receipt' },
-  { id: 'folder-migration-waves', saves: 'replaces wet per-folder nav/sidebar rediscovery — sealed migration+dedup census + content↔sidebar match' },
   { id: 'import-path-distance', saves: 'replaces wet import-graph hop greps — sealed segment/tree-hop/gap distance per edge + compact/even migration metrics' },
   { id: 'crypto-comparison-mesh-dry', saves: 'replaces wet duplicate crypto comparison catalogs — mesh nodes/edges single source for UI/CLI/MCP/toolbox/proofs' },
   { id: 'manual-quantum', saves: 'replaces wet-linear migrate/dry-clean grind — sealed migrate-next wave tools · color/css strangler · crypto mesh CLI' },
@@ -31717,7 +31712,6 @@ export const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'directional-trinity', chain: 'trinity-compose', fold: 'directionalTrinityForwardInverseReverse', pair: 'forward/inverse/reverse', cli: 'npm run quantum:directional-trinity', route: '/quantum-tools#directional-trinity', status: 'merged-main', honesty: 'inverse≠reverse except named coincidence', note: 'combination axis for bit ops', toolId: 'directional-trinity', resolve: 'trinity' },
   { id: 'realise-sciences-standards', chain: 'realise-sciences', fold: 'completeScientificDomainsStrictlyToStandardsQuantumOnly', pair: 'sciences/standards', cli: 'npm run quantum:sciences-standards-quantum', route: '/research#sciences-standards-quantum', status: 'sealed-pr', honesty: 'certified=false · lab gaps unclosable', note: 'landed on #33 tip — sciences/standards + tool config + slow-build + paste auto-wire', toolId: 'sciences-standards-quantum', resolve: 'sciences-standards' },
   { id: 'dry-clean-refactor-waves', chain: 'dry-clean-waves', fold: 'standardToolboxIoCatalog', pair: 'tool/envelope', cli: 'npm run quantum:toolbox-standard-io', route: '/quantum-tools#toolbox-standard-io', status: 'sealed-pr', honesty: 'Wave1 nav/sidebars + Wave2 tool input/config · certified=false', note: 'landed #31 tip — science experiment configs filled', toolId: 'toolbox-standard-io', resolve: 'dry-clean' },
-  { id: 'folder-migration-waves', chain: 'folder-migrate-nav', fold: 'folderMigrationDedupWaves', pair: 'folder/migrate', cli: 'npm run quantum:folder-migration-waves', route: '/quantum-tools#folder-migration-waves', status: 'sealed-pr', honesty: 'compose ui/prose+mcp audit', note: '23 folders migrated · /proofs sidebar · orphan-free nav/content', toolId: 'folder-migration-waves', resolve: 'folder-migrate' },
   { id: 'import-path-distance', chain: 'folder-migrate-nav', fold: 'importPathShowsDistanceInMigrationMatrix', pair: 'import/distance', cli: 'npm run quantum:import-path-distance', route: '/quantum-tools#import-path-distance', status: 'sealed-pr', honesty: 'measurement not Clay-marked', note: 'import edges show distance · compact+even migration matrix · soft on limits:verify', toolId: 'import-path-distance', resolve: 'folder-migrate' },
   { id: 'path-message-three-words', chain: 'folder-migrate-nav', fold: 'pathMeansMessageFitsInThreeWords', pair: 'path/message', cli: 'npm run quantum:path-message-three-words', route: '/quantum-tools#path-message', status: 'sealed-pr', honesty: 'max 3 words · path is message', note: 'prefer 1 · else 2 · max 3 · compose namingEntropy + gravity→src', toolId: 'path-message-three-words', resolve: 'folder-migrate' },
   { id: 'folder-gravity', chain: 'folder-migrate-nav', fold: 'folderGravityMeasuredByTheCode', pair: 'folder/gravity', cli: 'npm run quantum:folder-gravity', route: '/quantum-tools#folder-gravity', status: 'sealed-pr', honesty: 'gravity→src · keep named iching', note: 'mass by code · pull toward src/ · iching keep src/earth/iching · no synonym shells', toolId: 'folder-gravity', resolve: 'folder-migrate' },

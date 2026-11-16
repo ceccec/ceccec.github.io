@@ -22,7 +22,7 @@ import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalL
 import { rhythm } from '../music/index.ts'
 import { heartProtonAtomDecoded } from '../mountain/geometry/index.ts'
 import { monographSliceFromRoute, ROUTE_ALIASES } from '../wind/routes/automount/index.ts'
-import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry, applyDomainRegistrySidebars, dryCleanVitepressNavSidebarsFromDomainRegistry, folderMigrationDedupWaves, type LocaleName } from '../wind/site/index.ts'
+import { homeHero, isServedRoute, localePath, pickLocale, displayText, quantumSitemap, staticPages, theoremScienceLens, theoremScienceVisible, siteDomainRegistry,  type LocaleName } from '../wind/site/index.ts'
 import { componentGraph } from '../heaven/core/index.ts'
 import { realtimeWiring } from '../fire/plasma/ball/index.ts'
 import { toGlagolitic } from '../quantum/heaven/library/index.ts'
@@ -2066,139 +2066,6 @@ function corpusPrefixSidebar(
         { text: i === 1 ? 'Референции' : 'References', link: '/references/' },
       ] },
   ]
-}
-
-function vitepressSidebarForLocale(
-  bundle: ReturnType<typeof siteNavigation>['en'],
-  i: 0 | 1,
-  matrix: MindMatrix,
-): Record<string, VitePressSidebarItem[]> {
-  const portalLabel = i === 1 ? 'Портал' : 'Portal'
-  const proofsLabel = i === 1 ? 'Доказателства' : 'Proofs'
-  const machineLabel = i === 1 ? 'Машинни експорти' : 'Machine exports'
-  const main: VitePressSidebarItem[] = [
-    ...bundle.sidebar,
-    {
-      text: proofsLabel,
-      items: [
-        { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: '/frontiers' },
-        { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: '/proofs' },
-      ] },
-    {
-      text: machineLabel,
-      collapsed: true,
-      items: [
-        { text: i === 1 ? 'Таг индекс' : 'Tag index', link: '/theorems/' },
-        { text: i === 1 ? 'Статии (REST)' : 'Papers (REST)', link: '/papers/' },
-        { text: i === 1 ? 'Референции (REST)' : 'References (REST)', link: '/references/' },
-        { text: i === 1 ? 'Диаманти (REST)' : 'Diamonds (REST)', link: '/diamonds/' },
-      ] },
-  ]
-  const merged = applyDomainRegistrySidebars(bundle.relatedSidebar, main, portalLabel, i, matrix)
-  const out = merged.out as Record<string, VitePressSidebarItem[]>
-  for (const kind of ['papers', 'references', 'diamonds'] as const) {
-    const sections = corpusPrefixSidebar(kind, i, matrix)
-    out[`/${kind}/`] = sections
-    out[`/${kind}`] = sections
-  }
-  const theoremSidebar = theoremRosettaSidebar(matrix)
-  out['/theorems/'] = theoremSidebar
-  out['/theorems'] = theoremSidebar
-  // #61 content match — /proofs sidebar from sealed proofs section (not a synonym hub)
-  const proofsItems = [
-    { text: i === 1 ? 'Теоремен регистър' : 'Theorem registry', link: '/frontiers' },
-    { text: i === 1 ? 'Домейнни доказателства' : 'Domain proofs', link: '/proofs' },
-    { text: i === 1 ? 'Таг индекс (машинно)' : 'Tag index (machine)', link: '/theorems/' },
-  ]
-  out['/proofs'] = [{ text: proofsLabel, items: proofsItems }, { text: portalLabel, collapsed: true, items: main }]
-  out['/proofs/'] = out['/proofs']
-  return out
-}
-
-/** Collect sidebar hrefs (path only, no hash/locale) for orphan/dead-link audit. */
-function collectSidebarLinks(map: Record<string, VitePressSidebarItem[]>): string[] {
-  const links: string[] = []
-  const walk = (items: VitePressSidebarItem[]) => {
-    for (const item of items) {
-      if (item.link) links.push(item.link.split('#')[0]!.replace(/\/$/, '') || '/')
-      if (item.items?.length) walk(item.items)
-    }
-  }
-  for (const sections of Object.values(map)) walk(sections)
-  return [...new Set(links)]
-}
-
-/** Canonical VitePress themeConfig.sidebar — path-prefix map from siteNavigation + corpus REST. */
-export function vitepressSidebar(matrix: MindMatrix = buildMatrix()) {
-  const nav = siteNavigation(matrix)
-  const dry = dryCleanVitepressNavSidebarsFromDomainRegistry(matrix)
-  const folders = folderMigrationDedupWaves(matrix)
-  const en = vitepressSidebarForLocale(nav.en, 0, matrix)
-  const bg = vitepressSidebarForLocale(nav.bg, 1, matrix)
-  const enMerge = applyDomainRegistrySidebars(nav.en.relatedSidebar, en['/']!, 'Portal', 0, matrix)
-  const servedSlugs = new Set(staticPages().map((page) => `/${page.slug}`))
-  const allowedPrefixes = ['/papers', '/references', '/diamonds', '/theorems', '/proofs', '/frontiers', '/learn', '/']
-  const allowedExact = new Set([
-    '/',
-    '/frontiers',
-    '/proofs',
-    '/theorems',
-    '/papers',
-    '/references',
-    '/diamonds',
-    '/learn',
-    ...ROSETTA_RAY_HUB_SLUGS.map((slug) => `/${slug}`),
-    ...servedSlugs,
-  ])
-  const enLinks = collectSidebarLinks(en)
-  const orphanLinks = enLinks.filter((link) => {
-    if (allowedExact.has(link)) return false
-    if (allowedPrefixes.some((prefix) => link === prefix || link.startsWith(`${prefix}/`))) return false
-    return true
-  })
-  const contentMatchesSidebar =
-    Boolean(en['/proofs']) &&
-    Boolean(en['/frontiers'] || enMerge.domainKeysPresent) &&
-    orphanLinks.length === 0 &&
-    nav.aliasDiscoveryPurged
-  const root = merkleFold([
-    nav.root,
-    dry.root,
-    folders.root,
-    merkleFold(Object.keys(en).sort().map((key) => toUuid(`vp-sidebar:en:${key}`))),
-    merkleFold(Object.keys(bg).sort().map((key) => toUuid(`vp-sidebar:bg:${key}`))),
-    toUuid(`vp-sidebar-orphans:${orphanLinks.length}`),
-  ])
-  return {
-    computed:
-      Object.keys(en).length > bundleMinKeys(nav.en) &&
-      Object.keys(bg).length > bundleMinKeys(nav.bg) &&
-      en['/papers/']!.length >= 3 &&
-      dry.computes &&
-      enMerge.aliasKeysPurged &&
-      enMerge.domainKeysPresent &&
-      folders.computes &&
-      contentMatchesSidebar &&
-      isUuid(root),
-    en,
-    bg,
-    dryClean: dry,
-    folderWaves: folders,
-    aliasKeysPurged: enMerge.aliasKeysPurged,
-    domainKeysPresent: enMerge.domainKeysPresent,
-    contentMatchesSidebar,
-    orphanLinks,
-    navBefore: folders.navBefore,
-    navAfter: folders.navAfter,
-    root,
-    statement:
-      'Canonical VitePress sidebar: domain registry + rosetta related (aliases purged) + corpus path-prefixes + /proofs. Content matches sidebar (zero orphan links). One source via localeNavLinks/localeSidebarKeys.',
-    boundary:
-      'Nav aliases omit discovery keys; domain canonicals (incl. learn) get registry sidebars; /proofs is #61 domain-proof hub not a synonym.' }
-}
-
-function bundleMinKeys(bundle: ReturnType<typeof siteNavigation>['en']) {
-  return Object.keys(bundle.relatedSidebar).length + 4
 }
 
 export type ComponentCrosslink = { text: string; link: string; kind: 'topic' | 'detail' | 'peer' | 'related' | 'sibling' | 'gateway' | 'home' }

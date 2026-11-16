@@ -284,16 +284,16 @@
    2833,
    2868,
    2903,
-   552,
-   658,
-   716,
-   814,
-   861,
-   1470,
-   1588
+   551,
+   657,
+   715,
+   813,
+   860,
+   1469,
+   1587
   ],
   "holds": true,
-  "caption": "the first 64 of 1879 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1875 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -1498,7 +1498,7 @@
  "the chat audits README usability by algebra — strong structure and navigation, rich linkage, a computed readability gap (dense prose)": {
   "form": "bars",
   "values": [
-   275,
+   274,
    528,
    76
   ],
@@ -2240,13 +2240,13 @@
  "methods consolidate by gravity — one word attracts, compression adds words, the type holds the meaning": {
   "form": "bars",
   "values": [
-   492,
+   491,
    481,
    188,
    165,
    164,
-   162,
-   154,
+   160,
+   152,
    138,
    135,
    126,
@@ -2306,7 +2306,7 @@
    40
   ],
   "holds": true,
-  "caption": "the first 64 of 1136 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1134 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",

@@ -21,6 +21,6 @@ export {
   vitepressNativeDocsConfig,
   vitepressDocsResearchImprovements,
 } from '../render'
-export { siteNavigation, vitepressSidebar, leanBlogNavigation } from '../render'
+export { siteNavigation, leanBlogNavigation } from '../render'
 export { SITE_LOCALES } from '../render'
 export { toGlagolitic } from '../render'

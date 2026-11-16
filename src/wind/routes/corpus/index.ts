@@ -965,8 +965,7 @@ export {
   navigationIsMovie,
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent,
-  siteNavigation,
-  vitepressSidebar } from '../../../learning/index.ts'
+  siteNavigation } from '../../../learning/index.ts'
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts'
 export {
   contentIsMonographOfMonographs,

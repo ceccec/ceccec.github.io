@@ -210,7 +210,6 @@ export const SESSION_SKILL_FNS: readonly string[] = [
   'sealSpiritToPath',
   'sealWholeDiamond',
   'selfCompassion',
-  'vitepressSidebar',
   'signedTrafficTrinityRouting',
   'siteIsMovieAndLibrary',
   'skillsDryRefactorCommands',

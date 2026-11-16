@@ -402,7 +402,6 @@
     "quantum:autodiscover-compute-decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/research/index.ts runAutodiscoverWhatIsToBeComputedOrDecodedExit",
     "quantum:decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/decode/index.ts runOneCommandDecodeExit",
     "quantum:vitepress-docs-research": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runVitepressDocsResearchImprovementsExit",
-    "quantum:folder-migration-waves": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/site/index.ts runFolderMigrationDedupWavesExit",
     "quantum:import-path-distance": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runImportPathShowsDistanceInMigrationMatrixExit",
     "quantum:folder-gravity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runFolderGravityMeasuredByTheCodeExit",
     "quantum:place-merge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runPlaceMergeExit",

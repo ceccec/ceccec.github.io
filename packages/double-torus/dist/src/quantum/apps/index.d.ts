@@ -738,13 +738,6 @@ export declare function importFractalMap(matrix?: MindMatrix, at?: number): {
         fractalId: string;
         mapped: boolean;
         roundTrip: boolean;
-        wetId: "folder-migration-waves";
-        pair: "folder/migrate";
-    } | {
-        pairOn: boolean;
-        fractalId: string;
-        mapped: boolean;
-        roundTrip: boolean;
         wetId: "chat-solve";
         pair: "chat/solve";
     })[];
@@ -770,13 +763,6 @@ export declare function importFractalMap(matrix?: MindMatrix, at?: number): {
         roundTrip: boolean;
         wetId: "path-message-three-words";
         pair: "path/message";
-    } | {
-        pairOn: boolean;
-        fractalId: string;
-        mapped: boolean;
-        roundTrip: boolean;
-        wetId: "folder-migration-waves";
-        pair: "folder/migrate";
     } | {
         pairOn: boolean;
         fractalId: string;

@@ -4594,7 +4594,12 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
     const reverseVerify = encryptionReverseVerify(matrix)
     const overCeil = ODD_OVER_CEILING_RSA_PROBE
     const shorRefuse = modeledShorFactorToyModulus(overCeil)
-    const browserRefuse = runEncryptionToolInBrowser(overCeil, matrix)
+    // THE BROWSER TOOL'S REFUSAL IS ITS GATE, READ HERE DIRECTLY. This called runEncryptionToolInBrowser, which builds the
+    // whole encryption panel, which composes maxBitsHardwareBoundaryAgree, which calls this fold — a memo cycle: entered
+    // from here first, bits/hardware read the re-entry stub (incompleteOpen undefined) and gaps/invisible went red only in
+    // the build's call order. The tool's `refused`/`refuseReason` are exactly !gate.allowed / gate.reason of this gate.
+    const browserGate = refuseNonDemoRsaModulus(overCeil)
+    const browserRefuse = { refused: !browserGate.allowed, refuseReason: browserGate.reason }
     const decodeRefuse = __ns_thunder_decode.oneCommandDecodeHashOrStringOrSequence(String(overCeil), matrix)
     const bitcoin = refuseBitcoinMainnetMaterial('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa')
 

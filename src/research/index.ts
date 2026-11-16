@@ -6784,7 +6784,6 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
     const mcp = __ns_quantum_apps.mcpBrowserParity(matrix, at)
     const mcpScripts = __ns_quantum_apps.mcpCommandsScriptsGapsAudit(matrix, at)
     const universe = __ns_quantum_apps.universeAlmostDescribedInTheoremsDiscoverRest(matrix, at)
-    const folder = __ns_wind_site.folderMigrationDedupWaves(matrix)
     const stringGaps = __ns_water_cosmos.stringTheoryMillenniumTheoremGapsInventory(matrix)
     const oneDecode = __ns_thunder_decode.oneCommandDecodeComputable(matrix, at)
     const oneDecodeComputable = oneDecode.computes && oneDecode.oneCommandDecodeComputable
@@ -6901,12 +6900,6 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
         : (mcpScripts.gapCount > 0 ? 'partial' : 'covered'),
       sealPath: 'src/quantum/apps · mcp/scripts-audit',
       note: `gapCount=${mcpScripts.gapCount} · residual=${mcpScripts.residualCount} · kept-intentional named · computes=${mcpScripts.computes}` })
-    push({
-      id: 'folder-migration',
-      kind: 'decode',
-      status: folder.residualCount > 0 ? 'open' : folder.partialCount > 0 ? 'partial' : 'covered',
-      sealPath: 'src/wind/site · folder/migrate',
-      note: `migrated=${folder.migratedCount} partial=${folder.partialCount} residual=${folder.residualCount}` })
     // HONEST: Clay/FTL/DE440/earth openSet rows are computed receipts — not drainable backlog.
     for (const g of (universe.openSet ?? []).slice(0, 8)) {
       push({
@@ -6986,7 +6979,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       { facet: `decode open|partial|honest-open=${decodeOpen}`, on: decodeOpen >= 0 },
       { facet: `backlog drained (computeOpen=0 ∧ decodeDrainable=0)`, on: backlogDrained },
       { facet: `available tools=${availableTools} include one-command decode`, on: availableTools >= 1 && items.some((i) => i.id === 'tool-one-command-decode') },
-      { facet: 'compose papers/fill · domain proofs · fixed limits · MCP · folder · universe', on: papersFill.computes && catalog.computes && limits.computes && mcp.computes && folder.computes },
+      { facet: 'compose papers/fill · domain proofs · fixed limits · MCP · universe', on: papersFill.computes && catalog.computes && limits.computes && mcp.computes },
       { facet: 'oneCommandDecode path autodiscoverable', on: oneDecodeComputable || items.some((i) => i.id === 'tool-one-command-decode' && i.status === 'available') },
       { facet: 'universe Clay/FTL/DE440/earth classified honest-open (not drainable)', on: items.filter((i) => i.family === 'universe-honest-open').every((i) => i.status === 'honest-open') },
       { facet: 'reverse-collide Millennium capability listed', on: items.some((i) => i.id === 'tool-reverse-collide-discover-millennium') },
