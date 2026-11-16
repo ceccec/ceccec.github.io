@@ -600,7 +600,7 @@ function runConceptCommand(
       { name: 'glagolitic', bits: 0b010 },
       { name: 'songbook', bits: 0b011 },
       { name: 'census', bits: 0b100 },
-      { name: 'crosslinks', bits: 0b101 },
+      { name: 'navigation', bits: 0b101 },
       { name: 'cloudflare', bits: 0b110 },
       { name: 'dist', bits: 0b111 },
     ]

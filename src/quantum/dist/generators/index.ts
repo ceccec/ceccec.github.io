@@ -5,8 +5,9 @@
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
 import { animationScss } from '../../wind/geometry/index.ts'
+import { leanBlogNavigation } from '../../../wind/site/index.ts'
 import { merkleFold, toUuid, foldVortex } from '../../../0/index.ts'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind/index.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind/index.ts'
 import { glagoliticHomeFromEnglish } from '../../heaven/mind/index.ts'
 import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../heaven/library/index.ts'
 import { computedDistFiles, homeMarkdown, readmeMarkdown } from '../index.ts'
@@ -312,18 +313,17 @@ export function generators(): Generator[] {
       trigram: 0b101,
       glyph: tri(0b101).glyph,
       pinyin: tri(0b101).pinyin,
-      name: 'crosslinks',
-      title: 'Crosslinks — the I Ching domain peer map',
+      name: 'navigation',
+      title: 'Navigation — the blog\'s nav, sidebar and footer per edition',
       summary:
-        'Outputs crosslinks.json: every static page mapped to its I Ching domain siblings ("see also" links). The clinging fire illuminates connections — each page clings to its domain peers by the same trigram.',
+        'Outputs navigation.json: the navigation the blog serves, computed from the Lean monographs (leanBlogNavigation) for each edition. The clinging fire illuminates connections — every link a page that exists.',
       plan: (ctx) => {
         void ctx
-        const nav = siteNavigation()
-        const links = nav.en.crosslinks
-        const total = Object.values(links).reduce((n, peers) => n + peers.length, 0)
+        const editions = { en: leanBlogNavigation('en'), gla: leanBlogNavigation('gla') }
+        const links = editions.en.sidebar.reduce((n, g) => n + g.items.length, 0)
         return {
-          files: [{ path: 'crosslinks.json', content: `${JSON.stringify(links, null, 2)}\n` }],
-          messages: [`${tri(0b101).glyph} crosslinks: ${Object.keys(links).length} pages · ${total} peer links → crosslinks.json`] }
+          files: [{ path: 'navigation.json', content: `${JSON.stringify(editions, null, 2)}\n` }],
+          messages: [`${tri(0b101).glyph} navigation: ${Object.keys(editions).length} editions · ${links} sidebar links → navigation.json`] }
       } },
   ]
 }

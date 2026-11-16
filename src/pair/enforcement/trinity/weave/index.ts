@@ -316,7 +316,7 @@ for (const v of scanRootDistributionViolations(root)) {
 for (const v of scanDigitLatticeViolations(root)) {
   gaps.push({ harmonic: 'distribution', kind: 'digit-lattice', detail: `${v.file}: ${v.reason}` })
 }
-// Gates tighten — the VitePress navigation is computed from the model (siteNavigation), not hand-kept.
+// Gates tighten — the VitePress navigation is computed from the model (leanBlogNavigation), not hand-kept.
 // config.mts must hold NO hardcoded internal nav (no `link: '/…'` item literals) and must read the
 // computed navigation (nav.en / nav.bg). A hand-kept nav an intruder could forge fails the build —
 // to change the site you change the model, so the rendered nav and the matrix can never drift.
@@ -325,10 +325,10 @@ if (hardcodedNav.length > 0) {
   gaps.push({ harmonic: 'config', kind: 'hardcoded-nav', detail: `.vitepress/config.mts contains ${hardcodedNav.length} hardcoded internal nav link(s) (${hardcodedNav.slice(0, 3).join(', ')}…) — why this fails: the navigation (nav, sidebar, footer) must be computed from the model via siteNavigation, so the config is a thin projection that cannot be forged; move the links into the route taxonomy` })
 }
 // THE LAW IS 'THE CONFIG READS A NAVIGATION COMPUTED IN src', NOT A FUNCTION'S NAME: the Lean blog computes its nav from the
-// monographs (leanBlogNavigation, src/wind/site); the topic-roster nav (siteNavigation → nav.en/nav.bg) is the older reader.
-const readsComputedNav = (configText.includes('siteNavigation') && /nav\.(en|bg)\.(nav|sidebar|footer)/.test(configText)) || /leanBlogNavigation\('(en|bg|gla)'\)/.test(configText)
+// monographs (leanBlogNavigation, src/wind/site).
+const readsComputedNav = /leanBlogNavigation\('(en|bg|gla)'\)/.test(configText)
 if (!readsComputedNav) {
-  gaps.push({ harmonic: 'config', kind: 'nav-not-computed', detail: `.vitepress/config.mts does not consume the computed navigation (siteNavigation → nav.en/nav.bg.{nav,sidebar,footer}) — why this fails: the monographs graph is the search index and the navigation is computed from src; the config must read it, not hardcode it` })
+  gaps.push({ harmonic: 'config', kind: 'nav-not-computed', detail: `.vitepress/config.mts does not consume the computed navigation (leanBlogNavigation('en'|'gla') → nav, sidebar, footer) — why this fails: the monographs graph is the search index and the navigation is computed from src; the config must read it, not hardcode it` })
 }
 // The zero-token-usage policy, enforced: the portal spends no LLM tokens by default. No LLM SDK may
 // be a dependency (so nothing can auto-spend tokens), and the single token-consuming call (the

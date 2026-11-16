@@ -16,10 +16,10 @@ import { feesReplaceTaxes, legislationRequires } from '../earth/civilisation/ind
 import { deepResearchEncodedInRecursiveWaves, surgicalWaves } from '../thunder/waves/index.ts'
 import { merkaba, vortexMath } from '../mountain/geometry/index.ts'
 import { schemaOrgDiamonds, sealWholeDiamond } from '../fire/diamonds/index.ts'
-import { siteNavigation, theMonograph, clientWorkBoundedByPureMath } from '../wind/routes/corpus/index.ts'
+import { theMonograph, clientWorkBoundedByPureMath } from '../wind/routes/corpus/index.ts'
 import { plasmaClientWorkBoundedByPureMath, clientMoviePaintPathSealed } from '../fire/plasma/ball/index.ts'
 import { monographPaths, quantumAcademy } from '../learning/index.ts'
-import { staticPages } from '../wind/site/index.ts'
+import { staticPages, leanBlogNavigation } from '../wind/site/index.ts'
 import { SITE_LOCALES, buildSequenceReducesComputations, completeness, componentGraph, computedWiringNotImported, continueSameNext, gatesBehaveAsMcp, iChingImportExportTenD, live, minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, onlyIndexFilesNoExceptions, path, refactorLinearToTrinities } from '../quantum/heaven/mind/index.ts'
 
 // Two vortices, 6x7 and 7x6 (both 42), counter-rotate and cross-check each other for
@@ -323,7 +323,7 @@ export function displayAllAsLibraryDryConditional(matrix: MindMatrix = buildMatr
 
 // Locale audit — a living census of the tri-locale system (Glagolitic/cu at root, English at /en/,
 // Bulgarian at /bg/). Composes the existing locale primitives (SITE_LOCALES, monographPaths,
-// staticPages, siteNavigation, noMirroringOneSourceAndMath) into one content-addressed seal so any
+// staticPages, leanBlogNavigation, noMirroringOneSourceAndMath) into one content-addressed seal so any
 // locale gap surfaces here rather than silently diverging. HONEST: 'cu' (Church Slavonic) is omitted
 // from the sitemap's hreflang alternates by design — it is a valid BCP-47 tag but is not in Google
 // Search Console's supported hreflang language list, so emitting it would be ignored at best.
@@ -335,7 +335,6 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
   const en = monographPaths('en')
   const bg = monographPaths('bg')
   const pages = staticPages()
-  const nav = siteNavigation(matrix)
   const incomplete = pages.filter((p) => !p.title.en || !p.title.bg || !p.description.en || !p.description.bg)
   // Each non-root locale's slugPath tells the corpus what prefix to use: bg → /bg/, gla → /gla/
   const glaLocale = nonRoot.find((l) => l.code === 'cu')
@@ -357,7 +356,7 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     }) },
     { facet: 'math transliteration live — Glagolitic titles differ from English and contain Glagolitic glyphs', on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },
     { facet: 'sitemap complete — monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)', on: en.length > (7 * 2) },
-    { facet: 'navigation computed for both non-root locales — no hardcoded nav', on: nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: 'navigation computed for both non-root locales — no hardcoded nav', on: leanBlogNavigation('bg').nav.length > 0 && leanBlogNavigation('gla').nav.length > 0 },
     { facet: 'no-mirroring: one source of truth, all locales by math', on: noMirroringOneSourceAndMath(matrix).single },
   ].map((entry) => ({ ...entry, receipt: toUuid(`audit-locales:${entry.facet}:${entry.on}`) }))
   return {
@@ -370,7 +369,7 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: 'Locale audit — a living census of the tri-locale system (English at the canonical root /, Bulgarian at /bg/, Glagolitic/cu at /gla/): SITE_LOCALES integrity, coverage parity, content completeness, title accuracy (no stub / en≡bg drift), hreflang coverage and computed navigation. Composes with translationGapsGate for HARD discover-then-fail on missing en-parity surfaces.',
-    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. Title accuracy is structural (stub/en≡bg), not literary QA. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).' }
+    boundary: 'A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, leanBlogNavigation and noMirroringOneSourceAndMath. Title accuracy is structural (stub/en≡bg), not literary QA. "cu omitted from hreflang by design" is HONEST — cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console\'s supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).' }
 }
 
 /** dry/clean pair — dry = sealed src/, zero wet motion; clean = fold/cleanup discipline; diamond + crystal = tamper-evident seal after pure-math client bounds. */

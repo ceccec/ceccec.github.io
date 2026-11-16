@@ -872,7 +872,6 @@ export declare function clownUiDesignedByRosettaIChing(matrix?: MindMatrix): {
 export declare function cssBecomesAnotherUseCaseOfTheTheorems(matrix?: MindMatrix): {
     useCase: boolean;
     tokensBytes: number;
-    related: number;
     count: number;
     facets: {
         receipt: string;

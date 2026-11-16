@@ -1,5 +1,5 @@
 // Thin VitePress mount — browser-safe SEO/nav only; enforcement gates stay CLI/build-only (automount.ts).
-// @mvc controller mount — re-exports controller fns (computedSeo, siteNavigation, siteConfig) to config.mts.
+// @mvc controller mount — re-exports controller fns (computedSeo, leanBlogNavigation, siteConfig) to config.mts.
 export {
   computedSeo,
   jsonLdTemplate,
@@ -21,6 +21,6 @@ export {
   vitepressNativeDocsConfig,
   vitepressDocsResearchImprovements,
 } from '../render'
-export { siteNavigation, leanBlogNavigation } from '../render'
+export { leanBlogNavigation } from '../render'
 export { SITE_LOCALES } from '../render'
 export { toGlagolitic } from '../render'

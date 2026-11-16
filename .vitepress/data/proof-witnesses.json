@@ -1703,7 +1703,7 @@
   "form": "bars",
   "values": [
    2,
-   30
+   25
   ],
   "holds": true,
   "caption": "the quantities theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSessions computes for this theorem (gapsFilled, routes), drawn from its own run — no other proof returns them"
@@ -1711,8 +1711,8 @@
  "the UI chat improves the UI itself (nav + sidebars) computed from the corpus, removing redundancy by merging to standard materials — no DOM scraping, DRY": {
   "form": "bars",
   "values": [
-   30,
-   30,
+   25,
+   25,
    225
   ],
   "holds": true,
@@ -2732,11 +2732,10 @@
   "form": "bars",
   "values": [
    13589,
-   214,
    6
   ],
   "holds": true,
-  "caption": "the quantities cssBecomesAnotherUseCaseOfTheTheorems computes for this theorem (tokensBytes, related, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities cssBecomesAnotherUseCaseOfTheTheorems computes for this theorem (tokensBytes, count), drawn from its own run — no other proof returns them"
  },
  "the hexagram orbit census — twelve fours and eight twos complete the 64": {
   "form": "bars",

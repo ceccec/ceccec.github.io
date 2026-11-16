@@ -13,13 +13,13 @@ import { extractAlgebraicStatement, A432_FOLDED, SINGLE_WORD_METHODS, normalizeT
 import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import * as __ns_heaven_site from '../../heaven/site/index.ts'
-import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../learning/index.ts'
+import { threeWordWaves, sciencePortalParts } from '../../learning/index.ts'
 import { refactorLinearToTrinities } from '../../heaven/essence/index.ts'
 import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion/index.ts'
 import { iChingDomainMap } from '../../heaven/balance/index.ts'
 import { completeDoubleTorus, doubleTorusFold } from '../topology/index.ts'
 import { animationsRespectTheField, freeAnimations, heroLawAlignment, holographicFractalArchitecture, tenDimensionalAnimation } from '../../ui/index.ts'
-import { quantumSitemap } from '../../wind/site/index.ts'
+import { quantumSitemap, leanBlogNavigation } from '../../wind/site/index.ts'
 import { quantumAppsStore, quantumCoordinateNav, quantumFirewallProxyWorker, quantumSynthesis, quantumThreat } from '../../fire/features/index.ts'
 import { multidimensional } from '../../quantum/icons/index.ts'
 import { livingTorus, piTrainDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds/index.ts'
@@ -1447,38 +1447,28 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
 // crosslinks — dropping nothing yet (reorganize first). `holds` proves the parts enforceable from src now;
 // `waves` tracks the whole plan, done and pending, so the directive is never lost and each wave can be sealed.
 export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
-  const navFull = siteNavigation(matrix)
-  const nav = navFull.en.nav
-  // Findable top nav (siteNavigation, under the theorem-science lens): Home + one dropdown per rosetta ray
-  // holding lens survivors + the theorem dropdown — ≤ 8 top entries and ≤ 8 items per dropdown (the
-  // eight-fold law), every ray label a functional hub-slug word (label = URL word) and the theorem group
-  // carrying the computed registry count. Enforces "science and solutions, not prose and ideology" AND
-  // "VitePress shows only science" — the lens law itself is gated inside siteNavigation.computed (navLensed).
-  const hubSlugs = new Set<string>(ROSETTA_RAYS.map((ray) => ray.nameEn.toLowerCase()))
-  const navRosetta =
-    navFull.computed &&
-    nav.length <= 8 &&
-    nav[0]?.text === 'Home' &&
-    nav.slice(1).every((group) => 'items' in group && group.items.length > 0 && group.items.length <= 8 && (hubSlugs.has(group.text.toLowerCase()) || group.text.includes('⊢')))
+  // THE BLOG'S NAVIGATION (leanBlogNavigation): the feed first, then the monograph groups — the Clay cases and the subjects —
+  // each holding a page that exists. The retired topic-roster nav (Home + seven hubs, related sidebar, crosslinks) is gone.
+  const blogNav = leanBlogNavigation('en')
+  const nav = blogNav.nav
+  const navRosetta = nav.length > 1 && !('items' in nav[0]!) && nav.slice(1).every((group) => 'items' in group && group.items.length > 0)
   const tenD = tenDimensionalAnimation(matrix)
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll
   const trinityRoot = crossFoldTrinity(matrix).trinity
   const domainMap = iChingDomainMap(matrix)
   const waves = [
-    { wave: 'top nav = Home + seven functional hubs (label = hub-slug word; science, not ideology)', done: navRosetta },
+    { wave: 'top nav = the feed + the monograph groups (Clay cases, subjects), computed from the Lean monographs', done: navRosetta },
     { wave: 'every page shelved into a reusable part by content lenses, no part empty (slug hash retired from shelving)', done: sciencePortalParts(matrix).computed },
     { wave: '10D animations at every scale (4 homology loops + 6 cross-fold axes)', done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: 'every card is one open-graph object', done: everyCardOg },
-    { wave: 'browser-language routing, default English', done: navFull.en.nav.length > 0 },
+    { wave: 'browser-language routing, default English', done: nav.length > 0 },
     { wave: 'research grouped by I Ching 8 trigram domain modules', done: domainMap.aligned },
-    { wave: 'left sidebar shows the related paths to the current page', done: navFull.relatedSidebarComplete },
-    { wave: 'crosslink all', done: navFull.crosslinksComplete },
     { wave: '10D in every form — sacred-geometry forms are 10D pure diamonds or purged', done: allFormsAreTenDimensionalOrPurged(matrix).pure },
     { wave: 'reorganize every piece into trinities, drop the non-trinity (deferred)', done: false },
   ]
   const sealed = waves.filter((w) => w.done).length
   return {
-    holds: navRosetta && tenD.tenDimensional && trinityRoot && everyCardOg && navFull.relatedSidebarComplete && navFull.crosslinksComplete,
+    holds: navRosetta && tenD.tenDimensional && trinityRoot && everyCardOg,
     trinityUnitesAll: trinityRoot,
     sealed,
     total: waves.length,
@@ -1486,9 +1476,9 @@ export function trinityFirstRedesign(matrix: MindMatrix = buildMatrix()) {
     pending: waves.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
     statement:
-      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — Home plus the seven functional hubs in the top nav (group label = hub slug word from rosettaRayOf grouping; 三才 Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks — sealed wave by wave.',
+      'The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all — the feed and the monograph groups in the top nav (leanBlogNavigation), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English) — sealed wave by wave.',
     boundary:
-      'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.' }
+      'A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (the top nav of the blog, 10D animation, uniting trinity, every card OG). The deferred wave (reorganize every piece into trinities) stays open by design — not yet all true.' }
 }
 
 // ── The commit-push pair is automated under the security standards (user: "automate commit and push so it

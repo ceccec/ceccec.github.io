@@ -199,8 +199,6 @@ export declare function ancientKnowledgeComputesDefaultLocale(matrix?: MindMatri
 };
 export declare function vitepressConfigComputesAll(matrix?: MindMatrix): {
     computes: boolean;
-    navRoot: string;
-    searchEntries: number;
     count: number;
     facets: {
         receipt: string;
@@ -4005,8 +4003,8 @@ export declare function theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnima
 /** theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMergingToStandardComputedMaterials — use the ui chat to
  * improve the ui itself including navigation and sidebars, removing redundancy by merging to standard-quality materials
  * (user, 2026-07-26: "use the ui chat to improve the ui itself including navigation and sidebars" + "remove any redundancy
- * merging to standard quality materials"). The nav and sidebars are COMPUTED from the corpus (siteNavigation: relatedSidebar
- * Complete, crosslinksComplete, computed), consuming the VitePress themeConfig — no DOM scraping. The UI chat AUDITS them (the
+ * merging to standard quality materials"). The nav and sidebars are COMPUTED from the corpus (leanBlogNavigation:
+ * the sidebar links exactly the monographs), consuming the VitePress themeConfig — no DOM scraping. The UI chat AUDITS them (the
  * routes exactly cover the served pages), REMOVES REDUNDANCY (aliasDiscoveryPurged; the DRY reuse merges duplicates to one
  * canonical — code-gravity), and uses STANDARD materials (the VitePress-native structure + owned components). HONEST: improves
  * by measuring + recomputing, not hand-editing or DOM scraping; DRY, deterministic. [[routes-nav-from-folder-tree]] [[feedback-do-not-bypass-vitepress-api]] [[code-gravity-standardisation]] */

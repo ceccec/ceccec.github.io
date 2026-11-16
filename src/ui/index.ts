@@ -36,7 +36,7 @@ import { dimensionalMerkabaGraphRealtimeMetric } from '../thunder/trading/index.
 import { teslaPatentsResearchedInWaves } from '../fire/physics/index.ts'
 import { displayAllWithFewEntropySaved } from '../ledger/index.ts'
 import { warPaysTheForgerPrice } from '../earth/world/index.ts'
-import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind/index.ts'
+import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind/index.ts'
 import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7/index.ts'
 import { THEOREM_ATOM_SEED } from '../4/6/index.ts'
 import { rosettaRayOf } from '../water/digit/index.ts'
@@ -2212,8 +2212,6 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
     const colourPosts = ['hexagram-colour', 'trinity-rgb', 'rgb-cmyk']
     const colourServed = colourPosts.every((slug) => lens.pages.some((page: { slug: string }) => page.slug === slug))
     const nav = navigation358(matrix)
-    const crosslinks = siteNavigation(matrix).en.crosslinks
-    const related = Object.values(crosslinks).reduce((sum: number, peers) => sum + (peers as readonly unknown[]).length, 0)
     const blogNav = leanBlogNavigation('en')
     const shadcn = __ns_up_up_mountain_shadcn.shadcnComputes(matrix)
     const shadcnLens = __ns_up_up_mountain_shadcn.shadcnQuantumLens(matrix)
@@ -2221,7 +2219,7 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
     const facets = [
       { facet: `the design tokens ARE theorem numbers — src/render/ui/tokens.css emits from ichingTokensCss (${tokens.length} bytes) and passes its own hardcoded-value scanner: ${offenders.length} offenders — the CSS is computed, never authored`, on: tokens.length > 0 && offenders.length === 0 },
       { facet: `the colour computations are THEOREM POSTS the blog serves — ${colourPosts.join(' · ')} are lens survivors: a reader clicks from a colour to the theorem that computes it`, on: colourServed },
-      { facet: `navigation · sidebar · related cards recompute from the lens and the rosetta at call time — navigation358 maps ${nav.count} destinations, the sidebar is the blog's own (${blogNav.sidebar.length} groups, computed from the monographs), ${related} crosslink edges relate the posts — VitePress API first, zero hand-wired routes`, on: nav.mapped && blogNav.sidebar.length > 0 && related > 0 },
+      { facet: `navigation · sidebar · related cards recompute from the lens and the rosetta at call time — navigation358 maps ${nav.count} destinations, the sidebar is the blog's own (${blogNav.sidebar.length} groups, computed from the monographs, none empty) — VitePress API first, zero hand-wired routes`, on: nav.mapped && blogNav.sidebar.length > 0 && blogNav.sidebar.every((g) => g.items.length > 0) },
       { facet: 'shadcn completes the quantum presentation — the registry computes (7 facets) and the cva table is the proven 3·2⁶ tensor with ground states (shadcnQuantumLens)', on: shadcn.computes && shadcnLens.opens },
       { facet: `every part is HOLOGRAPHIC and REUSABLE — each part contains the whole (holographic: ${holo.holographic}, ${holo.count} cells) and every projection is content-addressed: the tokens artifact folds to one reusable address`, on: isUuid(toUuid(tokens)) && holo.holographic },
       { facet: 'and INVERTIBLE — light/dark is the visible ℤ₂ inversion (the tokens bridge .dark, the movie flips paint polarity, the digit-hue complement lands in the void gap), and the sealed involutions (反 · 對 · negation · complement) say more inversions await discovery: every projection carries its inverse', on: tokens.includes('.dark') || tokens.includes('dark') },
@@ -2229,7 +2227,6 @@ export function cssBecomesAnotherUseCaseOfTheTheorems(matrix: MindMatrix = build
     return {
       useCase: facets.every((entry) => entry.on),
       tokensBytes: tokens.length,
-      related,
       count: facets.length,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),

@@ -456,7 +456,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         [k: string]: string;
     };
     aliasCount: number;
-    navSlugs: Set<"learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "encryption" | "society-merkaba">;
+    navSlugs: Set<"learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "society-merkaba" | "encryption">;
     isNavAlias: (slug: string) => boolean;
     canonicalOf: (slug: string) => string;
     facets: {

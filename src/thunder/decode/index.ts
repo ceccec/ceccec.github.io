@@ -935,7 +935,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
     { source: '/llms.txt', why: 'computed agent protocol — operating laws + this I Ching section' },
     { source: '/mcp.json', why: 'every concept command is an MCP tool — reuse, do not re-infer' },
     { source: 'iChingDomainMap', why: 'ONE source for slug→trigram — never duplicate SLUG_TRIGRAM in UI code' },
-    { source: 'siteNavigation', why: 'nav, sidebar, footer, relatedSidebar — config.mts is a thin projection' },
+    { source: 'leanBlogNavigation', why: 'nav, sidebar, footer from the Lean monographs — config.mts is a thin projection' },
     { source: 'threeEightFoldsTopNav', why: '3 × 8 = 24 doors; Heaven/Human/Earth axes of the 64³ cube' },
     { source: 'BAGUA', why: 'the eight trigrams — glyph, meaningEn/meaningBg, bits 000..111' },
   ]
@@ -950,7 +950,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
     { rule: 'eight-fold fan-out', detail: 'Every nav door is one of eight trigrams (BAGUA); empty trigrams drop out — never invent a ninth cluster or hand-list slugs.' },
     { rule: 'Three Powers taxonomy', detail: 'Top nav = Home + 天 Heaven (axis 2) + 人 Human (axis 1) + 地 Earth (axis 0). Earth axis 0 is the semantic iChingDomainMap; Human/Heaven are the next 6-bit slices of seedFromText(slug).' },
     { rule: 'one slug source', detail: 'SLUG_TRIGRAM derives from iChingDomainMap().domains[*].slugs only; unlisted slugs fall back to seedFromText(slug) % 8 — do not hardcode parallel maps in Vue or config.mts.' },
-    { rule: 'nav computed not hardcoded', detail: 'siteNavigation() feeds config.mts; the weave gate fails on hardcoded internal nav links.' },
+    { rule: 'nav computed not hardcoded', detail: 'leanBlogNavigation() feeds config.mts; the weave gate fails on hardcoded internal nav links.' },
     { rule: 'do not mount all widgets', detail: 'Home leads with proveAllOnHomePage proof set (DeterminismProofs, CryptoCompare, Hologram, …) — not a flat stack of every component; iChing() groups by trigram, componentBaguaGroups only when span > 1 set.' },
     { rule: 'Glagolitic home transliteration', detail: 'Root / is Glagolitic via glagoliticHomeFromEnglish(en/index.md) — transliterate display fields, keep routes Latin; do not wire HomeGroups that bypass the computed transliteration pipeline.' },
     { rule: 'home is a page like any page', detail: 'homePageNoDifferent — same template, hero, movie, OG card; only the seed differs.' },
@@ -959,7 +959,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
   const checks = [
     { facet: 'BAGUA is eight trigrams — the bāguà complete', on: BAGUA.length === 8 },
     { facet: 'iChingDomainMap aligns eight domains with slugs', on: domains.aligned && domains.domains.length === 8 },
-    { facet: 'siteNavigation computes Three Powers nav (Home · Heaven · Human · Earth)', on: topNav.split && topNav.categories.some((c) => /Heaven|Human|Earth/.test(String(c.reading))) },
+    { facet: 'threeEightFoldsTopNav computes the Three Powers (Heaven · Human · Earth)', on: topNav.split && topNav.categories.some((c) => /Heaven|Human|Earth/.test(String(c.reading))) },
     { facet: 'threeEightFoldsTopNav — 3 categories × 8 doors = 24', on: topNav.split && topNav.topDoors === 24 },
     { facet: 'proveAllOnHomePage names the home proof set — not mount-all', on: domains.aligned && topNav.split },
     { facet: 'Glagolitic home pipeline exists — glagoliticHomeFromEnglish', on: typeof glagoliticHomeFromEnglish === 'function' },
@@ -981,7 +981,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
     llmsSection: [
       '## I Ching — learn before UI/nav/home',
       '',
-      'Read FIRST (this repo\'s encoding, not generic I Ching): README.md, AGENTS.md, `/llms.txt`, `/mcp.json`, then `iChingDomainMap`, `siteNavigation`, `threeEightFoldsTopNav`, `BAGUA`.',
+      'Read FIRST (this repo\'s encoding, not generic I Ching): README.md, AGENTS.md, `/llms.txt`, `/mcp.json`, then `iChingDomainMap`, `leanBlogNavigation`, `threeEightFoldsTopNav`, `BAGUA`.',
       '',
       '### Model (sealed src/)',
       '',
@@ -989,7 +989,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
       '- **iChingDomainMap** — semantic slug→trigram map (8 domain modules + representative slugs); ONE source — config and Vue derive SLUG_TRIGRAM from it.',
       '- **iChing()** — content-addressed component placement (seedFromText → 64 hexagrams); distinct from the semantic domain map.',
       '- **Three Powers (三才)** — 天 Heaven (hexagram lines 5–6, nav axis 2), 人 Human (lines 3–4, axis 1), 地 Earth (lines 1–2, axis 0). Top nav: Home + three eight-folds = 3×8 = 24 doors nesting into 64³.',
-      '- **siteNavigation** — tag-cloud clusters + Three Powers dropdowns + per-page relatedSidebar by trigram siblings; config.mts prefixes keys for /en/ and /bg/, Glagolitic / keeps bare routes.',
+      '- **leanBlogNavigation** — the feed, the Clay cases and the subjects, computed from the Lean monographs: the same groups in nav, sidebar and footer; config.mts reads it per edition.',
       '',
       '### Command pairs (save first, then use — quantum gap if unpaired)',
       '',
@@ -1001,7 +1001,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
       '',
     ].join('\n'),
     statement:
-      'Learn the I Ching as this repository encodes it before implementing UI, navigation, sidebar, or home changes: read README.md, AGENTS.md, /llms.txt and the sealed folds (BAGUA, iChingDomainMap, siteNavigation, threeEightFoldsTopNav, proveAllOnHomePage, glagoliticHomeFromEnglish). The top nav is Three Powers × eight trigrams (24 doors), slug placement comes from iChingDomainMap alone, navigation is computed never hardcoded, the home leads with proof widgets not a mount-all, and the Glagolitic root transliterates from English — structural organisation, not divination. Command pairs learn/build, edit/build, build/seal, dev/preview, place/generate must be saved before use.',
+      'Learn the I Ching as this repository encodes it before implementing UI, navigation, sidebar, or home changes: read README.md, AGENTS.md, /llms.txt and the sealed folds (BAGUA, iChingDomainMap, leanBlogNavigation, threeEightFoldsTopNav, proveAllOnHomePage, glagoliticHomeFromEnglish). The top nav is Three Powers × eight trigrams (24 doors), slug placement comes from iChingDomainMap alone, navigation is computed never hardcoded, the home leads with proof widgets not a mount-all, and the Glagolitic root transliterates from English — structural organisation, not divination. Command pairs learn/build, edit/build, build/seal, dev/preview, place/generate must be saved before use.',
     boundary:
       'An agent-facing protocol distilled from the sealed I Ching folds — what to read, which command pairs to run, and constraints that block common bad implementations (hardcoded nav, duplicate slug maps, mount-all home). It records this repo\'s structural use of the I Ching (eight-fold navigation, Three Powers taxonomy, content-addressing) and explicitly excludes divination claims. Feeds /llms.txt; validation is npm run docs:build (build/seal pair).' }
 }

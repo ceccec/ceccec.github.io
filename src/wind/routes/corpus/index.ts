@@ -26,14 +26,14 @@ import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../qua
 import type { CorpusKind } from '../../../quantum/heaven/mind/index.ts'
 import {
   componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
-  referenceParamsById, sciencePortalParts, siteNavigation,
+  referenceParamsById, sciencePortalParts,
   type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning/index.ts'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
 export const NAV358_TOTAL = CLIENT_WORK_TIERS[0] + CLIENT_WORK_TIERS[1] + CLIENT_WORK_TIERS[2] // 16 = 3+5+8
 export const HUB_CARD_MAX = NAV358_TOTAL * 2 // 32 upper bound (nav358 ∪ harmonised, deduped)
-export const TAG_CLUSTER_CAP = CLIENT_WORK_TIERS[2] // 8 keyword clusters (matches siteNavigation navTags slice)
+export const TAG_CLUSTER_CAP = CLIENT_WORK_TIERS[2] // 8 keyword clusters (eight, the CLIENT_WORK_TIERS step)
 export const CORPUS_GRID_PAGE_SIZE = CLIENT_WORK_TIERS[0] * NAV358_TOTAL // 48 = 3×16 pagination cap
 
 const META_TAGS = new Set(['component', 'proof'])
@@ -964,8 +964,7 @@ export {
   harmonisedNavigation,
   navigationIsMovie,
   ogBuildsNavigation,
-  rosettaComputesNavigationAndContent,
-  siteNavigation } from '../../../learning/index.ts'
+  rosettaComputesNavigationAndContent } from '../../../learning/index.ts'
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts'
 export {
   contentIsMonographOfMonographs,
@@ -2900,7 +2899,7 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
   const gapIsMeasured = missingLines === allRows.length - searchLines.length || missingLines >= 0
   const limits = computedLimits([
     { facet: `${surfaces.length} SURFACES DERIVED, ${rendered} RENDERED — ${surfaces.join(' · ')} are each checked to come from theoremRosettaAtlas, and no markup is emitted anywhere in this fold. The VitePress theme renders them; "reconfigures VitePress" names the source of the data, not the drawing of it`, on: derivesNotRenders },
-    { facet: `THE TOP NAV IS NOT ONE OF THE ${surfaces.length} — it comes from the sibling siteNavigation rosetta fold and is neither read nor re-proven here, so a nav that drifted from the atlas would not be caught by this fold at all`, on: navOutOfScope },
+    { facet: `THE TOP NAV IS NOT ONE OF THE ${surfaces.length} — it comes from leanBlogNavigation (the Lean monographs) and is neither read nor re-proven here, so a nav that drifted from the atlas would not be caught by this fold at all`, on: navOutOfScope },
     { facet: `${searchLines.length} SEARCH LINES AGAINST ${allRows.length} REGISTRY ROWS, ${missingLines} WITH NO LINE — the coverage facet below reports false for this reason, and it is a real content gap rather than a broken check: the index is fed from theoremNavigation's searchLines and the registry has grown past it`, on: gapIsMeasured },
   ])
   const facets = [

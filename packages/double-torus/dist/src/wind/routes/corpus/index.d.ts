@@ -511,7 +511,7 @@ export declare function rosettaBreadcrumbs(route: string, at?: number, matrix?: 
 export declare function computeUniversalPage(route: string, params?: Record<string, unknown>, matrix?: MindMatrix): UniversalPage;
 export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount/index.ts';
 export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount/index.ts';
-export { harmonisedNavigation, navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent, siteNavigation } from '../../../learning/index.ts';
+export { harmonisedNavigation, navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent } from '../../../learning/index.ts';
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts';
 export { contentIsMonographOfMonographs, eachPageSpeaksContinuesNext, everyElementIsALinkedNodeOrUseless, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, monographs, onlyPageRouteForAll, theMonograph } from '../../../learning/index.ts';
 export { homePageNoDifferent, homepage, pageStatusStatistics, proveAllOnHomePage } from '../../site/index.ts';

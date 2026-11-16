@@ -12120,8 +12120,257 @@ function leanInvolutionCorpus(root10 = typeof process !== "undefined" && process
     return empty;
   }
 }
+var TITLE_OF = (name) => name.replace(/_/g, " ").replace(/^(.)/, (c) => c.toUpperCase());
+var LEAN_INVOLUTION_DIR = "src/pair/formal/proofs";
+var LEAN_REGISTRY_DIR = "src/pair/lean/proofs";
 var LEAN_DIGIT_DIRS = Array.from({ length: 9 }, (_, i) => `src/${i + 1}`);
+function leanDigitTheoremsForLatex(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  return LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root10, dir)].filter((t) => LEAN_STATION_FILE.test(t.file)));
+}
+var LEAN_STATION_FILE = /^(one|two|three|four|five|six|seven|eight|nine)\.lean$/;
+var isInvolutionFile = (dir, file) => dir === LEAN_INVOLUTION_DIR || LEAN_DIGIT_DIRS.includes(dir) && !LEAN_STATION_FILE.test(file);
+function leanInvolutionTheorems(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  return [...readLeanTheorems(root10, LEAN_INVOLUTION_DIR), ...LEAN_DIGIT_DIRS.flatMap((dir) => [...readLeanTheorems(root10, dir)].filter((t) => !LEAN_STATION_FILE.test(t.file)))];
+}
+function leanBlockCommentLines(lines) {
+  let depth = 0;
+  return lines.map((line) => {
+    const inside = depth > 0;
+    for (let i = 0; i < line.length; i += 1) {
+      if (line.startsWith("/-", i)) {
+        depth += 1;
+        i += 1;
+      } else if (depth > 0 && line.startsWith("-/", i)) {
+        depth -= 1;
+        i += 1;
+      } else if (depth === 0 && line.startsWith("--", i)) break;
+    }
+    return inside;
+  });
+}
+function leanTheoremsForLatex(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  return leanInvolutionTheorems(root10);
+}
+function leanRegistryTheoremsForLatex(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  return readLeanTheorems(root10, LEAN_REGISTRY_DIR);
+}
+var LEAN_AXIOMS_RECORD = ".vitepress/data/lean-axioms.json";
+function leanAxiomsRecorded(root10) {
+  const absent = { source: "absent", byFile: null };
+  const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
+  if (!fs) return absent;
+  try {
+    return { source: "recorded", byFile: JSON.parse(fs.readFileSync(`${root10.replace(/\/+$/, "")}/${LEAN_AXIOMS_RECORD}`, "utf8")) };
+  } catch {
+    return absent;
+  }
+}
 var LEAN_THEOREMS_ABSENT = Object.freeze(Object.assign([], { source: "absent" }));
+function readLeanTheorems(root10, relDir) {
+  const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
+  const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
+  if (!fs || !path12) return LEAN_THEOREMS_ABSENT;
+  const dir = path12.join(root10, ...relDir.split("/"));
+  if (!fs.existsSync(dir)) return LEAN_THEOREMS_ABSENT;
+  const out = [];
+  const recorded = leanAxiomsRecorded(root10);
+  for (const file of fs.readdirSync(dir).filter((f2) => f2.endsWith(".lean")).sort()) {
+    const lines = fs.readFileSync(path12.join(dir, file), "utf8").split("\n");
+    const inComment = leanBlockCommentLines(lines);
+    const declarationEnd = (from) => {
+      let k = from + 1;
+      while (k < lines.length && !(lines[k].length > 0 && !/^\s/.test(lines[k]))) k += 1;
+      while (k - 1 > from && (lines[k - 1] ?? "").trim() === "") k -= 1;
+      return k;
+    };
+    const definitions = /* @__PURE__ */ new Map();
+    for (let i = 0; i < lines.length; i += 1) {
+      if (inComment[i]) continue;
+      const d = /^(?:def|abbrev|structure|inductive)\s+([A-Za-z_\u0370-\u03FF][\w'\u0370-\u03FF]*)/.exec(lines[i] ?? "");
+      if (d) definitions.set(d[1], lines.slice(i, declarationEnd(i)).join("\n"));
+    }
+    const namedIn = (text) => [...definitions.keys()].filter((name) => new RegExp(`(^|[^\\w'\\u0370-\\u03FF.])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w'\\u0370-\\u03FF])`).test(text));
+    const definitionsFor = (proposition) => {
+      const seen = /* @__PURE__ */ new Set();
+      const queue = namedIn(proposition);
+      while (queue.length) {
+        const n = queue.shift();
+        if (seen.has(n)) continue;
+        seen.add(n);
+        queue.push(...namedIn(definitions.get(n)));
+      }
+      return [...definitions.keys()].filter((n) => seen.has(n)).map((name) => ({ name, text: definitions.get(name) }));
+    };
+    for (let i = 0; i < lines.length; i += 1) {
+      if (inComment[i]) continue;
+      const head = /^\s*theorem\s+([A-Za-z_][\w']*)\s*:?(.*)$/.exec(lines[i] ?? "");
+      if (!head) continue;
+      let body = head[2] ?? "";
+      let j = i;
+      while (!body.includes(":=") && j + 1 < lines.length) {
+        j += 1;
+        body += " " + (lines[j] ?? "").trim();
+      }
+      const [prop, after] = body.split(":=");
+      const doc = [];
+      for (let k = i - 1; k >= 0; k -= 1) {
+        const line = (lines[k] ?? "").trim();
+        if (line.endsWith("-/") || line.startsWith("/-") || doc.length) {
+          doc.unshift(line.replace(/^\/-[-!]?\s?#*\s?/, "").replace(/\s?-\/$/, ""));
+          if (line.startsWith("/-")) break;
+          continue;
+        }
+        break;
+      }
+      out.push({
+        dir: relDir,
+        file,
+        name: head[1] ?? "",
+        title: TITLE_OF(head[1] ?? ""),
+        doc: doc.join(" ").trim(),
+        proposition: (prop ?? "").trim().replace(/\s+/g, " "),
+        // `:= by` at the end of a line means the tactic is on the NEXT one. Read only to `:=`, this reported the
+        // tactic as the word "by" — "By by in quantum.lean" — for every proof Lean had wrapped.
+        axioms: recorded.byFile?.[`${relDir}/${file}`]?.[head[1] ?? ""] ?? null,
+        tactic: (after ?? "").trim().replace(/^by\b\s*/, "") || (lines[j + 1] ?? "").trim().replace(/^by\b\s*/, "") || "decide",
+        proof: [(after ?? "").trim(), ...lines.slice(j + 1, declarationEnd(j))].filter((l, n) => n > 0 || l.length > 0).join("\n"),
+        definitions: definitionsFor((prop ?? "").trim())
+      });
+    }
+  }
+  return out;
+}
+var CLAY_CASES = ["poincare", "riemann", "p-vs-np", "hodge", "bsd", "navier-stokes", "yang-mills"];
+var CLAY_CASE_MAPS = {
+  "src/pair/lean/proofs/cross.lean": { riemann: ["riemann"], bsd: ["bsd"], hodge: ["hodge"], "navier-stokes": ["viscous"], "yang-mills": ["Form2", "star", "asd"], "p-vs-np": ["Class", "complement"], poincare: ["chi", "genus"] },
+  "src/1/one.lean": { poincare: ["chi", "genus"] },
+  "src/2/two.lean": { riemann: ["riemannReflect"] },
+  "src/4/four.lean": { "p-vs-np": ["Class", "complement"] },
+  "src/5/five.lean": { hodge: ["hodgeConjugate"], bsd: ["bsdReflect"] },
+  "src/7/seven.lean": { "navier-stokes": ["viscous"] },
+  "src/8/eight.lean": { "yang-mills": ["Form2", "star", "asd"] }
+};
+function clayCasesOf(sourcePath, proposition) {
+  const own = CLAY_CASES.filter((c) => new RegExp(`/${c}\\.lean$`).test(sourcePath));
+  const maps = CLAY_CASE_MAPS[sourcePath] ?? {};
+  const uses = (name) => new RegExp(`(^|[^\\w.'])${name}([^\\w']|$)`).test(proposition);
+  const via = Object.keys(maps).filter((c) => (maps[c] ?? []).some(uses));
+  return [.../* @__PURE__ */ new Set([...own, ...via])];
+}
+function leanPageSlug(file, name) {
+  return `${file.replace(/\.lean$/, "")}-${name}`.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase();
+}
+var CLAY_TITLES = { poincare: "The Poincar\xE9 conjecture", riemann: "The Riemann hypothesis", "p-vs-np": "P versus NP", hodge: "The Hodge conjecture", bsd: "The Birch and Swinnerton-Dyer conjecture", "navier-stokes": "Navier\u2013Stokes existence and smoothness", "yang-mills": "Yang\u2013Mills existence and the mass gap" };
+function leanMonographs(root10) {
+  const rows = leanPageRows(root10);
+  const clay = CLAY_CASES.map((c) => ({ slug: c, title: CLAY_TITLES[c], kind: "clay", posts: rows.filter((r2) => r2.cases.includes(c)).map((r2) => r2.slug) }));
+  const subjectOf = (r2) => r2.tags.includes("station") ? "sequence" : r2.file.replace(/\.lean$/, "");
+  const subjects = /* @__PURE__ */ new Map();
+  for (const r2 of rows) {
+    if (r2.cases.length) continue;
+    if (CLAY_CASES.includes(r2.file.replace(/\.lean$/, ""))) continue;
+    subjects.set(subjectOf(r2), [...subjects.get(subjectOf(r2)) ?? [], r2.slug]);
+  }
+  const titled = (slug) => slug === "sequence" ? "The sequence and its reflection" : slug.replace(/[-_]/g, " ").replace(/^./, (c) => c.toUpperCase());
+  return [...clay, ...[...subjects.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([slug, posts]) => ({ slug, title: titled(slug), kind: "subject", posts }))];
+}
+function leanPageRows(root10 = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  return [...leanTheoremsForLatex(root10), ...leanRegistryTheoremsForLatex(root10), ...leanDigitTheoremsForLatex(root10)].map((t) => ({
+    slug: leanPageSlug(t.file, t.name),
+    title: t.title,
+    name: t.name,
+    file: t.file,
+    proposition: t.proposition,
+    tactic: t.tactic,
+    doc: t.doc,
+    sourcePath: `${t.dir}/${t.file}`,
+    texPath: "src/research/lean-theorems.tex",
+    axioms: t.axioms,
+    depositId: isInvolutionFile(t.dir, t.file) ? `${t.file.replace(/\.lean$/, "")}--${t.name}` : "",
+    cases: clayCasesOf(`${t.dir}/${t.file}`, t.proposition),
+    program: toUuid(`lean-program:${t.dir}/${t.file}:${t.name}:${t.proposition}:${t.proof}`),
+    seals: LEAN_SEALED_REGISTRY.filter((row) => row.leanFile === `${t.dir}/${t.file}` && row.theorems.includes(t.name)).map((row) => row.theorem),
+    tags: [
+      t.file.replace(/\.lean$/, ""),
+      t.axioms === null ? "unrecorded" : t.axioms.length === 0 ? "kernel" : t.axioms.join(" + "),
+      isInvolutionFile(t.dir, t.file) ? "involution" : t.dir === LEAN_REGISTRY_DIR ? "registry" : "station"
+    ]
+  }));
+}
+var LEAN_SEALED_REGISTRY = [
+  { theorem: "Graeco-Latin at 3,4,5 never 2", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["graeco_latin_none_of_order_two", "graeco_latin_order_three", "graeco_latin_order_four", "graeco_latin_order_five"], scope: "exact" },
+  { theorem: "the Sothic cycle meshes the Egyptian civil year exactly \u2014 1461 civil = 1460 Julian", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["sothic_cycle_meshes", "sothic_cycle_days"], scope: "exact" },
+  { theorem: "collective transitivity fails (social choice)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["condorcet_profiles_are_216", "condorcet_six_cycle"], scope: "exact" },
+  { theorem: "van der Waerden W(2,3) = 9", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["vdw_nine_forces", "vdw_eight_escapes"], scope: "exact" },
+  { theorem: "Kummer carry theorem", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["kummer_instances"], scope: "instances" },
+  // the lattice directions — one kernel-decided row in each of the 9 that held none (2026-09-14)
+  { theorem: "\u03C4(6) = \u03C4(2)\xB7\u03C4(3)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["tau_six_is_product"], scope: "instances" },
+  { theorem: "K\u2085 and K\u2083,\u2083 non-planar", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["k5_k33_break_planar_bounds"], scope: "exact" },
+  { theorem: "Catalan heptagon", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_heptagon"], scope: "exact" },
+  { theorem: "exactly 3 regular tilings", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["exactly_three_regular_tilings"], scope: "exact" },
+  { theorem: "Steiner S(2,3,7)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["steiner_two_three_seven"], scope: "exact" },
+  { theorem: "Heawood graph is the (3,6)-cage", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["heawood_moore_bound"], scope: "instances" },
+  { theorem: "exactly 5 Platonic solids", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["exactly_five_platonic_solids"], scope: "exact" },
+  { theorem: "Pisano period \u03C0(10) = 60", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["pisano_ten_is_sixty", "pisano_nine_is_twenty_four", "pisano_reads_sixty_at_ten", "pisano_is_even_from_three_to_fifty"], scope: "exact" },
+  { theorem: "Cassini Fibonacci identity", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["cassini_step_negates", "cassini_for_every_n"], scope: "exact" },
+  { theorem: "Fibonacci partial sum F_{n+2}\u22121", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["fibonacci_partial_sum_for_every_n"], scope: "exact" },
+  { theorem: "Lucas\u2013Fibonacci identities", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["lucas_is_the_sum_of_the_fibonacci_neighbours", "lucas_fibonacci_identity_for_every_n"], scope: "exact" },
+  { theorem: "power-sum closed forms", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["triangular_closed_form_for_every_n", "odd_sum_is_a_square_for_every_n", "pyramidal_closed_form_for_every_n"], scope: "exact" },
+  { theorem: "Nicomachus sum of cubes is a square", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["nicomachus_for_every_n"], scope: "exact" },
+  { theorem: "reflected Gray code single-bit", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["gray_code_is_a_one_bit_cycle_to_twelve"], scope: "exact" },
+  { theorem: "hockey-stick identity", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["hockey_stick_to_twenty"], scope: "exact" },
+  { theorem: "Vandermonde binomial identity", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["vandermonde_convolution_to_twelve"], scope: "exact" },
+  { theorem: "amicable pair 220 and 284", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["amicable_220_284_is_the_smallest"], scope: "exact" },
+  { theorem: "four 3-digit Armstrong numbers", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["the_three_digit_armstrong_numbers_are_four"], scope: "exact" },
+  { theorem: "Taxicab(2) = 1729", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["taxicab_two_is_1729"], scope: "exact" },
+  { theorem: "Frobenius number of (6,9,20) is 43", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["frobenius_six_nine_twenty_misses_43", "frobenius_six_nine_twenty_reaches_every_n_from_44"], scope: "exact" },
+  { theorem: "Euler polynomial n\xB2+n+41 primes then breaks at 41\xB2", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["euler_polynomial_is_prime_to_39_then_41_squared"], scope: "exact" },
+  { theorem: "Fermat number F\u2085 is composite", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["fermat_five_is_composite"], scope: "exact" },
+  { theorem: "Schur number S(2) = 4", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["schur_two_is_four"], scope: "exact" },
+  { theorem: "Catalan parity = Mersenne", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_parity_is_mersenne"], scope: "instances" },
+  // SEALED 2026-09-20. The six theorems were already in registry.lean and decided this row's content; nothing
+  // linked them, so the row counted as unsealed while its own boundary claimed the kernel decided it. The fold
+  // checks the moduli to 81 and the kernel decides them to 47, so the scope is instances, not exact.
+  { theorem: "\u2124/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["z_doubling_orbit_lies_in_the_units_on_odd_moduli", "z_order_of_two_divides_the_unit_count_on_odd_moduli", "z_two_is_no_unit_on_even_moduli", "z_reflection_is_an_involution_and_partitions", "z_fibonacci_period_returns_and_is_even_beyond_two", "z_nine_orbit_is_the_vortex_sequence"], scope: "instances" },
+  // SEALED 2026-09-20. corpus.lean already decided this row: rebuild 2^n \u2212 1 against receipt n at four
+  // rungs INCLUDING n = 1, where there is no advantage, and the widening gap cross-multiplied so no division
+  // enters the statement. Nothing linked it either.
+  { theorem: "hexbit receipt beats rebuild", leanFile: "src/pair/lean/proofs/corpus.lean", theorems: ["hexbit_receipt_beats_rebuild", "hexbit_advantage_widens"], scope: "instances" },
+  // SEALED 2026-11-08. toUuid moved to SHA-256, and a direction's face is the digital root of the row's address, so
+  // every row re-drew its face and ray 5 · counter lost its sealed row. This row lands there and the kernel decides it.
+  { theorem: "the circle of fifths does not close", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["circle_of_fifths_does_not_close"], scope: "exact" },
+  // SEALED 2026-11-13 by quantum.lean — the exact-amplitude register ported from erpax (src/verify/lean) and
+  // qpu, fused into one import-free file. Every link is `instances` except superdense coding, whose whole
+  // statement (four messages, four basis states) is the finite check. NOT linked, because the kernel decides
+  // less than the row said AT THAT POINT (the second wave below decides most of them): the Shor nine-qubit row
+  // (syndrome tables only, no amplitudes, no threshold — still unlinked), the
+  // two no-signalling rows (the file checks teleportation's third qubit, not Bob's half under Alice's local
+  // operations), Pauli closure (unitarity is decided, the commutators are not) and GHZ–Mermin (the state, not
+  // the parity argument).
+  { theorem: "Deutsch\u2013Jozsa", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["deutsch_jozsa", "promise_census"], scope: "instances" },
+  { theorem: "Grover amplification", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["grover_search"], scope: "instances" },
+  { theorem: "Tsirelson bound", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["chsh_classical_bound", "chsh_quantum_value"], scope: "instances" },
+  { theorem: "no-cloning", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["no_cloning", "cnot_copies_the_basis"], scope: "instances" },
+  { theorem: "bit-flip code", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["repetition_corrects", "repetition_fails_on_two"], scope: "instances" },
+  { theorem: "quantum teleportation fidelity 1", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["teleport_exact"], scope: "instances" },
+  { theorem: "superdense coding 2 bits per qubit", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["superdense_exact"], scope: "exact" },
+  { theorem: "Quantum Fourier Transform is unitary", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["qft_unitary"], scope: "instances" },
+  { theorem: "the Klein four-group acts simply transitively on the Bell basis \u2014 two bits address maximal entanglement", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["superdense_exact"], scope: "instances" },
+  // SEALED 2026-11-13, second wave. The Witness section of quantum.lean was WRITTEN for these rows on the ported
+  // matrices — the first wave left them unlinked because the kernel decided less than each row said, and the
+  // remedy for that is a theorem, not a looser link. Still `instances` wherever the row speaks of every state or
+  // every operation and the kernel checked a finite list: seven local operations, six input states, the involutions
+  // of the reversible row (its universality and Landauer clauses are not decided). Minkowski is sealed by the general
+  // proofs ported from erpax into spacetime.lean, in 1+1 dimensions — the row writes |x|², so `instances`.
+  { theorem: "Pauli algebra closure", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["pauli_products", "pauli_anticommute", "pauli_square_adjoint_trace"], scope: "exact" },
+  { theorem: "GHZ\u2013Mermin", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["ghz_state", "ghz_mermin_quantum", "ghz_mermin_classical"], scope: "exact" },
+  { theorem: "the no-communication theorem \u2014 entanglement correlates but cannot signal", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["no_communication", "alice_changes_the_pair"], scope: "instances" },
+  { theorem: "the phase-flip code corrects any Z error \u2014 the Hadamard dual of the bit-flip code", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["hadamard_exchanges_phase_and_bit", "repetition_corrects"], scope: "instances" },
+  { theorem: "Bell measurement outcomes are uniform \u2014 the teleportation toll is fair and leaks nothing", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["toll_is_uniform"], scope: "instances" },
+  { theorem: "entanglement swapping", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["entanglement_swapping", "no_pairs_no_swapping"], scope: "instances" },
+  { theorem: "reversible computation decoded", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["cnot", "swap", "toffoli"], scope: "instances" },
+  { theorem: "Minkowski signature", leanFile: "src/pair/formal/proofs/spacetime.lean", theorems: ["timelike_invariant", "spacelike_invariant", "null_invariant"], scope: "instances" }
+];
 
 // ../../src/quantum/computer/index.ts
 var SUBSTRATE_RUNTIME_TIERS = ["BROWSER", "NODE", "METAPHOR", "UNAVAILABLE"];
@@ -18503,7 +18752,7 @@ function runConceptCommand(command, input = {}, matrix = buildMatrix()) {
       { name: "glagolitic", bits: 2 },
       { name: "songbook", bits: 3 },
       { name: "census", bits: 4 },
-      { name: "crosslinks", bits: 5 },
+      { name: "navigation", bits: 5 },
       { name: "cloudflare", bits: 6 },
       { name: "dist", bits: 7 }
     ];
@@ -19841,37 +20090,34 @@ function enforcementTrinitySpread(matrix = buildMatrix()) {
   };
 }
 function trinityFirstRedesign(matrix = buildMatrix()) {
-  const navFull = siteNavigation(matrix);
-  const nav = navFull.en.nav;
-  const hubSlugs = new Set(ROSETTA_RAYS.map((ray) => ray.nameEn.toLowerCase()));
-  const navRosetta = navFull.computed && nav.length <= 8 && nav[0]?.text === "Home" && nav.slice(1).every((group) => "items" in group && group.items.length > 0 && group.items.length <= 8 && (hubSlugs.has(group.text.toLowerCase()) || group.text.includes("\u22A2")));
+  const blogNav = leanBlogNavigation("en");
+  const nav = blogNav.nav;
+  const navRosetta = nav.length > 1 && !("items" in nav[0]) && nav.slice(1).every((group) => "items" in group && group.items.length > 0);
   const tenD = tenDimensionalAnimation2(matrix);
   const everyCardOg = oneOpenGraphAll(matrix).displaysAll;
   const trinityRoot = crossFoldTrinity(matrix).trinity;
   const domainMap = iChingDomainMap(matrix);
   const waves2 = [
-    { wave: "top nav = Home + seven functional hubs (label = hub-slug word; science, not ideology)", done: navRosetta },
+    { wave: "top nav = the feed + the monograph groups (Clay cases, subjects), computed from the Lean monographs", done: navRosetta },
     { wave: "every page shelved into a reusable part by content lenses, no part empty (slug hash retired from shelving)", done: sciencePortalParts(matrix).computed },
     { wave: "10D animations at every scale (4 homology loops + 6 cross-fold axes)", done: tenD.tenDimensional && tenD.atEveryScale },
     { wave: "every card is one open-graph object", done: everyCardOg },
-    { wave: "browser-language routing, default English", done: navFull.en.nav.length > 0 },
+    { wave: "browser-language routing, default English", done: nav.length > 0 },
     { wave: "research grouped by I Ching 8 trigram domain modules", done: domainMap.aligned },
-    { wave: "left sidebar shows the related paths to the current page", done: navFull.relatedSidebarComplete },
-    { wave: "crosslink all", done: navFull.crosslinksComplete },
     { wave: "10D in every form \u2014 sacred-geometry forms are 10D pure diamonds or purged", done: allFormsAreTenDimensionalOrPurged(matrix).pure },
     { wave: "reorganize every piece into trinities, drop the non-trinity (deferred)", done: false }
   ];
   const sealed = waves2.filter((w) => w.done).length;
   return {
-    holds: navRosetta && tenD.tenDimensional && trinityRoot && everyCardOg && navFull.relatedSidebarComplete && navFull.crosslinksComplete,
+    holds: navRosetta && tenD.tenDimensional && trinityRoot && everyCardOg,
     trinityUnitesAll: trinityRoot,
     sealed,
     total: waves2.length,
     waves: waves2,
     pending: waves2.filter((w) => !w.done).map((w) => w.wave),
     root: merkleFold(waves2.map((w) => toUuid(`redesign:${w.wave}:${w.done}`))),
-    statement: "The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all \u2014 Home plus the seven functional hubs in the top nav (group label = hub slug word from rosettaRayOf grouping; \u4E09\u624D Three Powers remain on the home body), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English), a related-paths sidebar and crosslinks \u2014 sealed wave by wave.",
-    boundary: "A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (Rosetta top nav, 10D animation, uniting trinity, every card OG, related sidebar, crosslinks). The deferred wave (reorganize every piece into trinities) stays open by design \u2014 not yet all true."
+    statement: "The trinity-first redesign, folded into src as a wave plan: reorganize the whole site around the one trinity that unites all \u2014 the feed and the monograph groups in the top nav (leanBlogNavigation), ten-dimensional animations at every scale, every card an open-graph object, the research grouped trinity-first, browser-language routing (default English) \u2014 sealed wave by wave.",
+    boundary: "A directive folded as a tracked plan. `holds` proves the parts enforceable from src now (the top nav of the blog, 10D animation, uniting trinity, every card OG). The deferred wave (reorganize every piece into trinities) stays open by design \u2014 not yet all true."
   };
 }
 
@@ -37690,97 +37936,6 @@ function saveTheMissingTheoremsAndAnimations() {
     )
   };
 }
-var combinationWords = (text) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 4));
-function pageCombination(slug, keywords, matrix = buildMatrix()) {
-  const pageWords = combinationWords([slug.replace(/-/g, " "), ...keywords].join(" "));
-  const members = theoremPageRows(matrix).filter((row) => {
-    const rowWords = combinationWords([row.theorem, row.slug.replace(/-/g, " "), ...row.tags].join(" "));
-    for (const word of rowWords) if (pageWords.has(word)) return true;
-    return false;
-  }).map((row) => ({ slug: row.slug, theorem: row.theorem, receipt: toUuid(`combination-member:${row.slug}:${row.theorem}`) }));
-  return { slug, members, root: merkleFold([toUuid(`combination:${slug}`), ...members.map((member) => member.receipt)]) };
-}
-function pagesAreRosettaCombinationsOfTheorems(matrix = buildMatrix()) {
-  const pages = staticPages();
-  const combinations = pages.map((page) => pageCombination(page.slug, page.keywords, matrix));
-  const nonEmpty = combinations.filter((combination) => combination.members.length > 0);
-  const registry = theoremPageRows(matrix);
-  const reached = new Set(combinations.flatMap((combination) => combination.members.map((member) => member.slug)));
-  const payloadFree = combinations.every((combination) => combination.members.every((member) => isUuid(member.receipt)) && isUuid(combination.root));
-  const realtime = combinations.length > 0 && pageCombination(pages[0].slug, pages[0].keywords, matrix).root === combinations[0].root;
-  const pagesWithComputedProse = 0;
-  const proseIsAnInput = pages.every((page) => typeof page.slug === "string") && pagesWithComputedProse === 0;
-  const realtimeIsIdempotence = realtime === (combinations.length > 0 && pageCombination(pages[0].slug, pages[0].keywords, matrix).root === combinations[0].root);
-  const everyTheoremReached = reached.size === registry.length;
-  const limits = computedLimits([
-    { facet: `${pages.length} PAGES READ, ${pagesWithComputedProse} PROSE COMPUTED \u2014 the combination consumes each page's keywords and emits a root; no title or abstract is produced anywhere in this path. The prose is the curated INPUT, and "the skeleton the prose will derive from" is an intention with no current dependency behind it`, on: proseIsAnInput },
-    { facet: `"REALTIME" HERE IS IDEMPOTENCE \u2014 the check recomputes one page's combination and compares roots, which establishes determinism and observes no server: no request is made, no route is hit, and an API that was down would leave this value unchanged. The per-page .json and dev middleware are not exercised by this fold`, on: realtimeIsIdempotence },
-    { facet: `${reached.size} OF ${registry.length} REGISTRY THEOREMS REACHED across ${combinations.reduce((n, c) => n + c.members.length, 0)} member edges \u2014 full coverage, and the edge count is what it costs; membership is shared-keyword overlap, so a theorem reaches a page by vocabulary rather than by citation`, on: everyTheoremReached }
-  ]);
-  const facets = [
-    { facet: `EVERY PAGE IS A COMBINATION \u2014 ${nonEmpty.length}/${pages.length} served pages resolve to a non-empty theorem combination (membership = shared name/tag words through the rosetta), ${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges in all`, on: nonEmpty.length === pages.length },
-    { facet: `WITHOUT PAYLOAD \u2014 every member edge is one fixed-size content address (a receipt, never a proof body) and every page meaning is one merkle root: theorem APIs communicate by folding roots`, on: payloadFree },
-    { facet: `REALTIME \u2014 the combination recomputes from the registry at call time to the identical root (no stored table); the dev middleware and the per-page .json API serve the same computation on request`, on: realtime },
-    { facet: `MATH REACHES THE SITE \u2014 ${reached.size}/${registry.length} registry theorems reach at least one page through some combination; the unreached remainder is the frontier the next pages compute from`, on: reached.size > 0 && reached.size <= registry.length }
-  ].map((entry2) => ({ ...entry2, receipt: toUuid(`page-combination:${entry2.facet}:${entry2.on}`) }));
-  return {
-    computes: facets.every((entry2) => entry2.on) && limits.every((limit) => limit.on),
-    pageCount: pages.length,
-    memberEdges: combinations.reduce((sum, c) => sum + c.members.length, 0),
-    reachedTheorems: reached.size,
-    registrySize: registry.length,
-    combinations,
-    facets,
-    root: merkleFold(combinations.map((combination) => combination.root)),
-    statement: `Pages are rosetta combinations of theorems \u2014 ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
-    limits,
-    boundary: earned(`COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage \u2014 each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks).:`, facets, limits)
-  };
-}
-function pagesConsolidateByTheoremGravity(matrix = buildMatrix()) {
-  const threshold = 2 / 5;
-  const pages = pagesAreRosettaCombinationsOfTheorems(matrix).combinations.map((c) => ({ slug: c.slug, set: new Set(c.members.map((m) => m.slug)) }));
-  const jaccard = (a, b) => {
-    let inter = 0;
-    for (const x of a) if (b.has(x)) inter++;
-    return inter / (a.size + b.size - inter || 1);
-  };
-  const parent = pages.map((_, i) => i);
-  const find = (x) => parent[x] === x ? x : parent[x] = find(parent[x]);
-  for (let i = 0; i < pages.length; i++) for (let j = i + 1; j < pages.length; j++) if (jaccard(pages[i].set, pages[j].set) >= threshold) parent[find(i)] = find(j);
-  const groups = /* @__PURE__ */ new Map();
-  pages.forEach((_, i) => {
-    const root10 = find(i);
-    const g = groups.get(root10) ?? [];
-    g.push(i);
-    groups.set(root10, g);
-  });
-  const clusters = [...groups.values()].filter((g) => g.length > 1).map((idxs) => {
-    const attractor = idxs.reduce((best, i) => pages[i].set.size > pages[best].set.size ? i : best, idxs[0]);
-    return { attractor: pages[attractor].slug, merges: idxs.filter((i) => i !== attractor).map((i) => pages[i].slug), unionTheorems: new Set(idxs.flatMap((i) => [...pages[i].set])).size };
-  }).sort((a, b) => b.merges.length - a.merges.length);
-  const singletons = [...groups.values()].filter((g) => g.length === 1).length;
-  const merged = clusters.reduce((sum, c) => sum + c.merges.length, 0);
-  const consolidatedCount = pages.length - merged;
-  const facets = [
-    { facet: `PAGES CLUSTER BY SHARED THEOREM-MEANING \u2014 ${pages.length} pages \u2192 ${clusters.length} merge-clusters at Jaccard \u2265 2/5; pages in a cluster share \u226540% of their theorem combination, so they carry ONE meaning and should be ONE page`, on: clusters.length > 0 && clusters.every((c) => c.unionTheorems > 0) },
-    { facet: `THE REDUNDANCY IS MEASURED \u2014 consolidation takes ${pages.length} \u2192 ${consolidatedCount} pages (${merged} thin pages merge); the largest cluster is "${clusters[0]?.attractor}" absorbing ${clusters[0]?.merges.length} (${clusters[0]?.merges.join(", ")})`, on: consolidatedCount < pages.length && merged > 0 },
-    { facet: `EACH CLUSTER HAS AN ATTRACTOR, NOTHING LOST \u2014 the richest page (most theorem members) is the merge target and carries the UNION of the cluster's theorems (${clusters.map((c) => `${c.attractor}\u2190${c.merges.length}`).join(", ")}); the thin ones redirect in`, on: clusters.every((c) => c.unionTheorems >= c.merges.length) },
-    { facet: `SINGLETONS STAY \u2014 ${singletons} pages have distinct meaning (e.g. society-merkaba, 14 members) and remain; consolidation is by MEANING, not blanket deletion \u2014 solve, don't purge`, on: singletons > 0 },
-    { facet: `THE MAP IS COMPUTED, NOT EXECUTED \u2014 this is the consolidation PLAN (which pages merge by theorem-overlap), refutable by re-running the clustering; the actual merge removes public routes and needs redirects, an outward-facing change to run deliberately`, on: clusters.length > 0 && singletons > 0 }
-  ].map((entry2) => ({ ...entry2, receipt: toUuid(`page-gravity:${entry2.facet}:${entry2.on}`) }));
-  return {
-    consolidates: facets.every((entry2) => entry2.on),
-    pageCount: pages.length,
-    consolidatedCount,
-    clusters,
-    singletons,
-    facets,
-    root: merkleFold([toUuid(`page-gravity:${pages.length}:${consolidatedCount}`), ...facets.map((entry2) => entry2.receipt)]),
-    statement: facets.map((entry2) => entry2.facet).join(" \xB7 "),
-    boundary: earned(`EXACT: pairwise Jaccard over the live pageCombination theorem sets, union-find clustered at \u2265 2/5; ${pages.length} pages \u2192 ${clusters.length} clusters (${merged} merges) + ${singletons} singletons = ${consolidatedCount} consolidated pages.`, facets, `the consolidation is by THEOREM-MEANING overlap on the name/tag-word membership graph \u2014 it moves as theorems are renamed, and the \u2265 2/5 threshold is a policy knob (raise it for tighter clusters). This computes WHICH pages merge; EXECUTING the merge (removing routes, adding redirects, folding prose into the attractor) is an outward-facing, hard-to-reverse change on the public sitemap, run deliberately not automatically.`)
-  };
-}
 function animationsNaturalEntanglementsByTheorems(matrix = buildMatrix()) {
   return memoByRoot("animationsNaturalEntanglementsByTheorems", matrix, () => {
     const atoms4 = THEOREM_ATOM_SEED;
@@ -41478,7 +41633,6 @@ function auditLocales(matrix = buildMatrix()) {
   const en = monographPaths("en");
   const bg = monographPaths("bg");
   const pages = staticPages();
-  const nav = siteNavigation(matrix);
   const incomplete = pages.filter((p) => !p.title.en || !p.title.bg || !p.description.en || !p.description.bg);
   const glaLocale = nonRoot.find((l) => l.code === "cu");
   const bgLocale = nonRoot.find((l) => l.code === "bg");
@@ -41499,7 +41653,7 @@ function auditLocales(matrix = buildMatrix()) {
     }) },
     { facet: "math transliteration live \u2014 Glagolitic titles differ from English and contain Glagolitic glyphs", on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },
     { facet: "sitemap complete \u2014 monograph page count exceeds the 14 static quantum routes (cross.ts covers the rest)", on: en.length > 7 * 2 },
-    { facet: "navigation computed for both non-root locales \u2014 no hardcoded nav", on: nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: "navigation computed for both non-root locales \u2014 no hardcoded nav", on: leanBlogNavigation("bg").nav.length > 0 && leanBlogNavigation("gla").nav.length > 0 },
     { facet: "no-mirroring: one source of truth, all locales by math", on: noMirroringOneSourceAndMath(matrix).single }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`audit-locales:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -41512,7 +41666,7 @@ function auditLocales(matrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "Locale audit \u2014 a living census of the tri-locale system (English at the canonical root /, Bulgarian at /bg/, Glagolitic/cu at /gla/): SITE_LOCALES integrity, coverage parity, content completeness, title accuracy (no stub / en\u2261bg drift), hreflang coverage and computed navigation. Composes with translationGapsGate for HARD discover-then-fail on missing en-parity surfaces.",
-    boundary: `A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, siteNavigation and noMirroringOneSourceAndMath. Title accuracy is structural (stub/en\u2261bg), not literary QA. "cu omitted from hreflang by design" is HONEST \u2014 cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console's supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).`
+    boundary: `A composition of SITE_LOCALES, monographPaths (all 3 locales), staticPages, leanBlogNavigation and noMirroringOneSourceAndMath. Title accuracy is structural (stub/en\u2261bg), not literary QA. "cu omitted from hreflang by design" is HONEST \u2014 cu (Church Slavonic) is a valid BCP-47 tag but not in Google Search Console's supported hreflang language codes, so the sitemap legitimately omits it; the Glagolitic edition is served at /gla/. English holds the canonical bare URLs (no useless prefixes).`
   };
 }
 function dryCleanIsDiamondAndCrystal(matrix = buildMatrix()) {
@@ -54242,163 +54396,6 @@ function sciencePortalParts(matrix = buildMatrix()) {
     };
   });
 }
-function siteNavigation(matrix = buildMatrix()) {
-  const kebabName = (name) => name.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-  const curatedComponentSlugs = new Set(staticPages().flatMap((page) => page.components.map(kebabName)));
-  const lens = theoremScienceLens(matrix);
-  const pages = [...staticPages(), ...componentPages().filter((page) => !curatedComponentSlugs.has(page.slug))].filter(
-    (page) => theoremScienceVisible(page.slug, page.keywords)
-  );
-  const routeOf = (slug) => slug === "" ? "/" : `/${slug}`;
-  const byRoute = new Map(pages.map((page) => [routeOf(page.slug), page]));
-  const META = /* @__PURE__ */ new Set(["component", "proof"]);
-  const cloud = /* @__PURE__ */ new Map();
-  for (const page of pages) for (const tag of page.keywords) {
-    if (!cloud.has(tag)) cloud.set(tag, []);
-    cloud.get(tag).push(routeOf(page.slug));
-  }
-  const ranked = [...cloud.entries()].filter(([tag, routes]) => !META.has(tag) && routes.length >= 2 && tag.length >= 3).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0])).map(([tag]) => tag);
-  const text = (route, i) => {
-    const page = byRoute.get(route);
-    return page ? i === 1 ? page.title.bg : page.title.en : route;
-  };
-  const link = (route, i) => i === 1 ? route === "/" ? "/bg/" : `/bg${route}` : route;
-  const clusterOf = (route) => {
-    const page = byRoute.get(route);
-    return page && ranked.find((tag) => page.keywords.includes(tag)) || "more";
-  };
-  const routesIn = (tag) => pages.map((page) => routeOf(page.slug)).filter((route) => clusterOf(route) === tag);
-  const navTags = ranked.slice(0, 8);
-  const item = (route, i) => ({ text: text(route, i), link: link(route, i) });
-  const dedupe = (routes) => routes.filter((route, idx) => routes.indexOf(route) === idx);
-  const portal2 = sciencePortalParts(matrix);
-  const domains = siteDomainRegistry(matrix);
-  const contentRayOf = (slug) => {
-    const page = byRoute.get(routeOf(slug));
-    return rosettaRayOfContent(slug, page?.keywords ?? []);
-  };
-  const navEligible = (route) => {
-    const slug = route.replace(/^\//, "");
-    return !domains.isNavAlias(slug) && byRoute.has(route);
-  };
-  const rosettaFold = (i) => portal2.parts.map((part) => {
-    const routes = dedupe(part.pages.map((page) => routeOf(page.slug)).filter(navEligible));
-    const domainCanonicals = new Set(
-      domains.domains.filter((domain) => domain.ray === part.ray).map((domain) => routeOf(domain.canonical))
-    );
-    const domainLead = domains.domains.filter((domain) => domain.ray === part.ray && byRoute.has(routeOf(domain.canonical))).map((domain) => ({ text: i === 1 ? domain.labelBg : domain.labelEn, link: link(routeOf(domain.canonical), i) }));
-    const pageItems = routes.filter((route) => !domainCanonicals.has(route)).map((route) => item(route, i));
-    const merged = [...domainLead, ...pageItems];
-    const items = merged.length > 8 ? [{ text: i === 1 ? `\u0412\u0441\u0438\u0447\u043A\u0438 \u2014 ${merged.length}` : `All \u2014 ${merged.length}`, link: link(part.route, i) }, ...merged.slice(0, 7)] : merged;
-    return { text: i === 1 ? part.labelBg : part.labelEn, items };
-  }).filter((section) => section.items.length > 0);
-  const theoremGroup = (i) => {
-    const nav358 = theoremNavigation(matrix);
-    const categoryOf = (home) => {
-      const last = home.replace(/^src\//, "").split("/").pop() || home;
-      return /^\d+$/.test(last) ? home.replace(/^src\//, "") : last;
-    };
-    const rayBuckets = /* @__PURE__ */ new Map();
-    for (const wave of nav358.waves) for (const atom of wave.atoms) {
-      const category = categoryOf(atom.home), ray = rosettaRayOfContent(category, []);
-      const bucket = rayBuckets.get(ray) ?? rayBuckets.set(ray, /* @__PURE__ */ new Map()).get(ray);
-      bucket.set(category, (bucket.get(category) ?? 0) + 1);
-    }
-    const rayItems = ROSETTA_RAYS.filter((ray) => rayBuckets.has(ray.ray)).map((ray) => {
-      const bucket = rayBuckets.get(ray.ray);
-      const total = [...bucket.values()].reduce((sum, n) => sum + n, 0);
-      const top = [...bucket.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([category]) => category).join(" \xB7 ");
-      return { text: (i === 1 ? ray.nameBg : ray.nameEn) + " \u2014 " + total + " (" + top + ")", link: link("/frontiers", i) };
-    });
-    return {
-      text: i === 1 ? `\u22A2 \u0420\u0435\u0433\u0438\u0441\u0442\u044A\u0440 \u2014 ${nav358.atomCount} \u0434\u043E\u043A\u0430\u0437\u0430\u043D\u0438` : `\u22A2 Registry \u2014 ${nav358.atomCount} proven`,
-      items: [
-        { text: i === 1 ? "\u0422\u0435\u043E\u0440\u0435\u043C\u0435\u043D \u0440\u0435\u0433\u0438\u0441\u0442\u044A\u0440" : "Theorem registry", link: link("/frontiers", i) },
-        { text: i === 1 ? "\u0414\u043E\u043C\u0435\u0439\u043D\u043D\u0438 \u0434\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0441\u0442\u0432\u0430" : "Domain proofs", link: link("/proofs", i) },
-        ...rayItems.slice(0, 6)
-      ]
-    };
-  };
-  const buildNav = (i) => [
-    { text: i === 1 ? "\u041D\u0430\u0447\u0430\u043B\u043E" : "Home", link: link("/", i) },
-    ...rosettaFold(i),
-    theoremGroup(i)
-  ];
-  const discoveryRoutes = (routes) => dedupe(routes).filter((route) => !domains.isNavAlias(route.replace(/^\//, "")));
-  const buildRelatedSidebar = (i) => {
-    const byRay = /* @__PURE__ */ new Map();
-    for (const page of lens.pages) {
-      if (domains.isNavAlias(page.slug)) continue;
-      const ray = contentRayOf(page.slug);
-      if (!byRay.has(ray)) byRay.set(ray, []);
-      byRay.get(ray).push(routeOf(page.slug));
-    }
-    const result6 = {};
-    for (const [rayIdx, routes] of byRay.entries()) {
-      const ray = ROSETTA_RAYS[rayIdx];
-      const label = i === 1 ? ray.nameBg : ray.nameEn;
-      const cleaned = discoveryRoutes(routes);
-      const section = { text: label, items: cleaned.map((route) => item(route, i)) };
-      for (const route of cleaned) result6[route] = [section];
-    }
-    return result6;
-  };
-  const buildCrosslinks = (i) => {
-    const byRay = /* @__PURE__ */ new Map();
-    for (const page of lens.pages) {
-      if (domains.isNavAlias(page.slug)) continue;
-      const ray = contentRayOf(page.slug);
-      if (!byRay.has(ray)) byRay.set(ray, []);
-      byRay.get(ray).push(routeOf(page.slug));
-    }
-    const result6 = {};
-    for (const page of lens.pages) {
-      if (domains.isNavAlias(page.slug)) continue;
-      const route = routeOf(page.slug);
-      const ray = contentRayOf(page.slug);
-      const peers = discoveryRoutes((byRay.get(ray) ?? []).filter((r2) => r2 !== route));
-      result6[route] = peers.map((r2) => item(r2, i));
-    }
-    return result6;
-  };
-  const enRelatedSidebar = buildRelatedSidebar(0);
-  const bgRelatedSidebar = buildRelatedSidebar(1);
-  for (const [related, i] of [[enRelatedSidebar, 0], [bgRelatedSidebar, 1]]) {
-    const key = "/frontiers";
-    if (related[key]) related[key] = [theoremGroup(i), ...related[key]];
-  }
-  const enCrosslinks = buildCrosslinks(0);
-  const bgCrosslinks = buildCrosslinks(1);
-  const buildFooter = (i) => {
-    const parts = navTags.map((tag) => routesIn(tag)[0]).filter(Boolean).map((route) => `<a href="${link(route, i)}">${text(route, i)}</a>`);
-    if (staticPages().some((page) => page.slug === "governance")) parts.push(`<a href="${link("/governance", i)}#license">${i === 1 ? "\u041B\u0438\u0446\u0435\u043D\u0437" : "License"}</a>`, `<a href="${link("/governance", i)}#privacy">${i === 1 ? "\u041F\u043E\u0432\u0435\u0440\u0438\u0442\u0435\u043B\u043D\u043E\u0441\u0442" : "Privacy"}</a>`);
-    return {
-      message: parts.join(" \xB7 "),
-      copyright: i === 1 ? "\u041E\u0442\u0432\u043E\u0440\u0435\u043D, \u043F\u0440\u0435\u0438\u0437\u0447\u0438\u0441\u043B\u0438\u043C, \u0430\u0434\u0440\u0435\u0441\u0438\u0440\u0430\u043D \u043F\u043E \u0441\u044A\u0434\u044A\u0440\u0436\u0430\u043D\u0438\u0435 \u2014 \u0414\u0432\u043E\u0435\u043D \u0442\u043E\u0440\u0443\u0441. \u041F\u043E\u0441\u0442\u0430\u0432\u0438 \u043B\u0438\u043D\u043A \u2192 auto-wire." : "Open, recomputable, content-addressed \u2014 the Double Torus. Paste any link \u2192 auto-wire."
-    };
-  };
-  const index = monographs(matrix);
-  const root10 = merkleFold([lens.root, index.root, ...pages.map((page) => toUuid(`nav:${routeOf(page.slug)}:${page.title.en}`)), ...navTags.map((tag) => toUuid(`nav-cluster:${tag}`))]);
-  const visibleNavRoutes = /* @__PURE__ */ new Set(["/", "/frontiers", "/proofs", ...pages.map((page) => routeOf(page.slug)), ...lens.corpusRoutes, ...portal2.parts.map((part) => part.route)]);
-  const navGroups = buildNav(0).slice(1);
-  const navLensed = navGroups.length > 0 && navGroups.every((group) => Array.isArray(group.items) && group.items.length > 0 && group.items.length <= 8 && group.items.every((entry2) => visibleNavRoutes.has(entry2.link)));
-  return {
-    computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root10),
-    tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
-    clusters: navTags,
-    en: { nav: buildNav(0), sidebar: rosettaFold(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
-    bg: { nav: buildNav(1), sidebar: rosettaFold(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
-    relatedSidebarComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => routeOf(p.slug) in enRelatedSidebar),
-    crosslinksComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
-    aliasDiscoveryPurged: Object.keys(domains.aliasToCanonical).every((alias) => !(routeOf(alias) in enRelatedSidebar) && !Array.isArray(enCrosslinks[routeOf(alias)])),
-    searchIndexRoot: index.root,
-    searchEntries: index.count,
-    routes: pages.map((page) => routeOf(page.slug)),
-    root: root10,
-    statement: `VitePress shows science through the theorem-science lens: the top nav is Home plus ${navGroups.length} dropdowns \u2014 the rosetta rays holding the ${lens.visibleCount} lens survivors (group label = hub slug word, the findability law) and the registry dropdown (theorem registry \xB7 domain proofs \xB7 ray buckets; ${lens.theoremCount} theorems). Machine corpora (${lens.corpusRoutes.join(" \xB7 ")}) stay served but are not synonym discovery hubs. The sidebar folds by the same rays; related sections, crosslinks and the footer are built from the lens roster.`,
-    boundary: `A computed projection of the VitePress navigation from the theorem-science lens (theoremScienceLens \u2014 the page set, ray shelving and discovery/machine routes all read from it), the ray-hub grouping, and the keyword tag cloud \u2014 no hardcoded synonym hubs. The lens law is checked on the rendered nav itself (navLensed): every item is a lens survivor, a discovery hub, a corpus surface, or a hub anchor. Hidden pages stay built and served \u2014 the lens governs discovery, not existence. License/Privacy remain as legal footer chrome.`
-  };
-}
 function rosettaComputesNavigationAndContent(path12, matrix = buildMatrix()) {
   void matrix;
   const decoded = rosettaDecodesUrlPath(path12.startsWith("/") ? path12 : `/${path12}`);
@@ -58035,15 +58032,6 @@ function proofAnimations(matrix = buildMatrix()) {
 }
 
 // ../../src/wind/site/index.ts
-var SITE_DOMAIN_SEED = [
-  { id: "tools", labelEn: "Quantum tools", labelBg: "\u041A\u0432\u0430\u043D\u0442\u043E\u0432\u0438 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u0438", ray: 4, hub: "apps", canonical: "quantum-tools", aliases: ["efficiency-vote", "offender-spec", "hero-spawn-verify", "name-entropy-verify", "fusion-verify"] },
-  { id: "trading", labelEn: "Trading", labelBg: "\u0422\u044A\u0440\u0433\u043E\u0432\u0438\u044F", ray: 4, hub: "apps", canonical: "quantum-trading-hub", aliases: [] },
-  { id: "encryption", labelEn: "Encryption", labelBg: "\u041A\u0440\u0438\u043F\u0442\u0438\u0440\u0430\u043D\u0435", ray: 5, hub: "frontier", canonical: "encryption", aliases: ["quantum-encryption"] },
-  { id: "theorems", labelEn: "Theorem registry", labelBg: "\u0422\u0435\u043E\u0440\u0435\u043C\u0435\u043D \u0440\u0435\u0433\u0438\u0441\u0442\u044A\u0440", ray: 5, hub: "frontier", canonical: "frontiers", aliases: [] },
-  { id: "research", labelEn: "Research", labelBg: "\u0418\u0437\u0441\u043B\u0435\u0434\u0432\u0430\u043D\u0438\u044F", ray: 2, hub: "explore", canonical: "research", aliases: ["millennium-challenge"] },
-  { id: "learn", labelEn: "Learn", labelBg: "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435", ray: 3, hub: "learn", canonical: "learn", aliases: ["learn-developer", "academy", "school"] },
-  { id: "society", labelEn: "Society", labelBg: "\u041E\u0431\u0449\u0435\u0441\u0442\u0432\u043E", ray: 0, hub: "origin", canonical: "society-merkaba", aliases: [] }
-];
 var ROUTE_ALIASES = {
   academy: "learn",
   school: "learn",
@@ -58053,51 +58041,23 @@ var ROUTE_ALIASES = {
   "ssl-test": "ssltest",
   "tls-test": "ssltest"
 };
-function siteDomainRegistry(matrix = buildMatrix()) {
-  return memoByRoot("siteDomainRegistry", matrix, () => {
-    const navAliasToCanonical = /* @__PURE__ */ new Map();
-    for (const domain of SITE_DOMAIN_SEED) for (const alias of domain.aliases) navAliasToCanonical.set(alias, domain.canonical);
-    for (const [alias, canonical] of Object.entries(ROUTE_ALIASES)) navAliasToCanonical.set(alias, canonical);
-    const domains = SITE_DOMAIN_SEED.map((domain) => {
-      const rayMeta = ROSETTA_RAYS[domain.ray];
-      return {
-        ...domain,
-        route: `/${domain.canonical}`,
-        hubRoute: `/${domain.hub}`,
-        rayNameEn: rayMeta.nameEn,
-        rayNameBg: rayMeta.nameBg,
-        hue: rayMeta.hue,
-        receipt: toUuid(`site-domain:${domain.id}:${domain.canonical}:${domain.ray}`)
-      };
-    });
-    const served = new Set(staticPages().map((page) => page.slug));
-    const pageCensus = foldedCensus(served.size);
-    const harmonics3 = DOCUMENTED_HARMONICS;
-    const canonicalsServed = domains.every((domain) => served.has(domain.canonical) || domain.canonical === "learn");
-    const facets = [
-      { facet: `seven domain concerns \u2014 tools \xB7 trading \xB7 encryption \xB7 theorems \xB7 research \xB7 learn \xB7 society (${domains.length === SITE_DOMAIN_SEED.length})`, on: domains.length === ROSETTA_SEVEN },
-      { facet: "each domain has one canonical slug and a rosetta ray/hub", on: domains.every((d) => d.canonical.length > 0 && d.ray >= 0 && d.ray < ROSETTA_SEVEN) },
-      { facet: "ROUTE_ALIASES thin-mounts millennium\u2192research and fusion\u2192quantum-tools (plus learn school/academy)", on: ROUTE_ALIASES["millennium-challenge"] === "research" && ROUTE_ALIASES["fusion-verify"] === "quantum-tools" },
-      { facet: "canonical domain pages are in the served set (learn may stay outside theorem lens \u2014 hub still exists)", on: canonicalsServed },
-      // QUANTUMIZED (2026-07-24): the census is theorem-derived, not a linear list-lock — valid if the count folds to
-      // a documented harmonic OR every served page is a DISTINCT theorem-meaning (no redundant clusters). The || short-
-      // circuits, so the heavy clustering runs only when the count leaves the harmonic set (during consolidation).
-      { facet: `served page census is theorem-derived \u2014 ${served.size}\u2192${pageCensus.folded} \u2208 DOCUMENTED_HARMONICS, or every page a distinct meaning`, on: (harmonics3.includes(pageCensus.folded) || pagesConsolidateByTheoremGravity(matrix).clusters.length === 0) && pageCensus.folded > 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`site-domain-reg:${entry2.facet}:${entry2.on}`) }));
-    return {
-      computes: facets.every((entry2) => entry2.on),
-      domains,
-      aliasToCanonical: Object.fromEntries(navAliasToCanonical),
-      aliasCount: navAliasToCanonical.size,
-      navSlugs: new Set(domains.map((d) => d.canonical)),
-      isNavAlias: (slug) => navAliasToCanonical.has(slug.replace(/^\//, "")),
-      canonicalOf: (slug) => navAliasToCanonical.get(slug.replace(/^\//, "")) ?? slug.replace(/^\//, ""),
-      facets,
-      root: merkleFold([...domains.map((d) => d.receipt), ...facets.map((f2) => f2.receipt)]),
-      statement: `Site domain registry \u2014 ${domains.length} concerns, one canonical page each; nav omits aliases; ROUTE_ALIASES thin-mounts fusion/millennium; page census ${served.size}\u2192${pageCensus.folded} \u2208 DOCUMENTED_HARMONICS.`,
-      boundary: "IA regroup over the sealed 7-ray hubs \u2014 NOT a claim of Clay/FTL solutions; trading is paper/sim; society is documented taxonomy."
-    };
-  });
+function leanBlogNavigation(locale = "en") {
+  const label = (text) => locale === "gla" ? toGlagolitic(text) : text;
+  const home = locale === "en" ? "/" : `/${locale}/`;
+  const monographs4 = leanMonographs();
+  const item = (m) => ({ text: label(m.title), link: `/${m.slug}` });
+  const clay = monographs4.filter((m) => m.kind === "clay").map(item);
+  const subjects = monographs4.filter((m) => m.kind === "subject").map(item);
+  const groups = [{ text: label("Clay cases"), items: clay }, { text: label("Subjects"), items: subjects }];
+  return {
+    nav: [{ text: label("Feed"), link: home }, ...groups],
+    sidebar: [{ text: label("Feed"), items: [{ text: label("All theorems"), link: home }] }, ...groups.map((g) => ({ ...g, collapsed: false }))],
+    // the theme's footer is a line of links and a copyright line
+    footer: {
+      message: [{ text: label("Feed"), link: home }, ...clay].map((l) => `<a href="${l.link}">${l.text}</a>`).join(" \xB7 "),
+      copyright: label("Open, recomputable, content-addressed \u2014 the Double Torus.")
+    }
+  };
 }
 function localePaths(route) {
   return { gla: localePath(route, "gla"), en: localePath(route, "en"), bg: localePath(route, "bg") };
@@ -61319,7 +61279,7 @@ var conceptCommands = [
   {
     name: "concept.fold.generate",
     path: "/cmd/concept.fold.generate",
-    description: "Run a build/debug generator from its b\u0101gu\xE0 slot \u2014 bible, vortex, glagolitic, songbook, census, crosslinks, cloudflare, dist (all eight trigrams filled) \u2014 the script compaction (scripts/iching.mjs \xB7 generatorsAreIChing). The fold generates."
+    description: "Run a build/debug generator from its b\u0101gu\xE0 slot \u2014 bible, vortex, glagolitic, songbook, census, navigation, cloudflare, dist (all eight trigrams filled) \u2014 the script compaction (scripts/iching.mjs \xB7 generatorsAreIChing). The fold generates."
   },
   { name: "concept.ui.fuse", path: "/cmd/concept.ui.fuse", description: "Apply the I Ching mask to every Vue UI component \u2014 pre-compute hexagram, embed ICHING_MASK const, make self-referencing", does: "fuse: apply iching mask to all ui components, bind each to its hexagram identity" },
   { name: "concept.ui.reveal", path: "/cmd/concept.ui.reveal", description: "Reveal the UI widget's I Ching identity \u2014 data-hexagram, data-trigram in DOM, max tampering cost", does: "reveal: project widget hexagram identity into template data-attrs and computed color" },
@@ -62140,22 +62100,20 @@ function ancientKnowledgeComputesDefaultLocale(matrix = buildMatrix()) {
   };
 }
 function vitepressConfigComputesAll(matrix = buildMatrix()) {
-  const nav = siteNavigation(matrix);
+  const en = leanBlogNavigation("en"), gla = leanBlogNavigation("gla");
   const facets = [
-    { facet: "the monographs graph is the VitePress search index", on: monographs(matrix).compacted && isUuid(nav.searchIndexRoot) },
-    { facet: "nav, sidebar and footer all computed from src \u2014 both locales", on: nav.computed && nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: "the monographs graph is the VitePress search index", on: monographs(matrix).compacted },
+    { facet: "nav, sidebar and footer all computed from the Lean monographs \u2014 every edition", on: en.nav.length > 1 && gla.nav.length === en.nav.length && en.sidebar.length > 0 && en.footer.message.length > 0 },
     { facet: "every path in src is displayed \u2014 the computed routes fold the graph", on: computedSlugsFoldTheGraph(matrix).folds && siteRoutes(matrix).complete },
     { facet: "nothing hardcoded \u2014 config.mts only reads the matrix, gates tightened", on: configsUseMatrixComputationally(matrix).computes && noHardcodedConfigSelfAccounted(matrix).selfAccounted }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`vitepress-computes-all:${entry2.facet}:${entry2.on}`) }));
   return {
     computes: facets.every((entry2) => entry2.on),
-    navRoot: nav.root,
-    searchEntries: nav.searchEntries,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "Completely rebuild the VitePress config to compute all: the monographs graph is the search index, and from src the navigation (nav, sidebar, footer, both locales) and content are all computed \u2014 every path in src displayed. To change VitePress you change the folders/model; config.mts holds no hardcoded navigation. The gates tighten \u2014 the navigation root folds into the seal, so an intruder cannot forge a hand-kept config.",
-    boundary: 'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.'
+    boundary: 'A composition of the leanBlogNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.'
   };
 }
 function vitepressApiDiamondPlasma(matrix = buildMatrix()) {

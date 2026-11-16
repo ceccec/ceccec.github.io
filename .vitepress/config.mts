@@ -696,7 +696,7 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/ceccec/ceccec.github.io' }],
     // Nothing bypasses VitePress — not even search. VitePress's built-in local
     // search (a MiniSearch index built at build time) is offline, zero-network and
-    // zero-dependency. The monographs graph (siteNavigation.searchIndexRoot) is the
+    // zero-dependency. The monographs graph is the
     // model's own search index; the local search indexes the rendered pages computed
     // from that same src. Labels are localised for English and Bulgarian.
     search: {
@@ -771,7 +771,7 @@ export default defineConfig({
       description: siteDescription,
       themeConfig: {
         // The DEFAULT locale is English at the root — canonical, unprefixed URLs (no useless prefixes;
-        // the science reads straight from the slug). Navigation computed from the model (siteNavigation).
+        // the science reads straight from the slug). Navigation computed from the Lean monographs (leanBlogNavigation).
         nav: enNav.nav,
         sidebar: enNav.sidebar,
         footer: enNav.footer,

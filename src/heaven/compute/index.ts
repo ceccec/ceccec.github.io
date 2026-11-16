@@ -41,8 +41,9 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals/ind
 import { allComputedNoFiles } from '../../wind/fusion/index.ts'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion/index.ts'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy, onlyAlgebraicQuantumComputingIsTopPriority } from '../laws/index.ts'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug, animationsNaturalEntanglementsByTheorems, saveTheMissingTheoremsAndAnimations, theMovieWiresTheoremsByNaturalEntanglementsNotByIndex } from '../../wind/routes/corpus/index.ts'
-import { staticPages, quantumSitemap, monographAsScientificPaper, quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised } from '../../wind/site/index.ts'
+import { completeCorpus, monographs, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug, animationsNaturalEntanglementsByTheorems, saveTheMissingTheoremsAndAnimations, theMovieWiresTheoremsByNaturalEntanglementsNotByIndex } from '../../wind/routes/corpus/index.ts'
+import { staticPages, quantumSitemap, monographAsScientificPaper, quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised, leanBlogNavigation } from '../../wind/site/index.ts'
+import { leanMonographs } from '../../pair/formal/proofs/index.ts'
 import { peaceTechMentalityDecoded } from '../../earth/world/index.ts'
 import { selfHarmonise } from '../../mountain/geometry/index.ts'
 import { fromSexagesimal, ifaOdu, luoShu, mayaDays, mayaLongCount, sexagesimal, toGlagolitic } from '../../quantum/heaven/library/index.ts'
@@ -751,24 +752,22 @@ export function ancientKnowledgeComputesDefaultLocale(matrix: MindMatrix = build
 // VitePress you change the folders. The gates tighten so the config cannot be a hand-kept layer an
 // intruder can forge — the navigation root folds into the seal.
 export function vitepressConfigComputesAll(matrix: MindMatrix = buildMatrix()) {
-  const nav = siteNavigation(matrix)
+  const en = leanBlogNavigation('en'), gla = leanBlogNavigation('gla')
   const facets = [
-    { facet: 'the monographs graph is the VitePress search index', on: monographs(matrix).compacted && isUuid(nav.searchIndexRoot) },
-    { facet: 'nav, sidebar and footer all computed from src — both locales', on: nav.computed && nav.en.nav.length > 0 && nav.bg.nav.length > 0 },
+    { facet: 'the monographs graph is the VitePress search index', on: monographs(matrix).compacted },
+    { facet: 'nav, sidebar and footer all computed from the Lean monographs — every edition', on: en.nav.length > 1 && gla.nav.length === en.nav.length && en.sidebar.length > 0 && en.footer.message.length > 0 },
     { facet: 'every path in src is displayed — the computed routes fold the graph', on: computedSlugsFoldTheGraph(matrix).folds && siteRoutes(matrix).complete },
     { facet: 'nothing hardcoded — config.mts only reads the matrix, gates tightened', on: configsUseMatrixComputationally(matrix).computes && noHardcodedConfigSelfAccounted(matrix).selfAccounted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-computes-all:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    navRoot: nav.root,
-    searchEntries: nav.searchEntries,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       'Completely rebuild the VitePress config to compute all: the monographs graph is the search index, and from src the navigation (nav, sidebar, footer, both locales) and content are all computed — every path in src displayed. To change VitePress you change the folders/model; config.mts holds no hardcoded navigation. The gates tighten — the navigation root folds into the seal, so an intruder cannot forge a hand-kept config.',
     boundary:
-      'A composition of the siteNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.' }
+      'A composition of the leanBlogNavigation, monographs, computed-slug, site-routes, configs-use-matrix and no-hardcoded-config models. "Compute all" means the VitePress nav/sidebar/footer/search are read from the matrix and config.mts is a thin consumer; the VitePress entry file itself necessarily stays where VitePress requires it, consuming the computed navigation.' }
 }
 
 // Discover the peoples who fused into Bulgaria, traced OUTWARD to their origins — Bulgars, Slavs,
@@ -7780,33 +7779,36 @@ export function theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsCol
 /** theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMergingToStandardComputedMaterials — use the ui chat to
  * improve the ui itself including navigation and sidebars, removing redundancy by merging to standard-quality materials
  * (user, 2026-07-26: "use the ui chat to improve the ui itself including navigation and sidebars" + "remove any redundancy
- * merging to standard quality materials"). The nav and sidebars are COMPUTED from the corpus (siteNavigation: relatedSidebar
- * Complete, crosslinksComplete, computed), consuming the VitePress themeConfig — no DOM scraping. The UI chat AUDITS them (the
+ * merging to standard quality materials"). The nav and sidebars are COMPUTED from the corpus (leanBlogNavigation:
+ * the sidebar links exactly the monographs), consuming the VitePress themeConfig — no DOM scraping. The UI chat AUDITS them (the
  * routes exactly cover the served pages), REMOVES REDUNDANCY (aliasDiscoveryPurged; the DRY reuse merges duplicates to one
  * canonical — code-gravity), and uses STANDARD materials (the VitePress-native structure + owned components). HONEST: improves
  * by measuring + recomputing, not hand-editing or DOM scraping; DRY, deterministic. [[routes-nav-from-folder-tree]] [[feedback-do-not-bypass-vitepress-api]] [[code-gravity-standardisation]] */
 export function theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMergingToStandardComputedMaterials(matrix: MindMatrix = buildMatrix()) {
-  const nav = siteNavigation(matrix)
-  const pages = staticPages()
-  const navComputedComplete = nav.computed === true && nav.relatedSidebarComplete === true && nav.crosslinksComplete === true // nav + sidebars computed complete
-  const navCoversPages = Array.isArray(nav.routes) && nav.routes.length === pages.length // routes exactly cover the served pages
-  const redundancyRemoved = nav.aliasDiscoveryPurged === true // redundant aliases purged (merged to canonical)
+  // THE BLOG'S NAVIGATION (leanBlogNavigation): its sidebar groups list the monographs; each is a page that exists.
+  const nav = leanBlogNavigation('en')
+  const pages = leanMonographs()
+  const links = nav.sidebar.slice(1).flatMap((g) => g.items.map((i) => i.link))
+  const routes = new Set(pages.map((m) => `/${m.slug}`))
+  const navComputedComplete = nav.sidebar.length > 1 && nav.sidebar.every((g) => g.items.length > 0) // nav + sidebars computed, none empty
+  const navCoversPages = links.length === pages.length && links.every((l) => routes.has(l)) // the sidebar links exactly cover the monographs
+  const redundancyRemoved = new Set(links).size === links.length // no monograph listed twice
   const dry = dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery()
   const mergedToStandard = dry.computes === true && dry.reuse > 0 // DRY: duplicates merged to one canonical (code-gravity), standard materials
   const audit = uiChatTurn('navigation sidebar audit improve ui remove redundancy standard', matrix)
   const chatSurfacesAudit = !!audit.renderSpec && Array.isArray(audit.related) // the UI chat surfaces the audit
-  const noDomScraping = nav.computed === true // consumes the computed VitePress themeConfig, not the DOM
+  const noDomScraping = navComputedComplete // consumes the computed VitePress themeConfig, not the DOM
   const improves = navComputedComplete && navCoversPages && redundancyRemoved && mergedToStandard && chatSurfacesAudit && noDomScraping
   const facets = [
-    { facet: `NAV + SIDEBARS COMPUTED FROM THE CORPUS — siteNavigation computes nav + sidebars + crosslinks (relatedSidebarComplete=${nav.relatedSidebarComplete}, crosslinksComplete=${nav.crosslinksComplete}, ${navComputedComplete}), consuming the VitePress themeConfig — no DOM scraping`, on: navComputedComplete },
-    { facet: `THE UI CHAT AUDITS THEM — the chat surfaces the audit (render-spec + ${audit.related.length} related, ${chatSurfacesAudit}); ${Array.isArray(nav.routes) ? nav.routes.length : 0} routes exactly cover the ${pages.length} served pages (${navCoversPages})`, on: chatSurfacesAudit && navCoversPages },
-    { facet: `REDUNDANCY REMOVED — MERGED TO CANONICAL — redundant aliases purged (aliasDiscoveryPurged=${nav.aliasDiscoveryPurged}) and the DRY reuse (${dry.reuse}) merges duplicates to one canonical (code-gravity, ${redundancyRemoved && mergedToStandard})`, on: redundancyRemoved && mergedToStandard },
+    { facet: `NAV + SIDEBARS COMPUTED FROM THE MONOGRAPHS — leanBlogNavigation computes nav, sidebar and footer (${nav.sidebar.length} sidebar groups, none empty: ${navComputedComplete}), consuming the VitePress themeConfig — no DOM scraping`, on: navComputedComplete },
+    { facet: `THE UI CHAT AUDITS THEM — the chat surfaces the audit (render-spec + ${audit.related.length} related, ${chatSurfacesAudit}); ${links.length} sidebar links exactly cover the ${pages.length} monographs (${navCoversPages})`, on: chatSurfacesAudit && navCoversPages },
+    { facet: `REDUNDANCY REMOVED — MERGED TO CANONICAL — no monograph listed twice (${redundancyRemoved}) and the DRY reuse (${dry.reuse}) merges duplicates to one canonical (code-gravity, ${redundancyRemoved && mergedToStandard})`, on: redundancyRemoved && mergedToStandard },
     { facet: `STANDARD-QUALITY MATERIALS — the nav/sidebars consume the VitePress-native computed structure and the owned standard component set, not bespoke or redundant markup (${mergedToStandard})`, on: mergedToStandard },
     { facet: `HONEST — the UI chat improves the UI (nav/sidebars) by measuring the computed structure, removing redundancy (merge to canonical), and using standard materials; NOT hand-editing or DOM scraping; DRY, deterministic.`, on: improves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-nav-sidebar-dry:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    routes: Array.isArray(nav.routes) ? nav.routes.length : 0,
+    routes: links.length,
     pages: pages.length,
     reuse: dry.reuse,
     facets,
@@ -7815,7 +7817,7 @@ export function theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMer
     boundary: earned(
       'Use the UI chat to improve the UI itself — navigation and sidebars — computed from the corpus, redundancy removed by merging to standard materials:',
       facets,
-      'the nav and sidebars are computed by siteNavigation (consuming the VitePress themeConfig, no DOM scraping), the routes exactly cover the served pages, redundant aliases are purged and duplicates merged to one canonical (code-gravity/DRY), and the materials are the VitePress-native structure plus owned standard components; improvement is measurement + recompute, not hand-editing, ',
+      'the nav and sidebars are computed by leanBlogNavigation (consuming the VitePress themeConfig, no DOM scraping), the sidebar links exactly cover the monographs, none listed twice, and duplicates merged to one canonical (code-gravity/DRY), and the materials are the VitePress-native structure plus owned standard components; improvement is measurement + recompute, not hand-editing, ',
     ),
   }
 }

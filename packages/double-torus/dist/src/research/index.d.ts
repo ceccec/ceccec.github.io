@@ -3013,7 +3013,7 @@ export declare function domainProofPanelComputes(matrix?: MindMatrix, at?: numbe
         id: string;
         slug: string;
         title: string;
-        kind: "society" | "rosetta" | "efficiency" | "encryption" | "honesty" | "collider" | "millennium" | "science-trinity" | "hd-structure" | "calendar";
+        kind: "society" | "rosetta" | "efficiency" | "honesty" | "collider" | "millennium" | "science-trinity" | "encryption" | "hd-structure" | "calendar";
         status: DomainProofStatusFacet;
         route: string;
         formula: string;

@@ -2078,7 +2078,6 @@ export const ROSETTA_EXPORT_BARREL_HOME: Readonly<Record<string, string>> = {
   siteConfig: 'site',
   completeCorpus: 'routes',
   homepage: 'site',
-  siteNavigation: 'learning',
   monographs: 'learning',
   harmonisedNavigation: 'learning',
   astronomyDecodedWithTheSequence: 'astronomy',
