@@ -6,7 +6,7 @@
   "canon.filter-then-every": 2,
   "canon.self-comparison": 1,
   "canon.silent-math-fallback": 149,
-  "caps.in-facet-folds": 1098,
+  "caps.in-facet-folds": 1097,
   "claims.untried-published": 334,
   "clay.formulas-without-dataset": 0,
   "cross.parked-theorems": 5,
@@ -32,7 +32,7 @@
   "release.incomplete-live": 1,
   "release.open-leads": 2,
   "scope.boundaries": 2573,
-  "scope.narrated": 509,
+  "scope.narrated": 506,
   "sources.theorems-without-dataset": 590,
   "theorems.without-algebraic-statement": 532
 }

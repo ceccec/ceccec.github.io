@@ -1,6 +1,6 @@
 # Lessons — what the tree has learned
 
-Counted on every run from 243 sources: **165 corrections** this repository recorded about itself, in the comments
+Counted on every run from 243 sources: **163 corrections** this repository recorded about itself, in the comments
 of the files where each one happened. A comment block counts once if it records a correction ("this read …", "it returned …",
 "was …") and is classed by what went wrong. Nobody wrote this list; it is counted, by scripts/verify/lessons.ts.
 
@@ -8,7 +8,7 @@ The taxonomy is a choice — 6 classes — stated so a reader can disagree with 
 
 | corrections | class | why it costs something |
 | ---: | --- | --- |
-| 55 | a constant typed instead of derived | the value and its meaning drift apart, and the copy is the one nobody updates |
+| 53 | a constant typed instead of derived | the value and its meaning drift apart, and the copy is the one nobody updates |
 | 30 | a check that could not go red | it reports health it never measured, and deleting it would change nothing |
 | 26 | absence read as an answer | a measurement that never happened reads as zero, pass or fail — three states collapsed to two |
 | 24 | domain narrower than the defect | the claim reads over the whole tree and the scan covered part of it |

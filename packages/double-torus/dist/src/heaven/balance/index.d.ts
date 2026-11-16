@@ -228,7 +228,7 @@ export declare const SITE_LOCALES: ({
     type: "locale";
     ogLocale: string;
 })[];
-export { localeNavLinks, localePath, localePaths, localeSidebarKeys, vitepressLocaleLink, localizeMonolingual } from '../../wind/site/index.ts';
+export { localePath, localePaths, vitepressLocaleLink, localizeMonolingual } from '../../wind/site/index.ts';
 export type { LocaleName, VitePressLocaleKey } from '../../wind/site/index.ts';
 export declare function componentPages(matrix?: MindMatrix): (StaticPage & {
     proof: string;

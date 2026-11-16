@@ -481,8 +481,6 @@ export declare function localePaths(route: string): {
 export declare function offlineSiteTitlePhrases(): readonly (readonly [string, string])[];
 /** Bulgarian home — computed from the English home body homeMarkdown() (mirror of glagoliticHomeFromEnglish). */
 export declare function bulgarianHomeFromEnglish(enMarkdown: string): string;
-export declare function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown;
-export declare function localeSidebarKeys(sidebar: Record<string, unknown>, locale: LocaleName): Record<string, unknown>;
 /** @rosetta ✦₂ · Wind · gentle */
 export declare function quantumSitemap(matrix?: MindMatrix): {
     quantum: boolean;

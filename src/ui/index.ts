@@ -2285,122 +2285,6 @@ export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMa
   })
 }
 
-// The top nav, redesigned: 3 doors × the 7 rosetta rays, matching the I Ching — replacing the 4-pole regex crack
-// (navigationCrossOfTheFourPoles: 36/40 pages fell into a /.*/ catch-all, Axioms empty). The 7 rays (ROSETTA_RAYS) are
-// the agnostic content categories (classified by rosettaRayOfContent, a named-axiom lens, NOT a keyword regex); they
-// group into 3 doors by their own hue-band (the rosetta's colour structure, computed), and each ray + Home map to the 8
-// bāguà trigrams (7 + 1 = 8 = 2³) — so the nav matches both the rosetta (7 rays) and the I Ching (8 trigrams, 3 doors).
-export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('rosettaIChingTopNav', matrix, () => {
-    const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const // heaven·lake·fire·thunder·wind·water·mountain·earth
-    const band = 360 / 3 // 120° — three hue-doors across the colour wheel
-    const rays = ROSETTA_RAYS.map((ray) => ({
-      ray: ray.ray,
-      name: ray.nameEn,
-      glyph: ray.glyph, // the Glagolitic rosetta glyph
-      trigram: BAGUA[ray.ray + 1]!, // ray 0..6 → ☱..☷ (Home takes ☰) — 7 rays + Home = 8 trigrams
-      route: ROSETTA_RAY_HUBS[ray.ray]!.route, // the real hub route (/origin../reference)
-      door: floor(ray.hue / band), // 0 warm · 1 mid · 2 cool — the door from the ray's own hue
-      hue: ray.hue }))
-    const doorNames = ['Ground', 'Work', 'Reach'] // the three doors (earth·human·heaven, the I Ching three powers)
-    const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
-    // 1 — 3 DOORS × 7 RAYS: the nav groups the 7 rosetta rays into 3 doors, every ray a real hub route (not 4 poles)
-    const threeDoorsSevenRays = doors.length === doorNames.length && rays.length === ROSETTA_RAYS.length
-      && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === ROSETTA_RAYS.length && rays.every((r) => r.route.startsWith('/'))
-    // 2 — MATCHES I CHING: the 7 rays + Home = 8 bāguà trigrams, a bijection (2³), each ray a distinct trigram
-    const distinctTrigrams = new Set(rays.map((r) => r.trigram)).size === 7 && BAGUA.length === 2 ** 3 && !rays.some((r) => r.trigram === BAGUA[0])
-    // 3 — NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE: rays are ROSETTA_RAYS (computed), every door non-empty, all 7 rays present
-    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === ROSETTA_RAYS.length // vs the old empty-Axioms / 36-in-default
-    // 4 — AGNOSTIC: the structure is computed from the rosetta tables (rays, hues, hubs) + the trigram map — path-independent
-    const agnostic = rays.every((r) => r.trigram === BAGUA[r.ray + 1] && r.door === floor(r.hue / band) && r.name.length > 0)
-    const facets = [
-      { facet: `3 DOORS × 7 RAYS — the nav groups the 7 rosetta rays (${rays.map((r) => r.name).join(', ')}) into 3 doors (${doors.map((dr) => `${dr.name}:${dr.rays.length}`).join(', ')}), every ray a real hub route (${threeDoorsSevenRays}) — not 4 hardcoded poles`, on: threeDoorsSevenRays },
-      { facet: `MATCHES THE I CHING — the 7 rays + Home map to the 8 bāguà trigrams (2³), each ray a distinct trigram (${rays.map((r) => r.trigram).join('')}, ${distinctTrigrams}): the nav is the rosetta (7 rays) and the I Ching (8 trigrams, 3 doors) at once`, on: distinctTrigrams },
-      { facet: `NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE — the rays come from ROSETTA_RAYS (computed) and are classified by rosettaRayOfContent (a named-axiom lens), not pole.rx.test; every door is populated (${everyDoorPopulated}), unlike the old 36/40-in-default / empty-Axioms 4-pole regex`, on: everyDoorPopulated },
-      { facet: `AGNOSTIC — computed from the rosetta tables (rays · hues · hubs) and the trigram map, path-independent (${agnostic}): the door of a ray is its own hue-band, the trigram its ray index — the rosetta redesign replaces the regex cross`, on: agnostic },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      doors: doors.map((dr) => ({ name: dr.name, rays: dr.rays.map((r) => `${r.trigram} ${r.name}`) })),
-      rayCount: rays.length,
-      facets,
-      statement: `The top nav redesigned — 3 doors × 7 rosetta rays, matching the I Ching — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rays (Origin, Proof, Explore, Learn, Apps, Frontier, Reference) are the agnostic content categories, classified by rosettaRayOfContent (a named-axiom lens, not a keyword regex). They group into 3 doors (${doors.map((dr) => dr.name).join(', ')}) by their own hue-band, and each ray + Home map to the 8 bāguà trigrams (7 + 1 = 8 = 2³), so the nav matches both the rosetta and the I Ching. Every door is populated — no /.*/ catch-all absorbing 90% of pages, no empty Axioms pole — the crack of navigationCrossOfTheFourPoles replaced by the computed rosetta structure.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
-// The renderable top nav — VitePress format, populated rays only, no broken links. Replaces navigationCrossOfTheFourPoles
-// (the 4-pole keyword regex). The 7 rosetta rays group into 3 doors by hue-band, each ray a bāguà trigram; only rays with
-// content (rosettaRayOfContent over the served pages) appear, so every link resolves to a real hub. Returns { en, bg }.
-export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
-  const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const // heaven·lake·fire·thunder·wind·water·mountain·earth
-  const band = 360 / 3 // three hue-doors
-  const populated = new Set(staticPages().map((page) => rosettaRayOfContent(page.slug, page.keywords)))
-  const rays = ROSETTA_RAYS.filter((ray) => populated.has(ray.ray)).map((ray) => ({
-    nameEn: ray.nameEn,
-    nameBg: ray.nameBg,
-    trigram: BAGUA[ray.ray + 1]!,
-    route: ROSETTA_RAY_HUBS[ray.ray]!.route,
-    door: floor(ray.hue / band) }))
-  const doorNames = [{ en: 'Ground', bg: 'Земя' }, { en: 'Work', bg: 'Работа' }, { en: 'Reach', bg: 'Небе' }] // earth·human·heaven
-  const doors = [0, 1, 2]
-    .map((d) => ({ ...doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
-    .filter((door) => door.rays.length > 0)
-  const build = (bg: boolean): unknown[] => [
-    { text: bg ? 'Начало' : 'Home', link: bg ? '/bg/' : '/' },
-    ...doors.map((door) => ({
-      text: bg ? door.bg : door.en,
-      items: door.rays.map((r) => ({ text: `${r.trigram} ${bg ? r.nameBg : r.nameEn}`, link: bg ? `/bg${r.route}` : r.route })) })),
-  ]
-  return { en: build(false), bg: build(true) }
-}
-
-// Improve navigation and animation together: the top nav animates on the ONE fractal clock. Each of the 7 rosetta rays
-// pulses at its own rung — a divisor of the 108 s hero cycle (fractalClockS(d), period = 108/d) — coloured by its own
-// rosetta hue and marked by its bāguà trigram. So navigation gains a per-ray visual+temporal identity, and animation
-// stays fractal-coherent (every period nested in the one clock) and rosetta-coloured — both computed, nothing hardcoded.
-export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue', matrix, () => {
-    const BAGUA = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷'] as const
-    const rungs = ROSETTA_RAYS.map((ray) => {
-      const divisor = FRACTAL_CLOCK_DIVISORS[ray.ray]! // ray 0..6 → the first 7 rungs of the 108 s clock
-      return { ray: ray.ray, name: ray.nameEn, hue: ray.hue, trigram: BAGUA[ray.ray + 1]!, divisor, periodS: fractalClockS(divisor), dur: fractalClockDur(divisor) }
-    })
-    // 1 — EACH RAY: hue + trigram + a fractal-clock rung — the nav's per-ray visual+temporal identity, computed.
-    // The count was typed as 7. It is one rung per ray, and the rays are ROSETTA_RAYS — and the ceiling is the
-    // clock's own rung count, which the theorem below this file already derives as σ₀(108) = (2+1)(3+1) = 12 and
-    // which nothing read until now. The nav fits inside the clock because 7 ≤ 12, stated rather than assumed.
-    const clock = theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix)
-    const eachRayIdentified = rungs.length === ROSETTA_RAYS.length && rungs.length <= clock.rungCount
-      && rungs.every((r) => r.hue >= 0 && r.hue < 360 && r.trigram.length === 1 && r.periodS > 0)
-    // 2 — THE ANIMATION IS A FRACTAL DIVISOR OF THE 108 s CLOCK: every rung's divisor divides 108, so every nav pulse is
-    // harmonically nested in the one hero cycle (the fractal-clock law) — no hardcoded duration
-    const allRungsAreDivisors = rungs.every((r) => FRACTAL_CLOCK_DIVISORS.includes(r.divisor) && fractalClockS(r.divisor) === r.periodS) && new Set(rungs.map((r) => r.divisor)).size === 7
-    // 3 — THE COLOUR IS THE ROSETTA WHEEL: the 7 hues span the wheel (~51° apart), so the nav animates through the
-    // rosetta's own colours — no hardcoded colour
-    // This read the wheel by hand — first hue 0, `sortedHues[6]` past 360 − 2·(360/7), strictly increasing — which
-    // is a weaker restatement of a theorem parked in this same file. It proves the hues ARE ⌊360·k/7⌋, evenly
-    // spaced by the regular 7-gon, and reproduced by recomputation rather than listed. That is stronger than
-    // "spans the wheel" and it moves if the ray count moves, where the hand-rolled index 6 and divisor 7 did not.
-    const wheel = theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours(matrix)
-    const spansWheel = wheel.computes && wheel.wheelDivision === ROSETTA_RAYS.length
-    // 4 — NAV + ANIMATION UNIFIED: both derive from the rosetta (hue, trigram) and the one clock (divisor rung)
-    const unified = eachRayIdentified && allRungsAreDivisors && spansWheel
-    const facets = [
-      { facet: `EACH RAY HAS A HUE + TRIGRAM + RUNG — the 7 nav rays carry their rosetta hue, bāguà trigram, and a fractal-clock divisor rung (${rungs.map((r) => `${r.trigram}${r.name}·${r.divisor}`).join(' ')}), computed (${eachRayIdentified}): a per-ray visual and temporal identity`, on: eachRayIdentified },
-      { facet: `THE ANIMATION IS A FRACTAL DIVISOR OF THE 108 s CLOCK — every ray pulses at period 108/d for a divisor d of 108, 7 distinct rungs all nested in the one hero cycle (${allRungsAreDivisors}): the fractal-clock law, no hardcoded duration`, on: allRungsAreDivisors },
-      { facet: `THE COLOUR IS THE ROSETTA WHEEL — the ${wheel.wheelDivision} hues are the wheel division ⌊360·k/${wheel.wheelDivision}⌋ (${wheel.hues.join(', ')}), so the nav animates through the rosetta's own colours (${spansWheel}), no hardcoded colour`, on: spansWheel },
-      { facet: `NAV + ANIMATION UNIFIED — both derive from the rosetta (hue, trigram) and the one fractal clock (divisor rung) (${unified}): improving navigation (per-ray identity) and animation (fractal-coherent, rosetta-coloured) at once, all computed`, on: unified },
-    ]
-    return {
-      computes: facets.every((entry) => entry.on),
-      rungs: rungs.map((r) => `${r.trigram} ${r.name}: hue ${r.hue}, ${r.periodS}s`),
-      facets,
-      statement: `The top nav animates on the fractal clock — each ray pulses at its rung, coloured by its rosetta hue — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rosetta rays each carry a hue, a bāguà trigram, and a fractal-clock rung (a divisor of the 108 s hero cycle), so each nav ray pulses at period 108/d coloured by its own hue. Navigation gains a per-ray visual+temporal identity; animation stays fractal-coherent (every period nested in the one clock, 7 distinct divisor rungs) and rosetta-coloured (the 7 hues span the wheel ~51° apart) — both computed from the rosetta and the one clock, nothing hardcoded.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-  })
-}
-
 // Improve the clock by theorems, not constants. The fractal clock's numbers were asserted (108, the divisor list); here
 // they are DERIVED. The rung count is the DIVISOR FUNCTION: σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, a multiplicative
 // theorem, not a hand count. The rungs are GENERATED from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS.
@@ -2480,56 +2364,6 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
       statement: `The 7 nav hues are the 7-fold wheel division — a theorem, not arbitrary colours — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each rosetta ray's sealed hue equals ⌊360·k/7⌋ exactly (0,51,102,154,205,257,308 = the regular 7-gon on the hue circle), so the colours derive from the 7-fold division of the wheel, not a written list. 7 is coprime to the vortex (6), the digital root (9) and the stations (10), so the division never aliases; the hues are evenly spaced by ⌊360/7⌋ = 51–52°; and recomputing 360k/7 reproduces the sealed table — change the 7 and every hue changes. Companion to the clock: the fractal-clock rungs are the divisor function of 108, the nav hues are the 7-fold division of 360 — both theorems.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
-}
-
-// The gates and ways BECOME the navigation and links. The site's link graph is the page→ray-hub→door DAG: each page
-// links up to its rosetta ray hub, each hub up to its hue-door — so the DAG's in-degree-0 SOURCES are the doors (the
-// nav GATES) and its edges are the WAYS (the links). topologicalOrder confirms the sources are exactly the doors, and
-// a walk of the ways from those gates reaches every page — the navigation is not hand-authored but COMPUTED from the
-// theorem structure (the gates from the rosetta rays, the links from the DAG). This closes the boundary-research loop:
-// the gates and ways of the theorems ARE the navigation and links of the site. [[routes-nav-from-folder-tree]]
-export function theGatesAndWaysBecomeTheNavigationAndLinks() {
-  const pages = staticPages()
-  const band = 360 / 3 // three hue-doors — the same partition rosettaIChingNavItems uses
-  const doorOfRay = (ray: number): number => floor(ROSETTA_RAYS[ray]!.hue / band)
-  const populatedRays = [...new Set(pages.map((page) => rosettaRayOfContent(page.slug, page.keywords)))] // the rays with content
-  const doors = [...new Set(populatedRays.map(doorOfRay))] // the distinct hue-doors — the nav gates
-  // node ids: doors, then ray-hubs, then pages — the link DAG
-  const doorId = (door: number): number => doors.indexOf(door)
-  const rayId = (ray: number): number => doors.length + populatedRays.indexOf(ray)
-  const pageId = (index: number): number => doors.length + populatedRays.length + index
-  const nodeCount = doors.length + populatedRays.length + pages.length
-  const edges: number[][] = []
-  for (const ray of populatedRays) edges.push([doorId(doorOfRay(ray)), rayId(ray)]) // door → hub (the way into a door)
-  pages.forEach((page, index) => edges.push([rayId(rosettaRayOfContent(page.slug, page.keywords)), pageId(index)])) // hub → page (the link to a page)
-  const ways = topologicalOrder(nodeCount, edges)
-  // the GATES are the sources: the doors, in-degree 0 — nothing links down to them, they are the nav top
-  const gatesAreTheSources = ways.isDAG && ways.sources.length === doors.length && ways.sources.every((source) => source < doors.length)
-  // the WAYS reach every page: a walk from the gate sources along the links covers every node — no orphan page
-  const adjacency: number[][] = Array.from({ length: nodeCount }, () => [])
-  for (const [from, to] of edges) adjacency[from!]!.push(to!)
-  const reached = new Set<number>(ways.sources)
-  const queue = [...ways.sources]
-  while (queue.length) { const node = queue.shift()!; for (const next of adjacency[node]!) if (!reached.has(next)) { reached.add(next); queue.push(next) } }
-  const everyPageReachedFromAGate = reached.size === nodeCount
-  const linksAreTheWays = edges.length === populatedRays.length + pages.length && edges.length > 0 // one link per hub-into-door and per page-into-hub
-  const navGates = rosettaIChingNavItems().en.length // the rendered nav doors — the same gates
-  const { computes, facets } = computesGate('the-gates-and-ways-become-the-navigation-and-links', [
-    { facet: `THE GATES ARE THE NAVIGATION — the ${doors.length} hue-doors are the link DAG's in-degree-0 sources (${gatesAreTheSources}), the nav top that rosettaIChingNavItems renders (${navGates} doors): the gates ARE the navigation entry points`, on: gatesAreTheSources && navGates > 0 },
-    { facet: `THE WAYS ARE THE LINKS — the ${edges.length} DAG edges (page→hub, hub→door) are the site's links, sequenced by topologicalOrder (isDAG ${ways.isDAG}, ${linksAreTheWays}): the ways ARE the link structure`, on: linksAreTheWays && ways.isDAG },
-    { facet: `EVERY PAGE IS REACHED FROM A GATE — a walk of the ways from the gate sources reaches all ${nodeCount} nodes (${everyPageReachedFromAGate}): no orphan page, the navigation covers the whole corpus`, on: everyPageReachedFromAGate },
-    { facet: `NAV = GATES, LINKS = WAYS, COMPUTED — the navigation is derived from the theorem structure (gates from the rosetta rays, links from the DAG ways), not hand-authored (${gatesAreTheSources && everyPageReachedFromAGate}): a computed, refutable nav — an orphan page or a disconnected gate would break it`, on: gatesAreTheSources && everyPageReachedFromAGate },
-  ])
-  return {
-    navigates: computes,
-    gates: doors.length,
-    ways: edges.length,
-    pagesReached: reached.size,
-    nodeCount,
-    facets,
-    root: merkleFold([toUuid(`gates:${doors.join(',')}`), toUuid(`ways:${edges.length}`), toUuid(`reached:${reached.size}/${nodeCount}`)]),
-    statement: `The gates and ways become the navigation and links — ${facets.filter((entry) => entry.on).length}/${facets.length}. The site's link graph is the page→ray-hub→door DAG: each page links up to its rosetta ray hub and each hub up to its hue-door, so the DAG's ${doors.length} in-degree-0 sources are the doors (the nav gates) and its ${edges.length} edges are the ways (the links). topologicalOrder confirms the gates are exactly the sources, and a walk of the ways reaches all ${nodeCount} nodes — every page is reached from a gate. The navigation is not hand-authored but computed from the theorem structure: the gates and ways of the theorems ARE the navigation and links of the site.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Complete the I Ching with the rosetta — all 64 hexagrams, all seals at once, all in quantum. The I Ching IS 64 = 2⁶:
@@ -2670,9 +2504,11 @@ export function animationsAreProofQuantumInteractionIsMissingComponentsInteractI
 // spec) is the next wave. [[iching-computed-css]] [[feedback-derive-dont-assert-every-number-and-dynamic]]
 export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTypographySpacingAllDerived() {
   const rays = ROSETTA_RAYS.length // 7
-  // 1 — PALETTE DERIVED: the hues are ⌊360k/rays⌋ — evenly spaced, not assumed
-  const hues = ROSETTA_RAYS.map((ray) => ray.hue)
-  const paletteDerived = hues.every((hue, k) => hue === floor((360 * k) / rays)) && new Set(hues).size === rays
+  // 1 — PALETTE DERIVED: ASK THE THEOREM. This recomputed ⌊360k/rays⌋ by hand a screen below the theorem that proves it
+  // (the 7-fold wheel division, coprime and evenly spaced); the palette now reads that theorem and its hue table.
+  const wheel = theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours()
+  const hues = wheel.hues
+  const paletteDerived = wheel.computes && wheel.wheelDivision === rays && new Set(hues).size === rays
   // 2 — TYPOGRAPHY DERIVED: a modular scale = powers of φ (each step ×φ), no assumed sizes
   const typeScale = [0, 1, 2, 3, 2 + 2].map((step) => PHI ** step)
   const typographyDerived = typeScale.slice(1).every((size, i) => abs(size / typeScale[i]! - PHI) < 1e-9)

@@ -15,8 +15,6 @@ export {
 export type { JsonLdPageIdentity } from '../render'
 export {
   siteConfig,
-  localeNavLinks,
-  localeSidebarKeys,
   homeHero,
   vitepressNativeDocsConfig,
   vitepressDocsResearchImprovements,

@@ -13,7 +13,7 @@ import { leanProgramRoot } from '../src/pair/formal/proofs/index.ts'
 let feedProgram: string | undefined
 import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin, measuredOncePlugin, lostInJson } from './plugins/index.mts'
 import { vitepressConfigComputesAll, collectiveContentAddressedMeshComputes } from './render'
-import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, leanBlogNavigation, computedPageDescription, pageCitation, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
+import { computedSeo, jsonLdTemplate, pageHreflangAlternates, leanBlogNavigation, computedPageDescription, pageCitation, seoDocumentTitle, seoMetaDescription, openGraphCardFromRoute, siteConfig, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
@@ -308,9 +308,7 @@ function vpLibNestedResolvePlugin(): import('vite').Plugin {
   }
 }
 
-// Root locale = English: canonical bare routes at /; gla + bg prefixed via localeNavLinks.
-// Navigation uses 7 rosetta rays (Ⰰ Alpha…Ⱄ Word) grouped into three doors — computed from rosettaRayOf.
-// /en/ and /bg/ locales: localeNavLinks + localeSidebarKeys prefix from SITE_LOCALES (VitePress useLangs twin).
+// Root locale = English: canonical bare routes at /; the Glagolitic edition at /gla/.
 // THE BLOG'S NAVIGATION IS COMPUTED FROM THE MONOGRAPHS (leanBlogNavigation, src/wind/site): feed · Clay cases · subjects,
 // every link a page that exists. The rosetta-door nav and the roster sidebar named the topic pages the Lean blog retires.
 const glaNav = leanBlogNavigation('gla')

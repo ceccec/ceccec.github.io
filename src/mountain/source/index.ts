@@ -2452,7 +2452,7 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
   const controller = [
     { module: 'src/routes', role: 'rosettaComputesNavigationAndContent, siteNavigation, route builders' },
     { module: 'src/routes/automount', role: 'catchAllRoutePaths, monographSliceFromRoute, indexOfIndexes' },
-    { module: 'src/site', role: 'siteConfig, localeNavLinks, localeSidebarKeys, localePath' },
+    { module: 'src/site', role: 'siteConfig, leanBlogNavigation, localePath' },
     { module: 'src/mountain/og', role: 'computedSeo, jsonLdTemplate, microdata — path → SEO props' },
     { module: '.vitepress/config.mts', role: 'transformPageData — glue: route → model → view head/meta' },
     { module: '.vitepress/computed-pages.mts', role: 'computed pages plugin — Glagolitic home from English' },

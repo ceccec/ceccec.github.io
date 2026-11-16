@@ -1340,7 +1340,7 @@ export const SITE_LOCALES = [
   { code: 'cu', label: toGlagolitic('Glagolica'), lang: 'cu', path: '/gla/', slugPath: 'gla', name: 'gla', type: 'locale' as const, ogLocale: 'cu' },
 ]
 
-export { localeNavLinks, localePath, localePaths, localeSidebarKeys, vitepressLocaleLink, localizeMonolingual } from '../../wind/site/index.ts'
+export { localePath, localePaths, vitepressLocaleLink, localizeMonolingual } from '../../wind/site/index.ts'
 export type { LocaleName, VitePressLocaleKey } from '../../wind/site/index.ts'
 
 // One source for the [monograph] route in every locale — no mirroring. The page set, titles and SEO

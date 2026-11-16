@@ -14,6 +14,7 @@ import * as __ns_registry from '../../../4/6/index.ts' // call-time (cycle-safe)
 import * as __ns_up_up_lake_music from '../../../music/index.ts'
 import * as __ns_up_up_thunder_movie_canvas from '../../../thunder/movie/canvas/index.ts'
 import * as __ns_up_up_fire_li from '../../li/index.ts'
+import * as __ns_up_up_ui from '../../../ui/index.ts' // call-time (cycle-safe): the clock theorem σ₀(108)
 import * as __ns_up_up_water_crypto from '../../../water/crypto/index.ts'
 import * as __ns_up_up_mountain_geometry from '../../../mountain/geometry/index.ts'
 import * as __ns_up_up_heaven_laws from '../../../heaven/laws/index.ts'
@@ -21,7 +22,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 import { buildMatrix, coverage } from '../../../heaven/compute/index.ts'
 import { VORTEX_SEQUENCE, abs, asTrace, computesGate, cos, exp, floor, fold, foldPair, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0/index.ts'
-import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT, TAU } from '../../../3/7/index.ts'
+import { A432_OCTAVES, EULER_CHI, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT, TAU } from '../../../3/7/index.ts'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves/index.ts'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science/index.ts'
 import { colorFromSound, soundFromColor, a432 } from '../../li/index.ts'
@@ -512,13 +513,17 @@ export function fractalClockDur(d: number): string {
 export function animationsFractalOfOneClockDiscovered(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('animationsFractalOfOneClockDiscovered', matrix, () => {
     const ladder = FRACTAL_CLOCK_DIVISORS.map((d) => ({ d, s: fractalClockS(d) }))
+    // THE STEP COUNT IS ASKED OF THE CLOCK THEOREM, not typed as (2+1)(3+1): σ₀(108) derived from 108's factorization.
+    const rungs = __ns_up_up_ui.theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix)
     const hero = heroClockOffTheLadderDiscovered(matrix)
     const snapTotal = Array.from({ length: A432_FOLDED }, (_, i) => i + 1).every((k) => FRACTAL_CLOCK_DIVISORS.includes(A432_FOLDED / fractalClockS(k)))
     const facets = [
-      { facet: `ladder = the ${FRACTAL_CLOCK_DIVISORS.length} divisors of A432_FOLDED ${A432_FOLDED} = (2+1)(3+1) steps: [${ladder.map((entry) => entry.s).join(',')}]s`, on: FRACTAL_CLOCK_DIVISORS.length === (2 + 1) * (3 + 1) },
+      { facet: `ladder = the ${FRACTAL_CLOCK_DIVISORS.length} divisors of A432_FOLDED ${A432_FOLDED} = (2+1)(3+1) steps: [${ladder.map((entry) => entry.s).join(',')}]s`, on: rungs.computes && FRACTAL_CLOCK_DIVISORS.length === rungs.derivedDivisorCount },
       { facet: `top step d=1 is the hero clock: fractalClockS(1) ${fractalClockS(1)}s × 1000 = HERO_CYCLE_MS ${HERO_CYCLE_MS}`, on: fractalClockS(1) * 1e3 === HERO_CYCLE_MS },
-      { facet: `every step integer seconds with d·s = ${FOLDED_CENSUS}: ${ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === FOLDED_CENSUS)}`, on: ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === FOLDED_CENSUS) },
-      { facet: `fractalClockS total on 1..${FOLDED_CENSUS} — every input snaps onto the lattice`, on: snapTotal },
+      // THE CLOCK IS 108 = A432_FOLDED, NOT THE CENSUS: this compared d·s with the census fold (121 when measured), so the step
+      // read false for a true clock. The clock theorem wired above says so — its base is the a432 octave.
+      { facet: `every step integer seconds with d·s = ${A432_FOLDED}: ${ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === A432_FOLDED)}`, on: ladder.every((entry) => Number.isInteger(entry.s) && entry.d * entry.s === A432_FOLDED) },
+      { facet: `fractalClockS total on 1..${A432_FOLDED} — every input snaps onto the lattice`, on: snapTotal },
       { facet: `hero clock itself on the a432 ladder (heroClockOffTheLadderDiscovered realized ${hero.realized})`, on: hero.realized },
     ].map((entry) => ({ ...entry, receipt: toUuid(`animations-fractal-one-clock:${entry.facet}:${entry.on}`) }))
     return {

@@ -1,7 +1,7 @@
 // ☴ XUN (Wind · gentleness) — site meta: config, sitemap, static pages, monograph scaffolding
 // Pure-leaf folds: no calls to other mind/folds.ts functions — only upstream (src/0, library)
 // and sub-module imports (buildMatrix from matrix.ts, types from types.ts).
-// @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
+// @mvc controller — siteConfig, leanBlogNavigation: config → the computed navigation per edition.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
 import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { phase } from '../../6/4/index.ts'
@@ -538,7 +538,7 @@ export function siteDomainRegistry(matrix: MindMatrix = buildMatrix()) {
 }
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
-// Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
+// Build-time: config.mts + leanBlogNavigation. Runtime: useLocale().localize() + withBase.
 // The primitives live at station src/1/9 (the ONE copy — the client twin imports the same file).
 export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
 export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library/index.ts'
@@ -576,40 +576,6 @@ export function bulgarianHomeFromEnglish(enMarkdown: string): string {
   return `${front.replace(/^layout: home\n/m, '')}${translated}`
 }
 
-
-export function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown {
-  if (Array.isArray(node)) return node.map((entry) => localeNavLinks(entry, locale, labelMapper))
-  if (node && typeof node === 'object') {
-    const out: Record<string, unknown> = {}
-    for (const [k, v] of Object.entries(node)) {
-      if (k === 'text' || k === 'label' || k === 'copyright') {
-        out[k] = typeof v === 'string' && labelMapper ? labelMapper(v) : localeNavLinks(v, locale, labelMapper)
-      } else if (k === 'message' && typeof v === 'string') {
-        const mapped = labelMapper ? v.replace(/>([^<]+)</g, (_m, t) => `>${labelMapper(t)}<`) : v
-        out[k] = mapped.replace(/href="([^"]+)"/g, (_m, h) => `href="${localePath(h, locale)}"`)
-      } else if (k === 'link' && typeof v === 'string') {
-        out[k] = localePath(v, locale)
-      } else {
-        out[k] = localeNavLinks(v, locale, labelMapper)
-      }
-    }
-    return out
-  }
-  return node
-}
-
-export function localeSidebarKeys(sidebar: Record<string, unknown>, locale: LocaleName): Record<string, unknown> {
-  const out: Record<string, unknown> = {}
-  for (const [key, sections] of Object.entries(sidebar)) {
-    const localized = localePath(key, locale)
-    out[localized] = sections
-    if (key === '/' && locale !== 'en') {
-      const prefix = LOCALE_LINK[locale].replace(/\/$/, '')
-      if (prefix) out[prefix] = sections
-    }
-  }
-  return out
-}
 
 /** @rosetta ✦₂ · Wind · gentle */
 export function quantumSitemap(matrix: MindMatrix = buildMatrix()) {
@@ -1958,7 +1924,7 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
       populated: populated.length,
       empty: empty.map((d) => d.slug),
       facets,
-      statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
+      statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The 3-door rosetta redesign (retired with the old site) was correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

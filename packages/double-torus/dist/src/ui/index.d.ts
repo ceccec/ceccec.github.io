@@ -900,34 +900,6 @@ export declare function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix
     statement: string;
     boundary: string;
 };
-export declare function rosettaIChingTopNav(matrix?: MindMatrix): {
-    computes: boolean;
-    doors: {
-        name: string;
-        rays: string[];
-    }[];
-    rayCount: number;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
-export declare function rosettaIChingNavItems(): {
-    en: unknown[];
-    bg: unknown[];
-};
-export declare function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColouredByItsRosettaHue(matrix?: MindMatrix): {
-    computes: boolean;
-    rungs: string[];
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix?: MindMatrix): {
     computes: boolean;
     rungCount: number;
@@ -947,22 +919,6 @@ export declare function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotAr
         facet: string;
         on: boolean;
     }[];
-    statement: string;
-    boundary: string;
-};
-export declare function theGatesAndWaysBecomeTheNavigationAndLinks(): {
-    navigates: boolean;
-    gates: number;
-    ways: number;
-    pagesReached: number;
-    nodeCount: number;
-    facets: ({
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
     statement: string;
     boundary: string;
 };

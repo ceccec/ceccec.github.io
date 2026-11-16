@@ -1657,7 +1657,7 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
     { kind: 'open-graph', example: 'pairTrinityOpenGraph', form: 'two terms → the merged OG bind (the card)' },
     { kind: 'accounting', example: 'theTheoremAxiomAccountingProvesPairsInTrinitiesDoubleEntryBalances', form: 'two debits + one credit (the apex)' },
     { kind: 'enforcement', example: 'enforcementTrinity', form: 'gate · cross · fold (2-of-3 consensus)' },
-    { kind: 'navigation', example: 'rosettaIChingNavItems', form: 'three doors (Ground · Work · Reach)' },
+    { kind: 'navigation', example: 'leanBlogNavigation', form: 'the feed · the Clay cases · the subjects' },
     { kind: 'inverse', example: 'axiomsAndTheoremsAreComplementaryInversesBidirectionallyAccountedToTheBitNoGaps', form: 'axiom + theorem + the fold that binds them' },
   ]
   // 1 — THE COMMON STRUCTURE: every trinity is two content-addresses folding to a bidirectional THIRD — two make three
