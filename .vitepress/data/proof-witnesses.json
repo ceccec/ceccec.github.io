@@ -185,7 +185,7 @@
   "form": "bars",
   "values": [
    42,
-   0.0839
+   0.0826
   ],
   "holds": true,
   "caption": "the quantities theMovieWiresTheoremsByNaturalEntanglementsNotByIndex computes for this theorem (spokes, linearNeighbourFraction), drawn from its own run — no other proof returns them"
@@ -193,7 +193,7 @@
  "the local intelligence goes exactly as far as computation — and it measures where that is": {
   "form": "bars",
   "values": [
-   48,
+   47,
    12
   ],
   "holds": true,
@@ -299,26 +299,26 @@
   "form": "bars",
   "values": [
    8,
-   35,
-   34,
+   36,
+   36,
    40,
    54,
-   6,
-   39,
-   61,
+   7,
+   38,
    57,
+   55,
    9,
    7,
    12,
    10,
-   49,
+   46,
    11,
    30,
    36,
-   31,
+   32,
    12,
    21,
-   9,
+   11,
    12,
    12,
    6,
@@ -333,9 +333,9 @@
    2,
    10,
    9,
-   10,
+   12,
    6,
-   5,
+   6,
    8,
    4,
    4,
@@ -849,15 +849,15 @@
  "private search ranked by Okapi BM25 — the industry-standard lexical ranking": {
   "form": "bars",
   "values": [
-   18.9322,
-   12.2765,
-   10.7865,
-   10.5661,
-   10.2919,
-   10.2771,
-   10.0861,
-   9.58712,
-   9.45348
+   18.9429,
+   12.2809,
+   10.7907,
+   10.5738,
+   10.2954,
+   10.2845,
+   10.0902,
+   9.59161,
+   9.45795
   ],
   "holds": true,
   "caption": "numbers privateSearchRanksByBM25IndustryStandard computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -865,15 +865,15 @@
  "search improves by experience — private, deterministic relevance feedback over the BM25 index": {
   "form": "bars",
   "values": [
-   8.4046,
-   7.01882,
-   6.46276,
-   5.92569,
-   5.24632,
-   5.1819,
-   5.04308,
-   4.96033,
-   4.85552
+   8.4078,
+   7.02192,
+   6.46643,
+   5.92891,
+   5.25002,
+   5.18417,
+   5.04566,
+   4.96404,
+   4.85904
   ],
   "holds": true,
   "caption": "numbers searchImprovesByExperiencePrivateRelevanceFeedback computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -881,15 +881,15 @@
  "navigation is the search results plus the referrer — one index for search and navigation": {
   "form": "bars",
   "values": [
-   7.1744,
-   6.70893,
-   6.6618,
-   6.52451,
-   6.16015,
-   5.05068,
-   5.03365,
-   4.93525,
-   4.72351
+   7.17722,
+   6.71201,
+   6.66486,
+   6.52743,
+   6.16327,
+   5.05357,
+   5.03654,
+   4.93705,
+   4.72659
   ],
   "holds": true,
   "caption": "numbers navigationFromSearchResultsAndReferrer computes for this theorem (edges[].score), drawn from its own run — no other proof returns them"
@@ -1589,7 +1589,7 @@
  "the chat may improve the UI measured by the user experience — telemetry is also possible in chat": {
   "form": "bars",
   "values": [
-   5.886,
+   5.889,
    0.888,
    2
   ],
@@ -1622,7 +1622,7 @@
   "form": "bars",
   "values": [
    30,
-   21
+   22
   ],
   "holds": true,
   "caption": "the quantities feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations computes for this theorem (pages, distinctProofs), drawn from its own run — no other proof returns them"
