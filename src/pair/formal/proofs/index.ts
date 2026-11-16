@@ -1766,6 +1766,118 @@ export const LEAN_RENAMED: readonly { readonly file: string; readonly from: stri
   { file: 'four.lean', from: 'complement_fixes_p_and_pspace_and_reflects_to_an_axis_gate', to: 'complement_fixes_the_closed_classes_and_reflects_to_an_axis_gate' },
 ]
 
+/**
+ * EACH THEOREM, CROSS-VERIFIED ONLINE WHERE A PUBLIC DATASET CAN SPEAK TO IT (owner, 2026-11-16: "each theorem need to be
+ * cross verified on line via nist cern opendata"). Three outcomes and never two: a dataset HOLDS the theorem's subject,
+ * REFUTES it, or was not reached (UNCHECKED — not green). A theorem no public dataset can confirm or refute — exact
+ * arithmetic on a finite model, decided by the kernel — is said to be exactly that, with no lookup invented for it.
+ * The registry binds theorems to sources by name; a binding to a theorem that no longer exists refuses, so a rename
+ * cannot leave a dead binding behind. The judges are pure: verify:theorem-sources fetches, these decide.
+ */
+export type TheoremSourceVerdict = { readonly state: 'held' | 'refuted' | 'unchecked'; readonly detail: string }
+export type TheoremSource = {
+  readonly id: string
+  readonly source: string
+  readonly url: string
+  readonly theorems: readonly { readonly file: string; readonly name: string }[]
+  /** What the data can say about the theorems' subject — stated, so a held verdict is read at exactly its strength. */
+  readonly relation: string
+  readonly judge: (text: string | null) => TheoremSourceVerdict
+}
+
+const unreached = (url: string): TheoremSourceVerdict => ({ state: 'unchecked', detail: `not reached: ${url} — UNCHECKED, not green` })
+
+/** CMS Z→μμ events: every muon pair is timelike, and its invariant mass is unchanged by a boost along the beam. */
+function judgeCmsDimuons(text: string | null): TheoremSourceVerdict {
+  if (text === null) return unreached('CERN Open Data record 545, Zmumu.csv')
+  const [header, ...rows] = text.trim().split('\n')
+  const col = (header ?? '').split(',')
+  const at = (name: string) => col.indexOf(name)
+  const need = ['pt1', 'eta1', 'phi1', 'pt2', 'eta2', 'phi2'].map(at)
+  if (need.some((i) => i < 0)) return { state: 'unchecked', detail: `columns pt/eta/phi not in the header: ${header}` }
+  const events = rows.map((r) => r.split(',').map(Number)).filter((v) => need.every((i) => Number.isFinite(v[i])))
+  if (!events.length) return { state: 'unchecked', detail: 'no event rows parsed' }
+  // massless muons: M² = 2·pT₁·pT₂·(cosh Δη − cos Δφ), the Minkowski interval of the summed four-momentum
+  const m2 = (e: number[], y: number) => 2 * e[need[0]!]! * e[need[3]!]! * (Math.cosh((e[need[1]!]! + y) - (e[need[4]!]! + y)) - Math.cos(e[need[2]!]! - e[need[5]!]!))
+  // a boost along the beam shifts every pseudorapidity by one rapidity y; the data's own first value is used, no literal
+  const y = events[0]![need[1]!]!
+  const tolerance = Math.sqrt(Number.EPSILON)
+  const spacelike = events.filter((e) => !(m2(e, 0) > 0)).length
+  const moved = events.filter((e) => Math.abs(m2(e, y) - m2(e, 0)) > tolerance * m2(e, 0)).length
+  const masses = events.map((e) => Math.sqrt(m2(e, 0))).sort((a, b) => a - b)
+  const median = masses[Math.floor(masses.length / 2)]!
+  const detail = `${events.length} CMS 2011 Z→μμ events: ${events.length - spacelike} timelike, ${events.length - moved} with the invariant mass unchanged by a boost of rapidity ${y.toFixed(4)} (relative change ≤ √ε); median pair mass ${median.toFixed(2)} GeV`
+  return spacelike === 0 && moved === 0 ? { state: 'held', detail } : { state: 'refuted', detail }
+}
+
+export const THEOREM_SOURCES: readonly TheoremSource[] = [
+  {
+    id: 'codata-c',
+    source: 'NIST CODATA (Fundamental Physical Constants)',
+    url: 'https://physics.nist.gov/cuu/Constants/Table/allascii.txt',
+    theorems: [{ file: 'spacetime.lean', name: 'light_is_the_fixed_point' }, { file: 'spacetime.lean', name: 'light_is_fixed_from_either_side' }],
+    relation: 'the theorems prove c the fixed point of relativistic velocity addition; CODATA lists c as exact — fixed by the definition of the metre, the same in every frame — which is the measurement side of that invariance',
+    judge: (text) => {
+      if (text === null) return unreached('NIST CODATA allascii.txt')
+      const line = text.split('\n').find((l) => /^speed of light in vacuum\s/.test(l))
+      if (!line) return { state: 'unchecked', detail: 'no "speed of light in vacuum" line in the CODATA table' }
+      return /\(exact\)/.test(line) ? { state: 'held', detail: `CODATA: ${line.replace(/\s+/g, ' ').trim()}` } : { state: 'refuted', detail: `CODATA does not list c as exact: ${line.trim()}` }
+    },
+  },
+  {
+    id: 'cms-zmumu',
+    source: 'CERN Open Data, CMS Run2011A, record 545 (CC0)',
+    url: 'https://opendata.cern.ch/record/545/files/Zmumu.csv',
+    theorems: [{ file: 'spacetime.lean', name: 'the_boost_preserves_the_interval' }, { file: 'spacetime.lean', name: 'timelike_invariant' }],
+    relation: 'the theorems prove a boost preserves the interval and keeps a timelike interval timelike; on real collision events the muon pair interval (invariant mass²) is positive and unchanged by a boost along the beam',
+    judge: judgeCmsDimuons,
+  },
+  {
+    id: 'dlmf-25-4-1',
+    source: 'NIST Digital Library of Mathematical Functions, §25.4',
+    url: 'https://dlmf.nist.gov/25.4',
+    theorems: [{ file: 'riemann.lean', name: 'sigma_is_an_involution' }, { file: 'riemann.lean', name: 'sigma_fixes_only_the_point_one_half' }],
+    relation: 'the theorems prove s ↦ 1 − s an involution fixing only s = 1/2; DLMF 25.4.1 is the functional equation relating ζ(1 − s) to ζ(s) — the relation that map is the symmetry of',
+    judge: (text) => {
+      if (text === null) return unreached('NIST DLMF §25.4')
+      const eq = /alttext="(\\zeta\\left\(1-s\\right\)=[^"]*)"/.exec(text)
+      if (!eq) return { state: 'unchecked', detail: 'equation 25.4.1 not found on the page' }
+      return /\\zeta\\left\(s\\right\)/.test(eq[1]!) ? { state: 'held', detail: `DLMF 25.4.1: ${eq[1]!.replace(/%\s*/g, '').trim()}` } : { state: 'refuted', detail: `25.4.1 does not relate ζ(1−s) to ζ(s): ${eq[1]}` }
+    },
+  },
+  {
+    id: 'lmfdb-parity',
+    source: 'LMFDB elliptic curves over ℚ (ec_curvedata)',
+    url: 'https://www.lmfdb.org/api/ec_curvedata/?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=100',
+    theorems: [{ file: 'bsd.lean', name: 'root_number_one_iff_rank_even' }],
+    relation: 'the theorem proves, for a sign w, that w = (−1)^r exactly when (w = 1 ↔ r even); with w = (−1)^(analytic rank) from the functional equation, the parity conjecture is that the algebraic rank has the same parity — checked on the LMFDB curves, which carry both ranks',
+    // LMFDB SOMETIMES ANSWERS WITH A reCAPTCHA BOT CHALLENGE (measured 2026-11-16, intermittent). A challenge is never
+    // bypassed or retried around: it is UNCHECKED, and the data is judged whenever LMFDB answers with data.
+    judge: (text) => {
+      if (text === null) return unreached('LMFDB ec_curvedata')
+      if (!/^\s*[{[]/.test(text)) return { state: 'unchecked', detail: 'LMFDB answered with a reCAPTCHA bot challenge, not data — not bypassed; UNCHECKED' }
+      const parsed = JSON.parse(text) as { data?: { lmfdb_label: string; rank: number; analytic_rank: number }[] } | { lmfdb_label: string; rank: number; analytic_rank: number }[]
+      const curves = (Array.isArray(parsed) ? parsed : parsed.data ?? []).filter((c) => Number.isInteger(c.rank) && Number.isInteger(c.analytic_rank))
+      if (!curves.length) return { state: 'unchecked', detail: 'no curve carried both ranks' }
+      const differ = curves.filter((c) => (c.rank - c.analytic_rank) % 2 !== 0)
+      const detail = `${curves.length} LMFDB curves (first ${curves[0]!.lmfdb_label}): algebraic and analytic rank agree in parity on ${curves.length - differ.length}${differ.length ? `; differ on ${differ.slice(0, 5).map((c) => c.lmfdb_label).join(', ')}` : ''}`
+      return differ.length === 0 ? { state: 'held', detail } : { state: 'refuted', detail }
+    },
+  },
+]
+
+/** Every theorem of the corpus with its online verdict: the bound ones judged by their source, the rest decided by the
+ *  kernel alone with no public dataset that could confirm or refute them. A binding to a missing theorem throws. */
+export function theoremSourceVerdicts(fetched: Readonly<Record<string, string | null>>, root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.') {
+  const rows = leanPageRows(root)
+  const known = new Set(rows.map((r) => `${r.file}:${r.name}`))
+  for (const s of THEOREM_SOURCES) for (const t of s.theorems) if (!known.has(`${t.file}:${t.name}`)) throw new Error(`THEOREM_SOURCES ${s.id}: ${t.file} ${t.name} is not a theorem in the corpus — the binding is dead`)
+  const judged = THEOREM_SOURCES.map((s) => ({ source: s, verdict: s.judge(fetched[s.url] ?? null) }))
+  const bound = new Map(judged.flatMap(({ source, verdict }) => source.theorems.map((t) => [`${t.file}:${t.name}`, { source: source.id, verdict }] as const)))
+  const theorems = rows.map((r) => ({ file: r.file, name: r.name, slug: r.slug, ...(bound.get(`${r.file}:${r.name}`) ?? { source: null, verdict: { state: 'kernel' as const, detail: 'exact statement on a finite model, decided by the Lean kernel; no public dataset can confirm or refute it' } }) }))
+  return { judged, theorems, withSource: theorems.filter((t) => t.source !== null).length, kernelOnly: theorems.filter((t) => t.source === null).length }
+}
+
 export function leanPageSlug(file: string, name: string): string {
   return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
 }

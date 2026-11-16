@@ -1,8 +1,8 @@
 {
-  "tree": "7e83f75dcfeaa37c",
-  "address": "5bf01ea464d78770",
-  "gates": 69,
-  "clean": 65,
+  "tree": "48efc503a09820be",
+  "address": "d454331eda943b6c",
+  "gates": 70,
+  "clean": 66,
   "violated": [
     "verify:clay-datasets",
     "verify:deposit-counts",
@@ -16,5 +16,5 @@
     "verify:release-live"
   ],
   "notRun": [],
-  "live": 9
+  "live": 10
 }

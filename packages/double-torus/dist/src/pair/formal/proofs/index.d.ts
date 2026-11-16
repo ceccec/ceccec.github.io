@@ -746,6 +746,57 @@ export declare const LEAN_RENAMED: readonly {
     readonly from: string;
     readonly to: string;
 }[];
+/**
+ * EACH THEOREM, CROSS-VERIFIED ONLINE WHERE A PUBLIC DATASET CAN SPEAK TO IT (owner, 2026-11-16: "each theorem need to be
+ * cross verified on line via nist cern opendata"). Three outcomes and never two: a dataset HOLDS the theorem's subject,
+ * REFUTES it, or was not reached (UNCHECKED — not green). A theorem no public dataset can confirm or refute — exact
+ * arithmetic on a finite model, decided by the kernel — is said to be exactly that, with no lookup invented for it.
+ * The registry binds theorems to sources by name; a binding to a theorem that no longer exists refuses, so a rename
+ * cannot leave a dead binding behind. The judges are pure: verify:theorem-sources fetches, these decide.
+ */
+export type TheoremSourceVerdict = {
+    readonly state: 'held' | 'refuted' | 'unchecked';
+    readonly detail: string;
+};
+export type TheoremSource = {
+    readonly id: string;
+    readonly source: string;
+    readonly url: string;
+    readonly theorems: readonly {
+        readonly file: string;
+        readonly name: string;
+    }[];
+    /** What the data can say about the theorems' subject — stated, so a held verdict is read at exactly its strength. */
+    readonly relation: string;
+    readonly judge: (text: string | null) => TheoremSourceVerdict;
+};
+export declare const THEOREM_SOURCES: readonly TheoremSource[];
+/** Every theorem of the corpus with its online verdict: the bound ones judged by their source, the rest decided by the
+ *  kernel alone with no public dataset that could confirm or refute them. A binding to a missing theorem throws. */
+export declare function theoremSourceVerdicts(fetched: Readonly<Record<string, string | null>>, root?: string): {
+    judged: {
+        source: TheoremSource;
+        verdict: TheoremSourceVerdict;
+    }[];
+    theorems: ({
+        source: string;
+        verdict: TheoremSourceVerdict;
+        file: string;
+        name: string;
+        slug: string;
+    } | {
+        source: any;
+        verdict: {
+            state: "kernel";
+            detail: string;
+        };
+        file: string;
+        name: string;
+        slug: string;
+    })[];
+    withSource: number;
+    kernelOnly: number;
+};
 export declare function leanPageSlug(file: string, name: string): string;
 /**
  * THE MONOGRAPHS — one study per subject, its sections the Lean posts bonded to it (owner, 2026-11-15: "everything may be
