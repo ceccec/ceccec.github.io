@@ -255,7 +255,13 @@ export interface BackgroundScene {
   scroll?: number
 }
 
-const BG_TRAIL_LEN = 5
+/**
+ * Trail samples per UUID stream. Used to be five (≈560 fills for ~112 wired streams). The orbit
+ * phase already carries continuous motion; three samples (head + two ghosts) keep the inbound fade
+ * without the two faintest tails that spent a third of the stream raster budget. Not the same
+ * blur length, and said so — motion is the phase, not the sample count.
+ */
+const BG_TRAIL_LEN = 3
 
 /** Stable per-stream parameters — seeded once from stream index via sealed prng, not re-keyed every second. */
 function bgStreamParams(seed: number, stream: number): { angle: number; dist: number; speed: number; size: number } {
@@ -539,6 +545,8 @@ function drawWiredUuidStreams(
   const fallbackChars = [...(movieText || 'double torus').replace(/\s+/g, '')].filter(Boolean)
   const streams = wiredStreams.length ? wiredStreams : null
   const streamCount = streams ? streams.length : min(ANIMATION_DESIGN.drawWiredUuidStreams.minArg0, max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg0, floor(sqrt(w * h) / ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part)))
+  // Reduced motion keeps the head only — the phase still moves; ghosts are decoration.
+  const trailLen = scene.reduce ? 1 : BG_TRAIL_LEN
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (let s = 0; s < streamCount; s += 1) {
@@ -547,7 +555,7 @@ function drawWiredUuidStreams(
     const { angle, dist, speed, size } = bgStreamParams(seed, s)
     const phase = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1 // φ⁻¹/10 (was rounded 0.0618)
     const trailStep = ANIMATION_DESIGN.drawWiredUuidStreams.trailStep + speed * ANIMATION_DESIGN.drawWiredUuidStreams.trailStep2
-    for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
+    for (let trail = 0; trail < trailLen; trail += 1) {
       const trailPhase = (phase - trail * trailStep + 1) % 1
       const { x, y, r, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p)
       const px = cx + x
@@ -556,13 +564,13 @@ function drawWiredUuidStreams(
       const ch = chars[charIdx] ?? '0'
       const streamHue = wired?.hue ?? quantumScaleHue(s + charIdx + trail, scene.palette.waveHue)
       const nearVoid = r < voidR * ANIMATION_DESIGN.drawWiredUuidStreams.nearVoid
-      const trailFade = 1 - trail / BG_TRAIL_LEN
+      const trailFade = 1 - trail / trailLen
       const alpha = scene.palette.canvas.streamAlpha(inbound, nearVoid, trailFade)
       const fontSize = max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg02, round(size * (ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part + ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part2 * inbound)))
       const glow = nearVoid && trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow + inbound * ANIMATION_DESIGN.drawWiredUuidStreams.glow2 : trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow3 : 0
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
-      ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha)
       ctx.shadowBlur = glow
+      if (glow > 0) ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha)
       // The two coins, lit where they sit: in every content address the version nibble (hex 12) is 8 and the variant
       // nibble (hex 16) is 8, 9, a or b — the stamp's fixed bits. Same draw call, other light: no extra power.
       const coin = Boolean(wired) && (charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin || charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin2)

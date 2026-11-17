@@ -14377,7 +14377,7 @@ function drawHero(ctx, w, h, scene, opts = {}) {
   drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue, scene.palette.dark);
   drawBursts(ctx, w, h, scene.bursts, scene.palette.dark);
 }
-var BG_TRAIL_LEN = 5;
+var BG_TRAIL_LEN = 3;
 function bgStreamParams(seed, stream) {
   const rand = prng(`bg:${seed}:${stream}`);
   return {
@@ -14543,6 +14543,7 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
   const fallbackChars = [...(movieText || "double torus").replace(/\s+/g, "")].filter(Boolean);
   const streams = wiredStreams.length ? wiredStreams : null;
   const streamCount = streams ? streams.length : min(ANIMATION_DESIGN.drawWiredUuidStreams.minArg0, max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg0, floor(sqrt(w * h) / ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part)));
+  const trailLen = scene.reduce ? 1 : BG_TRAIL_LEN;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (let s = 0; s < streamCount; s += 1) {
@@ -14551,7 +14552,7 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
     const { angle, dist, speed, size } = bgStreamParams(seed, s);
     const phase7 = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1;
     const trailStep = ANIMATION_DESIGN.drawWiredUuidStreams.trailStep + speed * ANIMATION_DESIGN.drawWiredUuidStreams.trailStep2;
-    for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
+    for (let trail = 0; trail < trailLen; trail += 1) {
       const trailPhase = (phase7 - trail * trailStep + 1) % 1;
       const { x, y, r: r2, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p);
       const px = cx + x;
@@ -14560,13 +14561,13 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
       const ch = chars[charIdx] ?? "0";
       const streamHue = wired?.hue ?? quantumScaleHue(s + charIdx + trail, scene.palette.waveHue);
       const nearVoid = r2 < voidR * ANIMATION_DESIGN.drawWiredUuidStreams.nearVoid;
-      const trailFade = 1 - trail / BG_TRAIL_LEN;
+      const trailFade = 1 - trail / trailLen;
       const alpha = scene.palette.canvas.streamAlpha(inbound, nearVoid, trailFade);
       const fontSize = max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg02, round(size * (ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part + ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part2 * inbound)));
       const glow = nearVoid && trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow + inbound * ANIMATION_DESIGN.drawWiredUuidStreams.glow2 : trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow3 : 0;
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`;
-      ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha);
       ctx.shadowBlur = glow;
+      if (glow > 0) ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha);
       const coin = Boolean(wired) && (charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin || charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin2);
       ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn : streamHue, alpha, nearVoid || coin);
       ctx.fillText(ch, px, py);
