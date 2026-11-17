@@ -256,12 +256,12 @@ export interface BackgroundScene {
 }
 
 /**
- * Trail samples per UUID stream. Used to be five (≈560 fills for ~112 wired streams). The orbit
- * phase already carries continuous motion; three samples (head + two ghosts) keep the inbound fade
- * without the two faintest tails that spent a third of the stream raster budget. Not the same
- * blur length, and said so — motion is the phase, not the sample count.
+ * Trail samples per UUID stream. Used to be five (≈560 fills for ~112 wired streams), then three
+ * (639). The orbit phase already carries continuous motion; two samples (head + one ghost) keep the
+ * inbound fade without a second ghost that spent another third of the remaining stream raster budget.
+ * Not the same blur length, and said so — motion is the phase, not the sample count.
  */
-const BG_TRAIL_LEN = 3
+const BG_TRAIL_LEN = 2
 
 /** Stable per-stream parameters — seeded once from stream index via sealed prng, not re-keyed every second. */
 function bgStreamParams(seed: number, stream: number): { angle: number; dist: number; speed: number; size: number } {

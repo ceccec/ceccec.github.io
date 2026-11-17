@@ -14377,7 +14377,7 @@ function drawHero(ctx, w, h, scene, opts = {}) {
   drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue, scene.palette.dark);
   drawBursts(ctx, w, h, scene.bursts, scene.palette.dark);
 }
-var BG_TRAIL_LEN = 3;
+var BG_TRAIL_LEN = 2;
 function bgStreamParams(seed, stream) {
   const rand = prng(`bg:${seed}:${stream}`);
   return {
