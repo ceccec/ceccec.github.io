@@ -2261,7 +2261,6 @@ export type EarthNavigationResearchWave = {
     saved: boolean;
     receipt: string;
 };
-/** Five research waves — one navigation gate sealed per wave before the next. */
 export declare function earthGatewayNavigationResearchWaves(matrix?: MindMatrix): readonly EarthNavigationResearchWave[];
 /** Gate: earth gateway navigation research sent in waves — gaps filled, capstone green. */
 export declare function earthGatewayNavigationResearchSentInWaves(path?: string, at?: EarthTimespaceAt, matrix?: MindMatrix): {
@@ -11196,27 +11195,57 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
     bearingToGiza: number;
     distanceToGizaKm: number;
     obliquityDeg: number;
-    documented: {
-        id: string;
+    documented: ({
+        id: "giza-cardinals";
         claim: string;
         measurable: string;
         kind: "documented";
         receipt: string;
-    }[];
-    structural: {
-        id: string;
+    } | {
+        id: "khufu-seked";
+        claim: string;
+        measurable: string;
+        kind: "documented";
+        receipt: string;
+    } | {
+        id: "obliquity-epoch";
+        claim: string;
+        measurable: string;
+        kind: "documented";
+        receipt: string;
+    } | {
+        id: "sofia-hinge-geodesy";
+        claim: string;
+        measurable: string;
+        kind: "documented";
+        receipt: string;
+    })[];
+    structural: ({
+        id: "six-trinity-gateways";
         claim: string;
         measurable: string;
         kind: "structural";
         receipt: string;
-    }[];
-    flagged: {
-        id: string;
+    } | {
+        id: "gateway-nav-solutions";
+        claim: string;
+        measurable: string;
+        kind: "structural";
+        receipt: string;
+    })[];
+    flagged: ({
+        id: "ley-lines";
         claim: string;
         measurable: string;
         kind: "flagged";
         receipt: string;
-    }[];
+    } | {
+        id: "hidden-energy";
+        claim: string;
+        measurable: string;
+        kind: "flagged";
+        receipt: string;
+    })[];
     formed: {
         formed: boolean;
         path: string;
@@ -14025,27 +14054,57 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
         bearingToGiza: number;
         distanceToGizaKm: number;
         obliquityDeg: number;
-        documented: {
-            id: string;
+        documented: ({
+            id: "giza-cardinals";
             claim: string;
             measurable: string;
             kind: "documented";
             receipt: string;
-        }[];
-        structural: {
-            id: string;
+        } | {
+            id: "khufu-seked";
+            claim: string;
+            measurable: string;
+            kind: "documented";
+            receipt: string;
+        } | {
+            id: "obliquity-epoch";
+            claim: string;
+            measurable: string;
+            kind: "documented";
+            receipt: string;
+        } | {
+            id: "sofia-hinge-geodesy";
+            claim: string;
+            measurable: string;
+            kind: "documented";
+            receipt: string;
+        })[];
+        structural: ({
+            id: "six-trinity-gateways";
             claim: string;
             measurable: string;
             kind: "structural";
             receipt: string;
-        }[];
-        flagged: {
-            id: string;
+        } | {
+            id: "gateway-nav-solutions";
+            claim: string;
+            measurable: string;
+            kind: "structural";
+            receipt: string;
+        })[];
+        flagged: ({
+            id: "ley-lines";
             claim: string;
             measurable: string;
             kind: "flagged";
             receipt: string;
-        }[];
+        } | {
+            id: "hidden-energy";
+            claim: string;
+            measurable: string;
+            kind: "flagged";
+            receipt: string;
+        })[];
         formed: {
             formed: boolean;
             path: string;

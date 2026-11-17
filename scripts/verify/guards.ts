@@ -150,8 +150,10 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
               { acc: 0, op: '' }).acc
         // A CAP IS A CHOSEN BOUND, so it starts at two. `x.length === 0`, `> 0`, `!== 0` and `< 2` ask whether a thing
         // is empty or a singleton — structural questions with no number to derive — and counting them took the measure
-        // from 2429 to 2941 while adding nothing a wave could fix.
-        if (bound >= 2 && !printsAt(m.index!) && !truncatesForDisplay(m.index!)) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written}`)
+        // from 2429 to 2941 while adding nothing a wave could fix. `< 2` has bound 2, so the floor alone would still
+        // count it; exclude it (and `<= 1`) by operator, matching the structural cases the prose already named.
+        const structuralSingleton = (m[1] === '<' && bound === 2) || (m[1] === '<=' && bound === 1)
+        if (bound >= 2 && !structuralSingleton && !printsAt(m.index!) && !truncatesForDisplay(m.index!)) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written}`)
       }
     })
     if (sites.length) out.push({ file: relative(root, file).replace(/\\/g, '/'), caps: sites.length, sites })

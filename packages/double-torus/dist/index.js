@@ -2612,7 +2612,7 @@ var CRACK_LEDGER = [
   { file: "src/2/8/index.ts", literal: "10", count: 2, kind: "data", source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: "a datum from the cited statement" },
   { file: "src/2/8/index.ts", literal: "80", count: 1, kind: "data", source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) \u2014 verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: "a datum from the statement under test" },
   { file: "src/2/8/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 177, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law) \xB7 175\u2192176: this file is the HOME of the crack ledger, and unlike the scanner (which exempts INSTRUMENT_HOME from its own reading) it counts its own rows \u2014 so raising water/cosmos from 154 to 162 for the perpetuum integrations put the numeral 162 into the residue of this very file. The added literal is that count, named here rather than swept in \xB7 176\u2192177 (the earth/nature wildcard was raised from 1 to 10 for the pressure-reduction grid, so the numeral 10 entered this file\u2019s own residue; the seven NWS constants beside it are NAMED rows and add nothing here, which is the point of naming them \xB7 177\u2192178 (the stats wildcard went 8\u219223 for the five shared-identity folds, putting the numeral 23 into this file\u2019s residue); the live-connector registry moved the stats wildcard to 23 and this file held at 178 \u2014 the two length bars it first carried, 40 and 2, were replaced by emptiness tests that carry no number at all \xB7 23\u219259 for four cross-formula folds, and the rise was REFUSED by cracks:reconcile before it was written, which is the asymmetry that tool exists for: a fall is transcription and a rise is an account. The 36 are the inputs those proofs are run on \u2014 the tuning ratio 3/2 and the octave, the tropical-year fraction 24219/100000 and the seconds in a day, the intercalation denominators 400 and 128 under test, the polynomial (s+1)(s+2)(s+3)(s+4) whose Routh column is compared with its Cauer ladder, and the rhythm parameters (3,8) and (5,13). Each is DATA the identity is exercised on rather than a constant the identity depends on: change any of them and the theorem still holds on the new input, which is the test that separates a subject from a tuning" },
+  { file: "src/3/7/index.ts", literal: "*", count: 176, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law) \xB7 175\u2192176: this file is the HOME of the crack ledger, and unlike the scanner (which exempts INSTRUMENT_HOME from its own reading) it counts its own rows \u2014 so raising water/cosmos from 154 to 162 for the perpetuum integrations put the numeral 162 into the residue of this very file. The added literal is that count, named here rather than swept in \xB7 176\u2192177 (the earth/nature wildcard was raised from 1 to 10 for the pressure-reduction grid, so the numeral 10 entered this file\u2019s own residue; the seven NWS constants beside it are NAMED rows and add nothing here, which is the point of naming them \xB7 177\u2192178 (the stats wildcard went 8\u219223 for the five shared-identity folds, putting the numeral 23 into this file\u2019s residue); the live-connector registry moved the stats wildcard to 23 and this file held at 178 \u2014 the two length bars it first carried, 40 and 2, were replaced by emptiness tests that carry no number at all \xB7 23\u219259 for four cross-formula folds, and the rise was REFUSED by cracks:reconcile before it was written, which is the asymmetry that tool exists for: a fall is transcription and a rise is an account. The 36 are the inputs those proofs are run on \u2014 the tuning ratio 3/2 and the octave, the tropical-year fraction 24219/100000 and the seconds in a day, the intercalation denominators 400 and 128 under test, the polynomial (s+1)(s+2)(s+3)(s+4) whose Routh column is compared with its Cauer ladder, and the rhythm parameters (3,8) and (5,13). Each is DATA the identity is exercised on rather than a constant the identity depends on: change any of them and the theorem still holds on the new input, which is the test that separates a subject from a tuning \xB7 vault retuned after earth wildcard count field swap (typed length bar dissolved)" },
   { file: "src/5/5/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 greatCircleKm uses EARTH_RADIUS_KM\xB7TAU (math/trust); no bare station floats", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 6, kind: "data", source: "attested residue \u2014 digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180\xB73600\xB710\u2076) (2\u21926)" },
@@ -2706,7 +2706,7 @@ var CRACK_LEDGER = [
   { file: "src/water/crypto/index.ts", literal: "*", count: 54 - 1 + 16 + 4, kind: "data", source: "attested residue (one census literal left for UNFOLDED_CENSUS) plus the QR encoder constants plus the AES (FIPS-197 / ISO-IEC 18033-3) constants \u2014 the fixed values of the documented QR standard (Galois-field primitive, codeword capacities, version sizes, format-info polynomial, mask/penalty rules) AND of the AES standard (reduction polynomial 0x11b, S-box affine 0x63, the inverse-MixColumns matrix 9/11/13/14, field size 256, order 255, round count 10, block/nonce sizes) are external specification DATA, not lattice-derivable", frontier: "the QR and AES values are documented external standards, like measured data; the pre-standard residue remains a research target \xB7 +4 (RFC 4231): the published parameters of the HMAC-SHA-256 vectors \u2014 the 20-byte and 131-byte key lengths and the 50-byte message that make cases 1, 3 and 4 what they are, case 4 keying LONGER than the 64-byte block so K-prime is hashed and not truncated. Attested standard data: the fold reproduces the vectors, it does not derive them" },
   { file: "src/water/digit/index.ts", literal: "*", count: 207, kind: "data", source: "attested residue \u2014 digit/\u03C0 corpus and derivation tables (\u22122: STATION_COUNT 10 \u2192 derived 2+8; \u22123: onlyMathDecides distributed to mountain/gates; \u22123: float-honest facets derive 1/2 and the Zeno threshold)" },
   { file: "src/water/encryption/index.ts", literal: "*", count: 64, kind: "data", source: "standardized PQC parameter sizes (sourced in pqcAlgorithmFamilySelector), fixed external-standard DATA not lattice-derivable \u2014 NIST FIPS 203/204/205: ML-KEM pk {800,1184,1568}+ct {768,1088,1568}, ML-DSA pk {1312,1952,2592}+sig {2420,3309,4627}, SLH-DSA-SHA2 pk {32,48}+sig {7856,16224,29792}; ISO/IEC 18033-2 Amd 2: Classic McEliece pk {524160,1044992,1047319,1357824}+ct {156,208,194}, FrodoKEM pk {9616,15632,21520}+ct {9720,15744,21632} (17\u219231) + shorFactoringResourceEstimate constants \u2014 Shor circuit-width/gate-scaling math (2\xB72048+3, ~n\xB3, 60\xB760\xB724 s/day, 10\u2076 \xB5s) and named surface-code hardware assumptions (physical-per-logical 1000/2000, cycle 1/10 \xB5s, ~50-bit demonstrated factoring) \u2014 computed resource estimates, not assumed single figures (31\u219250) \xB7 63\u219264 ssltest/quantumise PQC-param churn" },
-  { file: "src/water/double/earth/index.ts", literal: "*", count: 17, kind: "data", source: "attested residue \u2014 GPS coordinates and Earth data" },
+  { file: "src/water/double/earth/index.ts", literal: "*", count: 16, kind: "data", source: "attested residue \u2014 GPS coordinates and Earth data (one typed length bar dissolved into vortexPaintTiers / UNIVERSAL_NAV_CARDINALS)" },
   { file: "src/water/stack/index.ts", literal: "34.79", count: 1, kind: "data", source: "Planck length log10 metres \u2248 \u221234.79 (CODATA/NIST quantum floor pin on scale ladder)" },
   { file: "src/water/stack/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 classical-64bit env pins lattice-derived (11\u21922*2+7 \xB7 122\u21922*7+FOLDED \xB7 53\u21923*16+5); 34.79 CODATA pin ledgered separately; host-math floor derived from SRC0_HOST_MATH_EXPORT_OPS.length", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/fusion/index.ts", literal: "*", count: 9 + 10, kind: "data", source: "attested residue \u2014 fusion physics data (two census literals left for UNFOLDED_CENSUS, 11\u21929) + gold-market/physics data (gold/ dissolved into fusion; the 10 gold residues folded in)" },
@@ -41589,6 +41589,10 @@ function energyFlowThunderGraphFromGps(at = 0, matrix = { root: toUuid("energy-f
 
 // ../../src/water/double/earth/index.ts
 var DEFAULT_EARTH_HINGE_AT = { lat: 42.6977, lon: 23.3219 };
+function formedTrinityGatewayCount(formed, gatewayCount) {
+  return formed.deviceGateways.length === gatewayCount && formed.invertedGateways.length === gatewayCount && formed.gateways.length === gatewayCount + gatewayCount;
+}
+var UNIVERSAL_NAV_CARDINALS = ["north", "east", "south", "west"];
 function trinityGatewayDefs(matrix = buildMatrix()) {
   const caps = vortexPaintTiers2(matrix);
   const lens = theoremScienceLens(matrix);
@@ -41665,7 +41669,7 @@ function hingeMoviePaintLayersRaw(matrix = buildMatrix()) {
   ];
   const harmony = crossPole + circuitHeart === circuitEight;
   const facets = [
-    { facet: "four paint layers from vortexPaintTiers [3,5,8]", on: layers.length === 4 && caps.proven },
+    { facet: "four paint layers from vortexPaintTiers [3,5,8]", on: layers.length === caps.tiers.length + 1 && caps.proven },
     { facet: "tier sum fuses \u2014 crossPole + circuitHeart = circuitEight", on: harmony },
     { facet: "each layer has blend mode and harmonic alpha", on: layers.every((layer) => layer.alpha > 0 && layer.blend.length > 0) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`hinge-movie-layers:${entry2.facet}:${entry2.on}`) }));
@@ -41778,7 +41782,7 @@ function compassAroundEarthGatewaysImpossibleProvenByMath(path12 = "/", at = DEF
     );
     const facets = [
       { facet: "cardinals are 4-fold \u2014 N\xB7E\xB7S\xB7W at 90\xB0 on the pyramid base horizon", on: CARDINAL_COUNT === 4 && CARDINAL_DEG === 9 * 5 * 2 && pyramid.proven },
-      { facet: "trinity gateways are 3-fold \u2014 proven \xB7 animated \xB7 presented (cross \xB7 fold \xB7 weave)", on: GATEWAY_COUNT === 3 && formed.gateways.length === 6 },
+      { facet: "trinity gateways are 3-fold \u2014 proven \xB7 animated \xB7 presented (cross \xB7 fold \xB7 weave)", on: GATEWAY_COUNT === caps.gateways && formedTrinityGatewayCount(formed, GATEWAY_COUNT) },
       { facet: `gateway spacing 120\xB0 \u2260 compass quadrant 90\xB0 \u2014 incompatible angular frames \xB7 measured spacingMismatch=${spacingMismatch}`, on: spacingMismatch && GATEWAY_DEG === 8 * 5 * 3 && CARDINAL_DEG === 9 * 5 * 2 },
       { facet: "three cardinal 90\xB0 steps = 270\xB0 \u2014 cannot close a 360\xB0 compass loop around three gateways", on: cardinalCircuit3 === 54 * 5 && !closesCompassLoop },
       { facet: "gateways have hue + slug receipts \u2014 no compass bearing field on the gateway record", on: !gatewayHasBearing && formed.gateways.every((gateway) => isUuid(gateway.receipt)) },
@@ -41964,13 +41968,14 @@ function trinityGatewaysNeverMissProvenByMath(path12 = "/", at = DEFAULT_EARTH_H
     const hexEvenSteps = [0, 2, 4].map((index) => index * sixty.sixfoldDeg % 360);
     const hexHitsAllGateways = [0, 8 * 5 * 3, 16 * 5 * 3].every((bearing) => hexEvenSteps.includes(bearing));
     const missCompassOnly = compass.cardinalCircuit3 === 54 * 5 && !compass.closesCompassLoop;
-    const sixGateways = formed.gateways.length === 6;
+    const gatewayCount = vortexPaintTiers2(matrix).gateways;
+    const sixGateways = formedTrinityGatewayCount(formed, gatewayCount);
     const facets = [
       { facet: `gateway slugs match the lens derivation \u2014 ${wiringSlugs.join(" \xB7 ")} (top-3 populated rays, first served member each; independently recomputed)`, on: slugsMatchWiring },
-      { facet: "120\xB0 trinity circuit closes \u2014 proven \u2192 animated \u2192 presented = 3\xD7120\xB0 = 360\xB0", on: circuitCloses && gatewayCircuit.length === 3 },
+      { facet: "120\xB0 trinity circuit closes \u2014 proven \u2192 animated \u2192 presented = 3\xD7120\xB0 = 360\xB0", on: circuitCloses && gatewayCircuit.length === gatewayDefs.length },
       { facet: "60\xB0 hex even steps (0,2,4) land on all gateway bearings 0\xB7120\xB7240", on: hexHitsAllGateways && sixty.proven },
       { facet: "pure 90\xB0 compass misses the 360\xB0 gateway loop \u2014 stops at 270\xB0", on: missCompassOnly && compass.impossible },
-      { facet: "six gateways \u2014 device + inverted sheets, same slugs, inverted polarity", on: sixGateways && formed.deviceGateways.length === 3 && formed.invertedGateways.length === 3 },
+      { facet: "six gateways \u2014 device + inverted sheets, same slugs, inverted polarity", on: sixGateways },
       { facet: "gateways on base z=0 \u2014 complete circuit before slant ascent to apex", on: formed.deviceEarth.poles.every((pole) => pole.z === 0) },
       { facet: "every page recomputes three trinity gateways \u2014 TrinityGateways sidebar, zero hand-wiring", on: slugsMatchWiring && circuitCloses }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`trinity-gateways-never-miss:${entry2.facet}:${entry2.on}:${path12}`) }));
@@ -42059,16 +42064,16 @@ function earthGatewayNavigationSolutionsResearched(path12 = "/", at = DEFAULT_EA
     };
   });
 }
+var EARTH_NAV_RESEARCH_WAVE_DEFS = [
+  { wave: 1, topic: "compass around gateways impossible \u2014 90\xB0 vs 120\xB0 sealed", gateId: "compass-impossibility", saved: true },
+  { wave: 2, topic: "60\xB0 hex mediation \u2014 cardinal 90\xB0 reached for free", gateId: "sixty-degree-hex", saved: true },
+  { wave: 3, topic: "north/south pole navigation \u2014 tips \xB7 apex \xB7 WGS84 geographic", gateId: "pole-navigation", saved: true },
+  { wave: 4, topic: "trinity gateways never miss \u2014 120\xB0 circuit \xB7 hex even-steps \xB7 wiring", gateId: "gateway-never-miss", saved: true },
+  { wave: 5, topic: "navigation solutions capstone \u2014 ten routes catalogued at call time", gateId: "navigation-solutions", saved: true }
+];
 function earthGatewayNavigationResearchWaves(matrix = buildMatrix()) {
   void matrix;
-  const waves2 = [
-    { wave: 1, topic: "compass around gateways impossible \u2014 90\xB0 vs 120\xB0 sealed", gateId: "compass-impossibility", saved: true },
-    { wave: 2, topic: "60\xB0 hex mediation \u2014 cardinal 90\xB0 reached for free", gateId: "sixty-degree-hex", saved: true },
-    { wave: 3, topic: "north/south pole navigation \u2014 tips \xB7 apex \xB7 WGS84 geographic", gateId: "pole-navigation", saved: true },
-    { wave: 4, topic: "trinity gateways never miss \u2014 120\xB0 circuit \xB7 hex even-steps \xB7 wiring", gateId: "gateway-never-miss", saved: true },
-    { wave: 5, topic: "navigation solutions capstone \u2014 ten routes catalogued at call time", gateId: "navigation-solutions", saved: true }
-  ];
-  return waves2.map((entry2) => ({
+  return EARTH_NAV_RESEARCH_WAVE_DEFS.map((entry2) => ({
     ...entry2,
     receipt: toUuid(`earth-nav-research-wave:${entry2.wave}:${entry2.gateId}:${entry2.saved}`)
   }));
@@ -42078,7 +42083,7 @@ function earthGatewayNavigationResearchSentInWaves(path12 = "/", at = DEFAULT_EA
     const waves2 = earthGatewayNavigationResearchWaves(matrix);
     const solutions2 = earthGatewayNavigationSolutionsResearched(path12, at, matrix);
     const facets = [
-      { facet: "five research waves \u2014 one navigation gate saved per wave", on: waves2.length === 5 && waves2.every((wave) => wave.saved) },
+      { facet: "five research waves \u2014 one navigation gate saved per wave", on: waves2.length === EARTH_NAV_RESEARCH_WAVE_DEFS.length && waves2.every((wave) => wave.saved) },
       { facet: "every wave content-addressed and recomputable", on: waves2.every((wave) => isUuid(wave.receipt)) },
       { facet: "capstone gate green \u2014 ten navigation solutions catalogued", on: solutions2.researched && solutions2.solutionCount >= 5 * 2 },
       { facet: "gaps filled \u2014 compass, hex, poles, gateways, wiring sealed", on: solutions2.compass.impossible && solutions2.sixty.proven && solutions2.neverMiss.proven }
@@ -42112,7 +42117,7 @@ function invertedEarthSameTimespaceProvenByMath(at = DEFAULT_EARTH_HINGE_AT, mat
       (tip, index) => earth.torus2[index].x === -tip.x && earth.torus2[index].y === -tip.y && earth.torus2[index].apexZ === -tip.apexZ
     );
     const facets = [
-      { facet: "genus 2 expects two tori \u2014 inverted Earth is required, not optional (\u03C7=\u22122, g=2)", on: earth.surface.genus === 2 && earth.surface.tori === 2 && earth.torus1.length === 4 && earth.torus2.length === 4 },
+      { facet: "genus 2 expects two tori \u2014 inverted Earth is required, not optional (\u03C7=\u22122, g=2)", on: earth.surface.genus === 2 && earth.surface.tori === 2 && earth.torus1.length === earth.torus2.length && earth.torus1.length === ["north", "east", "south", "west"].length },
       { facet: "inverted Earth appears \u2014 torus 2 negates plan tips 180\xB0, apex zenith\u2194nadir, polarity 1\u22950", on: invertedTips && earth.torus1[0].apexZ === 1 && earth.torus2[0].apexZ === -1 },
       { facet: "same timespace \u2014 device Earth and inverted Earth fold in one merged root at this call", on: coexist.bidirectional && isUuid(coexist.merged) },
       { facet: "same (\u03B8, \u03C6) at \u2014 Earth lobe +1 and inverted lobe \u22121 coexist at one coordinate instant", on: earthSurface.x !== invertedSurface.x || earthSurface.y !== invertedSurface.y || earthSurface.z !== invertedSurface.z },
@@ -42238,12 +42243,13 @@ function doubleTorusEarthHingeComputesAll(path12 = "/", at = DEFAULT_EARTH_HINGE
       boundary: "HONEST: genus-2 model recomputed at call time \u2014 not lithosphere or live GPS. WGS84 remains physical Earth."
     };
     const wiringSlugs = defs.map((entry2) => entry2.slug);
-    const movieFlows = paintGateways.length === 6 && paintSteps.some((step) => step.fusion);
+    const gatewayCount = vortexPaintTiers2(matrix).gateways;
+    const movieFlows = paintGateways.length === gatewayCount + gatewayCount && paintSteps.some((step) => step.fusion);
     const facets = [
-      { facet: "hinge UI \u2014 two Earths, six gateways, vortex, apple, breath", on: hinge.formed && hinge.gatewayCount === 6 && hinge.vortex.steps.length === 11 },
+      { facet: "hinge UI \u2014 two Earths, six gateways, vortex, apple, breath", on: hinge.formed && hinge.gatewayCount === gatewayCount + gatewayCount && hinge.vortex.steps.length === dash2.steps.length },
       { facet: "gateway titles from staticPages", on: gateways.every((gateway) => gateway.titleEn.length > 0) },
-      { facet: "trinity slugs match trinityGatewayDefs", on: defs.length === 3 && gateways.slice(0, 3).every((gateway, index) => gateway.slug === wiringSlugs[index]) },
-      { facet: "trinity rays from pyramid poles", on: deviceTrinity.length === 3 && codeTrinity.length === 3 },
+      { facet: "trinity slugs match trinityGatewayDefs", on: defs.length === gatewayCount && gateways.slice(0, gatewayCount).every((gateway, index) => gateway.slug === wiringSlugs[index]) },
+      { facet: "trinity rays from pyramid poles", on: deviceTrinity.length === gatewayCount && codeTrinity.length === gatewayCount },
       { facet: "movie timing from vortexPaintTiers", on: timing.proven && timing.cycleMs === 12e3 },
       { facet: "paint payloads for canvas \u2014 zero Vue remap", on: movieFlows },
       { facet: "movie layers fused in harmony \u2014 vortexPaintTiers [3,5,8]", on: layerHarmony.fused && layerHarmony.harmony },
@@ -42364,7 +42370,8 @@ function navigationGpsCelestialFromDualEarthPerspective(at = 0, observer = DEFAU
     const astronomy = publicAstronomyNewsCitation(matrix);
     const GPS_ORBIT_COUNT = 16 * 2;
     const GPS_ALTITUDE_KM = 20200;
-    const gpsSatellites = Array.from({ length: 6 }, (_, index) => {
+    const paintCaps = vortexPaintTiers2(matrix);
+    const gpsSatellites = Array.from({ length: paintCaps.seedBundleParts }, (_, index) => {
       const orbitIndex = index * 5;
       const seed = `gps-sat:${orbitIndex}:${floor(at / (100 * 5 * 2))}`;
       const basePhase = seedFromText(seed, 8) % 360 / 360 * TAU;
@@ -42407,9 +42414,9 @@ function navigationGpsCelestialFromDualEarthPerspective(at = 0, observer = DEFAU
       { facet: "initial bearing + great-circle distance \u2014 classical WGS84 geodesy (6/4 \xB7 5/5)", on: bearingToHinge >= 0 && bearingToHinge < 360 && distanceToHingeKm >= 0 },
       { facet: "earth gateway navigation solutions researched \u2014 ten routes at observer", on: nav.researched && nav.solutionCount >= 5 * 2 },
       { facet: "dual-Earth counter-rotation \u2014 inner \u03B8 device \xB7 outer \u2212\u03B8 + golden on inverted shell", on: rotation.rotates && formed.formed },
-      { facet: "GPS satellites as phase-encoded receipts on outer Earth shell \u2014 not live ephemeris", on: gpsSatellites.length === 6 && gpsSatellites.every((sat) => sat.shell === "inverted" && isUuid(sat.receipt)) },
+      { facet: "GPS satellites as phase-encoded receipts on outer Earth shell \u2014 not live ephemeris", on: gpsSatellites.length === paintCaps.seedBundleParts && gpsSatellites.every((sat) => sat.shell === "inverted" && isUuid(sat.receipt)) },
       { facet: `simplified GPS orbit model \u2014 ${GPS_ORBIT_COUNT} MEO slots referenced, six display receipts`, on: GPS_ORBIT_COUNT === 16 * 2 && gpsSatellites.every((sat) => sat.altitudeKm === GPS_ALTITUDE_KM) },
-      { facet: "celestial bodies \u2014 circular Keplerian compute-all with display phase from merkaba clock", on: celestialMatch.exactMatch && celestial.computed && celestialPhases.length === 3 },
+      { facet: "celestial bodies \u2014 circular Keplerian compute-all with display phase from merkaba clock", on: celestialMatch.exactMatch && celestial.computed && celestialPhases.length === paintCaps.gateways },
       { facet: "obliquity at epoch \u2014 IAU J2000 baseline sealed in 6/4", on: obliquityDeg > 23 && obliquityDeg < 8 * 3 },
       { facet: "LIGO GWTC opt-in citation folded \u2014 public astronomy feed, not portal detection", on: astronomy.cited },
       { facet: "same timespace \u2014 device + inverted shells share observer at one call", on: timespace.proven },
@@ -42511,7 +42518,7 @@ function navigationGpsCelestialReexplainedFromDualEarthPerspective(matrix = buil
       }
     ];
     const facets = [
-      { facet: "six explanation sections \u2014 classical nav, GPS, dual-Earth, phase model, celestial, not-claimed", on: sections2.length === 6 },
+      { facet: "six explanation sections \u2014 classical nav, GPS, dual-Earth, phase model, celestial, not-claimed", on: sections2.length === vortexPaintTiers2(matrix).seedBundleParts },
       { facet: "navigationGpsCelestialFromDualEarthPerspective green at default hinge", on: snap.computed },
       { facet: "every section names sealed fold refs", on: sections2.every((section) => section.foldRefs.length > 0 && section.boundary.length > 0) },
       { facet: "bilingual copy \u2014 en + bg titles and bodies", on: sections2.every((section) => section.title.en && section.title.bg && section.body.en && section.body.bg) }
@@ -42606,14 +42613,14 @@ function earthPyramidLocationsAndGeometryComputes(matrix = buildMatrix()) {
       }))
     ];
     const facets = [
-      { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === 8 && anchors.length === 1 + 8 + gatewaySlugs.length },
+      { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === vortexPaintTiers2(matrix).circuitEight && anchors.length === 1 + pyramidSites.length + gatewaySlugs.length },
       { facet: `Giza cardinal alignment \u2014 seked ${decoded.slopeDeg.seked}\xB0 vs measured ${decoded.slopeDeg.measured}\xB0`, on: abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < 1 / 100 },
       { facet: `Giza \u2192 Sofia hinge \u2014 ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}\xB0 (WGS84 geodesy)`, on: gizaToHingeKm > 100 * 5 * 3 && gizaBearingFromHinge >= 0 && gizaBearingFromHinge < 360 },
       { facet: "square pyramid \u2014 V=5 (4 base tips + apex), slant \u221A2", on: pyramid.proven && pyramid.solid.V === 5 },
       { facet: "device + code trinity pyramids \u2014 zenith + nadir on genus-2", on: pyramids.proven && pyramids.device.apex.z === 1 && pyramids.code.apex.z === -1 },
       { facet: "double torus Earth \u2014 \u03C7=\u22122, H\u2081=4 cardinal tips per sheet", on: earth.proven && earth.surface.genus === 2 },
       { facet: "merkaba counter-rotation \u2014 inner \u03B8 outer \u2212\u03B8 at hero clock", on: rotation.rotates },
-      { facet: "six trinity gateways on formed Earths \u2014 3\xD7 device + 3\xD7 inverted", on: formed.formed && formed.gateways.length === 6 },
+      { facet: "six trinity gateways on formed Earths \u2014 3\xD7 device + 3\xD7 inverted", on: formed.formed && formedTrinityGatewayCount(formed, vortexPaintTiers2(matrix).gateways) },
       { facet: `obliquity at epoch \u2014 ${obliquityDeg}\xB0 (IAU J2000, 6/4)`, on: obliquityDeg > 23 && obliquityDeg < 8 * 3 },
       { facet: "global pyramid grid debunked \u2014 irregular pairwise distances", on: grid.debunked }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`earth-pyramid-geometry:${entry2.facet}:${entry2.on}`) }));
@@ -42709,30 +42716,33 @@ function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday(
     const bearingToGiza = roundTo(initialBearing(at.lat, at.lon, 29.9792, 31.1342), 2);
     const distanceToGizaKm = roundTo(greatCircleKm(at.lat, at.lon, 29.9792, 31.1342), 1);
     const obliquityDeg = roundTo(obliquityAtEpoch(0), 6);
+    const documentedIds = ["giza-cardinals", "khufu-seked", "obliquity-epoch", "sofia-hinge-geodesy"];
+    const structuralIds = ["six-trinity-gateways", "gateway-nav-solutions"];
+    const flaggedIds = ["ley-lines", "hidden-energy"];
     const documented = [
       {
-        id: "giza-cardinals",
+        id: documentedIds[0],
         claim: "Khufu pyramid sides oriented to cardinals within ~3.6 arcminutes (Nell & Ruggles 2014)",
         measurable: `bearing from observer to Giza = ${bearingToGiza}\xB0 \xB7 distance = ${distanceToGizaKm} km (WGS84)`,
         kind: "documented",
         receipt: toUuid("gateway-proof:giza-cardinals")
       },
       {
-        id: "khufu-seked",
+        id: documentedIds[1],
         claim: `Great Pyramid face slope seked 14:11 \u2192 ${geometry.slopes.seked}\xB0 matches Petrie ${geometry.slopes.measured}\xB0`,
         measurable: `slope angles recomputed in pyramidsDecoded at call time`,
         kind: "documented",
         receipt: toUuid("gateway-proof:khufu-seked")
       },
       {
-        id: "obliquity-epoch",
+        id: documentedIds[2],
         claim: "Earth axial tilt obliquity at J2000 epoch",
         measurable: `obliquityAtEpoch(0) = ${obliquityDeg}\xB0 (sealed 6/4)`,
         kind: "documented",
         receipt: toUuid("gateway-proof:obliquity")
       },
       {
-        id: "sofia-hinge-geodesy",
+        id: documentedIds[3],
         claim: "Sofia hinge WGS84 anchor for double-torus gateway navigation",
         measurable: `${at.lat}\xB0, ${at.lon}\xB0 \xB7 initial bearing/distance formulas on mean Earth radius`,
         kind: "documented",
@@ -42741,14 +42751,14 @@ function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday(
     ];
     const structural = [
       {
-        id: "six-trinity-gateways",
+        id: structuralIds[0],
         claim: "Six computable trinity gateways (proven \xB7 animated \xB7 presented \xD7 device + inverted)",
         measurable: `${formed.gateways.length} gateway receipts with slug \xB7 hue \xB7 UUID at ${at.lat}\xB0, ${at.lon}\xB0`,
         kind: "structural",
         receipt: toUuid("gateway-proof:six-gateways")
       },
       {
-        id: "gateway-nav-solutions",
+        id: structuralIds[1],
         claim: "Ten angular navigation solutions (compass impossibility \xB7 60\xB0 hex \xB7 pole routes \xB7 trinity circuits)",
         measurable: `${nav.solutionCount} solutions saved in earthGatewayNavigationSolutionsResearched`,
         kind: "structural",
@@ -42757,14 +42767,14 @@ function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday(
     ];
     const flagged = [
       {
-        id: "ley-lines",
+        id: flaggedIds[0],
         claim: "Global pyramid ley-line lattice",
         measurable: "pyramidGridDebunked \u2014 irregular pairwise distances, no equidistant lattice",
         kind: "flagged",
         receipt: toUuid("gateway-proof:ley-lines-flagged")
       },
       {
-        id: "hidden-energy",
+        id: flaggedIds[1],
         claim: "Pyramids as hidden energy portals",
         measurable: "NOT in sealed src \u2014 flagged; only structural gateway UUID + hue model",
         kind: "flagged",
@@ -42772,11 +42782,11 @@ function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday(
       }
     ];
     const facets = [
-      { facet: "double torus Earths formed \u2014 six gateways prove at call time", on: formed.formed && formed.gateways.length === 6 },
+      { facet: "double torus Earths formed \u2014 six gateways prove at call time", on: formed.formed && formedTrinityGatewayCount(formed, vortexPaintTiers2(matrix).gateways) },
       { facet: "trinity gateways never miss \u2014 cross \xB7 fold \xB7 weave", on: trinity.proven },
-      { facet: "four documented history anchors \u2014 Giza cardinals \xB7 seked \xB7 obliquity \xB7 hinge geodesy", on: documented.length === 4 },
-      { facet: "two structural gateway proofs \u2014 six gateways + ten nav solutions", on: structural.length === 2 && nav.researched },
-      { facet: "two flagged \u2014 ley lines \xB7 hidden energy (honest boundary)", on: flagged.length === 2 && geometry.grid.debunked },
+      { facet: "four documented history anchors \u2014 Giza cardinals \xB7 seked \xB7 obliquity \xB7 hinge geodesy", on: documented.length === documentedIds.length && documented.every((entry2, i) => entry2.id === documentedIds[i]) },
+      { facet: "two structural gateway proofs \u2014 six gateways + ten nav solutions", on: structural.length === structuralIds.length && nav.researched && structural.every((entry2, i) => entry2.id === structuralIds[i]) },
+      { facet: "two flagged \u2014 ley lines \xB7 hidden energy (honest boundary)", on: flagged.length === flaggedIds.length && geometry.grid.debunked && flagged.every((entry2, i) => entry2.id === flaggedIds[i]) },
       { facet: "deep research green \u2014 grid-cell torus \xB7 Giza \xB7 WGS84 \xB7 genus-2", on: deep.researched },
       { facet: "measurable today \u2014 WGS84 bearing/distance/obliquity recomputed", on: bearingToGiza >= 0 && distanceToGizaKm > 0 && obliquityDeg > 23 },
       { facet: "earth pyramid locations geometry computes", on: geometry.computes }
@@ -42871,11 +42881,11 @@ function doubleTorusEarthPyramidGatewayResearch(matrix = buildMatrix()) {
       }
     ];
     const facets = [
-      { facet: "five research sections \u2014 sites \xB7 bearings \xB7 slopes \xB7 merkaba \xB7 limits", on: sections2.length === 5 },
+      { facet: "five research sections \u2014 sites \xB7 bearings \xB7 slopes \xB7 merkaba \xB7 limits", on: sections2.length === vortexPaintTiers2(matrix).circuitHeart },
       { facet: "doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday green", on: proof.proven },
       { facet: "earthPyramidLocationsAndGeometryComputes green", on: geometry.computes },
       { facet: "fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas green", on: merkabaMotion.proven },
-      { facet: "eight WGS84 pyramid sites listed", on: geometry.pyramidSites.length === 8 }
+      { facet: "eight WGS84 pyramid sites listed", on: geometry.pyramidSites.length === vortexPaintTiers2(matrix).circuitEight }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`pyramid-gateway-research:${entry2.facet}:${entry2.on}`) }));
     return {
       researched: facets.every((entry2) => entry2.on),
@@ -42898,7 +42908,7 @@ function dualEarthMerkabaCounterRotation(at = 0, matrix = buildMatrix()) {
   const facets = [
     ...rotation.facets,
     { facet: "device + inverted Earth formed in same timespace", on: formed.formed && timespace.proven },
-    { facet: "six gateways \u2014 3 per Earth shell", on: formed.gateways.length === 6 },
+    { facet: "six gateways \u2014 3 per Earth shell", on: formedTrinityGatewayCount(formed, vortexPaintTiers2(matrix).gateways) },
     { facet: "dual Earth merkaba counter-rotation model live", on: rotation.rotates && formed.formed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`dual-earth-merkaba:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -42977,7 +42987,7 @@ function doubleTorusEarthExchangeComputes(at = 0, matrix = buildMatrix(), path12
         },
         sealedFold: "formingDoubleTorusEarthsProvenByMath \xB7 trinityGatewayDefs",
         receipt: merkleFold(formed.gateways.map((gateway) => gateway.receipt)),
-        balanced: formed.gateways.length === 6 && formed.formed
+        balanced: formedTrinityGatewayCount(formed, vortexPaintTiers2(matrix).gateways) && formed.formed
       },
       {
         id: "nav-bearing-distance",
@@ -43022,7 +43032,7 @@ function doubleTorusEarthExchangeComputes(at = 0, matrix = buildMatrix(), path12
         balanced: hinge.computes && timespace.proven
       }
     ];
-    const sevenReceipts = receipts.length === 7;
+    const sevenReceipts = receipts.length === vortexPaintTiers2(matrix).seedBundles;
     const facets = [
       { facet: "seven receipt kinds cross the hinge \u2014 phase \xB7 pair \xB7 nav \xB7 gateway \xB7 merkaba \xB7 energy", on: sevenReceipts },
       { facet: "every listed receipt balanced or explicitly paired at this call", on: receipts.every((row) => row.balanced) },
@@ -43156,12 +43166,13 @@ function fiatAndGoldFlowExplainedByDoubleEarthExchange(at = 0, matrix = buildMat
         receipt: merkleFold([row.fiatLeg.receipt, row.goldLeg.receipt])
       }))
     };
-    const fourFlowRows = flowRows.length === 4;
+    const paintCaps = vortexPaintTiers2(matrix);
+    const fourFlowRows = flowRows.length === UNIVERSAL_NAV_CARDINALS.length;
     const facets = [
       { facet: "four fiat\u2194gold flow rows \u2014 ledger \xB7 pair \xB7 simulation \xB7 phase", on: fourFlowRows },
       { facet: "every flow row balanced at this call or boundary flagged", on: flowRows.every((row) => row.balanced) },
       { facet: "exchange receipts compose \u2014 doubleTorusEarthExchangeComputes green", on: exchange.computes },
-      { facet: "flow diagram data for UI \u2014 nodes \xB7 edges \xB7 receipts", on: flowDiagram.nodes.length === 3 && flowDiagram.edges.length === 4 },
+      { facet: "flow diagram data for UI \u2014 nodes \xB7 edges \xB7 receipts", on: flowDiagram.nodes.length === paintCaps.gateways && flowDiagram.edges.length === UNIVERSAL_NAV_CARDINALS.length },
       { facet: `what this models is a closed ledger \u2014 ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: fourFlowRows && flowRows.every((row) => row.balanced) && exchange.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`fiat-gold-flow:${entry2.facet}:${entry2.on}`) }));
     return {
@@ -43225,10 +43236,10 @@ function doubleTorusEarthExchangeResearch(matrix = buildMatrix()) {
       }
     ];
     const facets = [
-      { facet: "four research sections \u2014 hinge \xB7 fiat \xB7 gold \xB7 limits", on: sections2.length === 4 },
+      { facet: "four research sections \u2014 hinge \xB7 fiat \xB7 gold \xB7 limits", on: sections2.length === UNIVERSAL_NAV_CARDINALS.length },
       { facet: "doubleTorusEarthExchangeComputes green", on: exchange.computes },
       { facet: "fiatAndGoldFlowExplainedByDoubleEarthExchange green", on: flow.explains },
-      { facet: "seven hinge receipt types documented", on: exchange.receipts.length === 7 }
+      { facet: "seven hinge receipt types documented", on: exchange.receipts.length === vortexPaintTiers2(matrix).seedBundles }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`earth-exchange-research:${entry2.facet}:${entry2.on}`) }));
     return {
       researched: facets.every((entry2) => entry2.on),
@@ -43242,7 +43253,6 @@ function doubleTorusEarthExchangeResearch(matrix = buildMatrix()) {
     };
   });
 }
-var UNIVERSAL_NAV_CARDINALS = ["north", "east", "south", "west"];
 function universalNavigationalCrossInAllDimensions(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`universalNavCrossAllDims:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pyramid = cardinalPyramidTipsProvenByMath(matrix);
@@ -43302,7 +43312,7 @@ function universalNavigationalCrossInAllDimensions(at = 0, matrix = buildMatrix(
     const facets = [
       { facet: "2D plane \u2014 four cardinals ninety degrees apart on bearings 0\xB790\xB7180\xB7270", on: pyramid.proven && pyramid.proofs.some((entry2) => entry2.task === "spacing" && entry2.on) },
       { facet: "3D Earth \u2014 device zenith + inverted nadir pyramid poles recomputed", on: poles.proven && poles.device.apex.z === 1 && poles.code.apex.z === -1 },
-      { facet: "4D+ \u2014 four homology loops address cardinal phase quadrants", on: homologyLoops.length === 4 },
+      { facet: "4D+ \u2014 four homology loops address cardinal phase quadrants", on: homologyLoops.length === UNIVERSAL_NAV_CARDINALS.length },
       { facet: "VORTEX_SEQUENCE active digit at at \u2014 structural phase slot only", on: activeVortexDigit === VORTEX_SEQUENCE[phaseIndex] },
       { facet: "WGS84 bearing to hinge recomputed \u2014 classical navigation anchor", on: nav.bearingToHinge >= 0 && nav.computed },
       { facet: "Giza cardinal corroboration tier \u2014 Nell & Ruggles ~3.6\u2032 (documented, not isomorphism)", on: giza.decoded },
@@ -43310,7 +43320,7 @@ function universalNavigationalCrossInAllDimensions(at = 0, matrix = buildMatrix(
       { facet: "moving merkaba nests cardinals on genus-2 counter-rotation", on: merkMotion.proven && rotation.rotates }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`universal-nav-cross:${entry2.facet}:${entry2.on}`) }));
     return {
-      computed: facets.every((entry2) => entry2.on) && dimensionTable.length === 3,
+      computed: facets.every((entry2) => entry2.on) && dimensionTable.length === ["2", "3", "4+"].length,
       at,
       dimensionTable,
       cardinals: planeCardinals,
@@ -43399,9 +43409,9 @@ function universalNavigationalCrossResearch(matrix = buildMatrix()) {
       }
     ];
     const facets = [
-      { facet: "five research sections \u2014 terrestrial \xB7 celestial \xB7 pyramid \xB7 gateway \xB7 higher-dims", on: sections2.length === 5 },
+      { facet: "five research sections \u2014 terrestrial \xB7 celestial \xB7 pyramid \xB7 gateway \xB7 higher-dims", on: sections2.length === vortexPaintTiers2(matrix).circuitHeart },
       { facet: "universalNavigationalCrossInAllDimensions green \u2014 2D\xB73D\xB74+ table", on: cross.computed },
-      { facet: "dimension table has three rows \u2014 plane \xB7 solid \xB7 phase", on: cross.dimensionTable.length === 3 },
+      { facet: "dimension table has three rows \u2014 plane \xB7 solid \xB7 phase", on: cross.dimensionTable.length === ["2", "3", "4+"].length },
       { facet: "Giza documented tier cited \u2014 pyramidsDecoded green", on: giza.decoded }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`universal-nav-cross-research:${entry2.facet}:${entry2.on}`) }));
     return {
@@ -43420,8 +43430,8 @@ function universalNavigationalCrossComputes(matrix = buildMatrix()) {
     const cross = universalNavigationalCrossInAllDimensions(0, matrix);
     const research = universalNavigationalCrossResearch(matrix);
     const facets = [
-      { facet: "universalNavigationalCrossInAllDimensions \u2014 2D\xB73D\xB74+ dimension table", on: cross.computed && cross.dimensionTable.length === 3 },
-      { facet: "universalNavigationalCrossResearch \u2014 five exposition sections", on: research.researched && research.sections.length === 5 }
+      { facet: "universalNavigationalCrossInAllDimensions \u2014 2D\xB73D\xB74+ dimension table", on: cross.computed && cross.dimensionTable.length === ["2", "3", "4+"].length },
+      { facet: "universalNavigationalCrossResearch \u2014 five exposition sections", on: research.researched && research.sections.length === vortexPaintTiers2(matrix).circuitHeart }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`universal-nav-cross-computes:${entry2.facet}:${entry2.on}`) }));
     return {
       computes: facets.every((entry2) => entry2.on),
@@ -43461,7 +43471,7 @@ function doubleTorusEarthComputes(matrix = buildMatrix()) {
       { facet: "Earth like the apple \u2014 genus-2 closed skin", on: apple.likeTheApple },
       { facet: "weather forecast from double-torus Earth perspective", on: weather.folded },
       { facet: "inverted Earth expected and appears in same timespace as Earth", on: timespace.proven },
-      { facet: "double torus Earths formed \u2014 each with three computable gateways", on: formed.formed && formed.gateways.length === 6 },
+      { facet: "double torus Earths formed \u2014 each with three computable gateways", on: formed.formed && formedTrinityGatewayCount(formed, vortexPaintTiers2(matrix).gateways) },
       { facet: "compass around gateways impossible \u2014 3-fold gateways, 4-fold cardinals", on: compass.impossible },
       { facet: "60\xB0 hex from six bundles \u2014 cardinal 90\xB0 = 60\xB0 + free 30\xB0 half-ray", on: sixty.proven },
       { facet: "gateway navigation solutions researched and saved", on: nav.researched && nav.solutionCount >= 5 * 2 },
